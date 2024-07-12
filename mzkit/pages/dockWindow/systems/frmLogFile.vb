@@ -22,7 +22,7 @@ Public Class frmLogFile
         Next
     End Sub
 
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+    Private Sub ComboBox1_SelectedIndexChanged() Handles ComboBox1.SelectedIndexChanged
         If ComboBox1.SelectedIndex > -1 Then
             Dim file As String = $"{App.ProductProgramData}/{ComboBox1.SelectedItem}.txt"
             Dim logs As LogEntry() = LogReader.Parse(file).ToArray
@@ -87,5 +87,9 @@ Public Class frmLogFile
                 Call launch_cmd(log)
             End If
         End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Call ComboBox1_SelectedIndexChanged()
     End Sub
 End Class

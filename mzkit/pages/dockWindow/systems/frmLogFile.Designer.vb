@@ -28,11 +28,12 @@ Partial Class frmLogFile : Inherits DocumentWindow
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewLinkColumn()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -79,16 +80,6 @@ Partial Class frmLogFile : Inherits DocumentWindow
         Me.DataGridView1.Size = New System.Drawing.Size(1151, 444)
         Me.DataGridView1.TabIndex = 0
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Label2.Location = New System.Drawing.Point(47, 50)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(1071, 64)
-        Me.Label2.TabIndex = 4
-        Me.Label2.Text = resources.GetString("Label2.Text")
-        '
         'Column1
         '
         Me.Column1.HeaderText = "Time"
@@ -114,11 +105,31 @@ Partial Class frmLogFile : Inherits DocumentWindow
         Me.Column4.HeaderText = "CMD"
         Me.Column4.Name = "Column4"
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Label2.Location = New System.Drawing.Point(47, 50)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(1071, 64)
+        Me.Label2.TabIndex = 4
+        Me.Label2.Text = resources.GetString("Label2.Text")
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(686, 13)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 5
+        Me.Button1.Text = "Reload"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'frmLogFile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1181, 634)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ComboBox1)
@@ -142,4 +153,5 @@ Partial Class frmLogFile : Inherits DocumentWindow
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewLinkColumn
+    Friend WithEvents Button1 As Button
 End Class
