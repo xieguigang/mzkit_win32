@@ -1,4 +1,7 @@
-﻿Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
+﻿Imports System.Text
+Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
+Imports Microsoft.VisualBasic.Text
 
 Public Class frmLogFile
 
@@ -26,13 +29,14 @@ Public Class frmLogFile
 
             DataGridView1.Rows.Clear()
 
-            For Each item As LogEntry In logs
+            For Each item As LogEntry In logs.OrderByDescending(Function(i) i.time)
                 Dim row As New DataGridViewRow With {.Tag = item}
                 Dim data = TryParse(item.message)
 
                 row.Cells.Add(New DataGridViewTextBoxCell With {.Value = item.time})
                 row.Cells.Add(New DataGridViewTextBoxCell With {.Value = data.Item1})
                 row.Cells.Add(New DataGridViewTextBoxCell With {.Value = data.Item2})
+                row.Cells.Add(New DataGridViewLinkCell With {.Value = "Run"})
 
                 DataGridView1.Rows.Add(row)
             Next
@@ -52,4 +56,36 @@ Public Class frmLogFile
 
         Return (cd, cmd)
     End Function
+
+    Private Sub launch_cmd(cmdlog As LogEntry)
+        Dim run = TryParse(cmdlog.message)
+        Dim batch As New StringBuilder($"{run.Item1.Split(":"c).First}:")
+        batch.AppendLine("CD " & run.Item1.CLIPath)
+        batch.AppendLine(run.Item2)
+
+        Dim batch_file As String = App.GetTempFile & ".cmd"
+        Dim cmd As New Process
+        cmd.StartInfo.FileName = "cmd.exe"
+        cmd.StartInfo.Arguments = batch_file.CLIPath
+        cmd.StartInfo.CreateNoWindow = False
+
+        Call batch.ToString.SaveTo(batch_file, Encodings.UTF8.CodePage)
+        Call cmd.Start()
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+        If DataGridView1.Rows.Count = 0 Then
+            Return
+        End If
+        If e.RowIndex < 0 OrElse e.ColumnIndex < 0 Then
+            Return
+        End If
+        If e.ColumnIndex = 3 Then
+            Dim log As LogEntry = DataGridView1.Rows(e.RowIndex)?.Tag
+
+            If Not log.message.StringEmpty Then
+                Call launch_cmd(log)
+            End If
+        End If
+    End Sub
 End Class

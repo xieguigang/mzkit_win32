@@ -27,11 +27,12 @@ Partial Class frmLogFile : Inherits DocumentWindow
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -67,6 +68,17 @@ Partial Class frmLogFile : Inherits DocumentWindow
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Command Logs"
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4})
+        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView1.Location = New System.Drawing.Point(3, 17)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowTemplate.Height = 23
+        Me.DataGridView1.Size = New System.Drawing.Size(1151, 444)
+        Me.DataGridView1.TabIndex = 0
+        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -76,17 +88,6 @@ Partial Class frmLogFile : Inherits DocumentWindow
         Me.Label2.Size = New System.Drawing.Size(1071, 64)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = resources.GetString("Label2.Text")
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3})
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(3, 17)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.RowTemplate.Height = 23
-        Me.DataGridView1.Size = New System.Drawing.Size(1151, 444)
-        Me.DataGridView1.TabIndex = 0
         '
         'Column1
         '
@@ -107,6 +108,11 @@ Partial Class frmLogFile : Inherits DocumentWindow
         Me.Column3.Name = "Column3"
         Me.Column3.ReadOnly = True
         Me.Column3.Width = 600
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "CMD"
+        Me.Column4.Name = "Column4"
         '
         'frmLogFile
         '
@@ -135,4 +141,5 @@ Partial Class frmLogFile : Inherits DocumentWindow
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewLinkColumn
 End Class
