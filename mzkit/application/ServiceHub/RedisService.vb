@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
+﻿Imports BioNovoGene.mzkit_win32.My
+Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Task
 Imports TaskStream
@@ -18,8 +19,8 @@ Public NotInheritable Class RedisService
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/Rstudio/bin/Rscript.exe",
                 .Arguments = $"{Rscript.CLIPath} --port {port} --master {App.PID} --SetDllDirectory {TaskEngine.redisDll.ParentPath.CLIPath}",
-                .CreateNoWindow = True,
-                .WindowStyle = ProcessWindowStyle.Hidden,
+                .CreateNoWindow = Not MyApplication.debugMode,
+                .WindowStyle = If(MyApplication.debugMode, ProcessWindowStyle.Normal, ProcessWindowStyle.Hidden),
                 .UseShellExecute = True
             }
         }

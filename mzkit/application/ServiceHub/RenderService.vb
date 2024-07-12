@@ -49,15 +49,19 @@ Public NotInheritable Class RenderService
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/plugins\blender\BlenderHost.exe",
                 .Arguments = $"/start --port {MSIBlender.port} --master {bindChannel} {If(debug, "--debug", "")} /@set buffer_size={mb}MB",
-                .CreateNoWindow = True,
-                .WindowStyle = ProcessWindowStyle.Hidden,
+                .CreateNoWindow = Not MyApplication.debugMode,
+                .WindowStyle = If(MyApplication.debugMode, ProcessWindowStyle.Normal, ProcessWindowStyle.Hidden),
                 .UseShellExecute = False,
-                .RedirectStandardOutput = True
+                .RedirectStandardOutput = Not MyApplication.debugMode
             }
         }
 
         Call BlenderHost.Start()
-        Call New Thread(Sub() readLines(BlenderHost)).Start()
+
+        If Not MyApplication.debugMode Then
+            Call New Thread(Sub() readLines(BlenderHost)).Start()
+        End If
+
         Call ServiceHub.Manager.Hub.RegisterSingle(New Manager.Service With {
             .Name = "MSI Blender",
             .Description = "MS-Imaging blendering backend for mzkit workbench",
