@@ -67,6 +67,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.mzkit_win32.My
+Imports Darwinism.HPC.Parallel
 Imports Darwinism.IPC.Networking.HTTP
 Imports Darwinism.IPC.Networking.Tcp
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
@@ -444,13 +445,23 @@ Namespace ServiceHub
                 Return Nothing
             End If
 
-            ' Call data.ChunkBuffer.FlushStream(App.CurrentProcessTemp & "/debug.bson")
+            Dim regions As RegionLoader
 
-            Dim regions As RegionLoader = BSON _
-               .Load(data.ChunkBuffer) _
-               .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
-               .Reload
+            If (Not data.ChunkBuffer.IsNullOrEmpty) AndAlso data.ChunkBuffer.SequenceEqual(New Byte() {1, 2, 3, 4, 5}) Then
+                ' read data from memory mapping
+                regions = BSON _
+                    .Load(OpenMemory().LoadStream()) _
+                    .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
+                    .Reload
+            Else
+                regions = BSON _
+                   .Load(data.ChunkBuffer) _
+                   .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
+                   .Reload
+            End If
+
             checkOffline = 0
+
             Return regions
         End Function
 
@@ -561,6 +572,10 @@ Namespace ServiceHub
             MessageCallback = Nothing
 
             Return handlePropertiesReader(data, raw)
+        End Function
+
+        Public Function OpenMemory() As MemoryPipe
+            Return New MemoryPipe(MapObject.FromPointer($"MSI_redis_{endPoint.port}", 128 * ByteSize.MB))
         End Function
 
         ''' <summary>

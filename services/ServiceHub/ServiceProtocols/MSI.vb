@@ -86,6 +86,7 @@ Imports Darwinism.IPC.Networking.Tcp
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
@@ -107,6 +108,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     Public Shared ReadOnly Property Protocol As Long = New ProtocolAttribute(GetType(ServiceProtocol)).EntryPoint
 
     Dim socket As TcpServicesSocket
+    Dim redis As MemoryPipe
 
     Friend type As FileApplicationClass
     ''' <summary>
@@ -138,6 +140,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             .KeepsAlive = False,
             .ResponseHandler = callback
         }
+        Me.redis = New MemoryPipe(MapObject.Allocate(128 * ByteSize.MB, hMemP:=$"MSI_redis_{TcpPort}"))
 
         Call RunSlavePipeline.SendMessage($"socket={TcpPort}")
         Call BackgroundTaskUtils.BindToMaster(masterPid, Me)
@@ -386,7 +389,15 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim json = GetType(RegionLoader).GetJsonElement(sampleRegions, New JSONSerializerOptions)
 
         Using buffer = BSON.GetBuffer(json)
-            Return New DataPipe(buffer)
+            If buffer.Length > App.BufferSize Then
+                Call RunSlavePipeline.SendMessage("send data via memory mapping due to the reason of payload greater than buffer size.")
+                Call buffer.Seek(Scan0, SeekOrigin.Begin)
+                Call redis.WriteBuffer(buffer)
+
+                Return New DataPipe(New Byte() {1, 2, 3, 4, 5})
+            Else
+                Return New DataPipe(buffer)
+            End If
         End Using
     End Function
 
