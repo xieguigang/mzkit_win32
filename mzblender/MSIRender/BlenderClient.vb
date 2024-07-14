@@ -68,6 +68,7 @@ Imports Darwinism.HPC.Parallel
 Imports Darwinism.IPC.Networking.HTTP
 Imports Darwinism.IPC.Networking.Tcp
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.Net
 Imports Microsoft.VisualBasic.Parallel
@@ -99,7 +100,7 @@ Public Class BlenderClient : Implements IDisposable
         Dim map_name As String = If(debug, "debug-blender", Service.GetMappedChannel(App.PID))
 
         Me.host = host
-        Me.channel = New Darwinism.HPC.Parallel.MemoryPipe(MapObject.FromPointer(map_name, 128 * 1024 * 1024))
+        Me.channel = New MemoryPipe(MapObject.FromPointer(map_name, 128 * ByteSize.MB))
     End Sub
 
     Private Function handleRequest(req As RequestStream) As RequestStream
