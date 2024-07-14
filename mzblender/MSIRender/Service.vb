@@ -86,7 +86,7 @@ Public Class Service : Implements IDisposable
 
     Dim disposedValue As Boolean
     Dim socket As TcpServicesSocket
-    Dim channel As MemoryPipe
+    Dim channel As Darwinism.HPC.Parallel.MemoryPipe
     Dim blender As MSImagingBlender
     Dim filters As RasterPipeline
     Dim TIC As PixelScanIntensity()
@@ -98,7 +98,7 @@ Public Class Service : Implements IDisposable
     Sub New(port As Integer, masterChannel As String)
         socket = New TcpServicesSocket(port) With {.KeepsAlive = False}
         socket.ResponseHandler = AddressOf New ProtocolHandler(Me).HandleRequest
-        channel = New MemoryPipe(MapObject.Allocate(128 * 1024 * 1024, hMemP:=GetMappedChannel(masterChannel)))
+        channel = New Darwinism.HPC.Parallel.MemoryPipe(MapObject.Allocate(128 * 1024 * 1024, hMemP:=GetMappedChannel(masterChannel)))
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>

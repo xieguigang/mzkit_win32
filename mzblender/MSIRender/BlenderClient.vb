@@ -99,7 +99,7 @@ Public Class BlenderClient : Implements IDisposable
         Dim map_name As String = If(debug, "debug-blender", Service.GetMappedChannel(App.PID))
 
         Me.host = host
-        Me.channel = New MemoryPipe(MapObject.FromPointer(map_name, 128 * 1024 * 1024))
+        Me.channel = New Darwinism.HPC.Parallel.MemoryPipe(MapObject.FromPointer(map_name, 128 * 1024 * 1024))
     End Sub
 
     Private Function handleRequest(req As RequestStream) As RequestStream
