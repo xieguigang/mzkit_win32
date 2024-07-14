@@ -574,8 +574,9 @@ Namespace ServiceHub
             Return handlePropertiesReader(data, raw)
         End Function
 
-        Public Function OpenMemory() As MemoryPipe
-            Return New MemoryPipe(MapObject.FromPointer($"MSI_redis_{endPoint.port}", 128 * ByteSize.MB))
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Function OpenMemory() As Darwinism.HPC.Parallel.MemoryPipe
+            Return New Darwinism.HPC.Parallel.MemoryPipe(MapObject.FromPointer($"MSI_redis_{endPoint.port}", 128 * ByteSize.MB))
         End Function
 
         ''' <summary>
