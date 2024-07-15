@@ -520,7 +520,7 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_3" ComponentId="{91F66980-2D54-445C-B19F-F00A8E951E76}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_2"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.pdb" ComponentId="{793948C4-38D6-490E-B754-D22C8F64B846}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" ComponentId="{99D5B626-BDA4-4965-B9E2-37BAF38B4A6E}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll"/>
-    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1" ComponentId="{1EC96217-30A6-4EE7-B748-93DD47BFEE44}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1" ComponentId="{1EC96217-30A6-4EE7-B748-93DD47BFEE44}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_2" ComponentId="{A496D1BF-158B-4A65-A6F9-8F693057697C}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_2"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_3" ComponentId="{6B306E49-12AB-4121-89A7-57F8D71B10EA}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb" ComponentId="{DE7F8C4E-9CE7-45A7-8644-6311BDE6D118}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb_1" Type="4"/>
@@ -19947,6 +19947,7 @@
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb_1" Component_="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb" FileName="BIONO~36.PDB|BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml_2" Component_="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml" FileName="BIONO~36.XML|BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml" SelfReg="false"/>
     <ROW File="LINQ.xml_2" Component_="LINQ.xml" FileName="LINQ.xml" Attributes="0" SourcePath="..\..\..\dist\bin\LINQ.xml" SelfReg="false"/>
+    <ROW File="preprocessing.R" Component_="OPLSDA.R" FileName="PREPRO~1.R|preprocessing.R" Attributes="0" SourcePath="..\rstudio\pipeline\workbench\preprocessing.R" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
