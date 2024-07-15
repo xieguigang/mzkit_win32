@@ -262,12 +262,22 @@ Public Class MSIRegionSampleWindow
         Dim alphaLevel As Double = configs.opacity / 100
         Dim tissueMaps = GetRegions(dimension).ToArray
         Dim spotSize = configs.spot_size
+        Dim layer As Image
 
         If tissueMaps.IsNullOrEmpty Then
             Return
+        ElseIf Not LayerRender.CheckGdiSizeParameter(layerSize, spotSize) Then
+            MessageBox.Show($"the image size({layerSize.Width},{layerSize.Height}) multiply current spot size({spotSize}) will cause the image byte size greater than 2GB, which could not be holded by dotnet memory buffer. 
+the spot size for the rendering will be reduce to 1, but this gdi+ memory problem may still happends for large slide image.", "Invalid gdi+ parameters", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            spotSize = 1
         End If
 
-        Dim layer As Image = LayerRender.Draw(tissueMaps, layerSize, alphaLevel, dotSize:=spotSize)
+        Try
+            layer = LayerRender.Draw(tissueMaps, layerSize, alphaLevel, dotSize:=spotSize)
+        Catch ex As Exception
+            Call App.LogException(ex)
+            Return
+        End Try
 
         Me.canvas = canvas
 
