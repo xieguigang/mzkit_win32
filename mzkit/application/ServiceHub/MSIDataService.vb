@@ -72,6 +72,7 @@ Imports Darwinism.IPC.Networking.HTTP
 Imports Darwinism.IPC.Networking.Tcp
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
+Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
@@ -447,7 +448,7 @@ Namespace ServiceHub
 
             Dim regions As RegionLoader
 
-            If (Not data.ChunkBuffer.IsNullOrEmpty) AndAlso data.ChunkBuffer.SequenceEqual(New Byte() {1, 2, 3, 4, 5}) Then
+            If data.CheckMagicNumber(New Byte() {1, 2, 3, 4, 5}) Then
                 ' read data from memory mapping
                 regions = BSON _
                     .Load(OpenMemory().LoadStream()) _
