@@ -76,7 +76,7 @@ Public Class KEGGEnrichmentAction : Inherits ActionBase
                    grid.Columns.Add(NameOf(EnrichmentResult.score), GetType(Double))
                    grid.Columns.Add(NameOf(EnrichmentResult.pvalue), GetType(Double))
                    grid.Columns.Add(NameOf(EnrichmentResult.FDR), GetType(Double))
-                   grid.Columns.Add(NameOf(EnrichmentResult.geneIDs), GetType(String))
+                   grid.Columns.Add(NameOf(EnrichmentResult.IDs), GetType(String))
 
                    For Each item As EnrichmentResult In enrich
                        Call grid.Rows.Add(
@@ -88,7 +88,7 @@ Public Class KEGGEnrichmentAction : Inherits ActionBase
                             item.score,
                             item.pvalue,
                             item.FDR,
-                            item.geneIDs.JoinBy(", ")
+                            item.IDs.JoinBy(", ")
                         )
                    Next
                End Sub
