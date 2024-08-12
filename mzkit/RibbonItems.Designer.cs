@@ -442,6 +442,9 @@ namespace RibbonLib.Controls
         public RibbonButton MRMLibrary { get; private set; }
         public RibbonButton QuantifyIons { get; private set; }
         public RibbonGroup TagGroupParameterTool { get; private set; }
+        /// <summary>
+        /// Adjust Parameters
+        /// </summary>
         public RibbonButton AdjustParameters { get; private set; }
         public RibbonTabGroup TabGroupMSI { get; private set; }
         public RibbonTab TabMSIPage { get; private set; }
@@ -493,6 +496,9 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonClosePolygonEditor { get; private set; }
         public RibbonToggleButton ButtonPolygonEditorMoveVertex { get; private set; }
         public RibbonToggleButton ButtonMovePolygon { get; private set; }
+        /// <summary>
+        /// Add new polygon on the tissue map and start to create a new tissue morphology feature.
+        /// </summary>
         public RibbonToggleButton ButtonAddNewPolygon { get; private set; }
         public RibbonToggleButton ButtonPolygonDeleteVertex { get; private set; }
         public RibbonToggleButton ButtonRemovePolygon { get; private set; }
@@ -525,6 +531,9 @@ namespace RibbonLib.Controls
         public RibbonCheckBox CheckboxHEstainKeepsAspectRatio { get; private set; }
         public RibbonGroup PanelHEstainEditor { get; private set; }
         public RibbonButton ButtonHEstainEditLabel { get; private set; }
+        /// <summary>
+        /// Adjust Spatial Tile UI
+        /// </summary>
         public RibbonButton ButtonSpatialTileUI { get; private set; }
         public RibbonButton ButtonHEstainSetSpotColor { get; private set; }
         public RibbonTabGroup MenuOpenseadragon { get; private set; }
@@ -593,6 +602,9 @@ namespace RibbonLib.Controls
         public RibbonButton Targeted { get; private set; }
         public RibbonButton ButtonLinearFitting { get; private set; }
         public RibbonTab TabAbout { get; private set; }
+        /// <summary>
+        /// About mzkit
+        /// </summary>
         public RibbonGroup GroupAboutActions { get; private set; }
         public RibbonButton Tutorials { get; private set; }
         public RibbonGroup TabDemo { get; private set; }
@@ -608,6 +620,9 @@ namespace RibbonLib.Controls
         public RibbonDropDownButton GroupExport { get; private set; }
         public RibbonButton ButtonExportImage { get; private set; }
         public RibbonButton ButtonExportMatrix { get; private set; }
+        /// <summary>
+        /// Add Reference Library
+        /// </summary>
         public RibbonButton ButtonAddReferenceSpectral { get; private set; }
 
         public RibbonItems(Ribbon ribbon)

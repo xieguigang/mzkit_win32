@@ -46,17 +46,17 @@
         <String Id="12">About</String>
       </Command.LabelTitle>
     </Command>
-    <Command Name="cmdGroupAboutActions" Id="1047">
+    <Command Name="cmdGroupAboutActions" Comment="About mzkit" Id="1047" LabelDescription="About MZKit workbench" TooltipTitle="About MZKit workbench" TooltipDescription="About MZKit workbench">
       <Command.LabelTitle>
         <String Id="13">About mzkit</String>
       </Command.LabelTitle>
     </Command>
-    <Command Name="cmdGroupDemoActions" Id="1048">
+    <Command Name="cmdGroupDemoActions" Comment="About MZKit workbench" Id="1048" LabelDescription="About MZKit workbench" TooltipTitle="About MZKit workbench" TooltipDescription="About MZKit workbench">
       <Command.LabelTitle>
         <String Id="14">About mzkit</String>
       </Command.LabelTitle>
     </Command>
-    <Command Name="cmdButtonAddNewPolygon" Id="149">
+    <Command Name="cmdButtonAddNewPolygon" Comment="Add new polygon on the tissue map and start to create a new tissue morphology feature." Id="149">
       <Command.LabelTitle>
         <String Id="15">Add New Polygon</String>
       </Command.LabelTitle>
@@ -82,7 +82,7 @@
         <Image Id="22" MinDPI="192">../ux/PolygonEditor/AddVertexMenuItem.Image.png</Image>
       </Command.LargeHighContrastImages>
     </Command>
-    <Command Name="cmdButtonAddReferenceSpectral" Id="264" LabelTitle="Add Reference Library" LabelDescription="Add Reference Library" TooltipTitle="Add Reference Library" TooltipDescription="Add Reference Library">
+    <Command Name="cmdButtonAddReferenceSpectral" Comment="Add Reference Library" Id="264" LabelTitle="Add Reference Library" LabelDescription="Add Reference Library" TooltipTitle="Add Reference Library" TooltipDescription="Add Reference Library">
       <Command.SmallImages>
         <Image MinDPI="192">Res/applets-screenshooter.png</Image>
       </Command.SmallImages>
@@ -90,7 +90,7 @@
         <Image MinDPI="192">Res/applets-screenshooter.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdAdjustParameters" Id="116">
+    <Command Name="cmdAdjustParameters" Comment="Adjust Parameters" Id="116">
       <Command.LabelTitle>
         <String Id="23">Adjust Parameters</String>
       </Command.LabelTitle>
@@ -110,7 +110,7 @@
         <Image Id="28" MinDPI="144">Res/insert-object.bmp</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonSpatialTileUI" Id="247">
+    <Command Name="cmdButtonSpatialTileUI" Comment="Adjust Spatial Tile UI" Id="247">
       <Command.LabelTitle>
         <String Id="29">Adjust Spatial Tile UI</String>
       </Command.LabelTitle>

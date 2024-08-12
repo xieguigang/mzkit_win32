@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Public Class RibbonItems
+    Partial Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -1060,6 +1060,9 @@ Namespace RibbonLib.Controls
             End Get
         End Property
         Private _AdjustParameters As RibbonButton
+        ''' <summary>
+        ''' Adjust Parameters
+        ''' </summary>
         Public ReadOnly Property AdjustParameters As RibbonButton
             Get
                 Return _AdjustParameters
@@ -1366,6 +1369,9 @@ Namespace RibbonLib.Controls
             End Get
         End Property
         Private _ButtonAddNewPolygon As RibbonToggleButton
+        ''' <summary>
+        ''' Add new polygon on the tissue map and start to create a new tissue morphology feature.
+        ''' </summary>
         Public ReadOnly Property ButtonAddNewPolygon As RibbonToggleButton
             Get
                 Return _ButtonAddNewPolygon
@@ -1558,6 +1564,9 @@ Namespace RibbonLib.Controls
             End Get
         End Property
         Private _ButtonSpatialTileUI As RibbonButton
+        ''' <summary>
+        ''' Adjust Spatial Tile UI
+        ''' </summary>
         Public ReadOnly Property ButtonSpatialTileUI As RibbonButton
             Get
                 Return _ButtonSpatialTileUI
@@ -1966,6 +1975,9 @@ Namespace RibbonLib.Controls
             End Get
         End Property
         Private _GroupAboutActions As RibbonGroup
+        ''' <summary>
+        ''' About mzkit
+        ''' </summary>
         Public ReadOnly Property GroupAboutActions As RibbonGroup
             Get
                 Return _GroupAboutActions
@@ -2056,6 +2068,9 @@ Namespace RibbonLib.Controls
             End Get
         End Property
         Private _ButtonAddReferenceSpectral As RibbonButton
+        ''' <summary>
+        ''' Add Reference Library
+        ''' </summary>
         Public ReadOnly Property ButtonAddReferenceSpectral As RibbonButton
             Get
                 Return _ButtonAddReferenceSpectral
