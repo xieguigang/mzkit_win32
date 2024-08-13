@@ -8,7 +8,7 @@ Public Class FormSelectTable
     Dim reportPack As AnnotationPack
 
     Public Iterator Function GetTargetSet() As IEnumerable(Of String)
-        For i As Integer = 0 To DataGridView1.Rows.Count
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
             Dim row = DataGridView1.Rows(i)
 
             If row IsNot Nothing AndAlso CBool(row.Cells(0).Value) Then
