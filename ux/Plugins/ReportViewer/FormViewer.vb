@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
+Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.BioDeep.MSEngine
 Imports Microsoft.VisualBasic.Linq
@@ -50,13 +51,33 @@ Public Class FormViewer
         End If
 
         Dim show As New FormSelectTable
-        Call show.SetAnnotation(report.annotation)
 
-        InputDialog.Input(
-            Sub(config)
-                Dim html As String = report.HtmlTable(config.GetTargetSet, False)
-                WebView21.NavigateToString(html)
-            End Sub, config:=show)
+        Call show.SetAnnotation(report.annotation)
+        Call InputDialog.Input(Sub(config) viewMetabolites(config), config:=show)
+    End Sub
+
+    Private Sub viewMetabolites(config As FormSelectTable)
+        Dim html As New StringBuilder
+        Dim lines = report.Tabular(config.GetTargetSet, rt_cell:=False).ToArray
+
+        Call html.AppendLine("<table class='table' style='width:100%;'>")
+        Call html.AppendLine("<thead>")
+        Call html.AppendLine("<tr>")
+        Call html.AppendLine(lines(0))
+        Call html.AppendLine("</tr>")
+        Call html.AppendLine("</thead>")
+        Call html.AppendLine("<tbody>")
+
+        For Each row As String In lines.Skip(1)
+            Call html.AppendLine("<tr>")
+            Call html.AppendLine(row)
+            Call html.AppendLine("</tr>")
+        Next
+
+        Call html.AppendLine("</tbody>")
+        Call html.AppendLine("</table>")
+
+        Call WebView21.NavigateToString(html.ToString)
     End Sub
 
     Private Sub FormViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
