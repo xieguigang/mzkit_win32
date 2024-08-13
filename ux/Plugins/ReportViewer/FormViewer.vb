@@ -50,7 +50,7 @@ Public Class FormViewer
         End If
 
         Dim show As New FormSelectTable
-        Call show.SetAnnotation(report.annotation.libraries.Values.IteratesALL)
+        Call show.SetAnnotation(report.annotation)
 
         InputDialog.Input(
             Sub(config)
