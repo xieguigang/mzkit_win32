@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Partial Public Class RibbonItems
+    Public Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -266,6 +266,11 @@ Namespace RibbonLib.Controls
             Public Const cmdPanelSingleCellsRawData As UInteger = 303
             Public Const cmdGroupSingleCellsFile As UInteger = 304
             Public Const cmdButtonOpenSingleCellsRawDataFile As UInteger = 305
+            Public Const cmdGroupReport As UInteger = 311
+            Public Const cmdPanelReport As UInteger = 312
+            Public Const cmdMenuReport As UInteger = 313
+            Public Const cmdButtonReportOpenWorkspace As UInteger = 314
+            Public Const cmdButtonReportSelect As UInteger = 315
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -1836,6 +1841,51 @@ Namespace RibbonLib.Controls
                 Return _ButtonOpenSingleCellsRawDataFile
             End Get
         End Property
+        Private _GroupReport As RibbonTabGroup
+        ''' <summary>
+        ''' Report
+        ''' </summary>
+        Public ReadOnly Property GroupReport As RibbonTabGroup
+            Get
+                Return _GroupReport
+            End Get
+        End Property
+        Private _PanelReport As RibbonTab
+        ''' <summary>
+        ''' Report
+        ''' </summary>
+        Public ReadOnly Property PanelReport As RibbonTab
+            Get
+                Return _PanelReport
+            End Get
+        End Property
+        Private _MenuReport As RibbonGroup
+        ''' <summary>
+        ''' Report
+        ''' </summary>
+        Public ReadOnly Property MenuReport As RibbonGroup
+            Get
+                Return _MenuReport
+            End Get
+        End Property
+        Private _ButtonReportOpenWorkspace As RibbonButton
+        ''' <summary>
+        ''' Open the annotation result workspace
+        ''' </summary>
+        Public ReadOnly Property ButtonReportOpenWorkspace As RibbonButton
+            Get
+                Return _ButtonReportOpenWorkspace
+            End Get
+        End Property
+        Private _ButtonReportSelect As RibbonButton
+        ''' <summary>
+        ''' Select metabolites for make html report view
+        ''' </summary>
+        Public ReadOnly Property ButtonReportSelect As RibbonButton
+            Get
+                Return _ButtonReportSelect
+            End Get
+        End Property
         Private _TabMain As RibbonTab
         Public ReadOnly Property TabMain As RibbonTab
             Get
@@ -2333,6 +2383,11 @@ Namespace RibbonLib.Controls
             _PanelSingleCellsRawData = New RibbonTab(_ribbon, Cmd.cmdPanelSingleCellsRawData)
             _GroupSingleCellsFile = New RibbonGroup(_ribbon, Cmd.cmdGroupSingleCellsFile)
             _ButtonOpenSingleCellsRawDataFile = New RibbonButton(_ribbon, Cmd.cmdButtonOpenSingleCellsRawDataFile)
+            _GroupReport = New RibbonTabGroup(_ribbon, Cmd.cmdGroupReport)
+            _PanelReport = New RibbonTab(_ribbon, Cmd.cmdPanelReport)
+            _MenuReport = New RibbonGroup(_ribbon, Cmd.cmdMenuReport)
+            _ButtonReportOpenWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonReportOpenWorkspace)
+            _ButtonReportSelect = New RibbonButton(_ribbon, Cmd.cmdButtonReportSelect)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)

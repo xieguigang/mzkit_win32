@@ -2970,7 +2970,7 @@ Public Class frmMsImagingViewer
         Clipboard.Clear()
         Clipboard.SetImage(PixelSelector1.MSImage)
 
-        Call MyApplication.host.showStatusMessage("MS-imaging plot has been copied to the clipboard!")
+        Call Workbench.SuccessMessage("MS-imaging plot has been copied to the clipboard!")
     End Sub
 
     Private Sub PixelSelector1_SelectSample(tag As String) Handles PixelSelector1.SelectSample

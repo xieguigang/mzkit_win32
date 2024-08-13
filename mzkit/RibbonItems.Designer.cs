@@ -269,6 +269,11 @@ namespace RibbonLib.Controls
             public const uint cmdPanelSingleCellsRawData = 303;
             public const uint cmdGroupSingleCellsFile = 304;
             public const uint cmdButtonOpenSingleCellsRawDataFile = 305;
+            public const uint cmdGroupReport = 311;
+            public const uint cmdPanelReport = 312;
+            public const uint cmdMenuReport = 313;
+            public const uint cmdButtonReportOpenWorkspace = 314;
+            public const uint cmdButtonReportSelect = 315;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -579,6 +584,26 @@ namespace RibbonLib.Controls
         public RibbonTab PanelSingleCellsRawData { get; private set; }
         public RibbonGroup GroupSingleCellsFile { get; private set; }
         public RibbonButton ButtonOpenSingleCellsRawDataFile { get; private set; }
+        /// <summary>
+        /// Report
+        /// </summary>
+        public RibbonTabGroup GroupReport { get; private set; }
+        /// <summary>
+        /// Report
+        /// </summary>
+        public RibbonTab PanelReport { get; private set; }
+        /// <summary>
+        /// Report
+        /// </summary>
+        public RibbonGroup MenuReport { get; private set; }
+        /// <summary>
+        /// Open the annotation result workspace
+        /// </summary>
+        public RibbonButton ButtonReportOpenWorkspace { get; private set; }
+        /// <summary>
+        /// Select metabolites for make html report view
+        /// </summary>
+        public RibbonButton ButtonReportSelect { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -881,6 +906,11 @@ namespace RibbonLib.Controls
             PanelSingleCellsRawData = new RibbonTab(ribbon, Cmd.cmdPanelSingleCellsRawData);
             GroupSingleCellsFile = new RibbonGroup(ribbon, Cmd.cmdGroupSingleCellsFile);
             ButtonOpenSingleCellsRawDataFile = new RibbonButton(ribbon, Cmd.cmdButtonOpenSingleCellsRawDataFile);
+            GroupReport = new RibbonTabGroup(ribbon, Cmd.cmdGroupReport);
+            PanelReport = new RibbonTab(ribbon, Cmd.cmdPanelReport);
+            MenuReport = new RibbonGroup(ribbon, Cmd.cmdMenuReport);
+            ButtonReportOpenWorkspace = new RibbonButton(ribbon, Cmd.cmdButtonReportOpenWorkspace);
+            ButtonReportSelect = new RibbonButton(ribbon, Cmd.cmdButtonReportSelect);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);

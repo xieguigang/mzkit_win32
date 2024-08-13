@@ -4302,6 +4302,25 @@
         <Image MinDPI="192">Res/icons8-scatter-plot-96.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdGroupReport" Comment="Report" Id="311" LabelTitle="Report" LabelDescription="Report" TooltipTitle="Report" TooltipDescription="Report" />
+    <Command Name="cmdPanelReport" Comment="Report" Id="312" LabelTitle="Report" LabelDescription="Report" TooltipTitle="Report" TooltipDescription="Report" />
+    <Command Name="cmdMenuReport" Comment="Report" Id="313" LabelTitle="Report" LabelDescription="Report" TooltipTitle="Report" TooltipDescription="Report" />
+    <Command Name="cmdButtonReportOpenWorkspace" Comment="Open the annotation result workspace" Id="314" LabelTitle="Open" LabelDescription="Open the annotation result workspace" TooltipTitle="Open the annotation result workspace" TooltipDescription="Open the annotation result workspace">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonReportSelect" Comment="Select metabolites for make html report view" Id="315" LabelTitle="Select Metabolites" LabelDescription="Select metabolites for make html report view" TooltipTitle="Select Metabolites" TooltipDescription="Select metabolites for make html report view">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/edit.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4734,6 +4753,14 @@
           <Tab CommandName="cmdPanelSingleCellsRawData">
             <Group CommandName="cmdGroupSingleCellsFile">
               <Button CommandName="cmdButtonOpenSingleCellsRawDataFile" />
+            </Group>
+          </Tab>
+        </TabGroup>
+        <TabGroup CommandName="cmdGroupReport">
+          <Tab CommandName="cmdPanelReport">
+            <Group CommandName="cmdMenuReport" SizeDefinition="TwoButtons">
+              <Button CommandName="cmdButtonReportOpenWorkspace" />
+              <Button CommandName="cmdButtonReportSelect" />
             </Group>
           </Tab>
         </TabGroup>

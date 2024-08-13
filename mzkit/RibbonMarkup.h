@@ -1731,7 +1731,36 @@
 #define cmdViewMsnPrecursorScatter_TooltipDescription_RESID 60244
 #define cmdViewMsnPrecursorScatter_SmallImages_192__RESID 60245
 #define cmdViewMsnPrecursorScatter_LargeImages_192__RESID 60246
-#define InternalCmd2_LabelTitle_RESID 60247
-#define InternalCmd4_LabelTitle_RESID 60248
-#define InternalCmd6_LabelTitle_RESID 60249
-#define InternalCmd8_LabelTitle_RESID 60250
+#define cmdGroupReport 311  /* Report */ 
+#define cmdGroupReport_LabelTitle_RESID 60247
+#define cmdGroupReport_LabelDescription_RESID 60248
+#define cmdGroupReport_TooltipTitle_RESID 60249
+#define cmdGroupReport_TooltipDescription_RESID 60250
+#define cmdPanelReport 312  /* Report */ 
+#define cmdPanelReport_LabelTitle_RESID 60251
+#define cmdPanelReport_LabelDescription_RESID 60252
+#define cmdPanelReport_TooltipTitle_RESID 60253
+#define cmdPanelReport_TooltipDescription_RESID 60254
+#define cmdMenuReport 313  /* Report */ 
+#define cmdMenuReport_LabelTitle_RESID 60255
+#define cmdMenuReport_LabelDescription_RESID 60256
+#define cmdMenuReport_TooltipTitle_RESID 60257
+#define cmdMenuReport_TooltipDescription_RESID 60258
+#define cmdButtonReportOpenWorkspace 314  /* Open the annotation result workspace */ 
+#define cmdButtonReportOpenWorkspace_LabelTitle_RESID 60259
+#define cmdButtonReportOpenWorkspace_LabelDescription_RESID 60260
+#define cmdButtonReportOpenWorkspace_TooltipTitle_RESID 60261
+#define cmdButtonReportOpenWorkspace_TooltipDescription_RESID 60262
+#define cmdButtonReportOpenWorkspace_SmallImages_192__RESID 60263
+#define cmdButtonReportOpenWorkspace_LargeImages_192__RESID 60264
+#define cmdButtonReportSelect 315  /* Select metabolites for make html report view */ 
+#define cmdButtonReportSelect_LabelTitle_RESID 60265
+#define cmdButtonReportSelect_LabelDescription_RESID 60266
+#define cmdButtonReportSelect_TooltipTitle_RESID 60267
+#define cmdButtonReportSelect_TooltipDescription_RESID 60268
+#define cmdButtonReportSelect_SmallImages_192__RESID 60269
+#define cmdButtonReportSelect_LargeImages_192__RESID 60270
+#define InternalCmd2_LabelTitle_RESID 60271
+#define InternalCmd4_LabelTitle_RESID 60272
+#define InternalCmd6_LabelTitle_RESID 60273
+#define InternalCmd8_LabelTitle_RESID 60274
