@@ -47,6 +47,7 @@ Partial Class FormSelectTable : Inherits InputDialog
         '
         Me.Column1.HeaderText = "Select"
         Me.Column1.Name = "Column1"
+        Me.Column1.Width = 50
         '
         'Column2
         '
@@ -54,6 +55,7 @@ Partial Class FormSelectTable : Inherits InputDialog
         Me.Column2.Name = "Column2"
         Me.Column2.ReadOnly = True
         Me.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column2.Width = 150
         '
         'Column3
         '
@@ -62,6 +64,7 @@ Partial Class FormSelectTable : Inherits InputDialog
         Me.Column3.ReadOnly = True
         Me.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Column3.Width = 250
         '
         'Column4
         '

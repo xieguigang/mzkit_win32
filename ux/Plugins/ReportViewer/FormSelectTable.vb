@@ -1,4 +1,6 @@
-﻿Imports BioNovoGene.BioDeep.MSEngine
+﻿Imports System.ComponentModel
+Imports BioNovoGene.BioDeep.MSEngine
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Linq
 
 Public Class FormSelectTable
@@ -19,5 +21,29 @@ Public Class FormSelectTable
         For Each data As AlignmentHit In report.SafeQuery
             Call DataGridView1.Rows.Add(False, data.biodeep_id, data.name, data.formula, data.adducts)
         Next
+    End Sub
+
+    Private Sub FormSelectTable_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Me.DialogResult = DialogResult.OK
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+        If e.RowIndex > 0 AndAlso e.RowIndex < DataGridView1.Rows.Count Then
+            If e.ColumnIndex = 1 Then
+                Dim biodeep_id As String = DataGridView1.Rows(e.RowIndex).Cells(1).Value
+                Dim url As String = $"https://query.biodeep.cn/metabolite/{biodeep_id}"
+
+                Call OpenBrowser(url)
+            End If
+        End If
+    End Sub
+
+    Public Sub OpenBrowser(url As String)
+        Dim startInfo As New ProcessStartInfo
+        startInfo.FileName = "cmd.exe"
+        startInfo.Arguments = "/c start " & url.CLIPath
+        startInfo.UseShellExecute = True
+
+        Call Process.Start(startInfo)
     End Sub
 End Class
