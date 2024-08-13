@@ -5,12 +5,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{93AEB957-E4AB-45E9-8BED-0B3D40CD2B21}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <StartupObject>ReportViewer.My.MyApplication</StartupObject>
+    <OutputType>Library</OutputType>
+    <StartupObject>
+    </StartupObject>
     <RootNamespace>ReportViewer</RootNamespace>
     <AssemblyName>ReportViewer</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
+    <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -82,7 +83,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'mzkit_win32|x64'">
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\x64\mzkit_win32\</OutputPath>
+    <OutputPath>..\..\..\..\..\dist\bin\plugins\</OutputPath>
     <DocumentationFile>ReportViewer.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
@@ -91,6 +92,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.Windows.Form">
+      <HintPath>..\..\..\..\..\dist\bin\Microsoft.VisualStudio.Windows.Form.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.2210.55, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Web.WebView2.1.0.2210.55\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
     </Reference>
@@ -99,6 +103,9 @@
     </Reference>
     <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.2210.55, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Web.WebView2.1.0.2210.55\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Ribbon">
+      <HintPath>..\..\..\..\..\dist\bin\Microsoft.Windows.Ribbon.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -125,7 +132,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormViewer.vb" />
+    <Compile Include="FormViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormViewer.Designer.vb">
       <DependentUpon>FormViewer.vb</DependentUpon>
       <SubType>Form</SubType>
@@ -146,6 +155,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Plugin.vb" />
+    <Compile Include="zzz.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormViewer.resx">
@@ -187,6 +198,10 @@
     <ProjectReference Include="..\..\..\..\mzmath\MSEngine\MSEngine.vbproj">
       <Project>{712e2304-2f25-4480-8a0b-6c7091136fb4}</Project>
       <Name>MSEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BasicMDIForm\BasicMDIForm.vbproj">
+      <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
+      <Name>BasicMDIForm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
