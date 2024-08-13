@@ -58,7 +58,13 @@ Public Class FormViewer
 
     Private Sub viewMetabolites(config As FormSelectTable)
         Dim html As New StringBuilder
-        Dim lines = report.Tabular(config.GetTargetSet, rt_cell:=False).ToArray
+        Dim refSet As String() = config.GetTargetSet.ToArray
+
+        If refSet.IsNullOrEmpty Then
+            Return
+        End If
+
+        Dim lines = report.Tabular(refSet, rt_cell:=False).ToArray
 
         Call html.AppendLine("<table class='table' style='width:100%;'>")
         Call html.AppendLine("<thead>")
