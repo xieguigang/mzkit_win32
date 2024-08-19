@@ -639,10 +639,10 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Private Sub importsMetaboliteCommon(df As DataFrame)
-        Dim xcms_id As Integer = df.GetOrdinal("xcms_id")
+        Dim xcms_id As Integer = df.GetOrdinal("xcms_id", "ID")
         Dim name As Integer = df.GetOrdinal("name")
         Dim formula As Integer = df.GetOrdinal("formula")
-        Dim adducts As Integer = df.GetOrdinal("precursor_type")
+        Dim adducts As Integer = df.GetOrdinal("precursor_type", "precursor", "adducts")
         Dim xcms_idset As String() = df.GetColumnValues("xcms_id").SafeQuery.ToArray
 
         If xcms_idset.IsNullOrEmpty OrElse peaks.peaks.Select(Function(p) p.ID).Intersect(xcms_idset).Count = 0 Then
