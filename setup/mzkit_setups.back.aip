@@ -1082,6 +1082,7 @@
     <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.dll_2" ComponentId="{452A2B2D-37F7-41EB-9C24-D7323AFAE5AF}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.dll_3" ComponentId="{7A1CD059-E3C1-4FD3-9390-D51258A08A08}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.pdb" ComponentId="{2B1BAF28-D816-4037-9EA1-8E93B3A6ACF6}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.pdb" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.xml" ComponentId="{49FA881A-600A-4B11-B7D5-FEC549C2826D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.xml_2"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll" ComponentId="{3732B8B7-3607-4294-B63F-37373D15C622}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll_3" ComponentId="{07FB4A5F-B81B-4E49-BDB9-0E5B3E60D1DF}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.pdb" ComponentId="{8BD94C82-A0B8-4070-8750-259902C7987B}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.PDF.pdb" Type="4"/>
@@ -19956,7 +19957,7 @@
     <ROW File="ReportViewer.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config" FileName="REPORT~1.CON|ReportViewer.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\ReportViewer.dll.config" SelfReg="false"/>
     <ROW File="ReportViewer.pdb" Component_="ReportViewer.dll" FileName="REPORT~1.PDB|ReportViewer.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\ReportViewer.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~24.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml_2" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MICRO~50.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml_2" Component_="Microsoft.VisualBasic.Imaging.Landscape.xml" FileName="MICRO~50.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -22856,6 +22857,7 @@
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_3"/>
     <ROW Feature_="MainFeature" Component_="System.IO.Packaging.dll"/>
     <ROW Feature_="MainFeature" Component_="ReportViewer.dll"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Imaging.Landscape.xml"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
