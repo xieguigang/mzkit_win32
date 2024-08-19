@@ -625,7 +625,7 @@ Public Class frmMetabonomicsAnalysis
         Dim tables = Workbench.AppHost.DockPanel.Documents.Where(Function(doc) TypeOf doc Is frmTableViewer).ToArray
         Dim names = tables.Select(Function(tab) DirectCast(tab, frmTableViewer).TabText).Indexing
 
-        Call SelectSheetName.SelectName(names,
+        Call SelectSheetName.SelectName(names.Objects,
              Sub(name)
                  Dim i As Integer = names.IndexOf(name)
 
