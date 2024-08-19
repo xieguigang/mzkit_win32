@@ -7,6 +7,12 @@ Imports any = Microsoft.VisualBasic.Scripting
 
 Public Module TableHelper
 
+    ''' <summary>
+    ''' Helper function for get dataframe from datagrid view table object
+    ''' </summary>
+    ''' <param name="table2"></param>
+    ''' <param name="saveHeader"></param>
+    ''' <returns></returns>
     <Extension>
     Public Function GetDataFrame(table2 As DataGridView, Optional saveHeader As Boolean = True) As DataFrame
         Dim row As New RowObject
