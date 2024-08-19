@@ -19956,6 +19956,7 @@
     <ROW File="ReportViewer.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config" FileName="REPORT~1.CON|ReportViewer.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\ReportViewer.dll.config" SelfReg="false"/>
     <ROW File="ReportViewer.pdb" Component_="ReportViewer.dll" FileName="REPORT~1.PDB|ReportViewer.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\ReportViewer.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~24.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml_2" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MICRO~50.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
