@@ -346,6 +346,10 @@
     <None Include="Resources\Home_Logo_Link.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj">
+      <Project>{02e9ba6a-35e1-431f-bb47-0553757af6b9}</Project>
+      <Name>dataframework-netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj">
       <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
       <Name>Core</Name>

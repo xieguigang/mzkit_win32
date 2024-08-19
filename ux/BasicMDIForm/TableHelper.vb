@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
-Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Text
 Imports any = Microsoft.VisualBasic.Scripting
 
@@ -19,7 +19,7 @@ Public Module TableHelper
                                 Optional saveHeader As Boolean = True,
                                 Optional sep As Char = ASCII.TAB)
 
-        Dim row As New List(Of String)
+        Dim row As New RowObject
         Dim src As BindingSource = table2.DataSource
 
         If saveHeader Then
@@ -27,7 +27,7 @@ Public Module TableHelper
                 Call row.Add(table2.Columns(i).HeaderText)
             Next
 
-            Call writeTsv.WriteLine(row.PopAll.JoinBy(sep))
+            Call writeTsv.WriteLine(row.PopLine(sep))
         End If
 
         If src Is Nothing Then
@@ -38,10 +38,10 @@ Public Module TableHelper
                     Call row.Add(any.ToString(rowObj.Cells.Item(i).Value))
                 Next
 
-                Call writeTsv.WriteLine(row.PopAll.JoinBy(sep))
+                Call writeTsv.WriteLine(row.PopLine(sep))
             Next
         Else
-            Dim ds As DataSet = src.DataSource
+            Dim ds As System.Data.DataSet = src.DataSource
             Dim table As DataTable = ds.Tables.Item(src.DataMember)
 
             For j As Integer = 0 To table.Rows.Count - 1
@@ -49,7 +49,7 @@ Public Module TableHelper
 
                 Try
                     Call row.AddRange(rowObj.ItemArray.Select(AddressOf any.ToString))
-                    Call writeTsv.WriteLine(row.PopAll.JoinBy(sep))
+                    Call writeTsv.WriteLine(row.PopLine(sep))
                 Catch ex As Exception
                     Call Workbench.Warning(ex.ToString)
                 End Try
