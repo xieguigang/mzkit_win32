@@ -7,6 +7,57 @@ Imports any = Microsoft.VisualBasic.Scripting
 
 Public Module TableHelper
 
+    <Extension>
+    Public Function GetDataFrame(table2 As DataGridView, Optional saveHeader As Boolean = True) As DataFrame
+        Dim row As New RowObject
+        Dim src As BindingSource = table2.DataSource
+        Dim headers As New List(Of String)
+        Dim df As New List(Of RowObject)
+
+        If saveHeader Then
+            For i As Integer = 0 To table2.Columns.Count - 1
+                Call headers.Add(table2.Columns(i).HeaderText)
+            Next
+        End If
+
+        If src Is Nothing Then
+            For j As Integer = 0 To table2.Rows.Count - 1
+                Dim rowObj As DataGridViewRow = table2.Rows(j)
+
+                row = New RowObject
+
+                For i As Integer = 0 To rowObj.Cells.Count - 1
+                    Call row.Add(any.ToString(rowObj.Cells.Item(i).Value))
+                Next
+
+                Call df.Add(row)
+            Next
+        Else
+            Dim ds As System.Data.DataSet = src.DataSource
+            Dim table As DataTable = ds.Tables.Item(src.DataMember)
+
+            For j As Integer = 0 To table.Rows.Count - 1
+                Dim rowObj As DataRow = table.Rows(j)
+
+                row = New RowObject
+
+                Try
+                    Call row.AddRange(rowObj.ItemArray.Select(AddressOf any.ToString))
+                    Call df.Add(row)
+                Catch ex As Exception
+                    Call Workbench.Warning(ex.ToString)
+                End Try
+            Next
+        End If
+
+        If headers.IsNullOrEmpty Then
+            headers = New List(Of String)(df.FirstOrDefault)
+            df.RemoveAt(Scan0)
+        End If
+
+        Return DataFrame.CreateObject(headers, df)
+    End Function
+
     ''' <summary>
     ''' write table in tsv file format
     ''' </summary>
