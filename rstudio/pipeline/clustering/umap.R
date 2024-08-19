@@ -1,5 +1,6 @@
 imports "umap" from "MLkit";
 imports "clustering" from "MLkit";
+imports "Parallel" from "snowFall";
 
 require(GCModeller);
 
@@ -16,6 +17,9 @@ const learningrate = ?"--learningrate" || 1.0;
 const spectral_cos as boolean = ?"--spectral_cos" || FALSE;
 [@info "read the GCModeller HTS expression matrix binary file?"]
 const read_bin as boolean = ?"--read_bin" || FALSE;
+
+# run umap with full powers
+options(n_threads = Parallel::detectCores());
 
 const read_data = function() {
 	if (!read_bin) {
