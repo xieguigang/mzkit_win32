@@ -31,6 +31,7 @@ Public Class RibbonEventBinding : Implements IDisposable
                 Call evt()
             Catch ex As Exception
                 Call Workbench.LogText($"[ribbon menu] error during exec for: {ribbon.Label}")
+                Call Workbench.Warning($"[ribbon menu] error during exec for: {ribbon.Label} ({ex.Message})")
                 Call Workbench.LogText(ex.ToString)
                 Call App.LogException(ex)
             End Try
