@@ -499,6 +499,7 @@ Public NotInheritable Class RscriptProgressTask
 --learningrate ""{learningRate}""
 {If(spectral_cos, "--spectral_cos", "")}
 {If(readBinary, "--read_bin", "")}
+/@set tqdm=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
