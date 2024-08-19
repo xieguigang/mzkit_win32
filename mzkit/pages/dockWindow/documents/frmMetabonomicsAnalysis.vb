@@ -492,6 +492,7 @@ Public Class frmMetabonomicsAnalysis
     Shared ReadOnly runNorm_evt As New RibbonEventBinding(ribbonItems.ButtonPreProcessing)
 
     Shared ReadOnly openMetabolitesFile As New RibbonEventBinding(ribbonItems.ButtonImportsLCAnnotationFromFile)
+    Shared ReadOnly openMetabolitesTable As New RibbonEventBinding(ribbonItems.ButtonImportsLCAnnotationFromTable)
     Shared ReadOnly export_matrix_evt As New RibbonEventBinding(ribbonItems.ButtonExportMatrix2)
 
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -606,6 +607,7 @@ Public Class frmMetabonomicsAnalysis
         runNorm_evt.evt = Sub() Call RunNormaliza()
 
         openMetabolitesFile.evt = Sub() Call importsMetaboliteFile()
+        openMetabolitesTable.evt = Sub() Call importsMetaboliteTable()
 
         viewLC_evt.evt = Sub() Call showScatter()
         openFolder_evt.evt = Sub() Call openFolder()
@@ -615,6 +617,21 @@ Public Class frmMetabonomicsAnalysis
         view3DPage_evt.evt = Sub() Call view3DScatterInSinglePage()
 
         export_matrix_evt.evt = Sub() Call exportMatrixExcelFile()
+    End Sub
+
+    Private Sub importsMetaboliteTable()
+        Dim tables = Workbench.AppHost.DockPanel.Documents.Where(Function(doc) TypeOf doc Is frmTableViewer).ToArray
+        Dim names = tables.Select(Function(tab) DirectCast(tab, frmTableViewer).TabText).Indexing
+
+        Call SelectSheetName.SelectName(names,
+             Sub(name)
+                 Dim i As Integer = names.IndexOf(name)
+
+                 If i > -1 Then
+                     Dim tab As frmTableViewer = tables(i)
+
+                 End If
+             End Sub)
     End Sub
 
     Private Sub importsMetaboliteFile()
@@ -673,6 +690,9 @@ Public Class frmMetabonomicsAnalysis
 
         viewPeaktable_evt.evt = Nothing
         export_matrix_evt.evt = Nothing
+
+        openMetabolitesFile.evt = Nothing
+        openMetabolitesTable.evt = Nothing
     End Sub
 
     Private Sub RunPCA(analysis As Type)
