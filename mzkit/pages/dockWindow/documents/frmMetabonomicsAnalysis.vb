@@ -16,6 +16,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
@@ -29,6 +30,7 @@ Imports any = Microsoft.VisualBasic.Scripting
 Imports csv = Microsoft.VisualBasic.Data.csv.IO.File
 Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
 Imports Matrix = SMRUCC.genomics.Analysis.HTS.DataFrame.Matrix
+Imports std = System.Math
 
 Public Class frmMetabonomicsAnalysis
 
@@ -629,33 +631,73 @@ Public Class frmMetabonomicsAnalysis
 
                  If i > -1 Then
                      Dim tab As frmTableViewer = tables(i)
+                     Dim df As DataFrame = tab.AdvancedDataGridView1.GetDataFrame
 
+                     Call importsMetaboliteCommon(df)
                  End If
              End Sub)
     End Sub
 
-    Private Sub importsMetaboliteFile()
-        Using file As New OpenFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
-            If file.ShowDialog = DialogResult.OK Then
-                Dim df As DataFrame = DataFrame.Load(file.FileName)
-                Dim xcms_id As Integer = df.GetOrdinal("xcms_id")
-                Dim name As Integer = df.GetOrdinal("name")
-                Dim formula As Integer = df.GetOrdinal("formula")
-                Dim adducts As Integer = df.GetOrdinal("precursor_type")
+    Private Sub importsMetaboliteCommon(df As DataFrame)
+        Dim xcms_id As Integer = df.GetOrdinal("xcms_id")
+        Dim name As Integer = df.GetOrdinal("name")
+        Dim formula As Integer = df.GetOrdinal("formula")
+        Dim adducts As Integer = df.GetOrdinal("precursor_type")
+        Dim xcms_idset As String() = df.GetColumnValues("xcms_id").SafeQuery.ToArray
 
-                Do While df.Read
-                    annotation(df.GetString(xcms_id)) = New AnnotatedIon With {
+        If xcms_idset.IsNullOrEmpty OrElse peaks.peaks.Select(Function(p) p.ID).Intersect(xcms_idset).Count = 0 Then
+            ' matches by mz and rt
+            Dim mz As Integer = df.GetOrdinal("mz", "m/z")
+            Dim rt As Integer = df.GetOrdinal("rt", "RT")
+
+            Do While df.Read
+                ' find xcms id with min tolerance error
+                Dim mzi As Double = df.GetDouble(mz)
+                Dim peak = peaks _
+                    .FilterMz(mzi, 0.01) _
+                    .OrderBy(Function(p)
+                                 If rt > -1 Then
+                                     Return std.Abs(df.GetDouble(rt) - p.rt)
+                                 Else
+                                     Return std.Abs(mzi - p.mz)
+                                 End If
+                             End Function) _
+                    .FirstOrDefault
+
+                If Not peak Is Nothing Then
+                    annotation(peak.ID) = New AnnotatedIon With {
                         .AdductIon = New AdductIon(Provider.ParseAdductModel(df.GetString(adducts))),
                         .metadata = New MetaboliteAnnotation With {
                             .CommonName = df.GetString(name),
                             .Formula = df.GetString(formula),
                             .ExactMass = FormulaScanner.EvaluateExactMass(.Formula),
-                            .Id = df.GetString(xcms_id)
+                            .Id = peak.ID
                         }
                     }
-                Loop
+                End If
+            Loop
+        Else
+            ' matches by unique ion id
+            Do While df.Read
+                annotation(df.GetString(xcms_id)) = New AnnotatedIon With {
+                    .AdductIon = New AdductIon(Provider.ParseAdductModel(df.GetString(adducts))),
+                    .metadata = New MetaboliteAnnotation With {
+                        .CommonName = df.GetString(name),
+                        .Formula = df.GetString(formula),
+                        .ExactMass = FormulaScanner.EvaluateExactMass(.Formula),
+                        .Id = df.GetString(xcms_id)
+                    }
+                }
+            Loop
+        End If
 
-                Call loadPeaktable()
+        Call loadPeaktable()
+    End Sub
+
+    Private Sub importsMetaboliteFile()
+        Using file As New OpenFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call importsMetaboliteCommon(df:=DataFrame.Load(file.FileName))
             End If
         End Using
     End Sub
