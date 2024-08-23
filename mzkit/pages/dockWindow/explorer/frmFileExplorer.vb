@@ -745,6 +745,9 @@ Public Class frmFileExplorer
         Dim tempTable As String = config.export_file
         Dim cli As String = $"""{RscriptPipelineTask.GetRScript("MS1deconv.R")}"" --raw ""{files}"" --save ""{tempTable}"" --massdiff {config.massDiff} --rt_win {config.rt_win.JoinBy(",")} --n_threads {config.n_threads} --SetDllDirectory {Task.TaskEngine.hostDll.ParentPath.CLIPath}"
 
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(cli)
+
         If config.files.Length = 1 Then
             Call runSingle(cli, $"[{config.files(0).FileName}]Peak Table", tempTable)
         Else
