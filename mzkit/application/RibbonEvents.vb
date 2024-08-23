@@ -245,6 +245,7 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.ButtonMSIDebugger, Sub() Call Debugger.MSI.Run())
         Call HookRibbon(ribbonItems.ButtonOpenPeakFeatures, Sub() Call loadPeakFeatures())
         Call HookRibbon(ribbonItems.ButtonLogFile, Sub() Call openLogTable())
+        Call HookRibbon(ribbonItems.ButtonOpenAppData, Sub() Call openAppData())
 
         LCMSViewerModule.lcmsViewerhHandle = AddressOf openLcmsScatter
     End Sub
@@ -253,6 +254,10 @@ Module RibbonEvents
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+    End Sub
+
+    Private Sub openAppData()
+        Call Process.Start("explorer.exe", App.ProductProgramData)
     End Sub
 
     Private Sub openLogTable()

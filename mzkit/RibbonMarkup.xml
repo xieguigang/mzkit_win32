@@ -4321,6 +4321,14 @@
         <Image MinDPI="192">Res/edit.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonOpenAppData" Comment="Open Application Data Folder" Id="316" LabelTitle="Open Application Data Folder" LabelDescription="Open Application Data Folder" TooltipTitle="Open Application Data Folder" TooltipDescription="Open Application Data Folder" Keytip="Open Application Data Folder">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-product-documents-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-product-documents-96.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4391,6 +4399,7 @@
                 <DropDownButton CommandName="cmdButtonDeveloperTool">
                   <Button CommandName="cmdButtonDevTools" />
                   <Button CommandName="cmdButtonLogFile" />
+                  <Button CommandName="cmdButtonOpenAppData" />
                   <Button CommandName="cmdButtonMSIDebugger" />
                 </DropDownButton>
               </MenuGroup>

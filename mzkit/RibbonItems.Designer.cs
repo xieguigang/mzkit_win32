@@ -41,6 +41,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonDeveloperTool = 265;
             public const uint cmdButtonDevTools = 168;
             public const uint cmdButtonLogFile = 306;
+            public const uint cmdButtonOpenAppData = 316;
             public const uint cmdButtonMSIDebugger = 266;
             public const uint cmdMenuTableTools = 253;
             public const uint cmdButtonOpenTableTool = 252;
@@ -344,6 +345,10 @@ namespace RibbonLib.Controls
         public RibbonDropDownButton ButtonDeveloperTool { get; private set; }
         public RibbonButton ButtonDevTools { get; private set; }
         public RibbonButton ButtonLogFile { get; private set; }
+        /// <summary>
+        /// Open Application Data Folder
+        /// </summary>
+        public RibbonButton ButtonOpenAppData { get; private set; }
         public RibbonButton ButtonMSIDebugger { get; private set; }
         public RibbonMenuGroup MenuTableTools { get; private set; }
         public RibbonButton ButtonOpenTableTool { get; private set; }
@@ -678,6 +683,7 @@ namespace RibbonLib.Controls
             ButtonDeveloperTool = new RibbonDropDownButton(ribbon, Cmd.cmdButtonDeveloperTool);
             ButtonDevTools = new RibbonButton(ribbon, Cmd.cmdButtonDevTools);
             ButtonLogFile = new RibbonButton(ribbon, Cmd.cmdButtonLogFile);
+            ButtonOpenAppData = new RibbonButton(ribbon, Cmd.cmdButtonOpenAppData);
             ButtonMSIDebugger = new RibbonButton(ribbon, Cmd.cmdButtonMSIDebugger);
             MenuTableTools = new RibbonMenuGroup(ribbon, Cmd.cmdMenuTableTools);
             ButtonOpenTableTool = new RibbonButton(ribbon, Cmd.cmdButtonOpenTableTool);

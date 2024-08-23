@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Public Class RibbonItems
+    Partial Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -38,6 +38,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonDeveloperTool As UInteger = 265
             Public Const cmdButtonDevTools As UInteger = 168
             Public Const cmdButtonLogFile As UInteger = 306
+            Public Const cmdButtonOpenAppData As UInteger = 316
             Public Const cmdButtonMSIDebugger As UInteger = 266
             Public Const cmdMenuTableTools As UInteger = 253
             Public Const cmdButtonOpenTableTool As UInteger = 252
@@ -459,6 +460,15 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonLogFile As RibbonButton
             Get
                 Return _ButtonLogFile
+            End Get
+        End Property
+        Private _ButtonOpenAppData As RibbonButton
+        ''' <summary>
+        ''' Open Application Data Folder
+        ''' </summary>
+        Public ReadOnly Property ButtonOpenAppData As RibbonButton
+            Get
+                Return _ButtonOpenAppData
             End Get
         End Property
         Private _ButtonMSIDebugger As RibbonButton
@@ -2155,6 +2165,7 @@ Namespace RibbonLib.Controls
             _ButtonDeveloperTool = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonDeveloperTool)
             _ButtonDevTools = New RibbonButton(_ribbon, Cmd.cmdButtonDevTools)
             _ButtonLogFile = New RibbonButton(_ribbon, Cmd.cmdButtonLogFile)
+            _ButtonOpenAppData = New RibbonButton(_ribbon, Cmd.cmdButtonOpenAppData)
             _ButtonMSIDebugger = New RibbonButton(_ribbon, Cmd.cmdButtonMSIDebugger)
             _MenuTableTools = New RibbonMenuGroup(_ribbon, Cmd.cmdMenuTableTools)
             _ButtonOpenTableTool = New RibbonButton(_ribbon, Cmd.cmdButtonOpenTableTool)

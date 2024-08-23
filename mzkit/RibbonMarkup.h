@@ -1760,7 +1760,15 @@
 #define cmdButtonReportSelect_TooltipDescription_RESID 60268
 #define cmdButtonReportSelect_SmallImages_192__RESID 60269
 #define cmdButtonReportSelect_LargeImages_192__RESID 60270
-#define InternalCmd2_LabelTitle_RESID 60271
-#define InternalCmd4_LabelTitle_RESID 60272
-#define InternalCmd6_LabelTitle_RESID 60273
-#define InternalCmd8_LabelTitle_RESID 60274
+#define cmdButtonOpenAppData 316  /* Open Application Data Folder */ 
+#define cmdButtonOpenAppData_LabelTitle_RESID 60271
+#define cmdButtonOpenAppData_LabelDescription_RESID 60272
+#define cmdButtonOpenAppData_Keytip_RESID 60273
+#define cmdButtonOpenAppData_TooltipTitle_RESID 60274
+#define cmdButtonOpenAppData_TooltipDescription_RESID 60275
+#define cmdButtonOpenAppData_SmallImages_192__RESID 60276
+#define cmdButtonOpenAppData_LargeImages_192__RESID 60277
+#define InternalCmd2_LabelTitle_RESID 60278
+#define InternalCmd4_LabelTitle_RESID 60279
+#define InternalCmd6_LabelTitle_RESID 60280
+#define InternalCmd8_LabelTitle_RESID 60281
