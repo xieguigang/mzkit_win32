@@ -21,11 +21,22 @@ const rt_win   as string  = ?"--rt_win"    || "3,15";
         default configuration use 8 cpu threads."]
 const threads  as integer = ?"--n_threads" || 8;
 
-if (dir.exists(raw)) {
+let is_batch = function() {
+    if (dir.exists(raw)) {
+        TRUE;
+    } else {
+        file.ext(raw) == "txt";
+    }
+}
+
+if (is_batch()) {
     # processing of batch data
     # use the mzkit package api
     if (!require(mzkit)) {
         stop("mzkit package is not installed correctly, try to run windows batch script for repairs of the Rstudio environment.");
+    }
+    if (!dir.exists(raw)) {
+        raw <- readLines(raw);
     }
 
     mzkit::run.Deconvolution(
