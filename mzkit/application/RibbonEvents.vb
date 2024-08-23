@@ -256,9 +256,17 @@ Module RibbonEvents
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
     End Sub
 
-    Private Sub openAppData()
+    Public Sub openAppData()
         Call Workbench.LogText($"open folder: {App.ProductProgramData}")
-        Call Process.Start("explorer.exe", App.ProductProgramData)
+
+        Dim proc As New Process With {
+            .StartInfo = New ProcessStartInfo With {
+                .FileName = "explorer.exe",
+                .Arguments = App.ProductProgramData & "/"
+            }
+        }
+
+        Call proc.Start()
     End Sub
 
     Private Sub openLogTable()

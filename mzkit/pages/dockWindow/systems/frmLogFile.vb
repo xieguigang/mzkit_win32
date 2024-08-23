@@ -6,7 +6,7 @@ Imports Microsoft.VisualBasic.Text
 Public Class frmLogFile
 
     Protected Overrides Sub OpenContainingFolder()
-        Call Process.Start("explorer.exe", App.ProductProgramData)
+        Call RibbonEvents.openAppData()
     End Sub
 
     Protected Overrides Sub CopyFullPath()
