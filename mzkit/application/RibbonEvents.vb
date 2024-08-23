@@ -257,6 +257,7 @@ Module RibbonEvents
     End Sub
 
     Private Sub openAppData()
+        Call Workbench.LogText($"open folder: {App.ProductProgramData}")
         Call Process.Start("explorer.exe", App.ProductProgramData)
     End Sub
 
