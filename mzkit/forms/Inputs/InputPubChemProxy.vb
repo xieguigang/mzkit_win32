@@ -185,14 +185,19 @@ Public Class InputPubChemProxy
         Else
             Call cids.Clear()
             Call ListView1.Items.Clear()
-            Call ProgressSpinner _
-                .DoLoading(Sub()
-                               Call Me.Invoke(
-                                   Sub()
-                                       source_biodeep = True
-                                       Call doSearchBioDeep(Strings.Trim(TextBox1.Text))
-                                   End Sub)
-                           End Sub)
+
+            Call ConnectToBioDeep.OpenAdvancedFunction(AddressOf doSearchBioDeep)
         End If
+    End Sub
+
+    Private Sub doSearchBioDeep()
+        Call ProgressSpinner _
+            .DoLoading(Sub()
+                           Call Me.Invoke(
+                               Sub()
+                                   source_biodeep = True
+                                   Call doSearchBioDeep(Strings.Trim(TextBox1.Text))
+                               End Sub)
+                       End Sub)
     End Sub
 End Class

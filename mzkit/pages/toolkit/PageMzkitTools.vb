@@ -247,7 +247,7 @@ Public Class PageMzkitTools
                     adducts = PrecursorType.FindPrecursorType(exactMass, prop.precursorMz, 1, "-", DAmethod.DeltaMass(0.3))
                 End If
 
-                scanData.ms2 = PeakAnnotation.DoPeakAnnotation(scanData, prop.precursorMz, adducts, f)
+                scanData.ms2 = PeakAnnotation.DoPeakAnnotation(scanData, adducts, f, da:=0.3)
             End If
 
             Call showMatrix(scanData.ms2, scanId)
