@@ -144,6 +144,7 @@ Namespace query.biodeep.cn
         Public Property matches As String
         Public Property hits As String
         Public Property SMILES As String
+        Public Property description As String
 
     End Class
 End Namespace
