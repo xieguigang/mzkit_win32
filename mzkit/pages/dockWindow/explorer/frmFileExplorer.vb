@@ -80,6 +80,7 @@ Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Language.C
 Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports Task
 Imports TaskStream
@@ -714,47 +715,79 @@ Public Class frmFileExplorer
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub DeconvolutionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeconvolutionToolStripMenuItem.Click
-        Dim node = treeView1.SelectedNode
+        Dim node As New List(Of MZWork.Raw)
 
-        If node Is Nothing OrElse TypeOf node.Tag IsNot MZWork.Raw Then
+        For Each folder As TreeNode In treeView1.Nodes
+            For Each file As TreeNode In folder.Nodes
+                If TypeOf file.Tag Is MZWork.Raw Then
+                    Call node.Add(file.Tag)
+                End If
+            Next
+        Next
+
+        If node.IsNullOrEmpty Then
+            Call Workbench.Warning("No rawdata files was selected for run the LCMS peaktable deconvolution.")
             Return
+        End If
+
+        Dim config As New InputLCMSDeconvolution
+        config.SetFiles(From raw As MZWork.Raw In node Select raw.cache)
+
+        Call InputDialog.Input(
+            Sub(pars)
+                Call RunDeconvBackground(pars)
+            End Sub, config:=config)
+    End Sub
+
+    Private Sub RunDeconvBackground(config As InputLCMSDeconvolution)
+        Dim files As String = config.input_raw
+        Dim tempTable As String = config.export_file
+        Dim cli As String = $"""{RscriptPipelineTask.GetRScript("MS1deconv.R")}"" --raw ""{files}"" --save ""{tempTable}"" --massdiff {config.massDiff} --rt_win {config.rt_win.JoinBy(",")} --n_threads {config.n_threads} --SetDllDirectory {Task.TaskEngine.hostDll.ParentPath.CLIPath}"
+
+        If config.files.Length = 1 Then
+            Call runSingle(cli, $"[{config.files(0).FileName}]Peak Table", tempTable)
         Else
-            Dim raw = DirectCast(node.Tag, MZWork.Raw)
-            Dim mzpack As String = raw.cache
-            Dim tempTable As String = TempFileSystem.GetAppSysTempFile(".csv", raw.cache.MD5, prefix:=$"{App.PID}_deconv_peaktable_")
-            Dim cli As String = $"""{RscriptPipelineTask.GetRScript("MS1deconv.R")}"" --raw ""{mzpack}"" --save ""{tempTable}"" --SetDllDirectory {Task.TaskEngine.hostDll.ParentPath.CLIPath}"
-            Dim data As PeakFeature() = TaskProgress.LoadData(
-                streamLoad:=Function(println)
-                                Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+            Call runBatch(cli, $"[{tempTable.BaseName}]Peak Table", tempTable)
+        End If
+    End Sub
 
-                                AddHandler pipeline.SetMessage, AddressOf println.SetInfo
+    Private Sub runBatch(cli As String, title As String, temptable As String)
 
-                                Call cli.__DEBUG_ECHO
-                                Call pipeline.Run()
+    End Sub
 
-                                Return tempTable.LoadCsv(Of PeakFeature)
-                            End Function,
-                title:="Run Ms1 Deconvolution",
-                info:="deconvolution..")
+    Private Sub runSingle(cli As String, title As String, tempTable As String)
+        Dim data As PeakFeature() = TaskProgress.LoadData(
+            streamLoad:=Function(println)
+                            Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
-            Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"[{raw.source.FileName}]Peak Table")
+                            AddHandler pipeline.SetMessage, AddressOf println.SetInfo
 
-            table.LoadTable(Sub(grid)
-                                grid.Columns.Add(NameOf(PeakFeature.xcms_id), GetType(String))
-                                grid.Columns.Add(NameOf(PeakFeature.mz), GetType(Double))
-                                grid.Columns.Add(NameOf(PeakFeature.rt), GetType(Double))
-                                grid.Columns.Add(NameOf(PeakFeature.rtmin), GetType(Double))
-                                grid.Columns.Add(NameOf(PeakFeature.rtmax), GetType(Double))
-                                grid.Columns.Add(NameOf(PeakFeature.maxInto), GetType(Double))
-                                grid.Columns.Add(NameOf(PeakFeature.nticks), GetType(Double))
-                                grid.Columns.Add(NameOf(PeakFeature.baseline), GetType(Double))
-                                grid.Columns.Add(NameOf(PeakFeature.noise), GetType(Double))
-                                grid.Columns.Add(NameOf(PeakFeature.area), GetType(Double))
-                                grid.Columns.Add(NameOf(PeakFeature.integration), GetType(Double))
-                                grid.Columns.Add(NameOf(PeakFeature.snRatio), GetType(Double))
+                            Call cli.__DEBUG_ECHO
+                            Call pipeline.Run()
 
-                                For Each item As PeakFeature In data
-                                    Call grid.Rows.Add(
+                            Return tempTable.LoadCsv(Of PeakFeature)
+                        End Function,
+            title:="Run Ms1 Deconvolution",
+            info:="deconvolution..")
+
+        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+
+        table.LoadTable(Sub(grid)
+                            grid.Columns.Add(NameOf(PeakFeature.xcms_id), GetType(String))
+                            grid.Columns.Add(NameOf(PeakFeature.mz), GetType(Double))
+                            grid.Columns.Add(NameOf(PeakFeature.rt), GetType(Double))
+                            grid.Columns.Add(NameOf(PeakFeature.rtmin), GetType(Double))
+                            grid.Columns.Add(NameOf(PeakFeature.rtmax), GetType(Double))
+                            grid.Columns.Add(NameOf(PeakFeature.maxInto), GetType(Double))
+                            grid.Columns.Add(NameOf(PeakFeature.nticks), GetType(Double))
+                            grid.Columns.Add(NameOf(PeakFeature.baseline), GetType(Double))
+                            grid.Columns.Add(NameOf(PeakFeature.noise), GetType(Double))
+                            grid.Columns.Add(NameOf(PeakFeature.area), GetType(Double))
+                            grid.Columns.Add(NameOf(PeakFeature.integration), GetType(Double))
+                            grid.Columns.Add(NameOf(PeakFeature.snRatio), GetType(Double))
+
+                            For Each item As PeakFeature In data
+                                Call grid.Rows.Add(
                                         item.xcms_id,
                                         item.mz.ToString("F4"),
                                         item.rt.ToString("F2"),
@@ -768,9 +801,8 @@ Public Class frmFileExplorer
                                         item.integration.ToString("F2"),
                                         item.snRatio.ToString("F4")
                                     )
-                                Next
-                            End Sub)
-        End If
+                            Next
+                        End Sub)
     End Sub
 
     Private Sub MoleculeNetworkingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoleculeNetworkingToolStripMenuItem.Click
