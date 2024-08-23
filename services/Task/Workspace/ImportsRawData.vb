@@ -94,8 +94,12 @@ Public Class ImportsRawData
     End Sub
 
     Public Shared Function GetCachePath(file As String) As String
+        ' 20240823 due to the reason of LCMS deconvolution
+        ' needs the file name as the sample id
+        ' so cache file name no encoded in md5 at here anymore.
+        ' use the original file name
         Dim cacheKey As String = file.GetFullPath.MD5
-        Dim path As String = App.AppSystemTemp & $"/.cache/{cacheKey.Substring(0, 2)}/" & cacheKey & ".mzPack"
+        Dim path As String = App.AppSystemTemp & $"/.cache/{cacheKey.Substring(0, 3)}/" & file.BaseName & ".mzPack"
 
         Return path
     End Function
