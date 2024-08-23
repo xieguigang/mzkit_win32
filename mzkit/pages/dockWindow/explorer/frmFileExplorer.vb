@@ -748,28 +748,32 @@ Public Class frmFileExplorer
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call Workbench.LogText(cli)
 
+        ' work in background
+        Dim taskList As TaskListWindow = WindowModules.taskWin
+        Dim title As String = If(config.files.Length = 1, "Run Ms1 Deconvolution", "Batch LC-MS deconvolution")
+        Dim taskUI As TaskUI = taskList.Add(title, "Export to: " & tempTable.FileName)
+
         If config.files.Length = 1 Then
             Call runSingle(cli, $"[{config.files(0).FileName}]Peak Table", tempTable)
         Else
-            Call runBatch(cli, $"[{tempTable.BaseName}]Peak Table", tempTable)
+            Call MyApplication.TaskQueue.AddToQueue(
+                Sub()
+                    Call Me.Invoke(Sub() runBatch(cli, $"[{tempTable.BaseName}]Peak Table", tempTable, taskUI))
+                End Sub)
         End If
     End Sub
 
-    Private Sub runBatch(cli As String, title As String, temptable As String)
-        Dim data As xcms2() = TaskProgress.LoadData(
-            streamLoad:=Function(println)
-                            Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+    Private Sub runBatch(cli As String, title As String, temptable As String, taskUI As TaskUI)
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
-                            AddHandler pipeline.SetMessage, AddressOf println.SetInfo
+        AddHandler pipeline.SetMessage, AddressOf taskUI.ProgressMessage
 
-                            Call cli.__DEBUG_ECHO
-                            Call pipeline.Run()
+        Call cli.__DEBUG_ECHO
+        Call pipeline.Run()
 
-                            Return temptable.LoadCsv(Of xcms2)
-                        End Function,
-            title:="Run Ms1 Deconvolution",
-            info:="deconvolution..")
+        Call taskUI.ProgressMessage("Background task finished, loading data...")
 
+        Dim data As xcms2() = temptable.LoadCsv(Of xcms2)
         Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
         Dim sampleNames As String() = data.PropertyNames
 
