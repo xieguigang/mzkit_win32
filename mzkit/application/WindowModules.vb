@@ -183,6 +183,9 @@ Friend MustInherit Class WindowModules
         End If
     End Sub
 
+    ''' <summary>
+    ''' default handler for open file button on main ribbon menu
+    ''' </summary>
     Private Shared Sub openFileDefault()
         Dim filters As String() = {
             "All Raw Data Files(*.mzXML;*.mzML;*.mzPack;*.imzML;*.cdf;*.netcdf;*.raw;*.wiff)|*.mzXML;*.mzML;*.mzPack;*.imzML;*.cdf;*.netcdf;*.raw;*.wiff",
