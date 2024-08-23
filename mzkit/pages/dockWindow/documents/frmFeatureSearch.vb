@@ -448,7 +448,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 End If
 
                 Dim mz As Double = scan.parentMz
-                Dim adducts = cluster.SubItems.Item(10).Text
+                Dim adducts = cluster.SubItems.Item(11).Text
 
                 Call mzset.Add(New NamedValue(Of Double)(adducts, mz))
             Next
@@ -456,7 +456,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             Dim GetXICCollection = Iterator Function() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
                                        For Each xic_ion In mzset.GroupBy(Function(i) i.Name)
                                            Dim mz As Double = xic_ion.Average(Function(i) i.Value)
-                                           Dim name As String = $"{parentFile} - {mz.ToString("F4")} {xic_ion.Key}"
+                                           Dim name As String = $"{parentFile.FileName} - {mz.ToString("F4")} {xic_ion.Key}"
                                            Dim data = GetXIC(mz, raw, ppm)
 
                                            Yield New NamedCollection(Of ChromatogramTick)(name, data.value)
