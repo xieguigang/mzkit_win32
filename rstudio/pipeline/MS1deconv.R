@@ -2,12 +2,23 @@ imports "BackgroundTask" from "PipelineHost";
 
 # script for run deconvolution of the LC-MS rawdata files
 
+[@info "the rawdata files input, value could be:
+   1. the file path of a single rawdata file, data format could be mzXML/mzML/mzPack;
+   2. the directory path that contains multiple rawdata files, file data formats inside the directory could be mzXML/mzML/mzPack;
+   3. a txt file that contains the filepath list of the rawdata files, each line should be a file path."]
 const raw      as string  = ?"--raw"       || stop("a raw data file in mzpack format must be provided!");
+
+[@info "the csv file path of the peaktable outputs."]
 const savepath as string  = ?"--save"      || stop("A file path of the table data output must be provided!");
+
+[@info "the mass tolerance error for extract the XIC data."]
 const massDiff as double  = ?"--massdiff"  || 0.005;
+
 [@info "the rt window size for the peaks output, min rt windows and max rt windows."]
 const rt_win   as string  = ?"--rt_win"    || "3,15";
-[@info "the threads number for run the parallel, default configuration is 8 cpu threads."]
+
+[@info "the threads number for run the parallel, 
+        default configuration use 8 cpu threads."]
 const threads  as integer = ?"--n_threads" || 8;
 
 if (dir.exists(raw)) {
