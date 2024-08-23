@@ -6,7 +6,7 @@ imports "BackgroundTask" from "PipelineHost";
    1. the file path of a single rawdata file, data format could be mzXML/mzML/mzPack;
    2. the directory path that contains multiple rawdata files, file data formats inside the directory could be mzXML/mzML/mzPack;
    3. a txt file that contains the filepath list of the rawdata files, each line should be a file path."]
-const raw      as string  = ?"--raw"       || stop("a raw data file in mzpack format must be provided!");
+let raw as string = ?"--raw" || stop("a raw data file in mzpack format must be provided!");
 
 [@info "the csv file path of the peaktable outputs."]
 const savepath as string  = ?"--save"      || stop("A file path of the table data output must be provided!");
@@ -45,7 +45,9 @@ if (is_batch()) {
         mzdiff = 0.001, xic_mzdiff = massDiff,
         peak.width = as.integer(unlist(strsplit(rt_win, ","))),
         n_threads = threads,
-        filename = file.info(savepath)$Name
+        filename = basename(savepath,
+            withExtensionName = TRUE, 
+            strict = FALSE)
     );
 } else {
     raw 
