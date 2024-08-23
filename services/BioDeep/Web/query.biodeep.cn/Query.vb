@@ -85,12 +85,9 @@ Namespace query.biodeep.cn
         ''' <returns></returns>
         Public Shared Property host As String = "https://query.biodeep.cn"
 
-        Public Shared Function search(q As String, cookie As String, Optional page As Integer = 1, Optional page_size As Integer = 100) As Query
+        Public Shared Function search(q As String, Optional page As Integer = 1, Optional page_size As Integer = 100) As Query
             Dim url As String = $"{host}/query/search/?q={q.UrlEncode}&page={page}&page_size={page_size}"
-            Dim cookies As New Dictionary(Of String, String) From {
-                {"PHPSESSID", cookie}
-            }
-            Dim json_str As String = url.GET(headers:=cookies)
+            Dim json_str As String = BioDeepSession.GetString(url)
             Dim result = json_str.LoadJSON(Of JsonResponse(Of Query))(throwEx:=False)
 
             If result IsNot Nothing AndAlso result.code = 0 Then

@@ -59,6 +59,7 @@
 
 Imports System.Collections.Specialized
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
@@ -101,8 +102,12 @@ Public Class BioDeepSession
         End If
     End Function
 
-    Public Function Request(api As String, Optional headers As Dictionary(Of String, String) = Nothing) As JsonObject
-        Dim sessionHeader As Dictionary(Of String, String) = headerProvider()
+    Public Shared Function GetString(url As String, Optional headers As Dictionary(Of String, String) = Nothing) As String
+        If SingletonHolder(Of BioDeepSession).Instance Is Nothing OrElse SingletonHolder(Of BioDeepSession).Instance.ssid.StringEmpty(, True) Then
+            Return Nothing
+        End If
+
+        Dim sessionHeader As Dictionary(Of String, String) = SingletonHolder(Of BioDeepSession).Instance.headerProvider()
 
         If Not headers.IsNullOrEmpty Then
             For Each item In headers
@@ -110,13 +115,20 @@ Public Class BioDeepSession
             Next
         End If
 
-        Return api _
-            .GET(headers:=sessionHeader) _
-            .DoCall(AddressOf MessageParser.ParseMessage)
+        Return url.GET(headers:=sessionHeader)
     End Function
 
-    Public Function RequestStream(api As String, Optional headers As Dictionary(Of String, String) = Nothing) As Stream
-        Dim sessionHeader As Dictionary(Of String, String) = headerProvider()
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Shared Function Request(api As String, Optional headers As Dictionary(Of String, String) = Nothing) As JsonObject
+        Return GetString(api, headers).DoCall(AddressOf MessageParser.ParseMessage)
+    End Function
+
+    Public Shared Function RequestStream(api As String, Optional headers As Dictionary(Of String, String) = Nothing) As Stream
+        If SingletonHolder(Of BioDeepSession).Instance Is Nothing OrElse SingletonHolder(Of BioDeepSession).Instance.ssid.StringEmpty(, True) Then
+            Return Nothing
+        End If
+
+        Dim sessionHeader As Dictionary(Of String, String) = SingletonHolder(Of BioDeepSession).Instance.headerProvider()
         Dim buffer As New MemoryStream
 
         If Not headers.IsNullOrEmpty Then
