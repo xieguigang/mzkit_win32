@@ -78,6 +78,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.C
 Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
@@ -758,26 +759,34 @@ Public Class frmFileExplorer
         Else
             Call MyApplication.TaskQueue.AddToQueue(
                 Sub()
-                    Call Me.Invoke(Sub() runBatch(cli, $"[{tempTable.BaseName}]Peak Table", tempTable, taskUI))
+                    Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+                    Dim n As i32 = 0
+
+                    AddHandler pipeline.SetMessage, AddressOf taskUI.ProgressMessage
+
+                    Call taskUI.Running()
+                    Call cli.__DEBUG_ECHO
+                    Call pipeline.Run()
+
+                    Call taskUI.ProgressMessage("Background task finished, loading data...")
+
+                    Call Me.Invoke(Sub() runBatch(cli, $"[{tempTable.BaseName}]Peak Table", tempTable, taskUI, n))
+
+                    Call taskUI.Finish()
+
+                    Call MessageBox.Show($"Batch LC-MS deconvolution job done!" & vbCrLf & $"Found {n} LCMS ms1 ROI features inside your sample files.",
+                                         "LCMS Deconvolution",
+                                         MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End Sub)
         End If
     End Sub
 
-    Private Sub runBatch(cli As String, title As String, temptable As String, taskUI As TaskUI)
-        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-
-        AddHandler pipeline.SetMessage, AddressOf taskUI.ProgressMessage
-
-        Call cli.__DEBUG_ECHO
-        Call pipeline.Run()
-
-        Call taskUI.ProgressMessage("Background task finished, loading data...")
-
+    Private Sub runBatch(cli As String, title As String, temptable As String, taskUI As TaskUI, n As i32)
         Dim data As xcms2() = temptable.LoadCsv(Of xcms2)
         Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
         Dim sampleNames As String() = data.PropertyNames
 
-        table.LoadTable(
+        Call table.LoadTable(
             Sub(grid)
                 grid.Columns.Add(NameOf(xcms2.ID), GetType(String))
                 grid.Columns.Add(NameOf(xcms2.mz), GetType(Double))
