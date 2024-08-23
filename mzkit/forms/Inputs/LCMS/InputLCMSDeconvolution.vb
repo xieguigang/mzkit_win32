@@ -74,4 +74,12 @@ Public Class InputLCMSDeconvolution
 
         Me.DialogResult = DialogResult.OK
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Using file As New SaveFileDialog With {.Filter = "Excel table file(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                TextBox1.Text = file.FileName
+            End If
+        End Using
+    End Sub
 End Class
