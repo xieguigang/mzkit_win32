@@ -77,6 +77,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Language.C
 Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
@@ -752,7 +753,57 @@ Public Class frmFileExplorer
     End Sub
 
     Private Sub runBatch(cli As String, title As String, temptable As String)
+        Dim data As xcms2() = TaskProgress.LoadData(
+            streamLoad:=Function(println)
+                            Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
+                            AddHandler pipeline.SetMessage, AddressOf println.SetInfo
+
+                            Call cli.__DEBUG_ECHO
+                            Call pipeline.Run()
+
+                            Return temptable.LoadCsv(Of xcms2)
+                        End Function,
+            title:="Run Ms1 Deconvolution",
+            info:="deconvolution..")
+
+        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim sampleNames As String() = data.PropertyNames
+
+        table.LoadTable(
+            Sub(grid)
+                grid.Columns.Add(NameOf(xcms2.ID), GetType(String))
+                grid.Columns.Add(NameOf(xcms2.mz), GetType(Double))
+                grid.Columns.Add(NameOf(xcms2.mzmin), GetType(Double))
+                grid.Columns.Add(NameOf(xcms2.mzmax), GetType(Double))
+                grid.Columns.Add(NameOf(xcms2.rt), GetType(Double))
+                grid.Columns.Add(NameOf(xcms2.rtmin), GetType(Double))
+                grid.Columns.Add(NameOf(xcms2.rtmax), GetType(Double))
+                grid.Columns.Add(NameOf(xcms2.npeaks), GetType(Double))
+
+                For Each name As String In sampleNames
+                    grid.Columns.Add(name, GetType(Double))
+                Next
+
+                For Each item As xcms2 In data
+                    Dim row As Object() = New Object(8 + sampleNames.Length - 1) {}
+
+                    row(0) = item.ID
+                    row(1) = item.mz
+                    row(2) = item.mzmin
+                    row(3) = item.mzmax
+                    row(4) = item.rt
+                    row(5) = item.rtmin
+                    row(6) = item.rtmax
+                    row(7) = item.npeaks
+
+                    For i As Integer = 0 To sampleNames.Length - 1
+                        row(i + 8) = item(sampleNames(i))
+                    Next
+
+                    Call grid.Rows.Add(row)
+                Next
+            End Sub)
     End Sub
 
     Private Sub runSingle(cli As String, title As String, tempTable As String)
