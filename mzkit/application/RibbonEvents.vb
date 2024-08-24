@@ -259,14 +259,15 @@ Module RibbonEvents
     Public Sub openAppData()
         Call Workbench.LogText($"open folder: {App.ProductProgramData}")
 
-        Dim proc As New Process With {
-            .StartInfo = New ProcessStartInfo With {
-                .FileName = "explorer.exe",
-                .Arguments = App.ProductProgramData & "/"
-            }
-        }
-
-        Call proc.Start()
+        'Dim proc As New Process With {
+        '    .StartInfo = New ProcessStartInfo With {
+        '        .FileName = "explorer.exe",
+        '        .Arguments = App.ProductProgramData & "/"
+        '    }
+        '}
+        '
+        'Call proc.Start()
+        Call Process.Start(App.ProductProgramData & "/")
     End Sub
 
     Private Sub openLogTable()
