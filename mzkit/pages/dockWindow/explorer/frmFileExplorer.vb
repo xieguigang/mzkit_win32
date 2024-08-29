@@ -203,6 +203,7 @@ Public Class frmFileExplorer
         Me.TabText = "File Explorer"
 
         LCMSViewerModule.lcmsWorkspace = New Func(Of IEnumerable)(AddressOf GetRawFiles)
+        LCMSViewerModule.setWorkFile = New Action(Of Object)(Sub(o) Call SetActiveWorkfile(DirectCast(o, MZWork.Raw)))
 
         Call InitializeFileTree()
         Call ApplyVsTheme(ctxMenuFiles, ToolStrip1, ctxMenuScript, ctxMenuRawFile)
@@ -320,11 +321,15 @@ Public Class frmFileExplorer
             raw.cache = getRawCache(raw.source, titleTemplate:="Re-Build file cache [%s]").cache
         End If
 
-        Call WindowModules.rawFeaturesList.LoadRaw(raw)
         Call MyApplication.host.mzkitTool.showScatter(raw, XIC, directSnapshot, contour)
+        Call SetActiveWorkfile(raw)
+    End Sub
 
+    Public Sub SetActiveWorkfile(raw As MZWork.Raw)
+        Call WindowModules.rawFeaturesList.LoadRaw(raw)
         Call VisualStudio.ShowProperties(New RawFileProperty(raw))
         Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
+
         Call UpdateMainTitle(raw.source)
     End Sub
 

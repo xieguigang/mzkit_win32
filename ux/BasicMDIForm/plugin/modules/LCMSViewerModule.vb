@@ -3,6 +3,7 @@
     Public lcmsViewerhHandle As Action(Of Object, String, Action(Of String, Double, Double, Boolean))
     Public lcmsWorkspace As Func(Of IEnumerable)
     Public lcmsChromatogramOverlaps As Action(Of Object)
+    Public setWorkFile As Action(Of Object)
 
     ''' <summary>
     ''' view of the lcms scatter viewer
@@ -27,6 +28,12 @@
     Public Sub ShowTICOverlaps(overlaps As Object)
         If lcmsChromatogramOverlaps IsNot Nothing Then
             Call lcmsChromatogramOverlaps(overlaps)
+        End If
+    End Sub
+
+    Public Sub SetCurrentWorkFile(file As Object)
+        If setWorkFile IsNot Nothing Then
+            Call setWorkFile(file)
         End If
     End Sub
 
