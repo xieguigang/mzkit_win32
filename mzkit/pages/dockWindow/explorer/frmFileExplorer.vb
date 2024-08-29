@@ -326,11 +326,14 @@ Public Class frmFileExplorer
     End Sub
 
     Public Sub SetActiveWorkfile(raw As MZWork.Raw)
-        Call WindowModules.rawFeaturesList.LoadRaw(raw)
-        Call VisualStudio.ShowProperties(New RawFileProperty(raw))
-        Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
+        Call MyApplication.host.Invoke(
+            Sub()
+                Call WindowModules.rawFeaturesList.LoadRaw(raw)
+                Call VisualStudio.ShowProperties(New RawFileProperty(raw))
+                Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
 
-        Call UpdateMainTitle(raw.source)
+                Call UpdateMainTitle(raw.source)
+            End Sub)
     End Sub
 
     Private Sub RawScatterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RawScatterToolStripMenuItem.Click

@@ -37,50 +37,54 @@ Public Class FormViewer
     Private Sub openWorkspace()
         Using file As New OpenFileDialog With {.Filter = "MZKit workspace for biodeep workflow(*.hdms)|*.hdms"}
             If file.ShowDialog = DialogResult.OK Then
-                Dim buf As Stream = file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-                Dim workspace As New AnnotationWorkspace(buf, file.FileName)
-                Dim pack As AnnotationPack = workspace.LoadMemory
-
-                Call Workbench.StatusMessage("load report data...")
-
-                report = New ReportRender(pack)
-                viewer = New ReportViewer With {
-                    .report = report,
-                    .rawdata = rawdata
-                }
-
-                Dim rawfiles As Index(Of String) = report.annotation.samplefiles.Indexing
-
-                Call rawdata.Clear()
-                Call Workbench.StatusMessage("load lcms rawdata files from the current workspace...")
-
-                ' load all mzpack into memory?
-                For Each raw As MZWork.Raw In LCMSViewerModule.GetWorkspaceFiles
-                    If raw.source.BaseName Like rawfiles Then
-                        Dim load = raw.LoadMzpack(Sub(a, b) Call Workbench.StatusMessage($"[{a}] {b}"))
-                        Dim packraw = load.GetLoadedMzpack
-
-                        rawdata(raw.source.BaseName) = New mzPack With {
-                            .MS = packraw.MS.ToArray,
-                            .source = raw.source
-                        }
-
-                        Call Workbench.StatusMessage($"load rawdata [{raw.source.BaseName}]")
-                    Else
-                        Call Workbench.StatusMessage($"skip rawdata [{raw.source.BaseName}]")
-                    End If
-                Next
-
-                Try
-                    Call workspace.Dispose()
-                    Call buf.Dispose()
-                Catch ex As Exception
-
-                End Try
-
-                Call selectIons()
+                Call LoadWorkspace(file.FileName)
             End If
         End Using
+    End Sub
+
+    Private Sub LoadWorkspace(file As String)
+        Dim buf As Stream = file.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+        Dim workspace As New AnnotationWorkspace(buf, file)
+        Dim pack As AnnotationPack = workspace.LoadMemory
+
+        Call Workbench.StatusMessage("load report data...")
+
+        report = New ReportRender(pack)
+        viewer = New ReportViewer With {
+            .report = report,
+            .rawdata = rawdata
+        }
+
+        Dim rawfiles As Index(Of String) = report.annotation.samplefiles.Indexing
+
+        Call rawdata.Clear()
+        Call Workbench.StatusMessage("load lcms rawdata files from the current workspace...")
+
+        ' load all mzpack into memory?
+        For Each raw As MZWork.Raw In LCMSViewerModule.GetWorkspaceFiles
+            If raw.source.BaseName Like rawfiles Then
+                Dim load = raw.LoadMzpack(Sub(a, b) Call Workbench.StatusMessage($"[{a}] {b}"))
+                Dim packraw = load.GetLoadedMzpack
+
+                rawdata(raw.source.BaseName) = New mzPack With {
+                    .MS = packraw.MS.ToArray,
+                    .source = raw.source
+                }
+
+                Call Workbench.StatusMessage($"load rawdata [{raw.source.BaseName}]")
+            Else
+                Call Workbench.StatusMessage($"skip rawdata [{raw.source.BaseName}]")
+            End If
+        Next
+
+        Try
+            Call workspace.Dispose()
+            Call buf.Dispose()
+        Catch ex As Exception
+
+        End Try
+
+        Call selectIons()
     End Sub
 
     Private Sub selectIons()
