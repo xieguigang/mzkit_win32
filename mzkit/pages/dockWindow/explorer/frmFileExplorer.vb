@@ -140,6 +140,10 @@ Public Class frmFileExplorer
         End If
     End Function
 
+    ''' <summary>
+    ''' get all raw data files reference inside current lcms workspace
+    ''' </summary>
+    ''' <returns></returns>
     Public Iterator Function GetRawFiles() As IEnumerable(Of MZWork.Raw)
         Dim rawList = treeView1.Nodes.Item(Scan0)
 
@@ -198,6 +202,9 @@ Public Class frmFileExplorer
 
         Me.TabText = "File Explorer"
 
+        LCMSViewerModule.lcmsWorkspace = New Func(Of IEnumerable)(AddressOf GetRawFiles)
+        LCMSViewerModule.setWorkFile = New Action(Of Object)(Sub(o) Call SetActiveWorkfile(DirectCast(o, MZWork.Raw)))
+
         Call InitializeFileTree()
         Call ApplyVsTheme(ctxMenuFiles, ToolStrip1, ctxMenuScript, ctxMenuRawFile)
     End Sub
@@ -210,6 +217,8 @@ Public Class frmFileExplorer
     ''' <param name="fileName"></param>
     Public Sub ImportsRaw(fileName As String, snapshot As Boolean)
         If treeView1.Nodes.Count = 0 Then
+            ' just create folder node on the tree UI
+            ' if the tree ui is empty
             Call Globals.InitExplorerUI(
                 explorer:=treeView1,
                 rawMenu:=ctxMenuFiles,
@@ -217,9 +226,14 @@ Public Class frmFileExplorer
             )
         End If
 
+        ' handling of the MRM mzml data
         If fileName.ExtensionSuffix("mzml") AndAlso (RawScanParser.IsMRMData(fileName) OrElse RawScanParser.IsSIMData(fileName)) Then
             Call MyApplication.host.OpenFile(fileName, showDocument:=True)
         ElseIf treeView1.Nodes.Count = 0 OrElse treeView1.Nodes.Item(0).Nodes.Count = 0 Then
+            Call addFileNode(getRawCache(fileName))
+        ElseIf fileName.ExtensionSuffix("mzpack") Then
+            ' for mzpack data file, use add to the file tree
+            ' no needs for the background task of imports data
             Call addFileNode(getRawCache(fileName))
         Else
             ' work in background
@@ -273,6 +287,10 @@ Public Class frmFileExplorer
     Public Shared Function getRawCache(fileName As String, Optional titleTemplate$ = "Imports raw data [%s]", Optional cachePath As String = Nothing) As MZWork.Raw
         Call Workbench.StatusMessage("Run Raw Data Imports")
 
+        If fileName.ExtensionSuffix("mzpack") Then
+            Return MZWork.Raw.UseMzPack(fileName)
+        End If
+
         Return TaskProgress.LoadData(
             streamLoad:=Function(p)
                             Dim task As New Task.ImportsRawData(
@@ -303,12 +321,19 @@ Public Class frmFileExplorer
             raw.cache = getRawCache(raw.source, titleTemplate:="Re-Build file cache [%s]").cache
         End If
 
-        Call WindowModules.rawFeaturesList.LoadRaw(raw)
         Call MyApplication.host.mzkitTool.showScatter(raw, XIC, directSnapshot, contour)
+        Call SetActiveWorkfile(raw)
+    End Sub
 
-        Call VisualStudio.ShowProperties(New RawFileProperty(raw))
-        Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
-        Call UpdateMainTitle(raw.source)
+    Public Sub SetActiveWorkfile(raw As MZWork.Raw)
+        Call MyApplication.host.Invoke(
+            Sub()
+                Call WindowModules.rawFeaturesList.LoadRaw(raw)
+                Call VisualStudio.ShowProperties(New RawFileProperty(raw))
+                Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
+
+                Call UpdateMainTitle(raw.source)
+            End Sub)
     End Sub
 
     Private Sub RawScatterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RawScatterToolStripMenuItem.Click

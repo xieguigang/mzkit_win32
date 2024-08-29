@@ -275,6 +275,9 @@ namespace RibbonLib.Controls
             public const uint cmdMenuReport = 313;
             public const uint cmdButtonReportOpenWorkspace = 314;
             public const uint cmdButtonReportSelect = 315;
+            public const uint cmdPanelReportSettings = 318;
+            public const uint cmdToggleShowRT = 317;
+            public const uint cmdButtonReportHeatMapColors = 319;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -594,7 +597,7 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonTabGroup GroupReport { get; private set; }
         /// <summary>
-        /// Report
+        /// BioDeep Annotation Report
         /// </summary>
         public RibbonTab PanelReport { get; private set; }
         /// <summary>
@@ -609,6 +612,9 @@ namespace RibbonLib.Controls
         /// Select metabolites for make html report view
         /// </summary>
         public RibbonButton ButtonReportSelect { get; private set; }
+        public RibbonGroup PanelReportSettings { get; private set; }
+        public RibbonToggleButton ToggleShowRT { get; private set; }
+        public RibbonButton ButtonReportHeatMapColors { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -917,6 +923,9 @@ namespace RibbonLib.Controls
             MenuReport = new RibbonGroup(ribbon, Cmd.cmdMenuReport);
             ButtonReportOpenWorkspace = new RibbonButton(ribbon, Cmd.cmdButtonReportOpenWorkspace);
             ButtonReportSelect = new RibbonButton(ribbon, Cmd.cmdButtonReportSelect);
+            PanelReportSettings = new RibbonGroup(ribbon, Cmd.cmdPanelReportSettings);
+            ToggleShowRT = new RibbonToggleButton(ribbon, Cmd.cmdToggleShowRT);
+            ButtonReportHeatMapColors = new RibbonButton(ribbon, Cmd.cmdButtonReportHeatMapColors);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);

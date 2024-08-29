@@ -8,11 +8,18 @@ Public Class FormSelectTable
     Dim reportPack As AnnotationPack
 
     Public Iterator Function GetTargetSet() As IEnumerable(Of String)
-        For i As Integer = 0 To DataGridView1.Rows.Count - 1
-            Dim row = DataGridView1.Rows(i)
+        Dim rows = DataGridView1.Rows
 
-            If row IsNot Nothing AndAlso CBool(row.Cells(0).Value) Then
-                Yield $"{row.Cells(1).Value}_{row.Cells(4).Value}"
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            Dim row As DataGridViewRow = rows(i)
+
+            If row IsNot Nothing Then
+                Dim checkCell As DataGridViewCell = row.Cells(0)
+                Dim checkVal As Boolean = Convert.ToBoolean(DirectCast(checkCell, DataGridViewCheckBoxCell).Value)
+
+                If checkVal Then
+                    Yield $"{row.Cells(1).Value}_{row.Cells(4).Value}"
+                End If
             End If
         Next
     End Function
@@ -49,6 +56,8 @@ Public Class FormSelectTable
                 Call OpenBrowser(url)
             End If
         End If
+
+        DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
     End Sub
 
     Public Sub OpenBrowser(url As String)
@@ -67,5 +76,41 @@ Public Class FormSelectTable
 
             Call SetAnnotation(data)
         End If
+    End Sub
+
+    Private Sub FormSelectTable_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
+        'For Each column As DataGridViewColumn In DataGridView1.Columns
+        '    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        'Next
+
+        '' 调用AutoResizeColumns方法来立即调整列宽
+        'DataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.Fill)
+        DataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells)
+    End Sub
+
+    ''' <summary>
+    ''' select all
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            DataGridView1.Rows(i).Cells(0).Value = True
+        Next
+
+        DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
+    End Sub
+
+    ''' <summary>
+    ''' clear selection
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            DataGridView1.Rows(i).Cells(0).Value = False
+        Next
+
+        DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
     End Sub
 End Class

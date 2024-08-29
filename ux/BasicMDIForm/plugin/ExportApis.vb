@@ -17,6 +17,14 @@ Public Module ExportApis
 
     Public Event OpenHEMapTool(tool As ToolStripWindow)
 
+    Public setHeatmapColors As Action(Of Action(Of String()))
+
+    Public Sub GetHeatMapColors(apply As Action(Of String()))
+        If Not setHeatmapColors Is Nothing Then
+            Call setHeatmapColors(apply)
+        End If
+    End Sub
+
     Friend Sub OpenCFMIDTool(struct As String)
         If _openCFMIDTool Is Nothing Then
             Call MZKitWorkbenchIsNotRunning()

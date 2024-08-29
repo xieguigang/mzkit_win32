@@ -26,7 +26,7 @@
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>ReportViewer.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,7 +36,7 @@
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>ReportViewer.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -56,7 +56,7 @@
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\x64\Debug\</OutputPath>
     <DocumentationFile>ReportViewer.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <Prefer32Bit>true</Prefer32Bit>
@@ -66,7 +66,7 @@
     <OutputPath>bin\x64\Release\</OutputPath>
     <DocumentationFile>ReportViewer.xml</DocumentationFile>
     <Optimize>true</Optimize>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <Prefer32Bit>true</Prefer32Bit>
@@ -76,7 +76,7 @@
     <OutputPath>bin\mzkit_win32\</OutputPath>
     <DocumentationFile>ReportViewer.xml</DocumentationFile>
     <Optimize>true</Optimize>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Prefer32Bit>true</Prefer32Bit>
@@ -85,11 +85,25 @@
     <DefineTrace>true</DefineTrace>
     <OutputPath>..\..\..\..\..\dist\bin\plugins\</OutputPath>
     <DocumentationFile>ReportViewer.xml</DocumentationFile>
-    <Optimize>true</Optimize>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <Prefer32Bit>true</Prefer32Bit>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'">
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <DocumentationFile>ReportViewer.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <DocumentationFile>ReportViewer.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'mzkit_win32|Win32'">
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <DocumentationFile>ReportViewer.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.Windows.Form">
@@ -200,6 +214,10 @@
       <Project>{94f88528-276b-4e6f-afb6-870d5e367f6f}</Project>
       <Name>HDSPack</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj">
+      <Project>{eb3dd1ee-71a4-4d85-b494-ef075ad99098}</Project>
+      <Name>Math.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj">
       <Project>{e2caa18e-9705-462a-844d-c809a45d4197}</Project>
       <Name>imaging.NET5</Name>
@@ -208,9 +226,17 @@
       <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\assembly\assembly\assembly-netcore5.vbproj">
+      <Project>{5dce233f-c0e1-41b8-827a-872b0c8cc3bc}</Project>
+      <Name>assembly-netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\assembly\mzPackExtensions\mzPackExtensions.NET5.vbproj">
       <Project>{25c58b60-eff4-48a7-a48c-6bca408806f7}</Project>
       <Name>mzPackExtensions.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\assembly\mzPack\mzpack.NET5.vbproj">
+      <Project>{c6d266df-b35f-480b-acb0-15c7d2882769}</Project>
+      <Name>mzpack.NET5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj">
       <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>

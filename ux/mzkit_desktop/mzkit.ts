@@ -55,6 +55,11 @@ namespace app.desktop {
         ShowSpectral(data_id: string): Promise<boolean>;
         AlignSpectral(data_id: string): Promise<boolean>;
         FindExactMass(mass: number): Promise<boolean>;
+
+        ShowXic(data_id: string): Promise<boolean>;
+        ShowLcmsScatter(sample_name: string): Promise<boolean>;
+        ViewSpectral(xcms_id: string, sample: string, db_xref: string): Promise<boolean>;
+
         /**
          * actions for create new library file
         */

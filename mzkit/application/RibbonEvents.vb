@@ -78,6 +78,8 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Emit.Delegates
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
@@ -254,6 +256,13 @@ Module RibbonEvents
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+        ExportApis.setHeatmapColors =
+            Sub(apply)
+                InputDialog.Input(Of InputSelectColorMap)(
+                    Sub(config)
+                        Call apply(Designer.GetColors(config.GetColorMap.Description, n:=100).Select(Function(c) c.ToHtmlColor).ToArray)
+                    End Sub)
+            End Sub
     End Sub
 
     Public Sub openAppData()
@@ -286,12 +295,16 @@ Module RibbonEvents
     End Sub
 
     Private Sub openLcmsScatter(data As Object, title As String, click As Action(Of String, Double, Double, Boolean))
+        Dim main = MyApplication.host
+
         If data Is Nothing Then
             Call Workbench.Warning("no data could be loaded!")
         ElseIf TypeOf data Is Meta() Then
-            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(DirectCast(data, Meta())).Hook(click)
+            Call main.Invoke(Sub() VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(DirectCast(data, Meta())).Hook(click))
         ElseIf TypeOf data Is Raw Then
-            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(DirectCast(data, Raw)).Hook(click)
+            Call main.Invoke(Sub() VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(DirectCast(data, Raw)).Hook(click))
+        ElseIf TypeOf data Is mzPack Then
+            Call main.Invoke(Sub() VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(New Raw(DirectCast(data, mzPack))).Hook(click))
         Else
             Call Workbench.Warning($"invalid data type({data.GetType.FullName}) for the lcms scatter data viewer!")
         End If
