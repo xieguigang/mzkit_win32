@@ -204,6 +204,7 @@ Public Class frmFileExplorer
 
         LCMSViewerModule.lcmsWorkspace = New Func(Of IEnumerable)(AddressOf GetRawFiles)
         LCMSViewerModule.setWorkFile = New Action(Of Object)(Sub(o) Call SetActiveWorkfile(DirectCast(o, MZWork.Raw)))
+        LCMSViewerModule.addWorkFile = New Action(Of Object)(Sub(o) Call addFileNode(DirectCast(o, MZWork.Raw)))
 
         Call InitializeFileTree()
         Call ApplyVsTheme(ctxMenuFiles, ToolStrip1, ctxMenuScript, ctxMenuRawFile)
