@@ -6,10 +6,12 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.MSEngine
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
@@ -226,4 +228,37 @@ Public Class ReportViewer
     Private Sub onClickMs1(id As String, mz As Double, rt As Double, flag As Boolean)
 
     End Sub
+
+    Public Async Function ViewSpectral(xcms_id As String, sample As String, db_xref As String) As Task(Of Boolean)
+        Call Workbench.LogText($"view lcms msn spectrum: {New Dictionary(Of String, String) From {
+             {"xcms_id", xcms_id},
+             {"sample", sample},
+             {"biodeep_id", db_xref}
+        }.GetJson}")
+
+        Dim ion = report.GetIon(xcms_id)
+
+        If ion Is Nothing OrElse ion.biodeep_id <> db_xref Then
+            Return False
+        End If
+        If ion.samplefiles.IsNullOrEmpty OrElse Not ion.samplefiles.ContainsKey(sample) Then
+            Return False
+        End If
+
+        Dim msn As Ms2Score = ion.samplefiles(sample)
+        Dim spectrum As New LibraryMatrix With {
+            .centroid = True,
+            .ms2 = msn.ms2,
+            .name = ion.name & "_" & ion.adducts,
+            .parentMz = ion.theoretical_mz
+        }
+
+        ' view spectrum
+        Await Task.Run(
+            Sub()
+                Call SpectralViewerModule.ViewSpectral(spectrum)
+            End Sub)
+
+        Return True
+    End Function
 End Class
