@@ -310,7 +310,12 @@ Public Class frmMain : Implements AppHost
     ''' </summary>
     Public Sub ImportsFiles()
         Using file As New OpenFileDialog With {
-            .Filter = "Raw Data(*.mzXML; *.mzML)|*.mzXML;*.mzML|Thermo MSRaw(*.raw)|*.raw|Open Source(*.msp;*.mgf)|*.msp;*.mgf",
+            .Filter = {
+                "Raw Data(*.mzXML; *.mzML)|*.mzXML;*.mzML",
+                "Thermo MSRaw(*.raw)|*.raw",
+                "Open Source(*.msp;*.mgf)|*.msp;*.mgf",
+                "BioNovoGene MZPack(*.mzPack)|*.mzPack"
+            }.JoinBy("|"),
             .Multiselect = True
         }
             If file.ShowDialog = DialogResult.OK Then

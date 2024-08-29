@@ -210,6 +210,8 @@ Public Class frmFileExplorer
     ''' <param name="fileName"></param>
     Public Sub ImportsRaw(fileName As String, snapshot As Boolean)
         If treeView1.Nodes.Count = 0 Then
+            ' just create folder node on the tree UI
+            ' if the tree ui is empty
             Call Globals.InitExplorerUI(
                 explorer:=treeView1,
                 rawMenu:=ctxMenuFiles,
@@ -217,9 +219,14 @@ Public Class frmFileExplorer
             )
         End If
 
+        ' handling of the MRM mzml data
         If fileName.ExtensionSuffix("mzml") AndAlso (RawScanParser.IsMRMData(fileName) OrElse RawScanParser.IsSIMData(fileName)) Then
             Call MyApplication.host.OpenFile(fileName, showDocument:=True)
         ElseIf treeView1.Nodes.Count = 0 OrElse treeView1.Nodes.Item(0).Nodes.Count = 0 Then
+            Call addFileNode(getRawCache(fileName))
+        ElseIf fileName.ExtensionSuffix("mzpack") Then
+            ' for mzpack data file, use add to the file tree
+            ' no needs for the background task of imports data
             Call addFileNode(getRawCache(fileName))
         Else
             ' work in background
@@ -272,6 +279,10 @@ Public Class frmFileExplorer
     ''' <returns></returns>
     Public Shared Function getRawCache(fileName As String, Optional titleTemplate$ = "Imports raw data [%s]", Optional cachePath As String = Nothing) As MZWork.Raw
         Call Workbench.StatusMessage("Run Raw Data Imports")
+
+        If fileName.ExtensionSuffix("mzpack") Then
+            Return MZWork.Raw.UseMzPack(fileName)
+        End If
 
         Return TaskProgress.LoadData(
             streamLoad:=Function(p)

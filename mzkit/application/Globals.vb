@@ -395,6 +395,14 @@ Module Globals
         Call MyApplication.host.showStatusMessage("Ready!")
     End Sub
 
+    ''' <summary>
+    ''' Make initialization of the tree menu UI, just add the empty folder node
+    ''' </summary>
+    ''' <param name="explorer"></param>
+    ''' <param name="rawMenu"></param>
+    ''' <param name="scriptMenu"></param>
+    ''' <param name="scripts"></param>
+    ''' <param name="rawFiles"></param>
     Public Sub InitExplorerUI(explorer As TreeView, rawMenu As ContextMenuStrip, scriptMenu As ContextMenuStrip,
                               Optional ByRef scripts As TreeNode = Nothing,
                               Optional ByRef rawFiles As TreeNode = Nothing)
