@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
+Imports System.Runtime.InteropServices
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
@@ -143,10 +144,12 @@ Public Class FormViewer
     End Sub
 End Class
 
+<ClassInterface(ClassInterfaceType.AutoDual)>
+<ComVisible(True)>
 Public Class ReportViewer
 
-    Public report As ReportRender
-    Public rawdata As Dictionary(Of String, mzPack)
+    Friend report As ReportRender
+    Friend rawdata As Dictionary(Of String, mzPack)
 
     Public Async Function ShowXic(data_id As String) As Task(Of Boolean)
         Call Workbench.LogText($"show xic data for ion: {data_id}")
