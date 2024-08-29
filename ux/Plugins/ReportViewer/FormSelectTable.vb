@@ -87,4 +87,30 @@ Public Class FormSelectTable
         'DataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.Fill)
         DataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells)
     End Sub
+
+    ''' <summary>
+    ''' select all
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            DataGridView1.Rows(i).Cells(0).Value = True
+        Next
+
+        DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
+    End Sub
+
+    ''' <summary>
+    ''' clear selection
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            DataGridView1.Rows(i).Cells(0).Value = False
+        Next
+
+        DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
+    End Sub
 End Class
