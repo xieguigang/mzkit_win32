@@ -45,7 +45,18 @@ Public Class FormViewer
     End Sub
 
     Private Sub updateColorSet()
+        If report Is Nothing Then
+            Return
+        End If
 
+        Call ExportApis.GetHeatMapColors(
+            apply:=Sub(colors)
+                       report.colorSet = colors
+
+                       If Not refSet.IsNullOrEmpty Then
+                           Call RenderHtmltable()
+                       End If
+                   End Sub)
     End Sub
 
     Private Sub openWorkspace()
