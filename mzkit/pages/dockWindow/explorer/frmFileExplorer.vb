@@ -140,6 +140,10 @@ Public Class frmFileExplorer
         End If
     End Function
 
+    ''' <summary>
+    ''' get all raw data files reference inside current lcms workspace
+    ''' </summary>
+    ''' <returns></returns>
     Public Iterator Function GetRawFiles() As IEnumerable(Of MZWork.Raw)
         Dim rawList = treeView1.Nodes.Item(Scan0)
 
@@ -197,6 +201,8 @@ Public Class frmFileExplorer
         '   ExportToolStripMenuItem.Text = "Export XIC Ions"
 
         Me.TabText = "File Explorer"
+
+        LCMSViewerModule.lcmsWorkspace = New Func(Of IEnumerable)(AddressOf GetRawFiles)
 
         Call InitializeFileTree()
         Call ApplyVsTheme(ctxMenuFiles, ToolStrip1, ctxMenuScript, ctxMenuRawFile)

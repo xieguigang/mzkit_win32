@@ -14,6 +14,7 @@ Public Class FormViewer
 
     Dim report As ReportRender
     Dim viewer As ReportViewer
+    Dim rawdata As Dictionary(Of String, mzPack)
 
     Private Sub FormViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(WebView21)
@@ -38,6 +39,9 @@ Public Class FormViewer
                 viewer = New ReportViewer With {
                     .report = report
                 }
+
+                ' load all mzpack into memory?
+
 
                 Try
                     Call workspace.Dispose()
