@@ -68,4 +68,13 @@ Public Class FormSelectTable
             Call SetAnnotation(data)
         End If
     End Sub
+
+    Private Sub FormSelectTable_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
+        For Each column As DataGridViewColumn In DataGridView1.Columns
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        Next
+
+        ' 调用AutoResizeColumns方法来立即调整列宽
+        DataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.Fill)
+    End Sub
 End Class
