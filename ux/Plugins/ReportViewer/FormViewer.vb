@@ -104,6 +104,7 @@ Public Class FormViewer
         Get
             Yield $"http://127.0.0.1:{Workbench.WebPort}/assets/js/linq.js"
             Yield $"http://127.0.0.1:{Workbench.WebPort}/assets/js/mzkit_desktop.js"
+            Yield $"http://127.0.0.1:{Workbench.WebPort}/vendor/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"
         End Get
     End Property
 
@@ -124,6 +125,8 @@ Public Class FormViewer
         For Each js As String In mzkit_js
             Call html.AppendLine($"<script type=""text/javascript"" src='{js}'></script>")
         Next
+
+        Call html.AppendLine($"<link href='http://127.0.0.1:{Workbench.WebPort}/vendor/bootstrap-5.3.2-dist/css/bootstrap.min.css' rel='stylesheet' crossorigin='anonymous'>")
 
         Call html.AppendLine("</head>")
 
