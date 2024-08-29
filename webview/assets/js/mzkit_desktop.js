@@ -805,6 +805,23 @@ var apps;
                         });
                     });
                 });
+                $ts.select(".score").onClick(function (a) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var xcms_id, sample, biodeep_id;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    xcms_id = a.getAttribute("data_id");
+                                    sample = a.getAttribute("data_sample");
+                                    biodeep_id = a.getAttribute("biodeep_id");
+                                    return [4 /*yield*/, app.desktop.mzkit.ViewSpectral(xcms_id, sample, biodeep_id)];
+                                case 1:
+                                    _a.sent();
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
             };
             return reportViewer;
         }(Bootstrap));
