@@ -49,7 +49,6 @@ Partial Class FormSelectTable : Inherits InputDialog
         Me.DataGridView1.Location = New System.Drawing.Point(0, 25)
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowTemplate.Height = 23
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(915, 550)
@@ -65,7 +64,6 @@ Partial Class FormSelectTable : Inherits InputDialog
         '
         Me.Column2.HeaderText = "BioDeepID"
         Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
         Me.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Column2.Width = 150
         '
@@ -73,7 +71,6 @@ Partial Class FormSelectTable : Inherits InputDialog
         '
         Me.Column3.HeaderText = "Name"
         Me.Column3.Name = "Column3"
-        Me.Column3.ReadOnly = True
         Me.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.Column3.Width = 250
@@ -82,7 +79,6 @@ Partial Class FormSelectTable : Inherits InputDialog
         '
         Me.Column4.HeaderText = "Formula"
         Me.Column4.Name = "Column4"
-        Me.Column4.ReadOnly = True
         Me.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
@@ -90,7 +86,6 @@ Partial Class FormSelectTable : Inherits InputDialog
         '
         Me.Column5.HeaderText = "Adducts"
         Me.Column5.Name = "Column5"
-        Me.Column5.ReadOnly = True
         Me.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
