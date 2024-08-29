@@ -329,6 +329,7 @@ var app;
             Router.AddAppHandler(new apps.viewer.umap());
             Router.AddAppHandler(new apps.viewer.lcmsLibrary());
             Router.AddAppHandler(new apps.viewer.svgViewer());
+            Router.AddAppHandler(new apps.biodeep.reportViewer());
             Router.RunApp();
         }
         desktop.run = run;
@@ -762,6 +763,41 @@ var apps;
         return home;
     }(Bootstrap));
     apps.home = home;
+})(apps || (apps = {}));
+var apps;
+(function (apps) {
+    var biodeep;
+    (function (biodeep) {
+        var reportViewer = /** @class */ (function (_super) {
+            __extends(reportViewer, _super);
+            function reportViewer() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(reportViewer.prototype, "appName", {
+                get: function () {
+                    return "biodeep_report";
+                },
+                enumerable: false,
+                configurable: true
+            });
+            reportViewer.prototype.init = function () {
+                $ts.select(".meta_header").onClick(function (a) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, app.desktop.mzkit.ShowXic(a.getAttribute("xcms_id"))];
+                                case 1:
+                                    _a.sent();
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
+            return reportViewer;
+        }(Bootstrap));
+        biodeep.reportViewer = reportViewer;
+    })(biodeep = apps.biodeep || (apps.biodeep = {}));
 })(apps || (apps = {}));
 var apps;
 (function (apps) {

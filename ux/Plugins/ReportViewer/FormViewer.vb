@@ -13,6 +13,7 @@ Public Class FormViewer
     Shared ReadOnly select_evt As New RibbonEventBinding(Workbench.RibbonItems.ButtonReportSelect)
 
     Dim report As ReportRender
+    Dim viewer As ReportViewer
 
     Private Sub FormViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(WebView21)
@@ -34,6 +35,9 @@ Public Class FormViewer
                 Dim pack As AnnotationPack = workspace.LoadMemory
 
                 report = New ReportRender(pack)
+                viewer = New ReportViewer With {
+                    .report = report
+                }
 
                 Try
                     Call workspace.Dispose()
@@ -102,6 +106,7 @@ Public Class FormViewer
         Call html.AppendLine("</tbody>")
         Call html.AppendLine("</table>")
 
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", viewer)
         Call WebView21.NavigateToString(html.ToString)
     End Sub
 
@@ -115,4 +120,16 @@ Public Class FormViewer
         open_evt.evt = Nothing
         select_evt.evt = Nothing
     End Sub
+End Class
+
+Public Class ReportViewer
+
+    Public report As ReportRender
+
+    Public Async Function ShowXic(data_id As String) As Task(Of Boolean)
+        Call Workbench.LogText($"show xic data for ion: {data_id}")
+
+        Return True
+    End Function
+
 End Class
