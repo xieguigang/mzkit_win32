@@ -2,8 +2,12 @@
 Imports System.IO
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.BioDeep.MSEngine
 Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
@@ -38,7 +42,8 @@ Public Class FormViewer
 
                 report = New ReportRender(pack)
                 viewer = New ReportViewer With {
-                    .report = report
+                    .report = report,
+                    .rawdata = rawdata
                 }
 
                 Dim rawfiles As Index(Of String) = report.annotation.samplefiles.Indexing
@@ -141,11 +146,40 @@ End Class
 Public Class ReportViewer
 
     Public report As ReportRender
+    Public rawdata As Dictionary(Of String, mzPack)
 
     Public Async Function ShowXic(data_id As String) As Task(Of Boolean)
         Call Workbench.LogText($"show xic data for ion: {data_id}")
 
+        If rawdata.IsNullOrEmpty Then
+            Return False
+        End If
+
+        ' get ion by xcms_id -> mz -> xic in each rawdata
+        Await Task.Run(Sub() LoadXicTask(data_id))
+
         Return True
     End Function
+
+    Private Sub LoadXicTask(data_id As String)
+        Dim xic As New List(Of NamedCollection(Of ChromatogramTick))
+        Dim ion As AlignmentHit = report.GetIon(data_id)
+        Dim mz As Double = If(ion Is Nothing, -1, ion.theoretical_mz)
+        Dim da As Tolerance = Tolerance.DeltaMass(0.05)
+
+        If mz <= 0 Then
+            Return
+        End If
+
+        For Each raw In rawdata
+            Call xic.Add(New NamedCollection(Of ChromatogramTick) With {
+                .name = raw.Key,
+                .value = raw.Value.GetXIC(mz, da)
+            })
+        Next
+
+        ' view xic in viewer
+        Call LCMSViewerModule.ShowTICOverlaps(xic.ToArray)
+    End Sub
 
 End Class

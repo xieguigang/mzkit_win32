@@ -213,6 +213,25 @@ Public Class PageMzkitTools
         'AddHandler host.fileExplorer.SmallMoleculeToolStripMenuItem.Click, AddressOf SmallMoleculeToolStripMenuItem_Click
         'AddHandler host.fileExplorer.NatureProductToolStripMenuItem.Click, AddressOf NatureProductToolStripMenuItem_Click
         'AddHandler host.fileExplorer.GeneralFlavoneToolStripMenuItem.Click, AddressOf GeneralFlavoneToolStripMenuItem_Click
+
+        LCMSViewerModule.lcmsChromatogramOverlaps = AddressOf ChromatogramViewer
+    End Sub
+
+    Private Sub ChromatogramViewer(obj As Object)
+        Dim main = MyApplication.host
+        Dim getXicCollection As PopulateXic =
+            Iterator Function() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
+                If TypeOf obj Is NamedCollection(Of ChromatogramTick)() Then
+                    For Each ci In DirectCast(obj, NamedCollection(Of ChromatogramTick)())
+                        Yield ci
+                    Next
+                Else
+
+                End If
+            End Function
+
+        Call main.Invoke(Sub() MyApplication.mzkitRawViewer.ShowXIC(0, Nothing, getXicCollection, 0))
+        Call main.Invoke(Sub() MyApplication.host.mzkitTool.ShowPage())
     End Sub
 
     Friend Sub showSpectrum(scanId As String, raw As MZWork.Raw, formula As String)
