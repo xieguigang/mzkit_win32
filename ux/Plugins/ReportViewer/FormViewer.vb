@@ -41,6 +41,8 @@ Public Class FormViewer
                 Catch ex As Exception
 
                 End Try
+
+                Call selectIons()
             End If
         End Using
     End Sub
