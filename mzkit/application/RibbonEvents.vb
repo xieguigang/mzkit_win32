@@ -286,14 +286,16 @@ Module RibbonEvents
     End Sub
 
     Private Sub openLcmsScatter(data As Object, title As String, click As Action(Of String, Double, Double, Boolean))
+        Dim main = MyApplication.host
+
         If data Is Nothing Then
             Call Workbench.Warning("no data could be loaded!")
         ElseIf TypeOf data Is Meta() Then
-            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(DirectCast(data, Meta())).Hook(click)
+            Call main.Invoke(Sub() VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(DirectCast(data, Meta())).Hook(click))
         ElseIf TypeOf data Is Raw Then
-            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(DirectCast(data, Raw)).Hook(click)
+            Call main.Invoke(Sub() VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(DirectCast(data, Raw)).Hook(click))
         ElseIf TypeOf data Is mzPack Then
-            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(New Raw(DirectCast(data, mzPack))).Hook(click)
+            Call main.Invoke(Sub() VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(New Raw(DirectCast(data, mzPack))).Hook(click))
         Else
             Call Workbench.Warning($"invalid data type({data.GetType.FullName}) for the lcms scatter data viewer!")
         End If
