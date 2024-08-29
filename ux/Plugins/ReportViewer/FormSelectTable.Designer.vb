@@ -38,12 +38,20 @@ Partial Class FormSelectTable : Inherits InputDialog
         '
         'DataGridView1
         '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke
+        Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5})
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView1.GridColor = System.Drawing.Color.Gainsboro
         Me.DataGridView1.Location = New System.Drawing.Point(0, 25)
+        Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowTemplate.Height = 23
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(915, 550)
         Me.DataGridView1.TabIndex = 0
         '
