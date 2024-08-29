@@ -37,19 +37,29 @@ Public Class FormViewer
     End Sub
 
     Private Sub openWorkspace()
+        Dim main As Form = CObj(Workbench.AppHost)
+
         Using file As New OpenFileDialog With {.Filter = "MZKit workspace for biodeep workflow(*.hdms)|*.hdms"}
             If file.ShowDialog = DialogResult.OK Then
-                Call LoadWorkspace(file.FileName)
+                If TaskProgress.LoadData(Of Boolean)(
+                    streamLoad:=Function(p As Action(Of String))
+                                    Return main.Invoke(Function() LoadWorkspace(file.FileName, p))
+                                End Function,
+                    title:="Load BioDeep Annotation Workspace...",
+                    info:="Load annotation result data...") Then
+
+                    Call selectIons()
+                End If
             End If
         End Using
     End Sub
 
-    Private Sub LoadWorkspace(file As String)
+    Private Function LoadWorkspace(file As String, print As Action(Of String)) As Boolean
         Dim buf As Stream = file.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
         Dim workspace As New AnnotationWorkspace(buf, file)
         Dim pack As AnnotationPack = workspace.LoadMemory
 
-        Call Workbench.StatusMessage("load report data...")
+        Call print("load report data...")
 
         report = New ReportRender(pack)
         viewer = New ReportViewer With {
@@ -60,7 +70,7 @@ Public Class FormViewer
         Dim rawfiles As Index(Of String) = report.annotation.samplefiles.Indexing
 
         Call rawdata.Clear()
-        Call Workbench.StatusMessage("load lcms rawdata files from the current workspace...")
+        Call print("load lcms rawdata files from the current workspace...")
 
         ' load all mzpack into memory?
         For Each raw As MZWork.Raw In LCMSViewerModule.GetWorkspaceFiles
@@ -73,9 +83,9 @@ Public Class FormViewer
                     .source = raw.source
                 }
 
-                Call Workbench.StatusMessage($"load rawdata [{raw.source.BaseName}]")
+                Call print($"load rawdata [{raw.source.BaseName}]")
             Else
-                Call Workbench.StatusMessage($"skip rawdata [{raw.source.BaseName}]")
+                Call print($"skip rawdata [{raw.source.BaseName}]")
             End If
         Next
 
@@ -86,8 +96,8 @@ Public Class FormViewer
 
         End Try
 
-        Call selectIons()
-    End Sub
+        Return True
+    End Function
 
     Private Sub selectIons()
         If report Is Nothing Then
