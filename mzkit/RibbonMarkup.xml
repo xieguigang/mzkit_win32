@@ -4303,7 +4303,7 @@
       </Command.LargeImages>
     </Command>
     <Command Name="cmdGroupReport" Comment="Report" Id="311" LabelTitle="Report" LabelDescription="Report" TooltipTitle="Report" TooltipDescription="Report" />
-    <Command Name="cmdPanelReport" Comment="Report" Id="312" LabelTitle="Report" LabelDescription="Report" TooltipTitle="Report" TooltipDescription="Report" />
+    <Command Name="cmdPanelReport" Comment="BioDeep Annotation Report" Id="312" LabelTitle="BioDeep Annotation Report" LabelDescription="BioDeep Annotation Report" TooltipTitle="BioDeep Annotation Report" TooltipDescription="BioDeep Annotation Report" />
     <Command Name="cmdMenuReport" Comment="Report" Id="313" LabelTitle="Report" LabelDescription="Report" TooltipTitle="Report" TooltipDescription="Report" />
     <Command Name="cmdButtonReportOpenWorkspace" Comment="Open the annotation result workspace" Id="314" LabelTitle="Open" LabelDescription="Open the annotation result workspace" TooltipTitle="Open the annotation result workspace" TooltipDescription="Open the annotation result workspace">
       <Command.SmallImages>
@@ -4335,6 +4335,15 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image MinDPI="192">Res/application-x-object.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdPanelReportSettings" Id="318" LabelTitle="Report Settings" LabelDescription="Report Settings" TooltipTitle="Report Settings" TooltipDescription="Report Settings" />
+    <Command Name="cmdButtonReportHeatMapColors" Id="319" LabelTitle="HeatMap Colors" LabelDescription="HeatMap Colors" TooltipTitle="HeatMap Colors" TooltipDescription="HeatMap Colors">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Color palette.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Color palette.png</Image>
       </Command.LargeImages>
     </Command>
   </Application.Commands>
@@ -4775,10 +4784,13 @@
         </TabGroup>
         <TabGroup CommandName="cmdGroupReport">
           <Tab CommandName="cmdPanelReport">
-            <Group CommandName="cmdMenuReport" SizeDefinition="ThreeButtons">
+            <Group CommandName="cmdMenuReport">
               <Button CommandName="cmdButtonReportOpenWorkspace" />
               <Button CommandName="cmdButtonReportSelect" />
+            </Group>
+            <Group CommandName="cmdPanelReportSettings" SizeDefinition="TwoButtons">
               <ToggleButton CommandName="cmdToggleShowRT" />
+              <Button CommandName="cmdButtonReportHeatMapColors" />
             </Group>
           </Tab>
         </TabGroup>

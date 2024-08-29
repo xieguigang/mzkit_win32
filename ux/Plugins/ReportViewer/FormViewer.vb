@@ -20,6 +20,7 @@ Public Class FormViewer
     Shared ReadOnly open_evt As New RibbonEventBinding(Workbench.RibbonItems.ButtonReportOpenWorkspace)
     Shared ReadOnly select_evt As New RibbonEventBinding(Workbench.RibbonItems.ButtonReportSelect)
     Shared ReadOnly showRt_evt As New ToggleEventBinding(Workbench.RibbonItems.ToggleShowRT)
+    Shared ReadOnly heatmap_evt As New RibbonEventBinding(Workbench.RibbonItems.ButtonReportHeatMapColors)
 
     Dim report As ReportRender
     Dim viewer As ReportViewer
@@ -33,6 +34,7 @@ Public Class FormViewer
     Private Sub FormViewer_Activated() Handles Me.Activated
         Workbench.RibbonItems.GroupReport.ContextAvailable = RibbonLib.Interop.ContextAvailability.Active
 
+        heatmap_evt.evt = Sub() Call updateColorSet()
         open_evt.evt = Sub() Call openWorkspace()
         select_evt.evt = Sub() Call selectIons()
         showRt_evt.evt = Sub(flag)
@@ -40,6 +42,10 @@ Public Class FormViewer
                                  Call RenderHtmltable()
                              End If
                          End Sub
+    End Sub
+
+    Private Sub updateColorSet()
+
     End Sub
 
     Private Sub openWorkspace()
@@ -142,7 +148,7 @@ Public Class FormViewer
 
         Call html.AppendLine("</head>")
 
-        Call html.AppendLine("<table class='table' style='width:100%;'>")
+        Call html.AppendLine("<table class='table' style='width:100%; font-size: 14px;'>")
         Call html.AppendLine("<thead>")
         Call html.AppendLine("<tr>")
         Call html.AppendLine(lines(0))
@@ -182,6 +188,8 @@ Public Class FormViewer
 
         open_evt.evt = Nothing
         select_evt.evt = Nothing
+        heatmap_evt.evt = Nothing
+        showRt_evt.evt = Nothing
     End Sub
 End Class
 

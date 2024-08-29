@@ -1736,7 +1736,7 @@
 #define cmdGroupReport_LabelDescription_RESID 60248
 #define cmdGroupReport_TooltipTitle_RESID 60249
 #define cmdGroupReport_TooltipDescription_RESID 60250
-#define cmdPanelReport 312  /* Report */ 
+#define cmdPanelReport 312  /* BioDeep Annotation Report */ 
 #define cmdPanelReport_LabelTitle_RESID 60251
 #define cmdPanelReport_LabelDescription_RESID 60252
 #define cmdPanelReport_TooltipTitle_RESID 60253
@@ -1775,7 +1775,19 @@
 #define cmdToggleShowRT_TooltipDescription_RESID 60281
 #define cmdToggleShowRT_SmallImages_192__RESID 60282
 #define cmdToggleShowRT_LargeImages_192__RESID 60283
-#define InternalCmd2_LabelTitle_RESID 60284
-#define InternalCmd4_LabelTitle_RESID 60285
-#define InternalCmd6_LabelTitle_RESID 60286
-#define InternalCmd8_LabelTitle_RESID 60287
+#define cmdPanelReportSettings 318 
+#define cmdPanelReportSettings_LabelTitle_RESID 60284
+#define cmdPanelReportSettings_LabelDescription_RESID 60285
+#define cmdPanelReportSettings_TooltipTitle_RESID 60286
+#define cmdPanelReportSettings_TooltipDescription_RESID 60287
+#define cmdButtonReportHeatMapColors 319 
+#define cmdButtonReportHeatMapColors_LabelTitle_RESID 60288
+#define cmdButtonReportHeatMapColors_LabelDescription_RESID 60289
+#define cmdButtonReportHeatMapColors_TooltipTitle_RESID 60290
+#define cmdButtonReportHeatMapColors_TooltipDescription_RESID 60291
+#define cmdButtonReportHeatMapColors_SmallImages_192__RESID 60292
+#define cmdButtonReportHeatMapColors_LargeImages_192__RESID 60293
+#define InternalCmd2_LabelTitle_RESID 60294
+#define InternalCmd4_LabelTitle_RESID 60295
+#define InternalCmd6_LabelTitle_RESID 60296
+#define InternalCmd8_LabelTitle_RESID 60297

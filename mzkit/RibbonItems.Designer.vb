@@ -272,7 +272,9 @@ Namespace RibbonLib.Controls
             Public Const cmdMenuReport As UInteger = 313
             Public Const cmdButtonReportOpenWorkspace As UInteger = 314
             Public Const cmdButtonReportSelect As UInteger = 315
+            Public Const cmdPanelReportSettings As UInteger = 318
             Public Const cmdToggleShowRT As UInteger = 317
+            Public Const cmdButtonReportHeatMapColors As UInteger = 319
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -1863,7 +1865,7 @@ Namespace RibbonLib.Controls
         End Property
         Private _PanelReport As RibbonTab
         ''' <summary>
-        ''' Report
+        ''' BioDeep Annotation Report
         ''' </summary>
         Public ReadOnly Property PanelReport As RibbonTab
             Get
@@ -1897,10 +1899,22 @@ Namespace RibbonLib.Controls
                 Return _ButtonReportSelect
             End Get
         End Property
+        Private _PanelReportSettings As RibbonGroup
+        Public ReadOnly Property PanelReportSettings As RibbonGroup
+            Get
+                Return _PanelReportSettings
+            End Get
+        End Property
         Private _ToggleShowRT As RibbonToggleButton
         Public ReadOnly Property ToggleShowRT As RibbonToggleButton
             Get
                 Return _ToggleShowRT
+            End Get
+        End Property
+        Private _ButtonReportHeatMapColors As RibbonButton
+        Public ReadOnly Property ButtonReportHeatMapColors As RibbonButton
+            Get
+                Return _ButtonReportHeatMapColors
             End Get
         End Property
         Private _TabMain As RibbonTab
@@ -2406,7 +2420,9 @@ Namespace RibbonLib.Controls
             _MenuReport = New RibbonGroup(_ribbon, Cmd.cmdMenuReport)
             _ButtonReportOpenWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonReportOpenWorkspace)
             _ButtonReportSelect = New RibbonButton(_ribbon, Cmd.cmdButtonReportSelect)
+            _PanelReportSettings = New RibbonGroup(_ribbon, Cmd.cmdPanelReportSettings)
             _ToggleShowRT = New RibbonToggleButton(_ribbon, Cmd.cmdToggleShowRT)
+            _ButtonReportHeatMapColors = New RibbonButton(_ribbon, Cmd.cmdButtonReportHeatMapColors)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)

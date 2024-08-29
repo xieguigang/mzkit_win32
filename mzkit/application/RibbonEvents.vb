@@ -78,6 +78,8 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Emit.Delegates
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
@@ -254,6 +256,13 @@ Module RibbonEvents
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+        ExportApis.setHeatmapColors =
+            Sub(apply)
+                InputDialog.Input(Of InputSelectColorMap)(
+                    Sub(config)
+                        Call apply(Designer.GetColors(config.GetColorMap.Description, n:=100).Select(Function(c) c.ToHtmlColor).ToArray)
+                    End Sub)
+            End Sub
     End Sub
 
     Public Sub openAppData()
