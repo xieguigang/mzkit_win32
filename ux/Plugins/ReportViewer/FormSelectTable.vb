@@ -8,11 +8,17 @@ Public Class FormSelectTable
     Dim reportPack As AnnotationPack
 
     Public Iterator Function GetTargetSet() As IEnumerable(Of String)
-        For i As Integer = 0 To DataGridView1.Rows.Count - 1
-            Dim row = DataGridView1.Rows(i)
+        Dim rows = DataGridView1.Rows
 
-            If row IsNot Nothing AndAlso CBool(row.Cells(0).Value) Then
-                Yield $"{row.Cells(1).Value}_{row.Cells(4).Value}"
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            Dim row = rows(i)
+
+            If row IsNot Nothing Then
+                Dim checkCell = row.Cells(0)
+
+                If CBool(checkCell.Value) Then
+                    Yield $"{row.Cells(1).Value}_{row.Cells(4).Value}"
+                End If
             End If
         Next
     End Function
