@@ -55,6 +55,9 @@ namespace app.desktop {
         ShowSpectral(data_id: string): Promise<boolean>;
         AlignSpectral(data_id: string): Promise<boolean>;
         FindExactMass(mass: number): Promise<boolean>;
+
+        ShowXic(data_id: string): Promise<boolean>;
+
         /**
          * actions for create new library file
         */

@@ -24,6 +24,8 @@ namespace app.desktop {
         Router.AddAppHandler(new apps.viewer.lcmsLibrary());
         Router.AddAppHandler(new apps.viewer.svgViewer());
 
+        Router.AddAppHandler(new apps.biodeep.reportViewer());
+
         Router.RunApp();
     }
 }

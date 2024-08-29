@@ -77,6 +77,8 @@ Public Class FormViewer
 
         Call html.AppendLine("<head>")
 
+        Call html.AppendLine("<meta name='app' content='biodeep_report' />")
+
         For Each js As String In mzkit_js
             Call html.AppendLine($"<script type=""text/javascript"" src='{js}'></script>")
         Next
