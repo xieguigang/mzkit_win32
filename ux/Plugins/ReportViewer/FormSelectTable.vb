@@ -15,7 +15,7 @@ Public Class FormSelectTable
 
             If row IsNot Nothing Then
                 Dim checkCell As DataGridViewCell = row.Cells(0)
-                Dim checkVal As Boolean = checkCell.Value
+                Dim checkVal As Boolean = Convert.ToBoolean(DirectCast(checkCell, DataGridViewCheckBoxCell).Value)
 
                 If checkVal Then
                     Yield $"{row.Cells(1).Value}_{row.Cells(4).Value}"
@@ -56,6 +56,8 @@ Public Class FormSelectTable
                 Call OpenBrowser(url)
             End If
         End If
+
+        DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
     End Sub
 
     Public Sub OpenBrowser(url As String)

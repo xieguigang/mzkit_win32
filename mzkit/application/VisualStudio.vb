@@ -85,9 +85,17 @@ Public Class VisualStudio
         Call Dock(WindowModules.propertyWin, DockState.DockRight)
     End Sub
 
+    ''' <summary>
+    ''' Show object properties
+    ''' </summary>
+    ''' <param name="item"></param>
+    ''' <remarks>
+    ''' thread safe method
+    ''' </remarks>
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub ShowProperties(item As Object)
-        WindowModules.propertyWin.SetObject(item)
+        Dim form = WindowModules.propertyWin
+        Call form.Invoke(Sub() form.SetObject(item))
     End Sub
 
     ''' <summary>
