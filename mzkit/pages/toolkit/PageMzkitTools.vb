@@ -616,7 +616,7 @@ Public Class PageMzkitTools
     ''' View spectral plot and then switch to the spectrl viewer UI
     ''' </summary>
     ''' <param name="data"></param>
-    Public Shared Sub ShowSpectral(data As Object)
+    Public Shared Sub ShowSpectral(data As Object, Optional formula As String = Nothing)
         Dim matrix As ms2()
         Dim name As String
 
@@ -638,6 +638,14 @@ Public Class PageMzkitTools
         Else
             Call Workbench.Warning($"the spectral view for {data.GetType.FullName} is not implements yet...")
             Return
+        End If
+
+        If Not formula.StringEmpty(, True) AndAlso TypeOf data Is PeakMs2 AndAlso Not DirectCast(data, PeakMs2).precursor_type.StringEmpty(, True) Then
+            Dim f As Formula = FormulaScanner.ScanFormula(formula)
+            Dim adducts As MzCalculator = Provider.ParseAdductModel(DirectCast(data, PeakMs2).precursor_type)
+            Dim anno As PeakAnnotation = PeakAnnotation.DoPeakAnnotation(New PeakMs2(name, matrix), adducts, f, da:=0.3)
+
+            matrix = anno.products
         End If
 
         Call MyApplication.host.mzkitTool.PlotSpectrum(New LibraryMatrix(matrix) With {.name = name})

@@ -1,6 +1,11 @@
 ﻿Public Module SpectralViewerModule
 
-    Dim viewMatrix As Action(Of Object)
+    ''' <summary>
+    ''' view spectrum handler, the parameter 1 should be the spectrum data object, 
+    ''' and parameter 2 is optional, should be the formula for make the 
+    ''' annotation
+    ''' </summary>
+    Dim viewMatrix As Action(Of Object, String)
     Dim runmassDiffAnalysis As Action(Of Double, Array)
     Dim showClusterSpectrum As Action(Of Array, String)
 
@@ -8,7 +13,7 @@
     ''' hook the spectral matrix viewer
     ''' </summary>
     ''' <param name="view"></param>
-    Public Sub HookViewer(view As Action(Of Object))
+    Public Sub HookViewer(view As Action(Of Object, String))
         viewMatrix = view
     End Sub
 
@@ -26,9 +31,9 @@
         End If
     End Sub
 
-    Public Sub ViewSpectral(data As Object)
+    Public Sub ViewSpectral(data As Object, Optional formula As String = Nothing)
         If Not viewMatrix Is Nothing Then
-            Call viewMatrix(data)
+            Call viewMatrix(data, formula)
         End If
     End Sub
 

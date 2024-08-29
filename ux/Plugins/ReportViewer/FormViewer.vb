@@ -246,17 +246,18 @@ Public Class ReportViewer
         End If
 
         Dim msn As Ms2Score = ion.samplefiles(sample)
-        Dim spectrum As New LibraryMatrix With {
-            .centroid = True,
-            .ms2 = msn.ms2,
-            .name = ion.name & "_" & ion.adducts,
-            .parentMz = ion.theoretical_mz
+        Dim spectrum As New PeakMs2(ion.name & "_" & ion.adducts, msn.ms2) With {
+            .mz = ion.theoretical_mz,
+            .file = sample,
+            .precursor_type = ion.adducts,
+            .rt = ion.rt,
+            .scan = xcms_id
         }
 
         ' view spectrum
         Await Task.Run(
             Sub()
-                Call SpectralViewerModule.ViewSpectral(spectrum)
+                Call SpectralViewerModule.ViewSpectral(spectrum, ion.formula)
             End Sub)
 
         Return True
