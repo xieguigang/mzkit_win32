@@ -4,6 +4,7 @@
     Public lcmsWorkspace As Func(Of IEnumerable)
     Public lcmsChromatogramOverlaps As Action(Of Object)
     Public setWorkFile As Action(Of Object)
+    Public addWorkFile As Action(Of Object)
 
     ''' <summary>
     ''' view of the lcms scatter viewer
@@ -14,6 +15,12 @@
     Public Sub OpenScatterViewer(data As Object, title As String, click As Action(Of String, Double, Double, Boolean))
         If Not lcmsViewerhHandle Is Nothing Then
             Call lcmsViewerhHandle(data, title, click)
+        End If
+    End Sub
+
+    Public Sub AddWorkspaceFile(file As Object)
+        If Not addWorkFile Is Nothing Then
+            Call addWorkFile(file)
         End If
     End Sub
 

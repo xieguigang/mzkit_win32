@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports Mzkit_win32.BasicMDIForm
 
 Public Class Plugin : Inherits Mzkit_win32.BasicMDIForm.Plugin
 
@@ -39,7 +40,10 @@ Public Class Plugin : Inherits Mzkit_win32.BasicMDIForm.Plugin
         Dim files As String() = cache.ListFiles("*.mzPack").ToArray
 
         For Each file As String In files
-            Dim raw As New mzwork.raw
+            Call LCMSViewerModule.AddWorkspaceFile(New MZWork.Raw With {
+                .cache = file,
+                .source = file
+            })
         Next
     End Sub
 End Class
