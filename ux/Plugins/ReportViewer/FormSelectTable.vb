@@ -70,11 +70,12 @@ Public Class FormSelectTable
     End Sub
 
     Private Sub FormSelectTable_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
-        For Each column As DataGridViewColumn In DataGridView1.Columns
-            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        Next
+        'For Each column As DataGridViewColumn In DataGridView1.Columns
+        '    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        'Next
 
-        ' 调用AutoResizeColumns方法来立即调整列宽
-        DataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.Fill)
+        '' 调用AutoResizeColumns方法来立即调整列宽
+        'DataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.Fill)
+        DataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells)
     End Sub
 End Class
