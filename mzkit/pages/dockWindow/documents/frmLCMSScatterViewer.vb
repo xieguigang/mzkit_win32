@@ -27,7 +27,10 @@ Public Class frmLCMSScatterViewer
     Public Function loadRaw(raw As Raw) As frmLCMSScatterViewer
         Me.raw = raw
         Me.raw.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
-        Me.TabText = raw.source.FileName
+
+        If Not raw.source.StringEmpty(, True) Then
+            Me.TabText = "[MS1] " & raw.source.FileName
+        End If
 
         Call ProgressSpinner.DoLoading(Sub() Call Invoke(Sub() Call loadRaw(msn:=False)))
         Call Workbench.AppHost.SetTitle($"LCMS Scatter '{raw.source.FileName}'")
@@ -43,7 +46,10 @@ Public Class frmLCMSScatterViewer
     Public Function LoadRawMSn(raw As Raw) As frmLCMSScatterViewer
         Me.raw = raw
         Me.raw.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
-        Me.TabText = raw.source.FileName
+
+        If Not raw.source.StringEmpty(, True) Then
+            Me.TabText = "[MSn] " & raw.source.FileName
+        End If
 
         Call ProgressSpinner.DoLoading(Sub() Call Invoke(Sub() Call loadRaw(msn:=True)))
         Call Workbench.AppHost.SetTitle($"LCMS MSn Scatter '{raw.source.FileName}'")
@@ -64,7 +70,12 @@ Public Class frmLCMSScatterViewer
             v = roi(samples).Sum
 
             If v > 0 Then
-                rawdata.Add(New Meta With {.id = roi.ID, .mz = roi.mz, .scan_time = roi.rt, .intensity = v})
+                Call rawdata.Add(New Meta With {
+                     .id = roi.ID,
+                     .mz = roi.mz,
+                     .scan_time = roi.rt,
+                     .intensity = v
+                })
             End If
         Next
 

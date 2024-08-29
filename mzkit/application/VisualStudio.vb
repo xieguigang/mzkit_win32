@@ -125,6 +125,8 @@ Public Class VisualStudio
         doc.Show(Workbench.AppHost.DockPanel)
         doc.DockState = status
 
+        Call Workbench.LogText($"open new document page: {If(title, "<No Name>")}")
+
         If Not title.StringEmpty Then
             doc.TabText = title
             doc.Text = title
