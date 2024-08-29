@@ -159,7 +159,7 @@ Public Class FormViewer
 
         Call html.AppendLine("</head>")
 
-        Call html.AppendLine("<table class='table' style='width:100%; font-size: 14px;'>")
+        Call html.AppendLine("<table class='table' style='width:100%; font-size: 12px;'>")
         Call html.AppendLine("<thead>")
         Call html.AppendLine("<tr>")
         Call html.AppendLine(lines(0))
