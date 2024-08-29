@@ -60,7 +60,10 @@ Public Class FormViewer
                         Dim load = raw.LoadMzpack(Sub(a, b) Call Workbench.StatusMessage($"[{a}] {b}"))
                         Dim packraw = load.GetLoadedMzpack
 
-                        rawdata(raw.source.BaseName) = packraw
+                        rawdata(raw.source.BaseName) = New mzPack With {
+                            .MS = packraw.MS.ToArray,
+                            .source = raw.source
+                        }
 
                         Call Workbench.StatusMessage($"load rawdata [{raw.source.BaseName}]")
                     Else
@@ -206,6 +209,14 @@ Public Class ReportViewer
 
     Private Sub ShowLcmsScatterTask(sample_name As String)
         Call LCMSViewerModule.OpenScatterViewer(Me.rawdata(sample_name), $"MS1 [{sample_name}]", AddressOf onClickMs1)
+
+        For Each raw As MZWork.Raw In LCMSViewerModule.GetWorkspaceFiles
+            If raw.source.BaseName = sample_name Then
+                Call LCMSViewerModule.SetCurrentWorkFile(raw)
+
+                Exit For
+            End If
+        Next
     End Sub
 
     Private Sub onClickMs1(id As String, mz As Double, rt As Double, flag As Boolean)
