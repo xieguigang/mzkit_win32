@@ -11,12 +11,13 @@ Public Class FormSelectTable
         Dim rows = DataGridView1.Rows
 
         For i As Integer = 0 To DataGridView1.Rows.Count - 1
-            Dim row = rows(i)
+            Dim row As DataGridViewRow = rows(i)
 
             If row IsNot Nothing Then
-                Dim checkCell = row.Cells(0)
+                Dim checkCell As DataGridViewCell = row.Cells(0)
+                Dim checkVal As Boolean = checkCell.Value
 
-                If CBool(checkCell.Value) Then
+                If checkVal Then
                     Yield $"{row.Cells(1).Value}_{row.Cells(4).Value}"
                 End If
             End If
