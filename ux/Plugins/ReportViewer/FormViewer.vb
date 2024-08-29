@@ -15,7 +15,7 @@ Public Class FormViewer
 
     Dim report As ReportRender
     Dim viewer As ReportViewer
-    Dim rawdata As Dictionary(Of String, mzPack)
+    Dim rawdata As New Dictionary(Of String, mzPack)
 
     Private Sub FormViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(WebView21)
@@ -43,14 +43,15 @@ Public Class FormViewer
 
                 Dim rawfiles As Index(Of String) = report.annotation.samplefiles.Indexing
 
+                Call rawdata.Clear()
+
                 ' load all mzpack into memory?
                 For Each raw As MZWork.Raw In LCMSViewerModule.GetWorkspaceFiles
                     If raw.source.BaseName Like rawfiles Then
-                        rawdata(raw.source.BaseName) = raw _
-                            .LoadMzpack(Sub(a, b)
-                                            Call Workbench.StatusMessage($"[{a}] {b}")
-                                        End Sub) _
-                            .GetLoadedMzpack
+                        Dim load = raw.LoadMzpack(Sub(a, b) Call Workbench.StatusMessage($"[{a}] {b}"))
+                        Dim packraw = load.GetLoadedMzpack
+
+                        rawdata(raw.source.BaseName) = packraw
                     End If
                 Next
 
