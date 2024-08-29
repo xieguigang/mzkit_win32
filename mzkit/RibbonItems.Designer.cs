@@ -275,6 +275,7 @@ namespace RibbonLib.Controls
             public const uint cmdMenuReport = 313;
             public const uint cmdButtonReportOpenWorkspace = 314;
             public const uint cmdButtonReportSelect = 315;
+            public const uint cmdToggleShowRT = 317;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -609,6 +610,7 @@ namespace RibbonLib.Controls
         /// Select metabolites for make html report view
         /// </summary>
         public RibbonButton ButtonReportSelect { get; private set; }
+        public RibbonToggleButton ToggleShowRT { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -917,6 +919,7 @@ namespace RibbonLib.Controls
             MenuReport = new RibbonGroup(ribbon, Cmd.cmdMenuReport);
             ButtonReportOpenWorkspace = new RibbonButton(ribbon, Cmd.cmdButtonReportOpenWorkspace);
             ButtonReportSelect = new RibbonButton(ribbon, Cmd.cmdButtonReportSelect);
+            ToggleShowRT = new RibbonToggleButton(ribbon, Cmd.cmdToggleShowRT);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);

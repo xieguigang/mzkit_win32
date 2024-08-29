@@ -19,6 +19,7 @@ Public Class FormViewer
 
     Shared ReadOnly open_evt As New RibbonEventBinding(Workbench.RibbonItems.ButtonReportOpenWorkspace)
     Shared ReadOnly select_evt As New RibbonEventBinding(Workbench.RibbonItems.ButtonReportSelect)
+    Shared ReadOnly showRt_evt As New ToggleEventBinding(Workbench.RibbonItems.ToggleShowRT)
 
     Dim report As ReportRender
     Dim viewer As ReportViewer
@@ -34,6 +35,11 @@ Public Class FormViewer
 
         open_evt.evt = Sub() Call openWorkspace()
         select_evt.evt = Sub() Call selectIons()
+        showRt_evt.evt = Sub(flag)
+                             If Not refSet.IsNullOrEmpty Then
+                                 Call RenderHtmltable()
+                             End If
+                         End Sub
     End Sub
 
     Private Sub openWorkspace()
@@ -118,15 +124,11 @@ Public Class FormViewer
         End Get
     End Property
 
-    Private Sub viewMetabolites(config As FormSelectTable)
+    Dim refSet As String()
+
+    Private Sub RenderHtmltable()
+        Dim lines = report.Tabular(refSet, rt_cell:=showRt_evt.Checked).ToArray
         Dim html As New StringBuilder
-        Dim refSet As String() = config.GetTargetSet.ToArray
-
-        If refSet.IsNullOrEmpty Then
-            Return
-        End If
-
-        Dim lines = report.Tabular(refSet, rt_cell:=False).ToArray
 
         Call html.AppendLine("<head>")
 
@@ -159,6 +161,16 @@ Public Class FormViewer
 
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", viewer)
         Call WebView21.NavigateToString(html.ToString)
+    End Sub
+
+    Private Sub viewMetabolites(config As FormSelectTable)
+        refSet = config.GetTargetSet.ToArray
+
+        If refSet.IsNullOrEmpty Then
+            Return
+        End If
+
+        Call RenderHtmltable()
     End Sub
 
     Private Sub FormViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
