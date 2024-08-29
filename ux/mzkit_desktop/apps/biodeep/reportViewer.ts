@@ -10,6 +10,9 @@ namespace apps.biodeep {
             $ts.select(".meta_header").onClick(async function (a) {
                 await app.desktop.mzkit.ShowXic(a.getAttribute("xcms_id"));
             });
+            $ts.select(".sample_name").onClick(async function (a) {
+                await app.desktop.mzkit.ShowLcmsScatter(a.getAttribute("sample_name"));
+            });
         }
     }
 }

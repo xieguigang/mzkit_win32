@@ -292,6 +292,8 @@ Module RibbonEvents
             Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(DirectCast(data, Meta())).Hook(click)
         ElseIf TypeOf data Is Raw Then
             Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(DirectCast(data, Raw)).Hook(click)
+        ElseIf TypeOf data Is mzPack Then
+            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(New Raw(DirectCast(data, mzPack))).Hook(click)
         Else
             Call Workbench.Warning($"invalid data type({data.GetType.FullName}) for the lcms scatter data viewer!")
         End If

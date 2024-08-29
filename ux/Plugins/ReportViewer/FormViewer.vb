@@ -192,4 +192,23 @@ Public Class ReportViewer
         Call LCMSViewerModule.ShowTICOverlaps(xic.ToArray)
     End Sub
 
+    Public Async Function ShowLcmsScatter(sample_name As String) As Task(Of Boolean)
+        Call Workbench.LogText($"load lcms scatter view [{sample_name}]")
+
+        If rawdata.IsNullOrEmpty OrElse Not rawdata.ContainsKey(sample_name) Then
+            Return False
+        End If
+
+        Await Task.Run(Sub() ShowLcmsScatterTask(sample_name))
+
+        Return True
+    End Function
+
+    Private Sub ShowLcmsScatterTask(sample_name As String)
+        Call LCMSViewerModule.OpenScatterViewer(Me.rawdata(sample_name), $"MS1 [{sample_name}]", AddressOf onClickMs1)
+    End Sub
+
+    Private Sub onClickMs1(id As String, mz As Double, rt As Double, flag As Boolean)
+
+    End Sub
 End Class

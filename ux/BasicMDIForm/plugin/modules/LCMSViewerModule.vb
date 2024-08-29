@@ -4,6 +4,12 @@
     Public lcmsWorkspace As Func(Of IEnumerable)
     Public lcmsChromatogramOverlaps As Action(Of Object)
 
+    ''' <summary>
+    ''' view of the lcms scatter viewer
+    ''' </summary>
+    ''' <param name="data"></param>
+    ''' <param name="title"></param>
+    ''' <param name="click"></param>
     Public Sub OpenScatterViewer(data As Object, title As String, click As Action(Of String, Double, Double, Boolean))
         If Not lcmsViewerhHandle Is Nothing Then
             Call lcmsViewerhHandle(data, title, click)

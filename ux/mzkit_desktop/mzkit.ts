@@ -57,6 +57,7 @@ namespace app.desktop {
         FindExactMass(mass: number): Promise<boolean>;
 
         ShowXic(data_id: string): Promise<boolean>;
+        ShowLcmsScatter(sample_name: string): Promise<boolean>;
 
         /**
          * actions for create new library file
