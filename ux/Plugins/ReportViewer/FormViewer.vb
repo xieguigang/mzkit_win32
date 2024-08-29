@@ -58,6 +58,13 @@ Public Class FormViewer
         Call InputDialog.Input(Sub(config) viewMetabolites(config), config:=show)
     End Sub
 
+    Private ReadOnly Iterator Property mzkit_js As IEnumerable(Of String)
+        Get
+            Yield $"http://127.0.0.1:{Workbench.WebPort}/assets/js/linq.js"
+            Yield $"http://127.0.0.1:{Workbench.WebPort}/assets/js/mzkit_desktop.js"
+        End Get
+    End Property
+
     Private Sub viewMetabolites(config As FormSelectTable)
         Dim html As New StringBuilder
         Dim refSet As String() = config.GetTargetSet.ToArray
@@ -67,6 +74,14 @@ Public Class FormViewer
         End If
 
         Dim lines = report.Tabular(refSet, rt_cell:=False).ToArray
+
+        Call html.AppendLine("<head>")
+
+        For Each js As String In mzkit_js
+            Call html.AppendLine($"<script type=""text/javascript"" src='{js}'></script>")
+        Next
+
+        Call html.AppendLine("</head>")
 
         Call html.AppendLine("<table class='table' style='width:100%;'>")
         Call html.AppendLine("<thead>")
