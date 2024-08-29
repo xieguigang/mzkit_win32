@@ -41,6 +41,8 @@ Public Class FormViewer
                 Dim workspace As New AnnotationWorkspace(buf, file.FileName)
                 Dim pack As AnnotationPack = workspace.LoadMemory
 
+                Call Workbench.StatusMessage("load report data...")
+
                 report = New ReportRender(pack)
                 viewer = New ReportViewer With {
                     .report = report,
@@ -50,6 +52,7 @@ Public Class FormViewer
                 Dim rawfiles As Index(Of String) = report.annotation.samplefiles.Indexing
 
                 Call rawdata.Clear()
+                Call Workbench.StatusMessage("load lcms rawdata files from the current workspace...")
 
                 ' load all mzpack into memory?
                 For Each raw As MZWork.Raw In LCMSViewerModule.GetWorkspaceFiles
@@ -58,6 +61,10 @@ Public Class FormViewer
                         Dim packraw = load.GetLoadedMzpack
 
                         rawdata(raw.source.BaseName) = packraw
+
+                        Call Workbench.StatusMessage($"load rawdata [{raw.source.BaseName}]")
+                    Else
+                        Call Workbench.StatusMessage($"skip rawdata [{raw.source.BaseName}]")
                     End If
                 Next
 
