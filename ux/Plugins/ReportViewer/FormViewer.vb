@@ -3,6 +3,7 @@ Imports System.IO
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.BioDeep.MSEngine
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
@@ -40,8 +41,18 @@ Public Class FormViewer
                     .report = report
                 }
 
-                ' load all mzpack into memory?
+                Dim rawfiles As Index(Of String) = report.annotation.samplefiles.Indexing
 
+                ' load all mzpack into memory?
+                For Each raw As MZWork.Raw In LCMSViewerModule.GetWorkspaceFiles
+                    If raw.source.BaseName Like rawfiles Then
+                        rawdata(raw.source.BaseName) = raw _
+                            .LoadMzpack(Sub(a, b)
+                                            Call Workbench.StatusMessage($"[{a}] {b}")
+                                        End Sub) _
+                            .GetLoadedMzpack
+                    End If
+                Next
 
                 Try
                     Call workspace.Dispose()
