@@ -127,6 +127,7 @@ Public Class VisualStudio
 
         If Not title.StringEmpty Then
             doc.TabText = title
+            doc.Text = title
         End If
     End Sub
 
