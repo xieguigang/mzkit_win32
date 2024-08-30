@@ -254,6 +254,8 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonImportsLCAnnotation2 As UInteger = 291
             Public Const cmdButtonImportsLCAnnotationFromFile As UInteger = 290
             Public Const cmdButtonImportsLCAnnotationFromTable As UInteger = 289
+            Public Const cmdPanelLCMSAnalysis As UInteger = 320
+            Public Const cmdButtonLCMSMetabolite As UInteger = 321
             Public Const cmdMenuGroupGCxGC As UInteger = 6
             Public Const cmdPanelGCxGC As UInteger = 7
             Public Const cmdGroupGCxGC As UInteger = 282
@@ -1782,6 +1784,24 @@ Namespace RibbonLib.Controls
                 Return _ButtonImportsLCAnnotationFromTable
             End Get
         End Property
+        Private _PanelLCMSAnalysis As RibbonGroup
+        ''' <summary>
+        ''' Analysis
+        ''' </summary>
+        Public ReadOnly Property PanelLCMSAnalysis As RibbonGroup
+            Get
+                Return _PanelLCMSAnalysis
+            End Get
+        End Property
+        Private _ButtonLCMSMetabolite As RibbonButton
+        ''' <summary>
+        ''' Metabolite Mass Filter
+        ''' </summary>
+        Public ReadOnly Property ButtonLCMSMetabolite As RibbonButton
+            Get
+                Return _ButtonLCMSMetabolite
+            End Get
+        End Property
         Private _MenuGroupGCxGC As RibbonTabGroup
         Public ReadOnly Property MenuGroupGCxGC As RibbonTabGroup
             Get
@@ -2408,6 +2428,8 @@ Namespace RibbonLib.Controls
             _ButtonImportsLCAnnotation2 = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCAnnotation2)
             _ButtonImportsLCAnnotationFromFile = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCAnnotationFromFile)
             _ButtonImportsLCAnnotationFromTable = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCAnnotationFromTable)
+            _PanelLCMSAnalysis = New RibbonGroup(_ribbon, Cmd.cmdPanelLCMSAnalysis)
+            _ButtonLCMSMetabolite = New RibbonButton(_ribbon, Cmd.cmdButtonLCMSMetabolite)
             _MenuGroupGCxGC = New RibbonTabGroup(_ribbon, Cmd.cmdMenuGroupGCxGC)
             _PanelGCxGC = New RibbonTab(_ribbon, Cmd.cmdPanelGCxGC)
             _GroupGCxGC = New RibbonGroup(_ribbon, Cmd.cmdGroupGCxGC)

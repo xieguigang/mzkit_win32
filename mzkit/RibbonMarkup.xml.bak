@@ -4340,7 +4340,7 @@
     </Command>
     <Command Name="cmdXIC_DaSpinner" Comment="Ion mz mass tolerance error for extract XIC data" Id="156" TooltipTitle="Ion mz mass tolerance error for extract XIC data">
       <Command.LabelTitle>
-        <String Id="1166">XIC mass window</String>
+        <String Id="1166">XIC da</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
         <String Id="1167">Ion mz mass tolerance error for extract XIC data</String>
@@ -4348,6 +4348,15 @@
       <Command.TooltipDescription>
         <String Id="1168">Ion mz mass tolerance error for extract XIC data</String>
       </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdPanelLCMSAnalysis" Comment="Analysis" Id="320" LabelTitle="Analysis" LabelDescription="Analysis" TooltipTitle="Analysis" TooltipDescription="Analysis" />
+    <Command Name="cmdButtonLCMSMetabolite" Comment="Metabolite Mass Filter" Id="321" LabelTitle="Mass Filter" LabelDescription="Metabolite Mass Filter" TooltipTitle="Metabolite Mass Filter" TooltipDescription="Metabolite Mass Filter">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/document-print-preview.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/document-print-preview.png</Image>
+      </Command.LargeImages>
     </Command>
   </Application.Commands>
   <Application.Views>

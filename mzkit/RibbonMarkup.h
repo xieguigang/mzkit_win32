@@ -1789,7 +1789,19 @@
 #define cmdXIC_DaSpinner_LabelDescription_RESID 1167
 #define cmdXIC_DaSpinner_TooltipTitle_RESID 60295
 #define cmdXIC_DaSpinner_TooltipDescription_RESID 1168
-#define InternalCmd2_LabelTitle_RESID 60296
-#define InternalCmd4_LabelTitle_RESID 60297
-#define InternalCmd6_LabelTitle_RESID 60298
-#define InternalCmd8_LabelTitle_RESID 60299
+#define cmdPanelLCMSAnalysis 320  /* Analysis */ 
+#define cmdPanelLCMSAnalysis_LabelTitle_RESID 60296
+#define cmdPanelLCMSAnalysis_LabelDescription_RESID 60297
+#define cmdPanelLCMSAnalysis_TooltipTitle_RESID 60298
+#define cmdPanelLCMSAnalysis_TooltipDescription_RESID 60299
+#define cmdButtonLCMSMetabolite 321  /* Metabolite Mass Filter */ 
+#define cmdButtonLCMSMetabolite_LabelTitle_RESID 60300
+#define cmdButtonLCMSMetabolite_LabelDescription_RESID 60301
+#define cmdButtonLCMSMetabolite_TooltipTitle_RESID 60302
+#define cmdButtonLCMSMetabolite_TooltipDescription_RESID 60303
+#define cmdButtonLCMSMetabolite_SmallImages_192__RESID 60304
+#define cmdButtonLCMSMetabolite_LargeImages_192__RESID 60305
+#define InternalCmd2_LabelTitle_RESID 60306
+#define InternalCmd4_LabelTitle_RESID 60307
+#define InternalCmd6_LabelTitle_RESID 60308
+#define InternalCmd8_LabelTitle_RESID 60309
