@@ -93,6 +93,28 @@ Public Class FormViewer
             .rawdata = rawdata
         }
 
+        Dim cache1 As String = $"{file.ParentPath}/ms2/tmp/.cache"
+        Dim cache2 As String = $"{file.ParentPath}/tmp/.cache"
+        Dim cache_dir As String = Nothing
+
+        If cache1.DirectoryExists Then
+            cache_dir = cache1
+        ElseIf cache2.DirectoryExists Then
+            cache_dir = cache2
+        End If
+
+        If cache_dir.DirectoryExists AndAlso MessageBox.Show("We found that there is the workflow cache beside the loaded biodeep workspace file.
+Also continute to load these cache file into the MZkit workspace?
+(This operation will clear the rawdata file list in current MZkit workspace.)",
+                                                             "Load cache data",
+                                                             MessageBoxButtons.OKCancel,
+                                                             MessageBoxIcon.Information) = DialogResult.OK Then
+
+            ' scan all rawdata file cache, and then load into current mzkit workspace
+            Call LCMSViewerModule.ClearFileTree()
+            Call Plugin.LoadBioDeepCache(cache_dir)
+        End If
+
         Dim rawfiles As Index(Of String) = report.annotation.samplefiles.Indexing
 
         Call rawdata.Clear()

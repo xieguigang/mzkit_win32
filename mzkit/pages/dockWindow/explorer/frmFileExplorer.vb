@@ -205,6 +205,7 @@ Public Class frmFileExplorer
         LCMSViewerModule.lcmsWorkspace = New Func(Of IEnumerable)(AddressOf GetRawFiles)
         LCMSViewerModule.setWorkFile = New Action(Of Object)(Sub(o) Call SetActiveWorkfile(DirectCast(o, MZWork.Raw)))
         LCMSViewerModule.addWorkFile = New Action(Of Object)(Sub(o) Call addFileNode(DirectCast(o, MZWork.Raw)))
+        LCMSViewerModule.clearWorkspace = Sub() Call Me.Invoke(Sub() Call Clear())
 
         Call InitializeFileTree()
         Call ApplyVsTheme(ctxMenuFiles, ToolStrip1, ctxMenuScript, ctxMenuRawFile)
@@ -609,10 +610,12 @@ Public Class frmFileExplorer
         Call MyApplication.host.ImportsFiles()
     End Sub
 
-    Private Sub treeView1_Click(sender As Object, e As EventArgs) Handles treeView1.Click
-
+    ''' <summary>
+    ''' Clear all rawdata file inside current workspace file tree
+    ''' </summary>
+    Public Sub Clear()
+        treeView1.Nodes(0).Nodes.Clear()
     End Sub
-
 
     Private Sub ContourPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ContourPlotToolStripMenuItem.Click
         If treeView1.SelectedNode Is Nothing Then

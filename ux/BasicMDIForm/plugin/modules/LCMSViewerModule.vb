@@ -5,6 +5,13 @@
     Public lcmsChromatogramOverlaps As Action(Of Object)
     Public setWorkFile As Action(Of Object)
     Public addWorkFile As Action(Of Object)
+    Public clearWorkspace As Action
+
+    Public Sub ClearFileTree()
+        If Not clearWorkspace Is Nothing Then
+            Call clearWorkspace()
+        End If
+    End Sub
 
     ''' <summary>
     ''' view of the lcms scatter viewer

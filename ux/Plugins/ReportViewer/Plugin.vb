@@ -35,8 +35,7 @@ Public Class Plugin : Inherits Mzkit_win32.BasicMDIForm.Plugin
         Return True
     End Function
 
-    Public Shared Sub LoadBioDeepCache(dir As String)
-        Dim cache As String = $"{dir}/tmp/.cache/raw/"
+    Public Shared Sub LoadBioDeepCache(cache As String)
         Dim files As String() = cache.ListFiles("*.mzPack").ToArray
 
         For Each file As String In files
