@@ -420,6 +420,16 @@ Public Class frmMetabonomicsAnalysis
     End Function
 
     Private Function plotExpression(name As String, exp As Dictionary(Of String, (color As String, Double()))) As Image
+        Dim expVisual As New Dictionary(Of String, (color As String, Double()))(exp)
+
+        If groupsVisual IsNot Nothing AndAlso groupsVisual.Count > 0 Then
+            For Each key As String In expVisual.Keys.ToArray
+                If Not key Like groupsVisual Then
+                    Call expVisual.Remove(key)
+                End If
+            Next
+        End If
+
         Dim json As String = ggplotVisual.encodeJSON(exp)
         Dim plotType As String
 
@@ -642,7 +652,13 @@ Public Class frmMetabonomicsAnalysis
     Dim groupsVisual As Index(Of String)
 
     Private Sub SetGroupsVisual()
+        Dim cfg As New InputSetGroupVisual
 
+        Call cfg.SetGroupLabels(sampleinfo.SafeQuery.Select(Function(si) si.sample_info).Distinct)
+        Call InputDialog.Input(
+            Sub(groups)
+                groupsVisual = groups.GetGroupNames.Indexing
+            End Sub, config:=cfg)
     End Sub
 
     Private Sub importsMetaboliteTable()
