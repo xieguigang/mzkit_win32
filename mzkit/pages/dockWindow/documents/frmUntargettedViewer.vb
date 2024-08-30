@@ -265,7 +265,7 @@ Public Class frmUntargettedViewer
             Call Workbench.Warning($"No target ion m/z was selected or invalid numeric text format!")
             Return
         Else
-            Call Workbench.StatusMessage($"View xic data for target ion mz=${mz}!")
+            Call Workbench.StatusMessage($"View xic data for target ion m/z={mz} (mass error {MyApplication.host.GetXICDaError} da).")
         End If
 
         If Not raw.isLoaded Then
