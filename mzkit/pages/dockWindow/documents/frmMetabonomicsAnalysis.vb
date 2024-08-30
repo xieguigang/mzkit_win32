@@ -486,6 +486,9 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Dim expression_name As String
+    ''' <summary>
+    ''' expression of current selected ion, key is the group name inside the sampleinfo
+    ''' </summary>
     Dim expression As Dictionary(Of String, (color As String, Double()))
 
     Shared ReadOnly runPCA_evt As New RibbonEventBinding(ribbonItems.ButtonPCA)
@@ -507,6 +510,7 @@ Public Class frmMetabonomicsAnalysis
 
     Shared ReadOnly massFilter As New RibbonEventBinding(ribbonItems.ButtonLCMSMetabolite)
     Shared ReadOnly ionFilter As New ToggleEventBinding(ribbonItems.ButtonLCMSFilterIons)
+    Shared ReadOnly setGroups As New RibbonEventBinding(ribbonItems.ButtonLCMSViewGroups)
 
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
@@ -632,6 +636,13 @@ Public Class frmMetabonomicsAnalysis
         export_matrix_evt.evt = Sub() Call exportMatrixExcelFile()
         massFilter.evt = Sub() Call MassSearch()
         ionFilter.evt = Sub() Call loadPeaktable()
+        setGroups.evt = Sub() Call SetGroupsVisual()
+    End Sub
+
+    Dim groupsVisual As Index(Of String)
+
+    Private Sub SetGroupsVisual()
+
     End Sub
 
     Private Sub importsMetaboliteTable()
@@ -789,6 +800,7 @@ Public Class frmMetabonomicsAnalysis
         export_matrix_evt.evt = Nothing
         massFilter.evt = Nothing
         ionFilter.evt = Nothing
+        setGroups.evt = Nothing
 
         openMetabolitesFile.evt = Nothing
         openMetabolitesTable.evt = Nothing

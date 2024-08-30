@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Partial Public Class RibbonItems
+    Partial Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -247,6 +247,7 @@ Namespace RibbonLib.Controls
             Public Const cmdDropDownViewInSinglePage As UInteger = 293
             Public Const cmdButtonViewAnalysis3DScatter As UInteger = 285
             Public Const cmdButtonViewScatter3dInSinglePage As UInteger = 292
+            Public Const cmdButtonLCMSViewGroups As UInteger = 323
             Public Const cmdTableSampleData As UInteger = 288
             Public Const cmdButtonViewSampleInfo As UInteger = 284
             Public Const cmdButtonViewPeakTable As UInteger = 308
@@ -1743,6 +1744,15 @@ Namespace RibbonLib.Controls
                 Return _ButtonViewScatter3dInSinglePage
             End Get
         End Property
+        Private _ButtonLCMSViewGroups As RibbonButton
+        ''' <summary>
+        ''' View groups comparison visualization
+        ''' </summary>
+        Public ReadOnly Property ButtonLCMSViewGroups As RibbonButton
+            Get
+                Return _ButtonLCMSViewGroups
+            End Get
+        End Property
         Private _TableSampleData As RibbonGroup
         Public ReadOnly Property TableSampleData As RibbonGroup
             Get
@@ -2431,6 +2441,7 @@ Namespace RibbonLib.Controls
             _DropDownViewInSinglePage = New RibbonSplitButton(_ribbon, Cmd.cmdDropDownViewInSinglePage)
             _ButtonViewAnalysis3DScatter = New RibbonButton(_ribbon, Cmd.cmdButtonViewAnalysis3DScatter)
             _ButtonViewScatter3dInSinglePage = New RibbonButton(_ribbon, Cmd.cmdButtonViewScatter3dInSinglePage)
+            _ButtonLCMSViewGroups = New RibbonButton(_ribbon, Cmd.cmdButtonLCMSViewGroups)
             _TableSampleData = New RibbonGroup(_ribbon, Cmd.cmdTableSampleData)
             _ButtonViewSampleInfo = New RibbonButton(_ribbon, Cmd.cmdButtonViewSampleInfo)
             _ButtonViewPeakTable = New RibbonButton(_ribbon, Cmd.cmdButtonViewPeakTable)

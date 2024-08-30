@@ -1808,7 +1808,14 @@
 #define cmdButtonLCMSFilterIons_TooltipDescription_RESID 60309
 #define cmdButtonLCMSFilterIons_SmallImages_192__RESID 60310
 #define cmdButtonLCMSFilterIons_LargeImages_192__RESID 60311
-#define InternalCmd2_LabelTitle_RESID 60312
-#define InternalCmd4_LabelTitle_RESID 60313
-#define InternalCmd6_LabelTitle_RESID 60314
-#define InternalCmd8_LabelTitle_RESID 60315
+#define cmdButtonLCMSViewGroups 323  /* View groups comparison visualization */ 
+#define cmdButtonLCMSViewGroups_LabelTitle_RESID 60312
+#define cmdButtonLCMSViewGroups_LabelDescription_RESID 60313
+#define cmdButtonLCMSViewGroups_TooltipTitle_RESID 60314
+#define cmdButtonLCMSViewGroups_TooltipDescription_RESID 60315
+#define cmdButtonLCMSViewGroups_SmallImages_192__RESID 60316
+#define cmdButtonLCMSViewGroups_LargeImages_192__RESID 60317
+#define InternalCmd2_LabelTitle_RESID 60318
+#define InternalCmd4_LabelTitle_RESID 60319
+#define InternalCmd6_LabelTitle_RESID 60320
+#define InternalCmd8_LabelTitle_RESID 60321

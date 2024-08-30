@@ -250,6 +250,7 @@ namespace RibbonLib.Controls
             public const uint cmdDropDownViewInSinglePage = 293;
             public const uint cmdButtonViewAnalysis3DScatter = 285;
             public const uint cmdButtonViewScatter3dInSinglePage = 292;
+            public const uint cmdButtonLCMSViewGroups = 323;
             public const uint cmdTableSampleData = 288;
             public const uint cmdButtonViewSampleInfo = 284;
             public const uint cmdButtonViewPeakTable = 308;
@@ -581,6 +582,10 @@ namespace RibbonLib.Controls
         public RibbonSplitButton DropDownViewInSinglePage { get; private set; }
         public RibbonButton ButtonViewAnalysis3DScatter { get; private set; }
         public RibbonButton ButtonViewScatter3dInSinglePage { get; private set; }
+        /// <summary>
+        /// View groups comparison visualization
+        /// </summary>
+        public RibbonButton ButtonLCMSViewGroups { get; private set; }
         public RibbonGroup TableSampleData { get; private set; }
         public RibbonButton ButtonViewSampleInfo { get; private set; }
         public RibbonButton ButtonViewPeakTable { get; private set; }
@@ -919,6 +924,7 @@ namespace RibbonLib.Controls
             DropDownViewInSinglePage = new RibbonSplitButton(ribbon, Cmd.cmdDropDownViewInSinglePage);
             ButtonViewAnalysis3DScatter = new RibbonButton(ribbon, Cmd.cmdButtonViewAnalysis3DScatter);
             ButtonViewScatter3dInSinglePage = new RibbonButton(ribbon, Cmd.cmdButtonViewScatter3dInSinglePage);
+            ButtonLCMSViewGroups = new RibbonButton(ribbon, Cmd.cmdButtonLCMSViewGroups);
             TableSampleData = new RibbonGroup(ribbon, Cmd.cmdTableSampleData);
             ButtonViewSampleInfo = new RibbonButton(ribbon, Cmd.cmdButtonViewSampleInfo);
             ButtonViewPeakTable = new RibbonButton(ribbon, Cmd.cmdButtonViewPeakTable);

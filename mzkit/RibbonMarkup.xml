@@ -4366,6 +4366,14 @@
         <Image MinDPI="192">Res/icons8-select-all-240.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonLCMSViewGroups" Comment="View groups comparison visualization" Id="323" LabelTitle="View Groups" LabelDescription="View groups comparison visualization" TooltipTitle="View groups comparison visualization" TooltipDescription="View groups comparison visualization">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-dashboard-layout-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-dashboard-layout-96.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4758,7 +4766,7 @@
               <Button CommandName="cmdButtonPLSDA" />
               <Button CommandName="cmdButtonOPLSDA" />
             </Group>
-            <Group CommandName="cmdLCMSVisualPanel" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdLCMSVisualPanel" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdViewLCMSScatter" />
               <SplitButton CommandName="cmdDropDownViewInSinglePage">
                 <SplitButton.ButtonItem>
@@ -4766,6 +4774,7 @@
                 </SplitButton.ButtonItem>
                 <Button CommandName="cmdButtonViewScatter3dInSinglePage" />
               </SplitButton>
+              <Button CommandName="cmdButtonLCMSViewGroups" />
             </Group>
             <Group CommandName="cmdTableSampleData">
               <Button CommandName="cmdButtonViewSampleInfo" />
