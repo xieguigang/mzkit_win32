@@ -82,6 +82,9 @@ Public Class FormViewer
         Dim workspace As New AnnotationWorkspace(buf, file)
         Dim pack As AnnotationPack = workspace.LoadMemory
 
+        ' make check of the biodeep workflow workspace
+        ' if exists rawdata file cache, then load the additional cache file
+
         Call print("load report data...")
 
         report = New ReportRender(pack)
