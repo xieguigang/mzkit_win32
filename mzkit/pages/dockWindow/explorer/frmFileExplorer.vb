@@ -788,7 +788,7 @@ Public Class frmFileExplorer
         Dim taskUI As TaskUI = taskList.Add(title, "Export to: " & tempTable.FileName)
 
         If config.files.Length = 1 Then
-            Call runSingle(cli, $"[{config.files(0).FileName}]Peak Table", tempTable)
+            Call runSingle(cli, $"[{config.files(0).FileName}]Peak Table", tempTable, config.files(0))
         Else
             Call MyApplication.TaskQueue.AddToQueue(
                 Sub()
