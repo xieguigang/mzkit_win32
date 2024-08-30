@@ -496,7 +496,7 @@ Public Class PageMzkitTools
         _matrix.LoadMatrix(DataGridView1, BindingSource1)
 
         MyApplication.RegisterPlot(
-            plot:=Sub(args)
+            plot:=Sub(args As PlotProperty)
                       PictureBox1.BackgroundImage = _matrix.Plot(args, PictureBox1.Size).AsGDIImage
                   End Sub,
             width:=1600,
@@ -505,7 +505,8 @@ Public Class PageMzkitTools
             padding:="padding:100px 100px 150px 200px;",
             showLegend:=Not d3,
             xlab:=xlab,
-            ylab:=ylab)
+            ylab:=ylab,
+            fill_curve:=Globals.Settings.GetViewerConfig.fill)
 
         MyApplication.host.ShowPage(Me)
     End Sub

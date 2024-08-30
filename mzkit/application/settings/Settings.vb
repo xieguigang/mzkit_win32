@@ -97,6 +97,14 @@ Namespace Configuration
         Public Property pubchemWebCache As String = App.AppSystemTemp & "/web/pubchem/"
         Public Shared ReadOnly Property configFile As String = App.LocalData & "/settings.json"
 
+        Public Function GetViewerConfig() As RawFileViewerSettings
+            If viewer Is Nothing Then
+                viewer = New RawFileViewerSettings
+            End If
+
+            Return viewer
+        End Function
+
         Public Function Reset() As Settings
             precursor_search = PrecursorSearchSettings.GetDefault
             formula_search = Nothing
