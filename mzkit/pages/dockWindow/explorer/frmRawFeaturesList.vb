@@ -856,7 +856,7 @@ Public Class frmRawFeaturesList
     End Sub
 
     Public Shared Sub ViewSingleTarget(mz As Double, rawdata As mzPack)
-        Dim ppm As Tolerance = Tolerance.DeltaMass(0.05)
+        Dim ppm As Tolerance = Tolerance.DeltaMass(MyApplication.host.GetXICDaError)
         Dim mass_points = rawdata.MS _
             .Select(Function(scan) scan.GetMs(mz, ppm)) _
             .IteratesALL _
