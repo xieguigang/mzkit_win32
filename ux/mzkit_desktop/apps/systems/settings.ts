@@ -124,30 +124,38 @@ namespace apps.systems {
             app.desktop.mzkit.loadSettings()
                 .then(async function (json) {
                     const json_str: string = await json;
-                    const settings = JSON.parse(json_str) || {};
-                    const configs = apps.systems.settings.defaultSettings();
 
-                    console.log("get mzkit configurations:");
-                    console.log(settings);
+                    console.log("view of the default config json:");
+                    console.log(json_str);
 
-                    // deal with the possible null reference value
-                    settings.precursor_search = settings.precursor_search || {};
-                    settings.ui = settings.ui || {};
-                    settings.viewer = settings.viewer || {};
-
-                    // make data object conversion
-                    configs.formula_ppm = settings.precursor_search.ppm || 5;
-                    configs.formula_adducts = settings.precursor_search.precursor_types || [];
-
-                    configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
-                    configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
-                    configs.language = settings.ui.language || 2;
-
-                    configs.colorset = settings.viewer.colorSet || [];
-                    configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
-
-                    vm.loadConfigs(configs);
+                    vm.load_settings_json(json_str);
                 });
+        }
+
+        private load_settings_json(json_str: string) {
+            const settings = JSON.parse(json_str) || {};
+            const configs = apps.systems.settings.defaultSettings();
+
+            console.log("get mzkit configurations:");
+            console.log(settings);
+
+            // deal with the possible null reference value
+            settings.precursor_search = settings.precursor_search || {};
+            settings.ui = settings.ui || {};
+            settings.viewer = settings.viewer || {};
+
+            // make data object conversion
+            configs.formula_ppm = settings.precursor_search.ppm || 5;
+            configs.formula_adducts = settings.precursor_search.precursor_types || [];
+
+            configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
+            configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
+            configs.language = settings.ui.language || 2;
+
+            configs.colorset = settings.viewer.colorSet || [];
+            configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
+
+            this.loadConfigs(configs);
         }
 
         public remember_location_onchange(value: string | string[]) {

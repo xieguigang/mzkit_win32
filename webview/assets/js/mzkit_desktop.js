@@ -1226,34 +1226,39 @@ var apps;
                 app.desktop.mzkit.loadSettings()
                     .then(function (json) {
                     return __awaiter(this, void 0, void 0, function () {
-                        var json_str, settings, configs;
+                        var json_str;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, json];
                                 case 1:
                                     json_str = _a.sent();
-                                    settings = JSON.parse(json_str) || {};
-                                    configs = apps.systems.settings.defaultSettings();
-                                    console.log("get mzkit configurations:");
-                                    console.log(settings);
-                                    // deal with the possible null reference value
-                                    settings.precursor_search = settings.precursor_search || {};
-                                    settings.ui = settings.ui || {};
-                                    settings.viewer = settings.viewer || {};
-                                    // make data object conversion
-                                    configs.formula_ppm = settings.precursor_search.ppm || 5;
-                                    configs.formula_adducts = settings.precursor_search.precursor_types || [];
-                                    configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
-                                    configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
-                                    configs.language = settings.ui.language || 2;
-                                    configs.colorset = settings.viewer.colorSet || [];
-                                    configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
-                                    vm.loadConfigs(configs);
+                                    console.log("view of the default config json:");
+                                    console.log(json_str);
+                                    vm.load_settings_json(json_str);
                                     return [2 /*return*/];
                             }
                         });
                     });
                 });
+            };
+            settings.prototype.load_settings_json = function (json_str) {
+                var settings = JSON.parse(json_str) || {};
+                var configs = apps.systems.settings.defaultSettings();
+                console.log("get mzkit configurations:");
+                console.log(settings);
+                // deal with the possible null reference value
+                settings.precursor_search = settings.precursor_search || {};
+                settings.ui = settings.ui || {};
+                settings.viewer = settings.viewer || {};
+                // make data object conversion
+                configs.formula_ppm = settings.precursor_search.ppm || 5;
+                configs.formula_adducts = settings.precursor_search.precursor_types || [];
+                configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
+                configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
+                configs.language = settings.ui.language || 2;
+                configs.colorset = settings.viewer.colorSet || [];
+                configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
+                this.loadConfigs(configs);
             };
             settings.prototype.remember_location_onchange = function (value) {
                 settings.mzkit_configs.remember_location = (Array.isArray(value) ? value[0] : value);

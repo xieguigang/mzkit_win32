@@ -334,6 +334,7 @@ declare namespace apps.systems {
         get appName(): string;
         static mzkit_configs: mzkit_configs;
         protected init(): void;
+        private load_settings_json;
         remember_location_onchange(value: string | string[]): void;
         remember_layout_onchange(value: string | string[]): void;
         language_onchange(value: string | string[]): void;
