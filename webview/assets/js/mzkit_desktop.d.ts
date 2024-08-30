@@ -297,7 +297,7 @@ declare namespace apps.systems {
         "remember_location": boolean;
         "remember_layout": boolean;
         "language": 0 | 1 | 2;
-        "xic_ppm": number;
+        "xic_da": number;
         "fragment_cutoff": "relative" | "quantile";
         "fragment_cutoff_value": number;
         "colorset": string[];

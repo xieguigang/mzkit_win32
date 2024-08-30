@@ -44,7 +44,7 @@ namespace apps.systems {
         "language": 0 | 1 | 2;
 
         // raw file viewer
-        "xic_ppm": number;
+        "xic_da": number;
         "fragment_cutoff": "relative" | "quantile";
         "fragment_cutoff_value": number;
 
@@ -219,7 +219,7 @@ namespace apps.systems {
                 "language": 2,
 
                 // raw file viewer
-                "xic_ppm": 10,
+                "xic_da": 0.05,
                 "fragment_cutoff": "relative",
                 "fragment_cutoff_value": 0.05,
 

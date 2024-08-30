@@ -88,7 +88,7 @@ Public Class SettingsProxy
     Public host As frmSettings
 
     Public Function loadSettings() As String
-        Dim settings = Globals.Settings
+        Dim settings As Settings = Globals.Settings
         Dim json_str As String = settings.GetJson
 
         Return json_str
@@ -137,6 +137,7 @@ Public Class SettingsProxy
 
         settings.viewer.fill = DirectCast(json("fill_plot_area"), JsonValue)
         settings.viewer.colorSet = DirectCast(json!colorset, JsonArray)
+        settings.viewer.XIC_da = DirectCast(json!xic_da, JsonValue)
 
         Call settings.Save()
         Call Workbench.SuccessMessage("New settings value applied and saved!")
