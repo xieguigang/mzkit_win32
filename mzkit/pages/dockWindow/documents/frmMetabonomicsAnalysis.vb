@@ -127,9 +127,14 @@ Public Class frmMetabonomicsAnalysis
         For Each peak As xcms2 In peaks.peaks
             Dim row As Object() = New Object(groups.Length) {}
             Dim display As AnnotatedIon = annotation.TryGetValue(peak.ID)
+            Dim checked As Boolean = True
 
             If display Is Nothing Then
                 row(0) = peak.ID
+
+                If filter Then
+                    checked = False
+                End If
             Else
                 row(0) = $"{display.metadata.CommonName}_{display.AdductIon.ToString}@{(peak.rt / 60).ToString("F1")}min"
             End If
@@ -145,7 +150,7 @@ Public Class frmMetabonomicsAnalysis
                 row(i + 1) = data.Average
             Next
 
-            If Not filter Then
+            If checked Then
                 Call table.Rows.Add(row)
             End If
         Next
