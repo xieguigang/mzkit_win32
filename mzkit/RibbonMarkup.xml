@@ -4358,6 +4358,14 @@
         <Image MinDPI="192">Res/document-print-preview.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonLCMSFilterIons" Comment="Only show the ion features that has metabolite annotation." Id="322" LabelTitle="Filter Annotated" LabelDescription="Only show the ion features that has metabolite annotation." TooltipTitle="Only show the ion features that has metabolite annotation." TooltipDescription="Only show the ion features that has metabolite annotation.">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-select-all-240.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-select-all-240.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4770,8 +4778,9 @@
                 <Button CommandName="cmdButtonImportsLCAnnotationFromTable" />
               </SplitButton>
             </Group>
-            <Group CommandName="cmdPanelLCMSAnalysis" SizeDefinition="OneButton">
+            <Group CommandName="cmdPanelLCMSAnalysis" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonLCMSMetabolite" />
+              <ToggleButton CommandName="cmdButtonLCMSFilterIons" />
             </Group>
           </Tab>
         </TabGroup>

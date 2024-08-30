@@ -259,6 +259,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonImportsLCAnnotationFromTable = 289;
             public const uint cmdPanelLCMSAnalysis = 320;
             public const uint cmdButtonLCMSMetabolite = 321;
+            public const uint cmdButtonLCMSFilterIons = 322;
             public const uint cmdMenuGroupGCxGC = 6;
             public const uint cmdPanelGCxGC = 7;
             public const uint cmdGroupGCxGC = 282;
@@ -595,6 +596,10 @@ namespace RibbonLib.Controls
         /// Metabolite Mass Filter
         /// </summary>
         public RibbonButton ButtonLCMSMetabolite { get; private set; }
+        /// <summary>
+        /// Only show the ion features that has metabolite annotation.
+        /// </summary>
+        public RibbonToggleButton ButtonLCMSFilterIons { get; private set; }
         public RibbonTabGroup MenuGroupGCxGC { get; private set; }
         public RibbonTab PanelGCxGC { get; private set; }
         public RibbonGroup GroupGCxGC { get; private set; }
@@ -923,6 +928,7 @@ namespace RibbonLib.Controls
             ButtonImportsLCAnnotationFromTable = new RibbonButton(ribbon, Cmd.cmdButtonImportsLCAnnotationFromTable);
             PanelLCMSAnalysis = new RibbonGroup(ribbon, Cmd.cmdPanelLCMSAnalysis);
             ButtonLCMSMetabolite = new RibbonButton(ribbon, Cmd.cmdButtonLCMSMetabolite);
+            ButtonLCMSFilterIons = new RibbonToggleButton(ribbon, Cmd.cmdButtonLCMSFilterIons);
             MenuGroupGCxGC = new RibbonTabGroup(ribbon, Cmd.cmdMenuGroupGCxGC);
             PanelGCxGC = new RibbonTab(ribbon, Cmd.cmdPanelGCxGC);
             GroupGCxGC = new RibbonGroup(ribbon, Cmd.cmdGroupGCxGC);

@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Partial Public Class RibbonItems
+    Partial Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -256,6 +256,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonImportsLCAnnotationFromTable As UInteger = 289
             Public Const cmdPanelLCMSAnalysis As UInteger = 320
             Public Const cmdButtonLCMSMetabolite As UInteger = 321
+            Public Const cmdButtonLCMSFilterIons As UInteger = 322
             Public Const cmdMenuGroupGCxGC As UInteger = 6
             Public Const cmdPanelGCxGC As UInteger = 7
             Public Const cmdGroupGCxGC As UInteger = 282
@@ -1802,6 +1803,15 @@ Namespace RibbonLib.Controls
                 Return _ButtonLCMSMetabolite
             End Get
         End Property
+        Private _ButtonLCMSFilterIons As RibbonToggleButton
+        ''' <summary>
+        ''' Only show the ion features that has metabolite annotation.
+        ''' </summary>
+        Public ReadOnly Property ButtonLCMSFilterIons As RibbonToggleButton
+            Get
+                Return _ButtonLCMSFilterIons
+            End Get
+        End Property
         Private _MenuGroupGCxGC As RibbonTabGroup
         Public ReadOnly Property MenuGroupGCxGC As RibbonTabGroup
             Get
@@ -2430,6 +2440,7 @@ Namespace RibbonLib.Controls
             _ButtonImportsLCAnnotationFromTable = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCAnnotationFromTable)
             _PanelLCMSAnalysis = New RibbonGroup(_ribbon, Cmd.cmdPanelLCMSAnalysis)
             _ButtonLCMSMetabolite = New RibbonButton(_ribbon, Cmd.cmdButtonLCMSMetabolite)
+            _ButtonLCMSFilterIons = New RibbonToggleButton(_ribbon, Cmd.cmdButtonLCMSFilterIons)
             _MenuGroupGCxGC = New RibbonTabGroup(_ribbon, Cmd.cmdMenuGroupGCxGC)
             _PanelGCxGC = New RibbonTab(_ribbon, Cmd.cmdPanelGCxGC)
             _GroupGCxGC = New RibbonGroup(_ribbon, Cmd.cmdGroupGCxGC)

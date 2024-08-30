@@ -1801,7 +1801,14 @@
 #define cmdButtonLCMSMetabolite_TooltipDescription_RESID 60303
 #define cmdButtonLCMSMetabolite_SmallImages_192__RESID 60304
 #define cmdButtonLCMSMetabolite_LargeImages_192__RESID 60305
-#define InternalCmd2_LabelTitle_RESID 60306
-#define InternalCmd4_LabelTitle_RESID 60307
-#define InternalCmd6_LabelTitle_RESID 60308
-#define InternalCmd8_LabelTitle_RESID 60309
+#define cmdButtonLCMSFilterIons 322  /* Only show the ion features that has metabolite annotation. */ 
+#define cmdButtonLCMSFilterIons_LabelTitle_RESID 60306
+#define cmdButtonLCMSFilterIons_LabelDescription_RESID 60307
+#define cmdButtonLCMSFilterIons_TooltipTitle_RESID 60308
+#define cmdButtonLCMSFilterIons_TooltipDescription_RESID 60309
+#define cmdButtonLCMSFilterIons_SmallImages_192__RESID 60310
+#define cmdButtonLCMSFilterIons_LargeImages_192__RESID 60311
+#define InternalCmd2_LabelTitle_RESID 60312
+#define InternalCmd4_LabelTitle_RESID 60313
+#define InternalCmd6_LabelTitle_RESID 60314
+#define InternalCmd8_LabelTitle_RESID 60315

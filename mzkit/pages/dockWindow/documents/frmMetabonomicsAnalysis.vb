@@ -120,6 +120,7 @@ Public Class frmMetabonomicsAnalysis
         Next
 
         Dim offset As Integer = 0
+        Dim filter As Boolean = ionFilter.Checked
 
         xcms_id = New String(peaks.ROIs - 1) {}
 
@@ -144,7 +145,9 @@ Public Class frmMetabonomicsAnalysis
                 row(i + 1) = data.Average
             Next
 
-            table.Rows.Add(row)
+            If Not filter Then
+                Call table.Rows.Add(row)
+            End If
         Next
     End Sub
 
@@ -498,6 +501,7 @@ Public Class frmMetabonomicsAnalysis
     Shared ReadOnly export_matrix_evt As New RibbonEventBinding(ribbonItems.ButtonExportMatrix2)
 
     Shared ReadOnly massFilter As New RibbonEventBinding(ribbonItems.ButtonLCMSMetabolite)
+    Shared ReadOnly ionFilter As New ToggleEventBinding(ribbonItems.ButtonLCMSFilterIons)
 
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
@@ -622,6 +626,7 @@ Public Class frmMetabonomicsAnalysis
 
         export_matrix_evt.evt = Sub() Call exportMatrixExcelFile()
         massFilter.evt = Sub() Call MassSearch()
+        ionFilter.evt = Sub() Call loadPeaktable()
     End Sub
 
     Private Sub importsMetaboliteTable()
@@ -778,6 +783,7 @@ Public Class frmMetabonomicsAnalysis
         viewPeaktable_evt.evt = Nothing
         export_matrix_evt.evt = Nothing
         massFilter.evt = Nothing
+        ionFilter.evt = Nothing
 
         openMetabolitesFile.evt = Nothing
         openMetabolitesTable.evt = Nothing
