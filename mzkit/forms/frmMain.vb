@@ -665,6 +665,7 @@ Public Class frmMain : Implements AppHost
         _spinner.Increment = 0.05D
         _spinner.DecimalPlaces = 2
         _spinner.DecimalValue = Globals.Settings.viewer.XIC_da
+        _spinner.RepresentativeString = "XXXXXX"
 
         _spinner = ribbonItems.SpinnerSimilarity
 
