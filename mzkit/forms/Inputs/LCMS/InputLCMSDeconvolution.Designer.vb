@@ -214,10 +214,16 @@ Partial Class InputLCMSDeconvolution
         '
         'ListView1
         '
+        Me.ListView1.Activation = System.Windows.Forms.ItemActivation.OneClick
         Me.ListView1.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ListView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.ListView1.CheckBoxes = True
         Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2})
+        Me.ListView1.FullRowSelect = True
+        Me.ListView1.GridLines = True
         Me.ListView1.HideSelection = False
+        Me.ListView1.HotTracking = True
+        Me.ListView1.HoverSelection = True
         Me.ListView1.Location = New System.Drawing.Point(21, 203)
         Me.ListView1.Name = "ListView1"
         Me.ListView1.Size = New System.Drawing.Size(660, 167)
