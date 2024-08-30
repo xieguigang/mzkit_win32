@@ -1258,6 +1258,7 @@ var apps;
                 configs.language = settings.ui.language || 2;
                 configs.colorset = settings.viewer.colorSet || [];
                 configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
+                configs.xic_da = settings.xic_da;
                 this.loadConfigs(configs);
             };
             settings.prototype.remember_location_onchange = function (value) {

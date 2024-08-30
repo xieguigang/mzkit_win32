@@ -154,6 +154,7 @@ namespace apps.systems {
 
             configs.colorset = settings.viewer.colorSet || [];
             configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
+            configs.xic_da = settings.xic_da;
 
             this.loadConfigs(configs);
         }

@@ -108,7 +108,7 @@ Public Class frmMain : Implements AppHost
         Return Val(ribbonItems.PPMSpinner.DecimalValue)
     End Function
 
-    Public Function GetXICPPMError() As Double
+    Public Function GetXICDaError() As Double
         Return Val(ribbonItems.XIC_DaSpinner.DecimalValue)
     End Function
 
@@ -727,7 +727,7 @@ Public Class frmMain : Implements AppHost
             Globals.Settings.viewer = New RawFileViewerSettings
         End If
 
-        Globals.Settings.viewer.XIC_da = MyApplication.host.GetXICPPMError
+        Globals.Settings.viewer.XIC_da = MyApplication.host.GetXICDaError
         Globals.Settings.viewer.ppm_error = MyApplication.host.GetPPMError
         Globals.Settings.ui = New UISettings With {
             .height = Height,
