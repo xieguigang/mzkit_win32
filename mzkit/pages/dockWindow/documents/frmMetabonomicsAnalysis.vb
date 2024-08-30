@@ -430,7 +430,7 @@ Public Class frmMetabonomicsAnalysis
             Next
         End If
 
-        Dim json As String = ggplotVisual.encodeJSON(exp)
+        Dim json As String = ggplotVisual.encodeJSON(expVisual)
         Dim plotType As String
 
         If BarPlotToolStripMenuItem.Checked Then
