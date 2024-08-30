@@ -1228,6 +1228,7 @@
     <ROW Component="Reference.rtf" ComponentId="{5454AEF9-E36B-430B-A09A-3E657C95DA64}" Directory_="APPDIR" Attributes="0" KeyPath="Reference.rtf_1"/>
     <ROW Component="ReleaseNotes.docx" ComponentId="{C89F9217-25CE-46C6-92A0-E41CA58D8AEA}" Directory_="NewFolder_2_Dir" Attributes="0" KeyPath="ReleaseNotes.docx" Type="0"/>
     <ROW Component="ReportViewer.dll" ComponentId="{BFF9581E-1CFB-49DA-AFF7-2BC54C155C4D}" Directory_="plugins_Dir" Attributes="256" KeyPath="ReportViewer.dll"/>
+    <ROW Component="ReportViewer.pdb" ComponentId="{F779485C-FEC3-46B3-8ED4-03B9DCB03D62}" Directory_="plugins_Dir" Attributes="0" KeyPath="ReportViewer.pdb" Type="4"/>
     <ROW Component="Rlapack.dll" ComponentId="{C08012A2-5A0F-4DE5-A380-A4C8C87EA7FD}" Directory_="library_Dir" Attributes="256" KeyPath="Rlapack.dll"/>
     <ROW Component="Rscript.dll_3" ComponentId="{D0CCC07B-2407-4099-B543-F74EA74FFDEE}" Directory_="bin_Dir" Attributes="256" KeyPath="Rscript.dll_3"/>
     <ROW Component="Rscript.exe_5" ComponentId="{DD17189D-DC4C-4648-A10C-95064554E915}" Directory_="bin_Dir" Attributes="256" KeyPath="Rscript.exe_5"/>
@@ -18736,7 +18737,7 @@
     <ROW File="preprocessing.R" Component_="OPLSDA.R" FileName="PREPRO~1.R|preprocessing.R" Attributes="0" SourcePath="..\rstudio\pipeline\workbench\preprocessing.R" SelfReg="false"/>
     <ROW File="ReportViewer.dll" Component_="ReportViewer.dll" FileName="REPORT~1.DLL|ReportViewer.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\ReportViewer.dll" SelfReg="false"/>
     <ROW File="ReportViewer.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config" FileName="REPORT~1.CON|ReportViewer.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\ReportViewer.dll.config" SelfReg="false"/>
-    <ROW File="ReportViewer.pdb" Component_="ReportViewer.dll" FileName="REPORT~1.PDB|ReportViewer.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\ReportViewer.pdb" SelfReg="false"/>
+    <ROW File="ReportViewer.pdb" Component_="ReportViewer.pdb" FileName="REPORT~1.PDB|ReportViewer.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\ReportViewer.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml_1" Component_="BioDeep.dll.config" FileName="MICRO~24.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
     <ROW File="make_peaktable.R" Component_="make_peaktable.R" FileName="MAKE_P~1.R|make_peaktable.R" Attributes="0" SourcePath="..\..\..\Rscript\Library\mzkit_app\tools\make_peaktable.R" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml_2" Component_="Microsoft.VisualBasic.Imaging.Landscape.xml" FileName="MICRO~68.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
@@ -20346,6 +20347,7 @@
     <ROW Feature_="MainFeature" Component_="ReportViewer.dll"/>
     <ROW Feature_="MainFeature" Component_="make_peaktable.R"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Imaging.Landscape.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="ReportViewer.pdb"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
