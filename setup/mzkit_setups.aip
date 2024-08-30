@@ -949,6 +949,7 @@
     <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.dll_2" ComponentId="{CAB2E6E3-9F74-4EAE-90A4-AB7CAFDCF399}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.pdb" ComponentId="{2B1BAF28-D816-4037-9EA1-8E93B3A6ACF6}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.pdb_1" ComponentId="{F874F72E-D6A5-4252-AC51-452DF7D797CC}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.pdb_1" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.xml" ComponentId="{EE5557F8-268A-4F9B-B924-0C54A4684A7C}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.xml_2"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll" ComponentId="{3732B8B7-3607-4294-B63F-37373D15C622}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll_3" ComponentId="{07FB4A5F-B81B-4E49-BDB9-0E5B3E60D1DF}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.pdb" ComponentId="{8BD94C82-A0B8-4070-8750-259902C7987B}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.PDF.pdb" Type="4"/>
@@ -18738,6 +18739,7 @@
     <ROW File="ReportViewer.pdb" Component_="ReportViewer.dll" FileName="REPORT~1.PDB|ReportViewer.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\ReportViewer.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml_1" Component_="BioDeep.dll.config" FileName="MICRO~24.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
     <ROW File="make_peaktable.R" Component_="make_peaktable.R" FileName="MAKE_P~1.R|make_peaktable.R" Attributes="0" SourcePath="..\..\..\Rscript\Library\mzkit_app\tools\make_peaktable.R" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml_2" Component_="Microsoft.VisualBasic.Imaging.Landscape.xml" FileName="MICRO~68.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -20343,6 +20345,7 @@
     <ROW Feature_="MainFeature" Component_="xvba_debug.log_2"/>
     <ROW Feature_="MainFeature" Component_="ReportViewer.dll"/>
     <ROW Feature_="MainFeature" Component_="make_peaktable.R"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Imaging.Landscape.xml"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
