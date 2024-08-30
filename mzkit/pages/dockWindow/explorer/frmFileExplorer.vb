@@ -323,6 +323,10 @@ Public Class frmFileExplorer
             raw.cache = getRawCache(raw.source, titleTemplate:="Re-Build file cache [%s]").cache
         End If
 
+        If Not raw.isLoaded Then
+            raw = raw.LoadMzpack(Sub(a, b) Workbench.StatusMessage($"[{a}] {b}"), strict:=False)
+        End If
+
         Call MyApplication.host.mzkitTool.showScatter(raw, XIC, directSnapshot, contour)
         Call SetActiveWorkfile(raw)
     End Sub
