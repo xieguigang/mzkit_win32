@@ -1,5 +1,11 @@
 imports "BackgroundTask" from "PipelineHost";
 
+# processing of batch data
+# use the mzkit package api
+if (!require(mzkit)) {
+    stop("mzkit package is not installed correctly, try to run windows batch script for repairs of the Rstudio environment.");
+}
+
 # script for run deconvolution of the LC-MS rawdata files
 
 [@info "the rawdata files input, value could be:
@@ -28,13 +34,9 @@ let is_batch = function() {
         file.ext(raw) == "txt";
     }
 }
+let peak_width = as.integer(unlist(strsplit(rt_win, ",")));
 
 if (is_batch()) {
-    # processing of batch data
-    # use the mzkit package api
-    if (!require(mzkit)) {
-        stop("mzkit package is not installed correctly, try to run windows batch script for repairs of the Rstudio environment.");
-    }
     if (!dir.exists(raw)) {
         raw <- readLines(raw);
     }
@@ -43,7 +45,7 @@ if (is_batch()) {
         rawdata = raw, 
         outputdir = dirname(savepath), 
         mzdiff = 0.001, xic_mzdiff = massDiff,
-        peak.width = as.integer(unlist(strsplit(rt_win, ","))),
+        peak.width = peak_width,
         n_threads = threads,
         filename = basename(savepath,
             withExtensionName = TRUE, 
@@ -51,7 +53,8 @@ if (is_batch()) {
     );
 } else {
     raw 
-    |> MS1deconv(massDiff)
+    |> MS1deconv(massDiff, 
+        peak_width = peak_width)
     |> write.csv(file = savepath, row.names = TRUE)
     ;
 }
