@@ -44,9 +44,13 @@ Partial Class InputPubChemProxy
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -165,16 +169,16 @@ Partial Class InputPubChemProxy
         Me.GroupBox2.Controls.Add(Me.txtPPM)
         Me.GroupBox2.Controls.Add(Me.RadioButton2)
         Me.GroupBox2.Controls.Add(Me.RadioButton1)
-        Me.GroupBox2.Location = New System.Drawing.Point(665, 325)
+        Me.GroupBox2.Location = New System.Drawing.Point(665, 350)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(201, 115)
+        Me.GroupBox2.Size = New System.Drawing.Size(205, 90)
         Me.GroupBox2.TabIndex = 9
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Select a Mass Tolerance"
         '
         'txtDa
         '
-        Me.txtDa.Location = New System.Drawing.Point(118, 72)
+        Me.txtDa.Location = New System.Drawing.Point(118, 62)
         Me.txtDa.Name = "txtDa"
         Me.txtDa.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.txtDa.Size = New System.Drawing.Size(71, 21)
@@ -183,7 +187,7 @@ Partial Class InputPubChemProxy
         '
         'txtPPM
         '
-        Me.txtPPM.Location = New System.Drawing.Point(118, 29)
+        Me.txtPPM.Location = New System.Drawing.Point(118, 23)
         Me.txtPPM.Name = "txtPPM"
         Me.txtPPM.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.txtPPM.Size = New System.Drawing.Size(71, 21)
@@ -193,7 +197,7 @@ Partial Class InputPubChemProxy
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(17, 74)
+        Me.RadioButton2.Location = New System.Drawing.Point(17, 64)
         Me.RadioButton2.Name = "RadioButton2"
         Me.RadioButton2.Size = New System.Drawing.Size(95, 16)
         Me.RadioButton2.TabIndex = 1
@@ -204,7 +208,7 @@ Partial Class InputPubChemProxy
         '
         Me.RadioButton1.AutoSize = True
         Me.RadioButton1.Checked = True
-        Me.RadioButton1.Location = New System.Drawing.Point(17, 33)
+        Me.RadioButton1.Location = New System.Drawing.Point(17, 27)
         Me.RadioButton1.Name = "RadioButton1"
         Me.RadioButton1.Size = New System.Drawing.Size(41, 16)
         Me.RadioButton1.TabIndex = 0
@@ -221,11 +225,46 @@ Partial Class InputPubChemProxy
         Me.Button4.Text = "Search BioDeep"
         Me.Button4.UseVisualStyleBackColor = True
         '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.CheckBox2)
+        Me.GroupBox3.Controls.Add(Me.CheckBox1)
+        Me.GroupBox3.Location = New System.Drawing.Point(665, 252)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(203, 92)
+        Me.GroupBox3.TabIndex = 11
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Polarity"
+        Me.GroupBox3.Visible = False
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Checked = True
+        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox1.Location = New System.Drawing.Point(17, 28)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(72, 16)
+        Me.CheckBox1.TabIndex = 0
+        Me.CheckBox1.Text = "Positive"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Location = New System.Drawing.Point(17, 57)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(72, 16)
+        Me.CheckBox2.TabIndex = 1
+        Me.CheckBox2.Text = "Negative"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
         'InputPubChemProxy
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(878, 485)
+        Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.PictureBox1)
@@ -242,6 +281,8 @@ Partial Class InputPubChemProxy
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -267,4 +308,7 @@ Partial Class InputPubChemProxy
     Friend WithEvents txtDa As TextBox
     Friend WithEvents txtPPM As TextBox
     Friend WithEvents Button4 As Button
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents CheckBox1 As CheckBox
 End Class
