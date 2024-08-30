@@ -61,7 +61,7 @@ Namespace RibbonLib.Controls
             Public Const cmdTabDesign As UInteger = 1032
             Public Const cmdGroupDesign As UInteger = 1036
             Public Const cmdPPMSpinner As UInteger = 1050
-            Public Const cmdXIC_PPMSpinner As UInteger = 156
+            Public Const cmdXIC_DaSpinner As UInteger = 156
             Public Const cmdGroupShowViewer As UInteger = 1110
             Public Const cmdButtonShowPlotViewer As UInteger = 1111
             Public Const cmdButtonShowMatrixViewer As UInteger = 1112
@@ -609,10 +609,13 @@ Namespace RibbonLib.Controls
                 Return _PPMSpinner
             End Get
         End Property
-        Private _XIC_PPMSpinner As RibbonSpinner
-        Public ReadOnly Property XIC_PPMSpinner As RibbonSpinner
+        Private _XIC_DaSpinner As RibbonSpinner
+        ''' <summary>
+        ''' Ion mz mass tolerance error for extract XIC data
+        ''' </summary>
+        Public ReadOnly Property XIC_DaSpinner As RibbonSpinner
             Get
-                Return _XIC_PPMSpinner
+                Return _XIC_DaSpinner
             End Get
         End Property
         Private _GroupShowViewer As RibbonGroup
@@ -778,6 +781,9 @@ Namespace RibbonLib.Controls
             End Get
         End Property
         Private _ButtonXIC As RibbonButton
+        ''' <summary>
+        ''' Selective Ion Chromatography Data Plot
+        ''' </summary>
         Public ReadOnly Property ButtonXIC As RibbonButton
             Get
                 Return _ButtonXIC
@@ -2057,7 +2063,7 @@ Namespace RibbonLib.Controls
         End Property
         Private _GroupAboutActions As RibbonGroup
         ''' <summary>
-        ''' About mzkit
+        ''' About MZKit workbench
         ''' </summary>
         Public ReadOnly Property GroupAboutActions As RibbonGroup
             Get
@@ -2209,7 +2215,7 @@ Namespace RibbonLib.Controls
             _TabDesign = New RibbonTab(_ribbon, Cmd.cmdTabDesign)
             _GroupDesign = New RibbonGroup(_ribbon, Cmd.cmdGroupDesign)
             _PPMSpinner = New RibbonSpinner(_ribbon, Cmd.cmdPPMSpinner)
-            _XIC_PPMSpinner = New RibbonSpinner(_ribbon, Cmd.cmdXIC_PPMSpinner)
+            _XIC_DaSpinner = New RibbonSpinner(_ribbon, Cmd.cmdXIC_DaSpinner)
             _GroupShowViewer = New RibbonGroup(_ribbon, Cmd.cmdGroupShowViewer)
             _ButtonShowPlotViewer = New RibbonButton(_ribbon, Cmd.cmdButtonShowPlotViewer)
             _ButtonShowMatrixViewer = New RibbonButton(_ribbon, Cmd.cmdButtonShowMatrixViewer)

@@ -64,7 +64,7 @@ namespace RibbonLib.Controls
             public const uint cmdTabDesign = 1032;
             public const uint cmdGroupDesign = 1036;
             public const uint cmdPPMSpinner = 1050;
-            public const uint cmdXIC_PPMSpinner = 156;
+            public const uint cmdXIC_DaSpinner = 156;
             public const uint cmdGroupShowViewer = 1110;
             public const uint cmdButtonShowPlotViewer = 1111;
             public const uint cmdButtonShowMatrixViewer = 1112;
@@ -377,7 +377,10 @@ namespace RibbonLib.Controls
         public RibbonTab TabDesign { get; private set; }
         public RibbonGroup GroupDesign { get; private set; }
         public RibbonSpinner PPMSpinner { get; private set; }
-        public RibbonSpinner XIC_PPMSpinner { get; private set; }
+        /// <summary>
+        /// Ion mz mass tolerance error for extract XIC data
+        /// </summary>
+        public RibbonSpinner XIC_DaSpinner { get; private set; }
         public RibbonGroup GroupShowViewer { get; private set; }
         public RibbonButton ButtonShowPlotViewer { get; private set; }
         public RibbonButton ButtonShowMatrixViewer { get; private set; }
@@ -405,6 +408,9 @@ namespace RibbonLib.Controls
         public RibbonGroup GroupChromatography { get; private set; }
         public RibbonButton ButtonBPC { get; private set; }
         public RibbonButton ButtonTIC { get; private set; }
+        /// <summary>
+        /// Selective Ion Chromatography Data Plot
+        /// </summary>
         public RibbonButton ButtonXIC { get; private set; }
         public RibbonGroup PlotOptions { get; private set; }
         public RibbonCheckBox CheckBoxShowKEGGAnnotation { get; private set; }
@@ -639,7 +645,7 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonLinearFitting { get; private set; }
         public RibbonTab TabAbout { get; private set; }
         /// <summary>
-        /// About mzkit
+        /// About MZKit workbench
         /// </summary>
         public RibbonGroup GroupAboutActions { get; private set; }
         public RibbonButton Tutorials { get; private set; }
@@ -712,7 +718,7 @@ namespace RibbonLib.Controls
             TabDesign = new RibbonTab(ribbon, Cmd.cmdTabDesign);
             GroupDesign = new RibbonGroup(ribbon, Cmd.cmdGroupDesign);
             PPMSpinner = new RibbonSpinner(ribbon, Cmd.cmdPPMSpinner);
-            XIC_PPMSpinner = new RibbonSpinner(ribbon, Cmd.cmdXIC_PPMSpinner);
+            XIC_DaSpinner = new RibbonSpinner(ribbon, Cmd.cmdXIC_DaSpinner);
             GroupShowViewer = new RibbonGroup(ribbon, Cmd.cmdGroupShowViewer);
             ButtonShowPlotViewer = new RibbonButton(ribbon, Cmd.cmdButtonShowPlotViewer);
             ButtonShowMatrixViewer = new RibbonButton(ribbon, Cmd.cmdButtonShowMatrixViewer);
