@@ -4,6 +4,7 @@ Imports System.Runtime.InteropServices
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -237,8 +238,29 @@ Public Class ReportViewer
     Friend rawdata As Dictionary(Of String, mzPack)
 
     Public Async Function ShowROIGroups(mz As Double, rt As Double) As Task(Of Boolean)
-
+        Await Task.Run(Sub() Call LoadXic(mz, rt))
+        Return True
     End Function
+
+    Private Sub LoadXic(mz As Double, rt As Double)
+        Dim xic_samples As New List(Of NamedCollection(Of ms1_scan))
+        Dim da As Tolerance = Tolerance.DeltaMass(0.1)
+        Dim dt As Double = 7.5
+
+        For Each raw In rawdata
+            Dim range = raw.Value.MS.Where(Function(s) s.rt >= rt - dt AndAlso s.rt <= rt + dt).ToArray
+            Dim ms1 As ms1_scan() = range _
+                .Select(Function(s) s.GetMs1Scans) _
+                .IteratesALL _
+                .Where(Function(mzi) da(mzi.mz, mz)) _
+                .ToArray
+
+            Call xic_samples.Add(New NamedCollection(Of ms1_scan) With {
+                .name = raw.Key,
+                .value = ms1
+            })
+        Next
+    End Sub
 
     Public Async Function ShowXic(data_id As String) As Task(Of Boolean)
         Call Workbench.LogText($"show xic data for ion: {data_id}")
