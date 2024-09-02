@@ -32,6 +32,7 @@ Public Class ROIGroupViewer
             pic.Height = ROIViewerHeight
             pic.Width = FlowLayoutPanel1.Width * 0.9
             pic.Tag = Me.samples(i)
+            pic.BackgroundImageLayout = ImageLayout.Zoom
 
             AddHandler pic.Click, AddressOf PictureBox_Click
 
@@ -99,7 +100,8 @@ Public Class ROIGroupViewer
             Return
         End If
 
-        Dim size As String = $"{PictureBox1.Width},{PictureBox1.Height}"
+        Dim scale As Double = 6
+        Dim size As String = $"{PictureBox1.Width * scale},{PictureBox1.Height * scale}"
         Dim theme As New Theme
         Dim density As New PlotMassWindowXIC(current, theme)
         Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=100))
