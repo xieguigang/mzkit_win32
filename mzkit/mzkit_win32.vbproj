@@ -883,10 +883,10 @@
     <Compile Include="forms\Inputs\MSImaging\InputMSIDimension.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmSeeMs.Designer.vb">
+    <Compile Include="pages\dockWindow\documents\LCMS\frmSeeMs.Designer.vb">
       <DependentUpon>frmSeeMs.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmSeeMs.vb">
+    <Compile Include="pages\dockWindow\documents\LCMS\frmSeeMs.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\Models\QuantifyParameters.vb" />
@@ -902,10 +902,10 @@
     <Compile Include="pages\dockWindow\systems\frmTableViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmUntargettedViewer.Designer.vb">
+    <Compile Include="pages\dockWindow\documents\LCMS\frmUntargettedViewer.Designer.vb">
       <DependentUpon>frmUntargettedViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmUntargettedViewer.vb">
+    <Compile Include="pages\dockWindow\documents\LCMS\frmUntargettedViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\systems\frmHtmlViewer.Designer.vb">
@@ -1469,7 +1469,7 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmGCMS_CDFExplorer.resx">
       <DependentUpon>frmGCMS_CDFExplorer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmSeeMs.resx">
+    <EmbeddedResource Include="pages\dockWindow\documents\LCMS\frmSeeMs.resx">
       <DependentUpon>frmSeeMs.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmSMILESViewer.resx">
@@ -1484,7 +1484,7 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmTargetedQuantification.resx">
       <DependentUpon>frmTargetedQuantification.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmUntargettedViewer.resx">
+    <EmbeddedResource Include="pages\dockWindow\documents\LCMS\frmUntargettedViewer.resx">
       <DependentUpon>frmUntargettedViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputMSIDimension.resx">
@@ -2211,9 +2211,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="pages\dockWindow\documents\LCMS\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\services\PDF\PDF.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.2210.55\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.2210.55\build\Microsoft.Web.WebView2.targets')" />
