@@ -22,9 +22,16 @@ Partial Class FormXicViewer
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
+        Me.SuspendLayout()
+        '
+        'FormXicViewer
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Text = "Form1"
+        Me.Name = "FormXicViewer"
+        Me.Text = "XIC data viewer"
+        Me.ResumeLayout(False)
+
     End Sub
 End Class
