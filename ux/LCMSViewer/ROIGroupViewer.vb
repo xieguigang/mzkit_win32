@@ -73,6 +73,7 @@ Public Class ROIGroupViewer
             xic = DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)) _
                 .AsEnumerable _
                 .Select(Function(m1) New ChromatogramTick(m1.scan_time, m1.intensity)) _
+                .OrderBy(Function(m1) m1.Time) _
                 .ToArray
             xic_data = New NamedCollection(Of ChromatogramTick)(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)).name, xic)
             render = Await Task(Of GraphicsData).Run(Function()
@@ -84,7 +85,7 @@ Public Class ROIGroupViewer
                                                                 fillCurve:=True,
                                                                 labelLayoutTicks:=-1,
                                                                 bspline:=False,
-                                                                theme:=theme) _
+                                                                theme:=theme) With {.xlabel = "Retention Time(s)", .ylabel = "Intensity"} _
                                                         .Plot(unifySize, ppi:=100)
                                                      End Function)
 
