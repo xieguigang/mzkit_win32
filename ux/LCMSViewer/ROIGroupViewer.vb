@@ -95,7 +95,16 @@ Public Class ROIGroupViewer
     End Function
 
     Private Async Function RenderingSelection() As Task
+        If current.IsEmpty Then
+            Return
+        End If
 
+        Dim size As String = $"{PictureBox1.Width},{PictureBox1.Height}"
+        Dim theme As New Theme
+        Dim density As New PlotMassWindowXIC(current, theme)
+        Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=100))
+
+        PictureBox1.BackgroundImage = render.AsGDIImage
     End Function
 
     Private Async Sub ROIGroupViewer_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
