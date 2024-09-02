@@ -238,11 +238,11 @@ Public Class ReportViewer
     Friend rawdata As Dictionary(Of String, mzPack)
 
     Public Async Function ShowROIGroups(mz As Double, rt As Double) As Task(Of Boolean)
-        Await Task.Run(Sub() Call LoadXic(mz, rt))
+        Await LoadXic(mz, rt)
         Return True
     End Function
 
-    Private Sub LoadXic(mz As Double, rt As Double)
+    Private Async Function LoadXic(mz As Double, rt As Double) As Task
         Dim xic_samples As New List(Of NamedCollection(Of ms1_scan))
         Dim da As Tolerance = Tolerance.DeltaMass(0.1)
         Dim dt As Double = 7.5
@@ -260,7 +260,12 @@ Public Class ReportViewer
                 .value = ms1
             })
         Next
-    End Sub
+
+        Dim viewer = Workbench.ShowSingleDocument(Of FormXicViewer)()
+        viewer.TabText = $"View Xic Peaks[{mz.ToString("F4")}@{(rt / 60).ToString("F1")}min]"
+
+        Await viewer.LoadXic(xic_samples, mz, rt)
+    End Function
 
     Public Async Function ShowXic(data_id As String) As Task(Of Boolean)
         Call Workbench.LogText($"show xic data for ion: {data_id}")
