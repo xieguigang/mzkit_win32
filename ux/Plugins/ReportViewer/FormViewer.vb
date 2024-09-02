@@ -236,6 +236,10 @@ Public Class ReportViewer
     Friend report As ReportRender
     Friend rawdata As Dictionary(Of String, mzPack)
 
+    Public Async Function ShowROIGroups(mz As Double, rt As Double) As Task(Of Boolean)
+
+    End Function
+
     Public Async Function ShowXic(data_id As String) As Task(Of Boolean)
         Call Workbench.LogText($"show xic data for ion: {data_id}")
 
