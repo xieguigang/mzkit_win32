@@ -176,6 +176,12 @@
     <Compile Include="SpectrumViewer.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControl1.Designer.vb">
+      <DependentUpon>UserControl1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="XICFeatureViewer.Designer.vb">
       <DependentUpon>XICFeatureViewer.vb</DependentUpon>
     </Compile>
@@ -219,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SpectrumViewer.resx">
       <DependentUpon>SpectrumViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl1.resx">
+      <DependentUpon>UserControl1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XICFeatureViewer.resx">
       <DependentUpon>XICFeatureViewer.vb</DependentUpon>
