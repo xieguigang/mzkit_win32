@@ -82,9 +82,9 @@ Public Class ROIGroupViewer
                                                                 intensityMax:=0,
                                                                 isXIC:=True,
                                                                 fillAlpha:=200,
-                                                                fillCurve:=True,
+                                                                fillCurve:=False,
                                                                 labelLayoutTicks:=-1,
-                                                                bspline:=False,
+                                                                bspline:=2,
                                                                 theme:=theme) With {.xlabel = "Retention Time(s)", .ylabel = "Intensity"} _
                                                         .Plot(unifySize, ppi:=300)
                                                      End Function)
@@ -106,7 +106,7 @@ Public Class ROIGroupViewer
         Dim theme As New Theme With {
             .pointSize = 20,
             .drawLegend = False,
-            .padding = "padding:100px 100px 400px 400px;"
+            .padding = "padding:100px 100px 250px 250px;"
         }
         Dim density As New PlotMassWindowXIC(current, theme)
         Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=100))
