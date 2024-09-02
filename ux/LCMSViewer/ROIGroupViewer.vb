@@ -1,0 +1,87 @@
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
+Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
+
+Public Class ROIGroupViewer
+
+    Dim samples As NamedCollection(Of ms1_scan)()
+    Dim viewers As PictureBox()
+    Dim mz As Double
+    Dim rt As Double
+    Dim current As NamedCollection(Of ms1_scan)
+    Dim dt As Double = 7.5
+
+    Public Property ROIViewerHeight As Integer = 100
+
+    Public Async Function LoadROIs(mz As Double, rt As Double, samples As IEnumerable(Of NamedCollection(Of ms1_scan))) As Task(Of ROIGroupViewer)
+        Call FlowLayoutPanel1.Controls.Clear()
+
+        Me.mz = mz
+        Me.rt = rt
+        Me.samples = samples.ToArray
+        Me.viewers = New PictureBox(Me.samples.Length - 1) {}
+
+        For i As Integer = 0 To Me.samples.Length - 1
+            Dim pic As New PictureBox
+
+            FlowLayoutPanel1.Controls.Add(pic)
+            pic.Height = ROIViewerHeight
+            pic.Width = FlowLayoutPanel1.Width * 0.9
+            pic.Tag = Me.samples(i)
+
+            AddHandler pic.Click, AddressOf PictureBox_Click
+
+            viewers(i) = pic
+        Next
+
+        Await Me.Rendering()
+
+        Return Me
+    End Function
+
+    Private Async Sub PictureBox_Click(sender As Object, e As EventArgs)
+        Dim pic As PictureBox = sender
+
+        ' rendering of the image
+        current = DirectCast(pic.Tag, NamedCollection(Of ms1_scan))
+        Await RenderingSelection()
+    End Sub
+
+    Private Async Function Rendering() As Task
+        ' resize all pictures to the size of left panel
+        Dim newWidth As Integer = FlowLayoutPanel1.Width * 0.9
+
+        If viewers.IsNullOrEmpty Then
+            Return
+        End If
+
+        Dim theme As New Theme
+        Dim xic As ChromatogramTick()
+
+        ' make rendering
+        For i As Integer = 0 To viewers.Length - 1
+            xic = DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)) _
+                .AsEnumerable _
+                .Select(Function(m1) New ChromatogramTick(m1.scan_time, m1.intensity)) _
+                .ToArray
+            viewers(i).Width = newWidth
+            viewers(i).BackgroundImage = New TICplot(New NamedCollection(Of ChromatogramTick)(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)).name, xic),)
+        Next
+
+        Await RenderingSelection()
+    End Function
+
+    Private Async Function RenderingSelection() As Task
+
+    End Function
+
+    Private Async Sub ROIGroupViewer_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
+        Await Rendering()
+    End Sub
+
+    Private Async Sub SplitContainer1_SplitterMoved(sender As Object, e As SplitterEventArgs) Handles SplitContainer1.SplitterMoved
+        Await Rendering()
+    End Sub
+End Class
