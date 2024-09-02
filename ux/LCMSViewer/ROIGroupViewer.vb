@@ -106,7 +106,7 @@ Public Class ROIGroupViewer
         Dim theme As New Theme With {
             .pointSize = 20,
             .drawLegend = False,
-            .padding = "padding:100px 100px 250px 250px;"
+            .padding = "padding:100px 100px 200px 200px;"
         }
         Dim density As New PlotMassWindowXIC(current, theme)
         Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=100))
