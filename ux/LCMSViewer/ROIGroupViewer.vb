@@ -3,6 +3,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Driver
 
 Public Class ROIGroupViewer
 
@@ -57,10 +59,13 @@ Public Class ROIGroupViewer
             Return
         End If
 
+        Dim scale As Double = 5
         Dim theme As New Theme
         Dim xic As ChromatogramTick()
         Dim rt_range As Double() = {rt - dt * 1.5, rt + dt * 1.5}
         Dim xic_data As NamedCollection(Of ChromatogramTick)
+        Dim unifySize As String = $"{newWidth * scale },{ROIViewerHeight * scale }"
+        Dim render As GraphicsData
 
         ' make rendering
         For i As Integer = 0 To viewers.Length - 1
@@ -68,8 +73,22 @@ Public Class ROIGroupViewer
                 .AsEnumerable _
                 .Select(Function(m1) New ChromatogramTick(m1.scan_time, m1.intensity)) _
                 .ToArray
+            xic_data = New NamedCollection(Of ChromatogramTick)(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)).name, xic)
+            render = Await Task(Of GraphicsData).Run(Function()
+                                                         Return New TICplot(xic_data,
+                                                                timeRange:=rt_range,
+                                                                intensityMax:=0,
+                                                                isXIC:=True,
+                                                                fillAlpha:=200,
+                                                                fillCurve:=True,
+                                                                labelLayoutTicks:=-1,
+                                                                bspline:=False,
+                                                                theme:=theme) _
+                                                        .Plot(unifySize, ppi:=100)
+                                                     End Function)
+
             viewers(i).Width = newWidth
-            viewers(i).BackgroundImage = New TICplot(New NamedCollection(Of ChromatogramTick)(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)).name, xic),)
+            viewers(i).BackgroundImage = render.AsGDIImage
         Next
 
         Await RenderingSelection()
