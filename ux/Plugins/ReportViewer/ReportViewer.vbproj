@@ -146,6 +146,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormXicViewer.Designer.vb">
+      <DependentUpon>FormXicViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormXicViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSelectTable.Designer.vb">
       <DependentUpon>FormSelectTable.vb</DependentUpon>
     </Compile>
