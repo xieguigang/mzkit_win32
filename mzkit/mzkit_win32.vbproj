@@ -768,10 +768,10 @@
     <Compile Include="pages\dockWindow\documents\frmMRIViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmLCMSLibrary.Designer.vb">
+    <Compile Include="pages\dockWindow\documents\LCMS\frmLCMSLibrary.Designer.vb">
       <DependentUpon>frmLCMSLibrary.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmLCMSLibrary.vb">
+    <Compile Include="pages\dockWindow\documents\LCMS\frmLCMSLibrary.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\frmMetabonomicsAnalysis.Designer.vb">
@@ -786,10 +786,10 @@
     <Compile Include="pages\dockWindow\documents\frmHEStainAnalysisTool.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmLCMSScatterViewer.Designer.vb">
+    <Compile Include="pages\dockWindow\documents\LCMS\frmLCMSScatterViewer.Designer.vb">
       <DependentUpon>frmLCMSScatterViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmLCMSScatterViewer.vb">
+    <Compile Include="pages\dockWindow\documents\LCMS\frmLCMSScatterViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\Comprehensive\frmSingleCellViewer.Designer.vb">
@@ -944,10 +944,10 @@
     <Compile Include="pages\dockWindow\documents\frmSpectrumSearch.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmFeatureSearch.Designer.vb">
+    <Compile Include="pages\dockWindow\documents\LCMS\frmFeatureSearch.Designer.vb">
       <DependentUpon>frmFeatureSearch.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmFeatureSearch.vb">
+    <Compile Include="pages\dockWindow\documents\LCMS\frmFeatureSearch.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\frmPlotViewer.Designer.vb">
@@ -1385,7 +1385,7 @@
     <EmbeddedResource Include="forms\Inputs\Workbench\InputPCADialog.resx">
       <DependentUpon>InputPCADialog.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmLCMSLibrary.resx">
+    <EmbeddedResource Include="pages\dockWindow\documents\LCMS\frmLCMSLibrary.resx">
       <DependentUpon>frmLCMSLibrary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmMetabonomicsAnalysis.resx">
@@ -1409,7 +1409,7 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmCFMIDOutputViewer.resx">
       <DependentUpon>frmCFMIDOutputViewer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmFeatureSearch.resx">
+    <EmbeddedResource Include="pages\dockWindow\documents\LCMS\frmFeatureSearch.resx">
       <DependentUpon>frmFeatureSearch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\Comprehensive\frmGCxGCViewer.resx">
@@ -1418,7 +1418,7 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmHEStainAnalysisTool.resx">
       <DependentUpon>frmHEStainAnalysisTool.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmLCMSScatterViewer.resx">
+    <EmbeddedResource Include="pages\dockWindow\documents\LCMS\frmLCMSScatterViewer.resx">
       <DependentUpon>frmLCMSScatterViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmVennTools.resx">
