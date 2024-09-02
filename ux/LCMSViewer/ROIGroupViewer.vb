@@ -59,6 +59,8 @@ Public Class ROIGroupViewer
 
         Dim theme As New Theme
         Dim xic As ChromatogramTick()
+        Dim rt_range As Double() = {rt - dt * 1.5, rt + dt * 1.5}
+        Dim xic_data As NamedCollection(Of ChromatogramTick)
 
         ' make rendering
         For i As Integer = 0 To viewers.Length - 1
