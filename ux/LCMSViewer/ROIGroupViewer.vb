@@ -54,7 +54,7 @@ Public Class ROIGroupViewer
 
     Private Async Function Rendering() As Task
         ' resize all pictures to the size of left panel
-        Dim newWidth As Integer = FlowLayoutPanel1.Width * 0.9
+        Dim newWidth As Integer = FlowLayoutPanel1.Width * 0.95
 
         If viewers.IsNullOrEmpty Then
             Return
@@ -86,7 +86,7 @@ Public Class ROIGroupViewer
                                                                 labelLayoutTicks:=-1,
                                                                 bspline:=False,
                                                                 theme:=theme) With {.xlabel = "Retention Time(s)", .ylabel = "Intensity"} _
-                                                        .Plot(unifySize, ppi:=100)
+                                                        .Plot(unifySize, ppi:=300)
                                                      End Function)
 
             viewers(i).Width = newWidth
