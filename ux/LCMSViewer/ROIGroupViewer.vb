@@ -100,9 +100,9 @@ Public Class ROIGroupViewer
             Return
         End If
 
-        Dim scale As Double = 6
+        Dim scale As Double = 2
         Dim size As String = $"{PictureBox1.Width * scale},{PictureBox1.Height * scale}"
-        Dim theme As New Theme
+        Dim theme As New Theme With {.pointSize = 20, .drawLegend = False}
         Dim density As New PlotMassWindowXIC(current, theme)
         Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=100))
 
