@@ -64,7 +64,7 @@ namespace RibbonLib.Controls
             public const uint cmdTabDesign = 1032;
             public const uint cmdGroupDesign = 1036;
             public const uint cmdPPMSpinner = 1050;
-            public const uint cmdXIC_PPMSpinner = 156;
+            public const uint cmdXIC_DaSpinner = 156;
             public const uint cmdGroupShowViewer = 1110;
             public const uint cmdButtonShowPlotViewer = 1111;
             public const uint cmdButtonShowMatrixViewer = 1112;
@@ -250,6 +250,7 @@ namespace RibbonLib.Controls
             public const uint cmdDropDownViewInSinglePage = 293;
             public const uint cmdButtonViewAnalysis3DScatter = 285;
             public const uint cmdButtonViewScatter3dInSinglePage = 292;
+            public const uint cmdButtonLCMSViewGroups = 323;
             public const uint cmdTableSampleData = 288;
             public const uint cmdButtonViewSampleInfo = 284;
             public const uint cmdButtonViewPeakTable = 308;
@@ -257,6 +258,9 @@ namespace RibbonLib.Controls
             public const uint cmdButtonImportsLCAnnotation2 = 291;
             public const uint cmdButtonImportsLCAnnotationFromFile = 290;
             public const uint cmdButtonImportsLCAnnotationFromTable = 289;
+            public const uint cmdPanelLCMSAnalysis = 320;
+            public const uint cmdButtonLCMSMetabolite = 321;
+            public const uint cmdButtonLCMSFilterIons = 322;
             public const uint cmdMenuGroupGCxGC = 6;
             public const uint cmdPanelGCxGC = 7;
             public const uint cmdGroupGCxGC = 282;
@@ -377,7 +381,10 @@ namespace RibbonLib.Controls
         public RibbonTab TabDesign { get; private set; }
         public RibbonGroup GroupDesign { get; private set; }
         public RibbonSpinner PPMSpinner { get; private set; }
-        public RibbonSpinner XIC_PPMSpinner { get; private set; }
+        /// <summary>
+        /// Ion mz mass tolerance error for extract XIC data
+        /// </summary>
+        public RibbonSpinner XIC_DaSpinner { get; private set; }
         public RibbonGroup GroupShowViewer { get; private set; }
         public RibbonButton ButtonShowPlotViewer { get; private set; }
         public RibbonButton ButtonShowMatrixViewer { get; private set; }
@@ -405,6 +412,9 @@ namespace RibbonLib.Controls
         public RibbonGroup GroupChromatography { get; private set; }
         public RibbonButton ButtonBPC { get; private set; }
         public RibbonButton ButtonTIC { get; private set; }
+        /// <summary>
+        /// Selective Ion Chromatography Data Plot
+        /// </summary>
         public RibbonButton ButtonXIC { get; private set; }
         public RibbonGroup PlotOptions { get; private set; }
         public RibbonCheckBox CheckBoxShowKEGGAnnotation { get; private set; }
@@ -572,6 +582,10 @@ namespace RibbonLib.Controls
         public RibbonSplitButton DropDownViewInSinglePage { get; private set; }
         public RibbonButton ButtonViewAnalysis3DScatter { get; private set; }
         public RibbonButton ButtonViewScatter3dInSinglePage { get; private set; }
+        /// <summary>
+        /// View groups comparison visualization
+        /// </summary>
+        public RibbonButton ButtonLCMSViewGroups { get; private set; }
         public RibbonGroup TableSampleData { get; private set; }
         public RibbonButton ButtonViewSampleInfo { get; private set; }
         public RibbonButton ButtonViewPeakTable { get; private set; }
@@ -579,6 +593,18 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonImportsLCAnnotation2 { get; private set; }
         public RibbonButton ButtonImportsLCAnnotationFromFile { get; private set; }
         public RibbonButton ButtonImportsLCAnnotationFromTable { get; private set; }
+        /// <summary>
+        /// Analysis
+        /// </summary>
+        public RibbonGroup PanelLCMSAnalysis { get; private set; }
+        /// <summary>
+        /// Metabolite Mass Filter
+        /// </summary>
+        public RibbonButton ButtonLCMSMetabolite { get; private set; }
+        /// <summary>
+        /// Only show the ion features that has metabolite annotation.
+        /// </summary>
+        public RibbonToggleButton ButtonLCMSFilterIons { get; private set; }
         public RibbonTabGroup MenuGroupGCxGC { get; private set; }
         public RibbonTab PanelGCxGC { get; private set; }
         public RibbonGroup GroupGCxGC { get; private set; }
@@ -639,7 +665,7 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonLinearFitting { get; private set; }
         public RibbonTab TabAbout { get; private set; }
         /// <summary>
-        /// About mzkit
+        /// About MZKit workbench
         /// </summary>
         public RibbonGroup GroupAboutActions { get; private set; }
         public RibbonButton Tutorials { get; private set; }
@@ -712,7 +738,7 @@ namespace RibbonLib.Controls
             TabDesign = new RibbonTab(ribbon, Cmd.cmdTabDesign);
             GroupDesign = new RibbonGroup(ribbon, Cmd.cmdGroupDesign);
             PPMSpinner = new RibbonSpinner(ribbon, Cmd.cmdPPMSpinner);
-            XIC_PPMSpinner = new RibbonSpinner(ribbon, Cmd.cmdXIC_PPMSpinner);
+            XIC_DaSpinner = new RibbonSpinner(ribbon, Cmd.cmdXIC_DaSpinner);
             GroupShowViewer = new RibbonGroup(ribbon, Cmd.cmdGroupShowViewer);
             ButtonShowPlotViewer = new RibbonButton(ribbon, Cmd.cmdButtonShowPlotViewer);
             ButtonShowMatrixViewer = new RibbonButton(ribbon, Cmd.cmdButtonShowMatrixViewer);
@@ -898,6 +924,7 @@ namespace RibbonLib.Controls
             DropDownViewInSinglePage = new RibbonSplitButton(ribbon, Cmd.cmdDropDownViewInSinglePage);
             ButtonViewAnalysis3DScatter = new RibbonButton(ribbon, Cmd.cmdButtonViewAnalysis3DScatter);
             ButtonViewScatter3dInSinglePage = new RibbonButton(ribbon, Cmd.cmdButtonViewScatter3dInSinglePage);
+            ButtonLCMSViewGroups = new RibbonButton(ribbon, Cmd.cmdButtonLCMSViewGroups);
             TableSampleData = new RibbonGroup(ribbon, Cmd.cmdTableSampleData);
             ButtonViewSampleInfo = new RibbonButton(ribbon, Cmd.cmdButtonViewSampleInfo);
             ButtonViewPeakTable = new RibbonButton(ribbon, Cmd.cmdButtonViewPeakTable);
@@ -905,6 +932,9 @@ namespace RibbonLib.Controls
             ButtonImportsLCAnnotation2 = new RibbonButton(ribbon, Cmd.cmdButtonImportsLCAnnotation2);
             ButtonImportsLCAnnotationFromFile = new RibbonButton(ribbon, Cmd.cmdButtonImportsLCAnnotationFromFile);
             ButtonImportsLCAnnotationFromTable = new RibbonButton(ribbon, Cmd.cmdButtonImportsLCAnnotationFromTable);
+            PanelLCMSAnalysis = new RibbonGroup(ribbon, Cmd.cmdPanelLCMSAnalysis);
+            ButtonLCMSMetabolite = new RibbonButton(ribbon, Cmd.cmdButtonLCMSMetabolite);
+            ButtonLCMSFilterIons = new RibbonToggleButton(ribbon, Cmd.cmdButtonLCMSFilterIons);
             MenuGroupGCxGC = new RibbonTabGroup(ribbon, Cmd.cmdMenuGroupGCxGC);
             PanelGCxGC = new RibbonTab(ribbon, Cmd.cmdPanelGCxGC);
             GroupGCxGC = new RibbonGroup(ribbon, Cmd.cmdGroupGCxGC);

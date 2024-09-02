@@ -233,27 +233,6 @@ Public Class frmUntargettedViewer
 
         Call getConfig.SetIons(candidateSet.Select(Function(i) i.mz).OrderBy(Function(i) i))
 
-        Dim showSingle =
-            Sub(mz As Double)
-                If mz <= 0.0 Then
-                    Call Workbench.Warning($"No target ion m/z was selected or invalid numeric text format!")
-                    Return
-                Else
-                    Call Workbench.StatusMessage($"View xic data for target ion mz=${mz}!")
-                End If
-
-                If Not raw.isLoaded Then
-                    Call raw.LoadMzpack(Sub(title, msg) Call Workbench.SuccessMessage($"[{title}] {msg}"))
-                End If
-
-                Call raw _
-                    .GetLoadedMzpack _
-                    .GetXIC(mz, Tolerance.DeltaMass(da)) _
-                    .DoCall(Sub(xic)
-                                Call apply({New NamedCollection(Of ChromatogramTick)(mz.ToString, xic, mz.ToString)})
-                            End Sub)
-            End Sub
-
         If mask.ShowDialogForm(getConfig) = DialogResult.OK Then
             If getConfig.InputOverlaps Then
                 ' multiple overlaps
@@ -274,11 +253,26 @@ Public Class frmUntargettedViewer
                 Call apply(list)
             Else
                 ' single xic
-                Call showSingle(getConfig.XICTarget)
+                Call ShowSingle(getConfig.XICTarget, raw)
             End If
         ElseIf Not cancel Is Nothing Then
             Call cancel()
         End If
+    End Sub
+
+    Private Shared Sub ShowSingle(mz As Double, raw As MZWork.Raw)
+        If mz <= 0.0 Then
+            Call Workbench.Warning($"No target ion m/z was selected or invalid numeric text format!")
+            Return
+        Else
+            Call Workbench.StatusMessage($"View xic data for target ion m/z={mz} (mass error {MyApplication.host.GetXICDaError} da).")
+        End If
+
+        If Not raw.isLoaded Then
+            Call raw.LoadMzpack(Sub(title, msg) Call Workbench.SuccessMessage($"[{title}] {msg}"))
+        End If
+
+        Call frmRawFeaturesList.ViewSingleTarget(mz, raw.GetLoadedMzpack)
     End Sub
 End Class
 

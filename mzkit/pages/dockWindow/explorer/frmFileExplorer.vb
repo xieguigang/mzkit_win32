@@ -323,6 +323,10 @@ Public Class frmFileExplorer
             raw.cache = getRawCache(raw.source, titleTemplate:="Re-Build file cache [%s]").cache
         End If
 
+        If Not raw.isLoaded Then
+            raw = raw.LoadMzpack(Sub(a, b) Workbench.StatusMessage($"[{a}] {b}"), strict:=False)
+        End If
+
         Call MyApplication.host.mzkitTool.showScatter(raw, XIC, directSnapshot, contour)
         Call SetActiveWorkfile(raw)
     End Sub
@@ -784,7 +788,7 @@ Public Class frmFileExplorer
         Dim taskUI As TaskUI = taskList.Add(title, "Export to: " & tempTable.FileName)
 
         If config.files.Length = 1 Then
-            Call runSingle(cli, $"[{config.files(0).FileName}]Peak Table", tempTable)
+            Call runSingle(cli, $"[{config.files(0).FileName}]Peak Table", tempTable, config.files(0))
         Else
             Call MyApplication.TaskQueue.AddToQueue(
                 Sub()
@@ -851,7 +855,8 @@ Public Class frmFileExplorer
             End Sub)
     End Sub
 
-    Private Sub runSingle(cli As String, title As String, tempTable As String)
+    Private Sub runSingle(cli As String, title As String, tempTable As String, filepath As String)
+        Dim rawdata As mzPack = Nothing
         Dim data As PeakFeature() = TaskProgress.LoadData(
             streamLoad:=Function(println)
                             Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -861,6 +866,14 @@ Public Class frmFileExplorer
                             Call cli.__DEBUG_ECHO
                             Call pipeline.Run()
 
+                            Try
+                                Using s = filepath.Open(FileMode.Open, [readOnly]:=True)
+                                    rawdata = mzPack.ReadAll(s, skipMsn:=True, ignoreThumbnail:=True)
+                                End Using
+                            Catch ex As Exception
+
+                            End Try
+
                             Return tempTable.LoadCsv(Of PeakFeature)
                         End Function,
             title:="Run Ms1 Deconvolution",
@@ -868,6 +881,10 @@ Public Class frmFileExplorer
 
         Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
 
+        table.ViewRow = Sub(row)
+                            Dim mz As Double = row("mz")
+                            Call frmRawFeaturesList.ViewSingleTarget(mz, rawdata)
+                        End Sub
         table.LoadTable(Sub(grid)
                             grid.Columns.Add(NameOf(PeakFeature.xcms_id), GetType(String))
                             grid.Columns.Add(NameOf(PeakFeature.mz), GetType(Double))

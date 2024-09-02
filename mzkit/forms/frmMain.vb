@@ -108,8 +108,8 @@ Public Class frmMain : Implements AppHost
         Return Val(ribbonItems.PPMSpinner.DecimalValue)
     End Function
 
-    Public Function GetXICPPMError() As Double
-        Return Val(ribbonItems.XIC_PPMSpinner.DecimalValue)
+    Public Function GetXICDaError() As Double
+        Return Val(ribbonItems.XIC_DaSpinner.DecimalValue)
     End Function
 
     Friend Sub ShowPage(page As Control, Optional pushStack As Boolean = True)
@@ -659,12 +659,13 @@ Public Class frmMain : Implements AppHost
         _spinner.TooltipDescription = "Enter ppm error for search feature by m/z."
         _spinner.RepresentativeString = "XXXXXX"
 
-        _spinner = ribbonItems.XIC_PPMSpinner
-        _spinner.MaxValue = Decimal.MaxValue
-        _spinner.MinValue = 0
-        _spinner.Increment = 0.5D
-        _spinner.DecimalPlaces = 1
-        _spinner.DecimalValue = Globals.Settings.viewer.XIC_ppm
+        _spinner = ribbonItems.XIC_DaSpinner
+        _spinner.MaxValue = 0.3
+        _spinner.MinValue = 0.001
+        _spinner.Increment = 0.05D
+        _spinner.DecimalPlaces = 2
+        _spinner.DecimalValue = Globals.Settings.viewer.XIC_da
+        _spinner.RepresentativeString = "XXXXXX"
 
         _spinner = ribbonItems.SpinnerSimilarity
 
@@ -727,7 +728,7 @@ Public Class frmMain : Implements AppHost
             Globals.Settings.viewer = New RawFileViewerSettings
         End If
 
-        Globals.Settings.viewer.XIC_ppm = MyApplication.host.GetXICPPMError
+        Globals.Settings.viewer.XIC_da = MyApplication.host.GetXICDaError
         Globals.Settings.viewer.ppm_error = MyApplication.host.GetPPMError
         Globals.Settings.ui = New UISettings With {
             .height = Height,

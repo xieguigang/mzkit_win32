@@ -120,17 +120,23 @@ Public Class frmMetabonomicsAnalysis
         Next
 
         Dim offset As Integer = 0
+        Dim filter As Boolean = ionFilter.Checked
 
         xcms_id = New String(peaks.ROIs - 1) {}
 
         For Each peak As xcms2 In peaks.peaks
             Dim row As Object() = New Object(groups.Length) {}
             Dim display As AnnotatedIon = annotation.TryGetValue(peak.ID)
+            Dim checked As Boolean = True
 
             If display Is Nothing Then
                 row(0) = peak.ID
+
+                If filter Then
+                    checked = False
+                End If
             Else
-                row(0) = $"{display.metadata.CommonName}_{display.AdductIon.ToString}"
+                row(0) = $"{display.metadata.CommonName}_{display.AdductIon.ToString}@{(peak.rt / 60).ToString("F1")}min"
             End If
 
             mapping(row(0)) = peak.ID
@@ -144,7 +150,9 @@ Public Class frmMetabonomicsAnalysis
                 row(i + 1) = data.Average
             Next
 
-            table.Rows.Add(row)
+            If checked Then
+                Call table.Rows.Add(row)
+            End If
         Next
     End Sub
 
@@ -412,7 +420,17 @@ Public Class frmMetabonomicsAnalysis
     End Function
 
     Private Function plotExpression(name As String, exp As Dictionary(Of String, (color As String, Double()))) As Image
-        Dim json As String = ggplotVisual.encodeJSON(exp)
+        Dim expVisual As New Dictionary(Of String, (color As String, Double()))(exp)
+
+        If groupsVisual IsNot Nothing AndAlso groupsVisual.Count > 0 Then
+            For Each key As String In expVisual.Keys.ToArray
+                If Not key Like groupsVisual Then
+                    Call expVisual.Remove(key)
+                End If
+            Next
+        End If
+
+        Dim json As String = ggplotVisual.encodeJSON(expVisual)
         Dim plotType As String
 
         If BarPlotToolStripMenuItem.Checked Then
@@ -478,6 +496,9 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Dim expression_name As String
+    ''' <summary>
+    ''' expression of current selected ion, key is the group name inside the sampleinfo
+    ''' </summary>
     Dim expression As Dictionary(Of String, (color As String, Double()))
 
     Shared ReadOnly runPCA_evt As New RibbonEventBinding(ribbonItems.ButtonPCA)
@@ -496,6 +517,10 @@ Public Class frmMetabonomicsAnalysis
     Shared ReadOnly openMetabolitesFile As New RibbonEventBinding(ribbonItems.ButtonImportsLCAnnotationFromFile)
     Shared ReadOnly openMetabolitesTable As New RibbonEventBinding(ribbonItems.ButtonImportsLCAnnotationFromTable)
     Shared ReadOnly export_matrix_evt As New RibbonEventBinding(ribbonItems.ButtonExportMatrix2)
+
+    Shared ReadOnly massFilter As New RibbonEventBinding(ribbonItems.ButtonLCMSMetabolite)
+    Shared ReadOnly ionFilter As New ToggleEventBinding(ribbonItems.ButtonLCMSFilterIons)
+    Shared ReadOnly setGroups As New RibbonEventBinding(ribbonItems.ButtonLCMSViewGroups)
 
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
@@ -619,6 +644,21 @@ Public Class frmMetabonomicsAnalysis
         view3DPage_evt.evt = Sub() Call view3DScatterInSinglePage()
 
         export_matrix_evt.evt = Sub() Call exportMatrixExcelFile()
+        massFilter.evt = Sub() Call MassSearch()
+        ionFilter.evt = Sub() Call loadPeaktable()
+        setGroups.evt = Sub() Call SetGroupsVisual()
+    End Sub
+
+    Dim groupsVisual As Index(Of String)
+
+    Private Sub SetGroupsVisual()
+        Dim cfg As New InputSetGroupVisual
+
+        Call cfg.SetGroupLabels(sampleinfo.SafeQuery.Select(Function(si) si.sample_info).Distinct)
+        Call InputDialog.Input(
+            Sub(groups)
+                groupsVisual = groups.GetGroupNames.Indexing
+            End Sub, config:=cfg)
     End Sub
 
     Private Sub importsMetaboliteTable()
@@ -636,6 +676,48 @@ Public Class frmMetabonomicsAnalysis
                      Call importsMetaboliteCommon(df)
                  End If
              End Sub)
+    End Sub
+
+    Private Sub MassSearch()
+        Dim selector As New InputPubChemProxy
+
+        Call selector.SetIonMassFilter()
+        Call InputDialog.Input(Of InputPubChemProxy)(
+            Sub(cfg)
+                Dim metadata = cfg.GetAnnotation
+                Dim mzdiff = cfg.GetTolerance
+                Dim ionMode As IonModes = cfg.IonMode
+                Dim adducts As MzCalculator()
+
+                If ionMode = IonModes.Positive Then
+                    adducts = Provider.Positives
+                Else
+                    adducts = Provider.Negatives
+                End If
+
+                Call annotation.Clear()
+
+                For Each type As MzCalculator In adducts
+                    Dim mzi As Double = type.CalcMZ(FormulaScanner.EvaluateExactMass(metadata.formula))
+                    Dim peakMatches = peaks _
+                        .FilterMz(mzi, 0.005) _
+                        .ToArray
+
+                    For Each peak As xcms2 In peakMatches
+                        annotation(peak.ID) = New AnnotatedIon With {
+                            .AdductIon = New AdductIon(type),
+                            .metadata = New MetaboliteAnnotation With {
+                                .CommonName = metadata.name,
+                                .Formula = metadata.formula,
+                                .ExactMass = FormulaScanner.EvaluateExactMass(.Formula),
+                                .Id = $"{ .CommonName}_{type.ToString}@{(peak.rt / 60).ToString("F1")}min"
+                            }
+                        }
+                    Next
+                Next
+
+                Call loadPeaktable()
+            End Sub, config:=selector)
     End Sub
 
     Private Sub importsMetaboliteCommon(df As DataFrame)
@@ -732,6 +814,9 @@ Public Class frmMetabonomicsAnalysis
 
         viewPeaktable_evt.evt = Nothing
         export_matrix_evt.evt = Nothing
+        massFilter.evt = Nothing
+        ionFilter.evt = Nothing
+        setGroups.evt = Nothing
 
         openMetabolitesFile.evt = Nothing
         openMetabolitesTable.evt = Nothing

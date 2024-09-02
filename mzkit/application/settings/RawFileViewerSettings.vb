@@ -74,7 +74,7 @@ Namespace Configuration
         ''' ppm error for extract xic data
         ''' </summary>
         ''' <returns></returns>
-        Public Property XIC_ppm As Double = 20
+        Public Property XIC_da As Double = 0.05
         ''' <summary>
         ''' ppm error for do m/z matches
         ''' </summary>

@@ -65,7 +65,7 @@ Public Class RawFileViewer : Implements ISaveSettings, IPageSettings
             Globals.Settings.viewer = New RawFileViewerSettings
         End If
 
-        NumericUpDown1.Value = Globals.Settings.viewer.XIC_ppm
+        NumericUpDown1.Value = Globals.Settings.viewer.XIC_da
 
         If Globals.Settings.viewer.method = TrimmingMethods.RelativeIntensity Then
             NumericUpDown2.Value = Globals.Settings.viewer.intoCutoff
@@ -77,7 +77,7 @@ Public Class RawFileViewer : Implements ISaveSettings, IPageSettings
     End Sub
 
     Public Sub SaveSettings() Implements ISaveSettings.SaveSettings
-        Globals.Settings.viewer.XIC_ppm = Val(NumericUpDown1.Value)
+        Globals.Settings.viewer.XIC_da = Val(NumericUpDown1.Value)
         Globals.Settings.viewer.method = ComboBox1.SelectedIndex
 
         If Globals.Settings.viewer.method = TrimmingMethods.RelativeIntensity Then

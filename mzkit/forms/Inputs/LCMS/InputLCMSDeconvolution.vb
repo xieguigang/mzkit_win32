@@ -28,9 +28,25 @@ Public Class InputLCMSDeconvolution
     End Property
 
     Public ReadOnly Property files As String()
+        Get
+            Dim list As New List(Of String)
+
+            For i As Integer = 0 To ListView1.Items.Count - 1
+                Dim row = ListView1.Items(i)
+
+                If row.Checked Then
+                    Call list.Add(row.Tag)
+                End If
+            Next
+
+            Return list.ToArray
+        End Get
+    End Property
 
     Public ReadOnly Property input_raw As String
         Get
+            Dim files = Me.files
+
             If files.Length = 1 Then
                 Return files(0)
             Else
@@ -42,10 +58,12 @@ Public Class InputLCMSDeconvolution
     End Property
 
     Public Sub SetFiles(files As IEnumerable(Of String))
-        _files = files.SafeQuery.Select(Function(path) path.GetFullPath).ToArray
+        files = files.SafeQuery.Select(Function(path) path.GetFullPath).ToArray
 
         For Each file As String In files
             Dim row = ListView1.Items.Add(file.FileName)
+            row.Tag = file
+            row.Checked = True
             row.SubItems.Add(StringFormats.Lanudry(bytes:=file.FileLength))
         Next
     End Sub
@@ -71,6 +89,9 @@ Public Class InputLCMSDeconvolution
             MessageBox.Show("The min rt window size should not be greater than the max rt window size!", "Invalid rt window", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Return
         End If
+        If files.IsNullOrEmpty Then
+            MessageBox.Show("No rawdata files was selected for the deconvolution.", "No rawdata files", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        End If
 
         Me.DialogResult = DialogResult.OK
     End Sub
@@ -81,5 +102,9 @@ Public Class InputLCMSDeconvolution
                 TextBox1.Text = file.FileName
             End If
         End Using
+    End Sub
+
+    Private Sub ListView1_ItemChecked(sender As Object, e As ItemCheckedEventArgs) Handles ListView1.ItemChecked
+
     End Sub
 End Class

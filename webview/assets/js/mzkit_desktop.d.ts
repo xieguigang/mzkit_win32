@@ -301,7 +301,7 @@ declare namespace apps.systems {
         "remember_location": boolean;
         "remember_layout": boolean;
         "language": 0 | 1 | 2;
-        "xic_ppm": number;
+        "xic_da": number;
         "fragment_cutoff": "relative" | "quantile";
         "fragment_cutoff_value": number;
         "colorset": string[];
@@ -338,6 +338,7 @@ declare namespace apps.systems {
         get appName(): string;
         static mzkit_configs: mzkit_configs;
         protected init(): void;
+        private load_settings_json;
         remember_location_onchange(value: string | string[]): void;
         remember_layout_onchange(value: string | string[]): void;
         language_onchange(value: string | string[]): void;

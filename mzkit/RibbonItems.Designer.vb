@@ -61,7 +61,7 @@ Namespace RibbonLib.Controls
             Public Const cmdTabDesign As UInteger = 1032
             Public Const cmdGroupDesign As UInteger = 1036
             Public Const cmdPPMSpinner As UInteger = 1050
-            Public Const cmdXIC_PPMSpinner As UInteger = 156
+            Public Const cmdXIC_DaSpinner As UInteger = 156
             Public Const cmdGroupShowViewer As UInteger = 1110
             Public Const cmdButtonShowPlotViewer As UInteger = 1111
             Public Const cmdButtonShowMatrixViewer As UInteger = 1112
@@ -247,6 +247,7 @@ Namespace RibbonLib.Controls
             Public Const cmdDropDownViewInSinglePage As UInteger = 293
             Public Const cmdButtonViewAnalysis3DScatter As UInteger = 285
             Public Const cmdButtonViewScatter3dInSinglePage As UInteger = 292
+            Public Const cmdButtonLCMSViewGroups As UInteger = 323
             Public Const cmdTableSampleData As UInteger = 288
             Public Const cmdButtonViewSampleInfo As UInteger = 284
             Public Const cmdButtonViewPeakTable As UInteger = 308
@@ -254,6 +255,9 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonImportsLCAnnotation2 As UInteger = 291
             Public Const cmdButtonImportsLCAnnotationFromFile As UInteger = 290
             Public Const cmdButtonImportsLCAnnotationFromTable As UInteger = 289
+            Public Const cmdPanelLCMSAnalysis As UInteger = 320
+            Public Const cmdButtonLCMSMetabolite As UInteger = 321
+            Public Const cmdButtonLCMSFilterIons As UInteger = 322
             Public Const cmdMenuGroupGCxGC As UInteger = 6
             Public Const cmdPanelGCxGC As UInteger = 7
             Public Const cmdGroupGCxGC As UInteger = 282
@@ -609,10 +613,13 @@ Namespace RibbonLib.Controls
                 Return _PPMSpinner
             End Get
         End Property
-        Private _XIC_PPMSpinner As RibbonSpinner
-        Public ReadOnly Property XIC_PPMSpinner As RibbonSpinner
+        Private _XIC_DaSpinner As RibbonSpinner
+        ''' <summary>
+        ''' Ion mz mass tolerance error for extract XIC data
+        ''' </summary>
+        Public ReadOnly Property XIC_DaSpinner As RibbonSpinner
             Get
-                Return _XIC_PPMSpinner
+                Return _XIC_DaSpinner
             End Get
         End Property
         Private _GroupShowViewer As RibbonGroup
@@ -778,6 +785,9 @@ Namespace RibbonLib.Controls
             End Get
         End Property
         Private _ButtonXIC As RibbonButton
+        ''' <summary>
+        ''' Selective Ion Chromatography Data Plot
+        ''' </summary>
         Public ReadOnly Property ButtonXIC As RibbonButton
             Get
                 Return _ButtonXIC
@@ -1734,6 +1744,15 @@ Namespace RibbonLib.Controls
                 Return _ButtonViewScatter3dInSinglePage
             End Get
         End Property
+        Private _ButtonLCMSViewGroups As RibbonButton
+        ''' <summary>
+        ''' View groups comparison visualization
+        ''' </summary>
+        Public ReadOnly Property ButtonLCMSViewGroups As RibbonButton
+            Get
+                Return _ButtonLCMSViewGroups
+            End Get
+        End Property
         Private _TableSampleData As RibbonGroup
         Public ReadOnly Property TableSampleData As RibbonGroup
             Get
@@ -1774,6 +1793,33 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonImportsLCAnnotationFromTable As RibbonButton
             Get
                 Return _ButtonImportsLCAnnotationFromTable
+            End Get
+        End Property
+        Private _PanelLCMSAnalysis As RibbonGroup
+        ''' <summary>
+        ''' Analysis
+        ''' </summary>
+        Public ReadOnly Property PanelLCMSAnalysis As RibbonGroup
+            Get
+                Return _PanelLCMSAnalysis
+            End Get
+        End Property
+        Private _ButtonLCMSMetabolite As RibbonButton
+        ''' <summary>
+        ''' Metabolite Mass Filter
+        ''' </summary>
+        Public ReadOnly Property ButtonLCMSMetabolite As RibbonButton
+            Get
+                Return _ButtonLCMSMetabolite
+            End Get
+        End Property
+        Private _ButtonLCMSFilterIons As RibbonToggleButton
+        ''' <summary>
+        ''' Only show the ion features that has metabolite annotation.
+        ''' </summary>
+        Public ReadOnly Property ButtonLCMSFilterIons As RibbonToggleButton
+            Get
+                Return _ButtonLCMSFilterIons
             End Get
         End Property
         Private _MenuGroupGCxGC As RibbonTabGroup
@@ -2057,7 +2103,7 @@ Namespace RibbonLib.Controls
         End Property
         Private _GroupAboutActions As RibbonGroup
         ''' <summary>
-        ''' About mzkit
+        ''' About MZKit workbench
         ''' </summary>
         Public ReadOnly Property GroupAboutActions As RibbonGroup
             Get
@@ -2209,7 +2255,7 @@ Namespace RibbonLib.Controls
             _TabDesign = New RibbonTab(_ribbon, Cmd.cmdTabDesign)
             _GroupDesign = New RibbonGroup(_ribbon, Cmd.cmdGroupDesign)
             _PPMSpinner = New RibbonSpinner(_ribbon, Cmd.cmdPPMSpinner)
-            _XIC_PPMSpinner = New RibbonSpinner(_ribbon, Cmd.cmdXIC_PPMSpinner)
+            _XIC_DaSpinner = New RibbonSpinner(_ribbon, Cmd.cmdXIC_DaSpinner)
             _GroupShowViewer = New RibbonGroup(_ribbon, Cmd.cmdGroupShowViewer)
             _ButtonShowPlotViewer = New RibbonButton(_ribbon, Cmd.cmdButtonShowPlotViewer)
             _ButtonShowMatrixViewer = New RibbonButton(_ribbon, Cmd.cmdButtonShowMatrixViewer)
@@ -2395,6 +2441,7 @@ Namespace RibbonLib.Controls
             _DropDownViewInSinglePage = New RibbonSplitButton(_ribbon, Cmd.cmdDropDownViewInSinglePage)
             _ButtonViewAnalysis3DScatter = New RibbonButton(_ribbon, Cmd.cmdButtonViewAnalysis3DScatter)
             _ButtonViewScatter3dInSinglePage = New RibbonButton(_ribbon, Cmd.cmdButtonViewScatter3dInSinglePage)
+            _ButtonLCMSViewGroups = New RibbonButton(_ribbon, Cmd.cmdButtonLCMSViewGroups)
             _TableSampleData = New RibbonGroup(_ribbon, Cmd.cmdTableSampleData)
             _ButtonViewSampleInfo = New RibbonButton(_ribbon, Cmd.cmdButtonViewSampleInfo)
             _ButtonViewPeakTable = New RibbonButton(_ribbon, Cmd.cmdButtonViewPeakTable)
@@ -2402,6 +2449,9 @@ Namespace RibbonLib.Controls
             _ButtonImportsLCAnnotation2 = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCAnnotation2)
             _ButtonImportsLCAnnotationFromFile = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCAnnotationFromFile)
             _ButtonImportsLCAnnotationFromTable = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCAnnotationFromTable)
+            _PanelLCMSAnalysis = New RibbonGroup(_ribbon, Cmd.cmdPanelLCMSAnalysis)
+            _ButtonLCMSMetabolite = New RibbonButton(_ribbon, Cmd.cmdButtonLCMSMetabolite)
+            _ButtonLCMSFilterIons = New RibbonToggleButton(_ribbon, Cmd.cmdButtonLCMSFilterIons)
             _MenuGroupGCxGC = New RibbonTabGroup(_ribbon, Cmd.cmdMenuGroupGCxGC)
             _PanelGCxGC = New RibbonTab(_ribbon, Cmd.cmdPanelGCxGC)
             _GroupGCxGC = New RibbonGroup(_ribbon, Cmd.cmdGroupGCxGC)

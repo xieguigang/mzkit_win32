@@ -145,7 +145,8 @@ Namespace My
                                        Optional xlab$ = "X",
                                        Optional ylab$ = "Y",
                                        Optional colorSet As String = Nothing,
-                                       Optional legendTitle As String = Nothing)
+                                       Optional legendTitle As String = Nothing,
+                                       Optional fill_curve As Boolean = True)
 
             Dim margin As Padding = padding
 
@@ -161,6 +162,7 @@ Namespace My
 
                 .show_legend = showLegend
                 .show_grid = showGrid
+                .fill_curve = fill_curve
 
                 .padding_top = margin.Top
                 .padding_right = margin.Right

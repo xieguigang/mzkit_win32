@@ -1,5 +1,6 @@
 ﻿Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
@@ -199,5 +200,27 @@ Public Class InputPubChemProxy
                                    Call doSearchBioDeep(Strings.Trim(TextBox1.Text))
                                End Sub)
                        End Sub)
+    End Sub
+
+    Public ReadOnly Property IonMode As IonModes
+        Get
+            If CheckBox1.Checked Then
+                Return IonModes.Positive
+            Else
+                Return IonModes.Negative
+            End If
+        End Get
+    End Property
+
+    Public Sub SetIonMassFilter()
+        GroupBox3.Visible = True
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        CheckBox2.Checked = Not CheckBox1.Checked
+    End Sub
+
+    Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
+        CheckBox1.Checked = Not CheckBox2.Checked
     End Sub
 End Class

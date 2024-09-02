@@ -246,7 +246,7 @@ var apps;
                     uniforms: uniforms,
                     vertexShader: shader.vertexShader,
                     fragmentShader: shader.fragmentShader,
-                    side: THREE.DoubleSide, // The volume shader uses the backface as its "reference point"
+                    side: THREE.DoubleSide,
                     // ***** Clipping setup (material): *****
                     clippingPlanes: this.planes,
                     clipShadows: true,
@@ -381,9 +381,9 @@ var gl_plot;
             var _this = this;
             return {
                 type: 'bar3D',
-                shading: 'color', // color, lambert, realistic
+                shading: 'color',
                 barSize: 0.1,
-                name: "Intensity ".concat(label), // format_tag(r),
+                name: "Intensity ".concat(label),
                 spot_labels: $from(data).Select(function (r) { return _this.read_id(r); }).ToArray(),
                 symbolSize: 1,
                 dimensions: [
@@ -450,15 +450,15 @@ var gl_plot;
                     viewControl: {
                         distance: 200,
                         beta: -20,
-                        panMouseButton: 'right', //平移操作使用的鼠标按键
-                        rotateMouseButton: 'left', //旋转操作使用的鼠标按键
+                        panMouseButton: 'right',
+                        rotateMouseButton: 'left',
                         alpha: 30 // 让canvas在x轴有一定的倾斜角度
                     },
                     postEffect: {
                         enable: false,
                         SSAO: {
-                            radius: 1, //环境光遮蔽的采样半径。半径越大效果越自然
-                            intensity: 1, //环境光遮蔽的强度
+                            radius: 1,
+                            intensity: 1,
                             enable: false
                         }
                     },
@@ -491,17 +491,17 @@ var gl_plot;
                 },
                 series: scatter3D,
                 tooltip: {
-                    show: true, // 是否显示
-                    trigger: 'item', // 触发类型  'item'图形触发：散点图，饼图等无类目轴的图表中使用； 'axis'坐标轴触发；'none'：什么都不触发。
+                    show: true,
+                    trigger: 'item',
                     axisPointer: {
                         type: 'cross', // 'line' 直线指示器  'shadow' 阴影指示器  'none' 无指示器  'cross' 十字准星指示器。
                     },
                     // showContent: true, //是否显示提示框浮层，默认显示。
                     // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
-                    backgroundColor: 'white', // 提示框浮层的背景颜色。
-                    borderColor: '#333', // 提示框浮层的边框颜色。
-                    borderWidth: 0, // 提示框浮层的边框宽。
-                    padding: 5, // 提示框浮层内边距，
+                    backgroundColor: 'white',
+                    borderColor: '#333',
+                    borderWidth: 0,
+                    padding: 5,
                     textStyle: {
                         color: 'darkblue',
                         fontStyle: 'normal',
@@ -1245,34 +1245,40 @@ var apps;
                 app.desktop.mzkit.loadSettings()
                     .then(function (json) {
                     return __awaiter(this, void 0, void 0, function () {
-                        var json_str, settings, configs;
+                        var json_str;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, json];
                                 case 1:
                                     json_str = _a.sent();
-                                    settings = JSON.parse(json_str) || {};
-                                    configs = apps.systems.settings.defaultSettings();
-                                    console.log("get mzkit configurations:");
-                                    console.log(settings);
-                                    // deal with the possible null reference value
-                                    settings.precursor_search = settings.precursor_search || {};
-                                    settings.ui = settings.ui || {};
-                                    settings.viewer = settings.viewer || {};
-                                    // make data object conversion
-                                    configs.formula_ppm = settings.precursor_search.ppm || 5;
-                                    configs.formula_adducts = settings.precursor_search.precursor_types || [];
-                                    configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
-                                    configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
-                                    configs.language = settings.ui.language || 2;
-                                    configs.colorset = settings.viewer.colorSet || [];
-                                    configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
-                                    vm.loadConfigs(configs);
+                                    console.log("view of the default config json:");
+                                    console.log(json_str);
+                                    vm.load_settings_json(json_str);
                                     return [2 /*return*/];
                             }
                         });
                     });
                 });
+            };
+            settings.prototype.load_settings_json = function (json_str) {
+                var settings = JSON.parse(json_str) || {};
+                var configs = apps.systems.settings.defaultSettings();
+                console.log("get mzkit configurations:");
+                console.log(settings);
+                // deal with the possible null reference value
+                settings.precursor_search = settings.precursor_search || {};
+                settings.ui = settings.ui || {};
+                settings.viewer = settings.viewer || {};
+                // make data object conversion
+                configs.formula_ppm = settings.precursor_search.ppm || 5;
+                configs.formula_adducts = settings.precursor_search.precursor_types || [];
+                configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
+                configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
+                configs.language = settings.ui.language || 2;
+                configs.colorset = settings.viewer.colorSet || [];
+                configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
+                configs.xic_da = settings.xic_da;
+                this.loadConfigs(configs);
             };
             settings.prototype.remember_location_onchange = function (value) {
                 settings.mzkit_configs.remember_location = (Array.isArray(value) ? value[0] : value);
@@ -1335,7 +1341,7 @@ var apps;
                     "remember_layout": true,
                     "language": 2,
                     // raw file viewer
-                    "xic_ppm": 10,
+                    "xic_da": 0.05,
                     "fragment_cutoff": "relative",
                     "fragment_cutoff_value": 0.05,
                     // chromagram plot
@@ -1403,7 +1409,7 @@ var apps;
                 var bootstrap = settings.getElementProfileTable();
                 var tableOptions = {
                     columns: systems.element_columns,
-                    editable: true, //editable需要设置为 true
+                    editable: true,
                     striped: true,
                     clickToSelect: true
                 };
@@ -1732,17 +1738,17 @@ var apps;
                     zAxis3D: { type: 'value', name: 'z' },
                     series: scatter3D,
                     tooltip: {
-                        show: true, // 是否显示
-                        trigger: 'item', // 触发类型  'item'图形触发：散点图，饼图等无类目轴的图表中使用； 'axis'坐标轴触发；'none'：什么都不触发。
+                        show: true,
+                        trigger: 'item',
                         axisPointer: {
                             type: 'cross', // 'line' 直线指示器  'shadow' 阴影指示器  'none' 无指示器  'cross' 十字准星指示器。
                         },
                         // showContent: true, //是否显示提示框浮层，默认显示。
                         // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
-                        backgroundColor: 'white', // 提示框浮层的背景颜色。
-                        borderColor: '#333', // 提示框浮层的边框颜色。
-                        borderWidth: 0, // 提示框浮层的边框宽。
-                        padding: 5, // 提示框浮层内边距，
+                        backgroundColor: 'white',
+                        borderColor: '#333',
+                        borderWidth: 0,
+                        padding: 5,
                         textStyle: {
                             color: 'skyblue',
                             fontStyle: 'normal',

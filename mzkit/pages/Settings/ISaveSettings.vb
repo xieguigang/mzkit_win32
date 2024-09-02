@@ -61,6 +61,7 @@ Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
@@ -88,15 +89,23 @@ Public Class SettingsProxy
     Public host As frmSettings
 
     Public Function loadSettings() As String
-        Dim settings = Globals.Settings
-        Dim json_str As String = settings.GetJson
+        Dim settings As Settings = Globals.Settings
+        Dim json As JsonObject = JSONSerializer.CreateJSONElement(Of Settings)(settings)
+
+        If settings.viewer Is Nothing Then
+            settings.viewer = New RawFileViewerSettings
+        End If
+
+        json.Add("xic_da", settings.viewer.XIC_da)
+
+        Dim json_str As String = json.BuildJsonString
 
         Return json_str
     End Function
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Function getProfile(name As String) As String
-        Return ElementProfile.loadPresetProfile(FormulaSearchProfile.GetProfile(name)).GetJson
+        Return ElementProfile.loadPresetProfile(FormulaSearchProfile.GetProfile(name)).GetJson(enumToStr:=True)
     End Function
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
@@ -105,12 +114,12 @@ Public Class SettingsProxy
             .JoinIterates(Provider.Negatives) _
             .Select(Function(a) a.ToString) _
             .ToArray _
-            .GetJson
+            .GetJson(enumToStr:=True)
     End Function
 
     Public Async Function GetColors(name As String) As Task(Of String)
         Dim colors As String() = Await Task(Of String()).Run(Function() PlotConfig.GetColors(name))
-        Dim json As String = colors.GetJson
+        Dim json As String = colors.GetJson(enumToStr:=True)
         Return json
     End Function
 
@@ -137,6 +146,7 @@ Public Class SettingsProxy
 
         settings.viewer.fill = DirectCast(json("fill_plot_area"), JsonValue)
         settings.viewer.colorSet = DirectCast(json!colorset, JsonArray)
+        settings.viewer.XIC_da = DirectCast(json!xic_da, JsonValue)
 
         Call settings.Save()
         Call Workbench.SuccessMessage("New settings value applied and saved!")
