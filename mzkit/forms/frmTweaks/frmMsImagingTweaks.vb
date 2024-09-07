@@ -60,6 +60,7 @@
 #End Region
 
 Imports System.IO
+Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
@@ -725,6 +726,10 @@ UseCheckedList:
         Call folder.Nodes.Clear()
 
         For i As Integer = 0 To mz.Length - 1
+            If mz(i) <= 0.0 Then
+                Continue For
+            End If
+
             Dim label As String = $"{labels(i)} [m/z {mz(i).ToString("F4")}]"
             Dim node = folder.Nodes.Add(label)
 
@@ -958,11 +963,22 @@ UseCheckedList:
             Return ionSet
         End Function
 
-        Public Sub getPeaks(p As ITaskProgress)
+        Private Async Function BootstrapExpression(region As TissueRegion,
+                                                   dims As Size,
+                                                   target As Dictionary(Of String, Double)) As Task(Of Dictionary(Of String, Double()))
+
+            Dim poly = region.GetPolygons.ToArray
+
+            Return Await Task(Of Dictionary(Of String, Double())).Run(
+                Function()
+                    Return host.viewer.MSIservice.SpatialBootstrapping(poly, dims, target, mzdiff, nsamples, cov)
+                End Function)
+        End Function
+
+        Private Async Function BootstrapPeaks(p As ITaskProgress, target As Dictionary(Of String, Double)) As Task(Of Dictionary(Of String, Dictionary(Of String, Double())))
             Dim errMsg As String = Nothing
-            Dim target As Dictionary(Of String, Double) = CreateIonSet()
-            Dim dims As Size
             Dim expr As New Dictionary(Of String, Dictionary(Of String, Double()))
+            Dim dims As Size = host.viewer.params.GetMSIDimension
 
             For Each region As TissueRegion In regions
                 Dim regionId As String = region.label
@@ -973,8 +989,7 @@ UseCheckedList:
 
                 Call p.SetInfo($"processing tissue region: {regionId}({region.color.ToHtmlColor})")
 
-                Dim poly = region.GetPolygons.ToArray
-                Dim expression = host.viewer.MSIservice.SpatialBootstrapping(poly, dims, target, mzdiff, nsamples, cov)
+                Dim expression = Await BootstrapExpression(region, dims, target)
 
                 If expression Is Nothing Then
                     Call Workbench.Warning($"No ion layer expression data for ${regionId}, this tissue region feature will be omit: {errMsg}")
@@ -983,6 +998,26 @@ UseCheckedList:
 
                 Call expr.Add(regionId, expression)
             Next
+
+            Return expr
+        End Function
+
+        Public Sub getPeaks(p As ITaskProgress)
+            Dim async = getPeaksAsync(p)
+
+            For i As Integer = 0 To Integer.MaxValue - 1
+                If async.IsCompleted Then
+                    Exit For
+                End If
+
+                Call Thread.Sleep(100)
+                Call Application.DoEvents()
+            Next
+        End Sub
+
+        Public Async Function getPeaksAsync(p As ITaskProgress) As Threading.Tasks.Task(Of Boolean)
+            Dim target As Dictionary(Of String, Double) = CreateIonSet()
+            Dim expr As Dictionary(Of String, Dictionary(Of String, Double())) = Await BootstrapPeaks(p, target)
 
             Call p.SetInfo($"Build expression peaktable for all selected feature ions!")
 
@@ -1003,6 +1038,8 @@ UseCheckedList:
                 Call peaks.Add(peak)
                 Call p.SetInfo($"Build expression peaktable for selected feature ion: {ion.Key} ({ion.Value})")
             Next
-        End Sub
+
+            Return True
+        End Function
     End Class
 End Class
