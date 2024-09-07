@@ -146,6 +146,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormXicViewer.Designer.vb">
+      <DependentUpon>FormXicViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormXicViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSelectTable.Designer.vb">
       <DependentUpon>FormSelectTable.vb</DependentUpon>
     </Compile>
@@ -184,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormViewer.resx">
       <DependentUpon>FormViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormXicViewer.resx">
+      <DependentUpon>FormXicViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -249,6 +258,10 @@
     <ProjectReference Include="..\..\BasicMDIForm\BasicMDIForm.vbproj">
       <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
       <Name>BasicMDIForm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\LCMSViewer\LCMSViewer.vbproj">
+      <Project>{72e288a5-18c4-43ec-95bf-d0f57f93ca92}</Project>
+      <Name>LCMSViewer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

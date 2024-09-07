@@ -768,6 +768,9 @@ var apps;
 (function (apps) {
     var biodeep;
     (function (biodeep) {
+        /**
+         * Helper module code for view the biodeep annotation workflow result
+        */
         var reportViewer = /** @class */ (function (_super) {
             __extends(reportViewer, _super);
             function reportViewer() {
@@ -815,6 +818,22 @@ var apps;
                                     sample = a.getAttribute("data_sample");
                                     biodeep_id = a.getAttribute("biodeep_id");
                                     return [4 /*yield*/, app.desktop.mzkit.ViewSpectral(xcms_id, sample, biodeep_id)];
+                                case 1:
+                                    _a.sent();
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+                $ts.select(".ROI").onClick(function (a) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var mz, rt;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    mz = parseFloat(a.getAttribute("mz"));
+                                    rt = parseFloat(a.getAttribute("rt"));
+                                    return [4 /*yield*/, app.desktop.mzkit.ShowROIGroups(mz, rt)];
                                 case 1:
                                     _a.sent();
                                     return [2 /*return*/];

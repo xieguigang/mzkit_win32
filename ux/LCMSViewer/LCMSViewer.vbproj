@@ -176,6 +176,12 @@
     <Compile Include="SpectrumViewer.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ROIGroupViewer.Designer.vb">
+      <DependentUpon>ROIGroupViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ROIGroupViewer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="XICFeatureViewer.Designer.vb">
       <DependentUpon>XICFeatureViewer.vb</DependentUpon>
     </Compile>
@@ -219,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SpectrumViewer.resx">
       <DependentUpon>SpectrumViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ROIGroupViewer.resx">
+      <DependentUpon>ROIGroupViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XICFeatureViewer.resx">
       <DependentUpon>XICFeatureViewer.vb</DependentUpon>

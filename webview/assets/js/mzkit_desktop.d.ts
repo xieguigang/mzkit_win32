@@ -90,6 +90,7 @@ declare namespace app.desktop {
         ShowSpectral(data_id: string): Promise<boolean>;
         AlignSpectral(data_id: string): Promise<boolean>;
         FindExactMass(mass: number): Promise<boolean>;
+        ShowROIGroups(mz: number, rt: number): boolean;
         ShowXic(data_id: string): Promise<boolean>;
         ShowLcmsScatter(sample_name: string): Promise<boolean>;
         ViewSpectral(xcms_id: string, sample: string, db_xref: string): Promise<boolean>;
@@ -196,6 +197,9 @@ declare namespace apps {
     }
 }
 declare namespace apps.biodeep {
+    /**
+     * Helper module code for view the biodeep annotation workflow result
+    */
     class reportViewer extends Bootstrap {
         get appName(): string;
         protected init(): void;

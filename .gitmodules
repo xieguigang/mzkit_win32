@@ -4,3 +4,6 @@
 [submodule "services/dzitools"]
 	path = services/dzitools
 	url = https://github.com/xieguigang/dzitools.git
+[submodule "ux/Canvas"]
+	path = ux/Canvas
+	url = https://github.com/xieguigang/mzkit_canvas.git

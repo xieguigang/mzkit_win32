@@ -1,5 +1,8 @@
 namespace apps.biodeep {
 
+    /**
+     * Helper module code for view the biodeep annotation workflow result
+    */
     export class reportViewer extends Bootstrap {
 
         get appName(): string {
@@ -19,6 +22,12 @@ namespace apps.biodeep {
                 let biodeep_id = a.getAttribute("biodeep_id");
 
                 await app.desktop.mzkit.ViewSpectral(xcms_id, sample, biodeep_id);
+            });
+            $ts.select(".ROI").onClick(async function (a) {
+                let mz = parseFloat(a.getAttribute("mz"));
+                let rt = parseFloat(a.getAttribute("rt"));
+
+                await app.desktop.mzkit.ShowROIGroups(mz, rt);
             });
         }
     }
