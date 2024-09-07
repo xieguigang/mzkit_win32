@@ -965,17 +965,23 @@ UseCheckedList:
             Dim expr As New Dictionary(Of String, Dictionary(Of String, Double()))
 
             For Each region As TissueRegion In regions
-                Call p.SetInfo($"processing tissue region: {region.label}({region.color.ToHtmlColor})")
+                Dim regionId As String = region.label
+
+                If regionId.IsPattern("\d+") Then
+                    regionId = $"region_{regionId}"
+                End If
+
+                Call p.SetInfo($"processing tissue region: {regionId}({region.color.ToHtmlColor})")
 
                 Dim poly = region.GetPolygons.ToArray
                 Dim expression = host.viewer.MSIservice.SpatialBootstrapping(poly, dims, target, mzdiff, nsamples, cov)
 
                 If expression Is Nothing Then
-                    Call Workbench.Warning($"No ion layer expression data for ${region.label}, this tissue region feature will be omit: {errMsg}")
+                    Call Workbench.Warning($"No ion layer expression data for ${regionId}, this tissue region feature will be omit: {errMsg}")
                     Continue For
                 End If
 
-                Call expr.Add(region.label, expression)
+                Call expr.Add(regionId, expression)
             Next
 
             Call p.SetInfo($"Build expression peaktable for all selected feature ions!")
