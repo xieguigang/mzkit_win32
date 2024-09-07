@@ -98,20 +98,23 @@ Public Class MSIRegionSampleWindow
             card.SampleInfo = region.label
             card.Width = newW
 
+            AddHandler card.ExtractRegionData, AddressOf ExtractRegionSample
             AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
             AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum
             AddHandler card.SetHtmlColorCode, AddressOf SetHtmlColorCode
-            AddHandler card.StartMoveRegion,
-                Sub(ctl)
-                    Dim region_tile = canvas.AddSpatialRegion(ctl.ExportTissueRegion(dimension))
-
-                    AddHandler region_tile.ApplySave,
-                        Sub(tile)
-                            Call saveManualMoveRegionLocation(tile, region, ctl)
-                            Call canvas.Controls.Remove(tile)
-                        End Sub
-                End Sub
+            AddHandler card.StartMoveRegion, AddressOf MoveRegion
         Next
+    End Sub
+
+    Private Sub MoveRegion(ctl As RegionSampleCard)
+        Dim region = ctl.ExportTissueRegion(dimension)
+        Dim region_tile = canvas.AddSpatialRegion(region)
+
+        AddHandler region_tile.ApplySave,
+            Sub(tile)
+                Call saveManualMoveRegionLocation(tile, Region, ctl)
+                Call canvas.Controls.Remove(tile)
+            End Sub
     End Sub
 
     ''' <summary>
@@ -190,6 +193,7 @@ Public Class MSIRegionSampleWindow
         AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum
         AddHandler card.SetHtmlColorCode, AddressOf SetHtmlColorCode
         AddHandler card.ExtractRegionData, AddressOf ExtractRegionSample
+        AddHandler card.StartMoveRegion, AddressOf MoveRegion
 
         Return card
     End Function
