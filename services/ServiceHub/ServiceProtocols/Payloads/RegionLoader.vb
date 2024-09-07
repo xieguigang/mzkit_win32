@@ -136,7 +136,8 @@ Public Class RegionLoader
                         End Function) _
                 .ToArray,
             .sample_tags = sample_tags,
-            .bootstrapping = bootstrapping
+            .bootstrapping = bootstrapping,
+            .is_raster = is_raster
         }
     End Function
 
