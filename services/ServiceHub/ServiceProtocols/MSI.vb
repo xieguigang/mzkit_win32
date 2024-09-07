@@ -423,10 +423,14 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         If regions.empty Then
             Call RunSlavePipeline.SendMessage("No region data!")
             Return New DataPipe("no region data!")
-        Else
+        ElseIf Not regions.is_raster Then
+            ' check via boundary test
             allPixels = allPixels _
                 .Where(Function(i) regions.ContainsPixel(i.X, i.Y) = flag) _
                 .ToArray
+        Else
+            ' check via raster spatial query
+            Dim spatial As Grid(Of Point) = Grid(Of Point).CreateReadOnly(regions.GetTissueMap)
         End If
 
         If resize_canvas AndAlso allPixels.Length > 0 Then

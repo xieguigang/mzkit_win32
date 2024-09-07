@@ -9,6 +9,7 @@ Public Class RegionSampleCard
     Public Event ViewRegionMs1Spectrum(card As RegionSampleCard)
     Public Event SetHtmlColorCode(card As RegionSampleCard)
     Public Event StartMoveRegion(card As RegionSampleCard)
+    Public Event ExtractRegionData(card As RegionSampleCard)
 
     Public Property SampleColor As Color
         Get
@@ -151,5 +152,9 @@ Public Class RegionSampleCard
 
     Private Sub MoveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoveToolStripMenuItem.Click
         RaiseEvent StartMoveRegion(Me)
+    End Sub
+
+    Private Sub ExtractRegionSampleDataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExtractRegionSampleDataToolStripMenuItem.Click
+        RaiseEvent ExtractRegionData(Me)
     End Sub
 End Class

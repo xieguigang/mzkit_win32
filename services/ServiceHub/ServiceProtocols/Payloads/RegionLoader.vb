@@ -77,7 +77,7 @@ Public Class RegionLoader
     Public Property regions As Polygon2D()
     Public Property width As Integer
     Public Property height As Integer
-
+    Public Property is_raster As Boolean = False
     ''' <summary>
     ''' this property value should be nothing or 
     ''' size equals to the <see cref="regions"/>.

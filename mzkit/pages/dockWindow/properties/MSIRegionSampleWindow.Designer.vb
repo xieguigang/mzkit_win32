@@ -79,7 +79,7 @@ Partial Class MSIRegionSampleWindow
         '
         Me.ResetColorsToolStripMenuItem.Image = CType(resources.GetObject("ResetColorsToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ResetColorsToolStripMenuItem.Name = "ResetColorsToolStripMenuItem"
-        Me.ResetColorsToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.ResetColorsToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.ResetColorsToolStripMenuItem.Text = "Reset Colors"
         '
         'ToolStripButton6
@@ -133,10 +133,11 @@ Partial Class MSIRegionSampleWindow
         '
         'ToolStripButton1
         '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
         Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(117, 24)
+        Me.ToolStripButton1.Size = New System.Drawing.Size(24, 24)
         Me.ToolStripButton1.Text = "Save Tissue Map"
         '
         'ToolStripButton3

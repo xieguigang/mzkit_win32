@@ -189,9 +189,14 @@ Public Class MSIRegionSampleWindow
         AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
         AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum
         AddHandler card.SetHtmlColorCode, AddressOf SetHtmlColorCode
+        AddHandler card.ExtractRegionData, AddressOf ExtractRegionSample
 
         Return card
     End Function
+
+    Private Sub ExtractRegionSample(card As RegionSampleCard)
+
+    End Sub
 
     Private Sub MSIRegionSampleWindow_Load(sender As Object, e As EventArgs) Handles Me.Load
         TabText = Text
@@ -267,8 +272,13 @@ Public Class MSIRegionSampleWindow
         If tissueMaps.IsNullOrEmpty Then
             Return
         ElseIf Not LayerRender.CheckGdiSizeParameter(layerSize, spotSize) Then
-            MessageBox.Show($"the image size({layerSize.Width},{layerSize.Height}) multiply current spot size({spotSize}) will cause the image byte size greater than 2GB, which could not be holded by dotnet memory buffer. 
-the spot size for the rendering will be reduce to 1, but this gdi+ memory problem may still happends for large slide image.", "Invalid gdi+ parameters", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show($"The image size({layerSize.Width},{layerSize.Height}) multiply current spot size({spotSize}) 
+will cause the image byte size greater than 2GB, which could not be holded by dotnet memory buffer. 
+The spot size for the rendering will be reduce to 1, but this gdi+ memory problem may 
+still happends for large slide image.",
+                            "Invalid gdi+ parameters",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information)
             spotSize = 1
         End If
 
