@@ -430,7 +430,11 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                 .ToArray
         Else
             ' check via raster spatial query
-            Dim spatial As Grid(Of Point) = Grid(Of Point).CreateReadOnly(regions.GetTissueMap)
+            Dim spatial As Grid(Of Point) = Grid(Of Point).CreateReadOnly(regions.GetTissueRaster, Function(a) a)
+
+            allPixels = allPixels _
+                .Where(Function(i) spatial.Check(i.X, i.Y)) _
+                .ToArray
         End If
 
         If resize_canvas AndAlso allPixels.Length > 0 Then

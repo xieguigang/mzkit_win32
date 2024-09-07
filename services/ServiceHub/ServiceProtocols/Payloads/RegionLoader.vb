@@ -144,6 +144,10 @@ Public Class RegionLoader
         Return regions.RasterGeometry2D(New Size(width, height), label, color.TranslateColor)
     End Function
 
+    Public Function GetTissueRaster() As IEnumerable(Of Point)
+        Return regions.RasterGeometry2D(New Drawing.Size(width, height))
+    End Function
+
     Public Function ContainsPixel(x As Integer, y As Integer) As Boolean
         Return regions.Any(Function(r) r.inside(x, y))
     End Function
