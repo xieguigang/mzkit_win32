@@ -135,7 +135,8 @@ Public Class RegionLoader
                             Return New Polygon2D(r.xpoints, r.ypoints)
                         End Function) _
                 .ToArray,
-            .sample_tags = sample_tags
+            .sample_tags = sample_tags,
+            .bootstrapping = bootstrapping
         }
     End Function
 
