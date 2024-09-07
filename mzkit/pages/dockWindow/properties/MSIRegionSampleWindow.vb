@@ -209,6 +209,7 @@ Public Class MSIRegionSampleWindow
             Call Workbench.Warning("No region polygon data was found from polygon editor, draw some region polygon at first!")
             Return
         Else
+            regions = {New Polygon2D(regions)}
             canvas.ClearSelection()
 
             If Not viewer.sampleRegions Is Nothing Then

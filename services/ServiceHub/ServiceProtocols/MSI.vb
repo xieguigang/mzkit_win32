@@ -424,13 +424,20 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             Call RunSlavePipeline.SendMessage("No region data!")
             Return New DataPipe("no region data!")
         ElseIf Not regions.is_raster Then
+            Call RunSlavePipeline.SendMessage("The region data is not raster data, check via boundary test.")
+
             ' check via boundary test
             allPixels = allPixels _
                 .Where(Function(i) regions.ContainsPixel(i.X, i.Y) = flag) _
                 .ToArray
         Else
             ' check via raster spatial query
-            Dim spatial As Grid(Of Point) = Grid(Of Point).CreateReadOnly(regions.GetTissueRaster, Function(a) a)
+            Dim inputRaster = regions.GetTissueRaster.ToArray
+            Dim spatial As Grid(Of Point) = Grid(Of Point).CreateReadOnly(inputRaster, Function(a) a)
+
+            Call RunSlavePipeline.SendMessage("Check the region spot via the raster data query")
+            Call RunSlavePipeline.SendMessage($"total spots inside spatial graph for query: {spatial.size}")
+            Call RunSlavePipeline.SendMessage($"given raster data from the region input: {inputRaster.Length}")
 
             allPixels = allPixels _
                 .Where(Function(i) spatial.Check(i.X, i.Y)) _
