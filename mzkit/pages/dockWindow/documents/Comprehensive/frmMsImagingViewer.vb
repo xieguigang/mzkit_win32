@@ -2110,7 +2110,10 @@ Public Class frmMsImagingViewer
             Return -1
         End If
 
-        Call Me.Invoke(Sub() LoadRender(info, FilePath))
+        ' the new dataset is a in-memory dataset
+        ' set the filepath to null
+        ' so the file path will not check success, make the data source consist
+        Call Me.Invoke(Sub() LoadRender(info, "null"))
         Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
 
         Return 0
@@ -2152,7 +2155,10 @@ Public Class frmMsImagingViewer
     ''' <summary>
     ''' set parameters and initialize of the UI
     ''' </summary>
-    ''' <param name="filePath"></param>
+    ''' <param name="filePath">could be nothing</param>
+    ''' <remarks>
+    ''' the <paramref name="filePath"/> parameter just used for set the <see cref="FilePath"/> data.
+    ''' </remarks>
     Public Sub LoadRender(info As MsImageProperty, filePath As String)
         If info Is Nothing Then
             Return
