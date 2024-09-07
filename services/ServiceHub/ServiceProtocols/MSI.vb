@@ -477,6 +477,29 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return New DataPipe(mat.GetStream)
     End Function
 
+    ''' <summary>
+    ''' Make bootstrapping for a single sample region
+    ''' this function should be call multiple for extract sample data for all sample regions.
+    ''' </summary>
+    ''' <param name="request"></param>
+    ''' <param name="remoteAddress"></param>
+    ''' <returns>
+    ''' the serialization result of a peaktable liked dataframe object
+    ''' </returns>
+    <Protocol(ServiceProtocol.Bootstrapping)>
+    Public Function SampleBootstrapping(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim regions As RegionLoader = BSON _
+            .Load(request.ChunkBuffer) _
+            .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
+            .Reload
+        Dim pars = regions.bootstrapping
+        Dim tissue_region = regions.GetTissueMap
+
+        For i As Integer = 1 To pars.nsamples
+
+        Next
+    End Function
+
     <Protocol(ServiceProtocol.ExtractRegionSample)>
     Public Function ExtractRegionSample(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim regions As RegionLoader = BSON _

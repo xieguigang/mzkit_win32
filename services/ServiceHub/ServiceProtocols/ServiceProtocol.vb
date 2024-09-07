@@ -112,6 +112,12 @@ Public Enum ServiceProtocol
     Mirrors
     AutoLocation
     DeleteRegion
+
+    ''' <summary>
+    ''' Extract the data samples for run the downstream data analsyis via the single cell bootstrapping method.
+    ''' </summary>
+    Bootstrapping
+
     ''' <summary>
     ''' Extract an overview ms1 spectrum from the specific regions
     ''' </summary>
