@@ -195,7 +195,29 @@ Public Class MSIRegionSampleWindow
     End Function
 
     Private Sub ExtractRegionSample(card As RegionSampleCard)
+        If viewer Is Nothing OrElse Not viewer.checkService() Then
+            Return
+        End If
 
+        Dim regions As Polygon2D() = card.ExportTissueRegion(dimension).GetPolygons.ToArray
+
+        If regions.Length = 0 Then
+            Call Workbench.Warning("No region polygon data was found from polygon editor, draw some region polygon at first!")
+            Return
+        Else
+            canvas.ClearSelection()
+
+            If Not viewer.sampleRegions Is Nothing Then
+                viewer.sampleRegions.Clear()
+            End If
+        End If
+
+        Call TaskProgress.LoadData(
+            streamLoad:=Function(msg As Action(Of String))
+                            Return viewer.ExtractRegionSample(msg, regions, fromRaster:=True)
+                        End Function,
+            canbeCancel:=True
+        )
     End Sub
 
     Private Sub MSIRegionSampleWindow_Load(sender As Object, e As EventArgs) Handles Me.Load

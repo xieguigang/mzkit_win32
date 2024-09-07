@@ -2083,8 +2083,8 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
-    Private Function ExtractRegionSample(msg As Action(Of String), regions As Polygon2D()) As Integer
-        Dim info = MSIservice.ExtractRegionSample(regions, New Size(params.scan_x, params.scan_y))
+    Public Function ExtractRegionSample(msg As Action(Of String), regions As Polygon2D(), fromRaster As Boolean) As Integer
+        Dim info = MSIservice.ExtractRegionSample(regions, New Size(params.scan_x, params.scan_y), fromRaster)
 
         If info Is Nothing Then
             Return -1
@@ -2123,7 +2123,7 @@ Public Class frmMsImagingViewer
 
         Call TaskProgress.LoadData(
             streamLoad:=Function(msg As Action(Of String))
-                            Return ExtractRegionSample(msg, regions)
+                            Return ExtractRegionSample(msg, regions, fromRaster:=False)
                         End Function,
             canbeCancel:=True
         )

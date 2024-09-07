@@ -509,11 +509,12 @@ Namespace ServiceHub
             End If
         End Function
 
-        Public Function ExtractRegionSample(regions As Polygon2D(), dims As Size) As MsImageProperty
+        Public Function ExtractRegionSample(regions As Polygon2D(), dims As Size, fromRaster As Boolean) As MsImageProperty
             Dim payload As New RegionLoader With {
                 .height = dims.Height,
                 .width = dims.Width,
-                .regions = regions
+                .regions = regions,
+                .is_raster = fromRaster
             }
             Dim buffer = BSON.GetBuffer(GetType(RegionLoader).GetJsonElement(payload, New JSONSerializerOptions))
             Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.ExtractRegionSample, buffer.ToArray))
