@@ -520,7 +520,7 @@ Namespace ServiceHub
             Dim str As String = data.GetString(Encoding.UTF8)
 
             If str.StringEmpty OrElse Not str.StartsWith("{") Then
-                Call MyApplication.host.showStatusMessage(str, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning(str)
                 Return Nothing
             End If
 
@@ -531,6 +531,57 @@ Namespace ServiceHub
                         End Function)
             checkOffline = 0
             Return output
+        End Function
+
+        ''' <summary>
+        ''' call to the spatial data backend for get the sample data bootstrapping result
+        ''' </summary>
+        ''' <param name="region">Target sample region for make the bootstrapping. 
+        ''' NOTE: this is a single spatial region, it may consisted with multiple 
+        ''' polygon data.</param>
+        ''' <param name="dims"></param>
+        ''' <param name="ions">A set of the target ions m/z for extract the sample data</param>
+        ''' <param name="da">mass tolerance error for get the sample data</param>
+        ''' <param name="n"></param>
+        ''' <param name="cov"></param>
+        ''' <returns></returns>
+        Public Function SpatialBootstrapping(region As Polygon2D(), dims As Size,
+                                             ions As Dictionary(Of String, Double), da As Double,
+                                             n As Integer,
+                                             cov As Double) As Dictionary(Of String, Double())
+
+            Dim payload As New RegionLoader With {
+                .bootstrapping = New SampleBootstrapping With {
+                    .coverage = cov,
+                    .ions = ions,
+                    .massWin = da,
+                    .nsamples = n
+                },
+                .height = dims.Height,
+                .width = dims.Width,
+                .regions = region
+            }
+            Dim buffer = BSON.GetBuffer(GetType(RegionLoader).GetJsonElement(payload, New JSONSerializerOptions))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.Bootstrapping, buffer.ToArray))
+
+            Try
+                Return BSON _
+                    .Load(data.ChunkBuffer) _
+                    .CreateObject(Of Dictionary(Of String, Double()))(decodeMetachar:=False)
+            Catch ex As Exception
+                Try
+                    Dim str As String = data.GetString(Encoding.UTF8)
+
+                    If Not str.StringEmpty(, True) Then
+                        Call Workbench.Warning(str)
+                        Return Nothing
+                    End If
+                Catch ex2 As Exception
+                    ' just ignores this inner error when try to get the error message string?
+                End Try
+
+                Return Nothing
+            End Try
         End Function
 
         Public Function AutoLocation(Optional padding As Padding = Nothing) As MsImageProperty
