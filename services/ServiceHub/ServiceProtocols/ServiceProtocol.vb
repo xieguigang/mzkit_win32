@@ -78,6 +78,9 @@ Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Serialization.JSON
 
+''' <summary>
+''' The MS-imaging data handler protocols
+''' </summary>
 Public Enum ServiceProtocol
     ''' <summary>
     ''' load MSI engine from mzpack
@@ -88,6 +91,9 @@ Public Enum ServiceProtocol
     ''' </summary>
     LoadThermoRawMSI
     GetMSIInformationMetadata
+    ''' <summary>
+    ''' get width/height dimension size metadata of the ms-imaging rawdata file.
+    ''' </summary>
     GetMSIDimensions
     GetAnnotationNames
     UnloadMSI
@@ -106,7 +112,13 @@ Public Enum ServiceProtocol
     Mirrors
     AutoLocation
     DeleteRegion
+    ''' <summary>
+    ''' Extract an overview ms1 spectrum from the specific regions
+    ''' </summary>
     ExtractRegionMs1Spectrum
+    ''' <summary>
+    ''' Extract the spatial rawdata for construct a new MSI rawdata set based on a given region polygon data.
+    ''' </summary>
     ExtractRegionSample
     ExtractMultipleSampleRegions
 

@@ -62,6 +62,9 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Math2D
 
+''' <summary>
+''' A helper data model for the region polygons data
+''' </summary>
 Public Class RegionLoader
 
     ''' <summary>
