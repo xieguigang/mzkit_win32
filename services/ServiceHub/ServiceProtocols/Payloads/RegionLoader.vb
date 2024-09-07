@@ -153,6 +153,10 @@ End Class
 ''' </summary>
 Public Class SampleBootstrapping
 
+    ''' <summary>
+    ''' n sample point result for make the bootstrapping
+    ''' </summary>
+    ''' <returns></returns>
     Public Property nsamples As Integer = 64
 
     ''' <summary>
@@ -166,6 +170,11 @@ Public Class SampleBootstrapping
     ''' </summary>
     ''' <returns></returns>
     Public Property ions As Dictionary(Of String, Double)
+    ''' <summary>
+    ''' the mass tolerance error window size for extract the ion intensity data
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property massWin As Double = 0.01
 
     Public Shared Function GetDefault() As SampleBootstrapping
         Return New SampleBootstrapping With {.coverage = 0.1, .nsamples = 64}

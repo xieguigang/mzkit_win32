@@ -79,6 +79,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
 Imports Darwinism.HPC.Parallel
 Imports Darwinism.IPC.Networking.Protocols.Reflection
@@ -87,6 +88,7 @@ Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
+Imports Microsoft.VisualBasic.Data.GraphTheory.GridGraph
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
@@ -494,10 +496,22 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             .Reload
         Dim pars = regions.bootstrapping
         Dim tissue_region = regions.GetTissueMap
+        Dim mzdiff As Tolerance = Tolerance.DeltaMass(pars.massWin)
+        Dim result As New Dictionary(Of String, Double())
 
-        For i As Integer = 1 To pars.nsamples
+        For Each ion In pars.ions
+            Dim layer = MSI _
+                .LoadPixels({ion.Value}, mzdiff) _
+                .ToArray
+            Dim spatial As Grid(Of PixelData) = Grid(Of PixelData).CreateReadOnly(layer, Function(i) New Point(i.x, i.y))
+            Dim sample As Double() = spatial.ExtractSample(tissue_region, pars.nsamples, pars.coverage)
 
+            result(ion.Key) = sample
         Next
+
+        Dim buffer = BSON.GetBuffer(GetType(Dictionary(Of String, Double())).GetJsonElement(result, New JSONSerializerOptions))
+
+        Return New DataPipe(buffer)
     End Function
 
     <Protocol(ServiceProtocol.ExtractRegionSample)>
