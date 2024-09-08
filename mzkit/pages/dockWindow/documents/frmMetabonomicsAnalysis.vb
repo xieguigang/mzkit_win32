@@ -657,7 +657,11 @@ Public Class frmMetabonomicsAnalysis
         Call config.SetGroups(sampleinfo.Select(Function(i) i.sample_info).Distinct)
         Call InputDialog.Input(
             Sub(settings)
+                If RscriptProgressTask.RunVolcano(matrixfile, sampleinfofile,
+                                                  settings.Trial, settings.ControlGroup, settings.log2fc, settings.pvalue,
+                                                  workdir & $"/{settings.Trial} vs {settings.ControlGroup}") Then
 
+                End If
             End Sub, config:=config)
     End Sub
 
