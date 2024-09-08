@@ -87,3 +87,30 @@ ttest[, "reg_diff"] = reg;
 
 print("get t-test result of the metabolites different expression:");
 print(ttest,max.print =6);
+
+write.csv(ttest, file = file.path(output_dir, "ttest_diffsig.csv"));
+
+# plot volcano
+bitmap(file = file.path(output_dir,"volcano.png"), size = [3800,3000]) {
+    ttest[,"pvalue"] = -log10(ttest$pvalue);
+    ttest[,"id"] =rownames(ttest);
+
+    # create ggplot layers and tweaks via ggplot style options
+	ggplot(ttest, aes(x = "log2fc", y = "pvalue"), padding = "padding:250px 500px 250px 300px;")
+	   + geom_point(aes(color = "reg_diff"), color = "black", shape = "circle", size = 50,alpha = 0.7)
+       + scale_colour_manual(values = list(
+          up        = "#D22628",
+          "not sig" = "black",
+          down      = "#0091D5"
+       ), alpha = 0.7)
+       # + geom_text(aes(label = "id"), check_overlap = TRUE, size = 8)
+       + geom_hline(yintercept = -log10(pvalue),      color = "red", line.width = 5, linetype = "dash")
+       + geom_vline(xintercept =  log2fc, color = "red", line.width = 5, linetype = "dash")
+       + geom_vline(xintercept = -log2fc, color = "red", line.width = 5, linetype = "dash")
+       + labs(x = "log2(FoldChange)", y = "-log10(P.value)")
+       + ggtitle(`Volcano Plot (${trial} vs ${control})`)
+       + scale_x_continuous(labels = "F2")
+       + scale_y_continuous(labels = "F2")
+	   + theme(plot.title = element_text(family = "Cambria Math", size = 20)) 
+	;
+}
