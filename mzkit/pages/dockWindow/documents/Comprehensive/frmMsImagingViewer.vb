@@ -2875,8 +2875,7 @@ Public Class frmMsImagingViewer
                                                          rawdata As String,
                                                          savefile As String,
                                                          Optional pars As InputMSIPeakTableParameters = Nothing) As String
-
-        Call InputDialog.Input(Of InputMSIPeakTableParameters)(
+        Call InputDialog.Input(
             Sub(cfg)
                 Call RscriptProgressTask.CreateMSIPeakTable(
                     mzpack:=rawdata,
