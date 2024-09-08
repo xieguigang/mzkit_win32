@@ -885,14 +885,19 @@ UseCheckedList:
         Dim sampleinfo As SampleInfo() = regions _
             .Select(Iterator Function(t, batch) As IEnumerable(Of SampleInfo)
                         Dim color_str As String = t.color.ToHtmlColor
+                        Dim region_label As String = t.label
+
+                        If region_label.IsPattern("\d+") Then
+                            region_label = $"region_{region_label}"
+                        End If
 
                         For i As Integer = 1 To nsamples
                             Yield New SampleInfo With {
-                                .ID = $"{t.label}.{i}",
+                                .ID = $"{region_label}.{i}",
                                 .color = color_str,
                                 .batch = batch + 1,
                                 .injectionOrder = i,
-                                .sample_info = t.label,
+                                .sample_info = region_label,
                                 .sample_name = .ID,
                                 .shape = "circle"
                             }
