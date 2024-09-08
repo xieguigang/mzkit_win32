@@ -91,7 +91,7 @@ print(ttest,max.print =6);
 write.csv(ttest, file = file.path(output_dir, "ttest_diffsig.csv"));
 
 # plot volcano
-bitmap(file = file.path(output_dir,"volcano.png"), size = [3800,3000]) {
+bitmap(file = file.path(output_dir,"volcano.png"), size = [3800,3300]) {
     ttest[,"pvalue"] = -log10(ttest$pvalue);
     ttest[,"id"] =rownames(ttest);
 
