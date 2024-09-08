@@ -25,14 +25,14 @@ Partial Class InputVolcanoSettings
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
@@ -56,60 +56,14 @@ Partial Class InputVolcanoSettings
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Configuration"
         '
-        'Label1
+        'ComboBox3
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(15, 29)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(107, 12)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Trial vs Control:"
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(17, 55)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(170, 20)
-        Me.ComboBox1.TabIndex = 1
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(193, 58)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(17, 12)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "vs"
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(216, 55)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(170, 20)
-        Me.ComboBox2.TabIndex = 3
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(36, 101)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(101, 12)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Log2 FoldChange:"
-        '
-        'NumericUpDown1
-        '
-        Me.NumericUpDown1.DecimalPlaces = 1
-        Me.NumericUpDown1.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
-        Me.NumericUpDown1.Location = New System.Drawing.Point(143, 99)
-        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(120, 21)
-        Me.NumericUpDown1.TabIndex = 5
+        Me.ComboBox3.FormattingEnabled = True
+        Me.ComboBox3.Items.AddRange(New Object() {"0.05", "0.01", "0.001", "0.0001"})
+        Me.ComboBox3.Location = New System.Drawing.Point(143, 133)
+        Me.ComboBox3.Name = "ComboBox3"
+        Me.ComboBox3.Size = New System.Drawing.Size(121, 20)
+        Me.ComboBox3.TabIndex = 7
         '
         'Label4
         '
@@ -120,14 +74,61 @@ Partial Class InputVolcanoSettings
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "t-test p-value:"
         '
-        'ComboBox3
+        'NumericUpDown1
         '
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Items.AddRange(New Object() {"0.05", "0.01", "0.001", "0.0001"})
-        Me.ComboBox3.Location = New System.Drawing.Point(143, 133)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(121, 20)
-        Me.ComboBox3.TabIndex = 7
+        Me.NumericUpDown1.DecimalPlaces = 1
+        Me.NumericUpDown1.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
+        Me.NumericUpDown1.Location = New System.Drawing.Point(143, 99)
+        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(120, 21)
+        Me.NumericUpDown1.TabIndex = 5
+        Me.NumericUpDown1.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(36, 101)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(101, 12)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "Log2 FoldChange:"
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(216, 55)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(170, 20)
+        Me.ComboBox2.TabIndex = 3
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(193, 58)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(17, 12)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "vs"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(17, 55)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(170, 20)
+        Me.ComboBox1.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(15, 29)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(107, 12)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Trial vs Control:"
         '
         'Button1
         '
