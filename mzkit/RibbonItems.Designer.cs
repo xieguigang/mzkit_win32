@@ -261,6 +261,7 @@ namespace RibbonLib.Controls
             public const uint cmdPanelLCMSAnalysis = 320;
             public const uint cmdButtonLCMSMetabolite = 321;
             public const uint cmdButtonLCMSFilterIons = 322;
+            public const uint cmdButtonViewVolcano = 324;
             public const uint cmdMenuGroupGCxGC = 6;
             public const uint cmdPanelGCxGC = 7;
             public const uint cmdGroupGCxGC = 282;
@@ -605,6 +606,10 @@ namespace RibbonLib.Controls
         /// Only show the ion features that has metabolite annotation.
         /// </summary>
         public RibbonToggleButton ButtonLCMSFilterIons { get; private set; }
+        /// <summary>
+        /// Volcano plot between two data groups
+        /// </summary>
+        public RibbonButton ButtonViewVolcano { get; private set; }
         public RibbonTabGroup MenuGroupGCxGC { get; private set; }
         public RibbonTab PanelGCxGC { get; private set; }
         public RibbonGroup GroupGCxGC { get; private set; }
@@ -935,6 +940,7 @@ namespace RibbonLib.Controls
             PanelLCMSAnalysis = new RibbonGroup(ribbon, Cmd.cmdPanelLCMSAnalysis);
             ButtonLCMSMetabolite = new RibbonButton(ribbon, Cmd.cmdButtonLCMSMetabolite);
             ButtonLCMSFilterIons = new RibbonToggleButton(ribbon, Cmd.cmdButtonLCMSFilterIons);
+            ButtonViewVolcano = new RibbonButton(ribbon, Cmd.cmdButtonViewVolcano);
             MenuGroupGCxGC = new RibbonTabGroup(ribbon, Cmd.cmdMenuGroupGCxGC);
             PanelGCxGC = new RibbonTab(ribbon, Cmd.cmdPanelGCxGC);
             GroupGCxGC = new RibbonGroup(ribbon, Cmd.cmdGroupGCxGC);

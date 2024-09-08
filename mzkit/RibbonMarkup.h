@@ -1815,7 +1815,14 @@
 #define cmdButtonLCMSViewGroups_TooltipDescription_RESID 60315
 #define cmdButtonLCMSViewGroups_SmallImages_192__RESID 60316
 #define cmdButtonLCMSViewGroups_LargeImages_192__RESID 60317
-#define InternalCmd2_LabelTitle_RESID 60318
-#define InternalCmd4_LabelTitle_RESID 60319
-#define InternalCmd6_LabelTitle_RESID 60320
-#define InternalCmd8_LabelTitle_RESID 60321
+#define cmdButtonViewVolcano 324  /* Volcano plot between two data groups */ 
+#define cmdButtonViewVolcano_LabelTitle_RESID 60318
+#define cmdButtonViewVolcano_LabelDescription_RESID 60319
+#define cmdButtonViewVolcano_TooltipTitle_RESID 60320
+#define cmdButtonViewVolcano_TooltipDescription_RESID 60321
+#define cmdButtonViewVolcano_SmallImages_192__RESID 60322
+#define cmdButtonViewVolcano_LargeImages_192__RESID 60323
+#define InternalCmd2_LabelTitle_RESID 60324
+#define InternalCmd4_LabelTitle_RESID 60325
+#define InternalCmd6_LabelTitle_RESID 60326
+#define InternalCmd8_LabelTitle_RESID 60327
