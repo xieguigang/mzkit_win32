@@ -527,6 +527,9 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                                 .ToArray)
                     End Function) _
             .ToArray
+
+        VectorTask.n_threads = App.CPUCoreNumbers - 1
+
         Dim task As New ExpressionDataSampling(pars.ions) With {
             .A = tissue_region.nsize,
             .bags = bags,
