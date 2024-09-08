@@ -652,7 +652,13 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Private Sub doVolcanoPlot()
+        Dim config As New InputVolcanoSettings
 
+        Call config.SetGroups(sampleinfo.Select(Function(i) i.sample_info).Distinct)
+        Call InputDialog.Input(
+            Sub(settings)
+
+            End Sub, config:=config)
     End Sub
 
     Dim groupsVisual As Index(Of String)

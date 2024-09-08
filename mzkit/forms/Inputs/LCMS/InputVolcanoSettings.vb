@@ -54,6 +54,13 @@
         DialogResult = DialogResult.OK
     End Sub
 
+    Public Sub SetGroups(names As IEnumerable(Of String))
+        For Each name As String In names
+            Call ComboBox1.Items.Add(name)
+            Call ComboBox2.Items.Add(name)
+        Next
+    End Sub
+
     Private Sub InputVolcanoSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ComboBox3.SelectedIndex = 0
     End Sub
