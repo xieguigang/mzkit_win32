@@ -1018,6 +1018,7 @@ UseCheckedList:
         Public Async Function getPeaksAsync(p As ITaskProgress) As Threading.Tasks.Task(Of Boolean)
             Dim target As Dictionary(Of String, Double) = CreateIonSet()
             Dim expr As Dictionary(Of String, Dictionary(Of String, Double())) = Await BootstrapPeaks(p, target)
+            Dim proc As Integer = 0
 
             Call p.SetInfo($"Build expression peaktable for all selected feature ions!")
 
@@ -1035,8 +1036,13 @@ UseCheckedList:
                     Next
                 Next
 
+                proc += 1
+
                 Call peaks.Add(peak)
-                Call p.SetInfo($"Build expression peaktable for selected feature ion: {ion.Key} ({ion.Value})")
+
+                If proc Mod 7 = 0 Then
+                    Call p.SetInfo($"Build expression peaktable for selected feature ion: {ion.Key} ({ion.Value})")
+                End If
             Next
 
             Return True
