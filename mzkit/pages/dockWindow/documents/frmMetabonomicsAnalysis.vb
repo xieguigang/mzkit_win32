@@ -197,7 +197,7 @@ Public Class frmMetabonomicsAnalysis
         Call table.Columns.Add("id", GetType(String))
 
         For Each key As String In keys
-            Call table.Columns.Add(key, GetType(Double))
+            Call table.Columns.Add(key, GetType(String))
         Next
 
         For Each row As EntityObject In data
@@ -694,7 +694,7 @@ Public Class frmMetabonomicsAnalysis
                     Dim score_data As EntityObject() = EntityObject.LoadDataSet($"{dir}/ttest_diffsig.csv").ToArray
 
                     Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
-                    Call SetSvg($"{dir}/volcano.png", {})
+                    Call SetSvg($"{dir}/volcano.svg", {})
                 End If
             End Sub, config:=config)
     End Sub
