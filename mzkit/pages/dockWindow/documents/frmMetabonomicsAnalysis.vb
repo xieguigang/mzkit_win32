@@ -521,6 +521,7 @@ Public Class frmMetabonomicsAnalysis
     Shared ReadOnly massFilter As New RibbonEventBinding(ribbonItems.ButtonLCMSMetabolite)
     Shared ReadOnly ionFilter As New ToggleEventBinding(ribbonItems.ButtonLCMSFilterIons)
     Shared ReadOnly setGroups As New RibbonEventBinding(ribbonItems.ButtonLCMSViewGroups)
+    Shared ReadOnly volcanoPlot As New RibbonEventBinding(ribbonItems.ButtonViewVolcano)
 
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
@@ -647,6 +648,11 @@ Public Class frmMetabonomicsAnalysis
         massFilter.evt = Sub() Call MassSearch()
         ionFilter.evt = Sub() Call loadPeaktable()
         setGroups.evt = Sub() Call SetGroupsVisual()
+        volcanoPlot.evt = Sub() Call doVolcanoPlot()
+    End Sub
+
+    Private Sub doVolcanoPlot()
+
     End Sub
 
     Dim groupsVisual As Index(Of String)
@@ -817,6 +823,7 @@ Public Class frmMetabonomicsAnalysis
         massFilter.evt = Nothing
         ionFilter.evt = Nothing
         setGroups.evt = Nothing
+        volcanoPlot.evt = Nothing
 
         openMetabolitesFile.evt = Nothing
         openMetabolitesTable.evt = Nothing

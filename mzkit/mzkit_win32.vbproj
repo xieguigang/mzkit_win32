@@ -492,6 +492,12 @@
     <Compile Include="forms\Inputs\InputURL.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputVolcanoSettings.Designer.vb">
+      <DependentUpon>InputVolcanoSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputVolcanoSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputSetGroupVisual.Designer.vb">
       <DependentUpon>InputSetGroupVisual.vb</DependentUpon>
     </Compile>
@@ -1288,6 +1294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\LCMS\InputSetGroupVisual.resx">
       <DependentUpon>InputSetGroupVisual.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\LCMS\InputVolcanoSettings.resx">
+      <DependentUpon>InputVolcanoSettings.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputConfigFilterPipeline.resx">
       <DependentUpon>InputConfigFilterPipeline.vb</DependentUpon>
