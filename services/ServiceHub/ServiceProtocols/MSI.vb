@@ -513,7 +513,6 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim pars = regions.bootstrapping
         Dim tissue_region = regions.GetTissueMap
         Dim mzdiff As Tolerance = Tolerance.DeltaMass(pars.massWin)
-        Dim result As New Dictionary(Of String, Double())
         Dim spatial = Grid(Of PixelScan).CreateReadOnly(MSI.LoadPixels, Function(p) New Point(p.X, p.Y))
         Dim bags = SampleData.BootstrapSampleBags(tissue_region, pars.nsamples, pars.coverage) _
             .Select(Function(bag)
@@ -528,28 +527,59 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                                 .ToArray)
                     End Function) _
             .ToArray
-        Dim A = tissue_region.nsize
+        Dim task As New ExpressionDataSampling(pars.ions) With {
+            .A = tissue_region.nsize,
+            .bags = bags,
+            .mzdiff = mzdiff
+        }
 
-        For Each ion In pars.ions
-            Dim sample As Double() = New Double(bags.Length - 1) {}
-            Dim tar As Double() = {ion.Value}
+        Call task.Run()
 
-            For i As Integer = 0 To sample.Length - 1
-                Dim bag = PixelReader.LoadPixels(bags(i).value, tar, mzdiff)
-                Dim exp = bag.Select(Function(p) p.intensity).ToArray
-
-                If exp.Length > 0 Then
-                    sample(i) = exp.Sum / A
-                End If
-            Next
-
-            result(ion.Key) = sample
-        Next
-
+        Dim result As Dictionary(Of String, Double()) = task.GetResult
         Dim buffer = BSON.GetBuffer(GetType(Dictionary(Of String, Double())).GetJsonElement(result, New JSONSerializerOptions))
 
         Return New DataPipe(buffer)
     End Function
+
+    Private Class ExpressionDataSampling : Inherits VectorTask
+
+        Dim result As NamedCollection(Of Double)()
+        Dim ions As KeyValuePair(Of String, Double)()
+
+        Public A As Double
+        Public bags As NamedCollection(Of PixelScan)()
+        Public mzdiff As Tolerance
+
+        Public Sub New(ions As Dictionary(Of String, Double))
+            MyBase.New(ions.Count)
+
+            Me.ions = ions.ToArray
+            Me.result = Allocate(Of NamedCollection(Of Double))(all:=True)
+        End Sub
+
+        Protected Overrides Sub Solve(start As Integer, ends As Integer, cpu_id As Integer)
+            For offset As Integer = start To ends
+                Dim ion = ions(offset)
+                Dim sample As Double() = New Double(bags.Length - 1) {}
+                Dim tar As Double() = {ion.Value}
+
+                For i As Integer = 0 To sample.Length - 1
+                    Dim bag = PixelReader.LoadPixels(bags(i).value, tar, mzdiff)
+                    Dim exp = bag.Select(Function(p) p.intensity).ToArray
+
+                    If exp.Length > 0 Then
+                        sample(i) = exp.Sum / A
+                    End If
+                Next
+
+                result(offset) = New NamedCollection(Of Double)(ion.Key, sample)
+            Next
+        End Sub
+
+        Public Function GetResult() As Dictionary(Of String, Double())
+            Return result.ToDictionary(Function(i) i.name, Function(i) i.value)
+        End Function
+    End Class
 
     <Protocol(ServiceProtocol.ExtractRegionSample)>
     Public Function ExtractRegionSample(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
