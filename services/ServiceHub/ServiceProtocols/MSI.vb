@@ -81,6 +81,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
+Imports BioNovoGene.Analytical.MassSpectrometry.SingleCells.Deconvolute
 Imports Darwinism.HPC.Parallel
 Imports Darwinism.IPC.Networking.Protocols.Reflection
 Imports Darwinism.IPC.Networking.Tcp
@@ -514,31 +515,33 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim tissue_region = regions.GetTissueMap
         Dim mzdiff As Tolerance = Tolerance.DeltaMass(pars.massWin)
         Dim spatial = Grid(Of PixelScan).CreateReadOnly(MSI.LoadPixels, Function(p) New Point(p.X, p.Y))
+        Dim ions = pars.ions.ToArray
+        Dim ionSet = ions.Select(Function(i) i.Value).ToArray
         Dim bags = SampleData.BootstrapSampleBags(tissue_region, pars.nsamples, pars.coverage) _
             .Select(Function(bag)
                         ' make unify sampling between multiple ions
-                        Return New NamedCollection(Of PixelScan)(
-                            bag.name,
-                            bag.value _
-                                .Select(Function(i)
-                                            Return spatial.GetData(i.X, i.Y)
-                                        End Function) _
-                                .Where(Function(i) Not i Is Nothing) _
-                                .ToArray)
+                        Dim bagdata = bag.value _
+                            .Select(Function(i)
+                                        Return spatial.GetData(i.X, i.Y)
+                                    End Function) _
+                            .Where(Function(i) Not i Is Nothing) _
+                            .ToArray
+                        Dim matrix = MatrixExports.CreateMatrix(bagdata, ionSet, mzdiff)
+                        Return New NamedValue(Of MzMatrix)(bag.name, matrix)
                     End Function) _
             .ToArray
+        Dim A As Double = tissue_region.nsize
+        Dim result As New Dictionary(Of String, Double())
 
-        VectorTask.n_threads = App.CPUCoreNumbers - 1
+        For i As Integer = 0 To ions.Length - 1
+            Dim offset As Integer = i
+            Dim vec As Double() = bags _
+                .Select(Function(m) m.Value(offset).Sum / A) _
+                .ToArray
 
-        Dim task As New ExpressionDataSampling(pars.ions) With {
-            .A = tissue_region.nsize,
-            .bags = bags,
-            .mzdiff = mzdiff
-        }
+            result(ions(i).Key) = vec
+        Next
 
-        Call task.Run()
-
-        Dim result As Dictionary(Of String, Double()) = task.GetResult
         Dim buffer = BSON.GetBuffer(GetType(Dictionary(Of String, Double())).GetJsonElement(result, New JSONSerializerOptions))
 
         Return New DataPipe(buffer)
