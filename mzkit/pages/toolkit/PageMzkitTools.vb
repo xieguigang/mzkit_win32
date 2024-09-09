@@ -297,12 +297,15 @@ Public Class PageMzkitTools
     Private Sub MakeAnnotations(scanData As LibraryMatrix)
         Dim mzdiff1 As Tolerance = Tolerance.DeltaMass(0.001)
         Dim mode As String = scanData.name.Match("[+-]")
+        Dim adducts = If(mode = "+",
+            {"[M+H]+", "[M+H-H2O]+", "[M+H-2H2O]+"},
+            {"[M-H]-", "[M+FA]-"})
         Dim kegg As MSJointConnection = TaskProgress.LoadData(
             streamLoad:=Function(echo As Action(Of String))
                             Return Globals.LoadKEGG(Sub(print)
                                                         MyApplication.LogText(print)
                                                         echo(print)
-                                                    End Sub, If(mode = "+", 1, -1), mzdiff1)
+                                                    End Sub, adducts, mzdiff1)
                         End Function,
             info:="Load KEGG repository data..."
         )
