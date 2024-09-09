@@ -500,10 +500,10 @@ Public Class PageMzSearch
         CheckedListBox4.Items.Clear()
 
         For Each adduct As MzCalculator In Provider.Positives
-            Call CheckedListBox3.Items.Add(adduct.ToString, std.Abs(adduct.charge) = 1)
+            Call CheckedListBox3.Items.Add(adduct.ToString, std.Abs(adduct.charge) = 1 AndAlso adduct.M = 1)
         Next
         For Each adduct As MzCalculator In Provider.Negatives
-            Call CheckedListBox4.Items.Add(adduct.ToString, std.Abs(adduct.charge) = 1)
+            Call CheckedListBox4.Items.Add(adduct.ToString, std.Abs(adduct.charge) = 1 AndAlso adduct.M = 1)
         Next
     End Sub
 
