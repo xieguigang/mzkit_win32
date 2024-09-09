@@ -48,6 +48,7 @@ Public MustInherit Class Plugin
             .Where(Function(dll) Not dll.FileName.ToLower.StartsWith("microsoft")) _
             .Where(Function(dll) Not dll.FileName.ToLower.StartsWith("bionovogene")) _
             .Where(Function(dll) Not dll.FileName.ToLower.StartsWith("system")) _
+            .Where(Function(dll) Not dll.FileName.ToLower.StartsWith("smrucc")) _
             .ToArray
         Dim loaded As Index(Of String) = New String() {}
         Dim registry As RegistryFile = RegistryFile.LoadRegistry
