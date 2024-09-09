@@ -1050,4 +1050,27 @@ Public Class frmMetabonomicsAnalysis
             End If
         End If
     End Sub
+
+    Private Sub OpenInTableEditorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableEditorToolStripMenuItem.Click
+        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(, "View analysis result table")
+
+        table.LoadTable(
+            Sub(tbl)
+                Dim rowdata As Object() = New Object(AdvancedDataGridView1.Columns.Count - 1) {}
+
+                For Each col As DataGridViewColumn In AdvancedDataGridView1.Columns
+                    Call tbl.Columns.Add(col.HeaderText, col.ValueType)
+                Next
+
+                For Each row As DataGridViewRow In AdvancedDataGridView1.Rows
+                    rowdata = New Object(rowdata.Length - 1) {}
+
+                    For i As Integer = 0 To rowdata.Length - 1
+                        rowdata(i) = row.Cells(i).Value
+                    Next
+
+                    Call tbl.Rows.Add(rowdata)
+                Next
+            End Sub)
+    End Sub
 End Class

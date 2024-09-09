@@ -48,6 +48,8 @@ Partial Class frmMetabonomicsAnalysis
         Me.BarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.OpenInTableEditorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -157,12 +159,13 @@ Partial Class frmMetabonomicsAnalysis
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewExpressionPlotToolStripMenuItem, Me.AutoPlotToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewExpressionPlotToolStripMenuItem, Me.AutoPlotToolStripMenuItem, Me.ToolStripMenuItem1, Me.OpenInTableEditorToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 98)
         '
         'ViewExpressionPlotToolStripMenuItem
         '
+        Me.ViewExpressionPlotToolStripMenuItem.Image = CType(resources.GetObject("ViewExpressionPlotToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ViewExpressionPlotToolStripMenuItem.Name = "ViewExpressionPlotToolStripMenuItem"
         Me.ViewExpressionPlotToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
         Me.ViewExpressionPlotToolStripMenuItem.Text = "View Expression Plot"
@@ -274,6 +277,18 @@ Partial Class frmMetabonomicsAnalysis
         Me.BoxPlotToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.BoxPlotToolStripMenuItem.Text = "Box Plot"
         '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(179, 6)
+        '
+        'OpenInTableEditorToolStripMenuItem
+        '
+        Me.OpenInTableEditorToolStripMenuItem.Image = CType(resources.GetObject("OpenInTableEditorToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.OpenInTableEditorToolStripMenuItem.Name = "OpenInTableEditorToolStripMenuItem"
+        Me.OpenInTableEditorToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.OpenInTableEditorToolStripMenuItem.Text = "Send To Table Editor"
+        '
         'frmMetabonomicsAnalysis
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -328,4 +343,6 @@ Partial Class frmMetabonomicsAnalysis
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewExpressionPlotToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AutoPlotToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
+    Friend WithEvents OpenInTableEditorToolStripMenuItem As ToolStripMenuItem
 End Class
