@@ -292,6 +292,7 @@ Public Class PageMzSearch
         CheckedListBox1.SetItemChecked(0, True)
         ComboBox1.SelectedIndex = 0
 
+        Call loadAdductsPosNeg()
         Call vs_win.GetVisualStudioToolStripExtender1.SetStyle(ContextMenuStrip1, VisualStudioToolStripExtender.VsVersion.Vs2015, vs_win.GetVS2015LightTheme1)
         Call ReloadMetaDatabase()
     End Sub
@@ -494,7 +495,7 @@ Public Class PageMzSearch
             .ToArray
     End Function
 
-    Private Sub loadAdductsposNeg()
+    Private Sub loadAdductsPosNeg()
         CheckedListBox3.Items.Clear()
         CheckedListBox4.Items.Clear()
 
