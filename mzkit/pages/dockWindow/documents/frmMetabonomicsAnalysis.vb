@@ -1058,7 +1058,8 @@ Public Class frmMetabonomicsAnalysis
 
     Private Sub loadResultTable(tbl As DataTable)
         Dim peaks = Me.peaks.peaks.ToDictionary(Function(a) a.ID)
-        Dim rowdata As Object() = New Object(AdvancedDataGridView1.Columns.Count - 1) {}
+        Dim ncols = AdvancedDataGridView1.Columns.Count
+        Dim rowdata As Object() = New Object(ncols - 1) {}
         Dim addMz As Boolean = CLRVector.asCharacter(AdvancedDataGridView1.getFieldVector(0)) _
             .SafeQuery _
             .All(Function(id)
@@ -1086,7 +1087,7 @@ Public Class frmMetabonomicsAnalysis
                 rowdata(1) = peaks(CStr(row.Cells(0).Value)).mz
             End If
 
-            For i As Integer = 0 To rowdata.Length - 1
+            For i As Integer = 0 To ncols - 1
                 If i > 0 AndAlso addMzOffsetOne Then
                     rowdata(i + 1) = row.Cells(i).Value
                 Else
