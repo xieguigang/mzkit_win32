@@ -816,4 +816,30 @@ Public NotInheritable Class RscriptProgressTask
 
         Return export_csv.FileExists
     End Function
+
+    Public Shared Function RunVolcano(mat As String,
+                                      sampleinfo As String,
+                                      trial As String,
+                                      control As String,
+                                      log2fc As Double,
+                                      pvalue As Double,
+                                      workdir As String) As Boolean
+
+        Dim args As New Dictionary(Of String, String) From {
+            {"--rawdata", mat},
+            {"--sampleinfo", sampleinfo},
+            {"--trial", trial},
+            {"--control", control},
+            {"--output_dir", workdir},
+            {"--log2fc", log2fc},
+            {"--pvalue", pvalue}
+        }
+        Dim export_csv As String = $"{workdir}/ttest_diffsig.csv"
+
+        Call RunRScriptPipeline("workbench/t_volcano.R", args,
+                                $"Do volcano plot",
+                                $"Do data comparision analysis of {trial} vs {control}...")
+
+        Return export_csv.FileExists
+    End Function
 End Class

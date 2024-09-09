@@ -148,19 +148,13 @@ Public Module KEGGRepo
 
     Public Function RequestKEGGMaps() As Map()
         Using zip As New ZipArchive(getMZKitPackage("GCModeller").Open(FileMode.Open, doClear:=False))
-            Using pack = If(zip.GetEntry("data/kegg/KEGG_maps.zip"), zip.GetEntry("data\kegg\KEGG_maps.zip")).Open
+            Using msg = If(zip.GetEntry("data/kegg/KEGG_maps.msgpack"), zip.GetEntry("data\kegg\KEGG_maps.msgpack")).Open
                 Dim ms As New MemoryStream
 
-                Call pack.CopyTo(ms)
-                Call ms.Seek(Scan0, SeekOrigin.Begin)
+                msg.CopyTo(ms)
+                ms.Seek(Scan0, SeekOrigin.Begin)
 
-                Using msg = New ZipArchive(ms).GetEntry("KEGG_maps.msgpack").Open
-                    ms = New MemoryStream
-                    msg.CopyTo(ms)
-                    ms.Seek(Scan0, SeekOrigin.Begin)
-
-                    Return KEGGMapPack.ReadKeggDb(ms)
-                End Using
+                Return KEGGMapPack.ReadKeggDb(ms)
             End Using
         End Using
     End Function

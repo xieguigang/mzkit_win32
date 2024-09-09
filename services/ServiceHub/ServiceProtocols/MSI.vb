@@ -79,14 +79,18 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
+Imports BioNovoGene.Analytical.MassSpectrometry.SingleCells.Deconvolute
 Imports Darwinism.HPC.Parallel
 Imports Darwinism.IPC.Networking.Protocols.Reflection
 Imports Darwinism.IPC.Networking.Tcp
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
+Imports Microsoft.VisualBasic.Data.GraphTheory.GridGraph
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
@@ -100,6 +104,7 @@ Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports MZWorkPack
+Imports PixelData = BioNovoGene.Analytical.MassSpectrometry.MsImaging.PixelData
 Imports std = System.Math
 
 <Protocol(GetType(ServiceProtocol))>
@@ -421,9 +426,24 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         If regions.empty Then
             Call RunSlavePipeline.SendMessage("No region data!")
             Return New DataPipe("no region data!")
-        Else
+        ElseIf Not regions.is_raster Then
+            Call RunSlavePipeline.SendMessage("The region data is not raster data, check via boundary test.")
+
+            ' check via boundary test
             allPixels = allPixels _
                 .Where(Function(i) regions.ContainsPixel(i.X, i.Y) = flag) _
+                .ToArray
+        Else
+            ' check via raster spatial query
+            Dim inputRaster = regions.GetTissueRaster.ToArray
+            Dim spatial As Grid(Of Point) = Grid(Of Point).CreateReadOnly(inputRaster, Function(a) a)
+
+            Call RunSlavePipeline.SendMessage("Check the region spot via the raster data query")
+            Call RunSlavePipeline.SendMessage($"total spots inside spatial graph for query: {spatial.size}")
+            Call RunSlavePipeline.SendMessage($"given raster data from the region input: {inputRaster.Length}")
+
+            allPixels = allPixels _
+                .Where(Function(i) spatial.Check(i.X, i.Y)) _
                 .ToArray
         End If
 
@@ -476,6 +496,97 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
         Return New DataPipe(mat.GetStream)
     End Function
+
+    ''' <summary>
+    ''' Make bootstrapping for a single sample region
+    ''' this function should be call multiple for extract sample data for all sample regions.
+    ''' </summary>
+    ''' <param name="request"></param>
+    ''' <param name="remoteAddress"></param>
+    ''' <returns>
+    ''' the serialization result of a peaktable liked dataframe object
+    ''' </returns>
+    <Protocol(ServiceProtocol.Bootstrapping)>
+    Public Function SampleBootstrapping(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim regions As RegionLoader = BSON _
+            .Load(request.ChunkBuffer) _
+            .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
+            .Reload
+        Dim pars = regions.bootstrapping
+        Dim tissue_region = regions.GetTissueMap
+        Dim mzdiff As Tolerance = Tolerance.DeltaMass(pars.massWin)
+        Dim spatial = Grid(Of PixelScan).CreateReadOnly(MSI.LoadPixels, Function(p) New Point(p.X, p.Y))
+        Dim ions = pars.ions.ToArray
+        Dim ionSet = ions.Select(Function(i) i.Value).ToArray
+        Dim bags = SampleData.BootstrapSampleBags(tissue_region, pars.nsamples, pars.coverage) _
+            .Select(Function(bag)
+                        ' make unify sampling between multiple ions
+                        Dim bagdata = bag.value _
+                            .Select(Function(i)
+                                        Return spatial.GetData(i.X, i.Y)
+                                    End Function) _
+                            .Where(Function(i) Not i Is Nothing) _
+                            .ToArray
+                        Dim matrix = MatrixExports.CreateMatrix(bagdata, ionSet, mzdiff)
+                        Return New NamedValue(Of MzMatrix)(bag.name, matrix)
+                    End Function) _
+            .ToArray
+        Dim A As Double = tissue_region.nsize
+        Dim result As New Dictionary(Of String, Double())
+
+        For i As Integer = 0 To ions.Length - 1
+            Dim offset As Integer = i
+            Dim vec As Double() = bags _
+                .Select(Function(m) m.Value(offset).Sum / A) _
+                .ToArray
+
+            result(ions(i).Key) = vec
+        Next
+
+        Dim buffer = BSON.GetBuffer(GetType(Dictionary(Of String, Double())).GetJsonElement(result, New JSONSerializerOptions))
+
+        Return New DataPipe(buffer)
+    End Function
+
+    Private Class ExpressionDataSampling : Inherits VectorTask
+
+        Dim result As NamedCollection(Of Double)()
+        Dim ions As KeyValuePair(Of String, Double)()
+
+        Public A As Double
+        Public bags As NamedCollection(Of PixelScan)()
+        Public mzdiff As Tolerance
+
+        Public Sub New(ions As Dictionary(Of String, Double))
+            MyBase.New(ions.Count)
+
+            Me.ions = ions.ToArray
+            Me.result = Allocate(Of NamedCollection(Of Double))(all:=True)
+        End Sub
+
+        Protected Overrides Sub Solve(start As Integer, ends As Integer, cpu_id As Integer)
+            For offset As Integer = start To ends
+                Dim ion = ions(offset)
+                Dim sample As Double() = New Double(bags.Length - 1) {}
+                Dim tar As Double() = {ion.Value}
+
+                For i As Integer = 0 To sample.Length - 1
+                    Dim bag = PixelReader.LoadPixels(bags(i).value, tar, mzdiff)
+                    Dim exp = bag.Select(Function(p) p.intensity).ToArray
+
+                    If exp.Length > 0 Then
+                        sample(i) = exp.Sum / A
+                    End If
+                Next
+
+                result(offset) = New NamedCollection(Of Double)(ion.Key, sample)
+            Next
+        End Sub
+
+        Public Function GetResult() As Dictionary(Of String, Double())
+            Return result.ToDictionary(Function(i) i.name, Function(i) i.value)
+        End Function
+    End Class
 
     <Protocol(ServiceProtocol.ExtractRegionSample)>
     Public Function ExtractRegionSample(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe

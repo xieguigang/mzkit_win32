@@ -258,6 +258,7 @@ Namespace RibbonLib.Controls
             Public Const cmdPanelLCMSAnalysis As UInteger = 320
             Public Const cmdButtonLCMSMetabolite As UInteger = 321
             Public Const cmdButtonLCMSFilterIons As UInteger = 322
+            Public Const cmdButtonViewVolcano As UInteger = 324
             Public Const cmdMenuGroupGCxGC As UInteger = 6
             Public Const cmdPanelGCxGC As UInteger = 7
             Public Const cmdGroupGCxGC As UInteger = 282
@@ -1822,6 +1823,15 @@ Namespace RibbonLib.Controls
                 Return _ButtonLCMSFilterIons
             End Get
         End Property
+        Private _ButtonViewVolcano As RibbonButton
+        ''' <summary>
+        ''' Volcano plot between two data groups
+        ''' </summary>
+        Public ReadOnly Property ButtonViewVolcano As RibbonButton
+            Get
+                Return _ButtonViewVolcano
+            End Get
+        End Property
         Private _MenuGroupGCxGC As RibbonTabGroup
         Public ReadOnly Property MenuGroupGCxGC As RibbonTabGroup
             Get
@@ -2452,6 +2462,7 @@ Namespace RibbonLib.Controls
             _PanelLCMSAnalysis = New RibbonGroup(_ribbon, Cmd.cmdPanelLCMSAnalysis)
             _ButtonLCMSMetabolite = New RibbonButton(_ribbon, Cmd.cmdButtonLCMSMetabolite)
             _ButtonLCMSFilterIons = New RibbonToggleButton(_ribbon, Cmd.cmdButtonLCMSFilterIons)
+            _ButtonViewVolcano = New RibbonButton(_ribbon, Cmd.cmdButtonViewVolcano)
             _MenuGroupGCxGC = New RibbonTabGroup(_ribbon, Cmd.cmdMenuGroupGCxGC)
             _PanelGCxGC = New RibbonTab(_ribbon, Cmd.cmdPanelGCxGC)
             _GroupGCxGC = New RibbonGroup(_ribbon, Cmd.cmdGroupGCxGC)

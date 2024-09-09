@@ -62,22 +62,38 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Math2D
 
+''' <summary>
+''' A helper data model for the single region polygons data
+''' </summary>
 Public Class RegionLoader
 
     ''' <summary>
     ''' the polygon regions for each samples
     ''' </summary>
     ''' <returns></returns>
+    ''' <remarks>
+    ''' the multiple polygon object represents a single sample region
+    ''' </remarks>
     Public Property regions As Polygon2D()
     Public Property width As Integer
     Public Property height As Integer
-
+    Public Property is_raster As Boolean = False
     ''' <summary>
     ''' this property value should be nothing or 
     ''' size equals to the <see cref="regions"/>.
     ''' </summary>
     ''' <returns></returns>
+    ''' <remarks>
+    ''' if this property character vector is not empty, then it means these
+    ''' polygon maybe comes from the different rawdata sample files.
+    ''' </remarks>
     Public Property sample_tags As String()
+
+    ''' <summary>
+    ''' the bootstrapping parameters for extract the matrix sample from current sample region.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property bootstrapping As SampleBootstrapping
 
     ''' <summary>
     ''' get number of the samples
@@ -119,7 +135,9 @@ Public Class RegionLoader
                             Return New Polygon2D(r.xpoints, r.ypoints)
                         End Function) _
                 .ToArray,
-            .sample_tags = sample_tags
+            .sample_tags = sample_tags,
+            .bootstrapping = bootstrapping,
+            .is_raster = is_raster
         }
     End Function
 
@@ -127,7 +145,45 @@ Public Class RegionLoader
         Return regions.RasterGeometry2D(New Size(width, height), label, color.TranslateColor)
     End Function
 
+    Public Function GetTissueRaster() As IEnumerable(Of Point)
+        Return regions.RasterGeometry2D(New Drawing.Size(width, height))
+    End Function
+
     Public Function ContainsPixel(x As Integer, y As Integer) As Boolean
         Return regions.Any(Function(r) r.inside(x, y))
     End Function
+End Class
+
+''' <summary>
+''' Parameters for make spatial sample bootstrapping
+''' </summary>
+Public Class SampleBootstrapping
+
+    ''' <summary>
+    ''' n sample point result for make the bootstrapping
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property nsamples As Integer = 64
+
+    ''' <summary>
+    ''' percentage value in range [0,1]
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property coverage As Double = 0.1
+
+    ''' <summary>
+    ''' a set of the target ions m/z for build the sample dataframe
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property ions As Dictionary(Of String, Double)
+    ''' <summary>
+    ''' the mass tolerance error window size for extract the ion intensity data
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property massWin As Double = 0.01
+
+    Public Shared Function GetDefault() As SampleBootstrapping
+        Return New SampleBootstrapping With {.coverage = 0.1, .nsamples = 64}
+    End Function
+
 End Class

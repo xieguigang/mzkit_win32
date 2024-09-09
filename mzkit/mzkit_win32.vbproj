@@ -492,6 +492,12 @@
     <Compile Include="forms\Inputs\InputURL.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputVolcanoSettings.Designer.vb">
+      <DependentUpon>InputVolcanoSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputVolcanoSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputSetGroupVisual.Designer.vb">
       <DependentUpon>InputSetGroupVisual.vb</DependentUpon>
     </Compile>
@@ -544,6 +550,12 @@
       <DependentUpon>InputMNSimilarityScore.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\Inputs\LCMS\InputMNSimilarityScore.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\Inputs\MSImaging\SetTableMzSource.Designer.vb">
+      <DependentUpon>SetTableMzSource.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\MSImaging\SetTableMzSource.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\MSImaging\SetMSIPlotParameters.Designer.vb">
@@ -1283,6 +1295,9 @@
     <EmbeddedResource Include="forms\Inputs\LCMS\InputSetGroupVisual.resx">
       <DependentUpon>InputSetGroupVisual.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\LCMS\InputVolcanoSettings.resx">
+      <DependentUpon>InputVolcanoSettings.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputConfigFilterPipeline.resx">
       <DependentUpon>InputConfigFilterPipeline.vb</DependentUpon>
     </EmbeddedResource>
@@ -1363,6 +1378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\SetMSIPlotParameters.resx">
       <DependentUpon>SetMSIPlotParameters.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\MSImaging\SetTableMzSource.resx">
+      <DependentUpon>SetTableMzSource.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\ShowMzBins.resx">
       <DependentUpon>ShowMzBins.vb</DependentUpon>

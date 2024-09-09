@@ -555,6 +555,12 @@ Public Class frmMsImagingViewer
             Return
         End If
 
+        ' is an in-memory dataset
+        If FilePath.StringEmpty(, True) Then
+            FilePath = TempFileSystem.GetAppSysTempFile(".mzPack", prefix:="inmemory_MSI_dump_")
+            ExportMzPack(FilePath, successUI:=False)
+        End If
+
         Dim cache_key As String = getCacheKey(FilePath)
         Dim cachefile As String = $"{App.AppSystemTemp}/.matrix_cache/{cache_key}.dat"
         Dim matrix As String = cachefile
@@ -1890,18 +1896,32 @@ Public Class frmMsImagingViewer
 
         Using file As New SaveFileDialog With {.Filter = "mzPack(*.mzPack)|*.mzPack"}
             If file.ShowDialog = DialogResult.OK Then
-                Dim fileName As String = file.FileName
-
-                Call TaskProgress.RunAction(
-                    Sub(update)
-                        MSIservice.MessageCallback = update.Echo
-                        MSIservice.ExportMzpack(savefile:=fileName)
-                    End Sub, title:="Export mzPack data...", info:="Save mzPack!")
-                Call MessageBox.Show($"Export mzPack data at location: {vbCrLf}{fileName}!", "BioNovoGene MSI Viewer", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                MSIservice.MessageCallback = Nothing
+                Call ExportMzPack(file.FileName, successUI:=True)
             End If
         End Using
+    End Sub
+
+    Sub ExportMzPack(filename As String, successUI As Boolean)
+        If Not checkService() Then
+            Return
+        End If
+
+        Call TaskProgress.RunAction(
+            run:=Sub(update)
+                     MSIservice.MessageCallback = update.Echo
+                     MSIservice.ExportMzpack(savefile:=filename)
+                 End Sub,
+            title:="Export mzPack data...",
+            info:="Save mzPack!")
+
+        If successUI AndAlso filename.FileLength > 0 Then
+            Call MessageBox.Show($"Export mzPack data at location: {vbCrLf}{filename}!",
+                                 "BioNovoGene MSI Viewer",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
+        End If
+
+        MSIservice.MessageCallback = Nothing
     End Sub
 
     ''' <summary>
@@ -2083,14 +2103,17 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
-    Private Function ExtractRegionSample(msg As Action(Of String), regions As Polygon2D()) As Integer
-        Dim info = MSIservice.ExtractRegionSample(regions, New Size(params.scan_x, params.scan_y))
+    Public Function ExtractRegionSample(msg As Action(Of String), regions As Polygon2D(), fromRaster As Boolean) As Integer
+        Dim info = MSIservice.ExtractRegionSample(regions, New Size(params.scan_x, params.scan_y), fromRaster)
 
         If info Is Nothing Then
             Return -1
         End If
 
-        Call Me.Invoke(Sub() LoadRender(info, FilePath))
+        ' the new dataset is a in-memory dataset
+        ' set the filepath to null
+        ' so the file path will not check success, make the data source consist
+        Call Me.Invoke(Sub() LoadRender(info, "null"))
         Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
 
         Return 0
@@ -2123,7 +2146,7 @@ Public Class frmMsImagingViewer
 
         Call TaskProgress.LoadData(
             streamLoad:=Function(msg As Action(Of String))
-                            Return ExtractRegionSample(msg, regions)
+                            Return ExtractRegionSample(msg, regions, fromRaster:=False)
                         End Function,
             canbeCancel:=True
         )
@@ -2132,7 +2155,10 @@ Public Class frmMsImagingViewer
     ''' <summary>
     ''' set parameters and initialize of the UI
     ''' </summary>
-    ''' <param name="filePath"></param>
+    ''' <param name="filePath">could be nothing</param>
+    ''' <remarks>
+    ''' the <paramref name="filePath"/> parameter just used for set the <see cref="FilePath"/> data.
+    ''' </remarks>
     Public Sub LoadRender(info As MsImageProperty, filePath As String)
         If info Is Nothing Then
             Return
@@ -2849,8 +2875,7 @@ Public Class frmMsImagingViewer
                                                          rawdata As String,
                                                          savefile As String,
                                                          Optional pars As InputMSIPeakTableParameters = Nothing) As String
-
-        Call InputDialog.Input(Of InputMSIPeakTableParameters)(
+        Call InputDialog.Input(
             Sub(cfg)
                 Call RscriptProgressTask.CreateMSIPeakTable(
                     mzpack:=rawdata,

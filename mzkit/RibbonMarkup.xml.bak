@@ -4374,6 +4374,14 @@
         <Image MinDPI="192">Res/icons8-dashboard-layout-96.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonViewVolcano" Comment="Volcano plot between two data groups" Id="324" LabelTitle="Volcano Plot" LabelDescription="Volcano plot between two data groups" TooltipTitle="Volcano plot between two data groups" TooltipDescription="Volcano plot between two data groups">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-volcano-100.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-volcano-100.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4787,9 +4795,10 @@
                 <Button CommandName="cmdButtonImportsLCAnnotationFromTable" />
               </SplitButton>
             </Group>
-            <Group CommandName="cmdPanelLCMSAnalysis" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdPanelLCMSAnalysis" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonLCMSMetabolite" />
               <ToggleButton CommandName="cmdButtonLCMSFilterIons" />
+              <Button CommandName="cmdButtonViewVolcano" />
             </Group>
           </Tab>
         </TabGroup>

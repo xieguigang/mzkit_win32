@@ -60,6 +60,7 @@
 #End Region
 
 Imports System.IO
+Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
@@ -71,6 +72,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
 Imports Microsoft.VisualBasic.Data.csv
@@ -544,6 +547,13 @@ UseCheckedList:
         Return regions
     End Function
 
+    ''' <summary>
+    ''' get ion layer data from the ms-imaging data back-end
+    ''' </summary>
+    ''' <param name="mz"></param>
+    ''' <param name="needsRegions"></param>
+    ''' <param name="msg$"></param>
+    ''' <returns></returns>
     Private Function getLayer(ByRef mz As Double, needsRegions As Boolean, ByRef msg$) As PixelData()
         If viewer Is Nothing OrElse (needsRegions AndAlso viewer.sampleRegions.IsNullOrEmpty) Then
             msg = "No tissue region data was provided!"
@@ -716,6 +726,10 @@ UseCheckedList:
         Call folder.Nodes.Clear()
 
         For i As Integer = 0 To mz.Length - 1
+            If mz(i) <= 0.0 Then
+                Continue For
+            End If
+
             Dim label As String = $"{labels(i)} [m/z {mz(i).ToString("F4")}]"
             Dim node = folder.Nodes.Add(label)
 
@@ -858,6 +872,12 @@ UseCheckedList:
         End If
     End Sub
 
+    ''' <summary>
+    ''' Create sample peaktable and then open in analysis workbench page
+    ''' </summary>
+    ''' <param name="regions"></param>
+    ''' <param name="ions"></param>
+    ''' <param name="workdir"></param>
     Private Sub createPeaktable(regions As TissueRegion(), ions As (title As String, mz As Double)(), workdir As String)
         Dim pars = Globals.MSIBootstrapping
         Dim nsamples As Integer = pars.nsamples
@@ -865,14 +885,19 @@ UseCheckedList:
         Dim sampleinfo As SampleInfo() = regions _
             .Select(Iterator Function(t, batch) As IEnumerable(Of SampleInfo)
                         Dim color_str As String = t.color.ToHtmlColor
+                        Dim region_label As String = t.label
+
+                        If region_label.IsPattern("\d+") Then
+                            region_label = $"region_{region_label}"
+                        End If
 
                         For i As Integer = 1 To nsamples
                             Yield New SampleInfo With {
-                                .ID = $"{t.label}.{i}",
+                                .ID = $"{region_label}.{i}",
                                 .color = color_str,
                                 .batch = batch + 1,
                                 .injectionOrder = i,
-                                .sample_info = t.label,
+                                .sample_info = region_label,
                                 .sample_name = .ID,
                                 .shape = "circle"
                             }
@@ -918,41 +943,114 @@ UseCheckedList:
         Public cov As Double
         Public regions As TissueRegion()
         Public peaks As New List(Of xcms2)
+        Public mzdiff As Double = 0.01
 
-        Public Sub getPeaks(p As ITaskProgress)
-            Dim errMsg As String = Nothing
-            Dim mzdiff = Tolerance.DeltaMass(0.01)
+        Private Function CreateIonSet() As Dictionary(Of String, Double)
+            Dim list As New List(Of NamedValue(Of Double))
 
             For Each ion As (title As String, mz As Double) In ions
-                Call p.SetInfo($"processing ion feature: {ion.title}")
-
-                Dim layer As PixelData() = host.viewer.MSIservice.LoadPixels({ion.mz}, mzdiff)
-
-                If layer Is Nothing Then
-                    Call Workbench.Warning($"No ion layer data for ${ion.title}, this ion feature will be omit: {errMsg}")
-                    Continue For
-                End If
-
-                Dim data = SampleData.ExtractSample(layer, regions, n:=nsamples, coverage:=cov)
                 Dim id As String = ion.title
 
                 If id.IsNumeric Then
                     id = $"MSI{ion.mz.ToString("F4")}"
                 End If
 
-                Dim peak As New xcms2(ion.mz, 0) With {
-                    .ID = id,
+                Call list.Add(New NamedValue(Of Double)(id, ion.mz))
+            Next
+
+            Dim uniqueIds = list.Select(Function(i) i.Name).UniqueNames
+            Dim ionSet As New Dictionary(Of String, Double)
+
+            For i As Integer = 0 To uniqueIds.Length - 1
+                Call ionSet.Add(uniqueIds(i), list(i).Value)
+            Next
+
+            Return ionSet
+        End Function
+
+        Private Async Function BootstrapExpression(region As TissueRegion,
+                                                   dims As Size,
+                                                   target As Dictionary(Of String, Double)) As Task(Of Dictionary(Of String, Double()))
+
+            Dim poly = region.GetPolygons.ToArray
+
+            Return Await Task(Of Dictionary(Of String, Double())).Run(
+                Function()
+                    Return host.viewer.MSIservice.SpatialBootstrapping(poly, dims, target, mzdiff, nsamples, cov)
+                End Function)
+        End Function
+
+        Private Async Function BootstrapPeaks(p As ITaskProgress, target As Dictionary(Of String, Double)) As Task(Of Dictionary(Of String, Dictionary(Of String, Double())))
+            Dim errMsg As String = Nothing
+            Dim expr As New Dictionary(Of String, Dictionary(Of String, Double()))
+            Dim dims As Size = host.viewer.params.GetMSIDimension
+
+            For Each region As TissueRegion In regions
+                Dim regionId As String = region.label
+
+                If regionId.IsPattern("\d+") Then
+                    regionId = $"region_{regionId}"
+                End If
+
+                Call p.SetInfo($"processing tissue region: {regionId}({region.color.ToHtmlColor})")
+
+                Dim expression = Await BootstrapExpression(region, dims, target)
+
+                If expression Is Nothing Then
+                    Call Workbench.Warning($"No ion layer expression data for ${regionId}, this tissue region feature will be omit: {errMsg}")
+                    Continue For
+                End If
+
+                Call expr.Add(regionId, expression)
+            Next
+
+            Return expr
+        End Function
+
+        Public Sub getPeaks(p As ITaskProgress)
+            Dim async = getPeaksAsync(p)
+
+            For i As Integer = 0 To Integer.MaxValue - 1
+                If async.IsCompleted Then
+                    Exit For
+                End If
+
+                Call Thread.Sleep(100)
+                Call Application.DoEvents()
+            Next
+        End Sub
+
+        Public Async Function getPeaksAsync(p As ITaskProgress) As Threading.Tasks.Task(Of Boolean)
+            Dim target As Dictionary(Of String, Double) = CreateIonSet()
+            Dim expr As Dictionary(Of String, Dictionary(Of String, Double())) = Await BootstrapPeaks(p, target)
+            Dim proc As Integer = 0
+
+            Call p.SetInfo($"Build expression peaktable for all selected feature ions!")
+
+            For Each ion In target
+                Dim peak As New xcms2(ion.Value, 0) With {
+                    .ID = ion.Key,
                     .Properties = New Dictionary(Of String, Double)
                 }
 
-                For Each region As KeyValuePair(Of String, Double()) In data
-                    For i As Integer = 0 To region.Value.Length - 1
-                        Call peak.Add($"{region.Key}.{i + 1}", region.Value(i))
+                For Each regionId As String In expr.Keys
+                    Dim ions = expr(regionId)(ion.Key)
+
+                    For i As Integer = 0 To ions.Length - 1
+                        Call peak.Add($"{regionId}.{i + 1}", ions(i))
                     Next
                 Next
 
+                proc += 1
+
                 Call peaks.Add(peak)
+
+                If proc Mod 7 = 0 Then
+                    Call p.SetInfo($"Build expression peaktable for selected feature ion: {ion.Key} ({ion.Value})")
+                End If
             Next
-        End Sub
+
+            Return True
+        End Function
     End Class
 End Class

@@ -184,6 +184,34 @@ Public Class frmMetabonomicsAnalysis
         Next
     End Sub
 
+    Public Sub LoadAnalysisTable(table As DataTable, data As EntityObject())
+        Dim keys As String()
+
+        If data.IsNullOrEmpty Then
+            Call MessageBox.Show("No analysis data table contents, please try to run data analysis first.", "Missing data", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        Else
+            keys = data(0).Properties.Keys.ToArray
+        End If
+
+        Call table.Columns.Add("id", GetType(String))
+
+        For Each key As String In keys
+            Call table.Columns.Add(key, GetType(String))
+        Next
+
+        For Each row As EntityObject In data
+            Dim r As Object() = New Object(row.Properties.Count) {}
+            r(0) = row.ID
+
+            For j = 0 To keys.Length - 1
+                r(j + 1) = row(keys(j))
+            Next
+
+            Call table.Rows.Add(r)
+        Next
+    End Sub
+
     Public Delegate Sub LoadDataCallback(sampleinfo As SampleInfo(), properties As String(), df As DataFrame, workdir As String)
 
     Public Shared Sub LoadData(df As DataFrame, sourcefile As String, callback As LoadDataCallback)
@@ -521,6 +549,7 @@ Public Class frmMetabonomicsAnalysis
     Shared ReadOnly massFilter As New RibbonEventBinding(ribbonItems.ButtonLCMSMetabolite)
     Shared ReadOnly ionFilter As New ToggleEventBinding(ribbonItems.ButtonLCMSFilterIons)
     Shared ReadOnly setGroups As New RibbonEventBinding(ribbonItems.ButtonLCMSViewGroups)
+    Shared ReadOnly volcanoPlot As New RibbonEventBinding(ribbonItems.ButtonViewVolcano)
 
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
@@ -647,6 +676,27 @@ Public Class frmMetabonomicsAnalysis
         massFilter.evt = Sub() Call MassSearch()
         ionFilter.evt = Sub() Call loadPeaktable()
         setGroups.evt = Sub() Call SetGroupsVisual()
+        volcanoPlot.evt = Sub() Call doVolcanoPlot()
+    End Sub
+
+    Private Sub doVolcanoPlot()
+        Dim config As New InputVolcanoSettings
+
+        Call config.SetGroups(sampleinfo.Select(Function(i) i.sample_info).Distinct)
+        Call InputDialog.Input(
+            Sub(settings)
+                Dim dir As String = workdir & $"/{settings.Trial} vs {settings.ControlGroup}"
+
+                If RscriptProgressTask.RunVolcano(matrixfile, sampleinfofile,
+                                                  settings.Trial, settings.ControlGroup, settings.log2fc, settings.pvalue,
+                                                  dir) Then
+
+                    Dim score_data As EntityObject() = EntityObject.LoadDataSet($"{dir}/ttest_diffsig.csv").ToArray
+
+                    Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+                    Call SetSvg($"{dir}/volcano.svg", {})
+                End If
+            End Sub, config:=config)
     End Sub
 
     Dim groupsVisual As Index(Of String)
@@ -817,6 +867,7 @@ Public Class frmMetabonomicsAnalysis
         massFilter.evt = Nothing
         ionFilter.evt = Nothing
         setGroups.evt = Nothing
+        volcanoPlot.evt = Nothing
 
         openMetabolitesFile.evt = Nothing
         openMetabolitesTable.evt = Nothing

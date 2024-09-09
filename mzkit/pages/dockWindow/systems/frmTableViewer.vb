@@ -65,6 +65,7 @@ Imports System.Text
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
@@ -414,13 +415,6 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub MSImagingIonListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MSImagingIonListToolStripMenuItem.Click
-        Dim row = GetSelectedRow
-
-        If row.IsNullOrEmpty Then
-            Call Workbench.Warning("A row data must be selected!")
-            Return
-        End If
-
         Dim msi As frmMsImagingViewer = Workbench.AppHost.DockPanel.Documents.Where(Function(f) TypeOf f Is frmMsImagingViewer).FirstOrDefault
 
         If msi Is Nothing Then
@@ -428,14 +422,48 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
             Return
         End If
 
+        Dim labels As String() = Nothing
+        Dim mz As Double() = Nothing
+
         If ParseMsSet Is Nothing Then
-            Call Workbench.Warning("Sorry, there is no avaiable ions mz source list in current table!")
-            Return
+            ' use a column as mz source
+            ' additional column as label name of the corresponding mz
+            Dim form As New SetTableMzSource
+            Dim fieldNames As New List(Of String)
+
+            For Each col As DataGridViewColumn In AdvancedDataGridView1.Columns
+                Call fieldNames.Add(col.Name)
+            Next
+
+            Call form.SetColumns(fieldNames)
+            Call InputDialog.Input(
+                Sub(frm)
+                    mz = frm.GetMz(AdvancedDataGridView1)
+                    labels = frm.GetNames(AdvancedDataGridView1)
+                End Sub, config:=form)
+        Else
+            Dim row = GetSelectedRow
+
+            If row.IsNullOrEmpty Then
+                Call Workbench.Warning("A row data must be selected!")
+                Return
+            End If
+
+            Dim mzSet = ParseMsSet(row).ToArray
+
+            labels = mzSet.Select(Function(a) a.Name).ToArray
+            mz = mzSet.Select(Function(a) a.Value).ToArray
         End If
 
-        Dim mzSet = ParseMsSet(row).ToArray
-        Dim labels As String() = mzSet.Select(Function(a) a.Name).ToArray
-        Dim mz As Double() = mzSet.Select(Function(a) a.Value).ToArray
+        If labels.IsNullOrEmpty Then
+            labels = New String(mz.Length - 1) {}
+
+            For i As Integer = 0 To mz.Length - 1
+                labels(i) = "MSI" & mz(i).ToString("F4")
+            Next
+
+            labels = labels.UniqueNames
+        End If
 
         Call WindowModules.msImageParameters.ImportsIons(labels, mz)
         Call VisualStudio.Dock(WindowModules.msImageParameters, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft)

@@ -32,11 +32,12 @@ Partial Class RegionSampleCard
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ExtractRegionSampleDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewMS1SpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SetHTMLColorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.MoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SetHTMLColorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -81,36 +82,41 @@ Partial Class RegionSampleCard
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewMS1SpectrumToolStripMenuItem, Me.ToolStripMenuItem1, Me.MoveToolStripMenuItem, Me.SetHTMLColorToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExtractRegionSampleDataToolStripMenuItem, Me.ViewMS1SpectrumToolStripMenuItem, Me.ToolStripMenuItem1, Me.MoveToolStripMenuItem, Me.SetHTMLColorToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        '
+        'ExtractRegionSampleDataToolStripMenuItem
+        '
+        resources.ApplyResources(Me.ExtractRegionSampleDataToolStripMenuItem, "ExtractRegionSampleDataToolStripMenuItem")
+        Me.ExtractRegionSampleDataToolStripMenuItem.Name = "ExtractRegionSampleDataToolStripMenuItem"
         '
         'ViewMS1SpectrumToolStripMenuItem
         '
-        Me.ViewMS1SpectrumToolStripMenuItem.Name = "ViewMS1SpectrumToolStripMenuItem"
         resources.ApplyResources(Me.ViewMS1SpectrumToolStripMenuItem, "ViewMS1SpectrumToolStripMenuItem")
-        '
-        'SetHTMLColorToolStripMenuItem
-        '
-        Me.SetHTMLColorToolStripMenuItem.Name = "SetHTMLColorToolStripMenuItem"
-        resources.ApplyResources(Me.SetHTMLColorToolStripMenuItem, "SetHTMLColorToolStripMenuItem")
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.ContextMenuStrip = Me.ContextMenuStrip1
-        resources.ApplyResources(Me.PictureBox1, "PictureBox1")
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.TabStop = False
+        Me.ViewMS1SpectrumToolStripMenuItem.Name = "ViewMS1SpectrumToolStripMenuItem"
         '
         'ToolStripMenuItem1
         '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         '
         'MoveToolStripMenuItem
         '
-        Me.MoveToolStripMenuItem.Name = "MoveToolStripMenuItem"
         resources.ApplyResources(Me.MoveToolStripMenuItem, "MoveToolStripMenuItem")
+        Me.MoveToolStripMenuItem.Name = "MoveToolStripMenuItem"
+        '
+        'SetHTMLColorToolStripMenuItem
+        '
+        resources.ApplyResources(Me.SetHTMLColorToolStripMenuItem, "SetHTMLColorToolStripMenuItem")
+        Me.SetHTMLColorToolStripMenuItem.Name = "SetHTMLColorToolStripMenuItem"
+        '
+        'PictureBox1
+        '
+        resources.ApplyResources(Me.PictureBox1, "PictureBox1")
+        Me.PictureBox1.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.TabStop = False
         '
         'RegionSampleCard
         '
@@ -145,4 +151,5 @@ Partial Class RegionSampleCard
     Public WithEvents SetHTMLColorToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
     Friend WithEvents MoveToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExtractRegionSampleDataToolStripMenuItem As ToolStripMenuItem
 End Class

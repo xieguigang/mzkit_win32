@@ -98,20 +98,23 @@ Public Class MSIRegionSampleWindow
             card.SampleInfo = region.label
             card.Width = newW
 
+            AddHandler card.ExtractRegionData, AddressOf ExtractRegionSample
             AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
             AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum
             AddHandler card.SetHtmlColorCode, AddressOf SetHtmlColorCode
-            AddHandler card.StartMoveRegion,
-                Sub(ctl)
-                    Dim region_tile = canvas.AddSpatialRegion(ctl.ExportTissueRegion(dimension))
-
-                    AddHandler region_tile.ApplySave,
-                        Sub(tile)
-                            Call saveManualMoveRegionLocation(tile, region, ctl)
-                            Call canvas.Controls.Remove(tile)
-                        End Sub
-                End Sub
+            AddHandler card.StartMoveRegion, AddressOf MoveRegion
         Next
+    End Sub
+
+    Private Sub MoveRegion(ctl As RegionSampleCard)
+        Dim region = ctl.ExportTissueRegion(dimension)
+        Dim region_tile = canvas.AddSpatialRegion(region)
+
+        AddHandler region_tile.ApplySave,
+            Sub(tile)
+                Call saveManualMoveRegionLocation(tile, Region, ctl)
+                Call canvas.Controls.Remove(tile)
+            End Sub
     End Sub
 
     ''' <summary>
@@ -189,9 +192,38 @@ Public Class MSIRegionSampleWindow
         AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
         AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum
         AddHandler card.SetHtmlColorCode, AddressOf SetHtmlColorCode
+        AddHandler card.ExtractRegionData, AddressOf ExtractRegionSample
+        AddHandler card.StartMoveRegion, AddressOf MoveRegion
 
         Return card
     End Function
+
+    Private Sub ExtractRegionSample(card As RegionSampleCard)
+        If viewer Is Nothing OrElse Not viewer.checkService() Then
+            Return
+        End If
+
+        Dim regions As Polygon2D() = card.ExportTissueRegion(dimension).GetPolygons.ToArray
+
+        If regions.Length = 0 Then
+            Call Workbench.Warning("No region polygon data was found from polygon editor, draw some region polygon at first!")
+            Return
+        Else
+            regions = {New Polygon2D(regions)}
+            canvas.ClearSelection()
+
+            If Not viewer.sampleRegions Is Nothing Then
+                viewer.sampleRegions.Clear()
+            End If
+        End If
+
+        Call TaskProgress.LoadData(
+            streamLoad:=Function(msg As Action(Of String))
+                            Return viewer.ExtractRegionSample(msg, regions, fromRaster:=True)
+                        End Function,
+            canbeCancel:=True
+        )
+    End Sub
 
     Private Sub MSIRegionSampleWindow_Load(sender As Object, e As EventArgs) Handles Me.Load
         TabText = Text
@@ -267,8 +299,13 @@ Public Class MSIRegionSampleWindow
         If tissueMaps.IsNullOrEmpty Then
             Return
         ElseIf Not LayerRender.CheckGdiSizeParameter(layerSize, spotSize) Then
-            MessageBox.Show($"the image size({layerSize.Width},{layerSize.Height}) multiply current spot size({spotSize}) will cause the image byte size greater than 2GB, which could not be holded by dotnet memory buffer. 
-the spot size for the rendering will be reduce to 1, but this gdi+ memory problem may still happends for large slide image.", "Invalid gdi+ parameters", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show($"The image size({layerSize.Width},{layerSize.Height}) multiply current spot size({spotSize}) 
+will cause the image byte size greater than 2GB, which could not be holded by dotnet memory buffer. 
+The spot size for the rendering will be reduce to 1, but this gdi+ memory problem may 
+still happends for large slide image.",
+                            "Invalid gdi+ parameters",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information)
             spotSize = 1
         End If
 
