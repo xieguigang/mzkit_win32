@@ -506,8 +506,23 @@ Public Class PageMzSearch
         Next
     End Sub
 
-    Private Iterator Function GetAdducts() As IEnumerable(Of MzCalculator)
-
+    Private Iterator Function GetAdducts() As IEnumerable(Of String)
+        If CheckedListBox1.GetItemChecked(0) Then
+            ' has positive
+            For i As Integer = 0 To CheckedListBox3.Items.Count - 1
+                If CheckedListBox3.GetItemChecked(i) Then
+                    Yield CStr(CheckedListBox3.Items(i))
+                End If
+            Next
+        End If
+        If CheckedListBox1.GetItemChecked(1) Then
+            ' has negative
+            For i As Integer = 0 To CheckedListBox4.Items.Count - 1
+                If CheckedListBox4.GetItemChecked(i) Then
+                    Yield CStr(CheckedListBox4.Items(i))
+                End If
+            Next
+        End If
     End Function
 
     ''' <summary>
@@ -525,7 +540,7 @@ Public Class PageMzSearch
         Dim tolerance As Tolerance = Tolerance.PPM(NumericUpDown1.Value)
         Dim keggMeta As DBPool = Nothing
         Dim dbNames As String() = getDatabaseNames.ToArray
-        Dim adducts As String() = GetAdducts.Select(Function(a) a.ToString).ToArray
+        Dim adducts As String() = GetAdducts.ToArray
 
         keggMeta = TaskProgress.LoadData(
             Function(print)
