@@ -12,7 +12,7 @@ Public Class KEGGEnrichmentGraph : Inherits SummaryPlot
 
             list({"term"}) = "the kegg pathway map id vector."
             list({"name"}) = "the kegg pathway names."
-            list({"geneIDs"}) = "the fisher enrichment hits in a pathway cluster."
+            list({"IDs"}) = "the fisher enrichment hits in a pathway cluster."
             list({"pvalue"}) = "the enrichment p-value."
 
             Return list
@@ -29,7 +29,7 @@ Public Class KEGGEnrichmentGraph : Inherits SummaryPlot
         Dim term As String() = getFieldVector(table, {"term"}).AsObjectEnumerator.Select(AddressOf any.ToString).ToArray
         Dim name As String() = getFieldVector(table, {"name"}).AsObjectEnumerator.Select(AddressOf any.ToString).ToArray
         Dim pvalue As Double() = CLRVector.asNumeric(getFieldVector(table, {"pvalue", "p-value"}))
-        Dim geneSet As String()() = getFieldVector(table, {"geneIDs"}) _
+        Dim geneSet As String()() = getFieldVector(table, {"IDs"}) _
             .AsObjectEnumerator _
             .Select(AddressOf any.ToString) _
             .Select(Function(r) r.StringSplit("[,;]\s+")) _
