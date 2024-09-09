@@ -291,7 +291,9 @@ Public Class PageMzSearch
 
         CheckedListBox1.SetItemChecked(0, True)
         ComboBox1.SelectedIndex = 0
+        ComboBox2.SelectedIndex = 0
 
+        Call ComboBox2_SelectedIndexChanged()
         Call loadAdductsPosNeg()
         Call vs_win.GetVisualStudioToolStripExtender1.SetStyle(ContextMenuStrip1, VisualStudioToolStripExtender.VsVersion.Vs2015, vs_win.GetVS2015LightTheme1)
         Call ReloadMetaDatabase()
@@ -594,10 +596,30 @@ Public Class PageMzSearch
         Dim args As New MassSearchArguments With {
             .Optionals = New Dictionary(Of String, String) From {{"permutation", permutations}},
             .PPM = ppm,
-            .IonMode = ionMode
+            .IonMode = ionMode,
+            .Adducts = GetSelectedMummichogAdducts.ToArray
         }
 
         Call ConnectToBioDeep.RunMummichog(getMzPeakList, args)
+    End Sub
+
+    Private Iterator Function GetSelectedMummichogAdducts() As IEnumerable(Of String)
+        For i As Integer = 0 To CheckedListBox5.Items.Count - 1
+            If CheckedListBox5.GetItemChecked(i) Then
+                Yield CStr(CheckedListBox5.Items(i))
+            End If
+        Next
+    End Function
+
+    Private Sub ComboBox2_SelectedIndexChanged() Handles ComboBox2.SelectedIndexChanged
+        Dim ionMode As IonModes = Provider.ParseIonMode(ComboBox2.Items(ComboBox2.SelectedIndex).ToString)
+        Dim adducts = If(ionMode = IonModes.Positive, Provider.Positives, Provider.Negatives)
+
+        CheckedListBox5.Items.Clear()
+
+        For Each type As MzCalculator In adducts
+            CheckedListBox5.Items.Add(type.ToString, type.M = 1 AndAlso std.Abs(type.charge) = 1)
+        Next
     End Sub
 End Class
 
