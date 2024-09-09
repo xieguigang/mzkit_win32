@@ -25,6 +25,7 @@ Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
+Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
 Imports csv = Microsoft.VisualBasic.Data.csv.IO.File
@@ -1052,25 +1053,48 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Private Sub OpenInTableEditorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableEditorToolStripMenuItem.Click
-        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(, "View analysis result table")
+        Call VisualStudio.ShowDocument(Of frmTableViewer)(, "View analysis result table").LoadTable(AddressOf loadResultTable)
+    End Sub
 
-        table.LoadTable(
-            Sub(tbl)
-                Dim rowdata As Object() = New Object(AdvancedDataGridView1.Columns.Count - 1) {}
+    Private Sub loadResultTable(tbl As DataTable)
+        Dim peaks = Me.peaks.peaks.ToDictionary(Function(a) a.ID)
+        Dim rowdata As Object() = New Object(AdvancedDataGridView1.Columns.Count - 1) {}
+        Dim addMz As Boolean = CLRVector.asCharacter(AdvancedDataGridView1.getFieldVector(0)) _
+            .SafeQuery _
+            .All(Function(id)
+                     Return peaks.ContainsKey(id)
+                 End Function)
+        Dim addMzOffsetOne As Boolean = addMz
 
-                For Each col As DataGridViewColumn In AdvancedDataGridView1.Columns
-                    Call tbl.Columns.Add(col.HeaderText, col.ValueType)
-                Next
+        If addMz Then
+            rowdata = New Object(rowdata.Length) {}
+        End If
 
-                For Each row As DataGridViewRow In AdvancedDataGridView1.Rows
-                    rowdata = New Object(rowdata.Length - 1) {}
+        For Each col As DataGridViewColumn In AdvancedDataGridView1.Columns
+            Call tbl.Columns.Add(col.HeaderText, col.ValueType)
 
-                    For i As Integer = 0 To rowdata.Length - 1
-                        rowdata(i) = row.Cells(i).Value
-                    Next
+            If addMz Then
+                addMz = False
+                tbl.Columns.Add("m/z", GetType(Double))
+            End If
+        Next
 
-                    Call tbl.Rows.Add(rowdata)
-                Next
-            End Sub)
+        For Each row As DataGridViewRow In AdvancedDataGridView1.Rows
+            rowdata = New Object(rowdata.Length - 1) {}
+
+            If addMzOffsetOne Then
+                rowdata(1) = peaks(CStr(row.Cells(0).Value)).mz
+            End If
+
+            For i As Integer = 0 To rowdata.Length - 1
+                If i > 0 AndAlso addMzOffsetOne Then
+                    rowdata(i + 1) = row.Cells(i).Value
+                Else
+                    rowdata(i) = row.Cells(i).Value
+                End If
+            Next
+
+            Call tbl.Rows.Add(rowdata)
+        Next
     End Sub
 End Class
