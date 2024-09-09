@@ -79,10 +79,17 @@ Module DataControlHandler
     Public Function getFieldVector(table As DataTable, fieldRef As Integer) As Array
         Dim array As New List(Of Object)
         Dim row As DataRow
+        Dim val As Object
 
         For index As Integer = 0 To table.Rows.Count - 2
             row = table.Rows.Item(index)
-            array.Add(row.Item(fieldRef))
+            val = row.Item(fieldRef)
+
+            If Convert.IsDBNull(val) Then
+                Call array.Add(Nothing)
+            Else
+                Call array.Add(val)
+            End If
         Next
 
         Return REnv.TryCastGenericArray(array.ToArray, MyApplication.REngine.globalEnvir)
