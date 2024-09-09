@@ -40,29 +40,38 @@ Public Class KEGGEnrichmentGraph : Inherits SummaryPlot
 
     Protected Function CreateGraph(term As String(), name As String(), pvalue As Double(), geneSet As String()()) As NetworkGraph
         Dim g As New NetworkGraph
+        Dim pval_cut As Double = 0.01
 
         For i As Integer = 0 To term.Length - 1
-            If pvalue(i) >= 0.05 Then
+            If pvalue(i) > pval_cut Then
                 Continue For
             End If
 
-            Call g.CreateNode(term(i), New NodeData With {.origID = term(i), .label = name(i), .color = Brushes.Blue, .Properties = New Dictionary(Of String, String) From {
+            Call g.CreateNode(term(i), New NodeData With {
+                              .origID = term(i),
+                              .label = name(i),
+                              .color = Brushes.Blue,
+                              .Properties = New Dictionary(Of String, String) From {
                 {NamesOf.REFLECTION_ID_MAPPING_NODETYPE, "pathway"}
             }})
         Next
         For Each id As String In geneSet.IteratesALL.Distinct
-            Call g.CreateNode(id, New NodeData With {.color = Brushes.Red, .Properties = New Dictionary(Of String, String) From {
+            Call g.CreateNode(id, New NodeData With {
+                              .color = Brushes.Red,
+                              .Properties = New Dictionary(Of String, String) From {
                 {NamesOf.REFLECTION_ID_MAPPING_NODETYPE, "cluster_member"}
             }})
         Next
 
         For i As Integer = 0 To term.Length - 1
-            If pvalue(i) >= 0.05 Then
+            If pvalue(i) > pval_cut Then
                 Continue For
             End If
 
+            Dim mapUNode = g.GetElementByID(term(i))
+
             For Each id As String In geneSet(i)
-                Call g.CreateEdge(g.GetElementByID(term(i)), g.GetElementByID(id))
+                Call g.CreateEdge(mapUNode, g.GetElementByID(id))
             Next
         Next
 
