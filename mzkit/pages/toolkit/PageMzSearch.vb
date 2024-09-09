@@ -471,7 +471,7 @@ Public Class PageMzSearch
         CheckedListBox2.SetItemChecked(3, True)
     End Sub
 
-    Private Function getDatabase(name As String, ionMode As Integer, tolerance As Tolerance) As IMzQuery
+    Private Function getDatabase(name As String, ionMode As String(), tolerance As Tolerance) As IMzQuery
         Select Case name
             Case "kegg"
                 Return Globals.LoadKEGG(AddressOf MyApplication.LogText, ionMode, tolerance)
@@ -525,30 +525,27 @@ Public Class PageMzSearch
         Dim tolerance As Tolerance = Tolerance.PPM(NumericUpDown1.Value)
         Dim keggMeta As DBPool = Nothing
         Dim dbNames As String() = getDatabaseNames.ToArray
+        Dim adducts As String() = GetAdducts.Select(Function(a) a.ToString).ToArray
 
-        For Each mode As String In modes
-            Dim modeValue As Integer = Provider.ParseIonMode(mode)
+        keggMeta = TaskProgress.LoadData(
+            Function(print)
+                Dim database As New DBPool
 
-            keggMeta = TaskProgress.LoadData(
-                Function(print)
-                    Dim database As New DBPool
+                For Each db As String In dbNames
+                    Call print.SetInfo($"Load annotation database repository data... [{db}]")
+                    Call database.Register(db, getDatabase(db, adducts, tolerance))
+                Next
 
-                    For Each db As String In dbNames
-                        Call print.SetInfo($"Load annotation database repository data... [{db}]")
-                        Call database.Register(db, getDatabase(db, modeValue, tolerance))
-                    Next
+                Return database
+            End Function, info:="Load annotation database repository data...")
 
-                    Return database
-                End Function, info:="Load annotation database repository data...")
+        Dim anno As NamedCollection(Of MzQuery)() = TaskProgress.LoadData(
+            streamLoad:=Function(print As Action(Of String)) keggMeta.MSetAnnotation(mzset, print).ToArray,
+            title:="Peak List Annotation",
+            info:="Run ms1 peak list data annotation..."
+        )
 
-            Dim anno As NamedCollection(Of MzQuery)() = TaskProgress.LoadData(
-                streamLoad:=Function(print As Action(Of String)) keggMeta.MSetAnnotation(mzset, print).ToArray,
-                title:="Peak List Annotation",
-                info:="Run ms1 peak list data annotation..."
-            )
-
-            Call result.AddRange(anno)
-        Next
+        Call result.AddRange(anno)
 
         Dim title As String = If(SourceName.StringEmpty, "Peak List Annotation", $"[{SourceName}] Peak List Annotation")
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
