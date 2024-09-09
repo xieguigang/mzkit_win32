@@ -227,67 +227,55 @@ Module Globals
         End Try
     End Sub
 
-    Public Function LoadChEBI(println As Action(Of String), mode As Integer, mzdiff As Tolerance) As MSSearch(Of MetaboliteAnnotation)
-        Dim key As String = $"[{mzdiff.ToString}]{mode}"
+    Public Function LoadChEBI(println As Action(Of String), mode As String(), mzdiff As Tolerance) As MSSearch(Of MetaboliteAnnotation)
+        Dim key As String = $"[{mzdiff.ToString}]{mode.JoinBy(",")}"
+        Dim adducts = mode.Select(Function(type) Provider.ParseAdductModel(type)).ToArray
 
         Static dataPack As MetaboliteAnnotation() = KEGGRepo.RequestChebi
         Static cache As New Dictionary(Of String, MSSearch(Of MetaboliteAnnotation))
 
         Return cache.ComputeIfAbsent(key,
             lazyValue:=Function()
-                           If mode = 1 Then
-                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
-                           Else
-                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
-                           End If
+                           Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, adducts, mzdiff)
                        End Function)
     End Function
 
-    Public Function LoadMetabolights(println As Action(Of String), mode As Integer, mzdiff As Tolerance) As MSSearch(Of MetaboliteAnnotation)
-        Dim key As String = $"[{mzdiff.ToString}]{mode}"
+    Public Function LoadMetabolights(println As Action(Of String), mode As String(), mzdiff As Tolerance) As MSSearch(Of MetaboliteAnnotation)
+        Dim key As String = $"[{mzdiff.ToString}]{mode.JoinBy(",")}"
+        Dim adducts = mode.Select(Function(type) Provider.ParseAdductModel(type)).ToArray
 
         Static dataPack As MetaboliteAnnotation() = KEGGRepo.RequestMetabolights
         Static cache As New Dictionary(Of String, MSSearch(Of MetaboliteAnnotation))
 
         Return cache.ComputeIfAbsent(key,
             lazyValue:=Function()
-                           If mode = 1 Then
-                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
-                           Else
-                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
-                           End If
+                           Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, adducts, mzdiff)
                        End Function)
     End Function
 
-    Public Function LoadLipidMaps(println As Action(Of String), mode As Integer, mzdiff As Tolerance) As MSSearch(Of LipidMaps.MetaData)
-        Dim key As String = $"[{mzdiff.ToString}]{mode}"
+    Public Function LoadLipidMaps(println As Action(Of String), mode As String(), mzdiff As Tolerance) As MSSearch(Of LipidMaps.MetaData)
+        Dim key As String = $"[{mzdiff.ToString}]{mode.JoinBy(",")}"
+        Dim adducts = mode.Select(Function(type) Provider.ParseAdductModel(type)).ToArray
 
         Static dataPack As LipidMaps.MetaData() = KEGGRepo.RequestLipidMaps
         Static cache As New Dictionary(Of String, MSSearch(Of LipidMaps.MetaData))
 
         Return cache.ComputeIfAbsent(key,
             lazyValue:=Function()
-                           If mode = 1 Then
-                               Return MSSearch(Of LipidMaps.MetaData).CreateIndex(dataPack, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
-                           Else
-                               Return MSSearch(Of LipidMaps.MetaData).CreateIndex(dataPack, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
-                           End If
+                           Return MSSearch(Of LipidMaps.MetaData).CreateIndex(dataPack, adducts, mzdiff)
                        End Function)
     End Function
 
-    Public Function LoadKEGG(println As Action(Of String), mode As Integer, mzdiff As Tolerance) As MSJointConnection
+    Public Function LoadKEGG(println As Action(Of String), mode As String(), mzdiff As Tolerance) As MSJointConnection
         Static background As Background = loadBackground()
         Static compounds As KEGGCompound() = CompoundSolver.Wraps(KEGGRepo.RequestKEGGCompounds).ToArray
         Static cache As New Dictionary(Of String, CompoundSolver)
 
-        Dim key As String = $"[{mzdiff.ToString}]{mode}"
+        Dim key As String = $"[{mzdiff.ToString}]{mode.JoinBy(",")}"
+        Dim adducts = mode.Select(Function(type) Provider.ParseAdductModel(type)).ToArray
         Dim handler As CompoundSolver = cache.ComputeIfAbsent(key,
             lazyValue:=Function()
-                           If mode = 1 Then
-                               Return CompoundSolver.CreateIndex(compounds, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
-                           Else
-                               Return CompoundSolver.CreateIndex(compounds, Provider.Negatives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
-                           End If
+                           Return CompoundSolver.CreateIndex(compounds, adducts, mzdiff)
                        End Function)
 
         Return New MSJointConnection(handler, background)
@@ -331,7 +319,10 @@ Module Globals
                 opened.Add(DirectCast(doc, frmRScriptEdit).scriptFile)
 
                 If DirectCast(doc, frmRScriptEdit).IsUnsaved Then
-                    unsaved.Add(New NamedValue With {.name = DirectCast(doc, frmRScriptEdit).scriptFile, .text = DirectCast(doc, frmRScriptEdit).ScriptText})
+                    Call unsaved.Add(New NamedValue With {
+                        .name = DirectCast(doc, frmRScriptEdit).scriptFile,
+                        .text = DirectCast(doc, frmRScriptEdit).ScriptText
+                    })
                 End If
             End If
         Next
@@ -369,7 +360,10 @@ Module Globals
 
     Public Sub loadWorkspace(mzwork As String, fromStartup As Boolean)
         If Not fromStartup Then
-            If MessageBox.Show("Load new workspace will overrides current MZKit workspace, continute to process?", "Load New Workspace", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
+            If MessageBox.Show("Load new workspace will overrides current MZKit workspace, continute to process?",
+                               "Load New Workspace",
+                               MessageBoxButtons.OKCancel,
+                               MessageBoxIcon.Question) = DialogResult.Cancel Then
                 Return
             End If
         End If

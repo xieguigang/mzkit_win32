@@ -494,6 +494,22 @@ Public Class PageMzSearch
             .ToArray
     End Function
 
+    Private Sub loadAdductsposNeg()
+        CheckedListBox3.Items.Clear()
+        CheckedListBox4.Items.Clear()
+
+        For Each adduct As MzCalculator In Provider.Positives
+            Call CheckedListBox3.Items.Add(adduct.ToString, std.Abs(adduct.charge) = 1)
+        Next
+        For Each adduct As MzCalculator In Provider.Negatives
+            Call CheckedListBox4.Items.Add(adduct.ToString, std.Abs(adduct.charge) = 1)
+        Next
+    End Sub
+
+    Private Iterator Function GetAdducts() As IEnumerable(Of MzCalculator)
+
+    End Function
+
     ''' <summary>
     ''' do ms1 peak list annotation
     ''' </summary>

@@ -123,6 +123,12 @@ Partial Class PageMzSearch
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.CheckedListBox3 = New System.Windows.Forms.CheckedListBox()
+        Me.CheckedListBox4 = New System.Windows.Forms.CheckedListBox()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.CheckedListBox5 = New System.Windows.Forms.CheckedListBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -138,6 +144,9 @@ Partial Class PageMzSearch
         Me.TabPage5.SuspendLayout()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -319,6 +328,8 @@ Partial Class PageMzSearch
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.GroupBox3)
+        Me.TabPage4.Controls.Add(Me.GroupBox2)
         Me.TabPage4.Controls.Add(Me.CheckedListBox1)
         Me.TabPage4.Controls.Add(Me.Button3)
         Me.TabPage4.Controls.Add(Me.Label9)
@@ -374,6 +385,7 @@ Partial Class PageMzSearch
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.GroupBox4)
         Me.TabPage5.Controls.Add(Me.NumericUpDown3)
         Me.TabPage5.Controls.Add(Me.Label12)
         Me.TabPage5.Controls.Add(Me.NumericUpDown2)
@@ -443,6 +455,45 @@ Partial Class PageMzSearch
         resources.ApplyResources(Me.Label6, "Label6")
         Me.Label6.Name = "Label6"
         '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.CheckedListBox3)
+        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.TabStop = False
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.CheckedListBox4)
+        resources.ApplyResources(Me.GroupBox3, "GroupBox3")
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.TabStop = False
+        '
+        'CheckedListBox3
+        '
+        resources.ApplyResources(Me.CheckedListBox3, "CheckedListBox3")
+        Me.CheckedListBox3.FormattingEnabled = True
+        Me.CheckedListBox3.Name = "CheckedListBox3"
+        '
+        'CheckedListBox4
+        '
+        resources.ApplyResources(Me.CheckedListBox4, "CheckedListBox4")
+        Me.CheckedListBox4.FormattingEnabled = True
+        Me.CheckedListBox4.Name = "CheckedListBox4"
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.CheckedListBox5)
+        resources.ApplyResources(Me.GroupBox4, "GroupBox4")
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.TabStop = False
+        '
+        'CheckedListBox5
+        '
+        resources.ApplyResources(Me.CheckedListBox5, "CheckedListBox5")
+        Me.CheckedListBox5.FormattingEnabled = True
+        Me.CheckedListBox5.Name = "CheckedListBox5"
+        '
         'PageMzSearch
         '
         resources.ApplyResources(Me, "$this")
@@ -471,6 +522,9 @@ Partial Class PageMzSearch
         Me.TabPage5.PerformLayout()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox4.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -519,4 +573,10 @@ Partial Class PageMzSearch
     Friend WithEvents Label11 As Label
     Friend WithEvents NumericUpDown3 As NumericUpDown
     Friend WithEvents Label12 As Label
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents CheckedListBox3 As CheckedListBox
+    Friend WithEvents CheckedListBox4 As CheckedListBox
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents CheckedListBox5 As CheckedListBox
 End Class
