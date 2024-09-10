@@ -32,6 +32,9 @@ Partial Class frmMetabonomicsAnalysis
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewExpressionPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AutoPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
@@ -45,9 +48,8 @@ Partial Class frmMetabonomicsAnalysis
         Me.BarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewExpressionPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AutoPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.OpenInTableEditorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -59,10 +61,10 @@ Partial Class frmMetabonomicsAnalysis
         Me.SplitContainer2.Panel2.SuspendLayout()
         Me.SplitContainer2.SuspendLayout()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -136,19 +138,44 @@ Partial Class frmMetabonomicsAnalysis
         '
         'AdvancedDataGridView1
         '
+        Me.AdvancedDataGridView1.AllowUserToAddRows = False
+        Me.AdvancedDataGridView1.AllowUserToDeleteRows = False
+        Me.AdvancedDataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke
         Me.AdvancedDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.AdvancedDataGridView1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.AdvancedDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.AdvancedDataGridView1.FilterAndSortEnabled = True
         Me.AdvancedDataGridView1.FilterStringChangedInvokeBeforeDatasourceUpdate = True
         Me.AdvancedDataGridView1.Location = New System.Drawing.Point(0, 0)
+        Me.AdvancedDataGridView1.MultiSelect = False
         Me.AdvancedDataGridView1.Name = "AdvancedDataGridView1"
         Me.AdvancedDataGridView1.ReadOnly = True
         Me.AdvancedDataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.AdvancedDataGridView1.RowTemplate.Height = 23
+        Me.AdvancedDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.AdvancedDataGridView1.Size = New System.Drawing.Size(684, 294)
         Me.AdvancedDataGridView1.SortStringChangedInvokeBeforeDatasourceUpdate = True
         Me.AdvancedDataGridView1.TabIndex = 3
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewExpressionPlotToolStripMenuItem, Me.AutoPlotToolStripMenuItem, Me.ToolStripMenuItem1, Me.OpenInTableEditorToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 98)
+        '
+        'ViewExpressionPlotToolStripMenuItem
+        '
+        Me.ViewExpressionPlotToolStripMenuItem.Image = CType(resources.GetObject("ViewExpressionPlotToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.ViewExpressionPlotToolStripMenuItem.Name = "ViewExpressionPlotToolStripMenuItem"
+        Me.ViewExpressionPlotToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.ViewExpressionPlotToolStripMenuItem.Text = "View Expression Plot"
+        '
+        'AutoPlotToolStripMenuItem
+        '
+        Me.AutoPlotToolStripMenuItem.CheckOnClick = True
+        Me.AutoPlotToolStripMenuItem.Name = "AutoPlotToolStripMenuItem"
+        Me.AutoPlotToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.AutoPlotToolStripMenuItem.Text = "Auto Plot"
         '
         'PictureBox1
         '
@@ -250,24 +277,17 @@ Partial Class frmMetabonomicsAnalysis
         Me.BoxPlotToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.BoxPlotToolStripMenuItem.Text = "Box Plot"
         '
-        'ContextMenuStrip1
+        'ToolStripMenuItem1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewExpressionPlotToolStripMenuItem, Me.AutoPlotToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 70)
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(179, 6)
         '
-        'ViewExpressionPlotToolStripMenuItem
+        'OpenInTableEditorToolStripMenuItem
         '
-        Me.ViewExpressionPlotToolStripMenuItem.Name = "ViewExpressionPlotToolStripMenuItem"
-        Me.ViewExpressionPlotToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
-        Me.ViewExpressionPlotToolStripMenuItem.Text = "View Expression Plot"
-        '
-        'AutoPlotToolStripMenuItem
-        '
-        Me.AutoPlotToolStripMenuItem.CheckOnClick = True
-        Me.AutoPlotToolStripMenuItem.Name = "AutoPlotToolStripMenuItem"
-        Me.AutoPlotToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
-        Me.AutoPlotToolStripMenuItem.Text = "Auto Plot"
+        Me.OpenInTableEditorToolStripMenuItem.Image = CType(resources.GetObject("OpenInTableEditorToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.OpenInTableEditorToolStripMenuItem.Name = "OpenInTableEditorToolStripMenuItem"
+        Me.OpenInTableEditorToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.OpenInTableEditorToolStripMenuItem.Text = "Send To Table Editor"
         '
         'frmMetabonomicsAnalysis
         '
@@ -292,11 +312,11 @@ Partial Class frmMetabonomicsAnalysis
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -323,4 +343,6 @@ Partial Class frmMetabonomicsAnalysis
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewExpressionPlotToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AutoPlotToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
+    Friend WithEvents OpenInTableEditorToolStripMenuItem As ToolStripMenuItem
 End Class

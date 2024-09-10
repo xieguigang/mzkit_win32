@@ -29,7 +29,7 @@ Public Class KEGGEnrichmentAction : Inherits ActionBase
                        Return
                    End If
 
-                   Dim geneIds = row("geneIDs") _
+                   Dim geneIds = row("IDs") _
                       .ToString _
                       .StringSplit(",\s+") _
                       .Select(Function(gid) New NamedValue(Of String)(gid, "blue")) _

@@ -291,7 +291,10 @@ Public Class PageMzSearch
 
         CheckedListBox1.SetItemChecked(0, True)
         ComboBox1.SelectedIndex = 0
+        ComboBox2.SelectedIndex = 0
 
+        Call ComboBox2_SelectedIndexChanged()
+        Call loadAdductsPosNeg()
         Call vs_win.GetVisualStudioToolStripExtender1.SetStyle(ContextMenuStrip1, VisualStudioToolStripExtender.VsVersion.Vs2015, vs_win.GetVS2015LightTheme1)
         Call ReloadMetaDatabase()
     End Sub
@@ -471,7 +474,7 @@ Public Class PageMzSearch
         CheckedListBox2.SetItemChecked(3, True)
     End Sub
 
-    Private Function getDatabase(name As String, ionMode As Integer, tolerance As Tolerance) As IMzQuery
+    Private Function getDatabase(name As String, ionMode As String(), tolerance As Tolerance) As IMzQuery
         Select Case name
             Case "kegg"
                 Return Globals.LoadKEGG(AddressOf MyApplication.LogText, ionMode, tolerance)
@@ -494,6 +497,37 @@ Public Class PageMzSearch
             .ToArray
     End Function
 
+    Private Sub loadAdductsPosNeg()
+        CheckedListBox3.Items.Clear()
+        CheckedListBox4.Items.Clear()
+
+        For Each adduct As MzCalculator In Provider.Positives
+            Call CheckedListBox3.Items.Add(adduct.ToString, std.Abs(adduct.charge) = 1 AndAlso adduct.M = 1)
+        Next
+        For Each adduct As MzCalculator In Provider.Negatives
+            Call CheckedListBox4.Items.Add(adduct.ToString, std.Abs(adduct.charge) = 1 AndAlso adduct.M = 1)
+        Next
+    End Sub
+
+    Private Iterator Function GetAdducts() As IEnumerable(Of String)
+        If CheckedListBox1.GetItemChecked(0) Then
+            ' has positive
+            For i As Integer = 0 To CheckedListBox3.Items.Count - 1
+                If CheckedListBox3.GetItemChecked(i) Then
+                    Yield CStr(CheckedListBox3.Items(i))
+                End If
+            Next
+        End If
+        If CheckedListBox1.GetItemChecked(1) Then
+            ' has negative
+            For i As Integer = 0 To CheckedListBox4.Items.Count - 1
+                If CheckedListBox4.GetItemChecked(i) Then
+                    Yield CStr(CheckedListBox4.Items(i))
+                End If
+            Next
+        End If
+    End Function
+
     ''' <summary>
     ''' do ms1 peak list annotation
     ''' </summary>
@@ -509,30 +543,27 @@ Public Class PageMzSearch
         Dim tolerance As Tolerance = Tolerance.PPM(NumericUpDown1.Value)
         Dim keggMeta As DBPool = Nothing
         Dim dbNames As String() = getDatabaseNames.ToArray
+        Dim adducts As String() = GetAdducts.ToArray
 
-        For Each mode As String In modes
-            Dim modeValue As Integer = Provider.ParseIonMode(mode)
+        keggMeta = TaskProgress.LoadData(
+            Function(print)
+                Dim database As New DBPool
 
-            keggMeta = TaskProgress.LoadData(
-                Function(print)
-                    Dim database As New DBPool
+                For Each db As String In dbNames
+                    Call print.SetInfo($"Load annotation database repository data... [{db}]")
+                    Call database.Register(db, getDatabase(db, adducts, tolerance))
+                Next
 
-                    For Each db As String In dbNames
-                        Call print.SetInfo($"Load annotation database repository data... [{db}]")
-                        Call database.Register(db, getDatabase(db, modeValue, tolerance))
-                    Next
+                Return database
+            End Function, info:="Load annotation database repository data...")
 
-                    Return database
-                End Function, info:="Load annotation database repository data...")
+        Dim anno As NamedCollection(Of MzQuery)() = TaskProgress.LoadData(
+            streamLoad:=Function(print As Action(Of String)) keggMeta.MSetAnnotation(mzset, print).ToArray,
+            title:="Peak List Annotation",
+            info:="Run ms1 peak list data annotation..."
+        )
 
-            Dim anno As NamedCollection(Of MzQuery)() = TaskProgress.LoadData(
-                streamLoad:=Function(print As Action(Of String)) keggMeta.MSetAnnotation(mzset, print).ToArray,
-                title:="Peak List Annotation",
-                info:="Run ms1 peak list data annotation..."
-            )
-
-            Call result.AddRange(anno)
-        Next
+        Call result.AddRange(anno)
 
         Dim title As String = If(SourceName.StringEmpty, "Peak List Annotation", $"[{SourceName}] Peak List Annotation")
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
@@ -565,10 +596,30 @@ Public Class PageMzSearch
         Dim args As New MassSearchArguments With {
             .Optionals = New Dictionary(Of String, String) From {{"permutation", permutations}},
             .PPM = ppm,
-            .IonMode = ionMode
+            .IonMode = ionMode,
+            .Adducts = GetSelectedMummichogAdducts.ToArray
         }
 
         Call ConnectToBioDeep.RunMummichog(getMzPeakList, args)
+    End Sub
+
+    Private Iterator Function GetSelectedMummichogAdducts() As IEnumerable(Of String)
+        For i As Integer = 0 To CheckedListBox5.Items.Count - 1
+            If CheckedListBox5.GetItemChecked(i) Then
+                Yield CStr(CheckedListBox5.Items(i))
+            End If
+        Next
+    End Function
+
+    Private Sub ComboBox2_SelectedIndexChanged() Handles ComboBox2.SelectedIndexChanged
+        Dim ionMode As IonModes = Provider.ParseIonMode(ComboBox2.Items(ComboBox2.SelectedIndex).ToString)
+        Dim adducts = If(ionMode = IonModes.Positive, Provider.Positives, Provider.Negatives)
+
+        CheckedListBox5.Items.Clear()
+
+        For Each type As MzCalculator In adducts
+            CheckedListBox5.Items.Add(type.ToString, type.M = 1 AndAlso std.Abs(type.charge) = 1)
+        Next
     End Sub
 End Class
 
