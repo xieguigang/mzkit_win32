@@ -52,12 +52,18 @@ Public MustInherit Class Plugin
             .ToArray
         Dim loaded As Index(Of String) = New String() {}
         Dim registry As RegistryFile = RegistryFile.LoadRegistry
-        Dim hashlist = registry.plugins.ToDictionary(Function(p) p.id)
+        Dim hashlist = registry.plugins.SafeQuery.ToDictionary(Function(p) p.id)
+        Dim asm As Assembly
 
         Call println($"load plugins: get {files.Length} dll modules")
 
         For Each path As String In files
-            Dim asm As Assembly = Assembly.LoadFile(path.GetFullPath)
+            Try
+                asm = Assembly.LoadFile(path.GetFullPath)
+            Catch ex As Exception
+                Call App.LogException(New Exception("incorrect clr assembly file: " & path, ex))
+                Continue For
+            End Try
 
             If Not MZKitPlugin.GetFlag(asm) Then
                 Continue For
