@@ -4382,6 +4382,14 @@
         <Image MinDPI="192">Res/icons8-volcano-100.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonReportTableView" Comment="View of the biodeep annotation result in heatmap table view" Id="325" LabelTitle="Excel Table View" LabelDescription="View of the biodeep annotation result in heatmap table view" TooltipTitle="View of the biodeep annotation result in heatmap table view" TooltipDescription="View of the biodeep annotation result in heatmap table view">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4830,7 +4838,8 @@
               <Button CommandName="cmdButtonReportOpenWorkspace" />
               <Button CommandName="cmdButtonReportSelect" />
             </Group>
-            <Group CommandName="cmdPanelReportSettings" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdPanelReportSettings" SizeDefinition="ThreeButtons">
+              <ToggleButton CommandName="cmdButtonReportTableView" />
               <ToggleButton CommandName="cmdToggleShowRT" />
               <Button CommandName="cmdButtonReportHeatMapColors" />
             </Group>

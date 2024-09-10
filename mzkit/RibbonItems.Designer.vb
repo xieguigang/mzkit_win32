@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Partial Public Class RibbonItems
+    Partial Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -278,6 +278,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonReportOpenWorkspace As UInteger = 314
             Public Const cmdButtonReportSelect As UInteger = 315
             Public Const cmdPanelReportSettings As UInteger = 318
+            Public Const cmdButtonReportTableView As UInteger = 325
             Public Const cmdToggleShowRT As UInteger = 317
             Public Const cmdButtonReportHeatMapColors As UInteger = 319
             Public Const cmdTabMain As UInteger = 1011
@@ -1961,6 +1962,15 @@ Namespace RibbonLib.Controls
                 Return _PanelReportSettings
             End Get
         End Property
+        Private _ButtonReportTableView As RibbonToggleButton
+        ''' <summary>
+        ''' View of the biodeep annotation result in heatmap table view
+        ''' </summary>
+        Public ReadOnly Property ButtonReportTableView As RibbonToggleButton
+            Get
+                Return _ButtonReportTableView
+            End Get
+        End Property
         Private _ToggleShowRT As RibbonToggleButton
         Public ReadOnly Property ToggleShowRT As RibbonToggleButton
             Get
@@ -2482,6 +2492,7 @@ Namespace RibbonLib.Controls
             _ButtonReportOpenWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonReportOpenWorkspace)
             _ButtonReportSelect = New RibbonButton(_ribbon, Cmd.cmdButtonReportSelect)
             _PanelReportSettings = New RibbonGroup(_ribbon, Cmd.cmdPanelReportSettings)
+            _ButtonReportTableView = New RibbonToggleButton(_ribbon, Cmd.cmdButtonReportTableView)
             _ToggleShowRT = New RibbonToggleButton(_ribbon, Cmd.cmdToggleShowRT)
             _ButtonReportHeatMapColors = New RibbonButton(_ribbon, Cmd.cmdButtonReportHeatMapColors)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)

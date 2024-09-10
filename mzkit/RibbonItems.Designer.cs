@@ -281,6 +281,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonReportOpenWorkspace = 314;
             public const uint cmdButtonReportSelect = 315;
             public const uint cmdPanelReportSettings = 318;
+            public const uint cmdButtonReportTableView = 325;
             public const uint cmdToggleShowRT = 317;
             public const uint cmdButtonReportHeatMapColors = 319;
             public const uint cmdTabMain = 1011;
@@ -644,6 +645,10 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonButton ButtonReportSelect { get; private set; }
         public RibbonGroup PanelReportSettings { get; private set; }
+        /// <summary>
+        /// View of the biodeep annotation result in heatmap table view
+        /// </summary>
+        public RibbonToggleButton ButtonReportTableView { get; private set; }
         public RibbonToggleButton ToggleShowRT { get; private set; }
         public RibbonButton ButtonReportHeatMapColors { get; private set; }
         public RibbonTab TabMain { get; private set; }
@@ -960,6 +965,7 @@ namespace RibbonLib.Controls
             ButtonReportOpenWorkspace = new RibbonButton(ribbon, Cmd.cmdButtonReportOpenWorkspace);
             ButtonReportSelect = new RibbonButton(ribbon, Cmd.cmdButtonReportSelect);
             PanelReportSettings = new RibbonGroup(ribbon, Cmd.cmdPanelReportSettings);
+            ButtonReportTableView = new RibbonToggleButton(ribbon, Cmd.cmdButtonReportTableView);
             ToggleShowRT = new RibbonToggleButton(ribbon, Cmd.cmdToggleShowRT);
             ButtonReportHeatMapColors = new RibbonButton(ribbon, Cmd.cmdButtonReportHeatMapColors);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);

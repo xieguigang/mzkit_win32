@@ -1822,7 +1822,14 @@
 #define cmdButtonViewVolcano_TooltipDescription_RESID 60321
 #define cmdButtonViewVolcano_SmallImages_192__RESID 60322
 #define cmdButtonViewVolcano_LargeImages_192__RESID 60323
-#define InternalCmd2_LabelTitle_RESID 60324
-#define InternalCmd4_LabelTitle_RESID 60325
-#define InternalCmd6_LabelTitle_RESID 60326
-#define InternalCmd8_LabelTitle_RESID 60327
+#define cmdButtonReportTableView 325  /* View of the biodeep annotation result in heatmap table view */ 
+#define cmdButtonReportTableView_LabelTitle_RESID 60324
+#define cmdButtonReportTableView_LabelDescription_RESID 60325
+#define cmdButtonReportTableView_TooltipTitle_RESID 60326
+#define cmdButtonReportTableView_TooltipDescription_RESID 60327
+#define cmdButtonReportTableView_SmallImages_192__RESID 60328
+#define cmdButtonReportTableView_LargeImages_192__RESID 60329
+#define InternalCmd2_LabelTitle_RESID 60330
+#define InternalCmd4_LabelTitle_RESID 60331
+#define InternalCmd6_LabelTitle_RESID 60332
+#define InternalCmd8_LabelTitle_RESID 60333
