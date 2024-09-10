@@ -29,6 +29,13 @@ namespace apps.biodeep {
 
                 await app.desktop.mzkit.ShowROIGroups(mz, rt);
             });
+            $ts.select("path").onClick(async function (a) {
+                let xcms_id = a.getAttribute("xcms_id");
+                let sample = a.getAttribute("source");
+                let biodeep_id = a.getAttribute("biodeep_id");
+
+                await app.desktop.mzkit.ViewSpectral(xcms_id, sample, biodeep_id);
+            })
         }
     }
 }
