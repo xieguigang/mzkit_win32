@@ -1026,9 +1026,13 @@ declare namespace Internal {
          * 请尽量使用upload方法进行文件的上传
          *
          * @param url 目标数据源，这个参数也支持meta标签的查询语法
+         * @param options
+         *    1. sendContentType
+         *    2. wrapPlantTextError 当后台正常返回一段存文本（但是无法被解析为json），是否封装为一个错误消息给调用函数？
         */
         post<T>(url: string, data: object | FormData, callback?: ((response: IMsg<T>) => void), options?: {
             sendContentType?: boolean;
+            wrapPlantTextError?: boolean;
         }): void;
         /**
          * 请注意：这个函数只会接受来自后端的json返回，如果不是json格式，则可能会解析出错
@@ -1923,6 +1927,7 @@ declare namespace DOM {
          * + ``#`` by id
          * + ``.`` by class
          * + ``!`` by name
+         * + ``$`` by name(alias)
          * + ``&`` SINGLE NODE
          * + ``@`` read meta tag
          * + ``&lt;>`` create new tag
@@ -1973,6 +1978,12 @@ declare namespace DOM {
          * ``<tag class="xxx">``
         */
         class = 10,
+        /**
+         * 表达式为 $xxx
+         * 按照节点的name属性值进行查询
+         *
+         * ``<tag name="xxx">``
+        */
         name = 100,
         /**
          * 表达式为 xxx
@@ -2043,6 +2054,9 @@ declare namespace DOM.Animation {
      * 查看在当前的浏览器中，是否支持css3动画特性
     */
     function isSupportsCSSAnimation(): boolean;
+}
+declare namespace DOM.Animation {
+    function scrollTo(id: string): void;
 }
 declare namespace DOM.CSS {
     interface ICSS {
@@ -2619,7 +2633,10 @@ declare namespace TypeScript.ColorManager {
         desaturate(n: any): void;
         lighter(n: any): void;
         darker(n: any): void;
-        private attachValues;
+        /**
+         * copy values from another color object to current object
+        */
+        attachValues(color: IW3color): void;
     }
 }
 /**

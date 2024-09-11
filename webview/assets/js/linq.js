@@ -4187,16 +4187,18 @@ var Internal;
     function extendsHttpHelpers(ts) {
         ts.url = urlSolver;
         ts.post = function (url, data, callback, options) {
+            var opts = options !== null && options !== void 0 ? options : {};
             var contentType = HttpHelpers.measureContentType(data);
             var post = {
                 type: contentType,
                 data: data,
-                sendContentType: (options || {}).sendContentType || true
+                sendContentType: opts.sendContentType || true
             };
             HttpHelpers.POST(urlSolver(url), post, function (response, code) {
+                var _a;
                 if (callback) {
                     if (code == 200) {
-                        callback(handleJSON(response));
+                        callback(handleJSON(response, (_a = opts.wrapPlantTextError) !== null && _a !== void 0 ? _a : false));
                     }
                     else {
                         // handle page not found and internal server error
@@ -4231,7 +4233,7 @@ var Internal;
             HttpHelpers.GetAsyn(urlSolver(url), function (response, code) {
                 if (callback) {
                     if (code == 200) {
-                        callback(handleJSON(response));
+                        callback(handleJSON(response, true));
                     }
                     else {
                         // handle page not found and internal server error
@@ -4247,7 +4249,7 @@ var Internal;
         ts.upload = function (url, file, callback) {
             HttpHelpers.UploadFile(urlSolver(url), file, null, function (response) {
                 if (callback) {
-                    callback(handleJSON(response));
+                    callback(handleJSON(response, true));
                 }
             });
         };
@@ -4358,7 +4360,7 @@ var Internal;
         return url;
     }
     Internal.urlSolver = urlSolver;
-    function handleJSON(response) {
+    function handleJSON(response, wrapPlantTextError) {
         if (typeof response == "string") {
             /*
             if (TsLinq.URL.IsWellFormedUriString(response)) {
@@ -4370,9 +4372,17 @@ var Internal;
                 return JSON.parse(response);
             }
             catch (ex) {
-                console.error("Invalid json text: ");
-                console.error(response);
-                throw ex;
+                if (wrapPlantTextError) {
+                    return {
+                        code: 500,
+                        info: response
+                    };
+                }
+                else {
+                    console.error("Invalid json text: ");
+                    console.error(response);
+                    throw ex;
+                }
             }
         }
         else {
@@ -4801,7 +4811,13 @@ function $goto(url, currentFrame) {
         // https://developer.mozilla.org/en-US/docs/Web/API/Window/top
         win = window.top;
     }
-    win.location.href = Internal.urlSolver(url, currentFrame);
+    url = Internal.urlSolver(url, currentFrame);
+    if (url.substring(0, 1) == "#") {
+        DOM.Animation.scrollTo(url);
+    }
+    else {
+        win.location.href = url;
+    }
 }
 function $download(url, rename) {
     if (rename === void 0) { rename = null; }
@@ -5433,6 +5449,7 @@ var DOM;
          * + ``#`` by id
          * + ``.`` by class
          * + ``!`` by name
+         * + ``$`` by name(alias)
          * + ``&`` SINGLE NODE
          * + ``@`` read meta tag
          * + ``&lt;>`` create new tag
@@ -5524,6 +5541,7 @@ var DOM;
                 case "#": return this.getById(expr.substr(1));
                 case ".": return this.getByClass(expr.substr(1), isSingle);
                 case "!": return this.getByName(expr.substr(1), isSingle);
+                case "$": return this.getByName(expr.substr(1), isSingle);
                 case "<": return this.createElement(expr);
                 case "@": return this.queryMeta(expr.substr(1));
                 default: return this.getByTag(expr, isSingle);
@@ -5555,6 +5573,12 @@ var DOM;
          * ``<tag class="xxx">``
         */
         QueryTypes[QueryTypes["class"] = 10] = "class";
+        /**
+         * 表达式为 $xxx
+         * 按照节点的name属性值进行查询
+         *
+         * ``<tag name="xxx">``
+        */
         QueryTypes[QueryTypes["name"] = 100] = "name";
         /**
          * 表达式为 xxx
@@ -5866,6 +5890,50 @@ var DOM;
             }
         }
         Animation.isSupportsCSSAnimation = isSupportsCSSAnimation;
+    })(Animation = DOM.Animation || (DOM.Animation = {}));
+})(DOM || (DOM = {}));
+var DOM;
+(function (DOM) {
+    var Animation;
+    (function (Animation) {
+        function scrollTo(id) {
+            var hash = null;
+            if (id.substring(0, 1) == "#") {
+                // #id
+                hash = id;
+                id = id.substring(1);
+            }
+            else {
+                hash = "#" + id;
+            }
+            window.location.hash = hash;
+            window.addEventListener("hashchange", function () {
+                if (window.location.hash === hash) {
+                    setTimeout(function () { return moveTo(hash); }, 0);
+                }
+            });
+        }
+        Animation.scrollTo = scrollTo;
+        function moveTo(hash) {
+            // 获取目标anchor元素的位置
+            var anchor = $ts(hash);
+            var anchorRect = anchor.getBoundingClientRect();
+            // 获取视口宽度和高度
+            var viewportWidth = window.innerWidth;
+            var viewportHeight = window.innerHeight;
+            // 获取当前滚动条的位置
+            var scrollPositionX = window.scrollX;
+            var scrollPositionY = window.scrollY;
+            // 计算目标位置到视口中心的偏移量
+            var offsetX = anchorRect.left - (viewportWidth / 2) + (anchorRect.width / 2);
+            var offsetY = anchorRect.top - (viewportHeight / 2) + (anchorRect.height / 2);
+            // 滚动页面，使目标位置居中
+            window.scrollTo({
+                left: scrollPositionX + offsetX,
+                top: scrollPositionY + offsetY,
+                behavior: 'smooth' // 可选，用于平滑滚动
+            });
+        }
     })(Animation = DOM.Animation || (DOM.Animation = {}));
 })(DOM || (DOM = {}));
 var DOM;
