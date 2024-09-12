@@ -83,8 +83,16 @@ Public Class MSAlignmentMatrix : Inherits DataMatrix
     Public Sub New(name As String, matrix As SSM2MatrixFragment())
         MyBase.New(name, matrix)
 
+        Dim vs = name.StringSplit("[\s_]+vs[\s_]+")
+
+        If vs.Length <> 2 Then
+            vs = {name, "reference"}
+        End If
+
         alignment = New AlignmentOutput With {
-            .alignments = matrix
+            .alignments = matrix,
+            .query = New Meta(vs(0)),
+            .reference = New Meta(vs(1))
         }
     End Sub
 
