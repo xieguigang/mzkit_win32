@@ -214,6 +214,7 @@ Public Class PageMzkitTools
         'AddHandler host.fileExplorer.NatureProductToolStripMenuItem.Click, AddressOf NatureProductToolStripMenuItem_Click
         'AddHandler host.fileExplorer.GeneralFlavoneToolStripMenuItem.Click, AddressOf GeneralFlavoneToolStripMenuItem_Click
 
+        SpectrumSearchModule.AlignmentViewer = AddressOf HookSpectrumAlignment
         LCMSViewerModule.lcmsChromatogramOverlaps = AddressOf ChromatogramViewer
     End Sub
 
