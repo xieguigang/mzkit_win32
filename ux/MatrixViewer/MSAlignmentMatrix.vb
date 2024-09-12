@@ -123,7 +123,7 @@ Public Class MSAlignmentMatrix : Inherits DataMatrix
         Yield New NamedValue(Of Type)("m/z", GetType(Double))
         Yield New NamedValue(Of Type)("intensity(query)", GetType(Double))
         Yield New NamedValue(Of Type)("intensity(target)", GetType(Double))
-        Yield New NamedValue(Of Type)("tolerance", GetType(Double))
+        Yield New NamedValue(Of Type)("tolerance", GetType(String))
     End Function
 
     Protected Overrides Function SaveTo(s As Stream) As Boolean
