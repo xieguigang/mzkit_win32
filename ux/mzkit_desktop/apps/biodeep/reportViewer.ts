@@ -23,12 +23,7 @@ namespace apps.biodeep {
 
                 await app.desktop.mzkit.ViewSpectral(xcms_id, sample, biodeep_id);
             });
-            $ts.select(".ROI").onClick(async function (a) {
-                let mz = parseFloat(a.getAttribute("mz"));
-                let rt = parseFloat(a.getAttribute("rt"));
-
-                await app.desktop.mzkit.ShowROIGroups(mz, rt);
-            });
+            $ts.select(".ROI").onClick(async (a) => await reportViewer.clickROI(a));
             $ts.select("path").onClick(async function (a) {
                 let xcms_id = a.getAttribute("xcms_id");
                 let sample = a.getAttribute("source");
@@ -36,6 +31,14 @@ namespace apps.biodeep {
 
                 await app.desktop.mzkit.ViewSpectral(xcms_id, sample, biodeep_id);
             })
+        }
+
+        static async clickROI(a: HTMLElement) {
+            let mz = parseFloat(a.getAttribute("mz"));
+            let rt = parseFloat(a.getAttribute("rt"));
+            let xcms_id = a.getAttribute("xcms_id");
+
+            await app.desktop.mzkit.ShowROIGroups(xcms_id, mz, rt);
         }
     }
 }
