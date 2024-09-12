@@ -17,6 +17,15 @@ Public Class ROIGroupViewer
 
     Public Property ROIViewerHeight As Integer = 100
 
+    Public Iterator Function GetXic() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
+        For Each file As NamedCollection(Of ms1_scan) In samples
+            Dim xic_data = file.Select(Function(i) New ChromatogramTick(i))
+            Dim xic As New NamedCollection(Of ChromatogramTick)(file.name, xic_data)
+
+            Yield xic
+        Next
+    End Function
+
     Public Async Function LoadROIs(mz As Double, rt As Double, samples As IEnumerable(Of NamedCollection(Of ms1_scan))) As Task(Of ROIGroupViewer)
         Call FlowLayoutPanel1.Controls.Clear()
 
