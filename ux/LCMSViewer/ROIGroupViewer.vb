@@ -17,6 +17,8 @@ Public Class ROIGroupViewer
 
     Public Property ROIViewerHeight As Integer = 100
 
+    Public Event SelectFile(filename As String)
+
     Public Iterator Function GetXic() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
         For Each file As NamedCollection(Of ms1_scan) In samples
             Dim xic_data = file.Select(Function(i) New ChromatogramTick(i))
@@ -59,6 +61,8 @@ Public Class ROIGroupViewer
         ' rendering of the image
         current = DirectCast(pic.Tag, NamedCollection(Of ms1_scan))
         Await RenderingSelection()
+
+        RaiseEvent SelectFile(current.name)
     End Sub
 
     Private Async Function Rendering() As Task
