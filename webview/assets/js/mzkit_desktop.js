@@ -784,6 +784,7 @@ var apps;
                 configurable: true
             });
             reportViewer.prototype.init = function () {
+                var _this = this;
                 $ts.select(".meta_header").onClick(function (a) {
                     return __awaiter(this, void 0, void 0, function () {
                         return __generator(this, function (_a) {
@@ -825,22 +826,12 @@ var apps;
                         });
                     });
                 });
-                $ts.select(".ROI").onClick(function (a) {
-                    return __awaiter(this, void 0, void 0, function () {
-                        var mz, rt;
-                        return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0:
-                                    mz = parseFloat(a.getAttribute("mz"));
-                                    rt = parseFloat(a.getAttribute("rt"));
-                                    return [4 /*yield*/, app.desktop.mzkit.ShowROIGroups(mz, rt)];
-                                case 1:
-                                    _a.sent();
-                                    return [2 /*return*/];
-                            }
-                        });
-                    });
-                });
+                $ts.select(".ROI").onClick(function (a) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, reportViewer.clickROI(a)];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                }); }); });
                 $ts.select("path").onClick(function (a) {
                     return __awaiter(this, void 0, void 0, function () {
                         var xcms_id, sample, biodeep_id;
@@ -856,6 +847,23 @@ var apps;
                                     return [2 /*return*/];
                             }
                         });
+                    });
+                });
+            };
+            reportViewer.clickROI = function (a) {
+                return __awaiter(this, void 0, void 0, function () {
+                    var mz, rt, xcms_id;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                mz = parseFloat(a.getAttribute("mz"));
+                                rt = parseFloat(a.getAttribute("rt"));
+                                xcms_id = a.getAttribute("xcms_id");
+                                return [4 /*yield*/, app.desktop.mzkit.ShowROIGroups(xcms_id, mz, rt)];
+                            case 1:
+                                _a.sent();
+                                return [2 /*return*/];
+                        }
                     });
                 });
             };
