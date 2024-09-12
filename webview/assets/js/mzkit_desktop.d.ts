@@ -203,6 +203,8 @@ declare namespace apps.biodeep {
     class reportViewer extends Bootstrap {
         get appName(): string;
         protected init(): void;
+        static clickScoreLink(a: HTMLElement): Promise<void>;
+        static clickScatter(a: HTMLElement): Promise<void>;
         static clickROI(a: HTMLElement): Promise<void>;
     }
 }
