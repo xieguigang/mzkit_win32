@@ -1,4 +1,8 @@
-﻿Public Module LCMSViewerModule
+﻿
+''' <summary>
+''' helper functions for plugin module access the lcms workspace
+''' </summary>
+Public Module LCMSViewerModule
 
     Public lcmsViewerhHandle As Action(Of Object, String, Action(Of String, Double, Double, Boolean))
     Public lcmsWorkspace As Func(Of IEnumerable)
