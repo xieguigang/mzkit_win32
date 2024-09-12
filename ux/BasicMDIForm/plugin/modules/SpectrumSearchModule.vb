@@ -14,7 +14,7 @@ End Interface
 ''' </summary>
 Public Module SpectrumSearchModule
 
-    Public AlignmentViewer As Action(Of Object, Dictionary(Of String, String), Dictionary(Of String, String))
+    Public AlignmentViewer As Action(Of Object, String, String)
 
     ''' <summary>
     ''' show the spectrum search result
@@ -30,7 +30,7 @@ Public Module SpectrumSearchModule
     ''' <param name="alignment">the spectrum alignment details</param>
     ''' <param name="query">the metadata of sample query data</param>
     ''' <param name="ref">the metadata of reference subject data.</param>
-    Public Sub ViewAlignment(alignment As Object, query As Dictionary(Of String, String), ref As Dictionary(Of String, String))
+    Public Sub ViewAlignment(alignment As Object, query As String, ref As String)
         If Not AlignmentViewer Is Nothing Then
             Call AlignmentViewer(alignment, query, ref)
         End If

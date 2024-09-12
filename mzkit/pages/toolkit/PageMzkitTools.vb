@@ -441,8 +441,39 @@ Public Class PageMzkitTools
         )
 
         Call VisualStudio.ShowProperties(prop)
+        Call ShowTabPage(TabPage5)
+    End Sub
 
-        ShowTabPage(TabPage5)
+    Private Sub HookSpectrumAlignment(align As Object, query As String, ref As String)
+        Dim alignName As String = $"{query} vs {ref}"
+        Dim matrix As SSM2MatrixFragment()
+
+        ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
+
+        If TypeOf align Is SSM2MatrixFragment() Then
+            matrix = align
+        ElseIf TypeOf align Is AlignmentOutput Then
+            Dim prop As New AlignmentProperty(DirectCast(align, AlignmentOutput))
+
+            VisualStudio.ShowProperties(prop)
+            matrix = DirectCast(align, AlignmentOutput).alignments
+        Else
+            Throw New NotImplementedException(align.GetType.FullName)
+        End If
+
+        Call showMatrix(matrix, alignName)
+        Call MyApplication.RegisterPlot(
+            Sub(args)
+                PictureBox1.BackgroundImage = _matrix.Plot(args, PictureBox1.Size).AsGDIImage
+            End Sub,
+            width:=1200,
+            height:=800,
+            padding:="padding: 100px 30px 50px 100px;",
+            title:=alignName,
+            xlab:="M/Z ratio",
+            ylab:="Relative Intensity(%)"
+        )
+        Call ShowTabPage(TabPage5)
     End Sub
 
     Private Function rawTIC(raw As MZWork.Raw, isBPC As Boolean) As NamedCollection(Of ChromatogramTick)
@@ -677,6 +708,11 @@ Public Class PageMzkitTools
         _matrix.LoadMatrix(DataGridView1, BindingSource1)
     End Sub
 
+    ''' <summary>
+    ''' show alignment of the spectrum matrix
+    ''' </summary>
+    ''' <param name="matrix"></param>
+    ''' <param name="name"></param>
     Sub showMatrix(matrix As SSM2MatrixFragment(), name As String)
         _matrix = New MSAlignmentMatrix(name, matrix)
         _matrix.LoadMatrix(DataGridView1, BindingSource1)
