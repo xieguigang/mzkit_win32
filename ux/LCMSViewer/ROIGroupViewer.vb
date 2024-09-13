@@ -4,6 +4,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Math
 
@@ -120,15 +121,16 @@ Public Class ROIGroupViewer
             Return
         End If
 
-        Dim scale As Double = 2
+        Dim scale As Double = 2.5
         Dim size As String = $"{PictureBox1.Width * scale},{PictureBox1.Height * scale}"
         Dim theme As New Theme With {
-            .pointSize = 15,
+            .pointSize = 12,
             .drawLegend = False,
-            .padding = "padding:100px 100px 200px 200px;"
+            .padding = "padding:100px 100px 200px 200px;",
+            .colorSet = ScalerPalette.FlexImaging.Description
         }
         Dim density As New PlotMassWindowXIC(current, theme)
-        Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=100))
+        Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=120))
 
         PictureBox1.BackgroundImage = render.AsGDIImage
     End Function
