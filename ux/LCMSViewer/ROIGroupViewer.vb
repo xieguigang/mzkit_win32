@@ -23,7 +23,7 @@ Public Class ROIGroupViewer
     Public Iterator Function GetXic() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
         For Each file As NamedCollection(Of ms1_scan) In samples
             Dim xic_data = file _
-                .GroupBy(Function(i) i.scan_time, offsets:=1.25) _
+                .GroupBy(Function(i) i.scan_time, offsets:=0.25) _
                 .Select(Function(i)
                             Return New ChromatogramTick(Val(i.name), i.Average(Function(a) a.intensity))
                         End Function)
@@ -90,7 +90,7 @@ Public Class ROIGroupViewer
         For i As Integer = 0 To viewers.Length - 1
             xic = DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)) _
                 .AsEnumerable _
-                .GroupBy(Function(a) a.scan_time, offsets:=1.25) _
+                .GroupBy(Function(a) a.scan_time, offsets:=0.25) _
                 .Select(Function(m1) New ChromatogramTick(Val(m1.name), m1.Average(Function(a) a.intensity))) _
                 .OrderBy(Function(m1) m1.Time) _
                 .ToArray
@@ -123,7 +123,7 @@ Public Class ROIGroupViewer
         Dim scale As Double = 2
         Dim size As String = $"{PictureBox1.Width * scale},{PictureBox1.Height * scale}"
         Dim theme As New Theme With {
-            .pointSize = 20,
+            .pointSize = 15,
             .drawLegend = False,
             .padding = "padding:100px 100px 200px 200px;"
         }
