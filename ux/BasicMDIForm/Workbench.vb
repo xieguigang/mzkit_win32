@@ -10,6 +10,13 @@ Imports WeifenLuo.WinFormsUI.Docking
 Public NotInheritable Class Workbench
 
     Public Shared ReadOnly Property AppHost As AppHost
+
+    Public Shared ReadOnly Property AppHostForm As Form
+        Get
+            Return TryCast(CObj(AppHost), Form)
+        End Get
+    End Property
+
     Public Shared Property SplashBannerImage As Image = My.Resources.Home_Logo_Link
 
     ''' <summary>
@@ -54,6 +61,11 @@ Public NotInheritable Class Workbench
     ''' <param name="text"></param>
     Public Shared Sub LogText(text As String)
         Call AppHost.LogText(text)
+    End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Shared Sub HostInvoke(act As Action)
+        Call AppHostForm.Invoke(Sub() act())
     End Sub
 
     ''' <summary>

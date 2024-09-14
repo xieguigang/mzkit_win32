@@ -4,7 +4,9 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Driver
+Imports Microsoft.VisualBasic.Math
 
 Public Class ROIGroupViewer
 
@@ -16,6 +18,21 @@ Public Class ROIGroupViewer
     Dim dt As Double = 7.5
 
     Public Property ROIViewerHeight As Integer = 100
+
+    Public Event SelectFile(filename As String)
+
+    Public Iterator Function GetXic() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
+        For Each file As NamedCollection(Of ms1_scan) In samples
+            Dim xic_data = file _
+                .GroupBy(Function(i) i.scan_time, offsets:=0.25) _
+                .Select(Function(i)
+                            Return New ChromatogramTick(Val(i.name), i.Average(Function(a) a.intensity))
+                        End Function)
+            Dim xic As New NamedCollection(Of ChromatogramTick)(file.name, xic_data)
+
+            Yield xic
+        Next
+    End Function
 
     Public Async Function LoadROIs(mz As Double, rt As Double, samples As IEnumerable(Of NamedCollection(Of ms1_scan))) As Task(Of ROIGroupViewer)
         Call FlowLayoutPanel1.Controls.Clear()
@@ -50,11 +67,13 @@ Public Class ROIGroupViewer
         ' rendering of the image
         current = DirectCast(pic.Tag, NamedCollection(Of ms1_scan))
         Await RenderingSelection()
+
+        RaiseEvent SelectFile(current.name)
     End Sub
 
     Private Async Function Rendering() As Task
         ' resize all pictures to the size of left panel
-        Dim newWidth As Integer = FlowLayoutPanel1.Width * 0.95
+        Dim newWidth As Integer = FlowLayoutPanel1.Width * 0.9
 
         If viewers.IsNullOrEmpty Then
             Return
@@ -72,7 +91,8 @@ Public Class ROIGroupViewer
         For i As Integer = 0 To viewers.Length - 1
             xic = DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)) _
                 .AsEnumerable _
-                .Select(Function(m1) New ChromatogramTick(m1.scan_time, m1.intensity)) _
+                .GroupBy(Function(a) a.scan_time, offsets:=0.25) _
+                .Select(Function(m1) New ChromatogramTick(Val(m1.name), m1.Average(Function(a) a.intensity))) _
                 .OrderBy(Function(m1) m1.Time) _
                 .ToArray
             xic_data = New NamedCollection(Of ChromatogramTick)(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)).name, xic)
@@ -86,7 +106,7 @@ Public Class ROIGroupViewer
                                                                 labelLayoutTicks:=-1,
                                                                 bspline:=2,
                                                                 theme:=theme) With {.xlabel = "Retention Time(s)", .ylabel = "Intensity"} _
-                                                        .Plot(unifySize, ppi:=300)
+                                                        .Plot(unifySize, ppi:=200)
                                                      End Function)
 
             viewers(i).Width = newWidth
@@ -101,15 +121,16 @@ Public Class ROIGroupViewer
             Return
         End If
 
-        Dim scale As Double = 2
+        Dim scale As Double = 2.5
         Dim size As String = $"{PictureBox1.Width * scale},{PictureBox1.Height * scale}"
         Dim theme As New Theme With {
-            .pointSize = 20,
+            .pointSize = 12,
             .drawLegend = False,
-            .padding = "padding:100px 100px 200px 200px;"
+            .padding = "padding:100px 100px 200px 200px;",
+            .colorSet = ScalerPalette.FlexImaging.Description
         }
         Dim density As New PlotMassWindowXIC(current, theme)
-        Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=100))
+        Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=120))
 
         PictureBox1.BackgroundImage = render.AsGDIImage
     End Function

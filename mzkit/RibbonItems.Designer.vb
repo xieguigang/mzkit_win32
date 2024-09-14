@@ -277,8 +277,11 @@ Namespace RibbonLib.Controls
             Public Const cmdMenuReport As UInteger = 313
             Public Const cmdButtonReportOpenWorkspace As UInteger = 314
             Public Const cmdButtonReportSelect As UInteger = 315
+            Public Const cmdButtonAddLCMSComparision As UInteger = 327
             Public Const cmdPanelReportSettings As UInteger = 318
+            Public Const cmdButtonReportTableView As UInteger = 325
             Public Const cmdToggleShowRT As UInteger = 317
+            Public Const cmdButtonClickScatter As UInteger = 326
             Public Const cmdButtonReportHeatMapColors As UInteger = 319
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
@@ -1955,16 +1958,43 @@ Namespace RibbonLib.Controls
                 Return _ButtonReportSelect
             End Get
         End Property
+        Private _ButtonAddLCMSComparision As RibbonButton
+        ''' <summary>
+        ''' Add Comparision
+        ''' </summary>
+        Public ReadOnly Property ButtonAddLCMSComparision As RibbonButton
+            Get
+                Return _ButtonAddLCMSComparision
+            End Get
+        End Property
         Private _PanelReportSettings As RibbonGroup
         Public ReadOnly Property PanelReportSettings As RibbonGroup
             Get
                 Return _PanelReportSettings
             End Get
         End Property
+        Private _ButtonReportTableView As RibbonToggleButton
+        ''' <summary>
+        ''' View of the biodeep annotation result in heatmap table view
+        ''' </summary>
+        Public ReadOnly Property ButtonReportTableView As RibbonToggleButton
+            Get
+                Return _ButtonReportTableView
+            End Get
+        End Property
         Private _ToggleShowRT As RibbonToggleButton
         Public ReadOnly Property ToggleShowRT As RibbonToggleButton
             Get
                 Return _ToggleShowRT
+            End Get
+        End Property
+        Private _ButtonClickScatter As RibbonToggleButton
+        ''' <summary>
+        ''' Click Through Scatter
+        ''' </summary>
+        Public ReadOnly Property ButtonClickScatter As RibbonToggleButton
+            Get
+                Return _ButtonClickScatter
             End Get
         End Property
         Private _ButtonReportHeatMapColors As RibbonButton
@@ -2481,8 +2511,11 @@ Namespace RibbonLib.Controls
             _MenuReport = New RibbonGroup(_ribbon, Cmd.cmdMenuReport)
             _ButtonReportOpenWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonReportOpenWorkspace)
             _ButtonReportSelect = New RibbonButton(_ribbon, Cmd.cmdButtonReportSelect)
+            _ButtonAddLCMSComparision = New RibbonButton(_ribbon, Cmd.cmdButtonAddLCMSComparision)
             _PanelReportSettings = New RibbonGroup(_ribbon, Cmd.cmdPanelReportSettings)
+            _ButtonReportTableView = New RibbonToggleButton(_ribbon, Cmd.cmdButtonReportTableView)
             _ToggleShowRT = New RibbonToggleButton(_ribbon, Cmd.cmdToggleShowRT)
+            _ButtonClickScatter = New RibbonToggleButton(_ribbon, Cmd.cmdButtonClickScatter)
             _ButtonReportHeatMapColors = New RibbonButton(_ribbon, Cmd.cmdButtonReportHeatMapColors)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)

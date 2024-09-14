@@ -1822,7 +1822,28 @@
 #define cmdButtonViewVolcano_TooltipDescription_RESID 60321
 #define cmdButtonViewVolcano_SmallImages_192__RESID 60322
 #define cmdButtonViewVolcano_LargeImages_192__RESID 60323
-#define InternalCmd2_LabelTitle_RESID 60324
-#define InternalCmd4_LabelTitle_RESID 60325
-#define InternalCmd6_LabelTitle_RESID 60326
-#define InternalCmd8_LabelTitle_RESID 60327
+#define cmdButtonReportTableView 325  /* View of the biodeep annotation result in heatmap table view */ 
+#define cmdButtonReportTableView_LabelTitle_RESID 60324
+#define cmdButtonReportTableView_LabelDescription_RESID 60325
+#define cmdButtonReportTableView_TooltipTitle_RESID 60326
+#define cmdButtonReportTableView_TooltipDescription_RESID 60327
+#define cmdButtonReportTableView_SmallImages_192__RESID 60328
+#define cmdButtonReportTableView_LargeImages_192__RESID 60329
+#define cmdButtonClickScatter 326  /* Click Through Scatter */ 
+#define cmdButtonClickScatter_LabelTitle_RESID 60330
+#define cmdButtonClickScatter_LabelDescription_RESID 60331
+#define cmdButtonClickScatter_TooltipTitle_RESID 60332
+#define cmdButtonClickScatter_TooltipDescription_RESID 60333
+#define cmdButtonClickScatter_SmallImages_192__RESID 60334
+#define cmdButtonClickScatter_LargeImages_192__RESID 60335
+#define cmdButtonAddLCMSComparision 327  /* Add Comparision */ 
+#define cmdButtonAddLCMSComparision_LabelTitle_RESID 60336
+#define cmdButtonAddLCMSComparision_LabelDescription_RESID 60337
+#define cmdButtonAddLCMSComparision_TooltipTitle_RESID 60338
+#define cmdButtonAddLCMSComparision_TooltipDescription_RESID 60339
+#define cmdButtonAddLCMSComparision_SmallImages_192__RESID 60340
+#define cmdButtonAddLCMSComparision_LargeImages_192__RESID 60341
+#define InternalCmd2_LabelTitle_RESID 60342
+#define InternalCmd4_LabelTitle_RESID 60343
+#define InternalCmd6_LabelTitle_RESID 60344
+#define InternalCmd8_LabelTitle_RESID 60345
