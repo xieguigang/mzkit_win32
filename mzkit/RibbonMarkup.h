@@ -1836,7 +1836,14 @@
 #define cmdButtonClickScatter_TooltipDescription_RESID 60333
 #define cmdButtonClickScatter_SmallImages_192__RESID 60334
 #define cmdButtonClickScatter_LargeImages_192__RESID 60335
-#define InternalCmd2_LabelTitle_RESID 60336
-#define InternalCmd4_LabelTitle_RESID 60337
-#define InternalCmd6_LabelTitle_RESID 60338
-#define InternalCmd8_LabelTitle_RESID 60339
+#define cmdButtonAddLCMSComparision 327  /* Add Comparision */ 
+#define cmdButtonAddLCMSComparision_LabelTitle_RESID 60336
+#define cmdButtonAddLCMSComparision_LabelDescription_RESID 60337
+#define cmdButtonAddLCMSComparision_TooltipTitle_RESID 60338
+#define cmdButtonAddLCMSComparision_TooltipDescription_RESID 60339
+#define cmdButtonAddLCMSComparision_SmallImages_192__RESID 60340
+#define cmdButtonAddLCMSComparision_LargeImages_192__RESID 60341
+#define InternalCmd2_LabelTitle_RESID 60342
+#define InternalCmd4_LabelTitle_RESID 60343
+#define InternalCmd6_LabelTitle_RESID 60344
+#define InternalCmd8_LabelTitle_RESID 60345

@@ -280,6 +280,7 @@ namespace RibbonLib.Controls
             public const uint cmdMenuReport = 313;
             public const uint cmdButtonReportOpenWorkspace = 314;
             public const uint cmdButtonReportSelect = 315;
+            public const uint cmdButtonAddLCMSComparision = 327;
             public const uint cmdPanelReportSettings = 318;
             public const uint cmdButtonReportTableView = 325;
             public const uint cmdToggleShowRT = 317;
@@ -645,6 +646,10 @@ namespace RibbonLib.Controls
         /// Select metabolites for make html report view
         /// </summary>
         public RibbonButton ButtonReportSelect { get; private set; }
+        /// <summary>
+        /// Add Comparision
+        /// </summary>
+        public RibbonButton ButtonAddLCMSComparision { get; private set; }
         public RibbonGroup PanelReportSettings { get; private set; }
         /// <summary>
         /// View of the biodeep annotation result in heatmap table view
@@ -969,6 +974,7 @@ namespace RibbonLib.Controls
             MenuReport = new RibbonGroup(ribbon, Cmd.cmdMenuReport);
             ButtonReportOpenWorkspace = new RibbonButton(ribbon, Cmd.cmdButtonReportOpenWorkspace);
             ButtonReportSelect = new RibbonButton(ribbon, Cmd.cmdButtonReportSelect);
+            ButtonAddLCMSComparision = new RibbonButton(ribbon, Cmd.cmdButtonAddLCMSComparision);
             PanelReportSettings = new RibbonGroup(ribbon, Cmd.cmdPanelReportSettings);
             ButtonReportTableView = new RibbonToggleButton(ribbon, Cmd.cmdButtonReportTableView);
             ToggleShowRT = new RibbonToggleButton(ribbon, Cmd.cmdToggleShowRT);

@@ -277,6 +277,7 @@ Namespace RibbonLib.Controls
             Public Const cmdMenuReport As UInteger = 313
             Public Const cmdButtonReportOpenWorkspace As UInteger = 314
             Public Const cmdButtonReportSelect As UInteger = 315
+            Public Const cmdButtonAddLCMSComparision As UInteger = 327
             Public Const cmdPanelReportSettings As UInteger = 318
             Public Const cmdButtonReportTableView As UInteger = 325
             Public Const cmdToggleShowRT As UInteger = 317
@@ -1957,6 +1958,15 @@ Namespace RibbonLib.Controls
                 Return _ButtonReportSelect
             End Get
         End Property
+        Private _ButtonAddLCMSComparision As RibbonButton
+        ''' <summary>
+        ''' Add Comparision
+        ''' </summary>
+        Public ReadOnly Property ButtonAddLCMSComparision As RibbonButton
+            Get
+                Return _ButtonAddLCMSComparision
+            End Get
+        End Property
         Private _PanelReportSettings As RibbonGroup
         Public ReadOnly Property PanelReportSettings As RibbonGroup
             Get
@@ -2501,6 +2511,7 @@ Namespace RibbonLib.Controls
             _MenuReport = New RibbonGroup(_ribbon, Cmd.cmdMenuReport)
             _ButtonReportOpenWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonReportOpenWorkspace)
             _ButtonReportSelect = New RibbonButton(_ribbon, Cmd.cmdButtonReportSelect)
+            _ButtonAddLCMSComparision = New RibbonButton(_ribbon, Cmd.cmdButtonAddLCMSComparision)
             _PanelReportSettings = New RibbonGroup(_ribbon, Cmd.cmdPanelReportSettings)
             _ButtonReportTableView = New RibbonToggleButton(_ribbon, Cmd.cmdButtonReportTableView)
             _ToggleShowRT = New RibbonToggleButton(_ribbon, Cmd.cmdToggleShowRT)

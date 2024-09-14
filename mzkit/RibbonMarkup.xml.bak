@@ -4398,6 +4398,14 @@
         <Image MinDPI="192">Res/icons8-12-cluster-58.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonAddLCMSComparision" Comment="Add Comparision" Id="327" LabelTitle="Add Comparision" LabelDescription="Add Comparision" TooltipTitle="Add Comparision" TooltipDescription="Add Comparision">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4845,6 +4853,7 @@
             <Group CommandName="cmdMenuReport">
               <Button CommandName="cmdButtonReportOpenWorkspace" />
               <Button CommandName="cmdButtonReportSelect" />
+              <Button CommandName="cmdButtonAddLCMSComparision" />
             </Group>
             <Group CommandName="cmdPanelReportSettings" SizeDefinition="FourButtons">
               <ToggleButton CommandName="cmdButtonReportTableView" />
