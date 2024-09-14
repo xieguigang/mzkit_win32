@@ -762,6 +762,12 @@
     <Compile Include="forms\frmLicense.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\Workbench\InputConfigEnrichmentGraph.Designer.vb">
+      <DependentUpon>InputConfigEnrichmentGraph.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\Workbench\InputConfigEnrichmentGraph.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\Workbench\InputPCADialog.Designer.vb">
       <DependentUpon>InputPCADialog.vb</DependentUpon>
     </Compile>
@@ -1399,6 +1405,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\ShowTissueData.resx">
       <DependentUpon>ShowTissueData.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\Workbench\InputConfigEnrichmentGraph.resx">
+      <DependentUpon>InputConfigEnrichmentGraph.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\Workbench\InputPCADialog.resx">
       <DependentUpon>InputPCADialog.vb</DependentUpon>

@@ -288,8 +288,11 @@ SingleS:    For Each name As String In GetY()
             plot = doGeneralPlot(x, getVector)
         End If
 
-        MyApplication.host.mzkitTool.ShowPlotImage(plot, ImageLayout.Zoom)
-        MyApplication.host.ShowMzkitToolkit()
+        ' nothing will be returns if user cancel
+        If Not plot Is Nothing Then
+            MyApplication.host.mzkitTool.ShowPlotImage(plot, ImageLayout.Zoom)
+            MyApplication.host.ShowMzkitToolkit()
+        End If
     End Sub
 
     Private Function doSummaryPlot(table As DataTable) As Object
