@@ -815,6 +815,12 @@ var apps;
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 }); }); });
+                $ts.select("circle").onClick(function (a) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, reportViewer.clickScatter(a)];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                }); }); });
             };
             reportViewer.clickScoreLink = function (a) {
                 return __awaiter(this, void 0, void 0, function () {

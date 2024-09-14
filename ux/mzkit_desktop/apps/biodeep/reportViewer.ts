@@ -15,6 +15,7 @@ namespace apps.biodeep {
             $ts.select(".score").onClick(async (a) => await reportViewer.clickScoreLink(a));
             $ts.select(".ROI").onClick(async (a) => await reportViewer.clickROI(a));
             $ts.select("path").onClick(async (a) => await reportViewer.clickScatter(a));
+            $ts.select("circle").onClick(async (a) => await reportViewer.clickScatter(a));
         }
 
         static async clickScoreLink(a: HTMLElement) {
