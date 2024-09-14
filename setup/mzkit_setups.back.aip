@@ -1253,7 +1253,6 @@
     <ROW Component="Microsoft.Windows.FeatureAPI.pdb" ComponentId="{E1986F8C-2EA6-41F0-95F4-12CA6983E2F0}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Windows.FeatureAPI.pdb" Type="4"/>
     <ROW Component="Microsoft.Windows.Ribbon.dll" ComponentId="{ACD1A2A4-798D-41B7-802A-0A07A618CCBB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.dll"/>
     <ROW Component="Microsoft.Windows.Ribbon.dll_2" ComponentId="{1FF89681-4616-4EA6-8DD4-00114DF70842}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.dll_1"/>
-    <ROW Component="Microsoft.Windows.Ribbon.pdb" ComponentId="{4F0C0C40-F86C-4745-A92C-3E88A7EBEA45}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Windows.Ribbon.pdb" Type="4"/>
     <ROW Component="Microsoft.Windows.SDK.NET.dll" ComponentId="{5BAAC770-8FBE-4777-984E-B5A3C2A0403B}" Directory_="nvidia_Dir" Attributes="0" KeyPath="Microsoft.Windows.SDK.NET.dll"/>
     <ROW Component="MoNA.dll" ComponentId="{A9ABEBFD-6384-4DC0-8553-6D35B60BB0ED}" Directory_="plugins_Dir" Attributes="256" KeyPath="MoNA.dll"/>
     <ROW Component="MoNA.pdb" ComponentId="{21B83CE7-6D64-4640-A0C0-5BA3879B1518}" Directory_="plugins_Dir" Attributes="0" KeyPath="MoNA.pdb" Type="4"/>
@@ -4661,7 +4660,6 @@
     <ROW File="Microsoft.VisualBasic.Windows.Forms.Console.pdb" Component_="Microsoft.VisualBasic.Windows.Forms.Console.pdb" FileName="MICRO~61.PDB|Microsoft.VisualBasic.Windows.Forms.Console.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Windows.Forms.Console.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" Component_="Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" FileName="MICRO~62.PDB|Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" SelfReg="false"/>
     <ROW File="Microsoft.Windows.FeatureAPI.pdb" Component_="Microsoft.Windows.FeatureAPI.pdb" FileName="MICRO~63.PDB|Microsoft.Windows.FeatureAPI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Windows.FeatureAPI.pdb" SelfReg="false"/>
-    <ROW File="Microsoft.Windows.Ribbon.pdb" Component_="Microsoft.Windows.Ribbon.pdb" FileName="MICRO~64.PDB|Microsoft.Windows.Ribbon.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Windows.Ribbon.pdb" SelfReg="false"/>
     <ROW File="msconvert.pdb" Component_="msconvert.pdb" FileName="MSCONV~1.PDB|msconvert.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\msconvert.pdb" SelfReg="false"/>
     <ROW File="msconvertGUI.pdb" Component_="msconvertGUI.pdb" FileName="MSCONV~2.PDB|msconvertGUI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\msconvertGUI.pdb" SelfReg="false"/>
     <ROW File="mzblender.pdb" Component_="mzblender.pdb" FileName="MZBLEN~1.PDB|mzblender.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\mzblender.pdb" SelfReg="false"/>
@@ -20782,7 +20780,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Windows.Forms.Console.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.Windows.FeatureAPI.pdb"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.Windows.Ribbon.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="msconvert.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="msconvertGUI.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="mzblender.pdb"/>
