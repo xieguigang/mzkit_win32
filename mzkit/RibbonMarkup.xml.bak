@@ -4390,6 +4390,14 @@
         <Image MinDPI="192">Res/excel-icon.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonClickScatter" Comment="Click Through Scatter" Id="326" LabelTitle="Click Through Scatter" LabelDescription="This toggle will affects of the behaviours when click on the scatter. Single spectrum alignment result will be shown if set this checked." TooltipTitle="Click Through Scatter" TooltipDescription="Click Through Scatter">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-12-cluster-58.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-12-cluster-58.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4838,9 +4846,10 @@
               <Button CommandName="cmdButtonReportOpenWorkspace" />
               <Button CommandName="cmdButtonReportSelect" />
             </Group>
-            <Group CommandName="cmdPanelReportSettings" SizeDefinition="ThreeButtons">
+            <Group CommandName="cmdPanelReportSettings" SizeDefinition="FourButtons">
               <ToggleButton CommandName="cmdButtonReportTableView" />
               <ToggleButton CommandName="cmdToggleShowRT" />
+              <ToggleButton CommandName="cmdButtonClickScatter" />
               <Button CommandName="cmdButtonReportHeatMapColors" />
             </Group>
           </Tab>

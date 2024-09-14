@@ -280,6 +280,7 @@ Namespace RibbonLib.Controls
             Public Const cmdPanelReportSettings As UInteger = 318
             Public Const cmdButtonReportTableView As UInteger = 325
             Public Const cmdToggleShowRT As UInteger = 317
+            Public Const cmdButtonClickScatter As UInteger = 326
             Public Const cmdButtonReportHeatMapColors As UInteger = 319
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
@@ -1977,6 +1978,15 @@ Namespace RibbonLib.Controls
                 Return _ToggleShowRT
             End Get
         End Property
+        Private _ButtonClickScatter As RibbonToggleButton
+        ''' <summary>
+        ''' Click Through Scatter
+        ''' </summary>
+        Public ReadOnly Property ButtonClickScatter As RibbonToggleButton
+            Get
+                Return _ButtonClickScatter
+            End Get
+        End Property
         Private _ButtonReportHeatMapColors As RibbonButton
         Public ReadOnly Property ButtonReportHeatMapColors As RibbonButton
             Get
@@ -2494,6 +2504,7 @@ Namespace RibbonLib.Controls
             _PanelReportSettings = New RibbonGroup(_ribbon, Cmd.cmdPanelReportSettings)
             _ButtonReportTableView = New RibbonToggleButton(_ribbon, Cmd.cmdButtonReportTableView)
             _ToggleShowRT = New RibbonToggleButton(_ribbon, Cmd.cmdToggleShowRT)
+            _ButtonClickScatter = New RibbonToggleButton(_ribbon, Cmd.cmdButtonClickScatter)
             _ButtonReportHeatMapColors = New RibbonButton(_ribbon, Cmd.cmdButtonReportHeatMapColors)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)

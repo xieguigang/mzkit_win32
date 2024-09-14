@@ -1829,7 +1829,14 @@
 #define cmdButtonReportTableView_TooltipDescription_RESID 60327
 #define cmdButtonReportTableView_SmallImages_192__RESID 60328
 #define cmdButtonReportTableView_LargeImages_192__RESID 60329
-#define InternalCmd2_LabelTitle_RESID 60330
-#define InternalCmd4_LabelTitle_RESID 60331
-#define InternalCmd6_LabelTitle_RESID 60332
-#define InternalCmd8_LabelTitle_RESID 60333
+#define cmdButtonClickScatter 326  /* Click Through Scatter */ 
+#define cmdButtonClickScatter_LabelTitle_RESID 60330
+#define cmdButtonClickScatter_LabelDescription_RESID 60331
+#define cmdButtonClickScatter_TooltipTitle_RESID 60332
+#define cmdButtonClickScatter_TooltipDescription_RESID 60333
+#define cmdButtonClickScatter_SmallImages_192__RESID 60334
+#define cmdButtonClickScatter_LargeImages_192__RESID 60335
+#define InternalCmd2_LabelTitle_RESID 60336
+#define InternalCmd4_LabelTitle_RESID 60337
+#define InternalCmd6_LabelTitle_RESID 60338
+#define InternalCmd8_LabelTitle_RESID 60339

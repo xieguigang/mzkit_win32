@@ -283,6 +283,7 @@ namespace RibbonLib.Controls
             public const uint cmdPanelReportSettings = 318;
             public const uint cmdButtonReportTableView = 325;
             public const uint cmdToggleShowRT = 317;
+            public const uint cmdButtonClickScatter = 326;
             public const uint cmdButtonReportHeatMapColors = 319;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
@@ -650,6 +651,10 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonToggleButton ButtonReportTableView { get; private set; }
         public RibbonToggleButton ToggleShowRT { get; private set; }
+        /// <summary>
+        /// Click Through Scatter
+        /// </summary>
+        public RibbonToggleButton ButtonClickScatter { get; private set; }
         public RibbonButton ButtonReportHeatMapColors { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
@@ -967,6 +972,7 @@ namespace RibbonLib.Controls
             PanelReportSettings = new RibbonGroup(ribbon, Cmd.cmdPanelReportSettings);
             ButtonReportTableView = new RibbonToggleButton(ribbon, Cmd.cmdButtonReportTableView);
             ToggleShowRT = new RibbonToggleButton(ribbon, Cmd.cmdToggleShowRT);
+            ButtonClickScatter = new RibbonToggleButton(ribbon, Cmd.cmdButtonClickScatter);
             ButtonReportHeatMapColors = new RibbonButton(ribbon, Cmd.cmdButtonReportHeatMapColors);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
