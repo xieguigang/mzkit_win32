@@ -201,7 +201,7 @@ Public NotInheritable Class RscriptProgressTask
         Return cachefile
     End Function
 
-    Public Shared Sub ExportRGBIonsPlot(mz As Double(), tolerance As String, saveAs As String, filters As String(), size As Size, dpi As Integer, padding As String)
+    Public Shared Sub ExportRGBIonsPlot(mz As Double(), tolerance As String, saveAs As String, filters As String(), size As Size, dpi As Integer, padding As String, ticOverlaps As Boolean)
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/tripleIon.R")
         Dim filterfile As String = TempFileSystem.GetAppSysTempFile(".txt", prefix:="msi_filters")
         Dim cli As String = $"""{Rscript}"" 
@@ -210,6 +210,7 @@ Public NotInheritable Class RscriptProgressTask
 --save ""{saveAs}"" 
 --mzdiff ""{tolerance}"" 
 --filters ""{filterfile}""
+{If(ticOverlaps, "--overlap-tic", "")}
 --size ""{size.Width},{size.Height}""
 --dpi {dpi}
 --padding ""{padding}""
