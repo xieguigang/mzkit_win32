@@ -2969,6 +2969,7 @@ Public Class frmMsImagingViewer
                                Call RscriptProgressTask.ExportRGBIonsPlot(
                                    targetMz, mzdiff.GetScript, saveAs:=save.FileName,
                                    filters:=msi_filters,
+                                   ticOverlaps:=params.showTotalIonOverlap,
                                    size:=cfg.GetPlotSize, dpi:=cfg.GetPlotDpi, padding:=cfg.GetPlotPadding)
                            Else
                                Call RscriptProgressTask.ExportSingleIonPlot(
