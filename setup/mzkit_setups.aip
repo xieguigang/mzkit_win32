@@ -952,6 +952,7 @@
     <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.pdb" ComponentId="{2B1BAF28-D816-4037-9EA1-8E93B3A6ACF6}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.pdb_1" ComponentId="{F874F72E-D6A5-4252-AC51-452DF7D797CC}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.xml" ComponentId="{EE5557F8-268A-4F9B-B924-0C54A4684A7C}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.xml_2"/>
+    <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.xml_1" ComponentId="{F4843300-E30D-4F77-A81A-F10227A52B31}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.xml_1"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll" ComponentId="{3732B8B7-3607-4294-B63F-37373D15C622}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll_3" ComponentId="{07FB4A5F-B81B-4E49-BDB9-0E5B3E60D1DF}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.pdb" ComponentId="{8BD94C82-A0B8-4070-8750-259902C7987B}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.PDF.pdb" Type="4"/>
@@ -18737,7 +18738,7 @@
     <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~33.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
     <ROW File="xvba_debug.log_2" Component_="xvba_debug.log_2" FileName="XVBA_D~1.LOG|xvba_debug.log" Attributes="0" SourcePath="..\rstudio\pipeline\logs\xvba_debug.log" SelfReg="false"/>
     <ROW File="preprocessing.R" Component_="OPLSDA.R" FileName="PREPRO~1.R|preprocessing.R" Attributes="0" SourcePath="..\rstudio\pipeline\workbench\preprocessing.R" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml_1" Component_="BioDeep.dll.config" FileName="MICRO~24.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml_1" Component_="Microsoft.VisualBasic.Imaging.Landscape.xml_1" FileName="MICRO~24.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
     <ROW File="make_peaktable.R" Component_="make_peaktable.R" FileName="MAKE_P~1.R|make_peaktable.R" Attributes="0" SourcePath="..\..\..\Rscript\Library\mzkit_app\tools\make_peaktable.R" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml_2" Component_="Microsoft.VisualBasic.Imaging.Landscape.xml" FileName="MICRO~68.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
     <ROW File="settings.json_4" Component_="settings.json_4" FileName="SETTIN~1.JSO|settings.json" Attributes="0" SourcePath="..\rstudio\pipeline\workbench\.vscode\settings.json" SelfReg="false"/>
@@ -20350,6 +20351,7 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Imaging.Landscape.xml"/>
     <ROW Feature_="MainFeature" Component_="settings.json_4"/>
     <ROW Feature_="MainFeature" Component_="xvba_debug.log_3"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Imaging.Landscape.xml_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
