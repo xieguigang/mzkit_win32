@@ -95,17 +95,23 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
         Me.B = b
     End Sub
 
+    Private Shared Function checkChannelMissing(c As SingleIonLayer) As Boolean
+        Return c Is Nothing OrElse c.MSILayer.IsNullOrEmpty
+    End Function
+
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
         Dim drawer As New PixelRender(heatmapRender:=False)
         Dim dimensionSize As New Size(params.scan_x, params.scan_y)
-        Dim r = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.R)}
-        Dim g = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.G)}
-        Dim b = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.B)}
+        Dim r As New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.R)}
+        Dim g As New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.G)}
+        Dim b As New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.B)}
 
         If params.enableFilter AndAlso filters IsNot Nothing Then
-            r = filters(r)
-            g = filters(g)
-            b = filters(b)
+            ' 20240915
+            ' r,g,b maybe empty is one channel not has been selected by the user.
+            If Not checkChannelMissing(r) Then r = filters(r)
+            If Not checkChannelMissing(g) Then g = filters(g)
+            If Not checkChannelMissing(b) Then b = filters(b)
         End If
 
         'Dim qr As Double = q1.ThresholdValue(r.Select(Function(p) p.intensity).ToArray)

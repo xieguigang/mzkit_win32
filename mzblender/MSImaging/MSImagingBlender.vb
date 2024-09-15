@@ -134,7 +134,10 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
     ''' take sample pixels via <see cref="sample_tag"/>
     ''' </summary>
     ''' <param name="pixels"></param>
-    ''' <returns></returns>
+    ''' <returns>
+    ''' this function will ensure that the data is not nothing 
+    ''' but maybe empty collection generated.
+    ''' </returns>
     Protected Function TakePixels(pixels As PixelData()) As PixelData()
         If showAllSample Then
             Return pixels
