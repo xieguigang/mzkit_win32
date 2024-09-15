@@ -53,10 +53,10 @@ print(mzlist);
 
 let filetype = file.ext(savefile);
 let msi_filters = {
-    if (file.exists(filter_file)) {
+    if (file.exists(filter_file) && (length(readLines(filter_file)) > 0)) {
         print("apply of the image filter from config file:");
         print(filter_file);
-        
+
         geom_MSIfilters(file = filter_file);
     } else {
         geom_MSIfilters(

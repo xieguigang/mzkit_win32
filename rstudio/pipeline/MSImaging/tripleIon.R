@@ -14,6 +14,7 @@ const mz as string       = ?"--mzlist"  || stop("target ions list must be provid
 const mzdiff as string   = ?"--mzdiff"  || "da:0.1";
 const savefile as string = ?"--save"    || stop("A file path to save plot image must be specificed!");
 const overlap_totalIons as boolean = ?"--overlap-tic" || FALSE;
+const hostName as string = ?"--host" || "localhost";
 const filter_file as string = ?"--filters" || ""; 
 const plot_size          = ?"--size" || "3300,2000";
 const plot_dpi           = ?"--dpi"  || 120;
@@ -38,6 +39,18 @@ const images  = lapply(mzlist, function(mz) {
     # |> knnFill()
     ;
 });
+const totalIonLayer = {
+    if (overlap_totalIons) {
+        raster_blending(
+            pixels = app::getTotalIons(appPort, host = hostName), 
+            dims = dims,
+            scale = "gray",
+            levels = 255
+        );
+    } else {
+        NULL;
+    }
+}
 const mz_keys = `m/z ${round( mzlist, 4)}`;
 const kr = mz_keys[1];
 const kg = mz_keys[2];
@@ -50,9 +63,10 @@ str(images);
 
 let filetype = file.ext(savefile);
 let msi_filters = {
-    if (file.exists(filter_file)) {
+    if (file.exists(filter_file) && (length(readLines(filter_file)) > 0)) {
         geom_MSIfilters(file = filter_file);
     } else {
+        # just use the default intensity filter
         geom_MSIfilters(
             TrIQ_scale(0.85)
         );
