@@ -6,6 +6,8 @@ require(ggplot);
 
 options(memory.load = "max");
 
+# request data from MSI service backend, and then do single ion ms-imaging plot
+
 const appPort as integer = ?"--app"    || stop("A MSimaging services hub app handle must be provided!");
 const mz as string       = ?"--mzlist" || stop("target ions list must be provided!");
 const mzdiff as string   = ?"--mzdiff" || "da:0.1";
@@ -52,6 +54,9 @@ print(mzlist);
 let filetype = file.ext(savefile);
 let msi_filters = {
     if (file.exists(filter_file)) {
+        print("apply of the image filter from config file:");
+        print(filter_file);
+        
         geom_MSIfilters(file = filter_file);
     } else {
         geom_MSIfilters(

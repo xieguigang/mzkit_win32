@@ -66,8 +66,18 @@ let make_plot = function() {
     # rendering of rgb channels ion m/z
     ggplot(MSIheatmap(
         R = images[[kr]], 
-        G = images[[kg]], 
-        B = images[[kb]],
+        G = {
+            if (is.null(kg)) {
+                NULL;
+            } else {
+                images[[kg]]
+            }}, 
+        B = {
+            if (is.null(kb)) {
+                NULL;
+            } else {
+                images[[kb]]
+            }},
         dims = dims
     ), padding = plot_padding) 
        
