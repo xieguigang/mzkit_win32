@@ -2929,6 +2929,11 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
+    ''' <summary>
+    ''' A common method for export single ion ms-imaging and rgb overlaps ms-imaging
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub ExportPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportPlotToolStripMenuItem.Click
         If Not checkService() Then
             Return
@@ -2951,6 +2956,11 @@ Public Class frmMsImagingViewer
 
         Dim save As New SetMSIPlotParameters
         Dim msi_filters As String() = loadFilters.Select(Function(f) f.ToScript).ToArray
+
+        ' the ms-imaging filter has been turn off
+        If Not params.enableFilter Then
+            msi_filters = {}
+        End If
 
         Call save.SetFileName(filename)
         Call InputDialog.Input(
