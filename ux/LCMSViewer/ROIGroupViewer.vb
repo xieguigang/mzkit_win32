@@ -1,5 +1,6 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
@@ -16,10 +17,16 @@ Public Class ROIGroupViewer
     Dim rt As Double
     Dim current As NamedCollection(Of ms1_scan)
     Dim dt As Double = 7.5
+    Dim massdiff As Tolerance = Tolerance.DeltaMass(0.01)
 
     Public Property ROIViewerHeight As Integer = 100
 
     Public Event SelectFile(filename As String)
+
+    Public Async Sub SetMassDiff(err As Tolerance)
+        massdiff = err
+        Await Rendering()
+    End Sub
 
     Public Iterator Function GetXic() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
         For Each file As NamedCollection(Of ms1_scan) In samples
@@ -71,6 +78,10 @@ Public Class ROIGroupViewer
         RaiseEvent SelectFile(current.name)
     End Sub
 
+    ''' <summary>
+    ''' rendering xic group -> rendering selection
+    ''' </summary>
+    ''' <returns></returns>
     Private Async Function Rendering() As Task
         ' resize all pictures to the size of left panel
         Dim newWidth As Integer = FlowLayoutPanel1.Width * 0.9
