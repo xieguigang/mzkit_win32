@@ -23,10 +23,10 @@ Public Class ROIGroupViewer
 
     Public Event SelectFile(filename As String)
 
-    Public Async Sub SetMassDiff(err As Tolerance)
+    Public Async Function SetMassDiff(err As Tolerance) As Task
         massdiff = err
         Await Rendering()
-    End Sub
+    End Function
 
     Public Iterator Function GetXic() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
         For Each file As NamedCollection(Of ms1_scan) In samples
