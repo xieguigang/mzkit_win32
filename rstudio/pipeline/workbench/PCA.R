@@ -39,10 +39,10 @@ pca_score[, "class_id"] = sapply(rownames(pca_score), x -> class_id[[x]]);
 
 svg(file = `${outputdir}/pca/pca_score.svg`, width = 1920, height = 1600) {
     let score_figure = ggplot(pca_score, aes(x="PC1", y = "PC2", color = "class_id", label = rownames(pca_score)))
+    + stat_ellipse()
     + geom_point(
         size = 16
-    )
-    # + stat_ellipse()
+    )    
     ;
 
     if (show_labels) {

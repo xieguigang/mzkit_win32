@@ -64,11 +64,10 @@ let opls_loading = opls.da$loadingMN;
 
 svg(file = `${outputdir}/opls/oplsda_loadingMN.svg`, width = 1920, height = 1600) {
     ggplot(opls_loading, aes(x="P1", y = "P2", color = "VIP"), padding = [200 400 200 250])
+    + stat_ellipse()
     + geom_point(
         size = 3, color = "viridis:turbo"
     )
-    # + geom_text(size = 6)
-    # + stat_ellipse()
     ;
 }
 
