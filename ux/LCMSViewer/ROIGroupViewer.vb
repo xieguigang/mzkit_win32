@@ -30,15 +30,19 @@ Public Class ROIGroupViewer
 
     Public Iterator Function GetXic() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
         For Each file As NamedCollection(Of ms1_scan) In samples
-            Dim xic_data = file _
-                .GroupBy(Function(i) i.scan_time, offsets:=0.25) _
-                .Select(Function(i)
-                            Return New ChromatogramTick(Val(i.name), i.Average(Function(a) a.intensity))
-                        End Function)
-            Dim xic As New NamedCollection(Of ChromatogramTick)(file.name, xic_data)
-
-            Yield xic
+            Yield New NamedCollection(Of ChromatogramTick)(file.name, TakeXic(file))
         Next
+    End Function
+
+    Private Function TakeXic(file As NamedCollection(Of ms1_scan)) As IEnumerable(Of ChromatogramTick)
+        Return file _
+            .AsParallel _
+            .Where(Function(a) massdiff(a.mz, mz)) _
+            .GroupBy(Function(i) i.scan_time, offsets:=0.25) _
+            .Select(Function(i)
+                        Return New ChromatogramTick(Val(i.name), i.Average(Function(a) a.intensity))
+                    End Function) _
+            .OrderBy(Function(ti) ti.Time)
     End Function
 
     Public Async Function LoadROIs(mz As Double, rt As Double, samples As IEnumerable(Of NamedCollection(Of ms1_scan))) As Task(Of ROIGroupViewer)
@@ -100,25 +104,20 @@ Public Class ROIGroupViewer
 
         ' make rendering
         For i As Integer = 0 To viewers.Length - 1
-            xic = DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)) _
-                .AsEnumerable _
-                .GroupBy(Function(a) a.scan_time, offsets:=0.25) _
-                .Select(Function(m1) New ChromatogramTick(Val(m1.name), m1.Average(Function(a) a.intensity))) _
-                .OrderBy(Function(m1) m1.Time) _
-                .ToArray
+            xic = TakeXic(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan))).ToArray
             xic_data = New NamedCollection(Of ChromatogramTick)(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)).name, xic)
-            render = Await Task(Of GraphicsData).Run(Function()
-                                                         Return New TICplot(xic_data,
-                                                                timeRange:=rt_range,
-                                                                intensityMax:=0,
-                                                                isXIC:=True,
-                                                                fillAlpha:=200,
-                                                                fillCurve:=False,
-                                                                labelLayoutTicks:=-1,
-                                                                bspline:=2,
-                                                                theme:=theme) With {.xlabel = "Retention Time(s)", .ylabel = "Intensity"} _
-                                                        .Plot(unifySize, ppi:=200)
-                                                     End Function)
+            render = Await Task.Run(Function()
+                                        Return New TICplot(xic_data,
+                                                timeRange:=rt_range,
+                                                intensityMax:=0,
+                                                isXIC:=True,
+                                                fillAlpha:=200,
+                                                fillCurve:=False,
+                                                labelLayoutTicks:=-1,
+                                                bspline:=2,
+                                                theme:=theme) With {.xlabel = "Retention Time(s)", .ylabel = "Intensity"} _
+                                        .Plot(unifySize, ppi:=200)
+                                    End Function)
 
             viewers(i).Width = newWidth
             viewers(i).BackgroundImage = render.AsGDIImage
@@ -140,7 +139,7 @@ Public Class ROIGroupViewer
             .padding = "padding:100px 100px 200px 200px;",
             .colorSet = ScalerPalette.FlexImaging.Description
         }
-        Dim density As New PlotMassWindowXIC(current, theme)
+        Dim density As New PlotMassWindowXIC(current, mz, massdiff, theme)
         Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=120))
 
         PictureBox1.BackgroundImage = render.AsGDIImage
