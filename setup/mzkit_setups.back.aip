@@ -1452,6 +1452,7 @@
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_4" ComponentId="{BFC27A10-1A78-4141-8CE1-B02D0EAFE842}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll" ComponentId="{FB6C7D69-45ED-429E-AE90-6A99C2F08469}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.keggReport.pdb" ComponentId="{33AA2425-67AE-4E5F-9173-831E8C47199C}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench.keggReport.pdb" Type="4"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench_1_.Knowledge_base.NCBI.xml" ComponentId="{EA96744F-BE82-4CCD-BF36-D84E6AE95C49}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench_2_.Knowledge_base.NCBI.xml"/>
     <ROW Component="SMRUCC.genomics.InteractionModel.dll" ComponentId="{22934577-ADC6-43CA-9B10-30FD9C67643A}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.InteractionModel.dll"/>
     <ROW Component="SMRUCC.genomics.InteractionModel.pdb" ComponentId="{598E2034-A5E0-4E4B-B2E4-3BCF951890FD}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.InteractionModel.pdb" Type="4"/>
     <ROW Component="SMRUCC.genomics.Model.Biopax_OWL.dll" ComponentId="{6F46E28F-2C81-473B-A27B-349BC80F308F}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Model.Biopax_OWL.dll"/>
@@ -19982,6 +19983,7 @@
     <ROW File="SkiaSharp.Extended.Svg.dll" Component_="SkiaSharp.Extended.Svg.dll" FileName="SKIASH~3.DLL|SkiaSharp.Extended.Svg.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\SkiaSharp.Extended.Svg.dll" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="SMRUC~10.XML|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.GCModeller.Workbench_1_.Knowledge_base.NCBI.xml" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="SMRUC~10.XML|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench_2_.Knowledge_base.NCBI.xml" Component_="SMRUCC.genomics.GCModeller.Workbench_1_.Knowledge_base.NCBI.xml" FileName="SMRUC~13.XML|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -22918,6 +22920,7 @@
     <ROW Feature_="MainFeature" Component_="SkiaSharp.dll_1"/>
     <ROW Feature_="MainFeature" Component_="SkiaSharp.Extended.dll"/>
     <ROW Feature_="MainFeature" Component_="SkiaSharp.Extended.Svg.dll"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.GCModeller.Workbench_1_.Knowledge_base.NCBI.xml"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
