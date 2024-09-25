@@ -284,6 +284,10 @@
     <ROW Directory="licenses_Dir" Directory_Parent="openslidewin64_Dir" DefaultDir="licenses"/>
     <ROW Directory="lines_1_Dir" Directory_Parent="three.js_Dir" DefaultDir="lines"/>
     <ROW Directory="lines_Dir" Directory_Parent="extra_Dir" DefaultDir="lines"/>
+    <ROW Directory="linuxarm64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~2|linux-arm64"/>
+    <ROW Directory="linuxarm_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~1|linux-arm"/>
+    <ROW Directory="linuxmuslx64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~3|linux-musl-x64"/>
+    <ROW Directory="linuxx64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~4|linux-x64"/>
     <ROW Directory="loaders_Dir" Directory_Parent="three.js_Dir" DefaultDir="loaders"/>
     <ROW Directory="lwo_Dir" Directory_Parent="loaders_Dir" DefaultDir="lwo"/>
     <ROW Directory="magick_Dir" Directory_Parent="ImageMagick6_Dir" DefaultDir="magick"/>
@@ -299,6 +303,14 @@
     <ROW Directory="models_Dir" Directory_Parent="cfmid2_Dir" DefaultDir="models"/>
     <ROW Directory="mozjpeg_Dir" Directory_Parent="cmake_Dir" DefaultDir="mozjpeg"/>
     <ROW Directory="native_1_Dir" Directory_Parent="winx64_1_Dir" DefaultDir="native"/>
+    <ROW Directory="native_2_Dir" Directory_Parent="linuxarm_Dir" DefaultDir="native"/>
+    <ROW Directory="native_3_Dir" Directory_Parent="linuxarm64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_4_Dir" Directory_Parent="linuxmuslx64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_5_Dir" Directory_Parent="linuxx64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_6_Dir" Directory_Parent="osx_Dir" DefaultDir="native"/>
+    <ROW Directory="native_7_Dir" Directory_Parent="winarm64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_8_Dir" Directory_Parent="winx64_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_9_Dir" Directory_Parent="winx86_Dir" DefaultDir="native"/>
     <ROW Directory="native_Dir" Directory_Parent="winx64_Dir" DefaultDir="native"/>
     <ROW Directory="navigation_Dir" Directory_Parent="textures_Dir" DefaultDir="NAVIGA~1|navigation"/>
     <ROW Directory="ndpitools_Dir" Directory_Parent="NewFolder_Dir" DefaultDir="NDPITO~1|ndpitools"/>
@@ -322,6 +334,7 @@
     <ROW Directory="ops_Dir" Directory_Parent="hwy_Dir" DefaultDir="ops"/>
     <ROW Directory="orc0.4_Dir" Directory_Parent="include_1_Dir" DefaultDir="orc-0.4"/>
     <ROW Directory="orc_Dir" Directory_Parent="orc0.4_Dir" DefaultDir="orc"/>
+    <ROW Directory="osx_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="osx"/>
     <ROW Directory="other_Dir" Directory_Parent="libs_Dir" DefaultDir="other"/>
     <ROW Directory="packages_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="packages"/>
     <ROW Directory="pango1.0_Dir" Directory_Parent="include_1_Dir" DefaultDir="pango-1.0"/>
@@ -401,9 +414,12 @@
     <ROW Directory="win_1_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="win"/>
     <ROW Directory="win_3_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="win"/>
     <ROW Directory="win_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="win"/>
+    <ROW Directory="winarm64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="WIN-AR~1|win-arm64"/>
     <ROW Directory="winpthreads_Dir" Directory_Parent="licenses_Dir" DefaultDir="WINPTH~1|winpthreads"/>
     <ROW Directory="winx64_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="win-x64"/>
+    <ROW Directory="winx64_2_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="win-x64"/>
     <ROW Directory="winx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win-x64"/>
+    <ROW Directory="winx86_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="win-x86"/>
     <ROW Directory="workbench_Dir" Directory_Parent="pipeline_Dir" DefaultDir="WORKBE~1|workbench"/>
     <ROW Directory="worker_Dir" Directory_Parent="obj2_Dir" DefaultDir="worker"/>
     <ROW Directory="workers_1_Dir" Directory_Parent="potree_Dir" DefaultDir="workers"/>
@@ -1482,8 +1498,11 @@
     <ROW Component="ServiceHub.dll" ComponentId="{4369CD89-DD64-442D-A5B3-F0B82F6220EE}" Directory_="APPDIR" Attributes="256" KeyPath="ServiceHub.dll"/>
     <ROW Component="ServiceHub.dll_1" ComponentId="{FF86F3AD-AB71-4FE2-95DF-A0B8B1EB1D2E}" Directory_="host_Dir" Attributes="256" KeyPath="ServiceHub.dll_1"/>
     <ROW Component="ServiceHub.pdb" ComponentId="{BEC4661C-8A81-460A-A7CB-D9DE3B621304}" Directory_="APPDIR" Attributes="0" KeyPath="ServiceHub.pdb" Type="4"/>
+    <ROW Component="SkiaSharp.Extended.Svg.dll" ComponentId="{496CA523-636D-4E12-9446-F07C82CD894B}" Directory_="bin_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.Svg.dll"/>
+    <ROW Component="SkiaSharp.Extended.dll" ComponentId="{A4532608-43D3-4A1E-B2E1-9E8073430F2A}" Directory_="bin_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.dll"/>
     <ROW Component="SkiaSharp.dll" ComponentId="{05805E1C-BA10-44A5-AECA-82D851E3AAD8}" Directory_="dzitools_Dir" Attributes="0" KeyPath="SkiaSharp.dll"/>
     <ROW Component="SkiaSharp.dll.config" ComponentId="{AE8C8F3D-CB91-40E5-B8DE-9662AAA37F79}" Directory_="dzitools_Dir" Attributes="0" KeyPath="SkiaSharp.dll.config"/>
+    <ROW Component="SkiaSharp.dll_1" ComponentId="{DBFE0A5C-CB2D-411D-9BCC-08D242D257FF}" Directory_="bin_Dir" Attributes="0" KeyPath="SkiaSharp.dll_1"/>
     <ROW Component="System.Buffers.dll" ComponentId="{DA8B485B-6776-447A-A779-8CD66BC1E890}" Directory_="dzitools_Dir" Attributes="0" KeyPath="System.Buffers.dll"/>
     <ROW Component="System.Buffers.dll_2" ComponentId="{7DB96DCA-7F1F-429B-B422-3FE24EAF0BE1}" Directory_="APPDIR" Attributes="256" KeyPath="System.Buffers.dll_2"/>
     <ROW Component="System.CodeDom.dll" ComponentId="{8F8842EC-C783-4F87-9D8B-6E2156FECA3A}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.CodeDom.dll"/>
@@ -2387,6 +2406,9 @@
     <ROW Component="libOpenEXRCore3_1.dll.a" ComponentId="{57546001-6DC8-4C74-84DD-DAF9323479F2}" Directory_="lib_5_Dir" Attributes="0" KeyPath="libOpenEXRCore3_1.dll.a"/>
     <ROW Component="libOpenEXRUtil3_1.dll.a" ComponentId="{EDE224BA-2186-4FAD-A3BD-FC8EB98E1AE7}" Directory_="lib_5_Dir" Attributes="0" KeyPath="libOpenEXRUtil3_1.dll.a"/>
     <ROW Component="libSkiaSharp.dll" ComponentId="{867A32E4-D201-4F0F-B2B1-129B29EE6014}" Directory_="dzitools_Dir" Attributes="256" KeyPath="libSkiaSharp.dll"/>
+    <ROW Component="libSkiaSharp.dll_1" ComponentId="{C11E9FC3-E881-421B-AE3B-7287E490885C}" Directory_="native_7_Dir" Attributes="256" KeyPath="libSkiaSharp.dll_1"/>
+    <ROW Component="libSkiaSharp.dll_2" ComponentId="{BA90E832-57E7-49CF-8355-B60CDBA06BFC}" Directory_="native_8_Dir" Attributes="256" KeyPath="libSkiaSharp.dll_2"/>
+    <ROW Component="libSkiaSharp.dll_3" ComponentId="{CC4CBF85-010A-492E-B703-5D8505601934}" Directory_="native_9_Dir" Attributes="0" KeyPath="libSkiaSharp.dll_3"/>
     <ROW Component="libSkiaSharp.dylib" ComponentId="{16F8601D-BF80-4800-939F-C3C5303D8DBC}" Directory_="dzitools_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Runtime.xml_2" Type="0"/>
     <ROW Component="libSkiaSharp.dylib_1" ComponentId="{60C4CA00-36BC-45D1-B404-DFE512EEC321}" Directory_="dzitools_Dir" Attributes="0" KeyPath="libSkiaSharp.dylib"/>
     <ROW Component="libaom.def" ComponentId="{364C021C-2766-4430-9850-F8B67117B4A8}" Directory_="lib_5_Dir" Attributes="0" KeyPath="libznz.dll.a" Type="0"/>
@@ -2742,6 +2764,11 @@
     <ROW Component="nanobenchmark.h" ComponentId="{124812F7-DAF3-49B4-B5A7-8F1D53F13B62}" Directory_="hwy_Dir" Attributes="0" KeyPath="nanobenchmark.h"/>
     <ROW Component="nanoftp.h" ComponentId="{8F928C1A-5862-4CEA-9253-96F7B86A3B0F}" Directory_="libxml_Dir" Attributes="0" KeyPath="nanoftp.h"/>
     <ROW Component="nanohttp.h" ComponentId="{7CF8623E-8BBB-4045-9B8C-2F58C0CC367A}" Directory_="libxml_Dir" Attributes="0" KeyPath="nanohttp.h"/>
+    <ROW Component="native" ComponentId="{3C193017-F737-465E-87D4-6D428F37E95E}" Directory_="native_2_Dir" Attributes="0"/>
+    <ROW Component="native_1" ComponentId="{1E5AAD22-AEA4-47F6-85FF-CB6334D416B7}" Directory_="native_3_Dir" Attributes="0"/>
+    <ROW Component="native_2" ComponentId="{783C69B3-69AF-48F8-98C5-A7E91B435DF5}" Directory_="native_4_Dir" Attributes="0"/>
+    <ROW Component="native_3" ComponentId="{69CB7B23-854F-44CD-8E93-5C1A2375A12D}" Directory_="native_5_Dir" Attributes="0"/>
+    <ROW Component="native_4" ComponentId="{4BDDFAF0-6AEE-4F5D-9C52-CDA2FA7B6902}" Directory_="native_6_Dir" Attributes="0"/>
     <ROW Component="ndpi2tiff.exe" ComponentId="{2A64A9AF-F880-4144-83EF-8FEFB57AFA2D}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpi2tiff.exe"/>
     <ROW Component="ndpisplit.exe" ComponentId="{B2D15C0E-E5A8-4E45-A9CF-2F958FB54A99}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplit.exe"/>
     <ROW Component="ndpisplitm.exe" ComponentId="{4D3E844D-4332-4CA1-8BF8-490A5C6A973A}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitm.exe"/>
@@ -19947,6 +19974,14 @@
     <ROW File="mzkit_desktop.js.map" Component_="linq.d.ts" FileName="MZKIT_~1.MAP|mzkit_desktop.js.map" Attributes="0" SourcePath="..\webview\assets\js\mzkit_desktop.js.map" SelfReg="false"/>
     <ROW File="settings.json_4" Component_="settings.json_4" FileName="SETTIN~1.JSO|settings.json" Attributes="0" SourcePath="..\rstudio\pipeline\workbench\.vscode\settings.json" SelfReg="false"/>
     <ROW File="t_volcano.R" Component_="OPLSDA.R" FileName="T_VOLC~1.R|t_volcano.R" Attributes="0" SourcePath="..\rstudio\pipeline\workbench\t_volcano.R" SelfReg="false"/>
+    <ROW File="libSkiaSharp.dll_1" Component_="libSkiaSharp.dll_1" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\runtimes\win-arm64\native\libSkiaSharp.dll" SelfReg="false"/>
+    <ROW File="libSkiaSharp.dll_2" Component_="libSkiaSharp.dll_2" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\runtimes\win-x64\native\libSkiaSharp.dll" SelfReg="false"/>
+    <ROW File="libSkiaSharp.dll_3" Component_="libSkiaSharp.dll_3" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\runtimes\win-x86\native\libSkiaSharp.dll" SelfReg="false"/>
+    <ROW File="SkiaSharp.dll_1" Component_="SkiaSharp.dll_1" FileName="SKIASH~1.DLL|SkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\SkiaSharp.dll" SelfReg="false"/>
+    <ROW File="SkiaSharp.Extended.dll" Component_="SkiaSharp.Extended.dll" FileName="SKIASH~2.DLL|SkiaSharp.Extended.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\SkiaSharp.Extended.dll" SelfReg="false"/>
+    <ROW File="SkiaSharp.Extended.Svg.dll" Component_="SkiaSharp.Extended.Svg.dll" FileName="SKIASH~3.DLL|SkiaSharp.Extended.Svg.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\SkiaSharp.Extended.Svg.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="SMRUC~10.XML|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench_1_.Knowledge_base.NCBI.xml" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="SMRUC~10.XML|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -20107,6 +20142,11 @@
     <ROW Directory_="library_Dir" Component_="library" ManualDelete="true"/>
     <ROW Directory_="DevTools_Dir" Component_="DevTools" ManualDelete="false"/>
     <ROW Directory_="regid.201301.com.panomix_Dir" Component_="regid.201301.com.panomix" ManualDelete="false"/>
+    <ROW Directory_="native_2_Dir" Component_="native" ManualDelete="false"/>
+    <ROW Directory_="native_3_Dir" Component_="native_1" ManualDelete="false"/>
+    <ROW Directory_="native_4_Dir" Component_="native_2" ManualDelete="false"/>
+    <ROW Directory_="native_5_Dir" Component_="native_3" ManualDelete="false"/>
+    <ROW Directory_="native_6_Dir" Component_="native_4" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
@@ -22867,6 +22907,17 @@
     <ROW Feature_="MainFeature" Component_="System.IO.Packaging.dll"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Imaging.Landscape.xml"/>
     <ROW Feature_="MainFeature" Component_="settings.json_4"/>
+    <ROW Feature_="MainFeature" Component_="native"/>
+    <ROW Feature_="MainFeature" Component_="native_1"/>
+    <ROW Feature_="MainFeature" Component_="native_2"/>
+    <ROW Feature_="MainFeature" Component_="native_3"/>
+    <ROW Feature_="MainFeature" Component_="native_4"/>
+    <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="SkiaSharp.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="SkiaSharp.Extended.dll"/>
+    <ROW Feature_="MainFeature" Component_="SkiaSharp.Extended.Svg.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
