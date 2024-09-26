@@ -1843,7 +1843,14 @@
 #define cmdButtonAddLCMSComparision_TooltipDescription_RESID 60339
 #define cmdButtonAddLCMSComparision_SmallImages_192__RESID 60340
 #define cmdButtonAddLCMSComparision_LargeImages_192__RESID 60341
-#define InternalCmd2_LabelTitle_RESID 60342
-#define InternalCmd4_LabelTitle_RESID 60343
-#define InternalCmd6_LabelTitle_RESID 60344
-#define InternalCmd8_LabelTitle_RESID 60345
+#define cmdButtonReportSampleInfo 328  /* Sample Information */ 
+#define cmdButtonReportSampleInfo_LabelTitle_RESID 60342
+#define cmdButtonReportSampleInfo_LabelDescription_RESID 60343
+#define cmdButtonReportSampleInfo_TooltipTitle_RESID 60344
+#define cmdButtonReportSampleInfo_TooltipDescription_RESID 60345
+#define cmdButtonReportSampleInfo_SmallImages_192__RESID 60346
+#define cmdButtonReportSampleInfo_LargeImages_192__RESID 60347
+#define InternalCmd2_LabelTitle_RESID 60348
+#define InternalCmd4_LabelTitle_RESID 60349
+#define InternalCmd6_LabelTitle_RESID 60350
+#define InternalCmd8_LabelTitle_RESID 60351

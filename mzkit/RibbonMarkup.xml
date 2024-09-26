@@ -4406,6 +4406,14 @@
         <Image MinDPI="192">Res/icons8-scatter-plot-96.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonReportSampleInfo" Comment="Sample Information" Id="328" LabelTitle="Sample Information" LabelDescription="Sample Information" TooltipTitle="Sample Information" TooltipDescription="Sample Information">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Tools2.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Tools2.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4855,11 +4863,12 @@
               <Button CommandName="cmdButtonReportSelect" />
               <Button CommandName="cmdButtonAddLCMSComparision" />
             </Group>
-            <Group CommandName="cmdPanelReportSettings" SizeDefinition="FourButtons">
+            <Group CommandName="cmdPanelReportSettings" SizeDefinition="FiveOrSixButtons">
               <ToggleButton CommandName="cmdButtonReportTableView" />
               <ToggleButton CommandName="cmdToggleShowRT" />
               <ToggleButton CommandName="cmdButtonClickScatter" />
               <Button CommandName="cmdButtonReportHeatMapColors" />
+              <Button CommandName="cmdButtonReportSampleInfo" />
             </Group>
           </Tab>
         </TabGroup>

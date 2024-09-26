@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Partial Public Class RibbonItems
+    Partial Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -283,6 +283,7 @@ Namespace RibbonLib.Controls
             Public Const cmdToggleShowRT As UInteger = 317
             Public Const cmdButtonClickScatter As UInteger = 326
             Public Const cmdButtonReportHeatMapColors As UInteger = 319
+            Public Const cmdButtonReportSampleInfo As UInteger = 328
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -2003,6 +2004,15 @@ Namespace RibbonLib.Controls
                 Return _ButtonReportHeatMapColors
             End Get
         End Property
+        Private _ButtonReportSampleInfo As RibbonButton
+        ''' <summary>
+        ''' Sample Information
+        ''' </summary>
+        Public ReadOnly Property ButtonReportSampleInfo As RibbonButton
+            Get
+                Return _ButtonReportSampleInfo
+            End Get
+        End Property
         Private _TabMain As RibbonTab
         Public ReadOnly Property TabMain As RibbonTab
             Get
@@ -2517,6 +2527,7 @@ Namespace RibbonLib.Controls
             _ToggleShowRT = New RibbonToggleButton(_ribbon, Cmd.cmdToggleShowRT)
             _ButtonClickScatter = New RibbonToggleButton(_ribbon, Cmd.cmdButtonClickScatter)
             _ButtonReportHeatMapColors = New RibbonButton(_ribbon, Cmd.cmdButtonReportHeatMapColors)
+            _ButtonReportSampleInfo = New RibbonButton(_ribbon, Cmd.cmdButtonReportSampleInfo)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)
