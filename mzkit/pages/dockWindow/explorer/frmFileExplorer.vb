@@ -204,7 +204,7 @@ Public Class frmFileExplorer
 
         LCMSViewerModule.lcmsWorkspace = New Func(Of IEnumerable)(AddressOf GetRawFiles)
         LCMSViewerModule.setWorkFile = New Action(Of Object)(Sub(o) Call SetActiveWorkfile(DirectCast(o, MZWork.Raw)))
-        LCMSViewerModule.addWorkFile = New Action(Of Object)(Sub(o) Call addFileNode(DirectCast(o, MZWork.Raw)))
+        LCMSViewerModule.addWorkFile = New Action(Of Object, Boolean)(Sub(o, f) Call addFileNode(DirectCast(o, MZWork.Raw), f))
         LCMSViewerModule.clearWorkspace = Sub() Call Me.Invoke(Sub() Call Clear())
 
         Call InitializeFileTree()
@@ -269,7 +269,7 @@ Public Class frmFileExplorer
         End If
     End Sub
 
-    Public Sub addFileNode(newRaw As MZWork.Raw)
+    Public Sub addFileNode(newRaw As MZWork.Raw, Optional batchImportsCache As Boolean = False)
         Me.Invoke(Sub()
                       Dim file As TreeNode = Globals.RawFileNodeTemplate(newRaw, targetRawMenu:=ctxMenuRawFile)
                       treeView1.Nodes(0).Nodes.Add(file)
@@ -277,8 +277,13 @@ Public Class frmFileExplorer
 
         Globals.workspace.Add(newRaw)
 
-        MyApplication.host.showStatusMessage("Ready!")
-        MyApplication.host.UpdateCacheSize(GetTotalCacheSize)
+        If batchImportsCache Then
+            MyApplication.host.showStatusMessage($"Imports cache from: {newRaw.source}")
+        Else
+            ' make status update
+            MyApplication.host.showStatusMessage("Ready!")
+            MyApplication.host.UpdateCacheSize(GetTotalCacheSize)
+        End If
     End Sub
 
     ''' <summary>

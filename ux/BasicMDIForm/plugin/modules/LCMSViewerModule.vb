@@ -8,7 +8,7 @@ Public Module LCMSViewerModule
     Public lcmsWorkspace As Func(Of IEnumerable)
     Public lcmsChromatogramOverlaps As Action(Of Object)
     Public setWorkFile As Action(Of Object)
-    Public addWorkFile As Action(Of Object)
+    Public addWorkFile As Action(Of Object, Boolean)
     Public clearWorkspace As Action
 
     Public Sub ClearFileTree()
@@ -29,9 +29,9 @@ Public Module LCMSViewerModule
         End If
     End Sub
 
-    Public Sub AddWorkspaceFile(file As Object)
+    Public Sub AddWorkspaceFile(file As Object, batchMode As Boolean)
         If Not addWorkFile Is Nothing Then
-            Call addWorkFile(file)
+            Call addWorkFile(file, batchMode)
         End If
     End Sub
 
