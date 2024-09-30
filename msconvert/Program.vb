@@ -90,7 +90,7 @@ Imports MZWorkPack
               convert data file in batch mode. set this argument means search the rawdata file in all 
               sub-directory and put the result mzpack file to output folder also keeps the directory 
               tree structure.")>
-    <Usage("/mzPack --raw <filepath.mzXML> [--cache <result.mzPack> /ver 2 /mute /no-thumbnail /tree /prefix <prefix-string>]")>
+    <Usage("/mzPack --raw <filepath.mzXML> [--cache <result.mzPack> /ver 2 /mute /no-thumbnail /tree /prefix <prefix-string> --debug]")>
     Public Function convertAnyRaw(args As CommandLine) As Integer
         Dim raw As String = args("--raw")
         Dim cache As String = args("--cache") Or raw.ChangeSuffix("mzPack")
@@ -98,6 +98,7 @@ Imports MZWorkPack
         Dim mute As Boolean = args("/mute")
         Dim noSnapshot As Boolean = args("/no-thumbnail")
         Dim prefix As String = args("/prefix")
+        Dim is_debug As Boolean = args("--debug")
 
         If raw.DirectoryExists Then
             Dim cachefile As String
@@ -127,16 +128,25 @@ Imports MZWorkPack
                     cachefile = $"{export_dir}/{prefix}-{file.BaseName}.mzPack"
                 End If
 
-                Try
-                    Call Console.WriteLine(file.BaseName)
-                    Call ConvertToMzPack.CreateMzpack(file, cachefile,
-                        saveVer:=ver, mute:=mute,
-                        skipThumbnail:=noSnapshot,
-                        sleepTime:=0)
-                Catch ex As Exception
-                    Call App.LogException(ex)
-                    Call Console.WriteLine($"error while process: {file}")
-                End Try
+                Dim calls = Sub()
+                                Call Console.WriteLine(file.BaseName)
+                                Call ConvertToMzPack.CreateMzpack(file, cachefile,
+                                    saveVer:=ver, mute:=mute,
+                                    skipThumbnail:=noSnapshot,
+                                    sleepTime:=0)
+                            End Sub
+
+                If is_debug Then
+                    Call calls()
+                Else
+                    Try
+                        ' try to ignores of current file conversion error when not in debug mode
+                        Call calls()
+                    Catch ex As Exception
+                        Call App.LogException(ex)
+                        Call Console.WriteLine($"error while process: {file} ({ex.Message})")
+                    End Try
+                End If
             Next
         Else
             Call ConvertToMzPack.CreateMzpack(raw, cache,
