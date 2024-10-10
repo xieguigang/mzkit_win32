@@ -1,8 +1,8 @@
-﻿Imports Microsoft.VisualBasic.Imaging
-Imports Microsoft.VisualBasic.Imaging.BitmapImage
-Imports System.Drawing
+﻿Imports System.Drawing
 Imports System.Drawing.Imaging
 Imports System.Runtime.InteropServices
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.BitmapImage
 
 Namespace ImageUtils
 
@@ -44,12 +44,11 @@ Namespace ImageUtils
             Dim fullImage = MergeAlphaChannel(upscaled_path, alphaUpscale_path)
 
             ' CleanUp
-            File.Delete(upscaled_path)
-            File.Delete(alpha_path)
-            File.Delete(alphaUpscale_path)
+            Call System.IO.File.Delete(upscaled_path)
+            Call System.IO.File.Delete(alpha_path)
+            Call System.IO.File.Delete(alphaUpscale_path)
 
             Return fullImage
-
         End Function
 
         Private Function MergeAlphaChannel(origin_path As String, alphaChannel_path As String) As Bitmap
