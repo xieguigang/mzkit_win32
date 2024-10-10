@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports System.Drawing
 Imports System.Drawing.Imaging
 Imports System.Runtime.InteropServices
@@ -67,29 +68,29 @@ Namespace ImageUtils
             ' Change alpha value of a pixel within fullImage_bitData to the R value of the same location pixel in alphaImage_bitData
             ' note: R value in pixel within alphaImage_bitData will be 0-255 and represnt the alpha of the image.
             Dim Width = fullImage_bit.Width
-                        ''' Cannot convert UnsafeStatementSyntax, CONVERSION ERROR: Conversion for UnsafeStatement not implemented, please report this issue in 'unsafe\r\n  {\r\n   for (in...' at character 4259
-''' 
-''' 
-''' Input:
-''' 
-'''         unsafe
-'''         {
-'''             for (int y = 0; y < Height; ++y)
-'''             {
-'''                 byte* fullImage_row = (byte*)fullImage_bitData.Scan0 + y * fullImage_bitData.Stride;
-'''                 byte* alphaImage_row = (byte*)alphaImage_bitData.Scan0 + y * alphaImage_bitData.Stride;
-'''                 int columnOffset = 0;
-'''                 for (int x = 0; x < Width; ++x)
-'''                 {
-'''                     // Change alpha value of a pixel within fullImage_bitData to the R value of the same location pixel in alphaImage_bitData
-'''                     // note: R value in pixel within alphaImage_bitData will be 0-255 and represnt the alpha of the image.
-'''                     fullImage_row[columnOffset + 3] = alphaImage_row[columnOffset + 0];
-'''                     columnOffset += 4;
-'''                 }
-'''             }
-'''         }
-''' 
-''' 
+            ''' Cannot convert UnsafeStatementSyntax, CONVERSION ERROR: Conversion for UnsafeStatement not implemented, please report this issue in 'unsafe\r\n  {\r\n   for (in...' at character 4259
+            ''' 
+            ''' 
+            ''' Input:
+            ''' 
+            '''         unsafe
+            '''         {
+            '''             for (int y = 0; y < Height; ++y)
+            '''             {
+            '''                 byte* fullImage_row = (byte*)fullImage_bitData.Scan0 + y * fullImage_bitData.Stride;
+            '''                 byte* alphaImage_row = (byte*)alphaImage_bitData.Scan0 + y * alphaImage_bitData.Stride;
+            '''                 int columnOffset = 0;
+            '''                 for (int x = 0; x < Width; ++x)
+            '''                 {
+            '''                     // Change alpha value of a pixel within fullImage_bitData to the R value of the same location pixel in alphaImage_bitData
+            '''                     // note: R value in pixel within alphaImage_bitData will be 0-255 and represnt the alpha of the image.
+            '''                     fullImage_row[columnOffset + 3] = alphaImage_row[columnOffset + 0];
+            '''                     columnOffset += 4;
+            '''                 }
+            '''             }
+            '''         }
+            ''' 
+            ''' 
             ' Unlocks images memory
             fullImage_bit.UnlockBits(fullImage_bitData)
             alphaImage_bit.UnlockBits(alphaImage_bitData)
@@ -102,33 +103,19 @@ Namespace ImageUtils
         End Function
 
         Private Function ToAlphaChannel(Image As Bitmap) As Bitmap
-            Dim newBitmap As Bitmap = CType(Image.Clone(), Bitmap)
-            Dim data As BitmapData = newBitmap.LockBits(New Rectangle(0, 0, newBitmap.Width, newBitmap.Height), ImageLockMode.ReadWrite, newBitmap.PixelFormat)
+            Dim newBitmap As New Bitmap(Image)
+            Dim buf As BitmapBuffer = BitmapBuffer.FromBitmap(newBitmap, ImageLockMode.ReadWrite)
             Dim Height = newBitmap.Height
             Dim Width = newBitmap.Width
-                        ''' Cannot convert UnsafeStatementSyntax, CONVERSION ERROR: Conversion for UnsafeStatement not implemented, please report this issue in 'unsafe\r\n  {\r\n   for (in...' at character 5896
-''' 
-''' 
-''' Input:
-''' 
-'''         unsafe
-'''         {
-'''             for (int y = 0; y < Height; ++y)
-'''             {
-'''                 byte* row = (byte*)data.Scan0 + y * data.Stride;
-'''                 int columnOffset = 0;
-'''                 for (int x = 0; x < Width; ++x)
-'''                 {
-'''                     row[columnOffset + 0] = 255;
-'''                     row[columnOffset + 1] = 255;
-'''                     row[columnOffset + 2] = 255;
-'''                     columnOffset += 4;
-'''                 }
-'''             }
-'''         }
-''' 
-''' 
-            newBitmap.UnlockBits(data)
+
+            For y As Integer = 0 To Height
+                For x As Integer = 0 To Width
+                    Call buf.SetPixel(x, y, 255, 255, 255, buf.GetAlpha(x, y))
+                Next
+            Next
+
+            Call buf.Dispose()
+
             Return newBitmap
         End Function
 
