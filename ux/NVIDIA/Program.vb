@@ -1,9 +1,8 @@
-﻿
-Imports Microsoft.VisualBasic
-Imports nv
+﻿Imports nv
 
 Friend Class Program
-    Private Shared Sub Main(args As String())
+
+    Public Shared Sub Main(args As String())
         Dim ansel As NVIDIAAnsel = New NVIDIAAnsel()
 
         ansel.Add(App.CommandLine.Tokens)

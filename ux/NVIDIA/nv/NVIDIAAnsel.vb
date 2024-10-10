@@ -2,6 +2,7 @@
 Imports System.Diagnostics
 Imports System.Drawing
 Imports Image = System.Drawing.Image
+Imports System.IO
 
 Namespace nv
 
@@ -116,16 +117,16 @@ It is very likely that your Display Adapter Driver needs updating.")
             End If
 
             ' Divides the task into many parallel tasks (multithreading).
+            ' The user selected thread count becomes the max possible threads the following tasks will use at once.
             Call Parallel.ForEach(imagePaths, New ParallelOptions() With {
-        ' The user selected thread count becomes the max possible threads the following tasks will use at once.
         .MaxDegreeOfParallelism = threadCount
     }, Sub(sourceImagePath) processImage(sourceImagePath, defaultResolutionFactor, colourMode, limitSize, progress, tempDirectoryName))
         End Sub
 
         Private Sub processImage(sourceImagePath As String, defaultResolutionFactor As Integer, colourMode As String, limitSize As Boolean, progress As IProgress(Of Integer), tempDirectoryName As String)
-            Dim withoutExtension = Path.GetFileNameWithoutExtension(sourceImagePath)
-            Dim directoryName = Path.GetDirectoryName(sourceImagePath)
-            Dim extension = Path.GetExtension(sourceImagePath)
+            Dim withoutExtension = System.IO.Path.GetFileNameWithoutExtension(sourceImagePath)
+            Dim directoryName = System.IO.Path.GetDirectoryName(sourceImagePath)
+            Dim extension = System.IO.Path.GetExtension(sourceImagePath)
             Dim currentResolutionFactor = defaultResolutionFactor ' Copy of resolution (in case temp change to res is needed)
             Dim sourceImage = Image.FromFile(sourceImagePath)
             Dim isTransparentImage = HasTransparency(sourceImage)
