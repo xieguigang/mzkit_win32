@@ -267,7 +267,7 @@ namespace OpenSlideCs
                 OpenSlide.TraceMsg("start ReadRegion " + level + "/" + location.Height + "_" + location.Width + ": " + GetBytesReadable(size.Width * size.Height * 3));
                 SKBitmap bmp = new SKBitmap((int)size.Width, (int)size.Height);
                 bmp.SetPixel(0, 0, SKColors.AliceBlue);
-                bmp.LockPixels();
+               // bmp.LockPixels();
                 var bmpdata = bmp.GetPixels();
                 OpenSlide.TraceMsg("bmp locked " + level + "/" + location.Height + "_" + location.Width);
                 unsafe
@@ -276,7 +276,7 @@ namespace OpenSlideCs
                     Import.openslide_read_region(handle, p, location.Width, location.Height, level, size.Width, size.Height);
                 }
                 OpenSlide.TraceMsg("read finished " + level + "/" + location.Height + "_" + location.Width + ": " + GetBytesReadable(size.Width * size.Height * 3 / Math.Max(sw.ElapsedMilliseconds, 1)) + "/ms");
-                bmp.UnlockPixels();
+               // bmp.UnlockPixels();
                 OpenSlide.TraceMsg("unlock bits " + level + "/" + location.Height + "_" + location.Width);
                 if (bmp.GetPixel(0, 0) == SKColors.Black)
                 {
