@@ -56,44 +56,26 @@ Namespace ImageUtils
             ' Load images to memory and directly merge alpha value from grayscale into the full image.
 
             ' Loads full image and locks data to memory
-            Dim fullImage_bit As Bitmap = New Bitmap(origin_path.LoadImage())
-            Dim fullImage_bitData As BitmapData = fullImage_bit.LockBits(rect:=New Rectangle(0, 0, fullImage_bit.Width, fullImage_bit.Height), flags:=ImageLockMode.ReadWrite, format:=PixelFormat.Format32bppArgb)
+            Dim fullImage_bit As New Bitmap(origin_path.LoadImage())
+            Dim fullImage_bitData As BitmapBuffer = BitmapBuffer.FromBitmap(fullImage_bit)
 
             ' Loads alpha image and locks data to memory
             Dim alphaImage_img = Image.FromFile(alphaChannel_path)
-            Dim alphaImage_bit As Bitmap = New Bitmap(alphaImage_img)
-            Dim alphaImage_bitData As BitmapData = alphaImage_bit.LockBits(New Rectangle(0, 0, alphaImage_bit.Width, alphaImage_bit.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb)
+            Dim alphaImage_bit As New Bitmap(alphaImage_img)
+            Dim alphaImage_bitData As BitmapBuffer = BitmapBuffer.FromBitmap(alphaImage_bit)
 
             Dim Height = fullImage_bit.Height
             ' Change alpha value of a pixel within fullImage_bitData to the R value of the same location pixel in alphaImage_bitData
             ' note: R value in pixel within alphaImage_bitData will be 0-255 and represnt the alpha of the image.
             Dim Width = fullImage_bit.Width
-            ''' Cannot convert UnsafeStatementSyntax, CONVERSION ERROR: Conversion for UnsafeStatement not implemented, please report this issue in 'unsafe\r\n  {\r\n   for (in...' at character 4259
-            ''' 
-            ''' 
-            ''' Input:
-            ''' 
-            '''         unsafe
-            '''         {
-            '''             for (int y = 0; y < Height; ++y)
-            '''             {
-            '''                 byte* fullImage_row = (byte*)fullImage_bitData.Scan0 + y * fullImage_bitData.Stride;
-            '''                 byte* alphaImage_row = (byte*)alphaImage_bitData.Scan0 + y * alphaImage_bitData.Stride;
-            '''                 int columnOffset = 0;
-            '''                 for (int x = 0; x < Width; ++x)
-            '''                 {
-            '''                     // Change alpha value of a pixel within fullImage_bitData to the R value of the same location pixel in alphaImage_bitData
-            '''                     // note: R value in pixel within alphaImage_bitData will be 0-255 and represnt the alpha of the image.
-            '''                     fullImage_row[columnOffset + 3] = alphaImage_row[columnOffset + 0];
-            '''                     columnOffset += 4;
-            '''                 }
-            '''             }
-            '''         }
-            ''' 
-            ''' 
-            ' Unlocks images memory
-            fullImage_bit.UnlockBits(fullImage_bitData)
-            alphaImage_bit.UnlockBits(alphaImage_bitData)
+
+            For y As Integer = 0 To Height
+                For x As Integer = 0 To Width
+                    ' Change alpha value of a pixel within fullImage_bitData to the R value of the same location pixel in alphaImage_bitData
+                    ' note: R value in pixel within alphaImage_bitData will be 0-255 and represnt the alpha of the image.
+                    fullImage_bitData.SetAlpha(x, y, alphaImage_bitData.GetRed(x, y))
+                Next
+            Next
 
             ' Cleanup
             alphaImage_bit.Dispose()
