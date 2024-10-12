@@ -313,11 +313,12 @@ Imports MZWorkPack
     ''' <returns></returns>
     <ExportAPI("/msi_pack")>
     <Description("Pack the imzML file as the mzkit MS-Imaging mzpack rawdata file")>
-    <Usage("/msi_pack /target <file.imzML> [/output <result.mzPack>]")>
+    <Usage("/msi_pack /target <file.imzML> [/default_ion <1/-1> /output <result.mzPack>]")>
     Public Function MSIPack(args As CommandLine) As Integer
         Dim target As String = args <= "/target"
         Dim output As String = args("/output") Or target.ChangeSuffix("mzPack")
-        Dim mzPack = Converter.LoadimzML(target, 0, AddressOf RunSlavePipeline.SendProgress)
+        Dim defaultIon As IonModes = CInt(args("/default_ion") Or 1)
+        Dim mzPack = Converter.LoadimzML(target, 0, defaultIon, AddressOf RunSlavePipeline.SendProgress)
         mzPack.source = target.BaseName
         mzPack.WriteV2(output)
         Return 0
