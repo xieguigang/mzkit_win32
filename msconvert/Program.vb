@@ -306,6 +306,23 @@ Imports MZWorkPack
         Return 0
     End Function
 
+    ''' <summary>
+    ''' A shortcut method for make a better external ms-imaging data imports.
+    ''' </summary>
+    ''' <param name="args"></param>
+    ''' <returns></returns>
+    <ExportAPI("/msi_pack")>
+    <Description("Pack the imzML file as the mzkit MS-Imaging mzpack rawdata file")>
+    <Usage("/msi_pack /target <file.imzML> [/output <result.mzPack>]")>
+    Public Function MSIPack(args As CommandLine) As Integer
+        Dim target As String = args <= "/target"
+        Dim output As String = args("/output") Or target.ChangeSuffix("mzPack")
+        Dim mzPack = Converter.LoadimzML(target, 0, AddressOf RunSlavePipeline.SendProgress)
+        mzPack.source = target.BaseName
+        mzPack.WriteV2(output)
+        Return 0
+    End Function
+
     <ExportAPI("/imzml")>
     <Description("Convert raw data file to imzML file.")>
     <Usage("/imzml --file <source.data> --save <file.imzML> [/TIC_norm /ionMode <1/-1, default=1> /cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
