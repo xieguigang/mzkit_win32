@@ -296,13 +296,13 @@ Module BackgroundTask
     ''' <param name="imzML"></param>
     ''' <param name="cacheFile"></param>
     <ExportAPI("cache.MSI")>
-    Public Sub CreateMSIIndex(imzML As String, cacheFile As String, Optional cutoff As Double = 0.01)
+    Public Sub CreateMSIIndex(imzML As String, cacheFile As String, Optional cutoff As Double = 0.01, Optional default_ion As IonModes = IonModes.Positive)
         Dim mzpack As mzPack
 
         RunSlavePipeline.SendProgress(0, "Create workspace cache file, wait for a while...")
 
         If imzML.ExtensionSuffix("imzML") Then
-            mzpack = Converter.LoadimzML(imzML, cutoff, AddressOf RunSlavePipeline.SendProgress)
+            mzpack = Converter.LoadimzML(imzML, cutoff, default_ion, AddressOf RunSlavePipeline.SendProgress)
         Else
             mzpack = mzPack.ReadAll(imzML.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
         End If
