@@ -5,6 +5,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.GraphTheory
 Imports Microsoft.VisualBasic.Data.GraphTheory.GridGraph
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Microsoft.VisualBasic.Imaging.Math2D
@@ -528,7 +529,7 @@ Public Class SpatialTile
     ''' </summary>
     ''' <param name="g"></param>
     ''' <param name="alpha"></param>
-    Private Sub onDrawSpots(g As Graphics2D, alpha As Integer)
+    Private Sub onDrawSpots(g As IGraphics, alpha As Integer)
         Dim d As New SizeF(g.Width / dimensions.Width, g.Height / dimensions.Height)
         Dim r As New SizeF(d.Width / 2, d.Height / 2)
         Dim black As New SolidBrush(Color.Black.Alpha(alpha))

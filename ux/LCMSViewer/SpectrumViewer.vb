@@ -1,6 +1,7 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Driver
 
 Public Class SpectrumViewer
 
@@ -42,7 +43,7 @@ Public Class SpectrumViewer
     End Sub
 
     Private Sub Rendering()
-        Using g As Graphics2D = PictureBox1.Size.CreateGDIDevice(filled:=BackColor)
+        Using g As IGraphics = DriverLoad.CreateDefaultRasterGraphics(PictureBox1.Size, BackColor)
 
         End Using
     End Sub
