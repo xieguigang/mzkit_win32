@@ -1,5 +1,6 @@
 ﻿Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Imaging.Driver
 
 Public Class InputSelectColorMap
 
@@ -32,7 +33,7 @@ Public Class InputSelectColorMap
         Dim name As String = ComboBox1.SelectedItem.ToString
         Dim colors As SolidBrush() = Designer.GetColors(name, 30).Select(Function(c) New SolidBrush(c)).ToArray
 
-        Using g As IGraphics = PictureBox1.Size.CreateGDIDevice
+        Using g As IGraphics = DriverLoad.CreateDefaultRasterGraphics(PictureBox1.Size, Color.Transparent)
             Dim dx As Double = g.Size.Width / colors.Length
             Dim x As Double
             Dim y As Double = 0
@@ -46,7 +47,7 @@ Public Class InputSelectColorMap
                 Call g.FillRectangle(colors(i), rect)
             Next
 
-            PictureBox1.BackgroundImage = DirectCast(g, Graphics2D).ImageResource
+            PictureBox1.BackgroundImage = DirectCast(g, GdiRasterGraphics).ImageResource
         End Using
     End Sub
 End Class

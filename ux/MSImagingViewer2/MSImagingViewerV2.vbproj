@@ -334,6 +334,10 @@
       <Project>{5886614d-8d70-41e7-9795-afd0effb4e38}</Project>
       <Name>plots-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Drawing-net4.8\Drawing-net4.8.vbproj">
+      <Project>{7dbc1001-4490-46ec-b405-3b9230f99507}</Project>
+      <Name>Drawing-net4.8</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj">
       <Project>{e2caa18e-9705-462a-844d-c809a45d4197}</Project>
       <Name>imaging.NET5</Name>

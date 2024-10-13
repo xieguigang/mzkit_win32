@@ -70,6 +70,7 @@ Imports Microsoft.VisualBasic.Data.ChartPlots.Plots
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
@@ -278,12 +279,12 @@ Public Class SingleCellScatter
             .Y = d3js.scale.linear.domain(umap_y).range(values:=New Double() {rect.Top, rect.Bottom})
         }
 
-        Using g As Graphics2D = size.CreateGDIDevice(filled:=BackColor)
+        Using g As IGraphics = DriverLoad.CreateDefaultRasterGraphics(size, BackColor)
             For Each cluster As SerialData In clusters_plot
                 Call Scatter2D.DrawScatter(g, cluster, scale).ToArray
             Next
 
-            Return g.ImageResource
+            Return DirectCast(g, GdiRasterGraphics).ImageResource
         End Using
     End Function
 End Class

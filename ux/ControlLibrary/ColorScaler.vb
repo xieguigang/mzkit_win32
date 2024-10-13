@@ -3,6 +3,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Imaging.Driver
 
 ''' <summary>
 ''' the common heatmap color scaler control
@@ -107,7 +108,7 @@ Public Class ColorScaler
         Dim d As Double = height / mapLevels
         Dim y As Double = 0
 
-        Using g As IGraphics = Me.Size.CreateGDIDevice
+        Using g As IGraphics = DriverLoad.CreateDefaultRasterGraphics(Me.Size, Color.Transparent)
             height -= 20
             ' w -= 20
 
@@ -133,7 +134,7 @@ Public Class ColorScaler
                 g.DrawString(tick.ToString("G3"), font, Brushes.Black, New PointF(w + 8, y - fh))
             Next
 
-            Return DirectCast(g, Graphics2D).ImageResource
+            Return DirectCast(g, GdiRasterGraphics).ImageResource
         End Using
     End Function
 
@@ -143,13 +144,13 @@ Public Class ColorScaler
         Dim y As Double = 0
         Dim w As Double = Me.Width
 
-        Using g As IGraphics = Me.Size.CreateGDIDevice
+        Using g As IGraphics = DriverLoad.CreateDefaultRasterGraphics(Me.Size, Color.Transparent)
             For Each c As Color In colors.Reverse
                 Call g.FillRectangle(New SolidBrush(c), New RectangleF(New PointF(0, y), New SizeF(w, d)))
                 y += d
             Next
 
-            Return DirectCast(g, Graphics2D).ImageResource
+            Return DirectCast(g, GdiRasterGraphics).ImageResource
         End Using
     End Function
 

@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.Html.CSS
@@ -291,7 +292,7 @@ Public Class PeakScatterViewer
             Return
         End If
 
-        Using g As Graphics2D = defineSize.CreateGDIDevice(filled:=Color.White)
+        Using g As IGraphics = DriverLoad.CreateDefaultRasterGraphics(defineSize, Color.White)
             Dim axisPen As New Pen(Color.Black, 3)
             Dim labelFont As New CSSFont(New Font(FontFace.MicrosoftYaHei, 14))
             Dim labelColor As Brush = Brushes.Black
@@ -333,7 +334,7 @@ Public Class PeakScatterViewer
                 .unmapColor = Nothing
             }.Draw(g, New Rectangle(rect.Right + 10, rect.Top, (defineSize.Width - rect.Right) / 2, rect.Height))
 
-            PictureBox1.BackgroundImage = g.ImageResource
+            PictureBox1.BackgroundImage = DirectCast(g, GdiRasterGraphics).ImageResource
         End Using
     End Sub
 
