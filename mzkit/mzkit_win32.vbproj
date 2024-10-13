@@ -1685,6 +1685,10 @@
       <Project>{46782b6a-a5ec-4e21-81d5-5cfbd49c2d5c}</Project>
       <Name>Cytoscape.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\R-sharp\Library\shares\graphics.common_runtime\R_graphics.common_runtime.vbproj">
+      <Project>{bd77386f-38f7-4896-9a7f-b831e98bf63e}</Project>
+      <Name>R_graphics.common_runtime</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\R-sharp\R#\Rsharp-netcore5.vbproj">
       <Project>{08ec0a71-809d-49d7-bac5-10e15665fade}</Project>
       <Name>Rsharp-netcore5</Name>
@@ -1873,6 +1877,10 @@
       <Project>{c41a8a0a-3e98-4441-a721-0cf2e7f1bbda}</Project>
       <Name>AVI.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Drawing-net4.8\Drawing-net4.8.vbproj">
+      <Project>{7dbc1001-4490-46ec-b405-3b9230f99507}</Project>
+      <Name>Drawing-net4.8</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj">
       <Project>{e2caa18e-9705-462a-844d-c809a45d4197}</Project>
       <Name>imaging.NET5</Name>
@@ -1897,10 +1905,6 @@
       <Project>{10e3a50e-4a2d-42b8-92de-2c0ca297f8a9}</Project>
       <Name>networkVisualizer.NET5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\PdfImage\PdfImage.NET5.vbproj">
-      <Project>{68010cbd-cce2-4b4c-a67a-7b1bf6fcb486}</Project>
-      <Name>PdfImage.NET5</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\physics\physics-netcore5.vbproj">
       <Project>{7d350c80-4598-4978-8eb2-476d3756642b}</Project>
       <Name>physics-netcore5</Name>
@@ -1912,10 +1916,6 @@
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\application%25json\JSON-netcore5.vbproj">
       <Project>{e907b484-44f0-41f6-97c7-297451fa05ee}</Project>
       <Name>JSON-netcore5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\application%25pdf\Pdf.NET5.vbproj">
-      <Project>{a29e3db1-bd06-4225-b715-5552f12cc709}</Project>
-      <Name>Pdf.NET5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\application%25rdf+xml\rdf_xml-netcore5.vbproj">
       <Project>{6b3e719d-bd95-4624-aced-aca0988bb077}</Project>
@@ -1948,6 +1948,10 @@
     <ProjectReference Include="..\..\..\..\GCModeller\src\workbench\modules\keggReport\keggReport.NET5.vbproj">
       <Project>{dceef144-03c8-482f-b668-1a8706366ea0}</Project>
       <Name>keggReport.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Microsoft.VisualBasic.Drawing\src\Microsoft.VisualBasic.Drawing\Microsoft.VisualBasic.Drawing.vbproj">
+      <Project>{a2aea25d-82ec-48c8-be17-6af6cbf1c9bd}</Project>
+      <Name>Microsoft.VisualBasic.Drawing</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\mini-R\console\console\console.NET5.vbproj">
       <Project>{dd612bec-4460-4d76-9ded-d190de584181}</Project>
