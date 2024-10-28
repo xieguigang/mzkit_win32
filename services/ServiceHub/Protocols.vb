@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::0881a123cd6c9272a62b6959ad3b31bc, mzkit\services\ServiceHub\Protocols.vb"
+﻿#Region "Microsoft.VisualBasic::be886f1e3952fe018f0344bd2b77a29b, mzkit\services\ServiceHub\Protocols.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 95
-    '    Code Lines: 64 (67.37%)
-    ' Comment Lines: 12 (12.63%)
+    '   Total Lines: 99
+    '    Code Lines: 68 (68.69%)
+    ' Comment Lines: 12 (12.12%)
     '    - Xml Docs: 91.67%
     ' 
-    '   Blank Lines: 19 (20.00%)
-    '     File Size: 3.19 KB
+    '   Blank Lines: 19 (19.19%)
+    '     File Size: 3.43 KB
 
 
     ' Module Protocols

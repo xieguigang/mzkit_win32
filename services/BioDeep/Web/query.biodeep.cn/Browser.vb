@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::b3d444ea2b3dbca7c266b0ef1c94cdaa, mzkit\services\BioDeep\Web\query.biodeep.cn\Browser.vb"
+﻿#Region "Microsoft.VisualBasic::88ad7669d242f037e19d20d92e2a11e9, mzkit\services\BioDeep\Web\query.biodeep.cn\Browser.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 0.00%
     ' 
     '   Blank Lines: 2 (20.00%)
-    '     File Size: 317 B
+    '     File Size: 315 B
 
 
     ' Module Browser
@@ -64,4 +64,3 @@ Public Module Browser
         Call Process.Start($"https://query.biodeep.cn/show?formula={formula}")
     End Sub
 End Module
-

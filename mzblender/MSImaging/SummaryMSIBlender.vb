@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::adf296ee621e90f7b1a3bea77f85d8be, mzkit\mzblender\MSImaging\SummaryMSIBlender.vb"
+﻿#Region "Microsoft.VisualBasic::da7783bfbf3c9d3c95062e96235264a7, mzkit\mzblender\MSImaging\SummaryMSIBlender.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 66.67%
     ' 
     '   Blank Lines: 26 (16.67%)
-    '     File Size: 6.01 KB
+    '     File Size: 6.00 KB
 
 
     ' Class SummaryMSIBlender

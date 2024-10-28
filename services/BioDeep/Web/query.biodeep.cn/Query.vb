@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::2f9698946a2ec7922e4ac983e84193e9, mzkit\services\BioDeep\Web\query.biodeep.cn\Query.vb"
+﻿#Region "Microsoft.VisualBasic::a4bb435579c8119437f7fd110b318b7b, mzkit\services\BioDeep\Web\query.biodeep.cn\Query.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 84
-    '    Code Lines: 53 (63.10%)
-    ' Comment Lines: 17 (20.24%)
+    '   Total Lines: 85
+    '    Code Lines: 54 (63.53%)
+    ' Comment Lines: 17 (20.00%)
     '    - Xml Docs: 100.00%
     ' 
-    '   Blank Lines: 14 (16.67%)
-    '     File Size: 3.25 KB
+    '   Blank Lines: 14 (16.47%)
+    '     File Size: 3.32 KB
 
 
     '     Class Query
@@ -55,8 +55,8 @@
     ' 
     '     Class MetaboliteSearchHit
     ' 
-    '         Properties: biodeep_id, exact_mass, formula, hits, iupac_name
-    '                     matches, name, score, SMILES
+    '         Properties: biodeep_id, description, exact_mass, formula, hits
+    '                     iupac_name, matches, name, score, SMILES
     ' 
     ' 
     ' /********************************************************************************/

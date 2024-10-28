@@ -1,4 +1,65 @@
-﻿Imports ImageUtils
+﻿#Region "Microsoft.VisualBasic::cb690d148e7a5da91fc0a030aeb392b7, mzkit\ux\NVIDIA\nv\NVIDIAAnsel.vb"
+
+    ' Author:
+    ' 
+    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+    ' 
+    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+    ' 
+    ' 
+    ' MIT License
+    ' 
+    ' 
+    ' Permission is hereby granted, free of charge, to any person obtaining a copy
+    ' of this software and associated documentation files (the "Software"), to deal
+    ' in the Software without restriction, including without limitation the rights
+    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    ' copies of the Software, and to permit persons to whom the Software is
+    ' furnished to do so, subject to the following conditions:
+    ' 
+    ' The above copyright notice and this permission notice shall be included in all
+    ' copies or substantial portions of the Software.
+    ' 
+    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    ' SOFTWARE.
+
+
+
+    ' /********************************************************************************/
+
+    ' Summaries:
+
+
+    ' Code Statistics:
+
+    '   Total Lines: 240
+    '    Code Lines: 163 (67.92%)
+    ' Comment Lines: 26 (10.83%)
+    '    - Xml Docs: 11.54%
+    ' 
+    '   Blank Lines: 51 (21.25%)
+    '     File Size: 13.51 KB
+
+
+    '     Class NVIDIAAnsel
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '         Function: DetectApp
+    ' 
+    '         Sub: Add, DetectSystem, processImage, ProcessImage, StartImageProcessing
+    ' 
+    ' 
+    ' /********************************************************************************/
+
+#End Region
+
+Imports ImageUtils
 Imports System.Diagnostics
 Imports System.Drawing
 Imports Image = System.Drawing.Image
@@ -238,3 +299,4 @@ It is very likely that your Display Adapter Driver needs updating.")
         End Sub
     End Class
 End Namespace
+

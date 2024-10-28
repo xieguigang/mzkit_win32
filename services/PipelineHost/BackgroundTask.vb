@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::936a8fa120b82ffd16d49e0455f810ad, mzkit\services\PipelineHost\BackgroundTask.vb"
+﻿#Region "Microsoft.VisualBasic::c2304966753dffbce9b45abf8a992f9f, mzkit\services\PipelineHost\BackgroundTask.vb"
 
     ' Author:
     ' 
@@ -37,25 +37,25 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 628
-    '    Code Lines: 480 (76.43%)
-    ' Comment Lines: 52 (8.28%)
-    '    - Xml Docs: 73.08%
+    '   Total Lines: 611
+    '    Code Lines: 467 (76.43%)
+    ' Comment Lines: 57 (9.33%)
+    '    - Xml Docs: 66.67%
     ' 
-    '   Blank Lines: 96 (15.29%)
-    '     File Size: 25.87 KB
+    '   Blank Lines: 87 (14.24%)
+    '     File Size: 25.46 KB
 
 
     ' Module BackgroundTask
     ' 
     '     Constructor: (+1 Overloads) Sub New
     ' 
-    '     Function: alignMz, cfmidPredict, Deconv, eval_winsize, exportMatrixRows
-    '               exportMSIRawPeakTable, ExportMSISampleTable, exportRegionDataset, ExportSpotVectors, getIonRange
-    '               getPolarity, linear_ionsRaw, linear_setErrorPoints, MetaDNASearch, Mummichog
-    '               readTissues, RunFeatureDetections, uniqueMz
+    '     Function: alignMz, cfmidPredict, eval_winsize, exportMatrixRows, exportMSIRawPeakTable
+    '               ExportMSISampleTable, exportRegionDataset, ExportSpotVectors, getIonRange, getPolarity
+    '               linear_ionsRaw, linear_setErrorPoints, MetaDNASearch, Mummichog, readTissues
+    '               RunFeatureDetections, uniqueMz
     ' 
-    '     Sub: CreateMSIIndex, DrawMs1Contour, formulaSearch, SetBioDeepSession
+    '     Sub: CreateMSIIndex, DrawMs1Contour, SetBioDeepSession
     ' 
     ' /********************************************************************************/
 

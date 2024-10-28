@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::96f4497b52b0bad9d4000567f4b39e56, mzkit\services\PipelineHost\BioDeep\KEGGRepo.vb"
+﻿#Region "Microsoft.VisualBasic::60eb00c265748cd6110eb111b5f95ee8, mzkit\services\PipelineHost\BioDeep\KEGGRepo.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 217
-    '    Code Lines: 162 (74.65%)
-    ' Comment Lines: 16 (7.37%)
+    '   Total Lines: 211
+    '    Code Lines: 157 (74.41%)
+    ' Comment Lines: 16 (7.58%)
     '    - Xml Docs: 0.00%
     ' 
-    '   Blank Lines: 39 (17.97%)
-    '     File Size: 8.64 KB
+    '   Blank Lines: 38 (18.01%)
+    '     File Size: 8.39 KB
 
 
     ' Module KEGGRepo

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::79762f7a54e6c5d0b045e5f4c3c399a8, mzkit\services\ServiceHub\ServiceProtocols\Payloads\RegionLoader.vb"
+﻿#Region "Microsoft.VisualBasic::b84ad7c6988bdd2d8732fe86c3b95899, mzkit\services\ServiceHub\ServiceProtocols\Payloads\RegionLoader.vb"
 
     ' Author:
     ' 
@@ -37,21 +37,27 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 74
-    '    Code Lines: 51 (68.92%)
-    ' Comment Lines: 13 (17.57%)
+    '   Total Lines: 130
+    '    Code Lines: 67 (51.54%)
+    ' Comment Lines: 46 (35.38%)
     '    - Xml Docs: 100.00%
     ' 
-    '   Blank Lines: 10 (13.51%)
-    '     File Size: 2.32 KB
+    '   Blank Lines: 17 (13.08%)
+    '     File Size: 4.24 KB
 
 
     ' Class RegionLoader
     ' 
-    '     Properties: empty, height, regions, sample_tags, size
-    '                 width
+    '     Properties: bootstrapping, empty, height, is_raster, regions
+    '                 sample_tags, size, width
     ' 
-    '     Function: ContainsPixel, GetTissueMap, Reload
+    '     Function: ContainsPixel, GetTissueMap, GetTissueRaster, Reload
+    ' 
+    ' Class SampleBootstrapping
+    ' 
+    '     Properties: coverage, ions, massWin, nsamples
+    ' 
+    '     Function: GetDefault
     ' 
     ' /********************************************************************************/
 

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::1a67310301880bf364850d7927198634, mzkit\services\ServiceHub\ServiceProtocols\ServiceProtocol.vb"
+﻿#Region "Microsoft.VisualBasic::cbea8dcce79bf34b8d010dffcc8ddf9a, mzkit\services\ServiceHub\ServiceProtocols\ServiceProtocol.vb"
 
     ' Author:
     ' 
@@ -37,23 +37,23 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 170
-    '    Code Lines: 126 (74.12%)
-    ' Comment Lines: 26 (15.29%)
-    '    - Xml Docs: 84.62%
+    '   Total Lines: 188
+    '    Code Lines: 127 (67.55%)
+    ' Comment Lines: 41 (21.81%)
+    '    - Xml Docs: 90.24%
     ' 
-    '   Blank Lines: 18 (10.59%)
-    '     File Size: 6.16 KB
+    '   Blank Lines: 20 (10.64%)
+    '     File Size: 6.78 KB
 
 
     ' Enum ServiceProtocol
     ' 
-    '     AutoLocation, CutBackground, DeleteRegion, ExitApp, ExportMzpack
-    '     ExtractMultipleSampleRegions, ExtractRegionMs1Spectrum, ExtractRegionSample, ExtractSamplePixels, GetAnnotationNames
-    '     GetBasePeakMzList, GetIonColocalization, GetIonStatList, GetMSIDimensions, GetMSIInformationMetadata
-    '     GetPixel, GetPixelPolygon, GetPixelRectangle, LoadGeneLayer, LoadMSI
-    '     LoadMSILayers, LoadSummaryLayer, LoadThermoRawMSI, Mirrors, SetSpatial2D
-    '     SetSpatialMapping, UnloadMSI, UpsideDown
+    '     AutoLocation, Bootstrapping, CutBackground, DeleteRegion, ExitApp
+    '     ExportMzpack, ExtractMultipleSampleRegions, ExtractRegionMs1Spectrum, ExtractRegionSample, ExtractSamplePixels
+    '     GetAnnotationNames, GetBasePeakMzList, GetIonColocalization, GetIonStatList, GetMSIDimensions
+    '     GetMSIInformationMetadata, GetPixel, GetPixelPolygon, GetPixelRectangle, LoadGeneLayer
+    '     LoadMSI, LoadMSILayers, LoadSummaryLayer, LoadThermoRawMSI, Mirrors
+    '     SetSpatial2D, SetSpatialMapping, UnloadMSI, UpsideDown
     ' 
     '  
     ' 

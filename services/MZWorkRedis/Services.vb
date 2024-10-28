@@ -1,62 +1,62 @@
-﻿#Region "Microsoft.VisualBasic::247e27ea16a69e0383fe041e86ce573f, mzkit\services\MZWorkRedis\Services.vb"
+﻿#Region "Microsoft.VisualBasic::fcf4701c59b7592da84c890d8a2a686d, mzkit\services\MZWorkRedis\Services.vb"
 
-' Author:
-' 
-'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-' 
-' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-' 
-' 
-' MIT License
-' 
-' 
-' Permission is hereby granted, free of charge, to any person obtaining a copy
-' of this software and associated documentation files (the "Software"), to deal
-' in the Software without restriction, including without limitation the rights
-' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-' copies of the Software, and to permit persons to whom the Software is
-' furnished to do so, subject to the following conditions:
-' 
-' The above copyright notice and this permission notice shall be included in all
-' copies or substantial portions of the Software.
-' 
-' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-' SOFTWARE.
-
-
-
-' /********************************************************************************/
-
-' Summaries:
+    ' Author:
+    ' 
+    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+    ' 
+    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+    ' 
+    ' 
+    ' MIT License
+    ' 
+    ' 
+    ' Permission is hereby granted, free of charge, to any person obtaining a copy
+    ' of this software and associated documentation files (the "Software"), to deal
+    ' in the Software without restriction, including without limitation the rights
+    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    ' copies of the Software, and to permit persons to whom the Software is
+    ' furnished to do so, subject to the following conditions:
+    ' 
+    ' The above copyright notice and this permission notice shall be included in all
+    ' copies or substantial portions of the Software.
+    ' 
+    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    ' SOFTWARE.
 
 
-' Code Statistics:
 
-'   Total Lines: 140
-'    Code Lines: 98 (70.00%)
-' Comment Lines: 13 (9.29%)
-'    - Xml Docs: 23.08%
-' 
-'   Blank Lines: 29 (20.71%)
-'     File Size: 5.13 KB
+    ' /********************************************************************************/
+
+    ' Summaries:
 
 
-' Class Service
-' 
-'     Properties: Protocol, TcpPort
-' 
-'     Constructor: (+1 Overloads) Sub New
-' 
-'     Function: GetValue, LoadMzPack, Run, Start
-' 
-'     Sub: (+2 Overloads) Dispose
-' 
-' /********************************************************************************/
+    ' Code Statistics:
+
+    '   Total Lines: 140
+    '    Code Lines: 98 (70.00%)
+    ' Comment Lines: 13 (9.29%)
+    '    - Xml Docs: 23.08%
+    ' 
+    '   Blank Lines: 29 (20.71%)
+    '     File Size: 5.17 KB
+
+
+    ' Class Service
+    ' 
+    '     Properties: Protocol, TcpPort
+    ' 
+    '     Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Function: GetValue, LoadMzPack, Run, Start
+    ' 
+    '     Sub: (+2 Overloads) Dispose
+    ' 
+    ' /********************************************************************************/
 
 #End Region
 

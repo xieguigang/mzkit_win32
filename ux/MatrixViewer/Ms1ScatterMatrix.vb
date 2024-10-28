@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a276d8310e1e499994d6d85263004d48, mzkit\ux\MatrixViewer\Ms1ScatterMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::56c2064c3da4d401483fcb32bb3a23ff, mzkit\ux\MatrixViewer\Ms1ScatterMatrix.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 0.00%
     ' 
     '   Blank Lines: 10 (21.28%)
-    '     File Size: 1.45 KB
+    '     File Size: 1.48 KB
 
 
     ' Class Ms1ScatterMatrix

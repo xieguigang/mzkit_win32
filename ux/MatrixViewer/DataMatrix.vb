@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::f0a27ac3fcc339585583a3a4e7cc104d, mzkit\ux\MatrixViewer\DataMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::5869ecef0ca4c52b6d0dd13a5f382f74, mzkit\ux\MatrixViewer\DataMatrix.vb"
 
     ' Author:
     ' 
@@ -37,18 +37,18 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 100
-    '    Code Lines: 59 (59.00%)
-    ' Comment Lines: 22 (22.00%)
+    '   Total Lines: 102
+    '    Code Lines: 60 (58.82%)
+    ' Comment Lines: 22 (21.57%)
     '    - Xml Docs: 100.00%
     ' 
-    '   Blank Lines: 19 (19.00%)
-    '     File Size: 3.09 KB
+    '   Blank Lines: 20 (19.61%)
+    '     File Size: 3.14 KB
 
 
     ' Class DataMatrix
     ' 
-    '     Properties: name, size
+    '     Properties: name, ResizeByCanvas, size
     ' 
     '     Constructor: (+1 Overloads) Sub New
     ' 

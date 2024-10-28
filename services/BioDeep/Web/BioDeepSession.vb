@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::87d78491616f955614fd1fd155404642, mzkit\services\BioDeep\Web\BioDeepSession.vb"
+﻿#Region "Microsoft.VisualBasic::0e73df1ec52deee6f31eaf33b829501d, mzkit\services\BioDeep\Web\BioDeepSession.vb"
 
     ' Author:
     ' 
@@ -37,21 +37,21 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 111
-    '    Code Lines: 79 (71.17%)
-    ' Comment Lines: 9 (8.11%)
+    '   Total Lines: 123
+    '    Code Lines: 88 (71.54%)
+    ' Comment Lines: 9 (7.32%)
     '    - Xml Docs: 77.78%
     ' 
-    '   Blank Lines: 23 (20.72%)
-    '     File Size: 4.13 KB
+    '   Blank Lines: 26 (21.14%)
+    '     File Size: 4.87 KB
 
 
     ' Class BioDeepSession
     ' 
     '     Properties: cookieName, ssid
     ' 
-    '     Function: CheckSession, GetSessionInfo, headerProvider, Login, Request
-    '               RequestStream
+    '     Function: CheckSession, GetSessionInfo, GetString, headerProvider, Login
+    '               Request, RequestStream
     ' 
     ' /********************************************************************************/
 

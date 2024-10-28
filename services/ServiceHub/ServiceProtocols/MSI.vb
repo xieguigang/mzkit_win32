@@ -1,67 +1,76 @@
-﻿#Region "Microsoft.VisualBasic::0fbf712566a9cd24a1292d33557a7319, mzkit\services\ServiceHub\ServiceProtocols\MSI.vb"
+﻿#Region "Microsoft.VisualBasic::fffe8392faa0accf9d2f22188170b787, mzkit\services\ServiceHub\ServiceProtocols\MSI.vb"
 
-' Author:
-' 
-'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-' 
-' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-' 
-' 
-' MIT License
-' 
-' 
-' Permission is hereby granted, free of charge, to any person obtaining a copy
-' of this software and associated documentation files (the "Software"), to deal
-' in the Software without restriction, including without limitation the rights
-' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-' copies of the Software, and to permit persons to whom the Software is
-' furnished to do so, subject to the following conditions:
-' 
-' The above copyright notice and this permission notice shall be included in all
-' copies or substantial portions of the Software.
-' 
-' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-' SOFTWARE.
-
-
-
-' /********************************************************************************/
-
-' Summaries:
+    ' Author:
+    ' 
+    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+    ' 
+    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+    ' 
+    ' 
+    ' MIT License
+    ' 
+    ' 
+    ' Permission is hereby granted, free of charge, to any person obtaining a copy
+    ' of this software and associated documentation files (the "Software"), to deal
+    ' in the Software without restriction, including without limitation the rights
+    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    ' copies of the Software, and to permit persons to whom the Software is
+    ' furnished to do so, subject to the following conditions:
+    ' 
+    ' The above copyright notice and this permission notice shall be included in all
+    ' copies or substantial portions of the Software.
+    ' 
+    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    ' SOFTWARE.
 
 
-' Code Statistics:
 
-'   Total Lines: 821
-'    Code Lines: 600 (73.08%)
-' Comment Lines: 88 (10.72%)
-'    - Xml Docs: 57.95%
-' 
-'   Blank Lines: 133 (16.20%)
-'     File Size: 34.89 KB
+    ' /********************************************************************************/
+
+    ' Summaries:
 
 
-' Class MSI
-' 
-'     Properties: Protocol, TcpPort
-' 
-'     Constructor: (+1 Overloads) Sub New
-' 
-'     Function: AutoLocation, CutBackground, DeleteRegion, (+2 Overloads) ExportMzPack, ExtractMultipleSampleRegions
-'               ExtractRegionMs1Spectrum, ExtractRegionSample, ExtractSamplePixels, GetAllAnnotationNames, GetBPCIons
-'               GetGeneLayers, GetIonColocalization, GetIonStatList, GetMSIDimensions, GetMSIInformationMetadata
-'               GetMSILayers, GetPixel, GetPixelRectangle, Load, loadMzML
-'               LoadSummaryLayer, Quit, RegionFilter, Run, (+2 Overloads) SetSpatial2D
-'               SetSpatialMapping, TurnMirrors, TurnUpsideDown, Unload
-' 
-'     Sub: (+2 Overloads) Dispose, ExportMzPack, LoadMSIMzPackCommon
-' 
-' /********************************************************************************/
+    ' Code Statistics:
+
+    '   Total Lines: 947
+    '    Code Lines: 695 (73.39%)
+    ' Comment Lines: 100 (10.56%)
+    '    - Xml Docs: 60.00%
+    ' 
+    '   Blank Lines: 152 (16.05%)
+    '     File Size: 40.79 KB
+
+
+    ' Class MSI
+    ' 
+    '     Properties: Protocol, TcpPort
+    ' 
+    '     Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Function: AutoLocation, CutBackground, DeleteRegion, (+2 Overloads) ExportMzPack, ExtractMultipleSampleRegions
+    '               ExtractRegionMs1Spectrum, ExtractRegionSample, ExtractSamplePixels, GetAllAnnotationNames, GetBPCIons
+    '               GetGeneLayers, GetIonColocalization, GetIonStatList, GetMSIDimensions, GetMSIInformationMetadata
+    '               GetMSILayers, GetPixel, GetPixelRectangle, Load, loadMzML
+    '               LoadSummaryLayer, Quit, RegionFilter, Run, SampleBootstrapping
+    '               (+2 Overloads) SetSpatial2D, SetSpatialMapping, TurnMirrors, TurnUpsideDown, Unload
+    ' 
+    '     Sub: (+2 Overloads) Dispose, ExportMzPack, LoadMSIMzPackCommon
+    '     Class ExpressionDataSampling
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '         Function: GetResult
+    ' 
+    '         Sub: Solve
+    ' 
+    ' 
+    ' 
+    ' /********************************************************************************/
 
 #End Region
 
