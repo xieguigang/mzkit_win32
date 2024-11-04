@@ -74,6 +74,7 @@ Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
+Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports std = System.Math
 
 Public Class SingleCellScatter
@@ -271,7 +272,8 @@ Public Class SingleCellScatter
     End Function
 
     Private Function RenderScatter(size As Size, canvas As GraphicsRegion) As Image
-        Dim rect = canvas.PlotRegion
+        Dim css As New CSSEnvirnment(size)
+        Dim rect As Rectangle = canvas.PlotRegion(css)
         Dim scale As New DataScaler With {
             .AxisTicks = (umap_x, umap_y),
             .region = rect,
