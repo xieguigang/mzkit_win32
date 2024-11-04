@@ -11,7 +11,6 @@
     <Platforms>AnyCPU;ARM32;x64</Platforms>
     <UseWindowsForms>true</UseWindowsForms>
     <OutputType>Library</OutputType>
-    <MyType>WindowsForms</MyType>
     <StartupObject>BioDeep.My.MyApplication</StartupObject>
   </PropertyGroup>
 

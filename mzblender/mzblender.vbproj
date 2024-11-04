@@ -5,13 +5,14 @@
     <TargetFrameworks>net8.0-windows;net8.0;net48</TargetFrameworks>
     <StartupObject>mzblender.Program</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
-    <MyType>WindowsForms</MyType>
+   
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;mzkit_win32</Configurations>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyName>mzblender</AssemblyName>
     <OutputPath>../../../dist\bin\plugins\blender</OutputPath>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
  
   
