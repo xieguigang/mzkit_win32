@@ -127,6 +127,12 @@ SET pkg=%pkg_repo%/ggplot.zip
 %Rscript% --build /src %drive%\GCModeller\src\runtime\ggplot /save %pkg% --skip-src-build
 %REnv% --install.packages %pkg%
 
+SET pkg=%pkg_repo%/languageserver.zip
+
+%Rscript% --build /src %drive%\mini-R\languageserver /save %pkg% --skip-src-build
+%REnv% --install.packages %pkg%
+
+
 REM copy the required assembly dll file
 REM
 REM copy command will not working if the source
