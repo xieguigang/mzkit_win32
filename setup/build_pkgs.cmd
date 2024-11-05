@@ -11,6 +11,7 @@ SET Rstudio=../../../dist\bin\Rstudio
 SET GCModeller_src=%drive%\GCModeller\src
 SET mzkit_src=%drive%\mzkit\Rscript\Library
 SET erica_src=%drive%\Erica
+SET js_url_mzkit="https://mzkit.org/assets/js/R_syntax.js"
 
 if "%1"=="--Rpackage" (
 	goto :jump_to_build_Rpackages
@@ -98,12 +99,12 @@ SET pkg=%pkg_repo%/Erica.zip
 
 SET pkg=%pkg_repo%/mzkit.zip
 
-%Rscript% --build /src ../../../Rscript\Library\mzkit_app /save %pkg% --skip-src-build
+%Rscript% --build /src ../../../Rscript\Library\mzkit_app /save %pkg% --skip-src-build  --github-page %js_url_mzkit%
 %REnv% --install.packages %pkg%
 
 SET pkg=%pkg_repo%/MSImaging.zip
 
-%Rscript% --build /src ../../../Rscript\Library\MSI_app /save %pkg% --skip-src-build
+%Rscript% --build /src ../../../Rscript\Library\MSI_app /save %pkg% --skip-src-build  --github-page %js_url_mzkit%
 %REnv% --install.packages %pkg%
 
 SET pkg=%pkg_repo%/REnv.zip
