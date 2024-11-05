@@ -12,6 +12,8 @@ SET GCModeller_src=%drive%\GCModeller\src
 SET mzkit_src=%drive%\mzkit\Rscript\Library
 SET erica_src=%drive%\Erica
 SET js_url_mzkit="https://mzkit.org/assets/js/R_syntax.js"
+SET js_url_gcmodeller="https://gcmodeller.org/lib/R_syntax.js"
+SET js_url_rsharp="https://rdocumentation.rsharp.net/assets/R_syntax.js"
 
 if "%1"=="--Rpackage" (
 	goto :jump_to_build_Rpackages
@@ -94,7 +96,7 @@ cd %msbuild_logger%
 
 SET pkg=%pkg_repo%/Erica.zip
 
-%Rscript% --build /src %erica_src% /save %pkg% --skip-src-build
+%Rscript% --build /src %erica_src% /save %pkg% --skip-src-build --github-page %js_url_gcmodeller%
 %REnv% --install.packages %pkg%
 
 SET pkg=%pkg_repo%/mzkit.zip
@@ -109,27 +111,27 @@ SET pkg=%pkg_repo%/MSImaging.zip
 
 SET pkg=%pkg_repo%/REnv.zip
 
-%Rscript% --build /src %drive%\GCModeller\src\R-sharp\REnv /save %pkg% --skip-src-build
+%Rscript% --build /src %drive%\GCModeller\src\R-sharp\REnv /save %pkg% --skip-src-build --github-page %js_url_rsharp%
 %REnv% --install.packages %pkg%
 
 SET pkg=%pkg_repo%/GCModeller.zip
 
-%Rscript% --build /src %drive%\GCModeller\src\workbench\pkg /save %pkg% --skip-src-build
+%Rscript% --build /src %drive%\GCModeller\src\workbench\pkg /save %pkg% --skip-src-build  --github-page %js_url_gcmodeller%
 %REnv% --install.packages %pkg%
 
 SET pkg=%pkg_repo%/markdown2pdf.zip
 
-%Rscript% --build /src %drive%\GCModeller\src\runtime\markdown2pdf /save %pkg% --skip-src-build
+%Rscript% --build /src %drive%\GCModeller\src\runtime\markdown2pdf /save %pkg% --skip-src-build --github-page %js_url_rsharp%
 %REnv% --install.packages %pkg%
 
 SET pkg=%pkg_repo%/ggplot.zip
 
-%Rscript% --build /src %drive%\GCModeller\src\runtime\ggplot /save %pkg% --skip-src-build
+%Rscript% --build /src %drive%\GCModeller\src\runtime\ggplot /save %pkg% --skip-src-build --github-page %js_url_rsharp%
 %REnv% --install.packages %pkg%
 
 SET pkg=%pkg_repo%/languageserver.zip
 
-%Rscript% --build /src %drive%\mini-R\languageserver /save %pkg% --skip-src-build
+%Rscript% --build /src %drive%\mini-R\languageserver /save %pkg% --skip-src-build --github-page %js_url_rsharp%
 %REnv% --install.packages %pkg%
 
 
