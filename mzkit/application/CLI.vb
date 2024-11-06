@@ -52,11 +52,11 @@
 
 #End Region
 
-Imports Microsoft.VisualBasic.CommandLine
 Imports BioNovoGene.mzkit_win32.My
-Imports WeifenLuo.WinFormsUI.Docking
-Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
+Imports Microsoft.VisualBasic.CommandLine
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
+Imports WeifenLuo.WinFormsUI.Docking
 
 Module CLI
 
