@@ -60,6 +60,9 @@ Imports System.Drawing.Imaging
 Imports System.Runtime.InteropServices
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.BitmapImage
+Imports Bitmap = System.Drawing.Bitmap
+Imports Image = System.Drawing.Image
+Imports PixelFormat = System.Drawing.Imaging.PixelFormat
 
 Namespace ImageUtils
 
