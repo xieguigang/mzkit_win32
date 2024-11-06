@@ -129,7 +129,7 @@ Public Class Service : Implements IDisposable
     <Protocol(Protocol.SetHEmap)>
     Public Function SetHEmap(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
         If blender IsNot Nothing Then
-            blender.HEMap = channel.LoadImage
+            blender.HEMap = channel.LoadImage.CTypeGdiImage
         End If
 
         RunSlavePipeline.SendMessage($"set HE-stain map image: w:{blender.HEMap.Width},h:{blender.HEMap.Height}")

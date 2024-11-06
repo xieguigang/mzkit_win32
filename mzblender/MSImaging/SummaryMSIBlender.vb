@@ -201,7 +201,7 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
             colorSet:=color,
             mapLevels:=mapLevels,
             background:=background
-        ).AsGDIImage
+        ).AsGDIImage.CTypeGdiImage
     End Function
 
     Public Overrides Sub SetIntensityRange(normRange As DoubleRange)

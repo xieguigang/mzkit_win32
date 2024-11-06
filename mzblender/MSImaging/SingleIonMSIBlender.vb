@@ -146,7 +146,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
             dimension:=dimensionSize,
             mapLevels:=params.mapLevels,
             colorSet:=params.colors.Description
-        ).AsGDIImage
+        ).AsGDIImage.CTypeGdiImage
 
         image = DrawOutlines(image)
         ' upscale size of the ms-image

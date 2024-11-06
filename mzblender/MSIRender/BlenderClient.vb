@@ -120,7 +120,7 @@ Public Class BlenderClient : Implements IDisposable
             Dim err As String = resp.GetUTF8String
             Throw New Exception(err)
         Else
-            Return channel.LoadImage
+            Return channel.LoadImage.CTypeGdiImage
         End If
     End Function
 
