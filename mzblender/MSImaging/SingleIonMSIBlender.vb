@@ -70,6 +70,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Math.Distributions
 Imports Task
+Imports Image = System.Drawing.Image
 
 Public Class SingleIonMSIBlender : Inherits MSImagingBlender
 
@@ -144,8 +145,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
             pixels:=MsImaging.Drawer.GetPixelsMatrix(pixelFilter),
             dimension:=dimensionSize,
             mapLevels:=params.mapLevels,
-            colorSet:=params.colors.Description,
-            scale:=params.scale
+            colorSet:=params.colors.Description
         ).AsGDIImage
 
         image = DrawOutlines(image)

@@ -1953,10 +1953,6 @@
       <Project>{dceef144-03c8-482f-b668-1a8706366ea0}</Project>
       <Name>keggReport.NET5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Microsoft.VisualBasic.Drawing\src\Microsoft.VisualBasic.Drawing\Microsoft.VisualBasic.Drawing.vbproj">
-      <Project>{a2aea25d-82ec-48c8-be17-6af6cbf1c9bd}</Project>
-      <Name>Microsoft.VisualBasic.Drawing</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\NRRD\src\LAS\LASer.vbproj">
       <Project>{89548823-8918-4d54-ba76-10446bde8623}</Project>
       <Name>LASer</Name>
