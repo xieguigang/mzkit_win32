@@ -59,10 +59,10 @@
 
 Imports System.ComponentModel
 Imports System.Text
+Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
-Imports BioNovoGene.mzkit_win32.My
 Imports RibbonLib.Interop
 
 Public Class frmRScriptEdit
