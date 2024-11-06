@@ -2,14 +2,13 @@
 
   <PropertyGroup>
     <RootNamespace>BioDeep</RootNamespace>
-    <TargetFrameworks>net8.0-windows;net8.0;net48</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
     <Configurations>Debug;Release;Rsharp_app_release;mzkit_win32</Configurations>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Platforms>AnyCPU;ARM32;x64</Platforms>
-    <UseWindowsForms>true</UseWindowsForms>
+    <Platforms>AnyCPU;ARM32;x64</Platforms>    
     <OutputType>Library</OutputType>
     <StartupObject>BioDeep.My.MyApplication</StartupObject>
   </PropertyGroup>

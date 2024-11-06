@@ -278,7 +278,8 @@ Public Class PeakScatterViewer
             .ToArray
         Dim defineSize As Size = PictureBox1.Size
         Dim region As New GraphicsRegion(canvas_padding, defineSize)
-        Dim rect = region.PlotRegion
+        Dim css As New CSSEnvirnment(defineSize)
+        Dim rect = region.PlotRegion(css)
         Dim xTicks = rt_range.CreateAxisTicks
         Dim yTicks = mz_range.CreateAxisTicks
         Dim scaler As New DataScaler() With {
@@ -298,7 +299,6 @@ Public Class PeakScatterViewer
             Dim labelFont As New CSSFont(New Font(FontFace.MicrosoftYaHei, 14))
             Dim labelColor As Brush = Brushes.Black
             Dim tickFont As New Font(FontFace.MicrosoftYaHei, 10)
-            Dim css As CSSEnvirnment = g.LoadEnvironment
 
             ' draw axis
             ' x
@@ -375,7 +375,8 @@ Public Class PeakScatterViewer
         Dim pt As Point = PictureBox1.PointToClient(loc)
         Dim size As Size = PictureBox1.Size
         Dim region = New GraphicsRegion(canvas_padding, size)
-        Dim rect = region.PlotRegion
+        Dim css As New CSSEnvirnment(size)
+        Dim rect = region.PlotRegion(css)
         Dim y As New DoubleRange(rect.Top, rect.Bottom)
         Dim x As New DoubleRange(rect.Left, rect.Right)
 
@@ -414,7 +415,8 @@ Public Class PeakScatterViewer
     Private Sub ViewerResize() Handles Me.SizeChanged
         Dim size As Size = PictureBox1.Size
         Dim region As New GraphicsRegion(canvas_padding, size)
-        Dim rect = region.PlotRegion
+        Dim css As New CSSEnvirnment(size)
+        Dim rect = region.PlotRegion(css)
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
             ' scale the mapping of the mouse xy

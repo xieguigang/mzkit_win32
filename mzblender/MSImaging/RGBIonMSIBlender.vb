@@ -121,7 +121,6 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
         Dim image As Image = drawer.ChannelCompositions(
             R:=r.MSILayer, G:=g.MSILayer, B:=b.MSILayer,
             dimension:=dimensionSize,
-            scale:=params.scale,
             background:="transparent"
         ).AsGDIImage
 

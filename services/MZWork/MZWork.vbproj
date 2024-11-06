@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>MZWorkPack</RootNamespace>
-    <TargetFrameworks>net8.0-windows;net8.0;net48</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyName>Mzkit_win32.MZWork</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>

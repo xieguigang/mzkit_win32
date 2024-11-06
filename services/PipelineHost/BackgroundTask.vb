@@ -551,7 +551,7 @@ Module BackgroundTask
             Dim ms1 As ms2() = getMs(pixel)
             Dim scan_mz As Double() = ms1.Select(Function(a) a.mz).ToArray
             Dim scan_into As Double() = ms1.Select(Function(a) a.intensity).ToArray
-            Dim vec As Double() = spatialMath.DeconvoluteScan(scan_mz, scan_into, len, index)
+            Dim vec As Double() = SpectraEncoder.DeconvoluteScan(scan_mz, scan_into, len, index)
 
             If vec.All(Function(di) di = 0.0) Then
                 Continue For
