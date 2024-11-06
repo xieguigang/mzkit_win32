@@ -27,4 +27,22 @@ Module GdiInterop
         Throw New NotImplementedException
 #End If
     End Function
+
+    <Extension>
+    Public Function CTypeFromGdiImage(image As System.Drawing.Image) As Image
+#If NET48 Then
+        Return image
+#Else
+        Throw New NotImplementedException
+#End If
+    End Function
+
+    <Extension>
+    Public Function CTypeFromGdiImage(bitmap As System.Drawing.Bitmap) As Bitmap
+#If NET48 Then
+        Return bitmap
+#Else
+        Throw New NotImplementedException
+#End If
+    End Function
 End Module

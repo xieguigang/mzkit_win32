@@ -139,7 +139,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         End If
 
         Dim background As Image = If(params.showTotalIonOverlap, TIC, Nothing)
-        Dim drawer As New PixelRender(heatmapRender:=False, overlaps:=background)
+        Dim drawer As New PixelRender(heatmapRender:=False, overlaps:=background.CTypeFromGdiImage)
         ' generates image in size dimensionSize
         Dim image As Image = drawer.RenderPixels(
             pixels:=MsImaging.Drawer.GetPixelsMatrix(pixelFilter),
@@ -150,10 +150,10 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
 
         image = DrawOutlines(image)
         ' upscale size of the ms-image
-        image = New HeatMap.RasterScaler(image).Scale(hqx:=params.Hqx)
+        image = New HeatMap.RasterScaler(image.CTypeFromGdiImage).Scale(hqx:=params.Hqx).CTypeGdiImage
 
         If params.showPhysicalRuler Then
-            Call New Ruler(args.GetTheme).DrawOnImage(image, dimensionSize, Color.White, params.resolution)
+            Call New Ruler(args.GetTheme).DrawOnImage(image.CTypeFromGdiImage, dimensionSize, Color.White, params.resolution)
         End If
 
         Return image

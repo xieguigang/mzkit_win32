@@ -126,10 +126,10 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
          .CTypeGdiImage
 
         image = DrawOutlines(image)
-        image = New HeatMap.RasterScaler(image).Scale(hqx:=params.Hqx)
+        image = New HeatMap.RasterScaler(image.CTypeFromGdiImage).Scale(hqx:=params.Hqx).CTypeGdiImage
 
         If params.showPhysicalRuler Then
-            Call New Ruler(args.GetTheme).DrawOnImage(image, dimensions, Color.White, params.resolution)
+            Call New Ruler(args.GetTheme).DrawOnImage(image.CTypeFromGdiImage, dimensions, Color.White, params.resolution)
         End If
 
         Return image

@@ -64,6 +64,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Task
+Imports Image = System.Drawing.Image
 
 Public Class HeatMapBlender : Inherits MSImagingBlender
 
@@ -88,7 +89,7 @@ Public Class HeatMapBlender : Inherits MSImagingBlender
         img = DrawOutlines(img)
 
         If params.showPhysicalRuler Then
-            Call New Ruler(args.GetTheme).DrawOnImage(img.CTypeGdiImage, dimension, Color.White, params.resolution)
+            Call New Ruler(args.GetTheme).DrawOnImage(img.CTypeFromGdiImage, dimension, Color.White, params.resolution)
         End If
 
         Return img
