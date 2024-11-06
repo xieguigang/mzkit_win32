@@ -62,6 +62,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Task
+Imports Image = System.Drawing.Image
 
 Public Class ChromatogramBlender : Inherits Blender
 
