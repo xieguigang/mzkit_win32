@@ -261,6 +261,7 @@ Imports MZWorkPack
         Dim resolution As Integer = args("/resolution") Or 50
         Dim output As String = args("/out") Or $"{raw.ParentPath}/{raw.BaseName}_{dims.Width}x{dims.Height}@{resolution}um.mzPack"
 
+        Throw New NotImplementedException
     End Function
 
     <ExportAPI("/rowbinds")>
