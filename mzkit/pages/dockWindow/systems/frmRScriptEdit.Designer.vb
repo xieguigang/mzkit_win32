@@ -78,26 +78,18 @@ Partial Class frmRScriptEdit
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Editor1 = New RDev.Editor()
         Me.SuspendLayout()
-        '
-        'Editor1
-        '
-        Me.Editor1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Editor1.FilePath = Nothing
-        Me.Editor1.Location = New System.Drawing.Point(0, 0)
-        Me.Editor1.Name = "Editor1"
-        Me.Editor1.Size = New System.Drawing.Size(999, 613)
-        Me.Editor1.TabIndex = 0
         '
         'frmRScriptEdit
         '
-        Me.ClientSize = New System.Drawing.Size(999, 613)
-        Me.Controls.Add(Me.Editor1)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
+        Me.ClientSize = New System.Drawing.Size(1037, 502)
+        Me.DoubleBuffered = True
         Me.Name = "frmRScriptEdit"
+        Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents Editor1 As RDev.Editor
+    ' Friend WithEvents Editor1 As RDev.Editor
 End Class

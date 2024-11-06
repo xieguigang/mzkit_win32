@@ -63,6 +63,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
+Imports RDev
 Imports RibbonLib.Interop
 
 Public Class frmRScriptEdit
@@ -70,6 +71,8 @@ Public Class frmRScriptEdit
     Implements IFileReference
 
     Public Property scriptFile As String Implements IFileReference.FilePath
+
+    Dim WithEvents Editor1 As New VsCodeEditor
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -115,6 +118,9 @@ Public Class frmRScriptEdit
     Private Sub frmRScriptEdit_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.Icon = My.Resources.vs
         Me.ShowIcon = True
+        Me.Editor1.Dock = DockStyle.Fill
+
+        Call Me.Controls.Add(Editor1)
     End Sub
 
     Private Sub Editor1_OnFocus() Handles Editor1.OnFocus
@@ -160,7 +166,7 @@ Public Class frmRScriptEdit
     Public Function Save(path As String, encoding As Encoding) As Boolean Implements ISaveHandle.Save
         _IsUnsaved = False
 
-        Return Editor1.Save(path, encoding)
+        Return Editor1.ScriptText.SaveTo(path, encoding)
     End Function
 
     Public Function Save(path As String, Optional encoding As Encodings = Encodings.UTF8) As Boolean Implements ISaveHandle.Save
