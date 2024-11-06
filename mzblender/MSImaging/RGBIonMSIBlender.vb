@@ -122,7 +122,8 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
             R:=r.MSILayer, G:=g.MSILayer, B:=b.MSILayer,
             dimension:=dimensionSize,
             background:="transparent"
-        ).AsGDIImage
+        ).AsGDIImage _
+         .CTypeGdiImage
 
         image = DrawOutlines(image)
         image = New HeatMap.RasterScaler(image).Scale(hqx:=params.Hqx)

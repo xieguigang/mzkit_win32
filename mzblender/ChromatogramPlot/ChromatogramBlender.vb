@@ -59,8 +59,8 @@ Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
-Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Task
 Imports Image = System.Drawing.Image
 
@@ -92,9 +92,9 @@ Public Class ChromatogramBlender : Inherits Blender
             showLabels:=args.show_tag,
             xlabel:=args.xlabel,
             ylabel:=args.ylabel,
-            labelFontStyle:=New CSSFont(args.label_font).ToString,
+            labelFontStyle:=args.label_font.CreateCss.ToString,
             labelLayoutTicks:=-1,
             legend_split:=args.legend_block_size
-        ).AsGDIImage
+        ).AsGDIImage.CTypeGdiImage
     End Function
 End Class
