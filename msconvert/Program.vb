@@ -18,6 +18,7 @@ Imports Microsoft.VisualBasic.CommandLine.InteropService.SharedORM
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Data.GraphTheory.GridGraph
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language.[Default]
 Imports Microsoft.VisualBasic.Language.UnixBash
@@ -35,6 +36,7 @@ Imports MZWorkPack
     Sub New()
         Call Thread.Sleep(1000)
         Call FrameworkInternal.ConfigMemory(load:=MemoryLoads.Max)
+        Call ImageDriver.Register()
     End Sub
 
     Public Function Main() As Integer
