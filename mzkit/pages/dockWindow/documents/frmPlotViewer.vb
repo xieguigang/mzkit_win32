@@ -59,7 +59,7 @@
 Imports System.Drawing.Imaging
 Imports System.Text
 Imports Microsoft.VisualBasic.ComponentModel
-Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
 Imports WeifenLuo.WinFormsUI.Docking

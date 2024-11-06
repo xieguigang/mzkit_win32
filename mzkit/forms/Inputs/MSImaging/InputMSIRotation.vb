@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing.Drawing2D
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 
 Public Class InputMSIRotation

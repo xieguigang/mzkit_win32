@@ -99,6 +99,7 @@ Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
@@ -1288,7 +1289,7 @@ Public Class frmMsImagingViewer
             width:=(Aggregate p In spot_pixels Into Max(p.X)),
             height:=(Aggregate p In spot_pixels Into Max(p.Y))
         )
-        Dim dot_size As Double = std.Min(canvas.Width / spot_dims.Width, canvas.Height / spot_dims.Height)
+        Dim dot_size As Single = std.Min(canvas.Width / spot_dims.Width, canvas.Height / spot_dims.Height)
         Dim colors = PhenographSpot _
             .GetSpotColorIndex(spots) _
             .ToDictionary(Function(a) a.Key,
