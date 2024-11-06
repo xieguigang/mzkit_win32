@@ -1950,6 +1950,14 @@
       <Project>{dceef144-03c8-482f-b668-1a8706366ea0}</Project>
       <Name>keggReport.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\mini-R\src\console\console\console.NET5.vbproj">
+      <Project>{d5694f1a-da1c-4854-ab52-548476ba6af8}</Project>
+      <Name>console.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\mini-R\src\RDev\RDev.NET5.vbproj">
+      <Project>{13cf377b-53e0-4c0a-926e-d4f3684035b9}</Project>
+      <Name>RDev.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\NRRD\src\LAS\LASer.vbproj">
       <Project>{89548823-8918-4d54-ba76-10446bde8623}</Project>
       <Name>LASer</Name>
