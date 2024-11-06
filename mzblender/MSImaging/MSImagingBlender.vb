@@ -103,7 +103,7 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
                     Call g.DrawPolygon(pen, path)
                 Next
 
-                image = g.ImageResource
+                image = g.GetImageResource
             End Using
         End If
 
@@ -117,7 +117,7 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
                     Next
                 Next
 
-                image = g.ImageResource
+                image = g.GetImageResource
             End Using
         End If
 

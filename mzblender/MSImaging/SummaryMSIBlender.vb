@@ -158,7 +158,7 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
                 Call g.DrawImage(HEMap, New Rectangle(New Point, g.Size))
                 Call g.DrawImageUnscaled(MSI, New Point)
 
-                Return g.ImageResource
+                Return g.GetImageResource
             End Using
         Else
             Return MSI
