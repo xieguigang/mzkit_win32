@@ -64,12 +64,14 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports Darwinism.HPC.Parallel
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports mzblender
+Imports Image = System.Drawing.Image
 
 Public Module Program
 
