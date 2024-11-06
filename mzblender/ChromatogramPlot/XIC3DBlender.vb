@@ -59,6 +59,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Drawing.CssInterop
 Imports Microsoft.VisualBasic.Imaging
 Imports Task
@@ -74,7 +75,7 @@ Public Class XIC3DBlender : Inherits Blender
     End Sub
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
-        Return New ScanVisual3D(scans:=TICList, angle:=60, fillCurve:=True, fillAlpha:=120, drawParallelAxis:=True, theme:=New Theme With {
+        Dim render As New ScanVisual3D(scans:=TICList, angle:=60, fillCurve:=True, fillAlpha:=120, drawParallelAxis:=True, theme:=New Theme With {
             .colorSet = args.GetColorSetName,
             .gridFill = args.gridFill.ToHtmlColor,
             .padding = args.GetPadding.ToString,
@@ -86,7 +87,9 @@ Public Class XIC3DBlender : Inherits Blender
             .xlabel = args.xlabel,
             .ylabel = args.ylabel,
             .main = args.title
-        }.Plot($"{args.width},{args.height}", ppi:=100) _
-            .AsGDIImage
+        }
+        Dim visual = render.Plot($"{args.width},{args.height}", ppi:=100).AsGDIImage
+
+        Return visual.CTypeGdiImage
     End Function
 End Class
