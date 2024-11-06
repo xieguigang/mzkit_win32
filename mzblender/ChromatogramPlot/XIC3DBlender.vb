@@ -59,9 +59,10 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
+Imports Microsoft.VisualBasic.Drawing.CssInterop
 Imports Microsoft.VisualBasic.Imaging
-Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Task
+Imports Image = System.Drawing.Image
 
 Public Class XIC3DBlender : Inherits Blender
 
@@ -80,7 +81,7 @@ Public Class XIC3DBlender : Inherits Blender
             .drawLegend = args.show_legend,
             .drawLabels = args.show_tag,
             .drawGrid = args.show_grid,
-            .tagCSS = New CSSFont(args.label_font).ToString
+            .tagCSS = args.label_font.CreateCss.ToString
         }) With {
             .xlabel = args.xlabel,
             .ylabel = args.ylabel,
