@@ -2042,6 +2042,10 @@
       <Project>{2a5f4494-804a-449f-a330-3dba3103d98d}</Project>
       <Name>metaDNA_visual.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\mzmath\GCxGC\GCxGC.vbproj">
+      <Project>{fe85ede0-9f8f-44c1-89e8-24135239376d}</Project>
+      <Name>GCxGC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\mzmath\MoleculeNetworking\MoleculeNetworking.vbproj">
       <Project>{2f564806-ddaa-4539-92b3-da63e055306d}</Project>
       <Name>MoleculeNetworking</Name>

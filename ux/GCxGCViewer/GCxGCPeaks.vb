@@ -65,7 +65,7 @@
 
 Imports System.Runtime.InteropServices
 Imports System.Windows.Forms
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
+Imports BioNovoGene.Analytical.MassSpectrometry.GCxGC
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
@@ -121,7 +121,7 @@ Public Class GCxGCPeaks
         ' Call callback(id, meta.mz, meta.scan_time)
     End Sub
 
-    Public Sub SetMetadata(rawdata As D2Chromatogram(), q As Double)
+    Public Sub SetMetadata(rawdata As Chromatogram2DScan(), q As Double)
         Me.rawdata = rawdata _
             .Select(Function(d)
                         Return d.chromatogram.Select(Function(ti) New GCxGCPeak(d.scan_time / 60, ti.Time, ti.Intensity))
@@ -136,7 +136,7 @@ Public Class GCxGCPeaks
             .ToArray
     End Sub
 
-    Public Sub LoadMesh(rawdata As D2Chromatogram(), Optional n As Integer = 500, Optional q As Double = 0.01)
+    Public Sub LoadMesh(rawdata As Chromatogram2DScan(), Optional n As Integer = 500, Optional q As Double = 0.01)
         Me.SetMetadata(rawdata, q)
         Me.rawdata = MeshGrid(Me.rawdata, n).ToArray
     End Sub
