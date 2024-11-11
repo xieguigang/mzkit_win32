@@ -367,7 +367,8 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             Call RunSlavePipeline.SendMessage("make bugs fixed for RT pixel correction!")
 
             ' skip for bruker data
-            mzpack = mzpack.ScanMeltdown(
+            mzpack = ScanTimeCorrection.ScanMeltdown(
+                mzpack,
                 gridSize:=10,
                 println:=Nothing
             )
