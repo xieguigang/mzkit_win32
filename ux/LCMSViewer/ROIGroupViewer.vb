@@ -95,7 +95,7 @@ Public Class ROIGroupViewer
         End If
 
         Dim scale As Double = 5
-        Dim theme As New Theme With {.padding = "padding:100px 100px 100px 400px;"}
+        Dim theme As New Theme With {.padding = "padding:100px 100px 100px 200px;"}
         Dim xic As ChromatogramTick()
         Dim rt_range As Double() = {rt - dt * 1.5, rt + dt * 1.5}
         Dim xic_data As NamedCollection(Of ChromatogramTick)
@@ -115,7 +115,7 @@ Public Class ROIGroupViewer
                                                 fillCurve:=False,
                                                 labelLayoutTicks:=-1,
                                                 bspline:=2,
-                                                theme:=theme) With {.xlabel = "Retention Time(s)", .ylabel = "Intensity"} _
+                                                theme:=theme) With {.xlabel = "", .ylabel = ""} _
                                         .Plot(unifySize, ppi:=200)
                                     End Function)
 
