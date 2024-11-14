@@ -140,7 +140,7 @@ Public Class ROIGroupViewer
             .colorSet = ScalerPalette.FlexImaging.Description
         }
         Dim density As New PlotMassWindowXIC(current, mz, massdiff, theme)
-        Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=120))
+        Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=120, driver:=Drivers.GDI))
 
         PictureBox1.BackgroundImage = render.AsGDIImage
     End Function
