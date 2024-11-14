@@ -447,10 +447,12 @@
     <ROW Component="BioDeep.dll_2" ComponentId="{74747C54-9C3E-4DF3-A6D8-70DB44B177B5}" Directory_="blender_Dir" Attributes="256" KeyPath="BioDeep.pdb_1" Type="4"/>
     <ROW Component="BioDeep.dll_3" ComponentId="{326E9FE5-D52B-4FBF-AC81-22BECAEA4685}" Directory_="blender_Dir" Attributes="256" KeyPath="BioDeep.dll_2"/>
     <ROW Component="BioDeep.pdb" ComponentId="{A43A4C99-E463-4917-B458-0C0240FFCE18}" Directory_="APPDIR" Attributes="0" KeyPath="BioDeep.pdb" Type="4"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrome_10_try.Assembly.ThermoRawFileReader." ComponentId="{947E960F-F90F-488B-8A0A-B25094BA1B03}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrome_2_try.Assembly.ThermoRawFileReade"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrome_11_try.GCxGC.dll" ComponentId="{F135BBEF-041D-4FE6-A42B-24D3E39AE413}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrome_1_try.GCxGC.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrome_1_try.Assembly.ThermoRawFileReader.d" ComponentId="{548FC39A-5C3E-4A9F-9ED8-C0E7BFB566C4}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader."/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrome_2_try.GCxGC.dll" ComponentId="{73CF982B-FB8A-4F61-BF63-596070754459}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll"/>
-    <ROW Component="BioNovoGene.Analytical.MassSpectrome_3_try.Assembly.ThermoRawFileReader.d" ComponentId="{1B3C6B8F-7035-41C0-AE77-62C47A5F0E83}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrome_2_try.Assembly.ThermoRawFileReade"/>
-    <ROW Component="BioNovoGene.Analytical.MassSpectrome_4_try.GCxGC.dll" ComponentId="{C591AAF7-1C93-4503-91ED-49805283D107}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrome_1_try.GCxGC.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrome_3_try.Assembly.ThermoRawFileReader.d" ComponentId="{1B3C6B8F-7035-41C0-AE77-62C47A5F0E83}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrome_3_try.Assembly.ThermoRawFileReade"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrome_4_try.GCxGC.dll" ComponentId="{C591AAF7-1C93-4503-91ED-49805283D107}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.GCxGC.pdb"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrome_5_try.Assembly.ThermoRawFileReader.d" ComponentId="{FD290AD3-E74E-4DC5-BD07-151C26B34126}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrome_5_try.Assembly.ThermoRawFileReade"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrome_6_try.GCxGC.dll" ComponentId="{99159AA7-164B-48CD-9C33-025D83A0D047}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrome_2_try.GCxGC.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrome_7_try.Assembly.ThermoRawFileReader.x" ComponentId="{E628B66D-5D6D-4722-A45F-FDB07B30ED60}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrome_7_try.Assembly.ThermoRawFileReade"/>
@@ -1089,7 +1091,8 @@
     <ROW Component="Microsoft.VisualBasic.DeepLearning.dll_2" ComponentId="{520C8092-D752-4DC5-96B3-A8E01494C8A5}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DeepLearning.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.DeepLearning.pdb" ComponentId="{918F0B7F-7C79-4A60-A9D6-EAE5C85AE03D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DeepLearning.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.Window_1_s.dll" ComponentId="{BAC126E9-5A6C-48B0-AC28-8969E076A748}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.Window_1_s.dll"/>
-    <ROW Component="Microsoft.VisualBasic.Drawing.Windows.dll" ComponentId="{1825AADC-60F5-4CD9-BDFC-D9D48DAD80D3}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.Windows.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Drawing.Window_2_s.dll" ComponentId="{83E863AD-E051-4ED6-A6B4-D59DEC67E1DE}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.Windows.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Drawing.Windows.dll" ComponentId="{1825AADC-60F5-4CD9-BDFC-D9D48DAD80D3}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.Windows.pdb"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.Windows.pdb" ComponentId="{F463C3C8-FF25-4BD4-AB0A-3DA2D6E0973C}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Drawing.Window_1_s.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.Windows.xml" ComponentId="{D8332582-D4B3-4534-A3E2-40FF28326E7C}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Drawing.Window_1_s.xml"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.dll" ComponentId="{333520F2-5422-4835-8C56-46E053085771}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.dll"/>
@@ -19985,12 +19988,12 @@
     <ROW File="libSkiaSharp.dll_5" Component_="libSkiaSharp.dll_5" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\x64\libSkiaSharp.dll" SelfReg="false"/>
     <ROW File="libSkiaSharp.dll_6" Component_="libSkiaSharp.dll_6" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\x86\libSkiaSharp.dll" SelfReg="false"/>
     <ROW File="BioDeep.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="BioDeep.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrome_2_try.Assembly.ThermoRawFileReade" Component_="BioNovoGene.Analytical.MassSpectrome_3_try.Assembly.ThermoRawFileReader.d" FileName="BIONO~26.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrome_2_try.Assembly.ThermoRawFileReade" Component_="BioNovoGene.Analytical.MassSpectrome_10_try.Assembly.ThermoRawFileReader." FileName="BIONO~26.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrome_3_try.Assembly.ThermoRawFileReade" Component_="BioNovoGene.Analytical.MassSpectrome_3_try.Assembly.ThermoRawFileReader.d" FileName="BIONO~26.PDB|BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.pdb" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrome_4_try.Assembly.ThermoRawFileReade" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="BIONO~26.XML|BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrome_1_try.GCxGC.dll" Component_="BioNovoGene.Analytical.MassSpectrome_4_try.GCxGC.dll" FileName="BIONO~27.DLL|BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrome_1_try.GCxGC.dll" Component_="BioNovoGene.Analytical.MassSpectrome_11_try.GCxGC.dll" FileName="BIONO~27.DLL|BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.GCxGC.pdb" Component_="BioNovoGene.Analytical.MassSpectrome_4_try.GCxGC.dll" FileName="BIONO~27.PDB|BioNovoGene.Analytical.MassSpectrometry.GCxGC.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.GCxGC.pdb" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Drawing.Windows.dll" Component_="Microsoft.VisualBasic.Drawing.Windows.dll" FileName="MICRO~28.DLL|Microsoft.VisualBasic.Drawing.Windows.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Drawing.Windows.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Drawing.Windows.dll" Component_="Microsoft.VisualBasic.Drawing.Window_2_s.dll" FileName="MICRO~28.DLL|Microsoft.VisualBasic.Drawing.Windows.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Drawing.Windows.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Drawing.Windows.pdb" Component_="Microsoft.VisualBasic.Drawing.Windows.dll" FileName="MICRO~28.PDB|Microsoft.VisualBasic.Drawing.Windows.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Drawing.Windows.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Drawing.Windows.xml" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~37.XML|Microsoft.VisualBasic.Drawing.Windows.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Drawing.Windows.xml" SelfReg="false"/>
     <ROW File="System.Diagnostics.EventLog.dll_2" Component_="System.Diagnostics.EventLog.dll_2" FileName="SYSTEM~1.DLL|System.Diagnostics.EventLog.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll" SelfReg="false"/>
@@ -22950,8 +22953,7 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrome_4_try.GCxGC.dll"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Drawing.Windows.dll"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="System.Diagnostics.EventLog.dll_2"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="System.Diagnostics.EventLog.dll_3"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="System.Drawing.Common.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrome_5_try.Assembly.ThermoRawFileReader.d"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrome_6_try.GCxGC.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Drawing.dll_1"/>
@@ -22959,6 +22961,7 @@
     <ROW Feature_="MainFeature" Component_="R_graphics.Common.Runtime.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Diagnostics.DiagnosticSource._2_dll"/>
     <ROW Feature_="MainFeature" Component_="System.Private.Uri.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="System.Diagnostics.EventLog.dll_3"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrome_7_try.Assembly.ThermoRawFileReader.x"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Data.visualize_1_.Network.Canvas.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Drawing.Windows.xml"/>
@@ -22971,6 +22974,9 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Drawing.Windows.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="R_graphics.Common.Runtime.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="System.Drawing.Common.pdb"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrome_10_try.Assembly.ThermoRawFileReader."/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrome_11_try.GCxGC.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Drawing.Window_2_s.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
