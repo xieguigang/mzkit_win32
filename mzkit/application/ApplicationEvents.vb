@@ -149,6 +149,8 @@ Namespace My
                                        Optional fill_curve As Boolean = True)
 
             Dim margin As Padding = padding
+            Dim css As New CSSEnvirnment(width, height)
+            Dim layout As PaddingLayout = PaddingLayout.EvaluateFromCSS(css, margin)
 
             With WindowModules.plotParams.params
                 .width = width
@@ -164,10 +166,10 @@ Namespace My
                 .show_grid = showGrid
                 .fill_curve = fill_curve
 
-                .padding_top = margin.Top
-                .padding_right = margin.Right
-                .padding_left = margin.Left
-                .padding_bottom = margin.Bottom
+                .padding_top = layout.Top
+                .padding_right = layout.Right
+                .padding_left = layout.Left
+                .padding_bottom = layout.Bottom
 
                 If colorSet.StringEmpty Then
                     colorSet = Globals.GetColors
