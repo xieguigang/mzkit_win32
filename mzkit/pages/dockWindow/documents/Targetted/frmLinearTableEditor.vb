@@ -142,7 +142,7 @@ Public Class frmLinearTableEditor : Implements IFileReference
         For i As Integer = 0 To DataGridView1.Rows.Count - 1
             Dim row As DataGridViewRow = DataGridView1.Rows(i)
 
-            If row Is Nothing Then
+            If row Is Nothing OrElse row.Cells(0).Value Is Nothing Then
                 Continue For
             End If
 
