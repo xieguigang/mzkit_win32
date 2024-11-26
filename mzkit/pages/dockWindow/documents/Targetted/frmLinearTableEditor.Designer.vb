@@ -28,12 +28,12 @@ Partial Class frmLinearTableEditor
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.CompoundID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.InternalStandard = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.CompoundID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.InternalStandard = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -63,28 +63,6 @@ Partial Class frmLinearTableEditor
         Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton1.Text = "ToolStripButton1"
         '
-        'DataGridView1
-        '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompoundID, Me.InternalStandard})
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 25)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.RowTemplate.Height = 23
-        Me.DataGridView1.Size = New System.Drawing.Size(904, 507)
-        Me.DataGridView1.TabIndex = 1
-        '
-        'CompoundID
-        '
-        Me.CompoundID.HeaderText = "Compound ID"
-        Me.CompoundID.Name = "CompoundID"
-        '
-        'InternalStandard
-        '
-        Me.InternalStandard.HeaderText = "Internal Standard"
-        Me.InternalStandard.Name = "InternalStandard"
-        Me.InternalStandard.Width = 150
-        '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
@@ -107,6 +85,28 @@ Partial Class frmLinearTableEditor
         Me.ToolStripButton3.Name = "ToolStripButton3"
         Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton3.Text = "Remove Last Reference Point"
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompoundID, Me.InternalStandard})
+        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView1.Location = New System.Drawing.Point(0, 25)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowTemplate.Height = 23
+        Me.DataGridView1.Size = New System.Drawing.Size(904, 507)
+        Me.DataGridView1.TabIndex = 1
+        '
+        'CompoundID
+        '
+        Me.CompoundID.HeaderText = "Compound ID"
+        Me.CompoundID.Name = "CompoundID"
+        '
+        'InternalStandard
+        '
+        Me.InternalStandard.HeaderText = "Internal Standard"
+        Me.InternalStandard.Name = "InternalStandard"
+        Me.InternalStandard.Width = 150
         '
         'frmLinearTableEditor
         '
