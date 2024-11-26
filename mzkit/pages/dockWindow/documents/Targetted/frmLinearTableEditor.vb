@@ -105,10 +105,10 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
         For Each compound As Standards In list
             Dim offset As Integer = DataGridView1.Rows.Add()
             Dim row As DataGridViewRow = DataGridView1.Rows(offset)
-            Dim comboBoxColumn = New DataGridViewComboBoxCell()
+            Dim comboBoxColumn As DataGridViewComboBoxCell = row.Cells(1)
 
-            row.Cells.Add(New DataGridViewTextBoxCell())
-            row.Cells.Add(comboBoxColumn)
+            ' row.Cells.Add(New DataGridViewTextBoxCell())
+            ' row.Cells.Add(comboBoxColumn)
 
             row.Cells(0).Value = compound.ID
 
@@ -121,7 +121,6 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
             offset = 2
 
             For Each level As Double In compound.PopulateLevels
-                row.Cells.Add(New DataGridViewTextBoxCell)
                 row.Cells(offset).Value = level
 
                 offset += 1
