@@ -20,6 +20,14 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
         InputDialog.Input(Sub(editor) Call SetIdList(editor.IdSet), config:=editList)
     End Sub
 
+    Private Sub loadComboList(combo As DataGridViewComboBoxCell)
+        Call combo.Items.Clear()
+
+        For Each id As String In is_list.SafeQuery
+            Call combo.Items.Add(id)
+        Next
+    End Sub
+
     Private Sub DataGridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles DataGridView1.KeyDown
         If e.KeyCode = System.Windows.Forms.Keys.V AndAlso e.Control AndAlso Clipboard.ContainsText Then
             Call DataGridView1.PasteTextData()
@@ -38,11 +46,7 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
 
             Dim combo As DataGridViewComboBoxCell = row.Cells(1)
 
-            Call combo.Items.Clear()
-
-            For Each id As String In is_list
-                Call combo.Items.Add(id)
-            Next
+            Call loadComboList(combo)
         Next
 
         Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
@@ -72,11 +76,7 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
         Dim row = DataGridView1.Rows(e.RowIndex)
         Dim combo As DataGridViewComboBoxCell = row.Cells(1)
 
-        Call combo.Items.Clear()
-
-        For Each id As String In is_list.SafeQuery
-            Call combo.Items.Add(id)
-        Next
+        Call loadComboList(combo)
     End Sub
 
     Public Sub LoadDocument(file As String) Implements DocumentPageLoader.LoadDocument
@@ -116,10 +116,7 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
 
             row.Cells(0).Value = compound.ID
 
-            For Each id As String In is_list
-                Call comboBoxColumn.Items.Add(id)
-            Next
-
+            loadComboList(comboBoxColumn)
             comboBoxColumn.Value = compound.IS
 
             offset = 2
@@ -154,7 +151,7 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
         For i As Integer = 0 To DataGridView1.Rows.Count - 1
             Dim row As DataGridViewRow = DataGridView1.Rows(i)
 
-            If row Is Nothing OrElse row.Cells(0).Value Is Nothing Then
+            If row Is Nothing OrElse any.ToString(row.Cells(0).Value).StringEmpty Then
                 Continue For
             End If
 
