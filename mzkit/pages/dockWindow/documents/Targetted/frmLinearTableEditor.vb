@@ -21,13 +21,17 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
         InputDialog.Input(Sub(editor) Call SetIdList(editor.IdSet), config:=editList)
     End Sub
 
-    Private Sub loadComboList(combo As DataGridViewComboBoxCell)
+    Private Shared Sub loadComboList(combo As DataGridViewComboBoxCell, is_list As IEnumerable(Of String))
         Call combo.Items.Clear()
         Call combo.Items.Add("None")
 
         For Each id As String In is_list.SafeQuery
             Call combo.Items.Add(id)
         Next
+    End Sub
+
+    Private Sub loadComboList(combo As DataGridViewComboBoxCell)
+        Call loadComboList(combo, is_list)
     End Sub
 
     Private Sub DataGridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles DataGridView1.KeyDown
@@ -119,10 +123,16 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
             FilePath = file
         End If
 
-        Dim maxLevels = list.Select(Function(a) a.C.Count).Max
+        Call LoadStandardsToTable(DataGridView1, list, is_list)
 
-        For i As Integer = 1 To maxLevels
-            Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.Name = "L" & i, .HeaderText = .Name})
+        Return True
+    End Function
+
+    Public Shared Sub LoadStandardsToTable(DataGridView1 As DataGridView, list As Standards(), is_list As String())
+        Dim maxLevels = Standards.GetLevelKeys(list).ToArray
+
+        For Each i As String In maxLevels
+            Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.Name = i, .HeaderText = .Name})
         Next
 
         For Each compound As Standards In list
@@ -135,7 +145,7 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
 
             row.Cells(0).Value = compound.ID
 
-            loadComboList(comboBoxColumn)
+            Call loadComboList(comboBoxColumn, is_list)
 
             If compound.IS.StringEmpty Then
                 comboBoxColumn.Value = "None"
@@ -153,9 +163,7 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
         Next
 
         Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
-
-        Return True
-    End Function
+    End Sub
 
     Protected Overrides Sub SaveDocument()
         If FilePath.StringEmpty Then

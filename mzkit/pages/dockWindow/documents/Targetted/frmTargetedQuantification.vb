@@ -1530,9 +1530,25 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             file = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/{profileName}.linearPack"
         End If
 
-        linearPack = LinearPack.OpenFile(file)
+        If file.ExtensionSuffix("csv") Then
+            Dim standardLis As Standards() = file.LoadCsv(Of Standards)
+            Dim is_list = standardLis _
+                .Select(Function(r) r.IS) _
+                .Where(Function(id) Strings.Len(id) > 0) _
+                .Distinct _
+                .ToArray
 
-        Call unifyLoadLinears()
+            DataGridView1.Rows.Clear()
+            DataGridView1.Columns.Clear()
+
+            DataGridView1.Columns.Add(New DataGridViewLinkColumn With {.HeaderText = "Features"})
+            DataGridView1.Columns.Add(New DataGridViewComboBoxColumn With {.HeaderText = "IS"})
+
+            Call frmLinearTableEditor.LoadStandardsToTable(DataGridView1, standardLis, is_list)
+        Else
+            linearPack = LinearPack.OpenFile(file)
+            Call unifyLoadLinears()
+        End If
     End Sub
 
     Public Iterator Function PullQuantifyResult() As IEnumerable(Of NamedValue(Of DynamicPropertyBase(Of Double))) Implements QuantificationLinearPage.PullQuantifyResult
