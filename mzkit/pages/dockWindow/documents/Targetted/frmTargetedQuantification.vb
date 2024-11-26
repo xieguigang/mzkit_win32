@@ -734,7 +734,11 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Next
     End Sub
 
-    Private Sub loadReferenceData(quantifyIons As SIMIonExtract, islist As String(), levelKeys As String(), ionLib As IonLibrary, linear As KeyValuePair(Of String, SampleContentLevels))
+    Private Sub loadReferenceData(quantifyIons As SIMIonExtract,
+                                  islist As String(),
+                                  levelKeys As String(),
+                                  ionLib As IonLibrary,
+                                  linear As KeyValuePair(Of String, SampleContentLevels))
         Dim ionpairtext = linear.Key.Split("/"c).Select(AddressOf Val).ToArray
         Dim ionID As String
         Dim [is] As [IS] = linearPack.GetLinear(linear.Key)?.IS
