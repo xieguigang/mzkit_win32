@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+﻿Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 
 Public Interface QuantificationLinearPage
 
@@ -33,6 +34,12 @@ Public Interface QuantificationLinearPage
 
 End Interface
 
+Public Interface DocumentPageLoader : Inherits IFileReference
+
+    Sub LoadDocument(file As String)
+
+End Interface
+
 Public Interface MRMLibraryPage
 
     Sub SaveLibrary()
@@ -60,5 +67,9 @@ Public Module QuantificationLinear
 
     Public Function ShowMRMLibrary() As MRMLibraryPage
         Return Pages.OpenDocument(NameOf(MRMLibraryPage))
+    End Function
+
+    Public Function LinearTableEditor() As DocumentPageLoader
+        Return Pages.OpenDocument(NameOf(LinearTableEditor))
     End Function
 End Module
