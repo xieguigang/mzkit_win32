@@ -8,7 +8,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports any = Microsoft.VisualBasic.Scripting
 
-Public Class frmLinearTableEditor : Implements IFileReference
+Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoader
 
     Dim is_list As String()
     Public Property FilePath As String Implements IFileReference.FilePath
@@ -78,7 +78,7 @@ Public Class frmLinearTableEditor : Implements IFileReference
         Next
     End Sub
 
-    Public Sub LoadDocument(file As String)
+    Public Sub LoadDocument(file As String) Implements DocumentPageLoader.LoadDocument
         Dim list = file.LoadCsv(Of Standards)()
 
         is_list = list _
