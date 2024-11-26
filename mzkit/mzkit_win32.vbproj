@@ -842,6 +842,10 @@
     <Compile Include="pages\dockWindow\documents\htmlPages\frmVennTools.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="pages\dockWindow\documents\Targetted\frmMRMLibrary.Designer.vb">
+      <DependentUpon>frmMRMLibrary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\Targetted\frmMRMLibrary.vb" />
     <Compile Include="pages\dockWindow\documents\Targetted\frmQuantifyIons.Designer.vb">
       <DependentUpon>frmQuantifyIons.vb</DependentUpon>
     </Compile>
@@ -940,12 +944,6 @@
       <DependentUpon>frmHtmlViewer.vb</DependentUpon>
     </Compile>
     <Compile Include="pages\dockWindow\systems\frmHtmlViewer.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="pages\dockWindow\documents\frmMRMLibrary.Designer.vb">
-      <DependentUpon>frmMRMLibrary.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\documents\frmMRMLibrary.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\Comprehensive\frmMsImagingViewer.Designer.vb">
@@ -1449,6 +1447,9 @@
     <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmVennTools.resx">
       <DependentUpon>frmVennTools.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\Targetted\frmMRMLibrary.resx">
+      <DependentUpon>frmMRMLibrary.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\Targetted\frmQuantifyIons.resx">
       <DependentUpon>frmQuantifyIons.vb</DependentUpon>
     </EmbeddedResource>
@@ -1460,9 +1461,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\systems\frmHtmlViewer.resx">
       <DependentUpon>frmHtmlViewer.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmMRMLibrary.resx">
-      <DependentUpon>frmMRMLibrary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\Comprehensive\frmMsImagingViewer.resx">
       <DependentUpon>frmMsImagingViewer.vb</DependentUpon>
