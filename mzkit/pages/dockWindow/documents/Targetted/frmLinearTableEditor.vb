@@ -1,10 +1,12 @@
-﻿Imports System.IO
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.LinearQuantitative
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class frmLinearTableEditor : Implements IFileReference
 
@@ -76,6 +78,33 @@ Public Class frmLinearTableEditor : Implements IFileReference
         Next
     End Sub
 
+    Public Sub LoadDocument(file As String)
+        Dim list = file.LoadCsv(Of Standards)()
+
+        is_list = list _
+            .Select(Function(a) a.IS) _
+            .Distinct _
+            .ToArray
+
+        DataGridView1.Rows.Clear()
+
+        If DataGridView1.Columns.Count > 2 Then
+            For i As Integer = DataGridView1.Columns.Count - 1 To 1 Step -1
+                DataGridView1.Columns.RemoveAt(i)
+            Next
+        End If
+
+        If list.Count = 0 Then
+            Return
+        End If
+
+        Dim maxLevels = list.Select(Function(a) a.C.Count).Max
+
+        For Each compound As Standards In list
+
+        Next
+    End Sub
+
     Protected Overrides Sub SaveDocument()
         If FilePath.StringEmpty Then
             Using file As New SaveFileDialog With {.Filter = "Linear Table(*.csv)|*.csv"}
@@ -90,9 +119,38 @@ Public Class frmLinearTableEditor : Implements IFileReference
     End Sub
 
     Private Sub SaveFile()
-        Using s As Stream = FilePath.Open(FileMode.OpenOrCreate, doClear:=True)
-            Dim text As New StreamWriter(s)
-            Call DataGridView1.WriteTableToFile(text, sep:=","c)
-        End Using
+        Dim standards As New List(Of Standards)
+        Dim ncols = DataGridView1.Columns.Count
+
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            Dim row As DataGridViewRow = DataGridView1.Rows(i)
+
+            If row Is Nothing Then
+                Continue For
+            End If
+
+            Dim id = row.Cells(0).Value
+            Dim istd = row.Cells(1).Value
+            Dim lv As Integer = 1
+            Dim c As New Dictionary(Of String, Double)
+            Dim val As Double
+
+            For j As Integer = 2 To ncols - 1
+                val = CDbl(row.Cells(j).Value)
+                c.Add("L" & lv, val)
+                lv += 1
+            Next
+
+            Call standards.Add(New Standards With {
+                .ID = any.ToString(id),
+                .Name = .ID,
+                .[IS] = any.ToString(istd),
+                .ISTD = .IS,
+                .C = c,
+                .Factor = 1
+            })
+        Next
+
+        Call standards.SaveTo(FilePath)
     End Sub
 End Class
