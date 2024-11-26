@@ -13,6 +13,7 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
     Dim is_list As String()
     Public Property FilePath As String Implements IFileReference.FilePath
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
+    Public Property AutoSaveOnClose As Boolean Implements DocumentPageLoader.AutoSaveOnClose
 
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         Dim editList As New InputIdList With {.IdSet = is_list}
@@ -169,5 +170,11 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
         Next
 
         Call standards.SaveTo(FilePath)
+    End Sub
+
+    Private Sub frmLinearTableEditor_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If AutoSaveOnClose Then
+            Call SaveDocument()
+        End If
     End Sub
 End Class

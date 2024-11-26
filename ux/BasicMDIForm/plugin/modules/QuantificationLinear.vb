@@ -36,6 +36,8 @@ End Interface
 
 Public Interface DocumentPageLoader : Inherits IFileReference
 
+    Property AutoSaveOnClose As Boolean
+
     Sub LoadDocument(file As String)
 
 End Interface
@@ -70,6 +72,6 @@ Public Module QuantificationLinear
     End Function
 
     Public Function LinearTableEditor() As DocumentPageLoader
-        Return Pages.OpenDocument(NameOf(LinearTableEditor))
+        Return Pages.OpenDocument(NameOf(QuantificationLinear.LinearTableEditor))
     End Function
 End Module
