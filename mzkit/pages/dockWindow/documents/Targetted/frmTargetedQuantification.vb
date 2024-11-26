@@ -1252,7 +1252,10 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Call scans.Clear()
 
         For Each file As DataFile In files
-            Dim quantify As QuantifyScan
+            Dim quantify As New QuantifyScan With {
+                .filename = file.filename,
+                .ionPeaks = file.ionPeaks
+            }
 
             Call echo($"Processing quantify for sample: {file.filename}")
 
