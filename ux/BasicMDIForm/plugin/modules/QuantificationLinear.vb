@@ -38,7 +38,7 @@ Public Interface DocumentPageLoader : Inherits IFileReference
 
     Property AutoSaveOnClose As Boolean
 
-    Sub LoadDocument(file As String)
+    Function LoadDocument(file As String) As Boolean
 
 End Interface
 

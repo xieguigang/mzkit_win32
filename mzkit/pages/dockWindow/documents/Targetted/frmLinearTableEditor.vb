@@ -81,14 +81,22 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
         Call loadComboList(combo)
     End Sub
 
-    Public Sub LoadDocument(file As String) Implements DocumentPageLoader.LoadDocument
+    Public Function LoadDocument(file As String) As Boolean Implements DocumentPageLoader.LoadDocument
         Dim list As Standards()
 
-        If file.ExtensionSuffix("csv") Then
-            list = file.LoadCsv(Of Standards)()
-        Else
-            ' load xlsx
-            list = xlsx.Open(file).LoadDataSet(Of Standards)(0)
+        Try
+            If file.ExtensionSuffix("csv") Then
+                list = file.LoadCsv(Of Standards)()
+            Else
+                ' load xlsx
+                list = xlsx.Open(file).LoadDataSet(Of Standards)(0)
+            End If
+        Catch ex As Exception
+            Return False
+        End Try
+
+        If list.IsNullOrEmpty OrElse list.All(Function(s) s.Name.StringEmpty) Then
+            Return False
         End If
 
         is_list = list _
@@ -106,7 +114,7 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
         End If
 
         If list.Count = 0 Then
-            Return
+            Return False
         End If
 
         Dim maxLevels = list.Select(Function(a) a.C.Count).Max
@@ -143,7 +151,9 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
         Next
 
         Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
-    End Sub
+
+        Return True
+    End Function
 
     Protected Overrides Sub SaveDocument()
         If FilePath.StringEmpty Then
