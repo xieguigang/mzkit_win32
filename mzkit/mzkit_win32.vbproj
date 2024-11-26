@@ -494,6 +494,12 @@
     <Compile Include="forms\Inputs\InputURL.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputIdList.Designer.vb">
+      <DependentUpon>InputIdList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputIdList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputVolcanoSettings.Designer.vb">
       <DependentUpon>InputVolcanoSettings.vb</DependentUpon>
     </Compile>
@@ -1282,6 +1288,9 @@
     <EmbeddedResource Include="forms\Inputs\InputURL.resx">
       <DependentUpon>InputURL.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\LCMS\InputIdList.resx">
+      <DependentUpon>InputIdList.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\LCMS\InputLCMSDeconvolution.resx">
       <DependentUpon>InputLCMSDeconvolution.vb</DependentUpon>
     </EmbeddedResource>
@@ -1458,6 +1467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmVennTools.resx">
       <DependentUpon>frmVennTools.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\Targetted\frmLinearTableEditor.resx">
+      <DependentUpon>frmLinearTableEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\Targetted\frmMRMLibrary.resx">
       <DependentUpon>frmMRMLibrary.vb</DependentUpon>
