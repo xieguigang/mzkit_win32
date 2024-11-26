@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
@@ -9,6 +10,12 @@ Public Class frmLinearTableEditor
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         Dim editList As New InputIdList With {.IdSet = is_list}
         InputDialog.Input(Sub(editor) Call SetIdList(editor.IdSet), config:=editList)
+    End Sub
+
+    Private Sub DataGridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles DataGridView1.KeyDown
+        If e.KeyCode = System.Windows.Forms.Keys.V AndAlso e.Control AndAlso Clipboard.ContainsText Then
+            Call DataGridView1.PasteTextData()
+        End If
     End Sub
 
     Private Sub SetIdList(ids As IEnumerable(Of String))
