@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class frmLinearTableEditor
@@ -28,5 +29,19 @@ Public Class frmLinearTableEditor
                 Call combo.Items.Add(id)
             Next
         Next
+
+        Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
+    End Sub
+
+    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        If DataGridView1.Columns.Count > 2 Then
+            If MessageBox.Show("The last column for the reference point will be removed from this linear table?",
+                               "Delete data",
+                               MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
+
+            End If
+        Else
+            Call Workbench.Warning("no more reference point column could be removes.")
+        End If
     End Sub
 End Class
