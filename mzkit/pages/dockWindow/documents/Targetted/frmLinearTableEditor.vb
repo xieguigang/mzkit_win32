@@ -1,11 +1,16 @@
-﻿Imports Microsoft.VisualBasic.Linq
+﻿Imports System.IO
+Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
-Public Class frmLinearTableEditor
+Public Class frmLinearTableEditor : Implements IFileReference
 
     Dim is_list As String()
+    Public Property FilePath As String Implements IFileReference.FilePath
+    Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
 
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         Dim editList As New InputIdList With {.IdSet = is_list}
@@ -69,5 +74,25 @@ Public Class frmLinearTableEditor
         For Each id As String In is_list.SafeQuery
             Call combo.Items.Add(id)
         Next
+    End Sub
+
+    Protected Overrides Sub SaveDocument()
+        If FilePath.StringEmpty Then
+            Using file As New SaveFileDialog With {.Filter = "Linear Table(*.csv)|*.csv"}
+                If file.ShowDialog = DialogResult.OK Then
+                    FilePath = file.FileName
+                    SaveFile()
+                End If
+            End Using
+        Else
+            Call SaveFile()
+        End If
+    End Sub
+
+    Private Sub SaveFile()
+        Using s As Stream = FilePath.Open(FileMode.OpenOrCreate, doClear:=True)
+            Dim text As New StreamWriter(s)
+            Call DataGridView1.WriteTableToFile(text, sep:=","c)
+        End Using
     End Sub
 End Class

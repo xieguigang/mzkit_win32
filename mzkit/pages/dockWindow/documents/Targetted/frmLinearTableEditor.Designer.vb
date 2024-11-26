@@ -88,6 +88,7 @@ Partial Class frmLinearTableEditor
         '
         'DataGridView1
         '
+        Me.DataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompoundID, Me.InternalStandard})
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
