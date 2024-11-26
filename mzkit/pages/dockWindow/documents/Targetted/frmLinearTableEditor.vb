@@ -102,6 +102,10 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
 
         Dim maxLevels = list.Select(Function(a) a.C.Count).Max
 
+        For i As Integer = 1 To maxLevels
+            Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.Name = "L" & i, .HeaderText = .Name})
+        Next
+
         For Each compound As Standards In list
             Dim offset As Integer = DataGridView1.Rows.Add()
             Dim row As DataGridViewRow = DataGridView1.Rows(offset)
