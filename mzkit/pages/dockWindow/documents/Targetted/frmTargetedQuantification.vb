@@ -1148,7 +1148,24 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         End Using
     End Sub
 
-    Private Sub doLoadSampleFiles(FileNames As String(), echo As Action(Of String)) Implements QuantificationLinearPage.LoadSampleFiles
+    Private Sub doLoadSampleFiles(FileNames As Array, echo As Action(Of String)) Implements QuantificationLinearPage.LoadSampleFiles
+        If TypeOf FileNames Is DataFile() Then
+            ' and then do quantify if the linear is exists
+            If Not linearPack Is Nothing Then
+                Call loadSampleFiles(DirectCast(FileNames, DataFile()), echo)
+            Else
+                Call Workbench.Warning("no linear model for run quantification...")
+            End If
+        Else
+            Call doLoadSampleFiles(DirectCast(FileNames, String()), echo)
+        End If
+
+        ToolStripComboBox2.SelectedIndex = 1
+
+        Call showQuanifyTable()
+    End Sub
+
+    Private Sub doLoadSampleFiles(FileNames As String(), echo As Action(Of String))
         Dim files As NamedValue(Of String)() = FileNames _
             .Select(Function(file)
                         Return New NamedValue(Of String) With {
@@ -1171,10 +1188,6 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Else
             Call Workbench.Warning("no linear model for run quantification, just open raw files viewer...")
         End If
-
-        ToolStripComboBox2.SelectedIndex = 1
-
-        Call showQuanifyTable()
     End Sub
 
     Public Sub LoadSampleMzpack(samples() As String, mzpack As Object, echo As Action(Of String)) Implements QuantificationLinearPage.LoadSampleMzpack
@@ -1233,6 +1246,20 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 End If
             Next
         End With
+    End Sub
+
+    Private Sub loadSampleFiles(files As DataFile(), echo As Action(Of String))
+        Call scans.Clear()
+
+        For Each file As DataFile In files
+            Dim quantify As QuantifyScan
+
+            Call echo($"Processing quantify for sample: {file.filename}")
+
+            If Not quantify Is Nothing Then
+                scans.Add(quantify)
+            End If
+        Next
     End Sub
 
     Private Sub loadSampleFiles(files As NamedValue(Of String)(), echo As Action(Of String))

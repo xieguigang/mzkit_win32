@@ -25,7 +25,7 @@ Public Interface QuantificationLinearPage
     ''' <param name="profile">target linear reference profile name</param>
     Sub RunLinearRegression(profile As String)
 
-    Sub LoadSampleFiles(FileNames As String(), echo As Action(Of String))
+    Sub LoadSampleFiles(FileNames As Array, echo As Action(Of String))
     Sub LoadSampleMzpack(samples As String(), mzpack As Object, echo As Action(Of String))
 
     Sub ViewLinearModelReport(onHost As Boolean, ignoreErr As Boolean)
