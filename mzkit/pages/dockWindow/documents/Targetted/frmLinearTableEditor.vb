@@ -39,9 +39,17 @@ Public Class frmLinearTableEditor
                                "Delete data",
                                MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
 
+                DataGridView1.Columns.RemoveAt(DataGridView1.Columns.Count - 1)
             End If
         Else
             Call Workbench.Warning("no more reference point column could be removes.")
         End If
+    End Sub
+
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Dim n = DataGridView1.Columns.Count
+        Dim level = n - 2 + 1
+
+        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.Name = $"L{level}", .HeaderText = .Name})
     End Sub
 End Class
