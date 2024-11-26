@@ -52,4 +52,15 @@ Public Class frmLinearTableEditor
 
         DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.Name = $"L{level}", .HeaderText = .Name})
     End Sub
+
+    Private Sub DataGridView1_RowsAdded(sender As Object, e As DataGridViewRowsAddedEventArgs) Handles DataGridView1.RowsAdded
+        Dim row = DataGridView1.Rows(e.RowIndex)
+        Dim combo As DataGridViewComboBoxCell = row.Cells(1)
+
+        Call combo.Items.Clear()
+
+        For Each id As String In is_list
+            Call combo.Items.Add(id)
+        Next
+    End Sub
 End Class
