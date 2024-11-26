@@ -115,6 +115,8 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
 
         If list.Count = 0 Then
             Return False
+        Else
+            FilePath = file
         End If
 
         Dim maxLevels = list.Select(Function(a) a.C.Count).Max
