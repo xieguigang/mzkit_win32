@@ -188,4 +188,16 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
             Call SaveDocument()
         End If
     End Sub
+
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        Dim selectedRows = DataGridView1.SelectedRows
+
+        If selectedRows.Count = 0 Then
+            Call Workbench.Warning("No row data was selected for removes.")
+            Return
+        End If
+
+        Dim row = selectedRows(0)
+        DataGridView1.Rows.Remove(row)
+    End Sub
 End Class
