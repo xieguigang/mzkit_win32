@@ -289,7 +289,17 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
             Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
 
-            Me.allFeatures = DirectCast(fileNames, DataFile()).Select(Function(a) a.ionPeaks.Keys).IteratesALL.Distinct.ToArray
+            Dim Istd As String() = DirectCast(fileNames, DataFile()) _
+                .Select(Function(file) file.ionPeaks.Select(Function(a) a.IS)) _
+                .IteratesALL _
+                .Distinct _
+                .ToArray
+
+            Me.allFeatures = DirectCast(fileNames, DataFile()) _
+                .Select(Function(a) a.ionPeaks.Keys) _
+                .IteratesALL _
+                .Distinct _
+                .ToArray
             Me.linearFiles = files
             Me.linearPack = New LinearPack With {
                 .reference = New Dictionary(Of String, SampleContentLevels) From {
@@ -300,7 +310,27 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             targetType = type
             mzpackRaw = Nothing
 
+            Dim contentLevels = linearPack.reference("n/a")
 
+            For Each ion As String In allFeatures
+                Dim refId As String = ion
+                Dim i As Integer = DataGridView1.Rows.Add(refId)
+                Dim comboxBox As DataGridViewComboBoxCell = DataGridView1.Rows(i).Cells(1)
+
+                comboxBox.Items.Add("")
+
+                For Each IS_candidate As String In Istd
+                    comboxBox.Items.Add(IS_candidate)
+                Next
+
+                If directMapName Then
+                    Dim row As DataGridViewRow = DataGridView1.Rows(i)
+
+                    For index As Integer = 2 To DataGridView1.Columns.Count - 1
+                        row.Cells(index).Value = contentLevels.Content(DataGridView1.Columns(index).HeaderText)
+                    Next
+                End If
+            Next
         Else
             Call importsRawLinearFiles(fileNames, type)
         End If
@@ -308,6 +338,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     Private Function ConstructFileLevels(<Out> ByRef files As NamedValue(Of String)(), <Out> ByRef fakeLevels As Dictionary(Of String, Double)) As Boolean
         If files.All(Function(name) name.Value.BaseName.IsContentPattern) Then
+            ' 10ppm 100ppb 100ppm, etc
+            '
             ' parse quantification reference content value from
             ' file names directly
             files = files _
@@ -322,6 +354,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             fakeLevels = files _
                 .ToDictionary(Function(file) file.Value.BaseName,
                               Function(file)
+                                  ' content value could be parsed base on the file name directly
                                   Return file.Value _
                                       .BaseName _
                                       .ParseContent _
@@ -330,6 +363,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                               End Function)
             Return True
         Else
+            ' needs get levels data from external file
             fakeLevels = files _
                 .ToDictionary(Function(file) file.Name,
                               Function()
@@ -1488,7 +1522,13 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Public Sub RunLinearRegression(profileName As String) Implements QuantificationLinearPage.RunLinearRegression
-        Dim file As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/{profileName}.linearPack"
+        Dim file As String
+
+        If profileName.FileExists Then
+            file = profileName
+        Else
+            file = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/{profileName}.linearPack"
+        End If
 
         linearPack = LinearPack.OpenFile(file)
 
