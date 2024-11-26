@@ -84,6 +84,7 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
 
         is_list = list _
             .Select(Function(a) a.IS) _
+            .Where(Function(sid) Strings.Len(sid) > 0) _
             .Distinct _
             .ToArray
 
@@ -106,8 +107,10 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
             Dim row As DataGridViewRow = DataGridView1.Rows(offset)
             Dim comboBoxColumn = New DataGridViewComboBoxCell()
 
-            row.Cells.Add(New DataGridViewTextBoxCell() With {.Value = compound.ID})
+            row.Cells.Add(New DataGridViewTextBoxCell())
             row.Cells.Add(comboBoxColumn)
+
+            row.Cells(0).Value = compound.ID
 
             For Each id As String In is_list
                 Call comboBoxColumn.Items.Add(id)
@@ -115,8 +118,13 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
 
             comboBoxColumn.Value = compound.IS
 
+            offset = 2
+
             For Each level As Double In compound.PopulateLevels
-                Call row.Cells.Add(New DataGridViewTextBoxCell With {.Value = level})
+                row.Cells.Add(New DataGridViewTextBoxCell)
+                row.Cells(offset).Value = level
+
+                offset += 1
             Next
         Next
 
