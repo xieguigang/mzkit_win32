@@ -293,6 +293,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 .Select(Function(file) file.ionPeaks.Select(Function(a) a.IS)) _
                 .IteratesALL _
                 .Distinct _
+                .Where(Function(id) Strings.Len(id) > 0) _
                 .ToArray
 
             Me.allFeatures = DirectCast(fileNames, DataFile()) _
