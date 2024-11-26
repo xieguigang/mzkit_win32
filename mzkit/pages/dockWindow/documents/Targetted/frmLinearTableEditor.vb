@@ -66,7 +66,7 @@ Public Class frmLinearTableEditor
 
         Call combo.Items.Clear()
 
-        For Each id As String In is_list
+        For Each id As String In is_list.SafeQuery
             Call combo.Items.Add(id)
         Next
     End Sub
