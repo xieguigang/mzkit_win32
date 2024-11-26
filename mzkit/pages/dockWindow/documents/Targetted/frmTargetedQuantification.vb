@@ -287,6 +287,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.HeaderText = level.Name})
             Next
 
+            Me.allFeatures = DirectCast(fileNames, DataFile()).Select(Function(a) a.ionPeaks.Keys).IteratesALL.Distinct.ToArray
             Me.linearFiles = files
             Me.linearPack = New LinearPack With {
                 .reference = New Dictionary(Of String, SampleContentLevels) From {
@@ -296,6 +297,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
             targetType = type
             mzpackRaw = Nothing
+
+
         Else
             Call importsRawLinearFiles(fileNames, type)
         End If
