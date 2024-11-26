@@ -101,8 +101,25 @@ Public Class frmLinearTableEditor : Implements IFileReference
         Dim maxLevels = list.Select(Function(a) a.C.Count).Max
 
         For Each compound As Standards In list
+            Dim offset As Integer = DataGridView1.Rows.Add()
+            Dim row As DataGridViewRow = DataGridView1.Rows(offset)
+            Dim comboBoxColumn = New DataGridViewComboBoxCell()
 
+            row.Cells.Add(New DataGridViewTextBoxCell() With {.Value = compound.ID})
+            row.Cells.Add(comboBoxColumn)
+
+            For Each id As String In is_list
+                Call comboBoxColumn.Items.Add(id)
+            Next
+
+            comboBoxColumn.Value = compound.IS
+
+            For Each level As Double In compound.PopulateLevels
+                Call row.Cells.Add(New DataGridViewTextBoxCell With {.Value = level})
+            Next
         Next
+
+        Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
     End Sub
 
     Protected Overrides Sub SaveDocument()
