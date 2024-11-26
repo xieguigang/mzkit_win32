@@ -1850,7 +1850,15 @@
 #define cmdButtonReportSampleInfo_TooltipDescription_RESID 60345
 #define cmdButtonReportSampleInfo_SmallImages_192__RESID 60346
 #define cmdButtonReportSampleInfo_LargeImages_192__RESID 60347
-#define InternalCmd2_LabelTitle_RESID 60348
-#define InternalCmd4_LabelTitle_RESID 60349
-#define InternalCmd6_LabelTitle_RESID 60350
-#define InternalCmd8_LabelTitle_RESID 60351
+#define cmdLinearTable 329  /* Open table page for create/edit linear table */ 
+#define cmdLinearTable_LabelTitle_RESID 60348
+#define cmdLinearTable_LabelDescription_RESID 60349
+#define cmdLinearTable_TooltipTitle_RESID 60350
+#define cmdLinearTable_TooltipDescription_RESID 60351
+#define cmdLinearTable_SmallImages_192__RESID 60352
+#define cmdLinearTable_LargeImages_192__RESID 60353
+#define InternalCmd2_LabelTitle_RESID 60354
+#define InternalCmd4_LabelTitle_RESID 60355
+#define InternalCmd6_LabelTitle_RESID 60356
+#define InternalCmd8_LabelTitle_RESID 60357
+#define InternalCmd10_LabelTitle_RESID 60358

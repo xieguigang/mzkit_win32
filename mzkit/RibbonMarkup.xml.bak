@@ -4414,6 +4414,14 @@
         <Image MinDPI="192">Res/Tools2.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdLinearTable" Id="329" LabelTitle="Linear Table" LabelDescription="Linear Table" TooltipTitle="Linear Table" TooltipDescription="Linear Table">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-graph-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-graph-96.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4647,7 +4655,12 @@
           <Tab CommandName="cmdTabTargeted" ApplicationModes="0,1">
             <Group CommandName="cmdTabGroupTargeted" ApplicationModes="0,1" SizeDefinition="TwoButtons">
               <Button CommandName="cmdImportsLinear" />
-              <Button CommandName="cmdSaveLinears" />
+              <SplitButton>
+                <SplitButton.ButtonItem>
+                  <Button CommandName="cmdSaveLinears" />
+                </SplitButton.ButtonItem>
+                <Button CommandName="cmdLinearTable" />
+              </SplitButton>
             </Group>
             <Group CommandName="cmdTabGroupTargetedLibrary" ApplicationModes="0,1" SizeDefinition="TwoButtons">
               <Button CommandName="cmdMRMLibrary" />

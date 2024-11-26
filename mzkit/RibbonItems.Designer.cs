@@ -138,6 +138,7 @@ namespace RibbonLib.Controls
             public const uint cmdTabGroupTargeted = 98;
             public const uint cmdImportsLinear = 100;
             public const uint cmdSaveLinears = 103;
+            public const uint cmdLinearTable = 329;
             public const uint cmdTabGroupTargetedLibrary = 107;
             public const uint cmdMRMLibrary = 108;
             public const uint cmdQuantifyIons = 109;
@@ -466,6 +467,10 @@ namespace RibbonLib.Controls
         public RibbonGroup TabGroupTargeted { get; private set; }
         public RibbonButton ImportsLinear { get; private set; }
         public RibbonButton SaveLinears { get; private set; }
+        /// <summary>
+        /// Open table page for create/edit linear table
+        /// </summary>
+        public RibbonButton LinearTable { get; private set; }
         public RibbonGroup TabGroupTargetedLibrary { get; private set; }
         public RibbonButton MRMLibrary { get; private set; }
         public RibbonButton QuantifyIons { get; private set; }
@@ -837,6 +842,7 @@ namespace RibbonLib.Controls
             TabGroupTargeted = new RibbonGroup(ribbon, Cmd.cmdTabGroupTargeted);
             ImportsLinear = new RibbonButton(ribbon, Cmd.cmdImportsLinear);
             SaveLinears = new RibbonButton(ribbon, Cmd.cmdSaveLinears);
+            LinearTable = new RibbonButton(ribbon, Cmd.cmdLinearTable);
             TabGroupTargetedLibrary = new RibbonGroup(ribbon, Cmd.cmdTabGroupTargetedLibrary);
             MRMLibrary = new RibbonButton(ribbon, Cmd.cmdMRMLibrary);
             QuantifyIons = new RibbonButton(ribbon, Cmd.cmdQuantifyIons);

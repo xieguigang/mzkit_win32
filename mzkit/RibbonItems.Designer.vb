@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Partial Public Class RibbonItems
+    Public Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -135,6 +135,7 @@ Namespace RibbonLib.Controls
             Public Const cmdTabGroupTargeted As UInteger = 98
             Public Const cmdImportsLinear As UInteger = 100
             Public Const cmdSaveLinears As UInteger = 103
+            Public Const cmdLinearTable As UInteger = 329
             Public Const cmdTabGroupTargetedLibrary As UInteger = 107
             Public Const cmdMRMLibrary As UInteger = 108
             Public Const cmdQuantifyIons As UInteger = 109
@@ -1066,6 +1067,15 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property SaveLinears As RibbonButton
             Get
                 Return _SaveLinears
+            End Get
+        End Property
+        Private _LinearTable As RibbonButton
+        ''' <summary>
+        ''' Open table page for create/edit linear table
+        ''' </summary>
+        Public ReadOnly Property LinearTable As RibbonButton
+            Get
+                Return _LinearTable
             End Get
         End Property
         Private _TabGroupTargetedLibrary As RibbonGroup
@@ -2379,6 +2389,7 @@ Namespace RibbonLib.Controls
             _TabGroupTargeted = New RibbonGroup(_ribbon, Cmd.cmdTabGroupTargeted)
             _ImportsLinear = New RibbonButton(_ribbon, Cmd.cmdImportsLinear)
             _SaveLinears = New RibbonButton(_ribbon, Cmd.cmdSaveLinears)
+            _LinearTable = New RibbonButton(_ribbon, Cmd.cmdLinearTable)
             _TabGroupTargetedLibrary = New RibbonGroup(_ribbon, Cmd.cmdTabGroupTargetedLibrary)
             _MRMLibrary = New RibbonButton(_ribbon, Cmd.cmdMRMLibrary)
             _QuantifyIons = New RibbonButton(_ribbon, Cmd.cmdQuantifyIons)
