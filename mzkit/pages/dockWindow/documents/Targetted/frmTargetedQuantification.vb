@@ -64,6 +64,7 @@
 #End Region
 
 Imports System.IO
+Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
@@ -269,11 +270,38 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     ''' </summary>
     ''' <param name="fileNames"></param>
     ''' <param name="type">MRM/GCMS_SIM</param>
-    Private Sub runLinearFileImports(fileNames As String(), type As TargetTypes?) Implements QuantificationLinearPage.RunLinearFileImports
-        Dim files As NamedValue(Of String)() = ContentTable.StripMaxCommonNames(fileNames)
-        Dim fakeLevels As Dictionary(Of String, Double)
-        Dim directMapName As Boolean = False
+    Private Sub runLinearFileImports(fileNames As Array, type As TargetTypes?) Implements QuantificationLinearPage.RunLinearFileImports
+        If TypeOf fileNames Is DataFile() Then
+            Dim fileIndex = DirectCast(fileNames, DataFile()).ToDictionary(Function(a) a.filename)
+            Dim files As NamedValue(Of String)() = ContentTable.StripMaxCommonNames(fileIndex.Keys.ToArray)
+            Dim fakeLevels As Dictionary(Of String, Double) = Nothing
+            Dim directMapName As Boolean = ConstructFileLevels(files, fakeLevels)
 
+            DataGridView1.Rows.Clear()
+            DataGridView1.Columns.Clear()
+
+            DataGridView1.Columns.Add(New DataGridViewLinkColumn With {.HeaderText = "Features"})
+            DataGridView1.Columns.Add(New DataGridViewComboBoxColumn With {.HeaderText = "IS"})
+
+            For Each level As NamedValue(Of String) In files
+                Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.HeaderText = level.Name})
+            Next
+
+            Me.linearFiles = files
+            Me.linearPack = New LinearPack With {
+                .reference = New Dictionary(Of String, SampleContentLevels) From {
+                    {"n/a", New SampleContentLevels(fakeLevels, directMapName)}
+                }
+            }
+
+            targetType = type
+            mzpackRaw = Nothing
+        Else
+            Call importsRawLinearFiles(fileNames, type)
+        End If
+    End Sub
+
+    Private Function ConstructFileLevels(<Out> ByRef files As NamedValue(Of String)(), <Out> ByRef fakeLevels As Dictionary(Of String, Double)) As Boolean
         If files.All(Function(name) name.Value.BaseName.IsContentPattern) Then
             ' parse quantification reference content value from
             ' file names directly
@@ -295,7 +323,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                                       .ScaleTo(ContentUnits.ppb) _
                                       .Value
                               End Function)
-            directMapName = True
+            Return True
         Else
             fakeLevels = files _
                 .ToDictionary(Function(file) file.Name,
@@ -304,12 +332,21 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                               End Function)
         End If
 
+        Return False
+    End Function
+
+    Private Sub importsRawLinearFiles(fileNames As String(), type As TargetTypes?)
+        Dim files As NamedValue(Of String)() = ContentTable.StripMaxCommonNames(fileNames)
+        Dim fakeLevels As Dictionary(Of String, Double) = Nothing
+        Dim directMapName As Boolean = ConstructFileLevels(files, fakeLevels)
+
         DataGridView1.Rows.Clear()
         DataGridView1.Columns.Clear()
 
         DataGridView1.Columns.Add(New DataGridViewLinkColumn With {.HeaderText = "Features"})
         DataGridView1.Columns.Add(New DataGridViewComboBoxColumn With {.HeaderText = "IS"})
 
+        ' imports levels
         For Each file As NamedValue(Of String) In files
             Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.HeaderText = file.Name})
 

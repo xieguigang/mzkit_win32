@@ -8,7 +8,7 @@ Public Interface QuantificationLinearPage
     ''' </summary>
     ''' <param name="fileNames">a vector of the file full path</param>
     ''' <param name="type">MRM/GCMS_SIM</param>
-    Sub RunLinearFileImports(fileNames As String(), type As TargetTypes?)
+    Sub RunLinearFileImports(fileNames As Array, type As TargetTypes?)
     Sub RunLinearmzPackImports(cals As String(), mzpack As Object)
 
     ''' <summary>
