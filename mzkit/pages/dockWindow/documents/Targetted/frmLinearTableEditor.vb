@@ -22,6 +22,7 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
 
     Private Sub loadComboList(combo As DataGridViewComboBoxCell)
         Call combo.Items.Clear()
+        Call combo.Items.Add("None")
 
         For Each id As String In is_list.SafeQuery
             Call combo.Items.Add(id)
@@ -117,7 +118,12 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
             row.Cells(0).Value = compound.ID
 
             loadComboList(comboBoxColumn)
-            comboBoxColumn.Value = compound.IS
+
+            If compound.IS.StringEmpty Then
+                comboBoxColumn.Value = "None"
+            Else
+                comboBoxColumn.Value = compound.IS
+            End If
 
             offset = 2
 
@@ -166,6 +172,10 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
                 c.Add("L" & lv, val)
                 lv += 1
             Next
+
+            If istd = "None" Then
+                istd = Nothing
+            End If
 
             Call standards.Add(New Standards With {
                 .ID = any.ToString(id),
