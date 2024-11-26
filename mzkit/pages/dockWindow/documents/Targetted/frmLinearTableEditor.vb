@@ -7,6 +7,7 @@ Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports any = Microsoft.VisualBasic.Scripting
+Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 
 Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoader
 
@@ -81,7 +82,14 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
     End Sub
 
     Public Sub LoadDocument(file As String) Implements DocumentPageLoader.LoadDocument
-        Dim list = file.LoadCsv(Of Standards)()
+        Dim list As Standards()
+
+        If file.ExtensionSuffix("csv") Then
+            list = file.LoadCsv(Of Standards)()
+        Else
+            ' load xlsx
+            list = xlsx.Open(file).LoadDataSet(Of Standards)(0)
+        End If
 
         is_list = list _
             .Select(Function(a) a.IS) _
