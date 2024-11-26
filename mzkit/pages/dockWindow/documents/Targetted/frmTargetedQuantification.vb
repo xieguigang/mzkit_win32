@@ -287,6 +287,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.HeaderText = level.Name})
             Next
 
+            Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
+
             Me.allFeatures = DirectCast(fileNames, DataFile()).Select(Function(a) a.ionPeaks.Keys).IteratesALL.Distinct.ToArray
             Me.linearFiles = files
             Me.linearPack = New LinearPack With {
