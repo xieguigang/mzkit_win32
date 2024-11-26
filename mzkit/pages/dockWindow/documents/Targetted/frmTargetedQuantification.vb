@@ -265,6 +265,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         End If
     End Sub
 
+    Dim linearFileDatas As DataFile()
+
     ''' <summary>
     ''' 
     ''' </summary>
@@ -310,6 +312,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
             targetType = type
             mzpackRaw = Nothing
+            linearFileDatas = fileNames
 
             Dim contentLevels = linearPack.reference("n/a")
 
@@ -1043,7 +1046,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         refPoints = chr.ToArray
 
         If chr = 0 OrElse chr.All(Function(p) p.Name <> id) Then
-            Call MyApplication.host.showStatusMessage($"No sample data was found of ion '{id}'!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning($"No sample data was found of ion '{id}'!")
             Return Nothing
         Else
             Return algorithm.ToLinears(chr).FirstOrDefault
@@ -1293,6 +1296,29 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Private Sub loadSampleFiles(files As DataFile(), echo As Action(Of String))
+        Dim linears As New List(Of StandardCurve)
+        Dim ionGroups = linearFileDatas _
+            .Select(Function(a) a.ionPeaks) _
+            .IteratesALL _
+            .GroupBy(Function(a) a.ID) _
+            .ToDictionary(Function(a) a.Key,
+                          Function(a)
+                              Return a.ToArray
+                          End Function)
+
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            Dim refRow = DataGridView1.Rows(i)
+            Dim algorithm As New InternalStandardMethod(GetContentTable(refRow), PeakAreaMethods.NetPeakSum)
+            Dim key As String = any.ToString(refRow.Cells(0).Value)
+            Dim ionPoints As IonPeakTableRow() = ionGroups.TryGetValue(key)
+
+            If key = "" OrElse ionPoints.IsNullOrEmpty Then
+                Continue For
+            End If
+
+            Call linears.Add(algorithm.ToFeatureLinear(ionPoints, key))
+        Next
+
         Call scans.Clear()
 
         For Each file As DataFile In files
