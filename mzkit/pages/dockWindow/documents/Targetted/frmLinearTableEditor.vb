@@ -10,8 +10,23 @@ Public Class frmLinearTableEditor
         InputDialog.Input(Sub(editor) Call SetIdList(editor.IdSet), config:=editList)
     End Sub
 
-    Private Sub SetIdList(id As IEnumerable(Of String))
-        is_list = id.SafeQuery.Where(Function(s) Strings.Len(s) > 0).ToArray
+    Private Sub SetIdList(ids As IEnumerable(Of String))
+        is_list = ids.SafeQuery.Where(Function(s) Strings.Len(s) > 0).ToArray
 
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            Dim row = DataGridView1.Rows(i)
+
+            If row Is Nothing Then
+                Continue For
+            End If
+
+            Dim combo As DataGridViewComboBoxCell = row.Cells(1)
+
+            Call combo.Items.Clear()
+
+            For Each id As String In is_list
+                Call combo.Items.Add(id)
+            Next
+        Next
     End Sub
 End Class
