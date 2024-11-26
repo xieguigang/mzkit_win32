@@ -213,6 +213,13 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
         End If
 
         Dim row = selectedRows(0)
-        DataGridView1.Rows.Remove(row)
+
+        If MessageBox.Show("Going to delete this compound standard curve data?", "Remove data row", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
+            Try
+                DataGridView1.Rows.Remove(row)
+            Catch ex As Exception
+
+            End Try
+        End If
     End Sub
 End Class
