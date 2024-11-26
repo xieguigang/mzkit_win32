@@ -842,6 +842,10 @@
     <Compile Include="pages\dockWindow\documents\htmlPages\frmVennTools.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="pages\dockWindow\documents\Targetted\frmQuantifyIons.Designer.vb">
+      <DependentUpon>frmQuantifyIons.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\Targetted\frmQuantifyIons.vb" />
     <Compile Include="pages\dockWindow\documents\Targetted\frmTargetedQuantification.Designer.vb">
       <DependentUpon>frmTargetedQuantification.vb</DependentUpon>
     </Compile>
@@ -942,12 +946,6 @@
       <DependentUpon>frmMRMLibrary.vb</DependentUpon>
     </Compile>
     <Compile Include="pages\dockWindow\documents\frmMRMLibrary.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="pages\dockWindow\documents\frmQuantifyIons.Designer.vb">
-      <DependentUpon>frmQuantifyIons.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\documents\frmQuantifyIons.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\Comprehensive\frmMsImagingViewer.Designer.vb">
@@ -1451,6 +1449,9 @@
     <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmVennTools.resx">
       <DependentUpon>frmVennTools.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\Targetted\frmQuantifyIons.resx">
+      <DependentUpon>frmQuantifyIons.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\Targetted\frmTargetedQuantification.resx">
       <DependentUpon>frmTargetedQuantification.vb</DependentUpon>
     </EmbeddedResource>
@@ -1486,9 +1487,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\systems\frmPluginMgr.resx">
       <DependentUpon>frmPluginMgr.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmQuantifyIons.resx">
-      <DependentUpon>frmQuantifyIons.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\systems\frmRScriptEdit.resx">
       <DependentUpon>frmRScriptEdit.vb</DependentUpon>
