@@ -200,7 +200,7 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.ButtonMsDemo, Sub() WindowModules.msDemo.ShowPage())
         ' Call HookRibbon(ribbonItems.Targeted, Sub() Call ConnectToBioDeep.OpenAdvancedFunction(AddressOf VisualStudio.ShowSingleDocument(Of frmTargetedQuantification))
         Call HookRibbon(ribbonItems.Targeted, Sub() Call VisualStudio.ShowSingleDocument(Of frmTargetedQuantification)())
-
+        Call HookRibbon(ribbonItems.LinearTable, Sub() Call VisualStudio.ShowDocument(Of frmLinearTableEditor)())
         Call HookRibbon(ribbonItems.MRMLibrary, Sub() Call VisualStudio.ShowSingleDocument(Of frmMRMLibrary)(Nothing))
         Call HookRibbon(ribbonItems.QuantifyIons, Sub() Call VisualStudio.ShowSingleDocument(Of frmQuantifyIons)(Nothing))
         Call HookRibbon(ribbonItems.GCxGCViewer, Sub() Call VisualStudio.ShowSingleDocument(Of frmGCxGCViewer)(Nothing))
