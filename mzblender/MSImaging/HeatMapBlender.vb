@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a01841017739d616405858993634cdd6, mzkit\mzblender\MSImaging\HeatMapBlender.vb"
+﻿#Region "Microsoft.VisualBasic::5be909411b68f7ddd8544803ca7ad7f2, mzkit\mzblender\MSImaging\HeatMapBlender.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 40
-    '    Code Lines: 28 (70.00%)
+    '   Total Lines: 41
+    '    Code Lines: 29 (70.73%)
     ' Comment Lines: 0 (0.00%)
     '    - Xml Docs: 0.00%
     ' 
-    '   Blank Lines: 12 (30.00%)
-    '     File Size: 1.36 KB
+    '   Blank Lines: 12 (29.27%)
+    '     File Size: 1.43 KB
 
 
     ' Class HeatMapBlender

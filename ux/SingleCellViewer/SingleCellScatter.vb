@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a10c485a46331bc25846b2849c56a6b0, mzkit\ux\SingleCellViewer\SingleCellScatter.vb"
+﻿#Region "Microsoft.VisualBasic::dd8714520c7aac55e2c79cc7da5f1032, mzkit\ux\SingleCellViewer\SingleCellScatter.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 230
-    '    Code Lines: 171 (74.35%)
-    ' Comment Lines: 14 (6.09%)
+    '   Total Lines: 232
+    '    Code Lines: 173 (74.57%)
+    ' Comment Lines: 14 (6.03%)
     '    - Xml Docs: 92.86%
     ' 
-    '   Blank Lines: 45 (19.57%)
-    '     File Size: 8.32 KB
+    '   Blank Lines: 45 (19.40%)
+    '     File Size: 8.42 KB
 
 
     ' Class SingleCellScatter

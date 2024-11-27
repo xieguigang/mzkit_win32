@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::405f9aa67f3de0f2f64bd30980a08665, mzkit\ux\NVIDIA\ImageUtils\ScaleSize.vb"
+﻿#Region "Microsoft.VisualBasic::e3a3b6f3a00c0bf40358209b88a4c52d, mzkit\ux\NVIDIA\ImageUtils\ScaleSize.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 0.00%
     ' 
     '   Blank Lines: 1 (12.50%)
-    '     File Size: 129 B
+    '     File Size: 127 B
 
 
     '     Enum ScaleSize
@@ -66,4 +66,3 @@ Namespace ImageUtils
         x16 = 3
     End Enum
 End Namespace
-

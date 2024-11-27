@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::659ceed1b00c3cdabbef98f58387725f, mzkit\ux\NVIDIA\Program.vb"
+﻿#Region "Microsoft.VisualBasic::e125d058b2afc4ddc6848547d6ba68ba, mzkit\ux\NVIDIA\Program.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 0.00%
     ' 
     '   Blank Lines: 4 (26.67%)
-    '     File Size: 338 B
+    '     File Size: 336 B
 
 
     ' Class Program
@@ -69,4 +69,3 @@ Friend Class Program
         Console.WriteLine(msg)
     End Sub
 End Class
-

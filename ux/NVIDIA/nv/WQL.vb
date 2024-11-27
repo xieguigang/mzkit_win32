@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::52ba2b1af304d6ef02a4119e6154e8f7, mzkit\ux\NVIDIA\nv\WQL.vb"
+﻿#Region "Microsoft.VisualBasic::885b197d941f1d6f965834afce43b80c, mzkit\ux\NVIDIA\nv\WQL.vb"
 
     ' Author:
     ' 
@@ -136,4 +136,3 @@ Namespace nv
         End Function
     End Class
 End Namespace
-

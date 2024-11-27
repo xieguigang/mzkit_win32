@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::98ae7de0e9d5fa02110b5567f2c2c5dc, mzkit\mzblender\MSImaging\SingleIonMSIBlender.vb"
+﻿#Region "Microsoft.VisualBasic::1f2f99288f9604d2fabe96ad8c45aae2, mzkit\mzblender\MSImaging\SingleIonMSIBlender.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 42.86%
     ' 
     '   Blank Lines: 19 (16.96%)
-    '     File Size: 4.19 KB
+    '     File Size: 4.28 KB
 
 
     ' Class SingleIonMSIBlender

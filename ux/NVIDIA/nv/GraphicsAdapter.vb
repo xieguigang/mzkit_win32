@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::081d3b1f0f2102af87a1aa37c52b6597, mzkit\ux\NVIDIA\nv\GraphicsAdapter.vb"
+﻿#Region "Microsoft.VisualBasic::636f7bae9b931bfd96e7306b1f188c29, mzkit\ux\NVIDIA\nv\GraphicsAdapter.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 0.00%
     ' 
     '   Blank Lines: 3 (15.79%)
-    '     File Size: 468 B
+    '     File Size: 466 B
 
 
     '     Class GraphicsAdapter
@@ -84,4 +84,3 @@ Namespace nv
         Full
     End Enum
 End Namespace
-

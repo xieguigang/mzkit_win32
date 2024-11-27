@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::f3b948ea2e51427bdcbc58af619bf5f1, mzkit\ux\GCxGCViewer\GCxGCPeaks.vb"
+﻿#Region "Microsoft.VisualBasic::273eaefe5284eb5653bb2ffa1f7a1271, mzkit\ux\GCxGCViewer\GCxGCPeaks.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 0.00%
     ' 
     '   Blank Lines: 24 (18.75%)
-    '     File Size: 4.29 KB
+    '     File Size: 4.28 KB
 
 
     ' Class GCxGCPeak

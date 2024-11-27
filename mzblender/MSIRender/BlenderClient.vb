@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::8e1e1e12bf520574084da1793473c687, mzkit\mzblender\MSIRender\BlenderClient.vb"
+﻿#Region "Microsoft.VisualBasic::fd80d5c01434f6dcaa4ab814895c0a0c, mzkit\mzblender\MSIRender\BlenderClient.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 42.11%
     ' 
     '   Blank Lines: 22 (15.94%)
-    '     File Size: 5.55 KB
+    '     File Size: 5.56 KB
 
 
     ' Class BlenderClient

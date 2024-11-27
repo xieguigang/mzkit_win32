@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::498c00bc19998fc198aeb4f028d1e973, mzkit\services\BlenderHost\Program.vb"
+﻿#Region "Microsoft.VisualBasic::25a4248e71674a1ccf8ca9cab4922a74, mzkit\services\BlenderHost\Program.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 109
-    '    Code Lines: 91 (83.49%)
-    ' Comment Lines: 1 (0.92%)
+    '   Total Lines: 111
+    '    Code Lines: 93 (83.78%)
+    ' Comment Lines: 1 (0.90%)
     '    - Xml Docs: 0.00%
     ' 
-    '   Blank Lines: 17 (15.60%)
-    '     File Size: 4.58 KB
+    '   Blank Lines: 17 (15.32%)
+    '     File Size: 4.65 KB
 
 
     ' Module Program

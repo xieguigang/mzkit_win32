@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::8a5d449e11531a2dc6187b2ac254335d, mzkit\ux\GCxGCViewer\PeakSelector.vb"
+﻿#Region "Microsoft.VisualBasic::fe5d41bfdcd6fc6be6316182973d4604, mzkit\ux\GCxGCViewer\PeakSelector.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 60.00%
     ' 
     '   Blank Lines: 47 (20.00%)
-    '     File Size: 8.41 KB
+    '     File Size: 8.43 KB
 
 
     ' Class PeakSelector

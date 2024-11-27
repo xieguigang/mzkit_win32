@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::cb690d148e7a5da91fc0a030aeb392b7, mzkit\ux\NVIDIA\nv\NVIDIAAnsel.vb"
+﻿#Region "Microsoft.VisualBasic::1b41d745579a3a7e7c594f3eca616700, mzkit\ux\NVIDIA\nv\NVIDIAAnsel.vb"
 
     ' Author:
     ' 
@@ -299,4 +299,3 @@ It is very likely that your Display Adapter Driver needs updating.")
         End Sub
     End Class
 End Namespace
-

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::34ba12661fc709fd39aed69e61a79aec, mzkit\ux\NVIDIA\ImageUtils\TransparencySupport.vb"
+﻿#Region "Microsoft.VisualBasic::764b9b7a5b5135bee27e3fa719675c8b, mzkit\ux\NVIDIA\ImageUtils\TransparencySupport.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 108
-    '    Code Lines: 72 (66.67%)
-    ' Comment Lines: 15 (13.89%)
+    '   Total Lines: 111
+    '    Code Lines: 75 (67.57%)
+    ' Comment Lines: 15 (13.51%)
     '    - Xml Docs: 0.00%
     ' 
-    '   Blank Lines: 21 (19.44%)
-    '     File Size: 5.27 KB
+    '   Blank Lines: 21 (18.92%)
+    '     File Size: 5.40 KB
 
 
     '     Module TransparencySupport
@@ -166,4 +166,3 @@ Namespace ImageUtils
 
     End Module
 End Namespace
-

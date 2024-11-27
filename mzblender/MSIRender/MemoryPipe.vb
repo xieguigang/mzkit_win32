@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::5ae700a9ae56dc5f8e709a62a77832f8, mzkit\mzblender\MSIRender\MemoryPipe.vb"
+﻿#Region "Microsoft.VisualBasic::f52782d701c51f812c8a3cb647b03e9d, mzkit\mzblender\MSIRender\MemoryPipe.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 0.00%
     ' 
     '   Blank Lines: 3 (23.08%)
-    '     File Size: 391 B
+    '     File Size: 389 B
 
 
     ' Class MemoryPipe
@@ -68,4 +68,3 @@ Public Class MemoryPipe : Inherits Darwinism.HPC.Parallel.MemoryPipe
         Call WriteBuffer(PixelData.GetBuffer(pixels))
     End Sub
 End Class
-

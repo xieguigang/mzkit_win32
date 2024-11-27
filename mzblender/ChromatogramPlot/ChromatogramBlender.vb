@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::de4e727d0178578f0dd95954f62d95d2, mzkit\mzblender\ChromatogramPlot\ChromatogramBlender.vb"
+﻿#Region "Microsoft.VisualBasic::4e72065e6b865c8fe853e13794002885, mzkit\mzblender\ChromatogramPlot\ChromatogramBlender.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 42
-    '    Code Lines: 37 (88.10%)
+    '   Total Lines: 43
+    '    Code Lines: 38 (88.37%)
     ' Comment Lines: 0 (0.00%)
     '    - Xml Docs: 0.00%
     ' 
-    '   Blank Lines: 5 (11.90%)
-    '     File Size: 1.71 KB
+    '   Blank Lines: 5 (11.63%)
+    '     File Size: 1.75 KB
 
 
     ' Class ChromatogramBlender

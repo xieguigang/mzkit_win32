@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::fffe8392faa0accf9d2f22188170b787, mzkit\services\ServiceHub\ServiceProtocols\MSI.vb"
+﻿#Region "Microsoft.VisualBasic::c1db0cb174d2fdbd78fc880776d6df74, mzkit\services\ServiceHub\ServiceProtocols\MSI.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 947
-    '    Code Lines: 695 (73.39%)
-    ' Comment Lines: 100 (10.56%)
+    '   Total Lines: 948
+    '    Code Lines: 696 (73.42%)
+    ' Comment Lines: 100 (10.55%)
     '    - Xml Docs: 60.00%
     ' 
-    '   Blank Lines: 152 (16.05%)
-    '     File Size: 40.79 KB
+    '   Blank Lines: 152 (16.03%)
+    '     File Size: 40.83 KB
 
 
     ' Class MSI
