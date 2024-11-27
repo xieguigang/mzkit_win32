@@ -744,6 +744,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                                   levelKeys As String(),
                                   ionLib As IonLibrary,
                                   linear As KeyValuePair(Of String, SampleContentLevels))
+
         Dim ionpairtext = linear.Key.Split("/"c).Select(AddressOf Val).ToArray
         Dim ionID As String
         Dim [is] As [IS] = linearPack.GetLinear(linear.Key)?.IS
@@ -1300,29 +1301,6 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Private Sub loadSampleFiles(files As DataFile(), echo As Action(Of String))
-        Dim linears As New List(Of StandardCurve)
-        Dim ionGroups = linearFileDatas _
-            .Select(Function(a) a.ionPeaks) _
-            .IteratesALL _
-            .GroupBy(Function(a) a.ID) _
-            .ToDictionary(Function(a) a.Key,
-                          Function(a)
-                              Return a.ToArray
-                          End Function)
-
-        For i As Integer = 0 To DataGridView1.Rows.Count - 1
-            Dim refRow = DataGridView1.Rows(i)
-            Dim algorithm As New InternalStandardMethod(GetContentTable(refRow), PeakAreaMethods.NetPeakSum)
-            Dim key As String = any.ToString(refRow.Cells(0).Value)
-            Dim ionPoints As IonPeakTableRow() = ionGroups.TryGetValue(key)
-
-            If key = "" OrElse ionPoints.IsNullOrEmpty Then
-                Continue For
-            End If
-
-            Call linears.Add(algorithm.ToFeatureLinear(ionPoints, key))
-        Next
-
         Call scans.Clear()
 
         For Each file As DataFile In files
@@ -1335,14 +1313,14 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 },
                 .quantify = New DataSet With {
                     .ID = file.filename,
-                    .Properties = file.CreateQuantifyData(linears)
+                    .Properties = file.CreateQuantifyData(linearPack.linears)
                 }
             }
 
             Call echo($"Processing quantify for sample: {file.filename}")
 
             If Not quantify Is Nothing Then
-                scans.Add(quantify)
+                Call scans.Add(quantify)
             End If
         Next
     End Sub
@@ -1589,6 +1567,31 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             DataGridView1.Columns.Add(New DataGridViewComboBoxColumn With {.HeaderText = "IS"})
 
             Call frmLinearTableEditor.LoadStandardsToTable(DataGridView1, standardLis, is_list)
+
+            Dim linears As New List(Of StandardCurve)
+            Dim ionGroups = linearFileDatas _
+                .Select(Function(a) a.ionPeaks) _
+                .IteratesALL _
+                .GroupBy(Function(a) a.ID) _
+                .ToDictionary(Function(a) a.Key,
+                              Function(a)
+                                  Return a.ToArray
+                              End Function)
+
+            For i As Integer = 0 To DataGridView1.Rows.Count - 1
+                Dim refRow = DataGridView1.Rows(i)
+                Dim algorithm As New InternalStandardMethod(GetContentTable(refRow), PeakAreaMethods.NetPeakSum)
+                Dim key As String = any.ToString(refRow.Cells(0).Value)
+                Dim ionPoints As IonPeakTableRow() = ionGroups.TryGetValue(key)
+
+                If key = "" OrElse ionPoints.IsNullOrEmpty Then
+                    Continue For
+                End If
+
+                Call linears.Add(algorithm.ToFeatureLinear(ionPoints, key))
+            Next
+
+            linearPack.linears = linears.ToArray
         Else
             linearPack = LinearPack.OpenFile(file)
             Call unifyLoadLinears()
