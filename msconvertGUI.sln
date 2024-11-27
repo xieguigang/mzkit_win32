@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35521.163 d17.12
+VisualStudioVersion = 17.12.35521.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "msconvertGUI", "msconvertGUI\msconvertGUI.vbproj", "{200B9C72-A64E-4503-AF51-40788440FFE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "framework", "framework", "{8398A4F4-0F28-49E1-B4B4-DD9585A8DB1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mzkit", "mzkit", "{6D12AA65-3CAE-4A55-962D-1EAC7B14C837}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Core", "..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj", "{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "msconvert", "msconvert\msconvert.vbproj", "{98CBB17D-3873-4193-8669-70785A1DDFFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +35,35 @@ Global
 		{200B9C72-A64E-4503-AF51-40788440FFE6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{200B9C72-A64E-4503-AF51-40788440FFE6}.Release|x64.ActiveCfg = Release|x64
 		{200B9C72-A64E-4503-AF51-40788440FFE6}.Release|x64.Build.0 = Release|x64
+		{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1}.Debug|x64.ActiveCfg = Debug|x64
+		{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1}.Debug|x64.Build.0 = Debug|x64
+		{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1}.mzkit_win32|Any CPU.ActiveCfg = mzkit_win32|Any CPU
+		{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1}.mzkit_win32|Any CPU.Build.0 = mzkit_win32|Any CPU
+		{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1}.mzkit_win32|x64.ActiveCfg = mzkit_win32|x64
+		{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1}.mzkit_win32|x64.Build.0 = mzkit_win32|x64
+		{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1}.Release|x64.ActiveCfg = Release|x64
+		{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1}.Release|x64.Build.0 = Release|x64
+		{98CBB17D-3873-4193-8669-70785A1DDFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98CBB17D-3873-4193-8669-70785A1DDFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98CBB17D-3873-4193-8669-70785A1DDFFB}.Debug|x64.ActiveCfg = Debug|x64
+		{98CBB17D-3873-4193-8669-70785A1DDFFB}.Debug|x64.Build.0 = Debug|x64
+		{98CBB17D-3873-4193-8669-70785A1DDFFB}.mzkit_win32|Any CPU.ActiveCfg = mzkit_win32|Any CPU
+		{98CBB17D-3873-4193-8669-70785A1DDFFB}.mzkit_win32|Any CPU.Build.0 = mzkit_win32|Any CPU
+		{98CBB17D-3873-4193-8669-70785A1DDFFB}.mzkit_win32|x64.ActiveCfg = mzkit_win32|x64
+		{98CBB17D-3873-4193-8669-70785A1DDFFB}.mzkit_win32|x64.Build.0 = mzkit_win32|x64
+		{98CBB17D-3873-4193-8669-70785A1DDFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98CBB17D-3873-4193-8669-70785A1DDFFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98CBB17D-3873-4193-8669-70785A1DDFFB}.Release|x64.ActiveCfg = Release|x64
+		{98CBB17D-3873-4193-8669-70785A1DDFFB}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{05CDEDC2-E4AD-4FB6-992B-EEB0931E8AA1} = {8398A4F4-0F28-49E1-B4B4-DD9585A8DB1C}
 	EndGlobalSection
 EndGlobal
