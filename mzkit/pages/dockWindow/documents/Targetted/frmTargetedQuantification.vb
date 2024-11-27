@@ -269,6 +269,105 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     Dim linearFileDatas As DataFile()
 
+    Private Sub importsDataFileLinears(fileNames As DataFile(), type As TargetTypes)
+        Dim fileIndex = DirectCast(fileNames, DataFile()).ToDictionary(Function(a) a.filename)
+        Dim files As NamedValue(Of String)() = ContentTable.StripMaxCommonNames(fileIndex.Keys.ToArray)
+        Dim fakeLevels As Dictionary(Of String, Double) = Nothing
+        Dim directMapName As Boolean = ConstructFileLevels(files, fakeLevels)
+
+        DataGridView1.Rows.Clear()
+        DataGridView1.Columns.Clear()
+
+        DataGridView1.Columns.Add(New DataGridViewLinkColumn With {.HeaderText = "Features"})
+        DataGridView1.Columns.Add(New DataGridViewComboBoxColumn With {.HeaderText = "IS"})
+
+        For Each level As NamedValue(Of String) In files
+            Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.HeaderText = level.Name})
+        Next
+
+        Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
+
+        Dim Istd As String() = DirectCast(fileNames, DataFile()) _
+            .Select(Function(file) file.ionPeaks.Select(Function(a) a.IS)) _
+            .IteratesALL _
+            .Distinct _
+            .Where(Function(id) Strings.Len(id) > 0) _
+            .ToArray
+
+        Me.allFeatures = DirectCast(fileNames, DataFile()) _
+            .Select(Function(a) a.ionPeaks.Keys) _
+            .IteratesALL _
+            .Distinct _
+            .ToArray
+        Me.linearFiles = files
+        Me.linearPack = New LinearPack With {
+            .reference = New Dictionary(Of String, SampleContentLevels) From {
+                {"n/a", New SampleContentLevels(fakeLevels, directMapName)}
+            },
+            .time = Now,
+            .title = "standards linears data",
+            .targetted = type,
+            .[IS] = Istd.Select(Function(id) New [IS](id)).ToArray,
+            .peakSamples = DirectCast(fileNames, DataFile()) _
+                .Select(Iterator Function(file) As IEnumerable(Of TargetPeakPoint)
+                            For Each peak In file.ionPeaks
+                                Yield New TargetPeakPoint() With {
+                                    .Name = peak.ID,
+                                    .SampleName = file.filename,
+                                    .Peak = New ROIPeak() With {
+                                        .base = peak.base,
+                                        .ticks = {New ChromatogramTick((peak.rtmax + peak.rtmin) / 2, peak.TPA)},
+                                        .peakHeight = peak.maxinto,
+                                        .window = New DoubleRange(peak.rtmin, peak.rtmax)
+                                    },
+                                    .ChromatogramSummary = {}
+                                }
+                                If Strings.Len(peak.IS) > 0 Then
+                                    Yield New TargetPeakPoint() With {
+                                        .Name = peak.IS,
+                                        .SampleName = file.filename,
+                                        .Peak = New ROIPeak() With {
+                                            .base = peak.base,
+                                            .ticks = {New ChromatogramTick((peak.rtmax + peak.rtmin) / 2, peak.TPA_IS)},
+                                            .peakHeight = peak.maxinto_IS,
+                                            .window = New DoubleRange(peak.rtmin, peak.rtmax)
+                                        },
+                                        .ChromatogramSummary = {}
+                                    }
+                                End If
+                            Next
+                        End Function) _
+                .IteratesALL _
+                .ToArray
+        }
+
+        targetType = type
+        mzpackRaw = Nothing
+        linearFileDatas = fileNames
+
+        Dim contentLevels = linearPack.reference("n/a")
+
+        For Each ion As String In allFeatures
+            Dim refId As String = ion
+            Dim i As Integer = DataGridView1.Rows.Add(refId)
+            Dim comboxBox As DataGridViewComboBoxCell = DataGridView1.Rows(i).Cells(1)
+
+            comboxBox.Items.Add("")
+
+            For Each IS_candidate As String In Istd
+                comboxBox.Items.Add(IS_candidate)
+            Next
+
+            If directMapName Then
+                Dim row As DataGridViewRow = DataGridView1.Rows(i)
+
+                For index As Integer = 2 To DataGridView1.Columns.Count - 1
+                    row.Cells(index).Value = contentLevels.Content(DataGridView1.Columns(index).HeaderText)
+                Next
+            End If
+        Next
+    End Sub
+
     ''' <summary>
     ''' 
     ''' </summary>
@@ -276,102 +375,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     ''' <param name="type">MRM/GCMS_SIM</param>
     Private Sub runLinearFileImports(fileNames As Array, type As TargetTypes?) Implements QuantificationLinearPage.RunLinearFileImports
         If TypeOf fileNames Is DataFile() Then
-            Dim fileIndex = DirectCast(fileNames, DataFile()).ToDictionary(Function(a) a.filename)
-            Dim files As NamedValue(Of String)() = ContentTable.StripMaxCommonNames(fileIndex.Keys.ToArray)
-            Dim fakeLevels As Dictionary(Of String, Double) = Nothing
-            Dim directMapName As Boolean = ConstructFileLevels(files, fakeLevels)
-
-            DataGridView1.Rows.Clear()
-            DataGridView1.Columns.Clear()
-
-            DataGridView1.Columns.Add(New DataGridViewLinkColumn With {.HeaderText = "Features"})
-            DataGridView1.Columns.Add(New DataGridViewComboBoxColumn With {.HeaderText = "IS"})
-
-            For Each level As NamedValue(Of String) In files
-                Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.HeaderText = level.Name})
-            Next
-
-            Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
-
-            Dim Istd As String() = DirectCast(fileNames, DataFile()) _
-                .Select(Function(file) file.ionPeaks.Select(Function(a) a.IS)) _
-                .IteratesALL _
-                .Distinct _
-                .Where(Function(id) Strings.Len(id) > 0) _
-                .ToArray
-
-            Me.allFeatures = DirectCast(fileNames, DataFile()) _
-                .Select(Function(a) a.ionPeaks.Keys) _
-                .IteratesALL _
-                .Distinct _
-                .ToArray
-            Me.linearFiles = files
-            Me.linearPack = New LinearPack With {
-                .reference = New Dictionary(Of String, SampleContentLevels) From {
-                    {"n/a", New SampleContentLevels(fakeLevels, directMapName)}
-                },
-                .time = Now,
-                .title = "standards linears data",
-                .targetted = type,
-                .[IS] = Istd.Select(Function(id) New [IS](id)).ToArray,
-                .peakSamples = DirectCast(fileNames, DataFile()) _
-                    .Select(Iterator Function(file) As IEnumerable(Of TargetPeakPoint)
-                                For Each peak In file.ionPeaks
-                                    Yield New TargetPeakPoint() With {
-                                        .Name = peak.ID,
-                                        .SampleName = file.filename,
-                                        .Peak = New ROIPeak() With {
-                                            .base = peak.base,
-                                            .ticks = {New ChromatogramTick((peak.rtmax + peak.rtmin) / 2, peak.TPA)},
-                                            .peakHeight = peak.maxinto,
-                                            .window = New DoubleRange(peak.rtmin, peak.rtmax)
-                                        },
-                                        .ChromatogramSummary = {}
-                                    }
-                                    If Strings.Len(peak.IS) > 0 Then
-                                        Yield New TargetPeakPoint() With {
-                                            .Name = peak.IS,
-                                            .SampleName = file.filename,
-                                            .Peak = New ROIPeak() With {
-                                                .base = peak.base,
-                                                .ticks = {New ChromatogramTick((peak.rtmax + peak.rtmin) / 2, peak.TPA_IS)},
-                                                .peakHeight = peak.maxinto_IS,
-                                                .window = New DoubleRange(peak.rtmin, peak.rtmax)
-                                            },
-                                            .ChromatogramSummary = {}
-                                        }
-                                    End If
-                                Next
-                            End Function) _
-                    .IteratesALL _
-                    .ToArray
-            }
-
-            targetType = type
-            mzpackRaw = Nothing
-            linearFileDatas = fileNames
-
-            Dim contentLevels = linearPack.reference("n/a")
-
-            For Each ion As String In allFeatures
-                Dim refId As String = ion
-                Dim i As Integer = DataGridView1.Rows.Add(refId)
-                Dim comboxBox As DataGridViewComboBoxCell = DataGridView1.Rows(i).Cells(1)
-
-                comboxBox.Items.Add("")
-
-                For Each IS_candidate As String In Istd
-                    comboxBox.Items.Add(IS_candidate)
-                Next
-
-                If directMapName Then
-                    Dim row As DataGridViewRow = DataGridView1.Rows(i)
-
-                    For index As Integer = 2 To DataGridView1.Columns.Count - 1
-                        row.Cells(index).Value = contentLevels.Content(DataGridView1.Columns(index).HeaderText)
-                    Next
-                End If
-            Next
+            Call importsDataFileLinears(fileNames, type)
         Else
             Call importsRawLinearFiles(fileNames, type)
         End If
