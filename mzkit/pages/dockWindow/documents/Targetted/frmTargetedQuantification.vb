@@ -325,7 +325,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                                             .ticks = {New ChromatogramTick((peak.rtmax + peak.rtmin) / 2, peak.TPA)},
                                             .peakHeight = peak.maxinto,
                                             .window = New DoubleRange(peak.rtmin, peak.rtmax)
-                                        }
+                                        },
+                                        .ChromatogramSummary = {}
                                     }
                                     If Strings.Len(peak.IS) > 0 Then
                                         Yield New TargetPeakPoint() With {
@@ -336,7 +337,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                                                 .ticks = {New ChromatogramTick((peak.rtmax + peak.rtmin) / 2, peak.TPA_IS)},
                                                 .peakHeight = peak.maxinto_IS,
                                                 .window = New DoubleRange(peak.rtmin, peak.rtmax)
-                                            }
+                                            },
+                                            .ChromatogramSummary = {}
                                         }
                                     End If
                                 Next
