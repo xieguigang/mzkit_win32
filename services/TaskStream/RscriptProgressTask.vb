@@ -792,10 +792,10 @@ Public NotInheritable Class RscriptProgressTask
             {"--show_labels", showLabels.ToString.ToUpper}
         }
 
-        Select Case analysis
-            Case GetType(PLS)
+        Select Case analysis.Name
+            Case "PLS"
                 Call RunRScriptPipeline("workbench/PLSDA.R", args, "Run PLS-DA analysis", "running pls-da analysis...")
-            Case GetType(OPLS)
+            Case "OPLS"
                 Call RunRScriptPipeline("workbench/OPLSDA.R", args, "Run OPLS-DA analysis", "running opls-da analysis...")
             Case Else
                 ' pca

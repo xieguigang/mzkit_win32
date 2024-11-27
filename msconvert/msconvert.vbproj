@@ -234,10 +234,6 @@
       <Project>{0a48789b-a35c-49ba-8224-c604ad14f044}</Project>
       <Name>MZWork</Name>
     </ProjectReference>
-    <ProjectReference Include="..\services\Task\Task.vbproj">
-      <Project>{6e5bca87-358e-4ba5-b279-de17afa52c5c}</Project>
-      <Name>Task</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
