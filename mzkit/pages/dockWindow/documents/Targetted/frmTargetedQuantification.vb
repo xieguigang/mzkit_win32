@@ -64,6 +64,7 @@
 #End Region
 
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
@@ -1520,8 +1521,9 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         e.Effect = DragDropEffects.Copy
     End Sub
 
-    Private Iterator Function GetScans() As IEnumerable(Of QuantifyScan)
-
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Private Function GetScans() As IEnumerable(Of QuantifyScan)
+        Return scans.AsEnumerable
     End Function
 
     Public Sub ViewLinearModelReport(onHost As Boolean, ignoreError As Boolean) Implements QuantificationLinearPage.ViewLinearModelReport
