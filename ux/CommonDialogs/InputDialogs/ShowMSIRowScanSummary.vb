@@ -1,6 +1,5 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
-Imports Microsoft.VisualBasic.Windows.Forms.DataValidation
-Imports stdNum = System.Math
+﻿Imports Microsoft.VisualBasic.Windows.Forms.DataValidation
+Imports std = System.Math
 
 Public Class ShowMSIRowScanSummary
 
@@ -54,43 +53,41 @@ Public Class ShowMSIRowScanSummary
         Dim max As String = Await getMaxFile(files)
         Dim w As (n As Integer, basePeak As Double) = Await MeasureWidth(max)
 
-        Me.Invoke(Sub() TextBox1.Text = w.n)
-        Me.Invoke(Sub() TextBox2.Text = files.Length.ToString)
-        Me.Invoke(Sub() TextBox4.Text = w.basePeak)
-        Me.Invoke(Sub() Label5.Text = "Done!")
-        Me.Invoke(Sub() Button1.Enabled = True)
+        Call Me.Invoke(
+            Sub()
+                TextBox1.Text = w.n
+                TextBox2.Text = files.Length.ToString
+                TextBox4.Text = w.basePeak
+                Label5.Text = "Done!"
+                Button1.Enabled = True
+            End Sub)
     End Sub
 
-    Private Shared Function getMaxFile(files As String()) As Task(Of String)
-        Dim background = New Task(Of String)(
-            Function()
-                Return files _
-                    .OrderByDescending(Function(path) path.FileLength) _
-                    .First
-            End Function)
-        background.Start()
-        Return background
+    Private Shared Async Function getMaxFile(files As String()) As Task(Of String)
+        Return Await Task.Run(Function()
+                                  Return files _
+                                     .OrderByDescending(Function(path) path.FileLength) _
+                                     .First
+                              End Function)
     End Function
 
-    Private Shared Function MeasureWidth(fileName As String) As Task(Of (n As Integer, basePeak As Double))
-        Dim background = New Task(Of (n As Integer, basePeak As Double))(Function() CheckMatrixBaseIon(fileName))
-        background.Start()
-        Return background
+    Public Delegate Function CheckMatrixBaseIon(fileName As String) As (n As Integer, basePeak As Double)
+
+    Shared m_checkMatrixBaseIon As CheckMatrixBaseIon
+
+    Public Shared Sub HookIonReader(checkMatrixBaseIon As CheckMatrixBaseIon)
+        m_checkMatrixBaseIon = checkMatrixBaseIon
+    End Sub
+
+    Private Shared Async Function MeasureWidth(fileName As String) As Task(Of (n As Integer, basePeak As Double))
+        Return Await Task.Run(Function() m_checkMatrixBaseIon(fileName))
     End Function
 
     Private Sub TextBox4_TextChanged(sender As Object, e As EventArgs) Handles TextBox4.TextChanged
         If Val(TextBox4.Text) <= 0 Then
-            TextBox3.Text = stdNum.Min(0.001, Val(TextBox3.Text))
+            TextBox3.Text = std.Min(0.001, Val(TextBox3.Text))
         Else
-            TextBox3.Text = stdNum.Max(0.05, Val(TextBox3.Text))
+            TextBox3.Text = std.Max(0.05, Val(TextBox3.Text))
         End If
-    End Sub
-
-    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
-
-    End Sub
-
-    Private Sub TextBox5_TextChanged(sender As Object, e As EventArgs) Handles TextBox5.TextChanged
-
     End Sub
 End Class

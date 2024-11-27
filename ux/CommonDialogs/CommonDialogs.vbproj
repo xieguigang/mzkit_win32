@@ -211,33 +211,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Drawing-net4.8\Drawing-net4.8.vbproj">
+      <Project>{c9d8e14f-d303-400f-9c03-0163d567f135}</Project>
+      <Name>Drawing-net4.8</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj">
-      <Project>{e2caa18e-9705-462a-844d-c809a45d4197}</Project>
+      <Project>{cb37e2ec-4caf-4a87-8348-d50645cbe510}</Project>
       <Name>imaging.NET5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj">
-      <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
+      <Project>{05cdedc2-e4ad-4fb6-992b-eeb0931e8aa1}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\assembly\assembly\assembly-netcore5.vbproj">
-      <Project>{5dce233f-c0e1-41b8-827a-872b0c8cc3bc}</Project>
-      <Name>assembly-netcore5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\assembly\mzPackExtensions\mzPackExtensions.NET5.vbproj">
-      <Project>{25c58b60-eff4-48a7-a48c-6bca408806f7}</Project>
-      <Name>mzPackExtensions.NET5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\assembly\mzPack\mzpack.NET5.vbproj">
-      <Project>{c6d266df-b35f-480b-acb0-15c7d2882769}</Project>
-      <Name>mzpack.NET5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\assembly\ThermoRawFileReader\MSFileReader.NET5.vbproj">
-      <Project>{eee7f7fd-963f-4696-a71f-df70086df3d3}</Project>
-      <Name>MSFileReader.NET5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj">
-      <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
-      <Name>mzmath-netcore5</Name>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\text%25html\html_netcore5.vbproj">
+      <Project>{f9684482-7d4c-429a-b480-d3065aa482e2}</Project>
+      <Name>html_netcore5</Name>
     </ProjectReference>
     <ProjectReference Include="..\BasicMDIForm\BasicMDIForm.vbproj">
       <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
