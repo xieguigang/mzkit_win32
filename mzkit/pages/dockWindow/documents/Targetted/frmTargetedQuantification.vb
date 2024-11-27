@@ -1179,6 +1179,9 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             If Not isid.StringEmpty Then
                 Call MRMIonExtract.LoadSamples(raw, quantifyIS, arguments).DoCall(AddressOf chr.AddRange)
             End If
+        ElseIf Not linearFileDatas.IsNullOrEmpty AndAlso Not linearPack.peakSamples.IsNullOrEmpty Then
+            ' target and IS points
+            Return linearPack.peakSamples.AsParallel.Where(Function(i) i.Name = id OrElse i.Name = isid).AsList
         Else
             Dim arguments As MRMArguments = args.GetMRMArguments
 
