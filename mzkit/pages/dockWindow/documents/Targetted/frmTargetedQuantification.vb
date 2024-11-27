@@ -1178,6 +1178,9 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         End Using
     End Sub
 
+    ''' <summary>
+    ''' the content data result of the imports sample data files
+    ''' </summary>
     Dim scans As New List(Of QuantifyScan)
 
     Private Sub LoadSamplesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadSamplesToolStripMenuItem.Click
