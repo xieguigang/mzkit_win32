@@ -86,6 +86,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Data.IO.MessagePack
@@ -308,7 +309,40 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             Me.linearPack = New LinearPack With {
                 .reference = New Dictionary(Of String, SampleContentLevels) From {
                     {"n/a", New SampleContentLevels(fakeLevels, directMapName)}
-                }
+                },
+                .time = Now,
+                .title = "standards linears data",
+                .targetted = type,
+                .[IS] = Istd.Select(Function(id) New [IS](id)).ToArray,
+                .peakSamples = DirectCast(fileNames, DataFile()) _
+                    .Select(Iterator Function(file) As IEnumerable(Of TargetPeakPoint)
+                                For Each peak In file.ionPeaks
+                                    Yield New TargetPeakPoint() With {
+                                        .Name = peak.ID,
+                                        .SampleName = file.filename,
+                                        .Peak = New ROIPeak() With {
+                                            .base = peak.base,
+                                            .ticks = {New ChromatogramTick((peak.rtmax + peak.rtmin) / 2, peak.TPA)},
+                                            .peakHeight = peak.maxinto,
+                                            .window = New DoubleRange(peak.rtmin, peak.rtmax)
+                                        }
+                                    }
+                                    If Strings.Len(peak.IS) > 0 Then
+                                        Yield New TargetPeakPoint() With {
+                                            .Name = peak.IS,
+                                            .SampleName = file.filename,
+                                            .Peak = New ROIPeak() With {
+                                                .base = peak.base,
+                                                .ticks = {New ChromatogramTick((peak.rtmax + peak.rtmin) / 2, peak.TPA_IS)},
+                                                .peakHeight = peak.maxinto_IS,
+                                                .window = New DoubleRange(peak.rtmin, peak.rtmax)
+                                            }
+                                        }
+                                    End If
+                                Next
+                            End Function) _
+                    .IteratesALL _
+                    .ToArray
             }
 
             targetType = type
@@ -1553,49 +1587,53 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         End If
 
         If file.ExtensionSuffix("csv") Then
-            Dim standardLis As Standards() = file.LoadCsv(Of Standards)
-            Dim is_list = standardLis _
-                .Select(Function(r) r.IS) _
-                .Where(Function(id) Strings.Len(id) > 0) _
-                .Distinct _
-                .ToArray
-
-            DataGridView1.Rows.Clear()
-            DataGridView1.Columns.Clear()
-
-            DataGridView1.Columns.Add(New DataGridViewLinkColumn With {.HeaderText = "Features"})
-            DataGridView1.Columns.Add(New DataGridViewComboBoxColumn With {.HeaderText = "IS"})
-
-            Call frmLinearTableEditor.LoadStandardsToTable(DataGridView1, standardLis, is_list)
-
-            Dim linears As New List(Of StandardCurve)
-            Dim ionGroups = linearFileDatas _
-                .Select(Function(a) a.ionPeaks) _
-                .IteratesALL _
-                .GroupBy(Function(a) a.ID) _
-                .ToDictionary(Function(a) a.Key,
-                              Function(a)
-                                  Return a.ToArray
-                              End Function)
-
-            For i As Integer = 0 To DataGridView1.Rows.Count - 1
-                Dim refRow = DataGridView1.Rows(i)
-                Dim algorithm As New InternalStandardMethod(GetContentTable(refRow), PeakAreaMethods.NetPeakSum)
-                Dim key As String = any.ToString(refRow.Cells(0).Value)
-                Dim ionPoints As IonPeakTableRow() = ionGroups.TryGetValue(key)
-
-                If key = "" OrElse ionPoints.IsNullOrEmpty Then
-                    Continue For
-                End If
-
-                Call linears.Add(algorithm.ToFeatureLinear(ionPoints, key))
-            Next
-
-            linearPack.linears = linears.ToArray
+            Call LoadStandardsLinear(file)
         Else
             linearPack = LinearPack.OpenFile(file)
             Call unifyLoadLinears()
         End If
+    End Sub
+
+    Public Sub LoadStandardsLinear(file As String)
+        Dim standardLis As Standards() = file.LoadCsv(Of Standards)
+        Dim is_list = standardLis _
+            .Select(Function(r) r.IS) _
+            .Where(Function(id) Strings.Len(id) > 0) _
+            .Distinct _
+            .ToArray
+
+        DataGridView1.Rows.Clear()
+        DataGridView1.Columns.Clear()
+
+        DataGridView1.Columns.Add(New DataGridViewLinkColumn With {.HeaderText = "Features"})
+        DataGridView1.Columns.Add(New DataGridViewComboBoxColumn With {.HeaderText = "IS"})
+
+        Call frmLinearTableEditor.LoadStandardsToTable(DataGridView1, standardLis, is_list)
+
+        Dim linears As New List(Of StandardCurve)
+        Dim ionGroups = linearFileDatas _
+            .Select(Function(a) a.ionPeaks) _
+            .IteratesALL _
+            .GroupBy(Function(a) a.ID) _
+            .ToDictionary(Function(a) a.Key,
+                          Function(a)
+                              Return a.ToArray
+                          End Function)
+
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            Dim refRow = DataGridView1.Rows(i)
+            Dim algorithm As New InternalStandardMethod(GetContentTable(refRow), PeakAreaMethods.NetPeakSum)
+            Dim key As String = any.ToString(refRow.Cells(0).Value)
+            Dim ionPoints As IonPeakTableRow() = ionGroups.TryGetValue(key)
+
+            If key = "" OrElse ionPoints.IsNullOrEmpty Then
+                Continue For
+            End If
+
+            Call linears.Add(algorithm.ToFeatureLinear(ionPoints, key))
+        Next
+
+        linearPack.linears = linears.ToArray
     End Sub
 
     Public Iterator Function PullQuantifyResult() As IEnumerable(Of NamedValue(Of DynamicPropertyBase(Of Double))) Implements QuantificationLinearPage.PullQuantifyResult
