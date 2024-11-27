@@ -885,6 +885,10 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                      End Function)
         End If
 
+        If isId.TextEquals("None") Then
+            isId = Nothing
+        End If
+
         Dim contentSampleLevel As New SampleContentLevels(contentLevel, directMap)
         Dim ref As New Standards With {
             .C = New Dictionary(Of String, Double),
@@ -895,7 +899,15 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         }
         Dim levels As New Dictionary(Of String, SampleContentLevels) From {{ionId, contentSampleLevel}}
         Dim refs As New Dictionary(Of String, Standards) From {{ionId, ref}}
-        Dim ISlist As New Dictionary(Of String, [IS]) From {{isId, New [IS] With {.ID = isId, .name = isId, .CIS = 5}}}
+        Dim ISlist As Dictionary(Of String, [IS])
+
+        If isId Is Nothing Then
+            ISlist = New Dictionary(Of String, [IS])
+        Else
+            ISlist = New Dictionary(Of String, [IS]) From {
+                {isId, New [IS] With {.ID = isId, .name = isId, .CIS = 5}}
+            }
+        End If
 
         Return New ContentTable(levels, refs, ISlist)
     End Function
