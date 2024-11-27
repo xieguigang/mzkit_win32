@@ -1597,6 +1597,13 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             linearPack = LinearPack.OpenFile(file)
             Call unifyLoadLinears()
         End If
+
+        Try
+            rowIndex = 0
+            showLinear(args)
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Public Sub LoadStandardsLinear(file As String)
@@ -1648,4 +1655,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             Yield New NamedValue(Of DynamicPropertyBase(Of Double))(quantify.ID, quantify)
         Next
     End Function
+
+    Private Sub DataGridView1_MouseHover(sender As Object, e As EventArgs) Handles DataGridView1.MouseHover
+        Workbench.StatusMessage("Double click on the compound [features] name to view corresponding standard curve plot and data points.", My.Resources.preferences_system_notifications)
+    End Sub
 End Class

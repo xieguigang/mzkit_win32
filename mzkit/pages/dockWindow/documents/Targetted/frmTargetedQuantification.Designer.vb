@@ -128,6 +128,7 @@ Partial Class frmTargetedQuantification
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripComboBox2 = New System.Windows.Forms.ToolStripComboBox()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -353,6 +354,8 @@ Partial Class frmTargetedQuantification
         Me.DataGridView1.RowTemplate.Height = 23
         Me.DataGridView1.Size = New System.Drawing.Size(1192, 202)
         Me.DataGridView1.TabIndex = 0
+        Me.ToolTip1.SetToolTip(Me.DataGridView1, "Double click on the [features] name for view the linear regression plot and stand" &
+        "ard curve linear model data.")
         '
         'Column1
         '
@@ -522,7 +525,7 @@ Partial Class frmTargetedQuantification
         'ToolStripLabel2
         '
         Me.ToolStripLabel2.Name = "ToolStripLabel2"
-        Me.ToolStripLabel2.Size = New System.Drawing.Size(78, 22)
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(77, 22)
         Me.ToolStripLabel2.Text = "Result Tables:"
         '
         'ToolStripComboBox2
@@ -543,7 +546,7 @@ Partial Class frmTargetedQuantification
         '
         'frmTargetedQuantification
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1208, 674)
         Me.Controls.Add(Me.TabControl1)
@@ -627,4 +630,5 @@ Partial Class frmTargetedQuantification
     Friend WithEvents SaveAsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents ViewLinearReportToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolTip1 As ToolTip
 End Class
