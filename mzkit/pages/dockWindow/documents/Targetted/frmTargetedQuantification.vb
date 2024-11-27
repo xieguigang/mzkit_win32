@@ -1324,7 +1324,15 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         For Each file As DataFile In files
             Dim quantify As New QuantifyScan With {
                 .filename = file.filename,
-                .ionPeaks = file.ionPeaks
+                .ionPeaks = file.ionPeaks,
+                .rawX = New DataSet With {
+                    .ID = file.filename,
+                    .Properties = file.GetPeakData
+                },
+                .quantify = New DataSet With {
+                    .ID = file.filename,
+                    .Properties = file.CreateQuantifyData(linears)
+                }
             }
 
             Call echo($"Processing quantify for sample: {file.filename}")
