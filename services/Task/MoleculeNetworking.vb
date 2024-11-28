@@ -53,7 +53,6 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
@@ -68,7 +67,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Public Module MoleculeNetworking
 
@@ -87,7 +86,7 @@ Public Module MoleculeNetworking
                             Dim id As String = a.lib_guid
                             Dim score = GlobalAlignment.TwoDirectionSSM(scan.mzInto, a.mzInto, tolerance)
 
-                            Return (id, stdNum.Min(score.forward, score.reverse))
+                            Return (id, std.Min(score.forward, score.reverse))
                         End Function) _
                 .ToArray
 
@@ -245,14 +244,14 @@ Public Module MoleculeNetworking
                 End If
 
                 If Not types.Any(Function(a)
-                                     Return stdNum.Abs(a.CalcMZ(isotopic.exactMass) - subject.parentMz) < 0.3
+                                     Return std.Abs(a.CalcMZ(isotopic.exactMass) - subject.parentMz) < 0.3
                                  End Function) Then
                     Continue For
                 End If
 
                 align = isotopic.AlignIsotopic(subject.GetMatrix, cos)
 
-                If stdNum.Min(align.forward, align.reverse) >= dotcutoff Then
+                If std.Min(align.forward, align.reverse) >= dotcutoff Then
                     alignments += align
                 End If
             Next
@@ -283,7 +282,7 @@ Public Module MoleculeNetworking
 
                 Dim scores = GlobalAlignment.TwoDirectionSSM(spectrum.ms2, ref, tolerance)
 
-                If stdNum.Min(scores.forward, scores.reverse) >= dotcutoff Then
+                If std.Min(scores.forward, scores.reverse) >= dotcutoff Then
                     alignments += New AlignmentOutput With {
                         .alignments = GlobalAlignment _
                             .CreateAlignment(spectrum.ms2, ref, tolerance) _
