@@ -449,7 +449,14 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 End If
 
                 Dim mz As Double = scan.parentMz
-                Dim adducts = cluster.SubItems.Item(11).Text
+                Dim adducts As String
+
+                If cluster.SubItems.Count <= 11 Then
+                    Call Workbench.Warning($"invalid scan adducts source: {scan_id}")
+                    Continue For
+                Else
+                    adducts = cluster.SubItems.Item(11).Text
+                End If
 
                 Call mzset.Add(New NamedValue(Of Double)(adducts, mz))
             Next
