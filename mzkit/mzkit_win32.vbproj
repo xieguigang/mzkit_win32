@@ -2104,6 +2104,10 @@
       <Project>{373f637b-cf9f-4179-a4b4-a8a76c3454b3}</Project>
       <Name>Targetted.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\visualize\ComprehensiveMsPlot\ComprehensiveMsPlot.vbproj">
+      <Project>{4185f077-56d6-4dd2-9174-9667aaab3803}</Project>
+      <Name>ComprehensiveMsPlot</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\visualize\KCF\KCF.Graph\KCF_graph.NET5.vbproj">
       <Project>{11a119c9-d867-4f57-b689-a921a7345e83}</Project>
       <Name>KCF_graph.NET5</Name>
