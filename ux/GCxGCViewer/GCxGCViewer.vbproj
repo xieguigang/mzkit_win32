@@ -26,6 +26,7 @@
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\..\mzmath\GCxGC\GCxGC.vbproj" />
     <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\visualize\ComprehensiveMsPlot\ComprehensiveMsPlot.vbproj" />
     <ProjectReference Include="..\..\..\visualize\plot\MsPlot.NET5.vbproj" />
     <ProjectReference Include="..\CommonDialogs\CommonDialogs.vbproj" />
     <ProjectReference Include="..\ControlLibrary\ControlLibrary.vbproj" />
@@ -46,6 +47,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2849.39" />
+    <PackageReference Include="System.Numerics.Vectors" Version="4.6.0" />
   </ItemGroup>
 
   <ItemGroup>

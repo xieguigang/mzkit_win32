@@ -370,8 +370,8 @@
     </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.0\lib\net462\System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Resources.Extensions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Resources.Extensions.8.0.0\lib\net462\System.Resources.Extensions.dll</HintPath>
@@ -2103,6 +2103,10 @@
     <ProjectReference Include="..\..\mzmath\TargetedMetabolomics\Targetted.NET5.vbproj">
       <Project>{373f637b-cf9f-4179-a4b4-a8a76c3454b3}</Project>
       <Name>Targetted.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\visualize\ComprehensiveMsPlot\ComprehensiveMsPlot.vbproj">
+      <Project>{4185f077-56d6-4dd2-9174-9667aaab3803}</Project>
+      <Name>ComprehensiveMsPlot</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\visualize\KCF\KCF.Graph\KCF_graph.NET5.vbproj">
       <Project>{11a119c9-d867-4f57-b689-a921a7345e83}</Project>
