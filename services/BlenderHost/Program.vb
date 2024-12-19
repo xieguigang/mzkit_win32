@@ -1,56 +1,56 @@
 ﻿#Region "Microsoft.VisualBasic::25a4248e71674a1ccf8ca9cab4922a74, mzkit\services\BlenderHost\Program.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 111
-    '    Code Lines: 93 (83.78%)
-    ' Comment Lines: 1 (0.90%)
-    '    - Xml Docs: 0.00%
-    ' 
-    '   Blank Lines: 17 (15.32%)
-    '     File Size: 4.65 KB
+' Summaries:
 
 
-    ' Module Program
-    ' 
-    '     Function: Main, RenderSTImagingTargets, StartService
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 111
+'    Code Lines: 93 (83.78%)
+' Comment Lines: 1 (0.90%)
+'    - Xml Docs: 0.00%
+' 
+'   Blank Lines: 17 (15.32%)
+'     File Size: 4.65 KB
+
+
+' Module Program
+' 
+'     Function: Main, RenderSTImagingTargets, StartService
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -71,6 +71,7 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports mzblender
+Imports MZKitWin32.Blender.CommonLibs
 Imports Image = System.Drawing.Image
 
 Public Module Program
@@ -121,7 +122,7 @@ Public Module Program
             Dim metadata As Metadata = load.GetMSIMetadata
             Dim params As New Task.MsImageProperty(metadata.scan_x, metadata.scan_y) With {
                 .background = Color.Black,
-                .colors = ScalerPalette.turbo,
+                .Colors = ScalerPalette.turbo,
                 .enableFilter = True,
                 .Hqx = HqxScales.Hqx_4x,
                 .knn = 3,
@@ -151,7 +152,7 @@ Public Module Program
                     Try
                         Dim pixels = MSI.LoadPixels({mz}, Tolerance.DeltaMass(0.3)).ToArray
                         Dim blender As New SingleIonMSIBlender(pixels, filters:=Nothing, params)
-                        Dim image As Image = blender.Rendering(New Task.PlotProperty, canvasSize)
+                        Dim image As Image = blender.Rendering(New PlotProperty, canvasSize)
 
                         Call VBDebugger.EchoLine(id)
                         Call image.SaveAs($"{output}/{id}.png")
