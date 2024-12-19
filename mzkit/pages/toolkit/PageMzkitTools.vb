@@ -88,6 +88,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.SignalProcessing
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.MatrixViewer
+Imports MZKitWin32.Blender.CommonLibs
 Imports RibbonLib
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
