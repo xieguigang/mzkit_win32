@@ -120,4 +120,6 @@
     </None>
   </ItemGroup>
 
+  <Import Project="..\services\mzkit_win32.blender_argvs\mzkit_win32.blender_argvs.projitems" Label="Shared" />
+
 </Project>
