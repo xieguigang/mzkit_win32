@@ -101,6 +101,7 @@
     <ProjectReference Include="..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
     <ProjectReference Include="..\..\visualize\MsImaging\MsImaging.NET5.vbproj" />
     <ProjectReference Include="..\..\visualize\plot\MsPlot.NET5.vbproj" />
+    <ProjectReference Include="..\services\BlenderCommonLibs\BlenderCommonLibs.vbproj" />
     <ProjectReference Include="..\services\MZWorkRedis\MZWorkRedis.vbproj" />
     <ProjectReference Include="..\ux\ControlLibrary\ControlLibrary.vbproj" />
   </ItemGroup>
