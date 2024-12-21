@@ -24,6 +24,7 @@
     <ProjectReference Include="..\..\..\assembly\SignalReader\SignalReader.vbproj" />
     <ProjectReference Include="..\..\..\visualize\plot\MsPlot.NET5.vbproj" />
     <ProjectReference Include="..\..\mzblender\mzblender.vbproj" />
+    <ProjectReference Include="..\..\services\BlenderCommonLibs\BlenderCommonLibs.vbproj" />
     <ProjectReference Include="..\..\services\MZWork\MZWork.vbproj" />
     <ProjectReference Include="..\..\services\PipelineHost\PipelineHost.vbproj" />
     <ProjectReference Include="..\..\services\Task\Task.vbproj" />

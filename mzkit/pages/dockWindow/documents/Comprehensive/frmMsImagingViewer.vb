@@ -117,6 +117,7 @@ Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
+Imports MZKitWin32.Blender.CommonLibs
 Imports ServiceHub
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports STImaging

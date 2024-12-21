@@ -2144,6 +2144,10 @@
       <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
       <Name>BioDeep</Name>
     </ProjectReference>
+    <ProjectReference Include="..\services\BlenderCommonLibs\BlenderCommonLibs.vbproj">
+      <Project>{8bd765e0-79ca-42c9-b919-4388760fcb2f}</Project>
+      <Name>BlenderCommonLibs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\services\CFM-ID\CFM-ID.vbproj">
       <Project>{aa94821a-2199-48b9-81d3-8ca0a7a575ec}</Project>
       <Name>CFM-ID</Name>
