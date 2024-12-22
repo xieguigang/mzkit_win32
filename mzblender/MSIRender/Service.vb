@@ -151,8 +151,10 @@ Public Class Service : Implements IDisposable
         ' load pixels data
         Select Case ss
             Case NameOf(HeatMapBlender)
-                Dim pixels = HeatMap.PixelData.ParseStream(channel.LoadStream)
+                Dim pixels = HeatMap.PixelData.ParseStream(channel.LoadStream).ToArray
                 Dim dims As Size = data!dims.SizeParser
+
+                Call RunSlavePipeline.SendMessage($" * heatmap rendering based on {pixels.Length} pixels data!")
 
                 blender = New HeatMapBlender(pixels, dims, filters) With {
                     .filters = filters,
@@ -167,6 +169,11 @@ Public Class Service : Implements IDisposable
                 Dim Gpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.G)).ToArray
                 Dim Bpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.B)).ToArray
 
+                Call RunSlavePipeline.SendMessage($" * rgb rendering: {rgb.GetJSON}")
+                Call RunSlavePipeline.SendMessage($" *** heatmap R: {Rpixels.Length} pixels!")
+                Call RunSlavePipeline.SendMessage($" *** heatmap G: {Gpixels.Length} pixels!")
+                Call RunSlavePipeline.SendMessage($" *** heatmap B: {Bpixels.Length} pixels!")
+
                 blender = New RGBIonMSIBlender(Rpixels, Gpixels, Bpixels, TICImage, filters) With {
                     .filters = filters,
                     .sample_outline = sample_outlines
@@ -179,6 +186,8 @@ Public Class Service : Implements IDisposable
                     .MSILayer = pixels,
                     .IonMz = ""
                 }
+
+                Call RunSlavePipeline.SendMessage($" * single ion rendering: {pixels} pixels!")
 
                 blender = New SingleIonMSIBlender(pixels, filters, params, TICImage) With {
                     .filters = filters,
@@ -196,6 +205,9 @@ Public Class Service : Implements IDisposable
                 ' shapes = shapes.Bspline(degree:=5, 100).FilterSmallPolygon(0.1)
 
                 ' sample_outlines = shapes
+
+                Call RunSlavePipeline.SendMessage($" * summary pixels: {pixels.Length}")
+
                 TIC = pixels
                 TICImage = SummaryMSIBlender.Rendering(TIC, dims, "gray", 250, "transparent")
                 blender = New SummaryMSIBlender(pixels, filters) With {
