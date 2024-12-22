@@ -120,9 +120,9 @@ Public Module Program
 
             Dim MSI As New Drawer(load)
             Dim metadata As Metadata = load.GetMSIMetadata
-            Dim params As New Task.MsImageProperty(metadata.scan_x, metadata.scan_y) With {
+            Dim params As New MsImageProperty(metadata.scan_x, metadata.scan_y) With {
                 .background = Color.Black,
-                .Colors = ScalerPalette.turbo,
+                .colors = ScalerPalette.turbo,
                 .enableFilter = True,
                 .Hqx = HqxScales.Hqx_4x,
                 .knn = 3,

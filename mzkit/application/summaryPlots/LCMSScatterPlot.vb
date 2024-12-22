@@ -1,6 +1,7 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports Microsoft.VisualBasic.Imaging
 Imports Mzkit_win32.MatrixViewer
+Imports MZKitWin32.Blender.CommonLibs
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 
 Public Class LCMSScatterPlot : Inherits SummaryPlot
@@ -29,7 +30,7 @@ Public Class LCMSScatterPlot : Inherits SummaryPlot
         Dim intensity As Double() = CLRVector.asNumeric(getFieldVector(table, {"intensity", "area", "into"}))
         Dim raw As IEnumerable(Of ms1_scan) = mz.Select(Function(mzi, i) New ms1_scan(mzi, rt(i), intensity(i)))
         Dim matrix As New Ms1ScatterMatrix("LCMS Scatter Plot", raw)
-        Dim args As New Task.PlotProperty With {
+        Dim args As New PlotProperty With {
             .point_size = 5
         }
         Dim size As New Size(2400, 1800)

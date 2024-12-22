@@ -89,11 +89,11 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports MZKitWin32.Blender.CommonLibs
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
-Imports Task
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
 Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
@@ -283,7 +283,7 @@ UseCheckedList:
             If TypeOf viewer Is frmMsImagingViewer Then
                 Call DirectCast(viewer, frmMsImagingViewer).renderByMzList({mz}, Nothing)
             End If
-        ElseIf WindowModules.viewer.params.app = FileApplicationClass.STImaging Then
+        ElseIf WindowModules.viewer.params.app = MZKitWin32.Blender.CommonLibs.FileApplicationClass.STImaging Then
             ' is a gene id
             Call WindowModules.viewer.renderByName(ToolStripSpringTextBox1.Text, $"STImaging of '{ToolStripSpringTextBox1.Text}'")
         Else
