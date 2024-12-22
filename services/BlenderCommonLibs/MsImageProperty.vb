@@ -71,17 +71,12 @@
 #End Region
 
 Imports System.ComponentModel
-Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports System.Reflection
 Imports System.Runtime.CompilerServices
-Imports System.Windows.Forms
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
@@ -110,6 +105,51 @@ End Enum
 Public Enum Polarity As Integer
     Positive = IonModes.Positive
     Negative = IonModes.Negative
+End Enum
+
+''' <summary>
+''' 当前的这个mzpack原始数据文件的应用程序类型
+''' </summary>
+Public Enum FileApplicationClass As Integer
+
+    ''' <summary>
+    ''' 普通LC-MS非靶向
+    ''' </summary>
+    <Description("0212F3ED-1FA8-4CB3-B95D-33F43AD60945")> LCMS
+    ''' <summary>
+    ''' 普通GC-MS靶向/非靶向
+    ''' </summary>
+    <Description("EE446B9F-204F-4FF7-8302-1D4480FE46AB")> GCMS
+    ''' <summary>
+    ''' LC-MS/MS靶向
+    ''' </summary>
+    <Description("60866B4E-708F-4B94-9B22-E4C21D4D97DD")> LCMSMS
+
+#Region "Comprehensive Spectrum"
+
+    ''' <summary>
+    ''' GCxGC原始数据
+    ''' </summary>
+    <Description("B08A37D3-44BC-4D6C-86C9-D99726368446")> GCxGC
+    ''' <summary>
+    ''' 质谱成像
+    ''' </summary>
+    <Description("616DE505-3D78-45FA-BCA7-35ECEF3FE88D")> MSImaging
+    ''' <summary>
+    ''' 三维空间成像
+    ''' </summary>
+    <Description("616DE505-3D78-45FA-BCA7-35ECEF3FE83D")> MSImaging3D
+
+    ''' <summary>
+    ''' single cell metabolomics data
+    ''' </summary>
+    <Description("7F1953AB-E36A-4DFA-88D0-2EDCD0EC8BFC")> SingleCellsMetabolomics
+#End Region
+
+    ''' <summary>
+    ''' [imported] 10x genomics spatial imaging
+    ''' </summary>
+    <Description("A1ACD1CD-3B16-4C47-B3ED-9D89EF3F2DCB")> STImaging = 100
 End Enum
 
 Public Class MsImageProperty

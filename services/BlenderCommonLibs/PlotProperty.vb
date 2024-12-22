@@ -59,7 +59,6 @@
 #End Region
 
 Imports System.ComponentModel
-Imports System.Drawing
 Imports System.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas

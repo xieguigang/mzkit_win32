@@ -11,8 +11,16 @@
     <EnableVisualStyles>True</EnableVisualStyles>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <UseWindowsForms>true</UseWindowsForms>
+    <MyType>WindowsForms</MyType>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  
   <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="8.0.10" />
   </ItemGroup>
