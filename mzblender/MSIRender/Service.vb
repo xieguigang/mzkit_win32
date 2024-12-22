@@ -255,6 +255,10 @@ Public Class Service : Implements IDisposable
         Dim canvas As Size = json!canvas.LoadJSON(Of Size)
         Dim sample As String = json!sample
 
+        If blender Is Nothing Then
+            Throw New InvalidOperationException("needs open a blender session at first!")
+        End If
+
         RunSlavePipeline.SendMessage("Do ms-imaging rendering:")
         RunSlavePipeline.SendMessage(json!args)
         RunSlavePipeline.SendMessage(json!params)
