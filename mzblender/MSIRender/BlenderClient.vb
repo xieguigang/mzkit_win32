@@ -163,6 +163,11 @@ Public Class BlenderClient : Implements IDisposable
             {"configs", configs}
         }
         Dim result = handleRequest(New RequestStream(Service.protocolHandle, Protocol.OpenSession, payload.GetJson))
+
+        If result.IsHTTP_RFC Then
+            Throw New Exception(result.GetUTF8String)
+        End If
+
         Return result
     End Function
 

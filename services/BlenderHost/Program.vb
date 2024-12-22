@@ -76,6 +76,10 @@ Imports Image = System.Drawing.Image
 
 Public Module Program
 
+    Sub New()
+        Call SkiaDriver.Register()
+    End Sub
+
     Public Function Main() As Integer
         Return GetType(Program).RunCLI(App.CommandLine)
     End Function
