@@ -231,20 +231,6 @@ Public Class MsImageProperty
         ' showOutline = info.TryGetValue(NameOf(showOutline), [default]:="false").ParseBoolean
     End Sub
 
-    Sub New(render As Drawer)
-        scan_x = render.dimension.Width
-        scan_y = render.dimension.Height
-        background = Color.Black
-        resolution = render.pixelReader.resolution
-
-        If TypeOf render.pixelReader Is ReadIbd Then
-            UUID = DirectCast(render.pixelReader, ReadIbd).UUID
-            fileSize = DirectCast(render.pixelReader, ReadIbd).ibd _
-                .size _
-                .DoCall(AddressOf StringFormats.Lanudry)
-        End If
-    End Sub
-
     Sub New()
         background = Color.Black
         resolution = 17
@@ -277,6 +263,11 @@ Public Class MsImageProperty
         _UUID = UUID
         _fileSize = fileSize
         _resolution = resolution
+    End Sub
+
+    Public Sub SetimzML(fileSize As String, uuid As String)
+        _UUID = uuid
+        _fileSize = fileSize
     End Sub
 
     'Public Function Smooth(img As Bitmap) As Bitmap

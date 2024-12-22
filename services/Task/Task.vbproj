@@ -198,6 +198,7 @@
     <Compile Include="IonLibrary.vb" />
     <Compile Include="GCMSQuantifyIon.vb" />
     <Compile Include="MetaDNASearch.vb" />
+    <Compile Include="MsImageProperty.vb" />
     <Compile Include="Properties\ICopyProperties.vb" />
     <Compile Include="Properties\PixelProperty.vb" />
     <Compile Include="Properties\AlignmentProperty.vb" />
@@ -412,6 +413,10 @@
     <ProjectReference Include="..\BioDeep\BioDeep.vbproj">
       <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
       <Name>BioDeep</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BlenderCommonLibs\BlenderCommonLibs.vbproj">
+      <Project>{8bd765e0-79ca-42c9-b919-4388760fcb2f}</Project>
+      <Name>BlenderCommonLibs</Name>
     </ProjectReference>
     <ProjectReference Include="..\MZWork\MZWork.vbproj">
       <Project>{0a48789b-a35c-49ba-8224-c604ad14f044}</Project>
