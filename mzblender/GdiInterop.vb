@@ -57,7 +57,6 @@
 Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Runtime.CompilerServices
-Imports Microsoft.VisualBasic.Imaging
 
 #If NET48 Then
 Imports Image = System.Drawing.Image
@@ -65,6 +64,8 @@ Imports Bitmap = System.Drawing.Bitmap
 #Else
 Imports Image = Microsoft.VisualBasic.Imaging.Image
 Imports Bitmap = Microsoft.VisualBasic.Imaging.Bitmap
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Driver
 #End If
 
 Module GdiInterop
@@ -74,7 +75,12 @@ Module GdiInterop
 #If NET48 Then
         Return image
 #Else
-        Throw New NotImplementedException
+        Using ms As New MemoryStream
+            Call image.Save(ms, ImageFormats.Bmp)
+            Call ms.Seek(Scan0, SeekOrigin.Begin)
+
+            Return System.Drawing.Image.FromStream(ms)
+        End Using
 #End If
     End Function
 
@@ -97,7 +103,12 @@ Module GdiInterop
 #If NET48 Then
         Return image
 #Else
-        Throw New NotImplementedException
+        Using ms As New MemoryStream
+            Call image.Save(ms, format:=ImageFormat.Png)
+            Call ms.Seek(Scan0, SeekOrigin.Begin)
+
+            Return DriverLoad.LoadFromStream(ms)
+        End Using
 #End If
     End Function
 
