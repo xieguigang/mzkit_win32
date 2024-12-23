@@ -78,6 +78,7 @@ Imports MZKitWin32.Blender.CommonLibs
 Public Class BlenderClient : Implements IDisposable
 
     ReadOnly host As IPEndPoint
+    ReadOnly log As Action(Of String)
 
     ''' <summary>
     ''' the MSI render type, one of the value of:
@@ -96,11 +97,12 @@ Public Class BlenderClient : Implements IDisposable
 
     Private disposedValue As Boolean
 
-    Sub New(host As IPEndPoint, Optional debug As Boolean = False)
+    Sub New(host As IPEndPoint, log As Action(Of String), Optional debug As Boolean = False)
         Dim map_name As String = If(debug, "debug-blender", Service.GetMappedChannel(App.PID))
 
         Me.host = host
         Me.channel = New MemoryPipe(MapObject.FromPointer(map_name, 128 * ByteSize.MB))
+        Me.log = log
     End Sub
 
     Private Function handleRequest(req As RequestStream) As RequestStream
@@ -108,12 +110,18 @@ Public Class BlenderClient : Implements IDisposable
     End Function
 
     Public Function MSIRender(args As PlotProperty, params As MsImageProperty, canvas As Size) As Image
-        Dim payload As New Dictionary(Of String, String)
-        payload.Add("sample", sample_tag)
-        payload.Add("canvas", canvas.GetJson)
-        payload.Add("params", params.GetJSON)
-        payload.Add("args", args.GetJSON)
-        Dim req As New RequestStream(Service.protocolHandle, Protocol.MSIRender, payload.GetJson)
+        Dim payload As New Dictionary(Of String, String) From {
+            {"sample", sample_tag},
+            {"canvas", canvas.GetJson},
+            {"params", params.GetJSON},
+            {"args", args.GetJSON}
+        }
+        Dim payload_jsonstr As String = payload.GetJson
+
+        Call log($"do ms-imaging render: {host.ToString}")
+        Call log($"msi_render payload: {payload_jsonstr}")
+
+        Dim req As New RequestStream(Service.protocolHandle, Protocol.MSIRender, payload_jsonstr)
         Dim resp = handleRequest(req)
 
         If NetResponse.IsHTTP_RFC(resp) Then
@@ -162,7 +170,12 @@ Public Class BlenderClient : Implements IDisposable
             {"params", params_str},
             {"configs", configs}
         }
-        Dim result = handleRequest(New RequestStream(Service.protocolHandle, Protocol.OpenSession, payload.GetJson))
+        Dim payload_json As String = payload.GetJson
+
+        Call log($"open msi-imaging render session: {host.ToString}")
+        Call log($"argument payload for the session creator: {payload_json}")
+
+        Dim result = handleRequest(New RequestStream(Service.protocolHandle, Protocol.OpenSession, payload_json))
 
         If result.IsHTTP_RFC Then
             Throw New Exception(result.GetUTF8String)

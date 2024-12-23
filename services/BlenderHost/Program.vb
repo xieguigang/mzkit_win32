@@ -63,6 +63,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports Darwinism.HPC.Parallel
 Imports Microsoft.VisualBasic.CommandLine
+Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
@@ -96,6 +97,8 @@ Public Module Program
         If (Not is_debug) AndAlso master > 0 Then
             Call BackgroundTaskUtils.BindToMaster(parentId:=master, kill:=localhost)
         End If
+
+        Call RunSlavePipeline.SendMessage($"start blender host listen at port={port}!")
 
         Return localhost.Run
     End Function
