@@ -2,6 +2,9 @@
 
 Namespace Configuration
 
+    ''' <summary>
+    ''' parameters for the ms-imaging raster filters
+    ''' </summary>
     Public Class Filters
 
         Public Property filters As String()

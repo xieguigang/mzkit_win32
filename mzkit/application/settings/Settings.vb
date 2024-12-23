@@ -83,6 +83,8 @@ Namespace Configuration
         Public Property random As String
         Public Property recentFiles As String()
 
+        Public Property local_blender As Boolean = True
+
         Public Property workspaceFile As String
         ''' <summary>
         ''' username|password
@@ -121,6 +123,7 @@ Namespace Configuration
             biodeep = Nothing
             msi_filters = Filters.DefaultFilters
             tissue_map = TissueMap.GetDefault
+            local_blender = True
 
             Return Me
         End Function

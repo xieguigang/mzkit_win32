@@ -58,6 +58,9 @@ Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce
 
 Namespace Configuration
 
+    ''' <summary>
+    ''' network viewer layout arguments
+    ''' </summary>
     Public Class NetworkArguments
 
         Public Property layout As ForceDirectedArgs

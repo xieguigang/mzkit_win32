@@ -224,7 +224,16 @@ Public Class frmMsImagingViewer
     End Sub
 
     Public Sub HookBlender()
-        blender = New BlenderClient(RenderService.MSIBlender, log:=AddressOf Workbench.LogText, debug:=RenderService.debug)
+        ' 20241223 use the local client for run debug
+        If Globals.Settings.local_blender Then
+            blender = New BlenderClient(log:=AddressOf Workbench.LogText, debug:=RenderService.debug)
+        Else
+            blender = New BlenderClient(RenderService.MSIBlender,
+                log:=AddressOf Workbench.LogText,
+                debug:=RenderService.debug
+            )
+        End If
+
         MSIservice.blender = blender
         MSIservice.blender.SetFilters(loadFilters)
     End Sub
