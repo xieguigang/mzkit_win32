@@ -224,7 +224,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Public Sub HookBlender()
-        blender = New BlenderClient(RenderService.MSIBlender, debug:=RenderService.debug)
+        blender = New BlenderClient(RenderService.MSIBlender, log:=AddressOf Workbench.LogText, debug:=RenderService.debug)
         MSIservice.blender = blender
         MSIservice.blender.SetFilters(loadFilters)
     End Sub
