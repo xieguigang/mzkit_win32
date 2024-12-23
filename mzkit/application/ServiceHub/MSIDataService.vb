@@ -746,6 +746,10 @@ Namespace ServiceHub
                 getBuf = data.ChunkBuffer
                 checkOffline = 0
 
+                If getBuf.IsNullOrEmpty Then
+                    Call Workbench.Warning("buffer data is empty, no pixel data could be parsed for the layer rendering!")
+                End If
+
                 Return PixelScanIntensity.Parse(data.ChunkBuffer)
             End If
         End Function
