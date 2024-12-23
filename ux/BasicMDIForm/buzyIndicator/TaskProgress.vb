@@ -292,7 +292,9 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
                                 Optional host As Control = Nothing)
 
         Dim progress As New TaskProgress With {
-            .TaskCancel = cancel
+            .TaskCancel = If(cancel, Sub()
+                                         ' do nothing
+                                     End Sub)
         }
         Dim mask As MaskForm = MaskForm.CreateMask(Workbench.AppHost)
 

@@ -2348,7 +2348,10 @@ Public Class frmMsImagingViewer
                     If Not rendering Is Nothing Then
                         Call Invoke(rendering)
                     End If
-                End Sub, "Render MSI", $"Rendering MSI in {summary.Description} mode...")
+                End Sub, "Render MSI", $"Rendering MSI in {summary.Description} mode...",
+                         cancel:=Sub()
+
+                                 End Sub)
         End If
 
         If Not rendering Is Nothing Then
