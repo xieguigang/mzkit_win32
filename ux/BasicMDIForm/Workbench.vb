@@ -60,7 +60,9 @@ Public NotInheritable Class Workbench
     ''' </summary>
     ''' <param name="text"></param>
     Public Shared Sub LogText(text As String)
-        Call AppHost.LogText(text)
+        If Not AppHost Is Nothing Then
+            Call AppHost.LogText(text)
+        End If
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
