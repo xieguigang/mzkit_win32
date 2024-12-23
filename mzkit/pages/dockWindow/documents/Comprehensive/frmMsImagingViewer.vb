@@ -2445,9 +2445,9 @@ Public Class frmMsImagingViewer
         mzdiff = params.GetTolerance
         targetMz = selectedMz.Select(Function(a) a.mz).ToArray
         rgb_configs = New RGBConfigs With {
-            .R = New NamedValue(Of Double)(r.title, r.mz),
-            .G = New NamedValue(Of Double)(g.title, g.mz),
-            .B = New NamedValue(Of Double)(b.title, b.mz)
+            .R = New MzAnnotation(r.title, r.mz),
+            .G = New MzAnnotation(g.title, g.mz),
+            .B = New MzAnnotation(b.title, b.mz)
         }
 
         Call ProgressSpinner.DoLoading(Sub() Call createRGB(MSIservice.LoadPixels(targetMz, mzdiff), r.mz, g.mz, b.mz))
