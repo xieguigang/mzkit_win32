@@ -161,6 +161,7 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
                 WebView21.CoreWebView2.ExecuteScriptAsync($"document.querySelector('#title').innerHTML = 'Task Cancel...';")
                 dialogClosed = True
                 TaskCancel()
+                Close()
             End If
         End SyncLock
     End Sub
