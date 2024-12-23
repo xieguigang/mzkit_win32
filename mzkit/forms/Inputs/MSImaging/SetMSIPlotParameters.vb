@@ -57,7 +57,7 @@
         Else
             Using file As New SaveFileDialog With {
                 .FileName = TextBox1.Text,
-                .Filter = "Image File(*.png)|*.png|Scalable Vector Graphics(*.svg)|*.svg"
+                .Filter = "Image File(*.png)|*.png|Scalable Vector Graphics(*.svg)|*.svg|PDF image(*.pdf)|*.pdf"
             }
                 If file.ShowDialog = DialogResult.OK Then
                     TextBox1.Text = file.FileName
