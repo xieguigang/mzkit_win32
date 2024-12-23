@@ -97,10 +97,23 @@ Public Class Service : Implements IDisposable
     Public Shared ReadOnly protocolHandle As Long = ProtocolAttribute.GetProtocolCategory(GetType(Service)).EntryPoint
 
     Sub New(port As Integer, masterChannel As String)
+        Call Me.New(masterChannel)
+
         socket = New TcpServicesSocket(port) With {.KeepsAlive = False}
         socket.ResponseHandler = AddressOf New ProtocolHandler(Me).HandleRequest
+    End Sub
+
+    ''' <summary>
+    ''' construct a local services handler
+    ''' </summary>
+    ''' <param name="masterChannel"></param>
+    Sub New(masterChannel As String)
         channel = New MemoryPipe(MapObject.Allocate(128 * ByteSize.MB, hMemP:=GetMappedChannel(masterChannel)))
     End Sub
+
+    Public Shared Function CreateHandler(masterChannel As String) As ProtocolHandler
+        Return New ProtocolHandler(New Service(masterChannel))
+    End Function
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Function GetMappedChannel(master As String) As String

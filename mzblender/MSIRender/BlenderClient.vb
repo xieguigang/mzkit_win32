@@ -67,7 +67,7 @@ Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports Darwinism.HPC.Parallel
 Imports Darwinism.IPC.Networking.HTTP
-Imports Darwinism.IPC.Networking.Tcp
+Imports Darwinism.IPC.Networking.Protocols
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 Imports Microsoft.VisualBasic.Data.IO
@@ -78,7 +78,7 @@ Imports MZKitWin32.Blender.CommonLibs
 
 Public Class BlenderClient : Implements IDisposable
 
-    ReadOnly host As IPEndPoint
+    ReadOnly host As IRequestClient
     ReadOnly log As Action(Of String)
 
     ''' <summary>
@@ -94,21 +94,35 @@ Public Class BlenderClient : Implements IDisposable
     Public ReadOnly Property channel As MemoryPipe
 
     Dim sample_tag As String
-    Dim timeout_sec As Double = 6
 
     Private disposedValue As Boolean
 
+    ''' <summary>
+    ''' connect to remote services
+    ''' </summary>
+    ''' <param name="host"></param>
+    ''' <param name="log"></param>
+    ''' <param name="debug"></param>
     Sub New(host As IPEndPoint, log As Action(Of String), Optional debug As Boolean = False)
         Dim map_name As String = If(debug, "debug-blender", Service.GetMappedChannel(App.PID))
 
-        Me.host = host
+        Me.host = New RequestClient(host)
         Me.channel = New MemoryPipe(MapObject.FromPointer(map_name, 128 * ByteSize.MB))
         Me.log = log
     End Sub
 
-    Private Function handleRequest(req As RequestStream) As RequestStream
-        Return New TcpRequest(host).SetTimeOut(TimeSpan.FromSeconds(timeout_sec)).SendMessage(req)
-    End Function
+    ''' <summary>
+    ''' run in local
+    ''' </summary>
+    ''' <param name="log"></param>
+    ''' <param name="debug"></param>
+    Sub New(log As Action(Of String), Optional debug As Boolean = False)
+        Dim map_name As String = If(debug, "debug-blender", Service.GetMappedChannel(App.PID))
+
+        Me.host = New LocalRequestClient(Service.CreateHandler(map_name))
+        Me.channel = New MemoryPipe(MapObject.FromPointer(map_name, 128 * ByteSize.MB))
+        Me.log = log
+    End Sub
 
     Public Function MSIRender(args As PlotProperty, params As MsImageProperty, canvas As Size) As Image
         Dim payload As New Dictionary(Of String, String) From {
@@ -123,7 +137,7 @@ Public Class BlenderClient : Implements IDisposable
         Call log($"msi_render payload: {payload_jsonstr}")
 
         Dim req As New RequestStream(Service.protocolHandle, Protocol.MSIRender, payload_jsonstr)
-        Dim resp = handleRequest(req)
+        Dim resp = host.SendMessage(req)
 
         If NetResponse.IsHTTP_RFC(resp) Then
             Dim err As String = resp.GetUTF8String
@@ -149,17 +163,19 @@ Public Class BlenderClient : Implements IDisposable
             Call channel.WriteBuffer(ms.ToArray)
         End Using
 
-        Return handleRequest(New RequestStream(Service.protocolHandle, Protocol.SetHEmap, "ok!"))
+        Return host.SendMessage(New RequestStream(Service.protocolHandle, Protocol.SetHEmap, "ok!"))
     End Function
 
     Public Function SetFilters(filters As RasterPipeline)
         Dim shaders As String() = filters.Select(Function(f) f.ToScript).ToArray
-        Return handleRequest(New RequestStream(Service.protocolHandle, Protocol.SetFilters, shaders.GetJson))
+        Dim req As New RequestStream(Service.protocolHandle, Protocol.SetFilters, shaders.GetJson)
+        Return host.SendMessage(req)
     End Function
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Function SetIntensityRange(range As DoubleRange)
-        Return handleRequest(New RequestStream(Service.protocolHandle, Protocol.SetIntensityRange, {range.Min, range.Max}.GetJson))
+        Dim req As New RequestStream(Service.protocolHandle, Protocol.SetIntensityRange, {range.Min, range.Max}.GetJson)
+        Return host.SendMessage(req)
     End Function
 
     Public Function OpenSession(ss As Type, dims As Size, args As PlotProperty, params As MsImageProperty, configs As String)
@@ -177,7 +193,8 @@ Public Class BlenderClient : Implements IDisposable
         Call log($"open msi-imaging render session: {host.ToString}")
         Call log($"argument payload for the session creator: {payload_json}")
 
-        Dim result = handleRequest(New RequestStream(Service.protocolHandle, Protocol.OpenSession, payload_json))
+        Dim req As New RequestStream(Service.protocolHandle, Protocol.OpenSession, payload_json)
+        Dim result = host.SendMessage(req)
 
         If result.IsHTTP_RFC Then
             Throw New Exception(result.GetUTF8String)
@@ -188,7 +205,7 @@ Public Class BlenderClient : Implements IDisposable
 
     Public Function GetTrIQIntensity(trIQ As Double) As Double
         Dim req As New RequestStream(Service.protocolHandle, Protocol.GetTrIQIntensity, NetworkByteOrderBitConvertor.GetBytes(trIQ))
-        Dim resp As RequestStream = handleRequest(req)
+        Dim resp As RequestStream = host.SendMessage(req)
         Dim dbls = NetworkByteOrderBitConvertor.ToDouble(resp.ChunkBuffer)
         Return dbls
     End Function
@@ -197,7 +214,7 @@ Public Class BlenderClient : Implements IDisposable
         If Not disposedValue Then
             If disposing Then
                 ' TODO: 释放托管状态(托管对象)
-                Call handleRequest(New RequestStream(Service.protocolHandle, Protocol.Shutdown, "Close"))
+                Call host.SendMessage(New RequestStream(Service.protocolHandle, Protocol.Shutdown, "Close"))
             End If
 
             ' TODO: 释放未托管的资源(未托管的对象)并重写终结器
