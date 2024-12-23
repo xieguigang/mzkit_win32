@@ -63,6 +63,7 @@
 
 Imports System.Drawing.Imaging
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports Darwinism.HPC.Parallel
 Imports Darwinism.IPC.Networking.HTTP
@@ -156,6 +157,7 @@ Public Class BlenderClient : Implements IDisposable
         Return handleRequest(New RequestStream(Service.protocolHandle, Protocol.SetFilters, shaders.GetJson))
     End Function
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Function SetIntensityRange(range As DoubleRange)
         Return handleRequest(New RequestStream(Service.protocolHandle, Protocol.SetIntensityRange, {range.Min, range.Max}.GetJson))
     End Function
