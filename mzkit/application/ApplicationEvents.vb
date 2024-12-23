@@ -484,7 +484,10 @@ Type 'q()' to quit R.
 
             ' start background services
             Call RedisService.Start()
-            Call RenderService.Start()
+
+            If Not Globals.Settings.local_blender Then
+                Call RenderService.Start()
+            End If
         End Sub
 
         Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
