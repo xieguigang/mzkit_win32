@@ -19,14 +19,17 @@ const filter_file as string = ?"--filters" || "";
 const colorSet as string = ?"--colors" || "viridis:turbo";
 const colorLevels as integer = ?"--levels" || 120;
 const hostName as string = ?"--host" || "localhost";
-const plot_size          = ?"--size" || "3300,2000";
-const plot_dpi           = ?"--dpi"  || 120;
-const plot_padding       = ?"--padding" || "padding: 200px 600px 200px 250px;";
-const mzlist as double   = mz
+
+# config plot parameters
+let plot_size          = ?"--size" || "3300,2000";
+let plot_dpi           = ?"--dpi"  || 120;
+let plot_padding       = ?"--padding" || "padding: 200px 600px 200px 250px;";
+let mzlist as double   = mz
 |> strsplit(",", fixed = TRUE)
 |> unlist()
 |> as.numeric()
 ;
+
 const pixelsData = app::getMSIData(
     MSI_service = appPort, 
     mz          = mzlist, 
@@ -93,12 +96,22 @@ let make_plot = function() {
     ;
 }
 
-if (filetype == "svg") {
-    svg(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
-        make_plot();
-    }
-} else {
-    bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
-        make_plot();
+plot_size <- as.integer(unlist(strsplit(plot_size, ",")));
+
+switch(filetype, default -> stop(`invalid file type of plot output: ${filetype}`)) {
+    svg = {
+        svg(file = savefile, size = plot_size, dpi = plot_dpi) {
+            make_plot();
+        }
+    },
+    png = {
+        bitmap(file = savefile, size = plot_size, dpi = plot_dpi) {
+            make_plot();
+        }
+    },
+    pdf = {
+        pdf(file = savefile, size = plot_size, dpi = plot_dpi) {
+            make_plot();
+        }
     }
 }

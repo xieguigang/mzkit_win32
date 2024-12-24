@@ -16,10 +16,12 @@ const savefile as string = ?"--save"    || stop("A file path to save plot image 
 const overlap_totalIons as boolean = ?"--overlap-tic" || FALSE;
 const hostName as string = ?"--host" || "localhost";
 const filter_file as string = ?"--filters" || ""; 
-const plot_size          = ?"--size" || "3300,2000";
-const plot_dpi           = ?"--dpi"  || 120;
-const plot_padding       = ?"--padding" || "padding: 200px 600px 200px 250px;";
-const mzlist as double   = mz
+
+# config plot parameters
+let plot_size          = ?"--size" || "3300,2000";
+let plot_dpi           = ?"--dpi"  || 120;
+let plot_padding       = ?"--padding" || "padding: 200px 600px 200px 250px;";
+let mzlist as double   = mz
 |> strsplit(",", fixed = TRUE)
 |> unlist()
 |> as.numeric()
@@ -110,14 +112,26 @@ let make_plot = function() {
     ;
 }
 
-print(msi_filters);
+plot_size <- as.integer(unlist(strsplit(plot_size, ",")));
 
-if (filetype == "svg") {
-    svg(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
-        make_plot();
-    }
-} else {
-    bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
-        make_plot();
+print(msi_filters);
+print("plot size of the rgb ions heatmap:");
+print(plot_size);
+
+switch(filetype, default -> stop(`invalid file type of plot output: ${filetype}`)) {
+    svg = {
+        svg(file = savefile, size = plot_size, dpi = plot_dpi) {
+            make_plot();
+        }
+    },
+    png = {
+        bitmap(file = savefile, size = plot_size, dpi = plot_dpi) {
+            make_plot();
+        }
+    },
+    pdf = {
+        pdf(file = savefile, size = plot_size, dpi = plot_dpi) {
+            make_plot();
+        }
     }
 }
