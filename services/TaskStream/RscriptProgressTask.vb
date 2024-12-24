@@ -557,6 +557,7 @@ Public NotInheritable Class RscriptProgressTask
 --mzdiff ""{mzdiff}""
 --into.cutoff ""{intocutoff}""
 --TrIQ ""{TrIQ}""
+--sink ""{saveAs.TrimSuffix}.log""
 {If(binary, "--bin", "")} 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
