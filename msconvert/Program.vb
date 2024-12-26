@@ -16,6 +16,7 @@ Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.InteropService.SharedORM
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 Imports Microsoft.VisualBasic.Data.GraphTheory.GridGraph
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Driver
@@ -228,7 +229,7 @@ Imports MZWorkPack
             offsets:=offsets)
 
         Using buf As Stream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
-            Call union.Write(buf, progress:=AddressOf RunSlavePipeline.SendMessage)
+            Call union.Write(buf, headerSize:=128 * ByteSize.MB, progress:=AddressOf RunSlavePipeline.SendMessage)
             Call offsets.GetJson.SaveTo(offset_json)
         End Using
 

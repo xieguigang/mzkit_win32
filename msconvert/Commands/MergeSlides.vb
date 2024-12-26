@@ -30,6 +30,10 @@ Public Module MergeSlides
     ''' <param name="layout"></param>
     ''' <param name="fileNameAsSourceTag"></param>
     ''' <returns></returns>
+    ''' <remarks>
+    ''' when do save of the mzPack rawdata file, should be increase the header size.
+    ''' 
+    ''' </remarks>
     Public Function JoinDataSet(file As IEnumerable(Of String), layout As String, fileNameAsSourceTag As Boolean,
                                 Optional ByRef offsets As Dictionary(Of String, Integer()) = Nothing) As mzPack
 
