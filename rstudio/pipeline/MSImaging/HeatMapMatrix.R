@@ -16,6 +16,7 @@ const savefile as string     = ?"--save"   || stop("A file path to save plot ima
 const colorPalette as string = ?"--scaler" || "viridis:turbo";
 const size_str as string     = ?"--size"   || "2800,2100";
 const layout_str as string   = ?"--layout" || "3,3";
+const save_pdf as string = file.path(dirname(savefile), `${basename(savefile)}.pdf`);
 
 const mzSet = mz 
 |> readText() 
@@ -45,29 +46,39 @@ const images  = lapply(mzSet, function(ion) {
     ion;
 });
 
+let matrix_plot = function() {
+    #' images    
+    #' 
+    #' 1. type  precursor type information string
+    #' 2. title   the ion metabolite name
+    #' 3. layer   the MSI ion layer data
+    #' 4. mz      the target ion m/z value
+    #' 
+    images |> PlotMSIMatrixHeatmap(
+        layout        = layout,
+        colorSet      = colorPalette,
+        MSI_TrIQ      = 0.85,
+        size          = size, 
+        canvasPadding = padding, 
+        cellPadding   = [200, 100, 0, 100],
+        strict        = FALSE,
+        gaussian      = 0
+    );
+}
+
 bitmap(
     file    = savefile,
     size    = size, 
     padding = `padding: ${padding[1]}px ${padding[2]}px ${padding[3]}px ${padding[4]}px;`, 
     fill    = "black"
 );
+matrix_plot();
+dev.off();
 
-#' images    
-#' 
-#' 1. type  precursor type information string
-#' 2. title   the ion metabolite name
-#' 3. layer   the MSI ion layer data
-#' 4. mz      the target ion m/z value
-#' 
-images |> PlotMSIMatrixHeatmap(
-    layout        = layout,
-    colorSet      = colorPalette,
-    MSI_TrIQ      = 0.85,
-    size          = size, 
-    canvasPadding = padding, 
-    cellPadding   = [200, 100, 0, 100],
-    strict        = FALSE,
-    gaussian      = 0
+pdf(file = save_pdf, 
+    size    = size, 
+    padding = `padding: ${padding[1]}px ${padding[2]}px ${padding[3]}px ${padding[4]}px;`, 
+    fill    = "black"
 );
-
+matrix_plot();
 dev.off();
