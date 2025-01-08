@@ -7,7 +7,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports TaskStream
 Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
-Imports stdNum = System.Math
+Imports std = System.Math
 Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 
 Public Class InputMatrixIons
@@ -225,7 +225,7 @@ Public Class InputMatrixIons
         Dim mzList As Double() = data.Column(mzrange_i).Select(Function(str) str.ParseDouble).ToArray
         Dim exact_mass As Double() = formula _
             .Select(Function(f)
-                        Return FormulaScanner.ScanFormula(f).ExactMass
+                        Return FormulaScanner.EvaluateExactMass(f)
                     End Function) _
             .ToArray
 
@@ -242,9 +242,9 @@ Public Class InputMatrixIons
             For Each type As MzCalculator In Provider.Positives
                 Dim mz_ref As Double = type.CalcMZ(mass)
 
-                If stdNum.Abs(mz_ref - mzi) < d Then
+                If std.Abs(mz_ref - mzi) < d Then
                     target = type.ToString
-                    d = stdNum.Abs(mz_ref - mzi)
+                    d = std.Abs(mz_ref - mzi)
                 End If
             Next
 
