@@ -317,12 +317,43 @@ Imports MZWorkPack
     ''' <returns></returns>
     <ExportAPI("/msi_pack")>
     <Description("Pack the imzML file as the mzkit MS-Imaging mzpack rawdata file")>
-    <Usage("/msi_pack /target <file.imzML> [/default_ion <1/-1> /output <result.mzPack>]")>
+    <Usage("/msi_pack /target <file.imzML> [/dims <w,h,default=NULL> /default_ion <1/-1> /output <result.mzPack>]")>
+    <Argument("/dims", True, CLITypes.Integer, PipelineTypes.undefined,
+              AcceptTypes:={GetType(Integer())},
+              Description:="Set the image dimension size for the ms-imaging data pack output, this options apply for the rawdata which is not a imzML file.")>
     Public Function MSIPack(args As CommandLine) As Integer
         Dim target As String = args <= "/target"
         Dim output As String = args("/output") Or target.ChangeSuffix("mzPack")
         Dim defaultIon As IonModes = CInt(args("/default_ion") Or 1)
-        Dim mzPack = Converter.LoadimzML(target, 0, defaultIon, AddressOf RunSlavePipeline.SendProgress)
+        Dim mzPack As mzPack
+
+        If target.ExtensionSuffix("imzml") Then
+            mzPack = Converter.LoadimzML(target, 0, defaultIon, AddressOf RunSlavePipeline.SendProgress)
+        Else
+            Dim dims As String = args("/dims")
+
+            If dims.StringEmpty(, True) Then
+                Call "Missing `/dims` parameter value for non-imzml raw data file input!".PrintException
+                Return 500
+            End If
+
+            Dim dim_size As Size = dims.SizeParser
+
+            If target.ExtensionSuffix("mzML", "mzXML") Then
+                ' load ms-imaging data via LC-MS mode
+                mzPack = Converter.LoadRawFileAuto(xml:=target)
+            ElseIf target.ExtensionSuffix("mzPack") Then
+                ' the mzpack is not row scans result
+                Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
+                mzPack = MSImagingReader.UnifyReadAsMzPack(target).TryCast(Of mzPack)
+            Else
+                Call $"Unsupported file type: {target.ExtensionSuffix}!".PrintException
+                Return 450
+            End If
+
+            mzPack = mzPack.ConvertToMSI(dim_size)
+        End If
+
         mzPack.source = target.BaseName
         mzPack.WriteV2(output)
         Return 0
