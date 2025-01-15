@@ -8,6 +8,8 @@ namespace apps.systems {
         "element_profile_page": "Formula Search Profile",
         "molecule_networking_page": "Molecular Networking"
     };
+
+    // jquery should be loaded before this application module file
     const $: jQuery = (<any>window).$;
 
     function logicalDefault(logic: any, _default: boolean): boolean {

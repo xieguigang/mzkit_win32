@@ -1252,6 +1252,7 @@ var apps;
             "element_profile_page": "Formula Search Profile",
             "molecule_networking_page": "Molecular Networking"
         };
+        // jquery should be loaded before this application module file
         var $ = window.$;
         function logicalDefault(logic, _default) {
             if (isNullOrUndefined(logic) || isNullOrEmpty(logic)) {
