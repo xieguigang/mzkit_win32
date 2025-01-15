@@ -1583,6 +1583,9 @@
     <EmbeddedResource Include="pages\toolkit\PageMzkitTools.resx">
       <DependentUpon>PageMzkitTools.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pages\toolkit\PageMzkitTools.zh-Hans.resx">
+      <DependentUpon>PageMzkitTools.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pages\toolkit\PageMzSearch.resx">
       <DependentUpon>PageMzSearch.vb</DependentUpon>
     </EmbeddedResource>

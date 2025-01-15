@@ -82,6 +82,7 @@ Partial Class PageMzkitTools
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CopyValueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenInTableViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -90,7 +91,6 @@ Partial Class PageMzkitTools
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.CopyValueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -109,52 +109,50 @@ Partial Class PageMzkitTools
         '
         'PictureBox1
         '
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox1.Location = New System.Drawing.Point(3, 3)
+        resources.ApplyResources(Me.PictureBox1, "PictureBox1")
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(549, 451)
-        Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PictureBox1, resources.GetString("PictureBox1.ToolTip"))
         '
         'DataGridView1
         '
+        resources.ApplyResources(Me.DataGridView1, "DataGridView1")
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(555, 457)
-        Me.DataGridView1.TabIndex = 0
+        Me.ToolTip1.SetToolTip(Me.DataGridView1, resources.GetString("DataGridView1.ToolTip"))
         '
         'ContextMenuStrip1
         '
+        resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyValueToolStripMenuItem, Me.OpenInTableViewerToolStripMenuItem, Me.ToolStripMenuItem1, Me.SaveToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(185, 98)
+        Me.ToolTip1.SetToolTip(Me.ContextMenuStrip1, resources.GetString("ContextMenuStrip1.ToolTip"))
+        '
+        'CopyValueToolStripMenuItem
+        '
+        resources.ApplyResources(Me.CopyValueToolStripMenuItem, "CopyValueToolStripMenuItem")
+        Me.CopyValueToolStripMenuItem.Name = "CopyValueToolStripMenuItem"
         '
         'OpenInTableViewerToolStripMenuItem
         '
-        Me.OpenInTableViewerToolStripMenuItem.Image = CType(resources.GetObject("OpenInTableViewerToolStripMenuItem.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.OpenInTableViewerToolStripMenuItem, "OpenInTableViewerToolStripMenuItem")
         Me.OpenInTableViewerToolStripMenuItem.Name = "OpenInTableViewerToolStripMenuItem"
-        Me.OpenInTableViewerToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
-        Me.OpenInTableViewerToolStripMenuItem.Text = "Open In Table Viewer"
         '
         'ToolStripMenuItem1
         '
+        resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(181, 6)
         '
         'SaveToolStripMenuItem
         '
-        Me.SaveToolStripMenuItem.Image = CType(resources.GetObject("SaveToolStripMenuItem.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.SaveToolStripMenuItem, "SaveToolStripMenuItem")
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
-        Me.SaveToolStripMenuItem.Text = "Save"
         '
         'CustomTabControl1
         '
+        resources.ApplyResources(Me.CustomTabControl1, "CustomTabControl1")
         Me.CustomTabControl1.Controls.Add(Me.TabPage5)
         Me.CustomTabControl1.Controls.Add(Me.TabPage6)
         '
@@ -175,52 +173,36 @@ Partial Class PageMzkitTools
         Me.CustomTabControl1.DisplayStyleProvider.TextColor = System.Drawing.SystemColors.ControlText
         Me.CustomTabControl1.DisplayStyleProvider.TextColorDisabled = System.Drawing.SystemColors.ControlDark
         Me.CustomTabControl1.DisplayStyleProvider.TextColorSelected = System.Drawing.SystemColors.ControlText
-        Me.CustomTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.CustomTabControl1.HotTrack = True
-        Me.CustomTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.CustomTabControl1.Name = "CustomTabControl1"
         Me.CustomTabControl1.SelectedIndex = 0
-        Me.CustomTabControl1.Size = New System.Drawing.Size(563, 484)
-        Me.CustomTabControl1.TabIndex = 14
+        Me.ToolTip1.SetToolTip(Me.CustomTabControl1, resources.GetString("CustomTabControl1.ToolTip"))
         '
         'TabPage5
         '
+        resources.ApplyResources(Me.TabPage5, "TabPage5")
         Me.TabPage5.Controls.Add(Me.PictureBox1)
-        Me.TabPage5.Location = New System.Drawing.Point(4, 23)
         Me.TabPage5.Name = "TabPage5"
-        Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(555, 457)
-        Me.TabPage5.TabIndex = 1
-        Me.TabPage5.Text = "Plot Viewer"
+        Me.ToolTip1.SetToolTip(Me.TabPage5, resources.GetString("TabPage5.ToolTip"))
         Me.TabPage5.UseVisualStyleBackColor = True
         '
         'TabPage6
         '
+        resources.ApplyResources(Me.TabPage6, "TabPage6")
         Me.TabPage6.Controls.Add(Me.DataGridView1)
-        Me.TabPage6.Location = New System.Drawing.Point(4, 23)
         Me.TabPage6.Name = "TabPage6"
-        Me.TabPage6.Size = New System.Drawing.Size(555, 457)
-        Me.TabPage6.TabIndex = 2
-        Me.TabPage6.Text = "Matrix Viewer"
+        Me.ToolTip1.SetToolTip(Me.TabPage6, resources.GetString("TabPage6.ToolTip"))
         Me.TabPage6.UseVisualStyleBackColor = True
-        '
-        'CopyValueToolStripMenuItem
-        '
-        Me.CopyValueToolStripMenuItem.Image = CType(resources.GetObject("CopyValueToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.CopyValueToolStripMenuItem.Name = "CopyValueToolStripMenuItem"
-        Me.CopyValueToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
-        Me.CopyValueToolStripMenuItem.Text = "Copy Value"
-        Me.CopyValueToolStripMenuItem.ToolTipText = "Copy the string value of current selected cell"
         '
         'PageMzkitTools
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.Controls.Add(Me.CustomTabControl1)
         Me.DoubleBuffered = True
         Me.Name = "PageMzkitTools"
-        Me.Size = New System.Drawing.Size(563, 484)
+        Me.ToolTip1.SetToolTip(Me, resources.GetString("$this.ToolTip"))
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)

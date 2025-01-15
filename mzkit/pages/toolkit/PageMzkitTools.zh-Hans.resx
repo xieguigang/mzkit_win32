@@ -117,98 +117,81 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;TabPage6.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="ImageList1.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACU
+        CQAAAk1TRnQBSQFMAgEBAgEAAWgBAQFoAQEBEAEAARABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        AwABEAMAAQEBAAEgBgABEBIAA/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2
+        Af8D9gH/A/YB/wP2Af8MAANRAZ8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/
+        A/YB/wP2Af8D9gH/hAAD9gH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMb
+        Af8DGwH/A/YB/wgAA1EBnwP2Af8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHM
+        Av8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BNQHcAfwB/wP2Af+AAAP2Af8DGwH/AfEB7wHw
+        Af8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHx
+        Ae8B8AH/AfEB7wHwAf8DGwH/A/YB/wgAAzoBYAG5AewB+AH/AQABzAL/AQABzAL/AQABzAL/AQABzAL/
+        AQABzAL/AQABPwGAAf8DAAH/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/A/YB/4AA
+        A/YB/wMbAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHv
+        AfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wMbAf8DyQH/A8kB/wP2Af8EAAP2Af8BAAHMAv8BAAHM
+        Av8BAAHMAv8BAAHMAv8BAAHMAv8DAAH/AwAB/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wG5
+        AewB+AH/AzoBYIAAA/YB/wMbAf8B8QHvAfAB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/
+        AxsB/wMbAf8DGwH/AxsB/wP2Af8EAAM6AWABuQHsAfgB/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEA
+        AcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wP2Af+EAAP2Af8DGwH/AfEB7wHw
+        Af8DGwH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHw
+        Af8B8QHvAfAB/wMbAf8B8QHvAfAB/wMbAf8D9gH/CAAD9gH/AQABzAL/AQABzAL/AQABzAL/AQABzAL/
+        AwAB/wMAAf8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BuQHsAfgB/wM6AWCEAAP2Af8DGwH/AfEB7wHw
+        Af8DGwH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHw
+        Af8B8QHvAfAB/wMbAf8B8QHvAfAB/wMbAf8D9gH/CAADOgFgAbkB7AH4Af8BAAHMAv8BAAHMAv8BAAHM
+        Av8DAAH/AwAB/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wP2Af+IAAP2Af8DGwH/AfEB7wHwAf8DGwH/
+        AfEB7wHwAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8B8QHvAfAB/wMbAf8B8QHvAfAB/wMbAf8D9gH/
+        DAAD9gH/AQABzAL/AQABzAL/AQABzAL/AwAB/wMAAf8BAAHMAv8BAAHMAv8BAAHMAv8BuQHsAfgB/wM6
+        AWCIAAP2Af8DGwH/AfEB7wHwAf8DGwH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHv
+        AfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wMbAf8B8QHvAfAB/wMbAf8D9gH/DAADOgFgAakB6QH5
+        Af8BAAHMAv8BAAHMAv8DAAH/AwAB/wEAAcwC/wEAAcwC/wEAAcwC/wP2Af+MAAP2Af8DGwH/AfEB7wHw
+        Af8DGwH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHw
+        Af8B8QHvAfAB/wMbAf8B8QHvAfAB/wMbAf8D9gH/EAAD9gH/AQABzAL/AQABzAL/AwAB/wMAAf8BAAHM
+        Av8BAAHMAv8BmgHmAfkB/wM6AWCMAAP2Af8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMb
+        Af8DGwH/AxsB/wMbAf8B8QHvAfAB/wMbAf8D9gH/EAADOgFgAZoB5gH5Af8BAAHMAv8DAAH/AwAB/wEA
+        AcwC/wEAAcwC/wP2Af+QAAP2Af8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/
+        AxsB/wMbAf8B8QHvAfAB/wMbAf8D9gH/FAAD9gH/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AZoB5gH5
+        Af8DOgFgkAAD9gH/A/YB/wP2Af8DGwH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHv
+        AfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8DGwH/A/YB/xQAAzoBYAGa
+        AeYB+QH/AQABzAL/AQABzAL/AQABzAL/A/YB/5wAA/YB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMb
+        Af8DGwH/AxsB/wMbAf8DGwH/AxsB/wP2Af8YAAP2Af8BAAHMAv8BAAHMAv8BmgHmAfkB/wM6AWCcAAP2
+        Af8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8D9gH/GAADOgFg
+        AZoB5gH5Af8BAAHMAv8D9gH/oAAD9gH/A/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/
+        A/YB/wP2Af8D9gH/A/YB/xwAA/YB/wP2Af8DOgFgmAABQgFNAT4HAAE+AwABKAMAAUADAAEQAwABAQEA
+        AQEFAAGAFwAD/wIAAQMBgAEBBQABAwcAAQMIAAGABwABgAEBBgABwAEBBgABwAEDBgAB4AEDBgAB4AEH
+        BgAB8AEHBgAB8AEPBgAB+AEPBgAB+AEfBAABwAEAAfwBHwQAAcABAAH8AT8EAAHAAQAB/gE/BAAL
+</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="ContextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 76</value>
-  </data>
-  <data name="TabPage6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>555, 457</value>
-  </data>
-  <data name="ContextMenuStrip1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CustomTabControl1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="OpenInTableViewerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
-  </data>
-  <data name="OpenInTableViewerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Open In Table Viewer</value>
+  <data name="CopyValueToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wAAADsABataJCQAAA4BJREFUaEPtlm9IE3EYx4e3V73p3SyCELKQsOhFidQbUyIqNcjUoWB/sEIpzYoE
+        SYxy9g8qzXRhk2E4UkONzMzbZm+igow0X6xERYJEbebcBebmnu633ba77dd287bdBT7weXN/nuf7+d39
+        tpMJLcWhJ7sVma2m2EwdhEyGzqxIby1gWkWm5kjZWhsp328nicO+ZJ2tKKWD/PELxhCX3QbKqwOwraAT
+        ex6hyNA5tuaq7+P62/VEOhhkG5gooRfdJMdGEhabXg6+THTGQtyRZmwoN5++/gRUZssiJAaQiM1shd6m
+        nX4zXBA2egGrmUj8C/pk8fTNi/imcrhTk4UJ4iVe2QEOh8MpgCq3yoi9zo3yXDl2jgvCYTcSOUw0frWs
+        j7mMb+biYkUhNgiblr5Rp8RH0yzEHW3DXuNm78mb2DleiC4mGr+yGeQ38I1c8BFAbMptxx73JSWYACl/
+        w0TjVziBx9pKKK4dcJJc1I0NslK25LV7el9Ta+F3/xrObDqPMIElUg5pKgukqignCYVvsUFWykZlj6c3
+        4kt3UngFEKkqq2fArktjkFg0GDZ2lIx4eiOGu5I5s8MuEGlWBVYFgpD/kIIP3yhQPsCfl7QACj8+RYHF
+        SgedoOhfN/9rJCuQX+8NP2WmoEiDv06SAnzDI0QTOHgbf5wb3howPEIUgdpeCkzfKciu5R5H4cfYK9/M
+        PY8j6gI5dRTMzLlCsiXyUPgfoYVHiPIEylpoiV9eiRItO3zw14aNaHugrMXqkZhfsHpXXhP8XjaiCSDY
+        TyLYr82/EFUAgSQmp/m/876ILoA4cAt/nA+SEBBCVASK6dfjESmcynb/hYmKQN0r10YVyuvPIglUdVDw
+        ziQcjVEkgUiyKsBH4B798TZL/2EJ5eWgSK/Qf7+J8+qtUK4TzukmkQQiSVQETtErd7cnMOfpr1P2PXyR
+        zB549p4bzE3K9QVIujLzD6bB9Hw7Z3ZEBFRdFIxMBqbJwA3uJuHCOKw/M4xhCBobjnHmOpHaHogvHeUf
+        HiF9gSFQNxRw5nGQtgAdvjFAeIR0BXiER0hTgGd4RDgE9tXMYcOshM20AO/wiHAIvNAdh2q1Jiy0afM5
+        vYMSsgDpLyAqJBGawLI+phTbSCSW9MRTJhq/ggHZOpuemMc1iz6Ew9YvT2Oi8S+bUbZniSRG8U2jBWG2
+        G4gTTCSfksn+Al+vnomCWqM/AAAAAElFTkSuQmCC
+</value>
   </data>
   <data name="CopyValueToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
-  </data>
-  <data name="&gt;&gt;OpenInTableViewerToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 6</value>
-  </data>
-  <data name="&gt;&gt;CustomTabControl1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CustomTabControl, System.Windows.Forms.TabControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;ContextMenuStrip1.Name" xml:space="preserve">
-    <value>ContextMenuStrip1</value>
-  </data>
-  <data name="PictureBox1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;CopyValueToolStripMenuItem.Name" xml:space="preserve">
-    <value>CopyValueToolStripMenuItem</value>
-  </data>
-  <data name="TabPage5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 23</value>
-  </data>
-  <data name="&gt;&gt;ImageList1.Name" xml:space="preserve">
-    <value>ImageList1</value>
-  </data>
-  <data name="SaveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
-  </data>
-  <data name="&gt;&gt;TabPage6.Parent" xml:space="preserve">
-    <value>CustomTabControl1</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="TabPage5.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="&gt;&gt;ToolStripMenuItem1.Name" xml:space="preserve">
-    <value>ToolStripMenuItem1</value>
-  </data>
-  <data name="PictureBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;CustomTabControl1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;ImageList1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="CustomTabControl1.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="CustomTabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>563, 484</value>
-  </data>
-  <data name="&gt;&gt;TabPage6.Name" xml:space="preserve">
-    <value>TabPage6</value>
-  </data>
-  <data name="PictureBox1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="&gt;&gt;DataGridView1.Name" xml:space="preserve">
-    <value>DataGridView1</value>
+    <value>180, 22</value>
   </data>
   <data name="CopyValueToolStripMenuItem.Text" xml:space="preserve">
-    <value>Copy Value</value>
+    <value>复制单元格内容</value>
   </data>
   <data name="OpenInTableViewerToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -335,80 +318,14 @@
         GhrdFUljCCp6DQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ2NoqKv7/8BARvDY6bQtbYAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="DataGridView1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="OpenInTableViewerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
-  <data name="DataGridView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>555, 457</value>
+  <data name="OpenInTableViewerToolStripMenuItem.Text" xml:space="preserve">
+    <value>在表格页面打开</value>
   </data>
-  <data name="&gt;&gt;BindingSource1.Name" xml:space="preserve">
-    <value>BindingSource1</value>
-  </data>
-  <data name="&gt;&gt;SaveToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PictureBox1.Name" xml:space="preserve">
-    <value>PictureBox1</value>
-  </data>
-  <data name="&gt;&gt;TabPage5.Parent" xml:space="preserve">
-    <value>CustomTabControl1</value>
-  </data>
-  <data name="TabPage5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="SaveToolStripMenuItem.Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="&gt;&gt;DataGridView1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;PictureBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="TabPage6.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;DataGridView1.Parent" xml:space="preserve">
-    <value>TabPage6</value>
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>563, 484</value>
-  </data>
-  <data name="&gt;&gt;CustomTabControl1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="PictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>549, 451</value>
-  </data>
-  <data name="&gt;&gt;BindingSource1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;OpenInTableViewerToolStripMenuItem.Name" xml:space="preserve">
-    <value>OpenInTableViewerToolStripMenuItem</value>
-  </data>
-  <data name="PictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
-  </data>
-  <data name="&gt;&gt;PictureBox1.Parent" xml:space="preserve">
-    <value>TabPage5</value>
-  </data>
-  <data name="TabPage5.Text" xml:space="preserve">
-    <value>Plot Viewer</value>
-  </data>
-  <data name="&gt;&gt;CustomTabControl1.Name" xml:space="preserve">
-    <value>CustomTabControl1</value>
-  </data>
-  <data name="PictureBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;DataGridView1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 6</value>
   </data>
   <data name="SaveToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -590,157 +507,19 @@
         Hrdtexx43LbtMfj4pf8PjithVN6E7AoAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="DataGridView1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="SaveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
-  <data name="&gt;&gt;ToolTip1.Name" xml:space="preserve">
-    <value>ToolTip1</value>
+  <data name="SaveToolStripMenuItem.Text" xml:space="preserve">
+    <value>保存为文件</value>
   </data>
-  <data name="CustomTabControl1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="ContextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 76</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>PageMzkitTools</value>
-  </data>
-  <data name="&gt;&gt;ContextMenuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="CustomTabControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="TabPage6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 23</value>
-  </data>
-  <data name="DataGridView1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CopyValueToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAA4BJREFUaEPtlm9IE3EYx4e3V73p3SyCELKQsOhFidQbUyIqNcjUoWB/sEIpzYoE
-        SYxy9g8qzXRhk2E4UkONzMzbZm+igow0X6xERYJEbebcBebmnu633ba77dd287bdBT7weXN/nuf7+d39
-        tpMJLcWhJ7sVma2m2EwdhEyGzqxIby1gWkWm5kjZWhsp328nicO+ZJ2tKKWD/PELxhCX3QbKqwOwraAT
-        ex6hyNA5tuaq7+P62/VEOhhkG5gooRfdJMdGEhabXg6+THTGQtyRZmwoN5++/gRUZssiJAaQiM1shd6m
-        nX4zXBA2egGrmUj8C/pk8fTNi/imcrhTk4UJ4iVe2QEOh8MpgCq3yoi9zo3yXDl2jgvCYTcSOUw0frWs
-        j7mMb+biYkUhNgiblr5Rp8RH0yzEHW3DXuNm78mb2DleiC4mGr+yGeQ38I1c8BFAbMptxx73JSWYACl/
-        w0TjVziBx9pKKK4dcJJc1I0NslK25LV7el9Ta+F3/xrObDqPMIElUg5pKgukqignCYVvsUFWykZlj6c3
-        4kt3UngFEKkqq2fArktjkFg0GDZ2lIx4eiOGu5I5s8MuEGlWBVYFgpD/kIIP3yhQPsCfl7QACj8+RYHF
-        SgedoOhfN/9rJCuQX+8NP2WmoEiDv06SAnzDI0QTOHgbf5wb3howPEIUgdpeCkzfKciu5R5H4cfYK9/M
-        PY8j6gI5dRTMzLlCsiXyUPgfoYVHiPIEylpoiV9eiRItO3zw14aNaHugrMXqkZhfsHpXXhP8XjaiCSDY
-        TyLYr82/EFUAgSQmp/m/876ILoA4cAt/nA+SEBBCVASK6dfjESmcynb/hYmKQN0r10YVyuvPIglUdVDw
-        ziQcjVEkgUiyKsBH4B798TZL/2EJ5eWgSK/Qf7+J8+qtUK4TzukmkQQiSVQETtErd7cnMOfpr1P2PXyR
-        zB549p4bzE3K9QVIujLzD6bB9Hw7Z3ZEBFRdFIxMBqbJwA3uJuHCOKw/M4xhCBobjnHmOpHaHogvHeUf
-        HiF9gSFQNxRw5nGQtgAdvjFAeIR0BXiER0hTgGd4RDgE9tXMYcOshM20AO/wiHAIvNAdh2q1Jiy0afM5
-        vYMSsgDpLyAqJBGawLI+phTbSCSW9MRTJhq/ggHZOpuemMc1iz6Ew9YvT2Oi8S+bUbZniSRG8U2jBWG2
-        G4gTTCSfksn+Al+vnomCWqM/AAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="CopyValueToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Copy the string value of current selected cell</value>
-  </data>
-  <data name="&gt;&gt;ToolTip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TabPage5.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="ImageList1.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACU
-        CQAAAk1TRnQBSQFMAgEBAgEAAVgBAQFkAQEBEAEAARABAAT/ASEBEAj/AUIBTQE2BwABNgMAASgDAAFA
-        AwABEAMAAQEBAAEgBgABEBIAA/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2
-        Af8D9gH/A/YB/wP2Af8MAANRAZ8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/
-        A/YB/wP2Af8D9gH/hAAD9gH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMb
-        Af8DGwH/A/YB/wgAA1EBnwP2Af8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHM
-        Av8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BNQHcAfwB/wP2Af+AAAP2Af8DGwH/AfEB7wHw
-        Af8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHx
-        Ae8B8AH/AfEB7wHwAf8DGwH/A/YB/wgAAzoBYAG5AewB+AH/AQABzAL/AQABzAL/AQABzAL/AQABzAL/
-        AQABzAL/AQABPwGAAf8DAAH/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AQABzAL/A/YB/4AA
-        A/YB/wMbAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHv
-        AfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wMbAf8DyQH/A8kB/wP2Af8EAAP2Af8BAAHMAv8BAAHM
-        Av8BAAHMAv8BAAHMAv8BAAHMAv8DAAH/AwAB/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wG5
-        AewB+AH/AzoBYIAAA/YB/wMbAf8B8QHvAfAB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/
-        AxsB/wMbAf8DGwH/AxsB/wP2Af8EAAM6AWABuQHsAfgB/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEA
-        AcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wP2Af+EAAP2Af8DGwH/AfEB7wHw
-        Af8DGwH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHw
-        Af8B8QHvAfAB/wMbAf8B8QHvAfAB/wMbAf8D9gH/CAAD9gH/AQABzAL/AQABzAL/AQABzAL/AQABzAL/
-        AwAB/wMAAf8BAAHMAv8BAAHMAv8BAAHMAv8BAAHMAv8BuQHsAfgB/wM6AWCEAAP2Af8DGwH/AfEB7wHw
-        Af8DGwH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHw
-        Af8B8QHvAfAB/wMbAf8B8QHvAfAB/wMbAf8D9gH/CAADOgFgAbkB7AH4Af8BAAHMAv8BAAHMAv8BAAHM
-        Av8DAAH/AwAB/wEAAcwC/wEAAcwC/wEAAcwC/wEAAcwC/wP2Af+IAAP2Af8DGwH/AfEB7wHwAf8DGwH/
-        AfEB7wHwAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8B8QHvAfAB/wMbAf8B8QHvAfAB/wMbAf8D9gH/
-        DAAD9gH/AQABzAL/AQABzAL/AQABzAL/AwAB/wMAAf8BAAHMAv8BAAHMAv8BAAHMAv8BuQHsAfgB/wM6
-        AWCIAAP2Af8DGwH/AfEB7wHwAf8DGwH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHv
-        AfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wMbAf8B8QHvAfAB/wMbAf8D9gH/DAADOgFgAakB6QH5
-        Af8BAAHMAv8BAAHMAv8DAAH/AwAB/wEAAcwC/wEAAcwC/wEAAcwC/wP2Af+MAAP2Af8DGwH/AfEB7wHw
-        Af8DGwH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHw
-        Af8B8QHvAfAB/wMbAf8B8QHvAfAB/wMbAf8D9gH/EAAD9gH/AQABzAL/AQABzAL/AwAB/wMAAf8BAAHM
-        Av8BAAHMAv8BmgHmAfkB/wM6AWCMAAP2Af8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMb
-        Af8DGwH/AxsB/wMbAf8B8QHvAfAB/wMbAf8D9gH/EAADOgFgAZoB5gH5Af8BAAHMAv8DAAH/AwAB/wEA
-        AcwC/wEAAcwC/wP2Af+QAAP2Af8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/
-        AxsB/wMbAf8B8QHvAfAB/wMbAf8D9gH/FAAD9gH/AQABzAL/AQABzAL/AQABzAL/AQABzAL/AZoB5gH5
-        Af8DOgFgkAAD9gH/A/YB/wP2Af8DGwH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHv
-        AfAB/wHxAe8B8AH/AfEB7wHwAf8B8QHvAfAB/wHxAe8B8AH/AfEB7wHwAf8DGwH/A/YB/xQAAzoBYAGa
-        AeYB+QH/AQABzAL/AQABzAL/AQABzAL/A/YB/5wAA/YB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMb
-        Af8DGwH/AxsB/wMbAf8DGwH/AxsB/wP2Af8YAAP2Af8BAAHMAv8BAAHMAv8BmgHmAfkB/wM6AWCcAAP2
-        Af8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8D9gH/GAADOgFg
-        AZoB5gH5Af8BAAHMAv8D9gH/oAAD9gH/A/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/
-        A/YB/wP2Af8D9gH/A/YB/xwAA/YB/wP2Af8DOgFgmAABQgFNAT4HAAE+AwABKAMAAUADAAEQAwABAQEA
-        AQEFAAGAFwAD/wIAAQMBgAEBBQABAwcAAQMIAAGABwABgAEBBgABwAEBBgABwAEDBgAB4AEDBgAB4AEH
-        BgAB8AEHBgAB8AEPBgAB+AEPBgAB+AEfBAABwAEAAfwBHwQAAcABAAH8AT8EAAHAAQAB/gE/GgAL
-</value>
-  </data>
-  <data name="&gt;&gt;TabPage5.Name" xml:space="preserve">
-    <value>TabPage5</value>
-  </data>
-  <data name="&gt;&gt;ToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TabPage5.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="DataGridView1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;SaveToolStripMenuItem.Name" xml:space="preserve">
-    <value>SaveToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;PictureBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TabPage5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>555, 457</value>
+  <data name="TabPage5.Text" xml:space="preserve">
+    <value>绘图</value>
   </data>
   <data name="TabPage6.Text" xml:space="preserve">
-    <value>Matrix Viewer</value>
+    <value>绘图矩阵数据表格</value>
   </data>
-  <data name="&gt;&gt;CopyValueToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TabPage5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TabPage6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TabPage6.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <metadata name="BindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>713, 38</value>
-  </metadata>
-  <metadata name="ContextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>556, 38</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>457, 38</value>
-  </metadata>
-  <metadata name="ImageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>33, 38</value>
-  </metadata>
 </root>
