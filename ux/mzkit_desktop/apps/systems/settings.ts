@@ -60,7 +60,10 @@ namespace apps.systems {
         };
 
         "formula_ppm": number;
-        "formula_adducts": string[];
+        "formula_adducts": {
+            pos: string[],
+            neg: string[]
+        };
 
         // molecular networking
         "layout_iterations": number;
