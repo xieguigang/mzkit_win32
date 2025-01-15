@@ -130,14 +130,14 @@ namespace apps.systems {
                     const json_str: string = await json;
                     const list: string[] = JSON.parse(json_str);
                     const selected = configs.formula_adducts || {
-                        pos: [], neg: []
+                        positive: [], negative: []
                     };
 
-                    if (isNullOrEmpty(selected.pos)) {
-                        selected.pos = settings_default.default_adducts_pos;
+                    if (isNullOrEmpty(selected.positive)) {
+                        selected.positive = settings_default.default_adducts_pos;
                     }
-                    if (isNullOrEmpty(selected.neg)) {
-                        selected.neg = settings_default.default_adducts_neg;
+                    if (isNullOrEmpty(selected.negative)) {
+                        selected.negative = settings_default.default_adducts_neg;
                     }
 
                     $ts("#adducts_pos").clear();
@@ -156,8 +156,8 @@ namespace apps.systems {
                     //         <label class="form-check-label" for="${key_id}">${adduct}</label>`));
                     // }
 
-                    $ts.value("#adducts_pos", selected.pos.join("\n"));
-                    $ts.value("#adducts_neg", selected.neg.join("\n"));
+                    $ts.value("#adducts_pos", selected.positive.join("\n"));
+                    $ts.value("#adducts_neg", selected.negative.join("\n"));
                 });
         }
 
@@ -185,8 +185,8 @@ namespace apps.systems {
                 },
                 "formula_ppm": 20,
                 "formula_adducts": {
-                    pos: settings_default.default_adducts_pos,
-                    neg: settings_default.default_adducts_neg
+                    positive: settings_default.default_adducts_pos,
+                    negative: settings_default.default_adducts_neg
                 },
 
                 // molecular networking

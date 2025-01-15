@@ -24,8 +24,8 @@ namespace apps.systems {
 
         "formula_ppm": number;
         "formula_adducts": {
-            pos: string[],
-            neg: string[]
+            positive: string[],
+            negative: string[]
         };
 
         // molecular networking

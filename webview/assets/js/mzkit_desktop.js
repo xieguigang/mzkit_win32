@@ -1373,13 +1373,13 @@ var apps;
                                     json_str = _a.sent();
                                     list = JSON.parse(json_str);
                                     selected = configs.formula_adducts || {
-                                        pos: [], neg: []
+                                        positive: [], negative: []
                                     };
-                                    if (isNullOrEmpty(selected.pos)) {
-                                        selected.pos = systems.settings_default.default_adducts_pos;
+                                    if (isNullOrEmpty(selected.positive)) {
+                                        selected.positive = systems.settings_default.default_adducts_pos;
                                     }
-                                    if (isNullOrEmpty(selected.neg)) {
-                                        selected.neg = systems.settings_default.default_adducts_neg;
+                                    if (isNullOrEmpty(selected.negative)) {
+                                        selected.negative = systems.settings_default.default_adducts_neg;
                                     }
                                     $ts("#adducts_pos").clear();
                                     $ts("#adducts_neg").clear();
@@ -1394,8 +1394,8 @@ var apps;
                                     //             id="${key_id}" ${checked}>
                                     //         <label class="form-check-label" for="${key_id}">${adduct}</label>`));
                                     // }
-                                    $ts.value("#adducts_pos", selected.pos.join("\n"));
-                                    $ts.value("#adducts_neg", selected.neg.join("\n"));
+                                    $ts.value("#adducts_pos", selected.positive.join("\n"));
+                                    $ts.value("#adducts_neg", selected.negative.join("\n"));
                                     return [2 /*return*/];
                             }
                         });
@@ -1423,8 +1423,8 @@ var apps;
                     },
                     "formula_ppm": 20,
                     "formula_adducts": {
-                        pos: systems.settings_default.default_adducts_pos,
-                        neg: systems.settings_default.default_adducts_neg
+                        positive: systems.settings_default.default_adducts_pos,
+                        negative: systems.settings_default.default_adducts_neg
                     },
                     // molecular networking
                     "layout_iterations": 100,
