@@ -1291,6 +1291,9 @@ var apps;
                     });
                 });
             };
+            /**
+             * load settings profile data on application startup
+            */
             settings.prototype.load_settings_json = function (json_str) {
                 var settings = JSON.parse(json_str) || {};
                 var configs = apps.systems.settings.defaultSettings();
@@ -1302,7 +1305,10 @@ var apps;
                 settings.viewer = settings.viewer || {};
                 // make data object conversion
                 configs.formula_ppm = settings.precursor_search.ppm || 5;
-                configs.formula_adducts = settings.precursor_search.precursor_types || [];
+                configs.formula_adducts = settings.precursor_search.precursor_types || {
+                    pos: [],
+                    neg: []
+                };
                 configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
                 configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
                 configs.language = settings.ui.language || 2;
@@ -1323,6 +1329,9 @@ var apps;
             settings.prototype.fill_plot_area_onchange = function (value) {
                 settings.mzkit_configs.fill_plot_area = (Array.isArray(value) ? value[0] : value);
             };
+            /**
+             * load settings on application startup
+            */
             settings.prototype.loadConfigs = function (configs) {
                 var formula_profiles = configs.formula_search;
                 settings.mzkit_configs = configs;
@@ -1343,7 +1352,7 @@ var apps;
                 app.desktop.mzkit.getAllAdducts()
                     .then(function (json) {
                     return __awaiter(this, void 0, void 0, function () {
-                        var json_str, list, adducts, selected, _i, list_3, adduct, key_id, value, checked;
+                        var json_str, list, adducts, selected;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, json];
@@ -1351,14 +1360,28 @@ var apps;
                                     json_str = _a.sent();
                                     list = JSON.parse(json_str);
                                     adducts = $ts("#formula_adducts").clear();
-                                    selected = configs.formula_adducts || [];
-                                    for (_i = 0, list_3 = list; _i < list_3.length; _i++) {
-                                        adduct = list_3[_i];
-                                        key_id = adduct;
-                                        value = selected.indexOf(adduct) > -1;
-                                        checked = value ? "checked" : "";
-                                        adducts.appendElement($ts("<li>", { class: "list-group-item" }).display("\n                            <input class=\"form-check-input me-1\" \n                                type=\"checkbox\" \n                                value=\"\"\n                                id=\"".concat(key_id, "\" ").concat(checked, ">\n                            <label class=\"form-check-label\" for=\"").concat(key_id, "\">").concat(adduct, "</label>")));
+                                    selected = configs.formula_adducts || {
+                                        pos: [], neg: []
+                                    };
+                                    if (isNullOrEmpty(selected.pos)) {
+                                        selected.pos = [];
                                     }
+                                    if (isNullOrEmpty(selected.neg)) {
+                                        selected.neg = [];
+                                    }
+                                    // for (let adduct of list) {
+                                    //     const key_id: string = adduct;
+                                    //     const value: boolean = selected.indexOf(adduct) > -1;
+                                    //     const checked: string = value ? "checked" : "";
+                                    //     adducts.appendElement($ts("<li>", { class: "list-group-item" }).display(`
+                                    //         <input class="form-check-input me-1" 
+                                    //             type="checkbox" 
+                                    //             value=""
+                                    //             id="${key_id}" ${checked}>
+                                    //         <label class="form-check-label" for="${key_id}">${adduct}</label>`));
+                                    // }
+                                    $ts.value("#adducts_pos", selected.pos.join("\n"));
+                                    $ts.value("#adducts_neg", selected.neg.join("\n"));
                                     return [2 /*return*/];
                             }
                         });
@@ -1385,7 +1408,10 @@ var apps;
                         "elements": {},
                     },
                     "formula_ppm": 20,
-                    "formula_adducts": [],
+                    "formula_adducts": {
+                        pos: ["[M]+", "[M+H]+", "[M+Na]+", "[M+NH4]+", "[2M+H]+", "[M-H2O+H]+", "[M-2H2O+H]+"],
+                        neg: ["[M-H]-", "[M+Cl]-", "[M-H2O-H]-", "[2M-H]-", "[M+COOH]-"]
+                    },
                     // molecular networking
                     "layout_iterations": 100,
                     // graph layouts
@@ -1587,7 +1613,11 @@ var apps;
                 settings.closeAll().show("element_profile_page");
             };
             settings.prototype.add_element_onclick = function () {
-                settings.getElementProfileTable().bootstrapTable('append', [{ "atom": "", "min": 0, "max": 0 }]);
+                settings.getElementProfileTable().bootstrapTable('append', [{
+                        "atom": "",
+                        "min": 0,
+                        "max": 0
+                    }]);
             };
             settings.prototype.molecule_networking_btn_onclick = function () {
                 settings.closeAll().show("molecule_networking_page");
@@ -1957,7 +1987,7 @@ var apps;
                 app.desktop.mzkit.ScanLibraries()
                     .then(function (str) {
                     return __awaiter(this, void 0, void 0, function () {
-                        var pull_str, list, _i, list_4, file, name_3;
+                        var pull_str, list, _i, list_3, file, name_3;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, str];
@@ -1965,8 +1995,8 @@ var apps;
                                     pull_str = _a.sent();
                                     list = JSON.parse(pull_str);
                                     vm.libfiles = {};
-                                    for (_i = 0, list_4 = list; _i < list_4.length; _i++) {
-                                        file = list_4[_i];
+                                    for (_i = 0, list_3 = list; _i < list_3.length; _i++) {
+                                        file = list_3[_i];
                                         name_3 = file.split(/[\\/]/ig);
                                         name_3 = name_3[name_3.length - 1];
                                         vm.libfiles[$ts.baseName(name_3)] = file;
@@ -2196,8 +2226,8 @@ var apps;
                 var libmassSearchClass = "lib-mass-query";
                 console.log("get page data:");
                 console.log(list);
-                for (var _i = 0, list_5 = list; _i < list_5.length; _i++) {
-                    var meta = list_5[_i];
+                for (var _i = 0, list_4 = list; _i < list_4.length; _i++) {
+                    var meta = list_4[_i];
                     var xrefs = "";
                     var xref_data = meta.xref || {};
                     for (var _a = 0, xref_keys_1 = xref_keys; _a < xref_keys_1.length; _a++) {

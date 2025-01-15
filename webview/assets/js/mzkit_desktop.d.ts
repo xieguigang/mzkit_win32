@@ -315,7 +315,10 @@ declare namespace apps.systems {
             "elements": {};
         };
         "formula_ppm": number;
-        "formula_adducts": string[];
+        "formula_adducts": {
+            pos: string[];
+            neg: string[];
+        };
         "layout_iterations": number;
         "stiffness": number;
         "repulsion": number;
@@ -341,11 +344,17 @@ declare namespace apps.systems {
         get appName(): string;
         static mzkit_configs: mzkit_configs;
         protected init(): void;
+        /**
+         * load settings profile data on application startup
+        */
         private load_settings_json;
         remember_location_onchange(value: string | string[]): void;
         remember_layout_onchange(value: string | string[]): void;
         language_onchange(value: string | string[]): void;
         fill_plot_area_onchange(value: string | string[]): void;
+        /**
+         * load settings on application startup
+        */
         private loadConfigs;
         private static defaultSettings;
         /**
