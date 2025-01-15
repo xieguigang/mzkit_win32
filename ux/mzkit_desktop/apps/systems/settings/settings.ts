@@ -54,8 +54,7 @@ namespace apps.systems {
          * load settings profile data on application startup
         */
         private load_settings_json(json_str: string) {
-            const settings = JSON.parse(json_str) || {};
-            const configs = apps.systems.settings.defaultSettings();
+            const settings: mzkit_configs = JSON.parse(json_str) || apps.systems.settings_default.defaultSettings();
 
             console.log("get mzkit configurations:");
             console.log(settings);
@@ -81,7 +80,7 @@ namespace apps.systems {
             configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
             configs.xic_da = settings.xic_da;
 
-            this.loadConfigs(configs);
+            this.loadConfigs(settings);
         }
 
         public remember_location_onchange(value: string | string[]) {
@@ -160,56 +159,6 @@ namespace apps.systems {
                     $ts.value("#adducts_pos", selected.positive.join("\n"));
                     $ts.value("#adducts_neg", selected.negative.join("\n"));
                 });
-        }
-
-        private static defaultSettings(): mzkit_configs {
-            return <mzkit_configs>{
-                // mzkit app
-                "remember_location": true,
-                "remember_layout": true,
-                "language": 2,
-
-                // raw file viewer
-                "xic_da": 0.05,
-                "fragment_cutoff": "relative",
-                "fragment_cutoff_value": 0.05,
-
-                // chromagram plot
-                "colorset": [],
-                "fill_plot_area": true,
-
-                // preset element profiles
-                "formula_search": {
-                    "smallMoleculeProfile": <element_profile>{ type: "Wiley", isCommon: true },
-                    "naturalProductProfile": <element_profile>{ type: "Wiley", isCommon: true },
-                    "elements": {},
-                },
-                "formula_ppm": 20,
-                "formula_adducts": {
-                    positive: settings_default.default_adducts_pos,
-                    negative: settings_default.default_adducts_neg
-                },
-
-                // molecular networking
-                "layout_iterations": 100,
-
-                // graph layouts
-                "stiffness": 41.76,
-                "repulsion": 10000,
-                "damping": 0.41,
-
-                // spectrum tree
-                "node_identical": 0.85,
-                "node_similar": 0.8,
-                "edge_filter": 0.8,
-
-                // network styling
-                "node_radius_min": 1,
-                "node_radius_max": 30,
-
-                "link_width_min": 1,
-                "link_width_max": 12
-            }
         }
 
         /**

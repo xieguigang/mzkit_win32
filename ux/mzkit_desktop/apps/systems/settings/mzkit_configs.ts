@@ -1,5 +1,8 @@
 namespace apps.systems {
 
+    /**
+     * the settings class model in mzkit_win32 program
+    */
     export interface mzkit_configs {
         "precursor_search": {
             "ppm": number,
