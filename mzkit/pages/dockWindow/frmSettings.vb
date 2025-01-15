@@ -73,31 +73,17 @@ Public Class frmSettings
         Me.DockState = DockState.Hidden
     End Sub
 
-    'Dim elementProfile As New ElementProfile With {.Text = "Formula Search"}
-    'Dim presetProfile As New PresetProfile With {.Text = "Formula Search"}
-    'Dim appConfig As New AppConfig With {.Text = "Mzkit Settings"}
-    'Dim viewer As New RawFileViewer With {.Text = "Raw File Viewer"}
-    'Dim plotConfig As New PlotConfig With {.Text = "XIC/TIC Plot Style"}
-    'Dim mnSettings As New MolecularNetworking With {.Text = "Molecular Networking"}
-    'Dim pages As Control()
-    'Dim showPageLink As IPageSettings
-
     Public Sub closePage()
         DockState = DockState.Hidden
         MyApplication.host.ShowPage(MyApplication.host.mzkitTool)
     End Sub
 
+    ''' <summary>
+    ''' initialize of the webview
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub PageSettings_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'pages = {elementProfile, appConfig, viewer, plotConfig, presetProfile, mnSettings}
-
-        'For Each page In pages
-        '    ' Panel1.Controls.Add(page)
-        '    page.Dock = DockStyle.Fill
-        '    Call DirectCast(CObj(page), ISaveSettings).LoadSettings()
-        'Next
-
-        'showPage(appConfig)
-
         Me.Text = "Application Settings"
         Me.Icon = My.Resources.settings
 
@@ -109,8 +95,14 @@ Public Class frmSettings
         WebKit.Init(WebView21)
     End Sub
 
+    ''' <summary>
+    ''' open settings page ui
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
+        ' set settings object from here
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New SettingsProxy With {.host = Me})
         Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call WebKit.DeveloperOptions(WebView21, enable:=True,)
@@ -130,39 +122,14 @@ Public Class frmSettings
         End If
     End Sub
 
-    Private Async Sub Button1_Click(sender As Object, e As EventArgs)
-        Await SaveSettings()
-    End Sub
-
+    ''' <summary>
+    ''' save settings
+    ''' </summary>
+    ''' <returns></returns>
     Public Async Function SaveSettings() As Threading.Tasks.Task
         Dim check = WebView21.ExecuteScriptAsync("apps.systems.settings.invoke_save()")
 
         Await check
         Call Workbench.SuccessMessage("New settings value applied and saved!")
     End Function
-
-    'Sub showPage(page As Control)
-    '    For Each page2 In From ctl In pages Where Not ctl Is page
-    '        page2.Hide()
-    '    Next
-
-    '    ' LinkLabel1.Text = page.Text
-    '    page.Show()
-    '    showPageLink = DirectCast(CObj(page), IPageSettings)
-    'End Sub
-
-    Private Sub TreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs)
-        'Select Case e.Node.Text
-        '    Case "Element Profile" : showPage(elementProfile)
-        '    Case "Mzkit App" : showPage(appConfig)
-        '    Case "Raw File Viewer" : showPage(viewer)
-        '    Case "XIC/TIC Plot" : showPage(plotConfig)
-        '    Case "Formula Search" : showPage(presetProfile)
-        '    Case "Molecular Networking" : showPage(mnSettings)
-        'End Select
-    End Sub
-
-    'Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
-    '    Call showPageLink.ShowPage()
-    'End Sub
 End Class

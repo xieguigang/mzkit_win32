@@ -135,6 +135,9 @@ namespace apps.systems {
                 });
         }
 
+        /**
+         * load settings profile data on application startup
+        */
         private load_settings_json(json_str: string) {
             const settings = JSON.parse(json_str) || {};
             const configs = apps.systems.settings.defaultSettings();
@@ -149,7 +152,10 @@ namespace apps.systems {
 
             // make data object conversion
             configs.formula_ppm = settings.precursor_search.ppm || 5;
-            configs.formula_adducts = settings.precursor_search.precursor_types || [];
+            configs.formula_adducts = settings.precursor_search.precursor_types || {
+                pos: [],
+                neg: []
+            };
 
             configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
             configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
@@ -178,6 +184,9 @@ namespace apps.systems {
             settings.mzkit_configs.fill_plot_area = <any>(Array.isArray(value) ? value[0] : value);
         }
 
+        /**
+         * load settings on application startup
+        */
         private loadConfigs(configs: mzkit_configs) {
             const formula_profiles = configs.formula_search;
 
@@ -206,20 +215,31 @@ namespace apps.systems {
                     const json_str: string = await json;
                     const list: string[] = JSON.parse(json_str);
                     const adducts = $ts("#formula_adducts").clear();
-                    const selected = configs.formula_adducts || [];
+                    const selected = configs.formula_adducts || {
+                        pos: [], neg: []
+                    };
 
-                    for (let adduct of list) {
-                        const key_id: string = adduct;
-                        const value: boolean = selected.indexOf(adduct) > -1;
-                        const checked: string = value ? "checked" : "";
-
-                        adducts.appendElement($ts("<li>", { class: "list-group-item" }).display(`
-                            <input class="form-check-input me-1" 
-                                type="checkbox" 
-                                value=""
-                                id="${key_id}" ${checked}>
-                            <label class="form-check-label" for="${key_id}">${adduct}</label>`));
+                    if (isNullOrEmpty(selected.pos)) {
+                        selected.pos = [];
                     }
+                    if (isNullOrEmpty(selected.neg)) {
+                        selected.neg = [];
+                    }
+
+                    // for (let adduct of list) {
+                    //     const key_id: string = adduct;
+                    //     const value: boolean = selected.indexOf(adduct) > -1;
+                    //     const checked: string = value ? "checked" : "";
+
+                    //     adducts.appendElement($ts("<li>", { class: "list-group-item" }).display(`
+                    //         <input class="form-check-input me-1" 
+                    //             type="checkbox" 
+                    //             value=""
+                    //             id="${key_id}" ${checked}>
+                    //         <label class="form-check-label" for="${key_id}">${adduct}</label>`));
+                    // }
+                    $ts.value("#adducts_pos", selected.pos.join("\n"));
+                    $ts.value("#adducts_neg", selected.neg.join("\n"));
                 });
         }
 
@@ -246,7 +266,10 @@ namespace apps.systems {
                     "elements": {},
                 },
                 "formula_ppm": 20,
-                "formula_adducts": [],
+                "formula_adducts": {
+                    pos: ["[M]+", "[M+H]+", "[M+Na]+", "[M+NH4]+", "[2M+H]+", "[M-H2O+H]+", "[M-2H2O+H]+"],
+                    neg: ["[M-H]-", "[M+Cl]-", "[M-H2O-H]-", "[2M-H]-", "[M+COOH]-"]
+                },
 
                 // molecular networking
                 "layout_iterations": 100,
@@ -463,7 +486,11 @@ namespace apps.systems {
         }
 
         public add_element_onclick() {
-            settings.getElementProfileTable().bootstrapTable('append', [{ "atom": "", "min": 0, "max": 0 }]);
+            settings.getElementProfileTable().bootstrapTable('append', [{
+                "atom": "",
+                "min": 0,
+                "max": 0
+            }]);
         }
 
         public molecule_networking_btn_onclick() {

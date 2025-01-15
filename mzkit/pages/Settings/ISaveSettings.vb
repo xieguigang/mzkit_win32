@@ -88,7 +88,11 @@ Public Class SettingsProxy
 
     Public host As frmSettings
 
-    Public Function loadSettings() As String
+    ''' <summary>
+    ''' load settings json config data
+    ''' </summary>
+    ''' <returns></returns>
+    Public Async Function loadSettings() As Task(Of String)
         Dim settings As Settings = Globals.Settings
         Dim json As JsonObject = JSONSerializer.CreateJSONElement(Of Settings)(settings)
 
@@ -98,23 +102,31 @@ Public Class SettingsProxy
 
         json.Add("xic_da", settings.viewer.XIC_da)
 
-        Dim json_str As String = json.BuildJsonString
-
+        Dim json_str As String = Await Threading.Tasks.Task.Run(Function() json.BuildJsonString)
         Return json_str
     End Function
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Function getProfile(name As String) As String
-        Return ElementProfile.loadPresetProfile(FormulaSearchProfile.GetProfile(name)).GetJson(enumToStr:=True)
+    Public Async Function getProfile(name As String) As Task(Of String)
+        Dim profile = FormulaSearchProfile.GetProfile(name)
+        Dim opt = ElementProfile.loadPresetProfile(profile)
+
+        Return Await Threading.Tasks.Task.Run(Function() opt.GetJson(enumToStr:=True))
     End Function
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Function getAllAdducts() As String
-        Return Provider.Positives _
-            .JoinIterates(Provider.Negatives) _
-            .Select(Function(a) a.ToString) _
-            .ToArray _
-            .GetJson(enumToStr:=True)
+    Public Async Function getAllAdducts() As Task(Of String)
+        Dim pos = Provider.Positives
+        Dim neg = Provider.Negatives
+        Dim strings_json = Await Threading.Tasks.Task.Run(
+            Function()
+                Return pos.JoinIterates(neg) _
+                    .Select(Function(a) a.ToString) _
+                    .ToArray _
+                    .GetJson(enumToStr:=True)
+            End Function)
+
+        Return strings_json
     End Function
 
     Public Async Function GetColors(name As String) As Task(Of String)
@@ -157,10 +169,13 @@ Public Class SettingsProxy
     ''' </summary>
     ''' <param name="id"></param>
     ''' <param name="Status"></param>
-    Public Sub SetStatus(id As String, Status As String)
+    Public Async Sub SetStatus(id As String, Status As String)
         Select Case Strings.Trim(id).ToLower
             Case "save_elements"
-                Call ElementProfile.SaveSettings(Status.LoadJSON(Of ElementProfile()))
+                Await Threading.Tasks.Task.Run(
+                    Sub()
+                        ElementProfile.SaveSettings(Status.LoadJSON(Of ElementProfile()))
+                    End Sub)
         End Select
     End Sub
 
