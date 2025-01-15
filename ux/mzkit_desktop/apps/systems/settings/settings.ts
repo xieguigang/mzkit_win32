@@ -12,20 +12,6 @@ namespace apps.systems {
     // jquery should be loaded before this application module file
     const $: jQuery = (<any>window).$;
 
-    function logicalDefault(logic: any, _default: boolean): boolean {
-        if (isNullOrUndefined(logic) || isNullOrEmpty(logic)) {
-            return _default;
-        } else if (typeof logic == "number") {
-            return logic != 0.0;
-        } else if (typeof logic == "string") {
-            return parseBoolean(logic);
-        } else if (typeof logic == "boolean") {
-            return logic;
-        } else {
-            return logic;
-        }
-    }
-
     export class settings extends Bootstrap {
 
         get appName(): string {
@@ -65,20 +51,25 @@ namespace apps.systems {
                 negative: [],
                 ppm: 20
             };
-            settings.ui = settings.ui || {};
-            settings.viewer = settings.viewer || {};
+            settings.ui = settings.ui || {
+                "language": "System",
+                "rememberWindowsLocation": true,
+                "rememberLayouts": true,
+            };
+            settings.ui.rememberLayouts = settings_default.logicalDefault(settings.ui.rememberLayouts, true);
+            settings.ui.rememberWindowsLocation = settings_default.logicalDefault(settings.ui.rememberWindowsLocation, true);
+            settings.ui.language = settings_default.stringToLanguage(settings.ui.language);
 
-            // make data object conversion
-            configs.formula_ppm = settings.precursor_search.ppm || 5;
-            configs.formula_adducts = settings.precursor_search;
-
-            configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
-            configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
-            configs.language = settings.ui.language || 2;
-
-            configs.colorset = settings.viewer.colorSet || [];
-            configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
-            configs.xic_da = settings.xic_da;
+            settings.viewer = settings.viewer || {
+                "XIC_da": 0.1,
+                "ppm_error": 20,
+                "colorSet": [],
+                "method": null,
+                "intoCutoff": 0.05,
+                "quantile": 0.65,
+                "fill": true
+            };
+            settings.viewer.colorSet = settings.viewer.colorSet || [];
 
             this.loadConfigs(settings);
         }
