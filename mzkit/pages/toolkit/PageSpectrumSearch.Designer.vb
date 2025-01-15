@@ -78,7 +78,7 @@ Partial Class PageSpectrumSearch
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PageSpectrumSearch))
-        Dim TreeListViewItemCollectionComparer1 As System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer = New System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer()
+        Dim TreeListViewItemCollectionComparer2 As System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer = New System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
@@ -116,198 +116,152 @@ Partial Class PageSpectrumSearch
         '
         'TabControl1
         '
+        resources.ApplyResources(Me.TabControl1, "TabControl1")
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1299, 717)
-        Me.TabControl1.TabIndex = 0
         '
         'TabPage1
         '
+        resources.ApplyResources(Me.TabPage1, "TabPage1")
         Me.TabPage1.Controls.Add(Me.DataGridView1)
         Me.TabPage1.Controls.Add(Me.PictureBox1)
         Me.TabPage1.Controls.Add(Me.Label1)
         Me.TabPage1.Controls.Add(Me.Button1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1291, 691)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Input"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'DataGridView1
         '
-        Me.DataGridView1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        resources.ApplyResources(Me.DataGridView1, "DataGridView1")
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
         Me.DataGridView1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.DataGridView1.Location = New System.Drawing.Point(6, 41)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 23
-        Me.DataGridView1.Size = New System.Drawing.Size(350, 596)
-        Me.DataGridView1.TabIndex = 3
         '
         'Column1
         '
-        Me.Column1.HeaderText = "Product M/z"
+        resources.ApplyResources(Me.Column1, "Column1")
         Me.Column1.Name = "Column1"
         '
         'Column2
         '
-        Me.Column2.HeaderText = "Intensity"
+        resources.ApplyResources(Me.Column2, "Column2")
         Me.Column2.Name = "Column2"
         '
         'ContextMenuStrip1
         '
+        resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasteMgfTextToolStripMenuItem, Me.GetMoNAToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(152, 48)
         '
         'PasteMgfTextToolStripMenuItem
         '
-        Me.PasteMgfTextToolStripMenuItem.Image = CType(resources.GetObject("PasteMgfTextToolStripMenuItem.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.PasteMgfTextToolStripMenuItem, "PasteMgfTextToolStripMenuItem")
         Me.PasteMgfTextToolStripMenuItem.Name = "PasteMgfTextToolStripMenuItem"
-        Me.PasteMgfTextToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
-        Me.PasteMgfTextToolStripMenuItem.Text = "Paste Mgf Text"
         '
         'GetMoNAToolStripMenuItem
         '
+        resources.ApplyResources(Me.GetMoNAToolStripMenuItem, "GetMoNAToolStripMenuItem")
         Me.GetMoNAToolStripMenuItem.Name = "GetMoNAToolStripMenuItem"
-        Me.GetMoNAToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
-        Me.GetMoNAToolStripMenuItem.Text = "Get MoNA"
         '
         'PictureBox1
         '
-        Me.PictureBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        resources.ApplyResources(Me.PictureBox1, "PictureBox1")
         Me.PictureBox1.ContextMenuStrip = Me.ContextMenuStrip2
-        Me.PictureBox1.Location = New System.Drawing.Point(362, 41)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(923, 596)
-        Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
         '
         'ContextMenuStrip2
         '
+        resources.ApplyResources(Me.ContextMenuStrip2, "ContextMenuStrip2")
         Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SavePreviewPlotToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
         Me.ContextMenuStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(167, 26)
         '
         'SavePreviewPlotToolStripMenuItem
         '
-        Me.SavePreviewPlotToolStripMenuItem.Image = CType(resources.GetObject("SavePreviewPlotToolStripMenuItem.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.SavePreviewPlotToolStripMenuItem, "SavePreviewPlotToolStripMenuItem")
         Me.SavePreviewPlotToolStripMenuItem.Name = "SavePreviewPlotToolStripMenuItem"
-        Me.SavePreviewPlotToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
-        Me.SavePreviewPlotToolStripMenuItem.Text = "Save Preview Plot"
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 15)
+        resources.ApplyResources(Me.Label1, "Label1")
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(79, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Spectrum Input"
         '
         'Button1
         '
-        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(13, 650)
+        resources.ApplyResources(Me.Button1, "Button1")
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(129, 25)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Search In Files"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'TabPage2
         '
+        resources.ApplyResources(Me.TabPage2, "TabPage2")
         Me.TabPage2.Controls.Add(Me.TreeListView1)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1291, 691)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Search Result"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
         'TreeListView1
         '
+        resources.ApplyResources(Me.TreeListView1, "TreeListView1")
         Me.TreeListView1.Activation = System.Windows.Forms.ItemActivation.OneClick
         Me.TreeListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6})
-        TreeListViewItemCollectionComparer1.Column = 0
-        TreeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending
-        Me.TreeListView1.Comparer = TreeListViewItemCollectionComparer1
+        TreeListViewItemCollectionComparer2.Column = 0
+        TreeListViewItemCollectionComparer2.SortOrder = System.Windows.Forms.SortOrder.Ascending
+        Me.TreeListView1.Comparer = TreeListViewItemCollectionComparer2
         Me.TreeListView1.ContextMenuStrip = Me.ContextMenuStrip3
-        Me.TreeListView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TreeListView1.Font = New System.Drawing.Font("Microsoft YaHei", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TreeListView1.GridLines = True
         Me.TreeListView1.HideSelection = False
-        Me.TreeListView1.Location = New System.Drawing.Point(3, 3)
         Me.TreeListView1.Name = "TreeListView1"
         Me.TreeListView1.ShowItemToolTips = True
-        Me.TreeListView1.Size = New System.Drawing.Size(1285, 685)
         Me.TreeListView1.SmallImageList = Me.ImageList1
-        Me.TreeListView1.TabIndex = 0
         Me.TreeListView1.UseCompatibleStateImageBehavior = False
         '
         'ColumnHeader1
         '
-        Me.ColumnHeader1.Text = "Raw File/Feature"
-        Me.ColumnHeader1.Width = 380
+        resources.ApplyResources(Me.ColumnHeader1, "ColumnHeader1")
         '
         'ColumnHeader2
         '
-        Me.ColumnHeader2.Text = "#Features"
-        Me.ColumnHeader2.Width = 136
+        resources.ApplyResources(Me.ColumnHeader2, "ColumnHeader2")
         '
         'ColumnHeader3
         '
-        Me.ColumnHeader3.Text = "Forward"
-        Me.ColumnHeader3.Width = 158
+        resources.ApplyResources(Me.ColumnHeader3, "ColumnHeader3")
         '
         'ColumnHeader4
         '
-        Me.ColumnHeader4.Text = "Reverse"
-        Me.ColumnHeader4.Width = 175
+        resources.ApplyResources(Me.ColumnHeader4, "ColumnHeader4")
         '
         'ColumnHeader5
         '
-        Me.ColumnHeader5.Text = "m/z"
-        Me.ColumnHeader5.Width = 101
+        resources.ApplyResources(Me.ColumnHeader5, "ColumnHeader5")
         '
         'ColumnHeader6
         '
-        Me.ColumnHeader6.Text = "rt"
-        Me.ColumnHeader6.Width = 94
+        resources.ApplyResources(Me.ColumnHeader6, "ColumnHeader6")
         '
         'ContextMenuStrip3
         '
+        resources.ApplyResources(Me.ContextMenuStrip3, "ContextMenuStrip3")
         Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewAlignmentToolStripMenuItem, Me.OpenInTableViewerToolStripMenuItem})
         Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
         Me.ContextMenuStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ContextMenuStrip3.Size = New System.Drawing.Size(185, 48)
         '
         'ViewAlignmentToolStripMenuItem
         '
-        Me.ViewAlignmentToolStripMenuItem.Image = CType(resources.GetObject("ViewAlignmentToolStripMenuItem.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.ViewAlignmentToolStripMenuItem, "ViewAlignmentToolStripMenuItem")
         Me.ViewAlignmentToolStripMenuItem.Name = "ViewAlignmentToolStripMenuItem"
-        Me.ViewAlignmentToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
-        Me.ViewAlignmentToolStripMenuItem.Text = "View"
         '
         'OpenInTableViewerToolStripMenuItem
         '
+        resources.ApplyResources(Me.OpenInTableViewerToolStripMenuItem, "OpenInTableViewerToolStripMenuItem")
         Me.OpenInTableViewerToolStripMenuItem.Image = Global.BioNovoGene.mzkit_win32.My.Resources.Resources.preferences_system_notifications
         Me.OpenInTableViewerToolStripMenuItem.Name = "OpenInTableViewerToolStripMenuItem"
-        Me.OpenInTableViewerToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
-        Me.OpenInTableViewerToolStripMenuItem.Text = "Open In Table Viewer"
         '
         'ImageList1
         '
@@ -318,11 +272,10 @@ Partial Class PageSpectrumSearch
         '
         'PageSpectrumSearch
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "PageSpectrumSearch"
-        Me.Size = New System.Drawing.Size(1299, 717)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()

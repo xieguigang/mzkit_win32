@@ -87,7 +87,7 @@ Imports RibbonLib.Interop
 Imports Task
 Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
-Imports stdNum = System.Math
+Imports std = System.Math
 
 ''' <summary>
 ''' 显示一个workspace对象里面所包含有的文件列表
@@ -705,9 +705,9 @@ Public Class frmFileExplorer
                                                     load.CountMs2,
                                                     load.rtmin.ToString("F1"),
                                                     load.rtmax.ToString("F1"),
-                                                    stdNum.Round(load.totalIons),
+                                                    std.Round(load.totalIons),
                                                     If(basePeak Is Nothing, 0, basePeak.mz.ToString("F4")),
-                                                    If(basePeak Is Nothing, 0, stdNum.Round(basePeak.intensity))
+                                                    If(basePeak Is Nothing, 0, std.Round(basePeak.intensity))
                                                 )
                                             End Sub)
                                                    Next

@@ -1617,6 +1617,9 @@
     <EmbeddedResource Include="pages\toolkit\PageSpectrumSearch.resx">
       <DependentUpon>PageSpectrumSearch.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pages\toolkit\PageSpectrumSearch.zh-Hans.resx">
+      <DependentUpon>PageSpectrumSearch.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RibbonMarkup.ribbon" />
   </ItemGroup>
   <ItemGroup>
