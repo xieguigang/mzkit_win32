@@ -90,6 +90,10 @@ Namespace Configuration
         Public Property positive As String()
         Public Property negative As String()
 
+        Public Function precursor_types() As String()
+            Return positive.JoinIterates(negative).ToArray
+        End Function
+
         Public Shared Function GetDefault() As PrecursorSearchSettings
             Return New PrecursorSearchSettings With {
                 .ppm = 5,

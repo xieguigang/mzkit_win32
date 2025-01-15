@@ -79,7 +79,7 @@ Public Class PresetProfile : Implements ISaveSettings, IPageSettings
         ComboBox2.SelectedIndex = profile.naturalProductProfile.type
         CheckBox2.Checked = profile.naturalProductProfile.isCommon
 
-        Dim precursorInfo = Globals.Settings.precursor_search
+        Dim precursorInfo As PrecursorSearchSettings = Globals.Settings.precursor_search
 
         If precursorInfo Is Nothing Then
             Globals.Settings.precursor_search = New PrecursorSearchSettings
@@ -94,8 +94,7 @@ Public Class PresetProfile : Implements ISaveSettings, IPageSettings
         Globals.Settings.formula_search.naturalProductProfile = New PresetProfileSettings With {.type = ComboBox2.SelectedIndex, .isCommon = CheckBox2.Checked}
 
         Globals.Settings.precursor_search = New PrecursorSearchSettings With {
-            .ppm = NumericUpDown1.Value,
-            .precursor_types = TextBox1.Text.LineTokens
+            .ppm = NumericUpDown1.Value', .precursor_types = TextBox1.Text.LineTokens
         }
 
         Globals.Settings.Save()
