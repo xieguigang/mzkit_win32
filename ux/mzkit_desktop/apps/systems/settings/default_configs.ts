@@ -50,8 +50,10 @@ namespace apps.systems.settings_default {
     }
 
     // 函数：将枚举值（数字）转换回对应的字符串
-    export function languageToString(languageNumber: number): string | undefined {
-        switch (languageNumber) {
+    export function languageToString(languageNumber: string): string | undefined {
+        const int = parseInt(languageNumber.toString());
+
+        switch (int) {
             case Languages.System:
                 return 'System';
             case Languages.Chinese:

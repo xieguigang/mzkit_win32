@@ -75,19 +75,19 @@ namespace apps.systems {
         }
 
         public remember_location_onchange(value: string | string[]) {
-            settings.mzkit_configs.remember_location = <any>(Array.isArray(value) ? value[0] : value);
+            settings.mzkit_configs.ui.rememberWindowsLocation = settings_default.logicalDefault(Array.isArray(value) ? value[0] : value, true);
         }
 
         public remember_layout_onchange(value: string | string[]) {
-            settings.mzkit_configs.remember_layout = <any>(Array.isArray(value) ? value[0] : value);
+            settings.mzkit_configs.ui.rememberLayouts = settings_default.logicalDefault(Array.isArray(value) ? value[0] : value, true);
         }
 
         public language_onchange(value: string | string[]) {
-            settings.mzkit_configs.language = <any>(Array.isArray(value) ? value[0] : value);
+            settings.mzkit_configs.ui.language = settings_default.languageToString(Array.isArray(value) ? value[0] : value);
         }
 
         public fill_plot_area_onchange(value: string | string[]) {
-            settings.mzkit_configs.fill_plot_area = <any>(Array.isArray(value) ? value[0] : value);
+            settings.mzkit_configs.viewer.fill = settings_default.logicalDefault(Array.isArray(value) ? value[0] : value, true);
         }
 
         /**
