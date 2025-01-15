@@ -1281,12 +1281,18 @@ var apps;
             })(Languages = settings_default.Languages || (settings_default.Languages = {}));
             // 函数：将字符串转换为对应的枚举值（数字）
             function stringToLanguage(languageString) {
-                switch (languageString) {
+                if (isNullOrUndefined(languageString)) {
+                    return "0";
+                }
+                switch (languageString.toString()) {
                     case 'System':
+                    case '0':
                         return Languages.System.toString();
                     case 'Chinese':
+                    case '1':
                         return Languages.Chinese.toString();
                     case 'English':
+                    case "2":
                         return Languages.English.toString();
                     default:
                         return "0"; // 如果输入的字符串不匹配任何枚举值，则返回undefined

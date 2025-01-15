@@ -99,7 +99,6 @@ Imports Task
 Imports Task.Container
 Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
-Imports std = System.Math
 
 Module Globals
 

@@ -593,6 +593,9 @@ Public Class frmMain : Implements AppHost
         If Globals.Settings.version < Globals.BuildTime Then
             Call VisualStudio.InstallInternalRPackages()
         End If
+
+        Call Workbench.LogText("set ui language culture to:" & Thread.CurrentThread.CurrentUICulture.ToString)
+        Call Workbench.LogText(Settings.ui.language.Description)
     End Sub
 
     Private Sub InitializeFormulaProfile()
