@@ -60,6 +60,13 @@ namespace apps.systems {
             settings.ui.rememberWindowsLocation = settings_default.logicalDefault(settings.ui.rememberWindowsLocation, true);
             settings.ui.language = settings_default.stringToLanguage(settings.ui.language);
 
+            settings.MRMLibfile = null;
+            settings.QuantifyIonLibfile = null;
+            settings.pubchemWebCache = null;
+            settings.random = null;
+            settings.recentFiles = null;
+            settings.workspaceFile = null;
+
             settings.viewer = settings.viewer || {
                 "XIC_da": 0.1,
                 "ppm_error": 20,

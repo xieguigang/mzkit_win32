@@ -1397,6 +1397,12 @@ var apps;
                 settings.ui.rememberLayouts = systems.settings_default.logicalDefault(settings.ui.rememberLayouts, true);
                 settings.ui.rememberWindowsLocation = systems.settings_default.logicalDefault(settings.ui.rememberWindowsLocation, true);
                 settings.ui.language = systems.settings_default.stringToLanguage(settings.ui.language);
+                settings.MRMLibfile = null;
+                settings.QuantifyIonLibfile = null;
+                settings.pubchemWebCache = null;
+                settings.random = null;
+                settings.recentFiles = null;
+                settings.workspaceFile = null;
                 settings.viewer = settings.viewer || {
                     "XIC_da": 0.1,
                     "ppm_error": 20,
