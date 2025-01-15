@@ -1313,15 +1313,16 @@ var apps;
                 console.log("get mzkit configurations:");
                 console.log(settings);
                 // deal with the possible null reference value
-                settings.precursor_search = settings.precursor_search || {};
+                settings.precursor_search = settings.precursor_search || {
+                    positive: [],
+                    negative: [],
+                    ppm: 20
+                };
                 settings.ui = settings.ui || {};
                 settings.viewer = settings.viewer || {};
                 // make data object conversion
                 configs.formula_ppm = settings.precursor_search.ppm || 5;
-                configs.formula_adducts = settings.precursor_search.precursor_types || {
-                    pos: [],
-                    neg: []
-                };
+                configs.formula_adducts = settings.precursor_search;
                 configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
                 configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
                 configs.language = settings.ui.language || 2;
