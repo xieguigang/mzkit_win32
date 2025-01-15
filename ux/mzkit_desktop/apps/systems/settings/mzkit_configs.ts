@@ -38,7 +38,25 @@ namespace apps.systems {
             "quantile": number,
             "fill": boolean
         },
-        "network": any,
+        network: {
+            "defaultFilter": number,
+            "layout": {
+                "Damping": number,
+                "Iterations": number,
+                "Repulsion": number,
+                "Stiffness": number
+            },
+            "linkWidth": {
+                "max": number,
+                "min": number
+            },
+            "nodeRadius": {
+                "max": number,
+                "min": number
+            },
+            "treeNodeIdentical": number,
+            "treeNodeSimilar": number
+        },
         "licensed": {},
         "version": string,
         "random": string,

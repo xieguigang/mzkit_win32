@@ -322,7 +322,11 @@ declare namespace apps.systems {
             "positive": string[];
             "negative": string[];
         };
-        "formula_search": any;
+        "formula_search": {
+            elements: {};
+            smallMoleculeProfile: element_profile;
+            naturalProductProfile: element_profile;
+        };
         "ui": {
             "x"?: number;
             "y"?: number;
@@ -347,7 +351,25 @@ declare namespace apps.systems {
             "quantile": number;
             "fill": boolean;
         };
-        "network": any;
+        network: {
+            "defaultFilter": number;
+            "layout": {
+                "Damping": number;
+                "Iterations": number;
+                "Repulsion": number;
+                "Stiffness": number;
+            };
+            "linkWidth": {
+                "max": number;
+                "min": number;
+            };
+            "nodeRadius": {
+                "max": number;
+                "min": number;
+            };
+            "treeNodeIdentical": number;
+            "treeNodeSimilar": number;
+        };
         "licensed": {};
         "version": string;
         "random": string;
