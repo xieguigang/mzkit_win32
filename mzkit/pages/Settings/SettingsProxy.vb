@@ -93,10 +93,13 @@ Namespace SettingsPage
             Dim json As JsonObject = JSONSerializer.CreateJSONElement(Of Settings)(settings)
 
             If settings.viewer Is Nothing Then
-                settings.viewer = New RawFileViewerSettings
+                settings.viewer = plot.LoadSettings
             End If
             If settings.formula_search Is Nothing Then
                 settings.formula_search = preset.LoadSettings
+            End If
+            If settings.network Is Nothing Then
+                settings.network = network.LoadSettings
             End If
 
             Dim json_str As String = Await Threading.Tasks.Task.Run(Function() json.BuildJsonString)
@@ -127,7 +130,7 @@ Namespace SettingsPage
         End Function
 
         Public Async Function GetColors(name As String) As Task(Of String)
-            Dim colors As String() = Await Task(Of String()).Run(Function() PlotConfig.GetColors(name))
+            Dim colors As String() = Await Task(Of String()).Run(Function() plot.GetColors(name))
             Dim json As String = colors.GetJson(enumToStr:=True)
             Return json
         End Function
@@ -151,10 +154,9 @@ Namespace SettingsPage
 
             Call appConfig.SaveSettings(json)
             Call preset.SaveSettings(json)
-
-            settings.viewer.fill = json.viewer.fill
-            settings.viewer.colorSet = json.viewer.colorSet
-            settings.viewer.XIC_da = json.viewer.XIC_da
+            Call network.SaveSettings(json)
+            Call plot.SaveSettings(json.viewer.colorSet, json.viewer.fill)
+            Call rawfile.SaveSettings(json)
 
             Call settings.Save()
             Call Workbench.SuccessMessage("New settings value applied and saved!")

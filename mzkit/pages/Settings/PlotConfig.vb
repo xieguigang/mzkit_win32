@@ -63,7 +63,22 @@ Namespace SettingsPage
 
     Public Class PlotConfig
 
-        Public Shared Sub SaveSettings(colorSet As String(), fill As Boolean)
+        Public Function LoadSettings() As RawFileViewerSettings
+            If Globals.Settings.viewer Is Nothing Then
+                Globals.Settings.viewer = New RawFileViewerSettings With {
+                    .fill = True,
+                    .intoCutoff = 0.05,
+                    .method = TrimmingMethods.RelativeIntensity,
+                    .ppm_error = 20,
+                    .XIC_da = 0.1,
+                    .quantile = 0.65
+                }
+            End If
+
+            Return Globals.Settings.viewer
+        End Function
+
+        Public Sub SaveSettings(colorSet As String(), fill As Boolean)
             If Globals.Settings.viewer Is Nothing Then
                 Globals.Settings.viewer = New RawFileViewerSettings
             End If
@@ -72,7 +87,7 @@ Namespace SettingsPage
             Globals.Settings.viewer.fill = fill
         End Sub
 
-        Public Shared Function GetColors(name As String) As String()
+        Public Function GetColors(name As String) As String()
             Dim colors As Color() = Nothing
 
             '        ColorBrewer Set1
