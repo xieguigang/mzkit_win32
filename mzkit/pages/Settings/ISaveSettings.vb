@@ -152,6 +152,30 @@ Public Class SettingsProxy
         Call Workbench.SuccessMessage("New settings value applied and saved!")
     End Sub
 
+    Public Async Sub SaveAdducts(pos_str As String, neg_str As String)
+        Dim pos As String() = pos_str.LoadJSON(Of String())(throwEx:=False)
+        Dim neg As String() = neg_str.LoadJSON(Of String())(throwEx:=False)
+        Dim settings = Globals.Settings
+
+        If pos.IsNullOrEmpty Then
+            Call Workbench.Warning("no positive adducts configs data!")
+        End If
+        If neg.IsNullOrEmpty Then
+            Call Workbench.Warning("no negative adducts configs data!")
+        End If
+
+        If settings.precursor_search Is Nothing Then
+            settings.precursor_search = PrecursorSearchSettings.GetDefault
+        End If
+
+        settings.precursor_search.positive = pos
+        settings.precursor_search.negative = neg
+
+        Await Threading.Tasks.Task.Run(Sub() settings.Save())
+
+        Call Workbench.SuccessMessage("New settings value for precursor adducts applied and saved!")
+    End Sub
+
     ''' <summary>
     ''' save a specific settings data
     ''' </summary>
