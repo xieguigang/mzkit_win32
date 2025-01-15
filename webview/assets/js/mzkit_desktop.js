@@ -1679,7 +1679,7 @@ var apps;
                         return [2 /*return*/];
                     });
                 }); });
-                if (!settings.__dosave) {
+                if (!isNullOrUndefined(settings.__dosave)) {
                     settings.__dosave();
                 }
             };

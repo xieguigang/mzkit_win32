@@ -472,7 +472,7 @@ namespace apps.systems {
                     console.log("done!");
                 });
 
-            if (!settings.__dosave) {
+            if (!isNullOrUndefined(settings.__dosave)) {
                 settings.__dosave();
             }
         }
