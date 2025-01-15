@@ -87,7 +87,6 @@ Namespace SettingsPage
 
             Globals.Settings.formula_search.smallMoleculeProfile = config.formula_search.smallMoleculeProfile
             Globals.Settings.formula_search.naturalProductProfile = config.formula_search.naturalProductProfile
-            Globals.Settings.Save()
         End Sub
     End Class
 End Namespace

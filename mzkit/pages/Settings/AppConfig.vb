@@ -79,8 +79,6 @@ Namespace SettingsPage
             Globals.Settings.ui.rememberLayouts = config.ui.rememberLayouts
             Globals.Settings.ui.rememberWindowsLocation = config.ui.rememberWindowsLocation
 
-            Globals.Settings.Save()
-
             If Globals.Settings.ui.language <> CInt(oldLanguageConfig) Then
                 Call MessageBox.Show(
                     MyApplication.getLanguageString("language", Globals.Settings.ui.language),
