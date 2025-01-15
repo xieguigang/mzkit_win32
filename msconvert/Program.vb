@@ -22,7 +22,6 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language.[Default]
-Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Scripting.Runtime
@@ -274,7 +273,8 @@ Imports MZWorkPack
               Description:="This parameter only works for the directory input file. 
               used as the file extension suffix for scan in the target directory. 
               value for this argument could be: wiff, raw, mzML, mzXML, mzPack.")>
-    <Argument("/matrix_basePeak", True, CLITypes.Double, Description:="zero or negative value means no removes of the matrix base ion, and the value of this parameter can also be 'auto', means auto check the matrix base ion.")>
+    <Argument("/matrix_basePeak", True, CLITypes.Double,
+              Description:="zero or negative value means no removes of the matrix base ion, and the value of this parameter can also be 'auto', means auto check the matrix base ion.")>
     Public Function MSIRowCombine(args As CommandLine) As Integer
         Dim inputfile As String = args <= "--files"
         Dim scanExt As String = args <= "/scan"

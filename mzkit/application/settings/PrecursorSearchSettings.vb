@@ -87,12 +87,14 @@ Namespace Configuration
     Public Class PrecursorSearchSettings
 
         Public Property ppm As Double = 20
-        Public Property precursor_types As String()
+        Public Property positive As String()
+        Public Property negative As String()
 
         Public Shared Function GetDefault() As PrecursorSearchSettings
             Return New PrecursorSearchSettings With {
                 .ppm = 5,
-                .precursor_types = {"M", "M+H", "M-H", "M+H-H2O", "M-H2O-H"}
+                .positive = {"[M]+", "[M+H]+", "[M+Na]+", "[M+NH4]+", "[2M+H]+"},
+                .negative = {"[M-H]-", "[M+Cl]-", "[M-H2O-H]-", "[2M-H]-"}
             }
         End Function
 
