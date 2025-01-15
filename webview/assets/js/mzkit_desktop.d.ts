@@ -101,7 +101,7 @@ declare namespace app.desktop {
         /**
          * a general method(across multiple host pages) for save general page data
         */
-        Save(value?: string): void;
+        Save(value?: string): Promise<any>;
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
         GetPlugins(): Promise<string>;
@@ -383,7 +383,14 @@ declare namespace apps.systems {
         private static getColorList;
         add_color_onclick(): void;
         clear_colors_onclick(): void;
+        static __dosave: Delegate.Action;
+        /**
+         * display a config page
+        */
         private static show;
+        /**
+         * system UI page
+        */
         mzkit_page_btn_onclick(): void;
         msraw_btn_onclick(): void;
         chromagram_btn_onclick(): void;

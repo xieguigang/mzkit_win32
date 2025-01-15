@@ -1607,24 +1607,36 @@ var apps;
             settings.prototype.clear_colors_onclick = function () {
                 $ts("#colorset").clear();
             };
-            settings.show = function (page_id) {
+            /**
+             * display a config page
+            */
+            settings.show = function (page_id, save) {
+                settings.__dosave = save;
                 $ts("#".concat(page_id)).show();
                 $ts("#title").display(pages[page_id]);
             };
+            /**
+             * system UI page
+            */
             settings.prototype.mzkit_page_btn_onclick = function () {
-                settings.closeAll().show("mzkit_page");
+                settings.closeAll().show("mzkit_page", function () {
+                });
             };
             settings.prototype.msraw_btn_onclick = function () {
-                settings.closeAll().show("msraw_page");
+                settings.closeAll().show("msraw_page", function () {
+                });
             };
             settings.prototype.chromagram_btn_onclick = function () {
-                settings.closeAll().show("chromagram_page");
+                settings.closeAll().show("chromagram_page", function () {
+                });
             };
             settings.prototype.formula_btn_onclick = function () {
-                settings.closeAll().show("formula_page");
+                settings.closeAll().show("formula_page", function () {
+                });
             };
             settings.prototype.profile_btn_onclick = function () {
-                settings.closeAll().show("element_profile_page");
+                settings.closeAll().show("element_profile_page", function () {
+                });
             };
             settings.prototype.add_element_onclick = function () {
                 settings.getElementProfileTable().bootstrapTable('append', [{
@@ -1634,7 +1646,8 @@ var apps;
                     }]);
             };
             settings.prototype.molecule_networking_btn_onclick = function () {
-                settings.closeAll().show("molecule_networking_page");
+                settings.closeAll().show("molecule_networking_page", function () {
+                });
             };
             /**
              * save profile table as custom profiles
@@ -1647,19 +1660,19 @@ var apps;
                 app.desktop.mzkit.SetStatus("save_elements", JSON.stringify(data));
             };
             settings.invoke_save = function () {
+                var _this = this;
                 console.log("invoke settings save action!");
+                // do config of the settings value
                 settings.mzkit_configs.colorset = settings.getColorList();
-                // do save configuration
+                // do save configuration via proxy
                 app.desktop.mzkit
                     .Save(JSON.stringify(settings.mzkit_configs))
-                    .then(function () {
-                    return __awaiter(this, void 0, void 0, function () {
-                        return __generator(this, function (_a) {
-                            console.log("done!");
-                            return [2 /*return*/];
-                        });
+                    .then(function () { return __awaiter(_this, void 0, void 0, function () {
+                    return __generator(this, function (_a) {
+                        console.log("done!");
+                        return [2 /*return*/];
                     });
-                });
+                }); });
             };
             settings.prototype.apply_settings_onclick = function () {
                 settings.invoke_save();
@@ -1668,6 +1681,7 @@ var apps;
                 app.desktop.mzkit.close();
             };
             settings.mzkit_configs = null;
+            settings.__dosave = null;
             return settings;
         }(Bootstrap));
         systems.settings = settings;

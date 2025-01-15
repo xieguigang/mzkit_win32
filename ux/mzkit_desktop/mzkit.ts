@@ -71,7 +71,7 @@ namespace app.desktop {
         /**
          * a general method(across multiple host pages) for save general page data
         */
-        Save(value?: string): void;
+        Save(value?: string): Promise<any>;
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
         GetPlugins(): Promise<string>;

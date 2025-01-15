@@ -378,29 +378,49 @@ namespace apps.systems {
             $ts("#colorset").clear();
         }
 
-        private static show(page_id: string) {
+        public static __dosave: Delegate.Action = null;
+
+        /**
+         * display a config page
+        */
+        private static show(page_id: string, save: Delegate.Action) {
+            settings.__dosave = save;
+
             $ts(`#${page_id}`).show();
             $ts("#title").display(pages[page_id]);
         }
 
+        /**
+         * system UI page
+        */
         public mzkit_page_btn_onclick() {
-            settings.closeAll().show("mzkit_page");
+            settings.closeAll().show("mzkit_page", () => {
+
+            });
         }
 
         public msraw_btn_onclick() {
-            settings.closeAll().show("msraw_page");
+            settings.closeAll().show("msraw_page", () => {
+
+            });
         }
 
         public chromagram_btn_onclick() {
-            settings.closeAll().show("chromagram_page");
+            settings.closeAll().show("chromagram_page", () => {
+
+            });
         }
 
         public formula_btn_onclick() {
-            settings.closeAll().show("formula_page");
+            settings.closeAll().show("formula_page", () => {
+
+            });
         }
 
         public profile_btn_onclick() {
-            settings.closeAll().show("element_profile_page");
+            settings.closeAll().show("element_profile_page", () => {
+
+            });
         }
 
         public add_element_onclick() {
@@ -412,7 +432,9 @@ namespace apps.systems {
         }
 
         public molecule_networking_btn_onclick() {
-            settings.closeAll().show("molecule_networking_page");
+            settings.closeAll().show("molecule_networking_page", () => {
+
+            });
         }
 
         /**
@@ -431,12 +453,13 @@ namespace apps.systems {
         public static invoke_save() {
             console.log("invoke settings save action!");
 
+            // do config of the settings value
             settings.mzkit_configs.colorset = settings.getColorList();
 
-            // do save configuration
+            // do save configuration via proxy
             app.desktop.mzkit
                 .Save(JSON.stringify(settings.mzkit_configs))
-                .then(async function () {
+                .then(async () => {
                     console.log("done!");
                 });
         }
