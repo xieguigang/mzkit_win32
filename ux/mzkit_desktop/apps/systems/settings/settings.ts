@@ -97,18 +97,18 @@ namespace apps.systems {
             const formula_profiles = configs.formula_search;
 
             settings.mzkit_configs = configs;
-            settings.loadColorList(configs.colorset);
+            settings.loadColorList(configs.viewer.colorSet);
             settings.load_profileTable(configs);
             settings.bindRangeDisplayValue(configs, function (config) {
                 // save
             });
 
-            $ts.value("#language", configs.language);
-            $ts.value("#remember_location", configs["remember_location"]);
-            $ts.value("#remember_layout", configs["remember_layout"]);
+            $ts.value("#language", configs.ui.language);
+            $ts.value("#remember_location", configs.ui.rememberWindowsLocation);
+            $ts.value("#remember_layout", configs.ui.rememberLayouts);
 
-            $ts.value("#fragment_cutoff", configs["fragment_cutoff"]);
-            $ts.value("#fill_plot_area", configs["fill_plot_area"]);
+            $ts.value("#fragment_cutoff", configs.viewer.intoCutoff);
+            $ts.value("#fill_plot_area", configs.viewer.fill);
 
             $ts.value("#small_molecule_profile", formula_profiles.smallMoleculeProfile.type);
             $ts.value("#sm_common", formula_profiles.smallMoleculeProfile.isCommon);
@@ -120,8 +120,8 @@ namespace apps.systems {
                 .then(async function (json) {
                     const json_str: string = await json;
                     const list: string[] = JSON.parse(json_str);
-                    const selected = configs.formula_adducts || {
-                        positive: [], negative: []
+                    const selected = configs.precursor_search || {
+                        positive: [], negative: [], ppm: 20
                     };
 
                     if (isNullOrEmpty(selected.positive)) {

@@ -1244,6 +1244,95 @@ var apps;
 (function (apps) {
     var systems;
     (function (systems) {
+        var settings_default;
+        (function (settings_default) {
+            function defaultSettings() {
+                return {
+                    // mzkit app
+                    ui: {
+                        "language": "System",
+                        "rememberWindowsLocation": true,
+                        "rememberLayouts": true,
+                    },
+                    // raw file viewer
+                    // chromagram plot
+                    viewer: {
+                        "XIC_da": 0.05,
+                        "ppm_error": 20,
+                        "colorSet": [],
+                        "method": "relative",
+                        "intoCutoff": 0.05,
+                        "quantile": 0.65,
+                        "fill": true
+                    },
+                    precursor_search: {
+                        ppm: 20,
+                        positive: settings_default.default_adducts_pos,
+                        negative: settings_default.default_adducts_neg
+                    }
+                };
+            }
+            settings_default.defaultSettings = defaultSettings;
+            var Languages;
+            (function (Languages) {
+                Languages[Languages["System"] = 0] = "System";
+                Languages[Languages["Chinese"] = 1] = "Chinese";
+                Languages[Languages["English"] = 2] = "English";
+            })(Languages = settings_default.Languages || (settings_default.Languages = {}));
+            // 函数：将字符串转换为对应的枚举值（数字）
+            function stringToLanguage(languageString) {
+                switch (languageString) {
+                    case 'System':
+                        return Languages.System.toString();
+                    case 'Chinese':
+                        return Languages.Chinese.toString();
+                    case 'English':
+                        return Languages.English.toString();
+                    default:
+                        return "0"; // 如果输入的字符串不匹配任何枚举值，则返回undefined
+                }
+            }
+            settings_default.stringToLanguage = stringToLanguage;
+            // 函数：将枚举值（数字）转换回对应的字符串
+            function languageToString(languageNumber) {
+                var int = parseInt(languageNumber.toString());
+                switch (int) {
+                    case Languages.System:
+                        return 'System';
+                    case Languages.Chinese:
+                        return 'Chinese';
+                    case Languages.English:
+                        return 'English';
+                    default:
+                        return 'System'; // 如果输入的数字不匹配任何枚举值，则返回undefined
+                }
+            }
+            settings_default.languageToString = languageToString;
+            function logicalDefault(logic, _default) {
+                if (isNullOrUndefined(logic) || isNullOrEmpty(logic)) {
+                    return _default;
+                }
+                else if (typeof logic == "number") {
+                    return logic != 0.0;
+                }
+                else if (typeof logic == "string") {
+                    return parseBoolean(logic);
+                }
+                else if (typeof logic == "boolean") {
+                    return logic;
+                }
+                else {
+                    return logic;
+                }
+            }
+            settings_default.logicalDefault = logicalDefault;
+        })(settings_default = systems.settings_default || (systems.settings_default = {}));
+    })(systems = apps.systems || (apps.systems = {}));
+})(apps || (apps = {}));
+var apps;
+(function (apps) {
+    var systems;
+    (function (systems) {
         var pages = {
             "mzkit_page": "MZKit Settings",
             "msraw_page": "Raw File Viewer",
@@ -1254,23 +1343,6 @@ var apps;
         };
         // jquery should be loaded before this application module file
         var $ = window.$;
-        function logicalDefault(logic, _default) {
-            if (isNullOrUndefined(logic) || isNullOrEmpty(logic)) {
-                return _default;
-            }
-            else if (typeof logic == "number") {
-                return logic != 0.0;
-            }
-            else if (typeof logic == "string") {
-                return parseBoolean(logic);
-            }
-            else if (typeof logic == "boolean") {
-                return logic;
-            }
-            else {
-                return logic;
-            }
-        }
         var settings = /** @class */ (function (_super) {
             __extends(settings, _super);
             function settings() {
@@ -1308,8 +1380,7 @@ var apps;
              * load settings profile data on application startup
             */
             settings.prototype.load_settings_json = function (json_str) {
-                var settings = JSON.parse(json_str) || {};
-                var configs = apps.systems.settings.defaultSettings();
+                var settings = JSON.parse(json_str) || apps.systems.settings_default.defaultSettings();
                 console.log("get mzkit configurations:");
                 console.log(settings);
                 // deal with the possible null reference value
@@ -1318,30 +1389,37 @@ var apps;
                     negative: [],
                     ppm: 20
                 };
-                settings.ui = settings.ui || {};
-                settings.viewer = settings.viewer || {};
-                // make data object conversion
-                configs.formula_ppm = settings.precursor_search.ppm || 5;
-                configs.formula_adducts = settings.precursor_search;
-                configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
-                configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
-                configs.language = settings.ui.language || 2;
-                configs.colorset = settings.viewer.colorSet || [];
-                configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
-                configs.xic_da = settings.xic_da;
-                this.loadConfigs(configs);
+                settings.ui = settings.ui || {
+                    "language": "System",
+                    "rememberWindowsLocation": true,
+                    "rememberLayouts": true,
+                };
+                settings.ui.rememberLayouts = systems.settings_default.logicalDefault(settings.ui.rememberLayouts, true);
+                settings.ui.rememberWindowsLocation = systems.settings_default.logicalDefault(settings.ui.rememberWindowsLocation, true);
+                settings.ui.language = systems.settings_default.stringToLanguage(settings.ui.language);
+                settings.viewer = settings.viewer || {
+                    "XIC_da": 0.1,
+                    "ppm_error": 20,
+                    "colorSet": [],
+                    "method": null,
+                    "intoCutoff": 0.05,
+                    "quantile": 0.65,
+                    "fill": true
+                };
+                settings.viewer.colorSet = settings.viewer.colorSet || [];
+                this.loadConfigs(settings);
             };
             settings.prototype.remember_location_onchange = function (value) {
-                settings.mzkit_configs.remember_location = (Array.isArray(value) ? value[0] : value);
+                settings.mzkit_configs.ui.rememberWindowsLocation = systems.settings_default.logicalDefault(Array.isArray(value) ? value[0] : value, true);
             };
             settings.prototype.remember_layout_onchange = function (value) {
-                settings.mzkit_configs.remember_layout = (Array.isArray(value) ? value[0] : value);
+                settings.mzkit_configs.ui.rememberLayouts = systems.settings_default.logicalDefault(Array.isArray(value) ? value[0] : value, true);
             };
             settings.prototype.language_onchange = function (value) {
-                settings.mzkit_configs.language = (Array.isArray(value) ? value[0] : value);
+                settings.mzkit_configs.ui.language = systems.settings_default.languageToString(Array.isArray(value) ? value[0] : value);
             };
             settings.prototype.fill_plot_area_onchange = function (value) {
-                settings.mzkit_configs.fill_plot_area = (Array.isArray(value) ? value[0] : value);
+                settings.mzkit_configs.viewer.fill = systems.settings_default.logicalDefault(Array.isArray(value) ? value[0] : value, true);
             };
             /**
              * load settings on application startup
@@ -1349,16 +1427,16 @@ var apps;
             settings.prototype.loadConfigs = function (configs) {
                 var formula_profiles = configs.formula_search;
                 settings.mzkit_configs = configs;
-                settings.loadColorList(configs.colorset);
+                settings.loadColorList(configs.viewer.colorSet);
                 settings.load_profileTable(configs);
                 settings.bindRangeDisplayValue(configs, function (config) {
                     // save
                 });
-                $ts.value("#language", configs.language);
-                $ts.value("#remember_location", configs["remember_location"]);
-                $ts.value("#remember_layout", configs["remember_layout"]);
-                $ts.value("#fragment_cutoff", configs["fragment_cutoff"]);
-                $ts.value("#fill_plot_area", configs["fill_plot_area"]);
+                $ts.value("#language", configs.ui.language);
+                $ts.value("#remember_location", configs.ui.rememberWindowsLocation);
+                $ts.value("#remember_layout", configs.ui.rememberLayouts);
+                $ts.value("#fragment_cutoff", configs.viewer.intoCutoff);
+                $ts.value("#fill_plot_area", configs.viewer.fill);
                 $ts.value("#small_molecule_profile", formula_profiles.smallMoleculeProfile.type);
                 $ts.value("#sm_common", formula_profiles.smallMoleculeProfile.isCommon);
                 $ts.value("#np_profile", formula_profiles.naturalProductProfile.type);
@@ -1373,8 +1451,8 @@ var apps;
                                 case 1:
                                     json_str = _a.sent();
                                     list = JSON.parse(json_str);
-                                    selected = configs.formula_adducts || {
-                                        positive: [], negative: []
+                                    selected = configs.precursor_search || {
+                                        positive: [], negative: [], ppm: 20
                                     };
                                     if (isNullOrEmpty(selected.positive)) {
                                         selected.positive = systems.settings_default.default_adducts_pos;
@@ -1402,47 +1480,6 @@ var apps;
                         });
                     });
                 });
-            };
-            settings.defaultSettings = function () {
-                return {
-                    // mzkit app
-                    "remember_location": true,
-                    "remember_layout": true,
-                    "language": 2,
-                    // raw file viewer
-                    "xic_da": 0.05,
-                    "fragment_cutoff": "relative",
-                    "fragment_cutoff_value": 0.05,
-                    // chromagram plot
-                    "colorset": [],
-                    "fill_plot_area": true,
-                    // preset element profiles
-                    "formula_search": {
-                        "smallMoleculeProfile": { type: "Wiley", isCommon: true },
-                        "naturalProductProfile": { type: "Wiley", isCommon: true },
-                        "elements": {},
-                    },
-                    "formula_ppm": 20,
-                    "formula_adducts": {
-                        positive: systems.settings_default.default_adducts_pos,
-                        negative: systems.settings_default.default_adducts_neg
-                    },
-                    // molecular networking
-                    "layout_iterations": 100,
-                    // graph layouts
-                    "stiffness": 41.76,
-                    "repulsion": 10000,
-                    "damping": 0.41,
-                    // spectrum tree
-                    "node_identical": 0.85,
-                    "node_similar": 0.8,
-                    "edge_filter": 0.8,
-                    // network styling
-                    "node_radius_min": 1,
-                    "node_radius_max": 30,
-                    "link_width_min": 1,
-                    "link_width_max": 12
-                };
             };
             /**
              * auto binding of the [min,max] value range form control

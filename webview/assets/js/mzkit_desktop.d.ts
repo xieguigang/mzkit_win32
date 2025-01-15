@@ -301,37 +301,85 @@ declare namespace apps.systems.settings_default {
     const default_adducts_pos: string[];
     const default_adducts_neg: string[];
 }
+declare namespace apps.systems.settings_default {
+    function defaultSettings(): mzkit_configs;
+    enum Languages {
+        System = 0,
+        Chinese = 1,
+        English = 2
+    }
+    function stringToLanguage(languageString: string): string;
+    function languageToString(languageNumber: string): string | undefined;
+    function logicalDefault(logic: any, _default: boolean): boolean;
+}
 declare namespace apps.systems {
+    /**
+     * the settings class model in mzkit_win32 program
+    */
     interface mzkit_configs {
-        "remember_location": boolean;
-        "remember_layout": boolean;
-        "language": 0 | 1 | 2;
-        "xic_da": number;
-        "fragment_cutoff": "relative" | "quantile";
-        "fragment_cutoff_value": number;
-        "colorset": string[];
-        "fill_plot_area": boolean;
-        "formula_search": {
-            "naturalProductProfile": element_profile;
-            "smallMoleculeProfile": element_profile;
-            "elements": {};
+        "precursor_search": {
+            "ppm": number;
+            "positive": string[];
+            "negative": string[];
         };
-        "formula_ppm": number;
-        "formula_adducts": {
-            positive: string[];
-            negative: string[];
+        "formula_search": any;
+        "ui": {
+            "x"?: number;
+            "y"?: number;
+            "width"?: number;
+            "height"?: number;
+            "window"?: string;
+            "language": string;
+            "rememberWindowsLocation": boolean;
+            "rememberLayouts": boolean;
+            "fileExplorerDock"?: string;
+            "featureListDock"?: string;
+            "OutputDock"?: string;
+            "propertyWindowDock"?: string;
+            "taskListDock"?: string;
         };
-        "layout_iterations": number;
-        "stiffness": number;
-        "repulsion": number;
-        "damping": number;
-        "node_identical": number;
-        "node_similar": number;
-        "edge_filter": number;
-        "node_radius_min": number;
-        "node_radius_max": number;
-        "link_width_min": number;
-        "link_width_max": number;
+        "viewer": {
+            "XIC_da": number;
+            "ppm_error": number;
+            "colorSet": string[];
+            "method": string;
+            "intoCutoff": number;
+            "quantile": number;
+            "fill": boolean;
+        };
+        "network": any;
+        "licensed": {};
+        "version": string;
+        "random": string;
+        "recentFiles": string[];
+        "local_blender": boolean;
+        "workspaceFile": any;
+        "biodeep": any;
+        "msi_filters": {
+            "filters": string[];
+            "flags": boolean[];
+        };
+        "tissue_map": {
+            "editor": {
+                "point_size": number;
+                "point_color": string;
+                "show_points": boolean;
+                "line_width": number;
+                "dash": boolean;
+                "line_color": string;
+            };
+            "region_prefix": string;
+            "opacity": number;
+            "spot_size": number;
+            "color_scaler": string;
+            "bootstrapping": {
+                "nsamples": number;
+                "coverage": number;
+            };
+        };
+        "MRMLibfile": string;
+        "QuantifyIonLibfile": any;
+        "pubchemWebCache": string;
     }
     interface element_count {
         atom: string;
@@ -363,7 +411,6 @@ declare namespace apps.systems {
          * load settings on application startup
         */
         private loadConfigs;
-        private static defaultSettings;
         /**
          * auto binding of the [min,max] value range form control
         */
