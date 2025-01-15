@@ -9,7 +9,11 @@ namespace apps.systems {
             "positive": string[],
             "negative": string[]
         },
-        "formula_search": any,
+        "formula_search": {
+            elements: {},
+            smallMoleculeProfile: element_profile,
+            naturalProductProfile: element_profile
+        },
         "ui": {
             "x"?: number,
             "y"?: number,

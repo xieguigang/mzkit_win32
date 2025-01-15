@@ -1140,16 +1140,12 @@
     <Compile Include="pages\Settings\AppConfig.Designer.vb">
       <DependentUpon>AppConfig.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\Settings\AppConfig.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="pages\Settings\AppConfig.vb" />
     <Compile Include="pages\Settings\SettingsProxy.vb" />
     <Compile Include="pages\Settings\RawFileViewer.Designer.vb">
       <DependentUpon>RawFileViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\Settings\RawFileViewer.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="pages\Settings\RawFileViewer.vb" />
     <Compile Include="pages\Settings\PlotConfig.Designer.vb">
       <DependentUpon>PlotConfig.vb</DependentUpon>
     </Compile>
@@ -1157,15 +1153,11 @@
     <Compile Include="pages\Settings\PresetProfile.Designer.vb">
       <DependentUpon>PresetProfile.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\Settings\PresetProfile.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="pages\Settings\PresetProfile.vb" />
     <Compile Include="pages\Settings\MolecularNetworking.Designer.vb">
       <DependentUpon>MolecularNetworking.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\Settings\MolecularNetworking.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="pages\Settings\MolecularNetworking.vb" />
     <Compile Include="pages\toolkit\PageSpectrumSearch.Designer.vb">
       <DependentUpon>PageSpectrumSearch.vb</DependentUpon>
     </Compile>
