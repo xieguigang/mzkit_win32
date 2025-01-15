@@ -90,7 +90,6 @@ Namespace SettingsPage
         ''' <returns></returns>
         Public Async Function loadSettings() As Task(Of String)
             Dim settings As Settings = Globals.Settings
-            Dim json As JsonObject = JSONSerializer.CreateJSONElement(Of Settings)(settings)
 
             If settings.viewer Is Nothing Then
                 settings.viewer = plot.LoadSettings
@@ -102,7 +101,7 @@ Namespace SettingsPage
                 settings.network = network.LoadSettings
             End If
 
-            Dim json_str As String = Await Threading.Tasks.Task.Run(Function() json.BuildJsonString)
+            Dim json_str As String = Await Threading.Tasks.Task.Run(Function() settings.GetJson(simpleDict:=True))
             Return json_str
         End Function
 
