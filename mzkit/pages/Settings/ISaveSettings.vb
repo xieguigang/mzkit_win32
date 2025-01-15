@@ -66,18 +66,6 @@ Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 
-Public Interface ISaveSettings
-
-    Sub LoadSettings()
-    Sub SaveSettings()
-
-End Interface
-
-Public Interface IPageSettings
-    Sub ShowPage()
-
-End Interface
-
 ''' <summary>
 ''' host object proxy for webview
 ''' </summary>

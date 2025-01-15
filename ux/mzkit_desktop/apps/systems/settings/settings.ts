@@ -456,6 +456,10 @@ namespace apps.systems {
             // do config of the settings value
             settings.mzkit_configs.colorset = settings.getColorList();
 
+            if (!settings.__dosave) {
+                settings.__dosave();
+            }
+
             // do save configuration via proxy
             app.desktop.mzkit
                 .Save(JSON.stringify(settings.mzkit_configs))
