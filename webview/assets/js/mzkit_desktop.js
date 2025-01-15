@@ -1630,8 +1630,14 @@ var apps;
                 settings.closeAll().show("chromagram_page", function () {
                 });
             };
+            /**
+             * config options for formula search and precursor adducts
+            */
             settings.prototype.formula_btn_onclick = function () {
                 settings.closeAll().show("formula_page", function () {
+                    var pos = Strings.lineTokens($ts.value("#adducts_pos"));
+                    var neg = Strings.lineTokens($ts.value("#adducts_neg"));
+                    app.desktop.mzkit.SaveAdducts(JSON.stringify(pos), JSON.stringify(neg));
                 });
             };
             settings.prototype.profile_btn_onclick = function () {

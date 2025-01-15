@@ -411,9 +411,18 @@ namespace apps.systems {
             });
         }
 
+        /**
+         * config options for formula search and precursor adducts
+        */
         public formula_btn_onclick() {
             settings.closeAll().show("formula_page", () => {
+                let pos: string[] = Strings.lineTokens($ts.value("#adducts_pos"));
+                let neg: string[] = Strings.lineTokens($ts.value("#adducts_neg"));
 
+                app.desktop.mzkit.SaveAdducts(
+                    JSON.stringify(pos),
+                    JSON.stringify(neg)
+                );
             });
         }
 

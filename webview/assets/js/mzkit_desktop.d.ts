@@ -102,6 +102,7 @@ declare namespace app.desktop {
          * a general method(across multiple host pages) for save general page data
         */
         Save(value?: string): Promise<any>;
+        SaveAdducts(pos_str: string, neg_str: string): any;
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
         GetPlugins(): Promise<string>;
@@ -394,6 +395,9 @@ declare namespace apps.systems {
         mzkit_page_btn_onclick(): void;
         msraw_btn_onclick(): void;
         chromagram_btn_onclick(): void;
+        /**
+         * config options for formula search and precursor adducts
+        */
         formula_btn_onclick(): void;
         profile_btn_onclick(): void;
         add_element_onclick(): void;
