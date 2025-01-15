@@ -1143,7 +1143,7 @@
     <Compile Include="pages\Settings\AppConfig.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="pages\Settings\ISaveSettings.vb" />
+    <Compile Include="pages\Settings\SettingsProxy.vb" />
     <Compile Include="pages\Settings\RawFileViewer.Designer.vb">
       <DependentUpon>RawFileViewer.vb</DependentUpon>
     </Compile>
