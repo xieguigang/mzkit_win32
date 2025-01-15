@@ -138,7 +138,7 @@ Namespace SettingsPage
         ''' save all settings
         ''' </summary>
         Public Async Sub Save(value As String)
-            Dim json As Settings = Await Threading.Tasks.Task.Run(Function() value.LoadJSON(Of Settings))
+            Dim json As Settings = Await Threading.Tasks.Task.Run(Function() JsonParser.Parse(value).CreateObject(Of Settings))
             Dim settings = Globals.Settings
 
             Call Workbench.LogText($"get configuration value from webview UI:")
