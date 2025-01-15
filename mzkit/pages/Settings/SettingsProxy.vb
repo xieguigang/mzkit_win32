@@ -87,6 +87,9 @@ Public Class SettingsProxy
         If settings.viewer Is Nothing Then
             settings.viewer = New RawFileViewerSettings
         End If
+        If settings.formula_search Is Nothing Then
+            settings.formula_search = New PresetProfile().LoadSettings
+        End If
 
         Dim json_str As String = Await Threading.Tasks.Task.Run(Function() json.BuildJsonString)
         Return json_str

@@ -54,15 +54,17 @@
 
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.Configuration
-Imports BioNovoGene.mzkit_win32.My
 
-Public Class PresetProfile : Implements ISaveSettings, IPageSettings
+Public Class PresetProfile
 
-    Public Sub LoadSettings() Implements ISaveSettings.LoadSettings
+    Public Function LoadSettings() As FormulaSearchProfile
         Dim profile = Globals.Settings.formula_search
 
         If profile Is Nothing Then
-            Globals.Settings.formula_search = New FormulaSearchProfile
+            Globals.Settings.formula_search = New FormulaSearchProfile With {
+                .elements = New Dictionary(Of String, ElementRange)
+            }
+
             profile = Globals.Settings.formula_search
         End If
 
@@ -73,39 +75,12 @@ Public Class PresetProfile : Implements ISaveSettings, IPageSettings
             profile.naturalProductProfile = New PresetProfileSettings With {.isCommon = True, .type = DNPOrWileyType.Wiley}
         End If
 
-        ComboBox1.SelectedIndex = profile.smallMoleculeProfile.type
-        CheckBox1.Checked = profile.smallMoleculeProfile.isCommon
+        Return profile
+    End Function
 
-        ComboBox2.SelectedIndex = profile.naturalProductProfile.type
-        CheckBox2.Checked = profile.naturalProductProfile.isCommon
-
-        Dim precursorInfo As PrecursorSearchSettings = Globals.Settings.precursor_search
-
-        If precursorInfo Is Nothing Then
-            Globals.Settings.precursor_search = New PrecursorSearchSettings
-        End If
-
-        NumericUpDown1.Value = precursorInfo.ppm
-        TextBox1.Text = precursorInfo.precursor_types.JoinBy(vbCrLf)
-    End Sub
-
-    Public Sub SaveSettings() Implements ISaveSettings.SaveSettings
-        Globals.Settings.formula_search.smallMoleculeProfile = New PresetProfileSettings With {.type = ComboBox1.SelectedIndex, .isCommon = CheckBox1.Checked}
-        Globals.Settings.formula_search.naturalProductProfile = New PresetProfileSettings With {.type = ComboBox2.SelectedIndex, .isCommon = CheckBox2.Checked}
-
-        Globals.Settings.precursor_search = New PrecursorSearchSettings With {
-            .ppm = NumericUpDown1.Value', .precursor_types = TextBox1.Text.LineTokens
-        }
-
+    Public Sub SaveSettings(config As Settings)
+        Globals.Settings.formula_search.smallMoleculeProfile = config.formula_search.smallMoleculeProfile
+        Globals.Settings.formula_search.naturalProductProfile = config.formula_search.naturalProductProfile
         Globals.Settings.Save()
-    End Sub
-
-    Public Sub ShowPage() Implements IPageSettings.ShowPage
-        Call MyApplication.host.ShowPage(MyApplication.host.mzkitSearch)
-        Call MyApplication.host.ShowMzkitToolkit()
-    End Sub
-
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
-
     End Sub
 End Class
