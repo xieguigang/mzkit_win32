@@ -132,10 +132,10 @@ namespace apps.systems {
                     };
 
                     if (isNullOrEmpty(selected.pos)) {
-                        selected.pos = [];
+                        selected.pos = settings_default.default_adducts_pos;
                     }
                     if (isNullOrEmpty(selected.neg)) {
-                        selected.neg = [];
+                        selected.neg = settings_default.default_adducts_neg;
                     }
 
                     $ts("#adducts_pos").clear();
@@ -183,8 +183,8 @@ namespace apps.systems {
                 },
                 "formula_ppm": 20,
                 "formula_adducts": {
-                    pos: ["[M]+", "[M+H]+", "[M+Na]+", "[M+NH4]+", "[2M+H]+", "[M-H2O+H]+", "[M-2H2O+H]+"],
-                    neg: ["[M-H]-", "[M+Cl]-", "[M-H2O-H]-", "[2M-H]-", "[M+COOH]-"]
+                    pos: settings_default.default_adducts_pos,
+                    neg: settings_default.default_adducts_neg
                 },
 
                 // molecular networking
