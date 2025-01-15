@@ -125,7 +125,7 @@ Public Class SettingsProxy
     ''' save all settings
     ''' </summary>
     Public Async Sub Save(value As String)
-        Dim json As JsonObject = Await JsonObject.Parse(value)
+        Dim json As Settings = Await Threading.Tasks.Task.Run(Function() value.LoadJSON(Of Settings))
         Dim settings = Globals.Settings
 
         Call Workbench.LogText($"get configuration value from webview UI:")
@@ -138,13 +138,13 @@ Public Class SettingsProxy
             settings.viewer = New RawFileViewerSettings
         End If
 
-        settings.ui.rememberLayouts = DirectCast(json("remember_layout"), JsonValue)
-        settings.ui.rememberWindowsLocation = DirectCast(json("remember_location"), JsonValue)
-        settings.ui.language = CInt(DirectCast(json!language, JsonValue))
+        settings.ui.rememberLayouts = json.ui.rememberLayouts
+        settings.ui.rememberWindowsLocation = json.ui.rememberWindowsLocation
+        settings.ui.language = json.ui.language
 
-        settings.viewer.fill = DirectCast(json("fill_plot_area"), JsonValue)
-        settings.viewer.colorSet = DirectCast(json!colorset, JsonArray)
-        settings.viewer.XIC_da = DirectCast(json!xic_da, JsonValue)
+        settings.viewer.fill = json.viewer.fill
+        settings.viewer.colorSet = json.viewer.colorSet
+        settings.viewer.XIC_da = json.viewer.XIC_da
 
         Call settings.Save()
         Call Workbench.SuccessMessage("New settings value applied and saved!")
