@@ -1707,7 +1707,7 @@ var apps;
                 var _this = this;
                 console.log("invoke settings save action!");
                 // do config of the settings value
-                settings.mzkit_configs.colorset = settings.getColorList();
+                settings.mzkit_configs.viewer.colorSet = settings.getColorList();
                 // do save configuration via proxy
                 app.desktop.mzkit
                     .Save(JSON.stringify(settings.mzkit_configs))

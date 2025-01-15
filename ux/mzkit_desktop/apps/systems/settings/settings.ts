@@ -404,7 +404,7 @@ namespace apps.systems {
             console.log("invoke settings save action!");
 
             // do config of the settings value
-            settings.mzkit_configs.colorset = settings.getColorList();
+            settings.mzkit_configs.viewer.colorSet = settings.getColorList();
 
             // do save configuration via proxy
             app.desktop.mzkit
