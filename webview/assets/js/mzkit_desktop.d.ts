@@ -281,7 +281,7 @@ declare namespace apps.systems {
         CommandLine: string;
     }
 }
-declare namespace apps.systems {
+declare namespace apps.systems.settings_default {
     const element_columns: ({
         title: string;
         field: string;
@@ -297,9 +297,10 @@ declare namespace apps.systems {
             type: string;
         };
     })[];
-    interface BootstrapTable {
-        bootstrapTable(arg1: any, arg2?: any): any;
-    }
+    const default_adducts_pos: string[];
+    const default_adducts_neg: string[];
+}
+declare namespace apps.systems {
     interface mzkit_configs {
         "remember_location": boolean;
         "remember_layout": boolean;
@@ -340,6 +341,11 @@ declare namespace apps.systems {
         "type": "Wiley" | "DNP";
         "isCommon": boolean;
     }
+    interface BootstrapTable {
+        bootstrapTable(arg1: any, arg2?: any): any;
+    }
+}
+declare namespace apps.systems {
     class settings extends Bootstrap {
         get appName(): string;
         static mzkit_configs: mzkit_configs;

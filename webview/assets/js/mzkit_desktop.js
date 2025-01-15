@@ -1210,6 +1210,40 @@ var apps;
 (function (apps) {
     var systems;
     (function (systems) {
+        var settings_default;
+        (function (settings_default) {
+            settings_default.element_columns = [{
+                    title: "Atom Element",
+                    field: "atom",
+                    sortable: true,
+                    width: 200,
+                    editable: true,
+                }, {
+                    title: "Min",
+                    field: "min",
+                    sortable: true,
+                    width: 200,
+                    editable: {
+                        type: "number"
+                    }
+                }, {
+                    title: "Max",
+                    field: "max",
+                    sortable: true,
+                    width: 200,
+                    editable: {
+                        type: "number"
+                    }
+                }];
+            settings_default.default_adducts_pos = ["[M]+", "[M+H]+", "[M+Na]+", "[M+NH4]+", "[2M+H]+", "[M-H2O+H]+", "[M-2H2O+H]+"];
+            settings_default.default_adducts_neg = ["[M-H]-", "[M+Cl]-", "[M-H2O-H]-", "[2M-H]-", "[M+COOH]-"];
+        })(settings_default = systems.settings_default || (systems.settings_default = {}));
+    })(systems = apps.systems || (apps.systems = {}));
+})(apps || (apps = {}));
+var apps;
+(function (apps) {
+    var systems;
+    (function (systems) {
         var pages = {
             "mzkit_page": "MZKit Settings",
             "msraw_page": "Raw File Viewer",
@@ -1218,29 +1252,7 @@ var apps;
             "element_profile_page": "Formula Search Profile",
             "molecule_networking_page": "Molecular Networking"
         };
-        systems.element_columns = [{
-                title: "Atom Element",
-                field: "atom",
-                sortable: true,
-                width: 200,
-                editable: true,
-            }, {
-                title: "Min",
-                field: "min",
-                sortable: true,
-                width: 200,
-                editable: {
-                    type: "number"
-                }
-            }, {
-                title: "Max",
-                field: "max",
-                sortable: true,
-                width: 200,
-                editable: {
-                    type: "number"
-                }
-            }];
+        var $ = window.$;
         function logicalDefault(logic, _default) {
             if (isNullOrUndefined(logic) || isNullOrEmpty(logic)) {
                 return _default;
@@ -1363,10 +1375,10 @@ var apps;
                                         pos: [], neg: []
                                     };
                                     if (isNullOrEmpty(selected.pos)) {
-                                        selected.pos = [];
+                                        selected.pos = systems.settings_default.default_adducts_pos;
                                     }
                                     if (isNullOrEmpty(selected.neg)) {
-                                        selected.neg = [];
+                                        selected.neg = systems.settings_default.default_adducts_neg;
                                     }
                                     $ts("#adducts_pos").clear();
                                     $ts("#adducts_neg").clear();
@@ -1410,8 +1422,8 @@ var apps;
                     },
                     "formula_ppm": 20,
                     "formula_adducts": {
-                        pos: ["[M]+", "[M+H]+", "[M+Na]+", "[M+NH4]+", "[2M+H]+", "[M-H2O+H]+", "[M-2H2O+H]+"],
-                        neg: ["[M-H]-", "[M+Cl]-", "[M-H2O-H]-", "[2M-H]-", "[M+COOH]-"]
+                        pos: systems.settings_default.default_adducts_pos,
+                        neg: systems.settings_default.default_adducts_neg
                     },
                     // molecular networking
                     "layout_iterations": 100,
@@ -1466,7 +1478,7 @@ var apps;
             settings.load_profileTable = function (configs) {
                 var bootstrap = settings.getElementProfileTable();
                 var tableOptions = {
-                    columns: systems.element_columns,
+                    columns: systems.settings_default.element_columns,
                     editable: true, //editable需要设置为 true
                     striped: true,
                     clickToSelect: true
