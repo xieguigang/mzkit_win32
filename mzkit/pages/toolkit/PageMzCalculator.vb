@@ -248,4 +248,8 @@ Public Class PageMzCalculator
 
         Call Button1_Click(Nothing, Nothing)
     End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Call RibbonEvents.ShowSettings(Nothing, Nothing)
+    End Sub
 End Class

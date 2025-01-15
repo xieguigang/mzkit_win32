@@ -62,7 +62,6 @@
 
 Imports System.IO
 Imports System.Runtime.CompilerServices
-Imports System.Runtime.InteropServices
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
@@ -986,7 +985,12 @@ Module RibbonEvents
         MyApplication.host.Text = $"BioNovoGene Mzkit [{  WindowModules.RtermPage.Text}]"
     End Sub
 
-    Private Sub ShowSettings(sender As Object, e As ExecuteEventArgs)
+    ''' <summary>
+    ''' show application settings UI page
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Public Sub ShowSettings(sender As Object, e As ExecuteEventArgs)
         WindowModules.settingsPage.Show(MyApplication.host.m_dockPanel)
         WindowModules.settingsPage.DockState = DockState.Document
 

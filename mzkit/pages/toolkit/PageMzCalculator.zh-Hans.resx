@@ -129,6 +129,13 @@
   <data name="TabPage3.Text" xml:space="preserve">
     <value>分子质量计算器</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="LinkLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>413, 12</value>
+  </data>
+  <data name="LinkLabel1.Text" xml:space="preserve">
+    <value>可以在程序的设置页面【Formula Search】中添加入其他类型的加合物形式。</value>
+  </data>
   <data name="TabPage4.Text" xml:space="preserve">
     <value>质量差分析工具</value>
   </data>

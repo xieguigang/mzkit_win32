@@ -102,10 +102,11 @@ Partial Class PageMzCalculator
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.ToggleSlider1 = New ControlLibrary.ToggleSlider()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+        Me.ToggleSlider1 = New ControlLibrary.ToggleSlider()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -125,28 +126,29 @@ Partial Class PageMzCalculator
         '
         'TabControl1
         '
-        resources.ApplyResources(Me.TabControl1, "TabControl1")
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        resources.ApplyResources(Me.TabControl1, "TabControl1")
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         '
         'TabPage1
         '
-        resources.ApplyResources(Me.TabPage1, "TabPage1")
         Me.TabPage1.Controls.Add(Me.DataGridView1)
+        resources.ApplyResources(Me.TabPage1, "TabPage1")
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'DataGridView1
         '
-        resources.ApplyResources(Me.DataGridView1, "DataGridView1")
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.Silver
+        Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PrecursorType, Me.Adducts, Me.M, Me.Charge, Me.PrecursorMz, Me.Column1, Me.Column3})
+        resources.ApplyResources(Me.DataGridView1, "DataGridView1")
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -190,20 +192,20 @@ Partial Class PageMzCalculator
         '
         'TabPage2
         '
-        resources.ApplyResources(Me.TabPage2, "TabPage2")
         Me.TabPage2.Controls.Add(Me.DataGridView2)
+        resources.ApplyResources(Me.TabPage2, "TabPage2")
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
         'DataGridView2
         '
-        resources.ApplyResources(Me.DataGridView2, "DataGridView2")
         Me.DataGridView2.AllowUserToAddRows = False
         Me.DataGridView2.AllowUserToDeleteRows = False
         Me.DataGridView2.BackgroundColor = System.Drawing.Color.Silver
         Me.DataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.Column2, Me.Column4})
+        resources.ApplyResources(Me.DataGridView2, "DataGridView2")
         Me.DataGridView2.MultiSelect = False
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -261,6 +263,39 @@ Partial Class PageMzCalculator
         resources.ApplyResources(Me.Label1, "Label1")
         Me.Label1.Name = "Label1"
         '
+        'TabControl2
+        '
+        Me.TabControl2.Controls.Add(Me.TabPage3)
+        Me.TabControl2.Controls.Add(Me.TabPage4)
+        resources.ApplyResources(Me.TabControl2, "TabControl2")
+        Me.TabControl2.Name = "TabControl2"
+        Me.TabControl2.SelectedIndex = 0
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.TabControl1)
+        Me.TabPage3.Controls.Add(Me.Panel1)
+        resources.ApplyResources(Me.TabPage3, "TabPage3")
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.LinkLabel1)
+        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.TextBox1)
+        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.Controls.Add(Me.ToggleSlider1)
+        Me.Panel1.Controls.Add(Me.Button2)
+        resources.ApplyResources(Me.Panel1, "Panel1")
+        Me.Panel1.Name = "Panel1"
+        '
+        'LinkLabel1
+        '
+        resources.ApplyResources(Me.LinkLabel1, "LinkLabel1")
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.TabStop = True
+        '
         'ToggleSlider1
         '
         resources.ApplyResources(Me.ToggleSlider1, "ToggleSlider1")
@@ -268,32 +303,6 @@ Partial Class PageMzCalculator
         Me.ToggleSlider1.Name = "ToggleSlider1"
         Me.ToggleSlider1.ToggleCircleColor = System.Drawing.Color.DeepSkyBlue
         Me.ToggleSlider1.ToggleColorBar = System.Drawing.Color.Silver
-        '
-        'TabControl2
-        '
-        resources.ApplyResources(Me.TabControl2, "TabControl2")
-        Me.TabControl2.Controls.Add(Me.TabPage3)
-        Me.TabControl2.Controls.Add(Me.TabPage4)
-        Me.TabControl2.Name = "TabControl2"
-        Me.TabControl2.SelectedIndex = 0
-        '
-        'TabPage3
-        '
-        resources.ApplyResources(Me.TabPage3, "TabPage3")
-        Me.TabPage3.Controls.Add(Me.TabControl1)
-        Me.TabPage3.Controls.Add(Me.Panel1)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'Panel1
-        '
-        resources.ApplyResources(Me.Panel1, "Panel1")
-        Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Controls.Add(Me.TextBox1)
-        Me.Panel1.Controls.Add(Me.Button1)
-        Me.Panel1.Controls.Add(Me.ToggleSlider1)
-        Me.Panel1.Controls.Add(Me.Button2)
-        Me.Panel1.Name = "Panel1"
         '
         'TabPage4
         '
@@ -331,6 +340,11 @@ Partial Class PageMzCalculator
     Friend WithEvents Button1 As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label1 As Label
+    Friend WithEvents ToggleSlider1 As ToggleSlider
+    Friend WithEvents TabControl2 As TabControl
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents Panel1 As Panel
     Friend WithEvents PrecursorType As DataGridViewTextBoxColumn
     Friend WithEvents Adducts As DataGridViewTextBoxColumn
     Friend WithEvents M As DataGridViewTextBoxColumn
@@ -345,9 +359,5 @@ Partial Class PageMzCalculator
     Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewButtonColumn
     Friend WithEvents Column4 As DataGridViewButtonColumn
-    Friend WithEvents ToggleSlider1 As ToggleSlider
-    Friend WithEvents TabControl2 As TabControl
-    Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents TabPage4 As TabPage
-    Friend WithEvents Panel1 As Panel
+    Friend WithEvents LinkLabel1 As LinkLabel
 End Class
