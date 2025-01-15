@@ -1,52 +1,69 @@
 namespace apps.systems {
 
     export interface mzkit_configs {
-        // mzkit app
-        "remember_location": boolean;
-        "remember_layout": boolean;
-        "language": 0 | 1 | 2;
-
-        // raw file viewer
-        "xic_da": number;
-        "fragment_cutoff": "relative" | "quantile";
-        "fragment_cutoff_value": number;
-
-        // chromagram plot
-        "colorset": string[];
-        "fill_plot_area": boolean;
-
-        // preset element profiles
-        "formula_search": {
-            "naturalProductProfile": element_profile,
-            "smallMoleculeProfile": element_profile,
-            "elements": {}
-        };
-
-        "formula_ppm": number;
-        "formula_adducts": {
-            positive: string[],
-            negative: string[]
-        };
-
-        // molecular networking
-        "layout_iterations": number;
-
-        // graph layouts
-        "stiffness": number;
-        "repulsion": number;
-        "damping": number;
-
-        // spectrum tree
-        "node_identical": number;
-        "node_similar": number;
-        "edge_filter": number;
-
-        // network styling
-        "node_radius_min": number;
-        "node_radius_max": number;
-
-        "link_width_min": number;
-        "link_width_max": number;
+        "precursor_search": {
+            "ppm": number,
+            "positive": string[],
+            "negative": string[]
+        },
+        "formula_search": any,
+        "ui": {
+            "x": number,
+            "y": number,
+            "width": number,
+            "height": number,
+            "window": string,
+            "language": string,
+            "rememberWindowsLocation": boolean,
+            "rememberLayouts": boolean,
+            "fileExplorerDock": string,
+            "featureListDock": string,
+            "OutputDock": string,
+            "propertyWindowDock": string,
+            "taskListDock": string
+        },
+        "viewer": {
+            "XIC_da": number,
+            "ppm_error": number,
+            "colorSet": string[],
+            "method": string,
+            "intoCutoff": number,
+            "quantile": number,
+            "fill": boolean
+        },
+        "network": any,
+        "licensed": {},
+        "version": string,
+        "random": string,
+        "recentFiles": string[],
+        "local_blender": boolean,
+        "workspaceFile": any,
+        "biodeep": any,
+        "msi_filters": {
+            "filters": string[],
+            "flags": boolean[]
+        },
+        "tissue_map": {
+            "editor": {
+                "point_size": number,
+                "point_color": string,
+                "show_points": boolean,
+                "line_width": number,
+                "dash": boolean,
+                "line_color": string
+            },
+            "region_prefix": string,
+            "opacity": number,
+            "spot_size": number,
+            "color_scaler": string,
+            "bootstrapping": {
+                "nsamples": number,
+                "coverage": number
+            }
+        },
+        "MRMLibfile": string,
+        "QuantifyIonLibfile": any,
+        "pubchemWebCache": string
     }
 
     export interface element_count {

@@ -88,8 +88,6 @@ Public Class SettingsProxy
             settings.viewer = New RawFileViewerSettings
         End If
 
-        json.Add("xic_da", settings.viewer.XIC_da)
-
         Dim json_str As String = Await Threading.Tasks.Task.Run(Function() json.BuildJsonString)
         Return json_str
     End Function
