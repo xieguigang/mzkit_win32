@@ -63,6 +63,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioDeep
 Imports BioNovoGene.mzkit_win32.Configuration
+Imports Mzkit_win32.BasicMDIForm
 
 Public Class PageMzCalculator
 
@@ -91,6 +92,13 @@ Public Class PageMzCalculator
 
         Dim pos As MzCalculator() = Provider.Calculators(settings.precursor_search.positive)
         Dim neg As MzCalculator() = Provider.Calculators(settings.precursor_search.negative)
+
+        If pos.Length <> settings.precursor_search.positive.TryCount Then
+            Call Workbench.Warning("Some of the positive adducts is mis-matched from the input, please check of your config data.")
+        End If
+        If neg.Length <> settings.precursor_search.negative.TryCount Then
+            Call Workbench.Warning("Some of the negative adducts is mis-matched from the input, please check of your config data.")
+        End If
 
         Call Update(exact_mass, pos, DataGridView1)
         Call Update(exact_mass, neg, DataGridView2)
