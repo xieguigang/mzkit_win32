@@ -62,11 +62,13 @@ Imports RibbonLib.Interop
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioDeep
+Imports BioNovoGene.mzkit_win32.Configuration
 
 Public Class PageMzCalculator
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim exact_mass As Double
+        Dim settings As Settings = Globals.Settings
 
         If TextBox1.Text.StringEmpty Then
             Return
@@ -75,9 +77,23 @@ Public Class PageMzCalculator
         Else
             exact_mass = FormulaScanner.EvaluateExactMass(TextBox1.Text)
         End If
+        If settings.precursor_search Is Nothing Then
+            settings.precursor_search = PrecursorSearchSettings.GetDefault
+        End If
+        With PrecursorSearchSettings.GetDefault
+            If settings.precursor_search.positive.IsNullOrEmpty Then
+                settings.precursor_search.positive = .positive
+            End If
+            If settings.precursor_search.negative.IsNullOrEmpty Then
+                settings.precursor_search.negative = .negative
+            End If
+        End With
 
-        Call Update(exact_mass, Provider.GetCalculator("+").Values, DataGridView1)
-        Call Update(exact_mass, Provider.GetCalculator("-").Values, DataGridView2)
+        Dim pos As MzCalculator() = Provider.Calculators(settings.precursor_search.positive)
+        Dim neg As MzCalculator() = Provider.Calculators(settings.precursor_search.negative)
+
+        Call Update(exact_mass, pos, DataGridView1)
+        Call Update(exact_mass, neg, DataGridView2)
     End Sub
 
     ''' <summary>
