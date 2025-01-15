@@ -78,6 +78,7 @@ Partial Class PageMzCalculator
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PageMzCalculator))
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -104,6 +105,7 @@ Partial Class PageMzCalculator
         Me.ToggleSlider1 = New ControlLibrary.ToggleSlider()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -112,228 +114,201 @@ Partial Class PageMzCalculator
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(373, 42)
+        resources.ApplyResources(Me.Button2, "Button2")
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(133, 21)
-        Me.Button2.TabIndex = 10
-        Me.Button2.Text = "Search BioDeep"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'TabControl1
         '
-        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        resources.ApplyResources(Me.TabControl1, "TabControl1")
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(7, 87)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1068, 610)
-        Me.TabControl1.TabIndex = 9
         '
         'TabPage1
         '
+        resources.ApplyResources(Me.TabPage1, "TabPage1")
         Me.TabPage1.Controls.Add(Me.DataGridView1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1060, 584)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Positive"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'DataGridView1
         '
+        resources.ApplyResources(Me.DataGridView1, "DataGridView1")
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToResizeRows = False
+        Me.DataGridView1.BackgroundColor = System.Drawing.Color.Silver
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PrecursorType, Me.Adducts, Me.M, Me.Charge, Me.PrecursorMz, Me.Column1, Me.Column3})
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(3, 3)
+        Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(1054, 578)
-        Me.DataGridView1.TabIndex = 0
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         '
         'PrecursorType
         '
-        Me.PrecursorType.HeaderText = "Precursor Type"
+        resources.ApplyResources(Me.PrecursorType, "PrecursorType")
         Me.PrecursorType.Name = "PrecursorType"
         '
         'Adducts
         '
-        Me.Adducts.HeaderText = "Adducts"
+        resources.ApplyResources(Me.Adducts, "Adducts")
         Me.Adducts.Name = "Adducts"
         '
         'M
         '
-        Me.M.HeaderText = "M"
+        resources.ApplyResources(Me.M, "M")
         Me.M.Name = "M"
         '
         'Charge
         '
-        Me.Charge.HeaderText = "Charge"
+        resources.ApplyResources(Me.Charge, "Charge")
         Me.Charge.Name = "Charge"
         '
         'PrecursorMz
         '
-        Me.PrecursorMz.HeaderText = "Precursor m/z"
+        resources.ApplyResources(Me.PrecursorMz, "PrecursorMz")
         Me.PrecursorMz.Name = "PrecursorMz"
         '
         'Column1
         '
-        Me.Column1.HeaderText = "Search Feature"
+        resources.ApplyResources(Me.Column1, "Column1")
         Me.Column1.Name = "Column1"
         '
         'Column3
         '
-        Me.Column3.HeaderText = "Search BioDeep"
+        resources.ApplyResources(Me.Column3, "Column3")
         Me.Column3.Name = "Column3"
         Me.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
         'TabPage2
         '
+        resources.ApplyResources(Me.TabPage2, "TabPage2")
         Me.TabPage2.Controls.Add(Me.DataGridView2)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1074, 636)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Negative"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
         'DataGridView2
         '
+        resources.ApplyResources(Me.DataGridView2, "DataGridView2")
+        Me.DataGridView2.AllowUserToAddRows = False
+        Me.DataGridView2.AllowUserToDeleteRows = False
+        Me.DataGridView2.BackgroundColor = System.Drawing.Color.Silver
+        Me.DataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.Column2, Me.Column4})
-        Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView2.Location = New System.Drawing.Point(3, 3)
+        Me.DataGridView2.MultiSelect = False
         Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.Size = New System.Drawing.Size(1068, 630)
-        Me.DataGridView2.TabIndex = 1
+        Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         '
         'DataGridViewTextBoxColumn1
         '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Precursor Type"
+        resources.ApplyResources(Me.DataGridViewTextBoxColumn1, "DataGridViewTextBoxColumn1")
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         '
         'DataGridViewTextBoxColumn2
         '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Adducts"
+        resources.ApplyResources(Me.DataGridViewTextBoxColumn2, "DataGridViewTextBoxColumn2")
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         '
         'DataGridViewTextBoxColumn3
         '
-        Me.DataGridViewTextBoxColumn3.HeaderText = "M"
+        resources.ApplyResources(Me.DataGridViewTextBoxColumn3, "DataGridViewTextBoxColumn3")
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         '
         'DataGridViewTextBoxColumn4
         '
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Charge"
+        resources.ApplyResources(Me.DataGridViewTextBoxColumn4, "DataGridViewTextBoxColumn4")
         Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
         '
         'DataGridViewTextBoxColumn5
         '
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Precursor m/z"
+        resources.ApplyResources(Me.DataGridViewTextBoxColumn5, "DataGridViewTextBoxColumn5")
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         '
         'Column2
         '
-        Me.Column2.HeaderText = "Search Feature"
+        resources.ApplyResources(Me.Column2, "Column2")
         Me.Column2.Name = "Column2"
         Me.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
         'Column4
         '
-        Me.Column4.HeaderText = "Search BioDeep"
+        resources.ApplyResources(Me.Column4, "Column4")
         Me.Column4.Name = "Column4"
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(232, 42)
+        resources.ApplyResources(Me.Button1, "Button1")
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(111, 21)
-        Me.Button1.TabIndex = 8
-        Me.Button1.Text = "Evaluate m/z"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(21, 42)
+        resources.ApplyResources(Me.TextBox1, "TextBox1")
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(153, 21)
-        Me.TextBox1.TabIndex = 7
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(19, 22)
+        resources.ApplyResources(Me.Label1, "Label1")
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(155, 12)
-        Me.Label1.TabIndex = 6
-        Me.Label1.Text = "Enter a exact mass value:"
         '
         'ToggleSlider1
         '
-        Me.ToggleSlider1.AutoSize = True
+        resources.ApplyResources(Me.ToggleSlider1, "ToggleSlider1")
         Me.ToggleSlider1.Checked = False
-        Me.ToggleSlider1.Location = New System.Drawing.Point(544, 42)
         Me.ToggleSlider1.Name = "ToggleSlider1"
-        Me.ToggleSlider1.Size = New System.Drawing.Size(231, 39)
-        Me.ToggleSlider1.TabIndex = 11
         Me.ToggleSlider1.ToggleCircleColor = System.Drawing.Color.DeepSkyBlue
         Me.ToggleSlider1.ToggleColorBar = System.Drawing.Color.Silver
         '
         'TabControl2
         '
+        resources.ApplyResources(Me.TabControl2, "TabControl2")
         Me.TabControl2.Controls.Add(Me.TabPage3)
         Me.TabControl2.Controls.Add(Me.TabPage4)
-        Me.TabControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl2.Location = New System.Drawing.Point(0, 0)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(1088, 729)
-        Me.TabControl2.TabIndex = 12
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.TextBox1)
-        Me.TabPage3.Controls.Add(Me.ToggleSlider1)
-        Me.TabPage3.Controls.Add(Me.Label1)
-        Me.TabPage3.Controls.Add(Me.Button2)
-        Me.TabPage3.Controls.Add(Me.Button1)
+        resources.ApplyResources(Me.TabPage3, "TabPage3")
         Me.TabPage3.Controls.Add(Me.TabControl1)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Controls.Add(Me.Panel1)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(1080, 703)
-        Me.TabPage3.TabIndex = 0
-        Me.TabPage3.Text = "Mass Calculator"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'Panel1
+        '
+        resources.ApplyResources(Me.Panel1, "Panel1")
+        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.TextBox1)
+        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.Controls.Add(Me.ToggleSlider1)
+        Me.Panel1.Controls.Add(Me.Button2)
+        Me.Panel1.Name = "Panel1"
         '
         'TabPage4
         '
-        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        resources.ApplyResources(Me.TabPage4, "TabPage4")
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(934, 431)
-        Me.TabPage4.TabIndex = 1
-        Me.TabPage4.Text = "Mass Difference Analysis"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
         'PageMzCalculator
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.Controls.Add(Me.TabControl2)
         Me.DoubleBuffered = True
         Me.Name = "PageMzCalculator"
-        Me.Size = New System.Drawing.Size(1088, 729)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -341,7 +316,8 @@ Partial Class PageMzCalculator
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
-        Me.TabPage3.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -373,4 +349,5 @@ Partial Class PageMzCalculator
     Friend WithEvents TabControl2 As TabControl
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents Panel1 As Panel
 End Class

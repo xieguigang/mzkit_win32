@@ -1580,6 +1580,9 @@
     <EmbeddedResource Include="pages\toolkit\PageMzCalculator.resx">
       <DependentUpon>PageMzCalculator.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pages\toolkit\PageMzCalculator.zh-Hans.resx">
+      <DependentUpon>PageMzCalculator.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pages\toolkit\PageMzkitTools.resx">
       <DependentUpon>PageMzkitTools.vb</DependentUpon>
     </EmbeddedResource>
