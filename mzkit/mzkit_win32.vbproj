@@ -1259,6 +1259,12 @@
     <EmbeddedResource Include="forms\Inputs\Input3DScatter.resx">
       <DependentUpon>Input3DScatter.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\Input3DScatter.zh-Hans.resx">
+      <DependentUpon>Input3DScatter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputAction.zh-Hans.resx">
+      <DependentUpon>InputAction.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputURL.resx">
       <DependentUpon>InputURL.vb</DependentUpon>
     </EmbeddedResource>
