@@ -8,71 +8,7 @@ namespace apps.systems {
         "element_profile_page": "Formula Search Profile",
         "molecule_networking_page": "Molecular Networking"
     };
-    const $ = (<any>window).$;
-
-    export interface BootstrapTable {
-        bootstrapTable(arg1: any, arg2?: any);
-    }
-
-    export interface mzkit_configs {
-        // mzkit app
-        "remember_location": boolean;
-        "remember_layout": boolean;
-        "language": 0 | 1 | 2;
-
-        // raw file viewer
-        "xic_da": number;
-        "fragment_cutoff": "relative" | "quantile";
-        "fragment_cutoff_value": number;
-
-        // chromagram plot
-        "colorset": string[];
-        "fill_plot_area": boolean;
-
-        // preset element profiles
-        "formula_search": {
-            "naturalProductProfile": element_profile,
-            "smallMoleculeProfile": element_profile,
-            "elements": {}
-        };
-
-        "formula_ppm": number;
-        "formula_adducts": {
-            pos: string[],
-            neg: string[]
-        };
-
-        // molecular networking
-        "layout_iterations": number;
-
-        // graph layouts
-        "stiffness": number;
-        "repulsion": number;
-        "damping": number;
-
-        // spectrum tree
-        "node_identical": number;
-        "node_similar": number;
-        "edge_filter": number;
-
-        // network styling
-        "node_radius_min": number;
-        "node_radius_max": number;
-
-        "link_width_min": number;
-        "link_width_max": number;
-    }
-
-    export interface element_count {
-        atom: string;
-        min: number;
-        max: number;
-    }
-
-    export interface element_profile {
-        "type": "Wiley" | "DNP";
-        "isCommon": boolean;
-    }
+    const $: jQuery = (<any>window).$;
 
     function logicalDefault(logic: any, _default: boolean): boolean {
         if (isNullOrUndefined(logic) || isNullOrEmpty(logic)) {
@@ -310,7 +246,7 @@ namespace apps.systems {
         private static load_profileTable(configs: mzkit_configs) {
             const bootstrap: BootstrapTable = settings.getElementProfileTable();
             const tableOptions = {
-                columns: element_columns,
+                columns: settings_default.element_columns,
                 editable: true, //editable需要设置为 true
                 striped: true,
                 clickToSelect: true
