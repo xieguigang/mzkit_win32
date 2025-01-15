@@ -93,8 +93,8 @@ Namespace Configuration
         Public Shared Function GetDefault() As PrecursorSearchSettings
             Return New PrecursorSearchSettings With {
                 .ppm = 5,
-                .positive = {"[M]+", "[M+H]+", "[M+Na]+", "[M+NH4]+", "[2M+H]+"},
-                .negative = {"[M-H]-", "[M+Cl]-", "[M-H2O-H]-", "[2M-H]-"}
+                .positive = {"[M]+", "[M+H]+", "[M+Na]+", "[M+NH4]+", "[2M+H]+", "[M-H2O+H]+", "[M-2H2O+H]+"},
+                .negative = {"[M-H]-", "[M+Cl]-", "[M-H2O-H]-", "[2M-H]-", "[M+COOH]-"}
             }
         End Function
 
