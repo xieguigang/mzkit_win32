@@ -8,30 +8,7 @@ namespace apps.systems {
         "element_profile_page": "Formula Search Profile",
         "molecule_networking_page": "Molecular Networking"
     };
-
-    export const element_columns = [{
-        title: "Atom Element",
-        field: "atom",
-        sortable: true,
-        width: 200,
-        editable: true,
-    }, {
-        title: "Min",
-        field: "min",
-        sortable: true,
-        width: 200,
-        editable: {
-            type: "number"
-        }
-    }, {
-        title: "Max",
-        field: "max",
-        sortable: true,
-        width: 200,
-        editable: {
-            type: "number"
-        }
-    }];
+    const $ = (<any>window).$;
 
     export interface BootstrapTable {
         bootstrapTable(arg1: any, arg2?: any);
@@ -214,7 +191,6 @@ namespace apps.systems {
                 .then(async function (json) {
                     const json_str: string = await json;
                     const list: string[] = JSON.parse(json_str);
-                    const adducts = $ts("#formula_adducts").clear();
                     const selected = configs.formula_adducts || {
                         pos: [], neg: []
                     };
@@ -225,6 +201,9 @@ namespace apps.systems {
                     if (isNullOrEmpty(selected.neg)) {
                         selected.neg = [];
                     }
+
+                    $ts("#adducts_pos").clear();
+                    $ts("#adducts_neg").clear();
 
                     // for (let adduct of list) {
                     //     const key_id: string = adduct;
@@ -238,6 +217,7 @@ namespace apps.systems {
                     //             id="${key_id}" ${checked}>
                     //         <label class="form-check-label" for="${key_id}">${adduct}</label>`));
                     // }
+
                     $ts.value("#adducts_pos", selected.pos.join("\n"));
                     $ts.value("#adducts_neg", selected.neg.join("\n"));
                 });

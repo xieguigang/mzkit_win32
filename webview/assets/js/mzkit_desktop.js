@@ -1352,14 +1352,13 @@ var apps;
                 app.desktop.mzkit.getAllAdducts()
                     .then(function (json) {
                     return __awaiter(this, void 0, void 0, function () {
-                        var json_str, list, adducts, selected;
+                        var json_str, list, selected;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, json];
                                 case 1:
                                     json_str = _a.sent();
                                     list = JSON.parse(json_str);
-                                    adducts = $ts("#formula_adducts").clear();
                                     selected = configs.formula_adducts || {
                                         pos: [], neg: []
                                     };
@@ -1369,6 +1368,8 @@ var apps;
                                     if (isNullOrEmpty(selected.neg)) {
                                         selected.neg = [];
                                     }
+                                    $ts("#adducts_pos").clear();
+                                    $ts("#adducts_neg").clear();
                                     // for (let adduct of list) {
                                     //     const key_id: string = adduct;
                                     //     const value: boolean = selected.indexOf(adduct) > -1;
