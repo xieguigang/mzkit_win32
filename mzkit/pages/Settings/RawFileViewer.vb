@@ -54,49 +54,36 @@
 
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader
 Imports BioNovoGene.mzkit_win32.Configuration
-Imports BioNovoGene.mzkit_win32.My
 
-Public Class RawFileViewer : Implements ISaveSettings, IPageSettings
+Public Class RawFileViewer
 
     Dim wiffLicense As LicenseFile
 
-    Public Sub LoadSettings() Implements ISaveSettings.LoadSettings
+    Public Function LoadSettings() As RawFileViewerSettings
         If Globals.Settings.viewer Is Nothing Then
-            Globals.Settings.viewer = New RawFileViewerSettings
+            Globals.Settings.viewer = New RawFileViewerSettings With {
+                .fill = True,
+                .intoCutoff = 0.05,
+                .method = TrimmingMethods.RelativeIntensity,
+                .ppm_error = 20,
+                .XIC_da = 0.1,
+                .quantile = 0.65
+            }
         End If
 
-        NumericUpDown1.Value = Globals.Settings.viewer.XIC_da
+        Return Globals.Settings.viewer
+    End Function
+
+    Public Sub SaveSettings(config As Settings)
+        Dim viewer As RawFileViewerSettings = config.viewer
+
+        Globals.Settings.viewer.XIC_da = viewer.XIC_da
+        Globals.Settings.viewer.method = viewer.method
 
         If Globals.Settings.viewer.method = TrimmingMethods.RelativeIntensity Then
-            NumericUpDown2.Value = Globals.Settings.viewer.intoCutoff
+            Globals.Settings.viewer.intoCutoff = viewer.intoCutoff
         Else
-            NumericUpDown2.Value = Globals.Settings.viewer.quantile
-        End If
-
-        ComboBox1.SelectedIndex = Globals.Settings.viewer.method
-    End Sub
-
-    Public Sub SaveSettings() Implements ISaveSettings.SaveSettings
-        Globals.Settings.viewer.XIC_da = Val(NumericUpDown1.Value)
-        Globals.Settings.viewer.method = ComboBox1.SelectedIndex
-
-        If Globals.Settings.viewer.method = TrimmingMethods.RelativeIntensity Then
-            Globals.Settings.viewer.intoCutoff = NumericUpDown2.Value
-        Else
-            Globals.Settings.viewer.quantile = NumericUpDown2.Value
-        End If
-    End Sub
-
-    Public Sub ShowPage() Implements IPageSettings.ShowPage
-        Call MyApplication.host.ShowPage(MyApplication.host.mzkitTool)
-        Call MyApplication.host.ShowMzkitToolkit()
-    End Sub
-
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
-        If ComboBox1.SelectedIndex = TrimmingMethods.RelativeIntensity Then
-            NumericUpDown2.Value = Globals.Settings.viewer.intoCutoff
-        Else
-            NumericUpDown2.Value = Globals.Settings.viewer.quantile
+            Globals.Settings.viewer.quantile = viewer.quantile
         End If
     End Sub
 End Class

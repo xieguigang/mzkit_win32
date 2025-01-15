@@ -55,7 +55,6 @@
 
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.Configuration
-Imports BioNovoGene.mzkit_win32.My
 
 Public Class ElementProfile
 
@@ -65,7 +64,9 @@ Public Class ElementProfile
 
     Public Shared Function LoadSettings() As Dictionary(Of String, ElementRange)
         If Globals.Settings.formula_search Is Nothing Then
-            Globals.Settings.formula_search = New FormulaSearchProfile With {.elements = New Dictionary(Of String, ElementRange)}
+            Globals.Settings.formula_search = New FormulaSearchProfile With {
+                .elements = New Dictionary(Of String, ElementRange)
+            }
         End If
 
         Return Globals.Settings.formula_search.elements
@@ -86,11 +87,6 @@ Public Class ElementProfile
 
         Globals.Settings.formula_search.elements = elements
         Globals.Settings.Save()
-    End Sub
-
-    Public Shared Sub ShowPage()
-        Call MyApplication.host.ShowMzkitToolkit()
-        Call MyApplication.host.ShowPage(MyApplication.host.mzkitSearch)
     End Sub
 
     Public Shared Function loadPresetProfile(index As FormulaSearchProfiles) As SearchOption

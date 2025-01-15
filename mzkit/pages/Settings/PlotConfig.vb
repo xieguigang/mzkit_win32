@@ -56,7 +56,6 @@
 #End Region
 
 Imports BioNovoGene.mzkit_win32.Configuration
-Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 
@@ -69,11 +68,6 @@ Public Class PlotConfig
 
         Globals.Settings.viewer.colorSet = colorSet
         Globals.Settings.viewer.fill = fill
-    End Sub
-
-    Public Shared Sub ShowPage()
-        Call MyApplication.host.ShowPage(MyApplication.host.mzkitTool)
-        Call MyApplication.host.ShowMzkitToolkit()
     End Sub
 
     Public Shared Function GetColors(name As String) As String()
