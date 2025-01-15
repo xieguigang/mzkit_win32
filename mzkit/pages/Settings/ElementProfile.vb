@@ -56,52 +56,55 @@
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.Configuration
 
-Public Class ElementProfile
+Namespace SettingsPage
 
-    Public Property atom As String
-    Public Property min As Double
-    Public Property max As Double
+    Public Class ElementProfile
 
-    Public Shared Function LoadSettings() As Dictionary(Of String, ElementRange)
-        If Globals.Settings.formula_search Is Nothing Then
-            Globals.Settings.formula_search = New FormulaSearchProfile With {
-                .elements = New Dictionary(Of String, ElementRange)
-            }
-        End If
+        Public Property atom As String
+        Public Property min As Double
+        Public Property max As Double
 
-        Return Globals.Settings.formula_search.elements
-    End Function
-
-    Public Shared Sub SaveSettings(profiles As IEnumerable(Of ElementProfile))
-        Dim elements As New Dictionary(Of String, ElementRange)
-
-        For Each elementProfile As ElementProfile In profiles
-            Dim atomName As String = elementProfile.atom
-
-            If atomName.StringEmpty Then
-                Continue For
+        Public Shared Function LoadSettings() As Dictionary(Of String, ElementRange)
+            If Globals.Settings.formula_search Is Nothing Then
+                Globals.Settings.formula_search = New FormulaSearchProfile With {
+                    .elements = New Dictionary(Of String, ElementRange)
+                }
             End If
 
-            elements.Add(atomName, New ElementRange With {.min = elementProfile.min, .max = elementProfile.max})
-        Next
+            Return Globals.Settings.formula_search.elements
+        End Function
 
-        Globals.Settings.formula_search.elements = elements
-        Globals.Settings.Save()
-    End Sub
+        Public Shared Sub SaveSettings(profiles As IEnumerable(Of ElementProfile))
+            Dim elements As New Dictionary(Of String, ElementRange)
 
-    Public Shared Function loadPresetProfile(index As FormulaSearchProfiles) As SearchOption
-        Select Case index
-            Case FormulaSearchProfiles.Default
-                Return SearchOption.DefaultMetaboliteProfile
-            Case FormulaSearchProfiles.GeneralFlavone
-                Return SearchOption.GeneralFlavone
-            Case FormulaSearchProfiles.NaturalProduct
-                Return SearchOption.NaturalProduct(DNPOrWileyType.DNP, True)
-            Case FormulaSearchProfiles.SmallMolecule
-                Return SearchOption.SmallMolecule(DNPOrWileyType.DNP, True)
-            Case Else
-                ' returns the custom dataset
-                Return Globals.Settings.formula_search.CreateOptions
-        End Select
-    End Function
-End Class
+            For Each elementProfile As ElementProfile In profiles
+                Dim atomName As String = elementProfile.atom
+
+                If atomName.StringEmpty Then
+                    Continue For
+                End If
+
+                elements.Add(atomName, New ElementRange With {.min = elementProfile.min, .max = elementProfile.max})
+            Next
+
+            Globals.Settings.formula_search.elements = elements
+            Globals.Settings.Save()
+        End Sub
+
+        Public Shared Function loadPresetProfile(index As FormulaSearchProfiles) As SearchOption
+            Select Case index
+                Case FormulaSearchProfiles.Default
+                    Return SearchOption.DefaultMetaboliteProfile
+                Case FormulaSearchProfiles.GeneralFlavone
+                    Return SearchOption.GeneralFlavone
+                Case FormulaSearchProfiles.NaturalProduct
+                    Return SearchOption.NaturalProduct(DNPOrWileyType.DNP, True)
+                Case FormulaSearchProfiles.SmallMolecule
+                    Return SearchOption.SmallMolecule(DNPOrWileyType.DNP, True)
+                Case Else
+                    ' returns the custom dataset
+                    Return Globals.Settings.formula_search.CreateOptions
+            End Select
+        End Function
+    End Class
+End Namespace

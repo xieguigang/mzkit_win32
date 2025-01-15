@@ -56,36 +56,39 @@
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.My
 
-Public Class AppConfig
+Namespace SettingsPage
 
-    Dim oldLanguageConfig As Languages
+    Public Class AppConfig
 
-    Public Function LoadSettings() As UISettings
-        If Globals.Settings.ui Is Nothing Then
-            Globals.Settings.ui = New UISettings With {
-                .rememberWindowsLocation = True,
-                .rememberLayouts = True,
-                .language = Languages.System
-            }
-        End If
+        Dim oldLanguageConfig As Languages
 
-        Return Globals.Settings.ui
-    End Function
+        Public Function LoadSettings() As UISettings
+            If Globals.Settings.ui Is Nothing Then
+                Globals.Settings.ui = New UISettings With {
+                    .rememberWindowsLocation = True,
+                    .rememberLayouts = True,
+                    .language = Languages.System
+                }
+            End If
 
-    Public Sub SaveSettings(config As Settings)
-        Globals.Settings.ui.language = config.ui.language
-        Globals.Settings.ui.rememberLayouts = config.ui.rememberLayouts
-        Globals.Settings.ui.rememberWindowsLocation = config.ui.rememberWindowsLocation
+            Return Globals.Settings.ui
+        End Function
 
-        Globals.Settings.Save()
+        Public Sub SaveSettings(config As Settings)
+            Globals.Settings.ui.language = config.ui.language
+            Globals.Settings.ui.rememberLayouts = config.ui.rememberLayouts
+            Globals.Settings.ui.rememberWindowsLocation = config.ui.rememberWindowsLocation
 
-        If Globals.Settings.ui.language <> CInt(oldLanguageConfig) Then
-            Call MessageBox.Show(
-                MyApplication.getLanguageString("language", Globals.Settings.ui.language),
-                MyApplication.getLanguageString("msgbox_title", Globals.Settings.ui.language),
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            )
-        End If
-    End Sub
-End Class
+            Globals.Settings.Save()
+
+            If Globals.Settings.ui.language <> CInt(oldLanguageConfig) Then
+                Call MessageBox.Show(
+                    MyApplication.getLanguageString("language", Globals.Settings.ui.language),
+                    MyApplication.getLanguageString("msgbox_title", Globals.Settings.ui.language),
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                )
+            End If
+        End Sub
+    End Class
+End Namespace

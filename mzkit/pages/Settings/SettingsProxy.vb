@@ -66,51 +66,56 @@ Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 
-''' <summary>
-''' host object proxy for webview
-''' </summary>
-''' 
-<ClassInterface(ClassInterfaceType.AutoDual)>
-<ComVisible(True)>
-Public Class SettingsProxy
-
-    Public host As frmSettings
-
-    ReadOnly appConfig As New AppConfig
-    ReadOnly preset As New PresetProfile
+Namespace SettingsPage
 
     ''' <summary>
-    ''' load settings json config data
+    ''' host object proxy for webview
     ''' </summary>
-    ''' <returns></returns>
-    Public Async Function loadSettings() As Task(Of String)
-        Dim settings As Settings = Globals.Settings
-        Dim json As JsonObject = JSONSerializer.CreateJSONElement(Of Settings)(settings)
+    ''' 
+    <ClassInterface(ClassInterfaceType.AutoDual)>
+    <ComVisible(True)>
+    Public Class SettingsProxy
 
-        If settings.viewer Is Nothing Then
-            settings.viewer = New RawFileViewerSettings
-        End If
-        If settings.formula_search Is Nothing Then
-            settings.formula_search = preset.LoadSettings
-        End If
+        Public host As frmSettings
 
-        Dim json_str As String = Await Threading.Tasks.Task.Run(Function() json.BuildJsonString)
-        Return json_str
-    End Function
+        ReadOnly appConfig As New AppConfig
+        ReadOnly preset As New PresetProfile
+        ReadOnly network As New MolecularNetworking
+        ReadOnly plot As New PlotConfig
+        ReadOnly rawfile As New RawFileViewer
 
-    <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Async Function getProfile(name As String) As Task(Of String)
-        Dim profile = FormulaSearchProfile.GetProfile(name)
-        Dim opt = ElementProfile.loadPresetProfile(profile)
+        ''' <summary>
+        ''' load settings json config data
+        ''' </summary>
+        ''' <returns></returns>
+        Public Async Function loadSettings() As Task(Of String)
+            Dim settings As Settings = Globals.Settings
+            Dim json As JsonObject = JSONSerializer.CreateJSONElement(Of Settings)(settings)
 
-        Return Await Threading.Tasks.Task.Run(Function() opt.GetJson(enumToStr:=True))
-    End Function
+            If settings.viewer Is Nothing Then
+                settings.viewer = New RawFileViewerSettings
+            End If
+            If settings.formula_search Is Nothing Then
+                settings.formula_search = preset.LoadSettings
+            End If
 
-    <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Async Function getAllAdducts() As Task(Of String)
-        Dim pos = Provider.Positives
-        Dim neg = Provider.Negatives
-        Dim strings_json = Await Threading.Tasks.Task.Run(
+            Dim json_str As String = Await Threading.Tasks.Task.Run(Function() json.BuildJsonString)
+            Return json_str
+        End Function
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Async Function getProfile(name As String) As Task(Of String)
+            Dim profile = FormulaSearchProfile.GetProfile(name)
+            Dim opt = ElementProfile.loadPresetProfile(profile)
+
+            Return Await Threading.Tasks.Task.Run(Function() opt.GetJson(enumToStr:=True))
+        End Function
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Async Function getAllAdducts() As Task(Of String)
+            Dim pos = Provider.Positives
+            Dim neg = Provider.Negatives
+            Dim strings_json = Await Threading.Tasks.Task.Run(
             Function()
                 Return pos.JoinIterates(neg) _
                     .Select(Function(a) a.ToString) _
@@ -118,83 +123,84 @@ Public Class SettingsProxy
                     .GetJson(enumToStr:=True)
             End Function)
 
-        Return strings_json
-    End Function
+            Return strings_json
+        End Function
 
-    Public Async Function GetColors(name As String) As Task(Of String)
-        Dim colors As String() = Await Task(Of String()).Run(Function() PlotConfig.GetColors(name))
-        Dim json As String = colors.GetJson(enumToStr:=True)
-        Return json
-    End Function
+        Public Async Function GetColors(name As String) As Task(Of String)
+            Dim colors As String() = Await Task(Of String()).Run(Function() PlotConfig.GetColors(name))
+            Dim json As String = colors.GetJson(enumToStr:=True)
+            Return json
+        End Function
 
-    ''' <summary>
-    ''' save all settings
-    ''' </summary>
-    Public Async Sub Save(value As String)
-        Dim json As Settings = Await Threading.Tasks.Task.Run(Function() value.LoadJSON(Of Settings))
-        Dim settings = Globals.Settings
+        ''' <summary>
+        ''' save all settings
+        ''' </summary>
+        Public Async Sub Save(value As String)
+            Dim json As Settings = Await Threading.Tasks.Task.Run(Function() value.LoadJSON(Of Settings))
+            Dim settings = Globals.Settings
 
-        Call Workbench.LogText($"get configuration value from webview UI:")
-        Call Workbench.LogText(value)
+            Call Workbench.LogText($"get configuration value from webview UI:")
+            Call Workbench.LogText(value)
 
-        If settings.ui Is Nothing Then
-            settings.ui = New UISettings
-        End If
-        If settings.viewer Is Nothing Then
-            settings.viewer = New RawFileViewerSettings
-        End If
+            If settings.ui Is Nothing Then
+                settings.ui = New UISettings
+            End If
+            If settings.viewer Is Nothing Then
+                settings.viewer = New RawFileViewerSettings
+            End If
 
-        Call appConfig.SaveSettings(json)
-        Call preset.SaveSettings(json)
+            Call appConfig.SaveSettings(json)
+            Call preset.SaveSettings(json)
 
-        settings.viewer.fill = json.viewer.fill
-        settings.viewer.colorSet = json.viewer.colorSet
-        settings.viewer.XIC_da = json.viewer.XIC_da
+            settings.viewer.fill = json.viewer.fill
+            settings.viewer.colorSet = json.viewer.colorSet
+            settings.viewer.XIC_da = json.viewer.XIC_da
 
-        Call settings.Save()
-        Call Workbench.SuccessMessage("New settings value applied and saved!")
-    End Sub
+            Call settings.Save()
+            Call Workbench.SuccessMessage("New settings value applied and saved!")
+        End Sub
 
-    Public Async Sub SaveAdducts(pos_str As String, neg_str As String)
-        Dim pos As String() = pos_str.LoadJSON(Of String())(throwEx:=False)
-        Dim neg As String() = neg_str.LoadJSON(Of String())(throwEx:=False)
-        Dim settings = Globals.Settings
+        Public Async Sub SaveAdducts(pos_str As String, neg_str As String)
+            Dim pos As String() = pos_str.LoadJSON(Of String())(throwEx:=False)
+            Dim neg As String() = neg_str.LoadJSON(Of String())(throwEx:=False)
+            Dim settings = Globals.Settings
 
-        If pos.IsNullOrEmpty Then
-            Call Workbench.Warning("no positive adducts configs data!")
-        End If
-        If neg.IsNullOrEmpty Then
-            Call Workbench.Warning("no negative adducts configs data!")
-        End If
+            If pos.IsNullOrEmpty Then
+                Call Workbench.Warning("no positive adducts configs data!")
+            End If
+            If neg.IsNullOrEmpty Then
+                Call Workbench.Warning("no negative adducts configs data!")
+            End If
 
-        If settings.precursor_search Is Nothing Then
-            settings.precursor_search = PrecursorSearchSettings.GetDefault
-        End If
+            If settings.precursor_search Is Nothing Then
+                settings.precursor_search = PrecursorSearchSettings.GetDefault
+            End If
 
-        settings.precursor_search.positive = pos
-        settings.precursor_search.negative = neg
+            settings.precursor_search.positive = pos
+            settings.precursor_search.negative = neg
 
-        Await Threading.Tasks.Task.Run(Sub() settings.Save())
+            Await Threading.Tasks.Task.Run(Sub() settings.Save())
 
-        Call Workbench.SuccessMessage("New settings value for precursor adducts applied and saved!")
-    End Sub
+            Call Workbench.SuccessMessage("New settings value for precursor adducts applied and saved!")
+        End Sub
 
-    ''' <summary>
-    ''' save a specific settings data
-    ''' </summary>
-    ''' <param name="id"></param>
-    ''' <param name="Status"></param>
-    Public Async Sub SetStatus(id As String, Status As String)
-        Select Case Strings.Trim(id).ToLower
-            Case "save_elements"
-                Await Threading.Tasks.Task.Run(
+        ''' <summary>
+        ''' save a specific settings data
+        ''' </summary>
+        ''' <param name="id"></param>
+        ''' <param name="Status"></param>
+        Public Async Sub SetStatus(id As String, Status As String)
+            Select Case Strings.Trim(id).ToLower
+                Case "save_elements"
+                    Await Threading.Tasks.Task.Run(
                     Sub()
                         ElementProfile.SaveSettings(Status.LoadJSON(Of ElementProfile()))
                     End Sub)
-        End Select
-    End Sub
+            End Select
+        End Sub
 
-    Public Async Sub close()
-        Await Threading.Tasks.Task.Run(Sub() host.Invoke(Sub() host.closePage()))
-    End Sub
-End Class
+        Public Async Sub close()
+            Await Threading.Tasks.Task.Run(Sub() host.Invoke(Sub() host.closePage()))
+        End Sub
+    End Class
+End Namespace

@@ -59,40 +59,43 @@ Imports BioNovoGene.mzkit_win32.Configuration
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 
-Public Class PlotConfig
+Namespace SettingsPage
 
-    Public Shared Sub SaveSettings(colorSet As String(), fill As Boolean)
-        If Globals.Settings.viewer Is Nothing Then
-            Globals.Settings.viewer = New RawFileViewerSettings
-        End If
+    Public Class PlotConfig
 
-        Globals.Settings.viewer.colorSet = colorSet
-        Globals.Settings.viewer.fill = fill
-    End Sub
+        Public Shared Sub SaveSettings(colorSet As String(), fill As Boolean)
+            If Globals.Settings.viewer Is Nothing Then
+                Globals.Settings.viewer = New RawFileViewerSettings
+            End If
 
-    Public Shared Function GetColors(name As String) As String()
-        Dim colors As Color() = Nothing
+            Globals.Settings.viewer.colorSet = colorSet
+            Globals.Settings.viewer.fill = fill
+        End Sub
 
-        '        ColorBrewer Set1
-        'ColorBrewer Paired1
-        'ColorBrewer Accent
-        'Cluster Colour
-        'Material Palette
-        'sciBASIC Category31
+        Public Shared Function GetColors(name As String) As String()
+            Dim colors As Color() = Nothing
 
-        Select Case Strings.Trim(name).ToLower
-            Case "set1" : colors = Designer.GetColors("Set1:c8")
-            Case "paired1" : colors = Designer.GetColors("Paired1:c8")
-            Case "accent" : colors = Designer.GetColors("Accent:c8")
-            Case "cluster" : colors = Designer.GetColors("Clusters")
-            Case "material" : colors = Designer.GetColors("material")
-            Case "scibasic" : colors = Designer.GetColors("scibasic.category31()")
-            Case Else
-                colors = Designer.GetColors("Paper")
-        End Select
+            '        ColorBrewer Set1
+            'ColorBrewer Paired1
+            'ColorBrewer Accent
+            'Cluster Colour
+            'Material Palette
+            'sciBASIC Category31
 
-        Return colors _
-            .Select(Function(c) c.ToHtmlColor) _
-            .ToArray
-    End Function
-End Class
+            Select Case Strings.Trim(name).ToLower
+                Case "set1" : colors = Designer.GetColors("Set1:c8")
+                Case "paired1" : colors = Designer.GetColors("Paired1:c8")
+                Case "accent" : colors = Designer.GetColors("Accent:c8")
+                Case "cluster" : colors = Designer.GetColors("Clusters")
+                Case "material" : colors = Designer.GetColors("material")
+                Case "scibasic" : colors = Designer.GetColors("scibasic.category31()")
+                Case Else
+                    colors = Designer.GetColors("Paper")
+            End Select
+
+            Return colors _
+                .Select(Function(c) c.ToHtmlColor) _
+                .ToArray
+        End Function
+    End Class
+End Namespace

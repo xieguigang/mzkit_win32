@@ -1,11 +1,14 @@
-﻿Public Interface ISaveSettings
+﻿Namespace SettingsPage
 
-    Sub LoadSettings()
-    Sub SaveSettings()
+    Public Interface ISaveSettings
 
-End Interface
+        Sub LoadSettings()
+        Sub SaveSettings()
 
-Public Interface IPageSettings
-    Sub ShowPage()
+    End Interface
 
-End Interface
+    Public Interface IPageSettings
+        Sub ShowPage()
+
+    End Interface
+End Namespace

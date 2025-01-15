@@ -55,36 +55,39 @@
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.Configuration
 
-Public Class PresetProfile
+Namespace SettingsPage
 
-    Public Function LoadSettings() As FormulaSearchProfile
-        Dim profile = Globals.Settings.formula_search
+    Public Class PresetProfile
 
-        If profile Is Nothing Then
-            Globals.Settings.formula_search = New FormulaSearchProfile With {
-                .elements = New Dictionary(Of String, ElementRange)
-            }
+        Public Function LoadSettings() As FormulaSearchProfile
+            Dim profile = Globals.Settings.formula_search
 
-            profile = Globals.Settings.formula_search
-        End If
+            If profile Is Nothing Then
+                Globals.Settings.formula_search = New FormulaSearchProfile With {
+                    .elements = New Dictionary(Of String, ElementRange)
+                }
 
-        If profile.smallMoleculeProfile Is Nothing Then
-            profile.smallMoleculeProfile = New PresetProfileSettings With {.isCommon = True, .type = DNPOrWileyType.Wiley}
-        End If
-        If profile.naturalProductProfile Is Nothing Then
-            profile.naturalProductProfile = New PresetProfileSettings With {.isCommon = True, .type = DNPOrWileyType.Wiley}
-        End If
+                profile = Globals.Settings.formula_search
+            End If
 
-        Return profile
-    End Function
+            If profile.smallMoleculeProfile Is Nothing Then
+                profile.smallMoleculeProfile = New PresetProfileSettings With {.isCommon = True, .type = DNPOrWileyType.Wiley}
+            End If
+            If profile.naturalProductProfile Is Nothing Then
+                profile.naturalProductProfile = New PresetProfileSettings With {.isCommon = True, .type = DNPOrWileyType.Wiley}
+            End If
 
-    Public Sub SaveSettings(config As Settings)
-        If Globals.Settings.formula_search Is Nothing Then
-            Globals.Settings.formula_search = New FormulaSearchProfile
-        End If
+            Return profile
+        End Function
 
-        Globals.Settings.formula_search.smallMoleculeProfile = config.formula_search.smallMoleculeProfile
-        Globals.Settings.formula_search.naturalProductProfile = config.formula_search.naturalProductProfile
-        Globals.Settings.Save()
-    End Sub
-End Class
+        Public Sub SaveSettings(config As Settings)
+            If Globals.Settings.formula_search Is Nothing Then
+                Globals.Settings.formula_search = New FormulaSearchProfile
+            End If
+
+            Globals.Settings.formula_search.smallMoleculeProfile = config.formula_search.smallMoleculeProfile
+            Globals.Settings.formula_search.naturalProductProfile = config.formula_search.naturalProductProfile
+            Globals.Settings.Save()
+        End Sub
+    End Class
+End Namespace

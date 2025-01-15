@@ -55,58 +55,61 @@
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce
 
-Public Class MolecularNetworking
+Namespace SettingsPage
 
-    Public Function LoadSettings() As NetworkArguments
-        If Globals.Settings.network Is Nothing Then
-            Globals.Settings.network = New NetworkArguments With {
-                .layout = New ForceDirectedArgs With {
+    Public Class MolecularNetworking
+
+        Public Function LoadSettings() As NetworkArguments
+            If Globals.Settings.network Is Nothing Then
+                Globals.Settings.network = New NetworkArguments With {
+                    .layout = New ForceDirectedArgs With {
+                        .Damping = 0.4,
+                        .Iterations = 100,
+                        .Repulsion = 10000,
+                        .Stiffness = 41.76
+                    },
+                    .linkWidth = New ElementRange With {.min = 1, .max = 5},
+                    .nodeRadius = New ElementRange With {.min = 8, .max = 40}
+                }
+            End If
+            If Globals.Settings.network.nodeRadius Is Nothing Then
+                Globals.Settings.network.nodeRadius = New ElementRange With {
+                    .min = 8,
+                    .max = 40
+                }
+            End If
+            If Globals.Settings.network.linkWidth Is Nothing Then
+                Globals.Settings.network.linkWidth = New ElementRange With {
+                    .min = 1,
+                    .max = 5
+                }
+            End If
+            If Globals.Settings.network.layout Is Nothing Then
+                Globals.Settings.network.layout = New ForceDirectedArgs With {
                     .Damping = 0.4,
                     .Iterations = 100,
                     .Repulsion = 10000,
                     .Stiffness = 41.76
-                },
-                .linkWidth = New ElementRange With {.min = 1, .max = 5},
-                .nodeRadius = New ElementRange With {.min = 8, .max = 40}
-            }
-        End If
-        If Globals.Settings.network.nodeRadius Is Nothing Then
-            Globals.Settings.network.nodeRadius = New ElementRange With {
-                .min = 8,
-                .max = 40
-            }
-        End If
-        If Globals.Settings.network.linkWidth Is Nothing Then
-            Globals.Settings.network.linkWidth = New ElementRange With {
-                .min = 1,
-                .max = 5
-            }
-        End If
-        If Globals.Settings.network.layout Is Nothing Then
+                }
+            End If
+
+            Return Globals.Settings.network
+        End Function
+
+        Public Sub SaveSettings(config As Settings)
+            Dim network = config.network
+
             Globals.Settings.network.layout = New ForceDirectedArgs With {
-                .Damping = 0.4,
-                .Iterations = 100,
-                .Repulsion = 10000,
-                .Stiffness = 41.76
+                .Iterations = network.layout.Iterations,
+                .Repulsion = network.layout.Repulsion,
+                .Damping = network.layout.Damping,
+                .Stiffness = network.layout.Stiffness
             }
-        End If
-
-        Return Globals.Settings.network
-    End Function
-
-    Public Sub SaveSettings(config As Settings)
-        Dim network = config.network
-
-        Globals.Settings.network.layout = New ForceDirectedArgs With {
-            .Iterations = network.layout.Iterations,
-            .Repulsion = network.layout.Repulsion,
-            .Damping = network.layout.Damping,
-            .Stiffness = network.layout.Stiffness
-        }
-        Globals.Settings.network.nodeRadius = network.nodeRadius
-        Globals.Settings.network.linkWidth = network.linkWidth
-        Globals.Settings.network.treeNodeIdentical = network.treeNodeIdentical
-        Globals.Settings.network.treeNodeSimilar = network.treeNodeSimilar
-        Globals.Settings.network.defaultFilter = network.defaultFilter
-    End Sub
-End Class
+            Globals.Settings.network.nodeRadius = network.nodeRadius
+            Globals.Settings.network.linkWidth = network.linkWidth
+            Globals.Settings.network.treeNodeIdentical = network.treeNodeIdentical
+            Globals.Settings.network.treeNodeSimilar = network.treeNodeSimilar
+            Globals.Settings.network.defaultFilter = network.defaultFilter
+        End Sub
+    End Class
+End Namespace

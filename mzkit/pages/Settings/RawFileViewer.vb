@@ -55,35 +55,38 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader
 Imports BioNovoGene.mzkit_win32.Configuration
 
-Public Class RawFileViewer
+Namespace SettingsPage
 
-    Dim wiffLicense As LicenseFile
+    Public Class RawFileViewer
 
-    Public Function LoadSettings() As RawFileViewerSettings
-        If Globals.Settings.viewer Is Nothing Then
-            Globals.Settings.viewer = New RawFileViewerSettings With {
-                .fill = True,
-                .intoCutoff = 0.05,
-                .method = TrimmingMethods.RelativeIntensity,
-                .ppm_error = 20,
-                .XIC_da = 0.1,
-                .quantile = 0.65
-            }
-        End If
+        Dim wiffLicense As LicenseFile
 
-        Return Globals.Settings.viewer
-    End Function
+        Public Function LoadSettings() As RawFileViewerSettings
+            If Globals.Settings.viewer Is Nothing Then
+                Globals.Settings.viewer = New RawFileViewerSettings With {
+                    .fill = True,
+                    .intoCutoff = 0.05,
+                    .method = TrimmingMethods.RelativeIntensity,
+                    .ppm_error = 20,
+                    .XIC_da = 0.1,
+                    .quantile = 0.65
+                }
+            End If
 
-    Public Sub SaveSettings(config As Settings)
-        Dim viewer As RawFileViewerSettings = config.viewer
+            Return Globals.Settings.viewer
+        End Function
 
-        Globals.Settings.viewer.XIC_da = viewer.XIC_da
-        Globals.Settings.viewer.method = viewer.method
+        Public Sub SaveSettings(config As Settings)
+            Dim viewer As RawFileViewerSettings = config.viewer
 
-        If Globals.Settings.viewer.method = TrimmingMethods.RelativeIntensity Then
-            Globals.Settings.viewer.intoCutoff = viewer.intoCutoff
-        Else
-            Globals.Settings.viewer.quantile = viewer.quantile
-        End If
-    End Sub
-End Class
+            Globals.Settings.viewer.XIC_da = viewer.XIC_da
+            Globals.Settings.viewer.method = viewer.method
+
+            If Globals.Settings.viewer.method = TrimmingMethods.RelativeIntensity Then
+                Globals.Settings.viewer.intoCutoff = viewer.intoCutoff
+            Else
+                Globals.Settings.viewer.quantile = viewer.quantile
+            End If
+        End Sub
+    End Class
+End Namespace
