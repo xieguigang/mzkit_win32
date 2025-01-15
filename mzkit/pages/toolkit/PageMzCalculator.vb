@@ -54,16 +54,16 @@
 
 #End Region
 
+Imports BioDeep
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports BioNovoGene.mzkit_win32.Configuration
+Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Linq
-Imports BioNovoGene.mzkit_win32.My
-Imports RibbonLib.Interop
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
-Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
-Imports BioDeep
-Imports BioNovoGene.mzkit_win32.Configuration
 Imports Mzkit_win32.BasicMDIForm
+Imports RibbonLib.Interop
 
 Public Class PageMzCalculator
 
