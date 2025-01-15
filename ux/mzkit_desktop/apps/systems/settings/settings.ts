@@ -465,16 +465,16 @@ namespace apps.systems {
             // do config of the settings value
             settings.mzkit_configs.colorset = settings.getColorList();
 
-            if (!settings.__dosave) {
-                settings.__dosave();
-            }
-
             // do save configuration via proxy
             app.desktop.mzkit
                 .Save(JSON.stringify(settings.mzkit_configs))
                 .then(async () => {
                     console.log("done!");
                 });
+
+            if (!settings.__dosave) {
+                settings.__dosave();
+            }
         }
 
         public apply_settings_onclick() {
