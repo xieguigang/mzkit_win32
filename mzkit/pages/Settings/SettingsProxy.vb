@@ -76,6 +76,9 @@ Public Class SettingsProxy
 
     Public host As frmSettings
 
+    ReadOnly appConfig As New AppConfig
+    ReadOnly preset As New PresetProfile
+
     ''' <summary>
     ''' load settings json config data
     ''' </summary>
@@ -88,7 +91,7 @@ Public Class SettingsProxy
             settings.viewer = New RawFileViewerSettings
         End If
         If settings.formula_search Is Nothing Then
-            settings.formula_search = New PresetProfile().LoadSettings
+            settings.formula_search = preset.LoadSettings
         End If
 
         Dim json_str As String = Await Threading.Tasks.Task.Run(Function() json.BuildJsonString)
@@ -141,9 +144,8 @@ Public Class SettingsProxy
             settings.viewer = New RawFileViewerSettings
         End If
 
-        settings.ui.rememberLayouts = json.ui.rememberLayouts
-        settings.ui.rememberWindowsLocation = json.ui.rememberWindowsLocation
-        settings.ui.language = json.ui.language
+        Call appConfig.SaveSettings(json)
+        Call preset.SaveSettings(json)
 
         settings.viewer.fill = json.viewer.fill
         settings.viewer.colorSet = json.viewer.colorSet

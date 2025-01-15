@@ -79,6 +79,10 @@ Public Class PresetProfile
     End Function
 
     Public Sub SaveSettings(config As Settings)
+        If Globals.Settings.formula_search Is Nothing Then
+            Globals.Settings.formula_search = New FormulaSearchProfile
+        End If
+
         Globals.Settings.formula_search.smallMoleculeProfile = config.formula_search.smallMoleculeProfile
         Globals.Settings.formula_search.naturalProductProfile = config.formula_search.naturalProductProfile
         Globals.Settings.Save()
