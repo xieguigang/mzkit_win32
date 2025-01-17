@@ -483,7 +483,10 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.pdb_1" ComponentId="{6DEE1976-EB19-49A9-B005-C59B0CF3B3CB}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.pdb_1" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.xml" ComponentId="{A8290123-4769-441A-8583-0D090466C49A}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.xml_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.d_1" ComponentId="{A306032F-7305-4CC4-85F0-5FB0743EDAF3}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReade_2"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.d_2" ComponentId="{D1324B7F-ED39-4275-83D3-12E5F1002E68}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReade_5"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.dll" ComponentId="{F3CF77AF-3CBD-408F-866E-7ACDF334DC8B}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader."/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.pdb" ComponentId="{1F71624D-9C82-4289-8C2D-9A0CF7AD6BBC}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReade_6" Type="4"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.xml" ComponentId="{2C120238-7B7A-4280-928D-E13FD213C38A}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReade_7"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll" ComponentId="{48C0319C-3FD8-45F3-812F-9E25E8305B82}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.pdb" ComponentId="{5110DD5C-C5F8-4A51-9CF9-815997A86FC8}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.dll" ComponentId="{1DBB01B2-92A0-4EDB-B2B5-2CB7D778F01B}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.dll"/>
@@ -509,8 +512,12 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader.pdb_1" ComponentId="{3AF306F3-93CE-40DD-A78F-C2017D0DF914}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader.pd_1" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader.xml" ComponentId="{FB2CDEF8-9172-4A16-80E0-6535B39BFDDB}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader.xm_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.xml" ComponentId="{E3831D1F-CCF8-47EA-80C7-F293F7CEF6A2}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.xml_1"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll" ComponentId="{11457D7C-A12F-4B4B-BA63-5810D9217A8F}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" ComponentId="{21B50BD9-1B0F-47C6-A9BE-EA9151A43E5F}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll" ComponentId="{4ED59DD7-C3DD-47AB-A58E-8F6ACF791F28}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll_1" ComponentId="{0A227B09-CFA3-4FD3-A1BB-08B8F624590D}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll_1"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll_2" ComponentId="{0B01ECA5-6D97-4133-B2E2-502F8A161060}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll_2"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.GCxGC.pdb" ComponentId="{C26AF79E-E3AC-47D6-BCA3-7BE22BEAF383}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.GCxGC.pdb_1" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll" ComponentId="{B16621DE-0FEB-434B-968B-1DFD7C114CE0}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll_1" ComponentId="{9986E7EB-8D23-45A2-B72D-D81A513273A6}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll_2" ComponentId="{DBA9E6D3-5484-4C05-9EF5-1E51C6970AD6}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll_2"/>
@@ -782,6 +789,9 @@
     <ROW Component="LocalLaplacianFilters.pdb" ComponentId="{2220C0A8-1F76-4591-8A3D-A395B1B3CEC6}" Directory_="APPDIR" Attributes="0" KeyPath="LocalLaplacianFilters.pdb" Type="4"/>
     <ROW Component="MLkit.dll" ComponentId="{1CBF1239-53EE-4681-87D7-63EA4D833530}" Directory_="library_Dir" Attributes="256" KeyPath="MLkit.dll"/>
     <ROW Component="MZKitWin32.Blender.CommonLibs.dll" ComponentId="{E294D309-34EE-41B2-97B1-D0256A2F4F89}" Directory_="blender_Dir" Attributes="256" KeyPath="MZKitWin32.Blender.CommonLibs.dll"/>
+    <ROW Component="MZKitWin32.Blender.CommonLibs.dll_1" ComponentId="{67D2F4C1-7463-4565-B3FD-AF0479F237C1}" Directory_="APPDIR" Attributes="256" KeyPath="MZKitWin32.Blender.CommonLibs.dll_1"/>
+    <ROW Component="MZKitWin32.Blender.CommonLibs.pdb" ComponentId="{97354F39-DFC6-4B1C-BF32-D9513116C41A}" Directory_="APPDIR" Attributes="0" KeyPath="MZKitWin32.Blender.CommonLibs.pdb_1" Type="4"/>
+    <ROW Component="MZKitWin32.Blender.CommonLibs.xml" ComponentId="{D67851D7-449A-4565-A99B-E13970C7EBF5}" Directory_="APPDIR" Attributes="0" KeyPath="MZKitWin32.Blender.CommonLibs.xml_1"/>
     <ROW Component="MZWorkRedis.dll" ComponentId="{78286F07-D230-44DD-AC53-033E532F79A9}" Directory_="host_Dir" Attributes="256" KeyPath="MZWorkRedis.dll"/>
     <ROW Component="MZWorkRedis.dll_2" ComponentId="{8A6466D5-6DD3-49CC-9376-15398E3309A1}" Directory_="blender_Dir" Attributes="256" KeyPath="MZWorkRedis.dll_2"/>
     <ROW Component="MZWorkRedis.pdb" ComponentId="{0B0B494D-098C-496A-A08C-FFD0601BA88B}" Directory_="blender_Dir" Attributes="0" KeyPath="MZWorkRedis.pdb_1" Type="4"/>
@@ -881,6 +891,7 @@
     <ROW Component="Microsoft.VisualBasic.Data.Wave.pdb" ComponentId="{CF60FCCF-37DC-472E-8F0A-DD4C43C1A5DA}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.Wave.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Canvas.dll" ComponentId="{8EC75FCD-943E-472F-B05B-6785E78276B4}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Canvas.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Canvas.pdb" ComponentId="{FBE2B381-1DEC-4E6E-B9BA-9CFDF31AAD7B}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Canvas.pdb" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Canvas.xml" ComponentId="{D2ECAAC7-DF6E-47A3-AB87-6C61C06B86C6}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Canvas.xml"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll" ComponentId="{5FD2FD28-441D-49B4-9111-9F15ADE66E1E}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll_2" ComponentId="{C3D8598F-F925-42E7-9C85-34C3B35E7F92}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll_6" ComponentId="{8AAEEE07-C07D-45AB-AB45-171637F7D09B}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll_6"/>
@@ -976,8 +987,14 @@
     <ROW Component="Microsoft.VisualBasic.DeepLearning.pdb" ComponentId="{918F0B7F-7C79-4A60-A9D6-EAE5C85AE03D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DeepLearning.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.DeepLearning.xml" ComponentId="{AE3F5F37-87BB-4DCB-BE7A-45F26856D390}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DeepLearning.xml"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.Windows.dll" ComponentId="{9AA76B2C-4AFF-4671-A7FD-517C14B83911}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.Windows.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Drawing.Windows.dll_1" ComponentId="{993D326F-E481-4238-932C-28E9C0087ABF}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.Windows.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.Drawing.Windows.pdb" ComponentId="{F50F9C9C-2809-4BBD-A53A-3EE79848EA97}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Drawing.Windows.pdb_1" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.Drawing.Windows.xml" ComponentId="{6F5A1584-E849-4ECD-A1E5-D8696A741B6F}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Drawing.Windows.xml_1"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.dll" ComponentId="{543409AF-53AD-4803-A37D-66B67104F8E2}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.dll"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.dll_1" ComponentId="{FF2250A4-66D2-4540-8716-8E317FBE8148}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.Drawing.dll_2" ComponentId="{DB66CD34-6088-4766-8511-0DDEA2E4911A}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.dll_2"/>
+    <ROW Component="Microsoft.VisualBasic.Drawing.pdb" ComponentId="{F411D2DA-ED7B-4BD2-BB3E-853CFDA62297}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Drawing.pdb_1" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.Drawing.xml" ComponentId="{70B6896E-6176-45F0-A312-DAFC87D910E1}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Drawing.xml_2"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.AVIMedia.dll" ComponentId="{0638C001-D7E7-4D76-8389-B7386E4A6687}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.AVIMedia.dll"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.AVIMedia.pdb" ComponentId="{F28FC9D2-1B31-464B-BCD5-8918A768EA79}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.AVIMedia.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.dll" ComponentId="{84A585A7-C4E7-4550-8103-E82FAAEDD74E}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.dll"/>
@@ -1258,6 +1275,9 @@
     <ROW Component="RQL.pdb" ComponentId="{E4885392-942B-46A8-B212-D7DA7290D22F}" Directory_="blender_Dir" Attributes="0" KeyPath="RQL.pdb" Type="4"/>
     <ROW Component="RQL.pdb_1" ComponentId="{62C36322-27F7-46DC-B87C-46DB783E017D}" Directory_="APPDIR" Attributes="0" KeyPath="RQL.pdb_1" Type="4"/>
     <ROW Component="R_graphics.Common.Runtime.dll" ComponentId="{BEC1881F-38DE-4ECE-898E-0096C88F3389}" Directory_="library_Dir" Attributes="256" KeyPath="R_graphics.Common.Runtime.dll"/>
+    <ROW Component="R_graphics.Common.Runtime.dll_1" ComponentId="{BAC55456-0BA4-4608-A915-83DB5451DCB2}" Directory_="APPDIR" Attributes="256" KeyPath="R_graphics.Common.Runtime.dll_1"/>
+    <ROW Component="R_graphics.Common.Runtime.pdb" ComponentId="{72E4F04B-AC36-44CB-8D33-686B3657D997}" Directory_="APPDIR" Attributes="0" KeyPath="R_graphics.Common.Runtime.pdb" Type="4"/>
+    <ROW Component="R_graphics.Common.Runtime.xml" ComponentId="{B470E654-5A3A-4944-B3E4-B0123DB10204}" Directory_="APPDIR" Attributes="0" KeyPath="R_graphics.Common.Runtime.xml_1"/>
     <ROW Component="Reference.rtf" ComponentId="{5454AEF9-E36B-430B-A09A-3E657C95DA64}" Directory_="APPDIR" Attributes="0" KeyPath="Reference.rtf_1"/>
     <ROW Component="ReleaseNotes.docx" ComponentId="{C89F9217-25CE-46C6-92A0-E41CA58D8AEA}" Directory_="NewFolder_2_Dir" Attributes="0" KeyPath="ReleaseNotes.docx" Type="0"/>
     <ROW Component="Rlapack.dll" ComponentId="{C08012A2-5A0F-4DE5-A380-A4C8C87EA7FD}" Directory_="library_Dir" Attributes="256" KeyPath="Rlapack.dll"/>
@@ -1338,6 +1358,7 @@
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2" ComponentId="{12BA33C3-460A-418B-A956-BEB0234CBC7C}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" ComponentId="{8E68BF5E-B405-4DD3-B256-C2E71B8A2302}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb_1" Type="4"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb_1" ComponentId="{AB47D567-F814-4D76-A314-C498114C4379}" Directory_="blender_Dir" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Type="4"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" ComponentId="{7EF63167-5363-4F79-BAAA-B88B66FFB802}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml_2"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll" ComponentId="{FB6C7D69-45ED-429E-AE90-6A99C2F08469}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.keggReport.pdb" ComponentId="{33AA2425-67AE-4E5F-9173-831E8C47199C}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench.keggReport.pdb" Type="4"/>
     <ROW Component="SMRUCC.genomics.InteractionModel.dll" ComponentId="{22934577-ADC6-43CA-9B10-30FD9C67643A}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.InteractionModel.dll"/>
@@ -1430,6 +1451,7 @@
     <ROW Component="System.Deployment.dll" ComponentId="{757CA03D-63F8-4EA4-928D-23849E1A4C5F}" Directory_="host_Dir" Attributes="0" KeyPath="System.Deployment.dll"/>
     <ROW Component="System.Diagnostics.DiagnosticSource.dll" ComponentId="{16004F2A-8BB1-40F2-BFEF-DA82A2B5A688}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Diagnostics.DiagnosticSource.dll"/>
     <ROW Component="System.Diagnostics.DiagnosticSource.dll_1" ComponentId="{22C7AE01-2788-4B8C-83DA-454754DB01D3}" Directory_="dzitools_Dir" Attributes="0" KeyPath="System.Diagnostics.DiagnosticSource.dll_1"/>
+    <ROW Component="System.Diagnostics.DiagnosticSource.dll_2" ComponentId="{E1FDE456-94D5-40E8-A441-D981C81B9814}" Directory_="APPDIR" Attributes="0" KeyPath="System.Diagnostics.DiagnosticSource.dll_2"/>
     <ROW Component="System.Diagnostics.EventLog.Messages.dll" ComponentId="{05B1635C-4154-44F1-B292-1F19F5FDF8F8}" Directory_="net8.0_Dir" Attributes="0" KeyPath="System.Diagnostics.EventLog.Messages.dll"/>
     <ROW Component="System.Diagnostics.EventLog.dll" ComponentId="{704A7FB3-6F2C-43A8-810E-A28DBFA3A84B}" Directory_="net8.0_Dir" Attributes="0" KeyPath="System.Diagnostics.EventLog.dll"/>
     <ROW Component="System.Diagnostics.EventLog.dll_1" ComponentId="{E31ED529-015E-4BDF-8240-3564DB89A9C3}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Diagnostics.EventLog.dll_1"/>
@@ -1440,6 +1462,7 @@
     <ROW Component="System.Drawing.Common.dll_2" ComponentId="{727BC67F-2E8D-4947-8398-2DB0F825BF61}" Directory_="blender_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_2"/>
     <ROW Component="System.Drawing.Common.dll_5" ComponentId="{C9483DB6-7334-447F-9111-9A1498C9C8B7}" Directory_="APPDIR" Attributes="256" KeyPath="System.Drawing.Common.dll_5"/>
     <ROW Component="System.Drawing.Common.dll_7" ComponentId="{B61B3B74-B1FB-4310-BF7F-AF7AC5E90BF0}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_7"/>
+    <ROW Component="System.Drawing.Common.pdb" ComponentId="{E842298F-C130-4188-8B61-5351D6E17BAE}" Directory_="APPDIR" Attributes="0" KeyPath="System.Drawing.Common.pdb" Type="4"/>
     <ROW Component="System.IO.Packaging.dll" ComponentId="{D598CD59-D23E-486D-B6DE-EC81A88D83C4}" Directory_="bin_Dir" Attributes="0" KeyPath="System.IO.Packaging.dll"/>
     <ROW Component="System.Management.dll" ComponentId="{51CCE2AD-1FDA-4162-8585-ED30564533CE}" Directory_="net6.0_3_Dir" Attributes="0" KeyPath="System.Management.dll"/>
     <ROW Component="System.Management.dll_1" ComponentId="{2916DFD0-9968-4E42-BB68-0F6C17BA9F6F}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Management.dll_1"/>
@@ -1787,6 +1810,7 @@
     <ROW Component="mzblender.pdb" ComponentId="{8A7E8444-1825-492B-9F1A-4190A462AA96}" Directory_="APPDIR" Attributes="0" KeyPath="mzblender.pdb" Type="4"/>
     <ROW Component="mzblender.pdb_1" ComponentId="{2E924382-0B51-47B9-AE16-42DB1CBD4A9E}" Directory_="blender_Dir" Attributes="0" KeyPath="mzblender.pdb_1" Type="4"/>
     <ROW Component="mzblender.xml" ComponentId="{7B40A323-914F-41A6-81A1-565F0C374FC1}" Directory_="blender_Dir" Attributes="0" KeyPath="mzblender.xml"/>
+    <ROW Component="mzblender.xml_1" ComponentId="{4F24C11B-13AE-40AE-A904-2DD2EA256922}" Directory_="APPDIR" Attributes="0" KeyPath="mzblender.xml_1"/>
     <ROW Component="mzkit_win32.VisualElementsManifest.xml" ComponentId="{59713045-6F4F-43F5-A06B-C8AAC8ACD67C}" Directory_="APPDIR" Attributes="0" KeyPath="mzkit_win32.VisualElementsManifest.xml"/>
     <ROW Component="mzkit_win32.exe_1" ComponentId="{D1A9B7C2-509C-425B-AD9E-9C44DC837AD7}" Directory_="APPDIR" Attributes="256" KeyPath="mzkit_win32.exe_1"/>
     <ROW Component="mzkit_win32.pdb" ComponentId="{6C6176B9-F10F-4DE4-94AB-82A04582673A}" Directory_="APPDIR" Attributes="0" KeyPath="mzkit_win32.pdb" Type="4"/>
@@ -18858,6 +18882,30 @@
     <ROW File="System.Diagnostics.DiagnosticSource.dll_1" Component_="System.Diagnostics.DiagnosticSource.dll_1" FileName="SYSTEM~2.DLL|System.Diagnostics.DiagnosticSource.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\System.Diagnostics.DiagnosticSource.dll" SelfReg="false"/>
     <ROW File="libSkiaSharp.dll_8" Component_="libSkiaSharp.dll_8" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\x64\libSkiaSharp.dll" SelfReg="false"/>
     <ROW File="libSkiaSharp.dll_9" Component_="libSkiaSharp.dll_9" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\x86\libSkiaSharp.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReade_5" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.d_2" FileName="BIONO~37.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReade_6" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.pdb" FileName="BIONO~37.PDB|BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.pdb" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReade_7" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.xml" FileName="BIONO~37.XML|BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll" Component_="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll" FileName="BIONO~38.DLL|BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" Component_="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" FileName="BIONO~38.PDB|BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll_2" Component_="BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll_2" FileName="BIONO~39.DLL|BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.GCxGC.pdb_1" Component_="BioNovoGene.Analytical.MassSpectrometry.GCxGC.pdb" FileName="BIONO~39.PDB|BioNovoGene.Analytical.MassSpectrometry.GCxGC.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.GCxGC.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.visualize.Network.Canvas.xml" Component_="Microsoft.VisualBasic.Data.visualize.Network.Canvas.xml" FileName="MICRO~26.XML|Microsoft.VisualBasic.Data.visualize.Network.Canvas.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.Network.Canvas.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Drawing.dll_2" Component_="Microsoft.VisualBasic.Drawing.dll_2" FileName="MICRO~30.DLL|Microsoft.VisualBasic.Drawing.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Drawing.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Drawing.pdb_1" Component_="Microsoft.VisualBasic.Drawing.pdb" FileName="MICRO~35.PDB|Microsoft.VisualBasic.Drawing.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Drawing.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Drawing.Windows.dll_1" Component_="Microsoft.VisualBasic.Drawing.Windows.dll_1" FileName="MICRO~46.DLL|Microsoft.VisualBasic.Drawing.Windows.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Drawing.Windows.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Drawing.Windows.pdb_1" Component_="Microsoft.VisualBasic.Drawing.Windows.pdb" FileName="MICRO~53.PDB|Microsoft.VisualBasic.Drawing.Windows.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Drawing.Windows.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Drawing.Windows.xml_1" Component_="Microsoft.VisualBasic.Drawing.Windows.xml" FileName="MICRO~43.XML|Microsoft.VisualBasic.Drawing.Windows.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Drawing.Windows.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Drawing.xml_2" Component_="Microsoft.VisualBasic.Drawing.xml" FileName="MICRO~51.XML|Microsoft.VisualBasic.Drawing.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Drawing.xml" SelfReg="false"/>
+    <ROW File="mzblender.xml_1" Component_="mzblender.xml_1" FileName="MZBLEN~1.XML|mzblender.xml" Attributes="0" SourcePath="..\..\..\dist\bin\mzblender.xml" SelfReg="false"/>
+    <ROW File="MZKitWin32.Blender.CommonLibs.dll_1" Component_="MZKitWin32.Blender.CommonLibs.dll_1" FileName="MZKITW~1.DLL|MZKitWin32.Blender.CommonLibs.dll" Attributes="0" SourcePath="..\..\..\dist\bin\MZKitWin32.Blender.CommonLibs.dll" SelfReg="false"/>
+    <ROW File="MZKitWin32.Blender.CommonLibs.pdb_1" Component_="MZKitWin32.Blender.CommonLibs.pdb" FileName="MZKITW~1.PDB|MZKitWin32.Blender.CommonLibs.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\MZKitWin32.Blender.CommonLibs.pdb" SelfReg="false"/>
+    <ROW File="MZKitWin32.Blender.CommonLibs.xml_1" Component_="MZKitWin32.Blender.CommonLibs.xml" FileName="MZKITW~1.XML|MZKitWin32.Blender.CommonLibs.xml" Attributes="0" SourcePath="..\..\..\dist\bin\MZKitWin32.Blender.CommonLibs.xml" SelfReg="false"/>
+    <ROW File="R_graphics.Common.Runtime.dll_1" Component_="R_graphics.Common.Runtime.dll_1" FileName="R_GRAP~1.DLL|R_graphics.Common.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\R_graphics.Common.Runtime.dll" SelfReg="false"/>
+    <ROW File="R_graphics.Common.Runtime.pdb" Component_="R_graphics.Common.Runtime.pdb" FileName="R_GRAP~1.PDB|R_graphics.Common.Runtime.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\R_graphics.Common.Runtime.pdb" SelfReg="false"/>
+    <ROW File="R_graphics.Common.Runtime.xml_1" Component_="R_graphics.Common.Runtime.xml" FileName="R_GRAP~1.XML|R_graphics.Common.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\R_graphics.Common.Runtime.xml" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml_2" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" FileName="SMRUC~17.XML|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml" SelfReg="false"/>
+    <ROW File="System.Diagnostics.DiagnosticSource.dll_2" Component_="System.Diagnostics.DiagnosticSource.dll_2" FileName="SYSTE~14.DLL|System.Diagnostics.DiagnosticSource.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Diagnostics.DiagnosticSource.dll" SelfReg="false"/>
+    <ROW File="System.Drawing.Common.pdb" Component_="System.Drawing.Common.pdb" FileName="SYSTEM~1.PDB|System.Drawing.Common.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\System.Drawing.Common.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -20512,6 +20560,30 @@
     <ROW Feature_="MainFeature" Component_="System.Diagnostics.DiagnosticSource.dll_1"/>
     <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_8"/>
     <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_9"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.d_2"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.GCxGC.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Drawing.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Drawing.Windows.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="MZKitWin32.Blender.CommonLibs.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="R_graphics.Common.Runtime.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Diagnostics.DiagnosticSource.dll_2"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Data.visualize.Network.Canvas.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Drawing.Windows.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Drawing.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="mzblender.xml_1"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="MZKitWin32.Blender.CommonLibs.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="R_graphics.Common.Runtime.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.GCxGC.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Drawing.Windows.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="R_graphics.Common.Runtime.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="System.Drawing.Common.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Drawing.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="MZKitWin32.Blender.CommonLibs.pdb"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
