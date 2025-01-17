@@ -442,3 +442,5 @@ setup/mzkit_setups.back.back(21.6).aip
 setup/Setup Files/biodeep/ReportViewer.dll
 setup/Setup Files/biodeep/ReportViewer.dll.config
 setup/Setup Files/biodeep/ReportViewer.xml
+/rstudio/data/hmdb.csv
+/rstudio/data/hmdb.zip
