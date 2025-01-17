@@ -58,14 +58,14 @@
 Imports System.IO
 Imports System.IO.Compression
 Imports System.Runtime.CompilerServices
-Imports BioDeep
 Imports BioNovoGene.BioDeep.Chemistry
+Imports BioNovoGene.BioDeep.Chemistry.TMIC.HMDB
 Imports BioNovoGene.BioDeep.Chemoinformatics
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Data.IO.MessagePack
 Imports Microsoft.VisualBasic.Linq
-Imports Microsoft.VisualBasic.My
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices.XML
@@ -212,6 +212,47 @@ Public Module KEGGRepo
                                 }
                             End Function) _
                     .ToArray
+            End Using
+        End Using
+    End Function
+
+    Public Function RequestHmdb() As MetaboliteAnnotation()
+        Dim zip_file As String = ""
+
+        For Each dirLevel As String In {"", "../", "../../", "../../../", "../../../../"}
+            zip_file = $"{App.HOME}/{dirLevel}Rstudio/data/hmdb.zip"
+
+            If zip_file.FileExists Then
+                Exit For
+            End If
+
+            zip_file = $"{App.HOME}/{dirLevel}src/mzkit/rstudio/data/hmdb.zip"
+
+            If zip_file.FileExists Then
+                Exit For
+            End If
+        Next
+
+        If Not zip_file.FileExists Then
+            Return {}
+        End If
+
+        Using zip As New ZipArchive(zip_file.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
+            Using pack As Stream = If(zip.GetEntry("hmdb.msgpack"), zip.GetEntry("hmdb.msgpack")).Open
+                Dim hmdb As MetaboliteTable() = MsgPackSerializer.Deserialize(Of MetaboliteTable())(pack)
+                Dim metabolites As MetaboliteAnnotation() = hmdb _
+                    .SafeQuery _
+                    .Select(Function(m)
+                                Return New MetaboliteAnnotation With {
+                                    .CommonName = m.name,
+                                    .Formula = m.chemical_formula,
+                                    .Id = m.accession,
+                                    .ExactMass = FormulaScanner.EvaluateExactMass(.Formula)
+                                }
+                            End Function) _
+                    .ToArray
+
+                Return metabolites
             End Using
         End Using
     End Function
