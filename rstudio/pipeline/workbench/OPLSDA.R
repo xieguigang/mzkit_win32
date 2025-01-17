@@ -62,7 +62,7 @@ write.csv(opls.da$loadingMN, file = `${outputdir}/opls/oplsda_loadingMN.csv`);
 let opls_score = opls.da$scoreMN;
 let opls_loading = opls.da$loadingMN;
 
-svg(file = `${outputdir}/opls/oplsda_loadingMN.svg`, width = 1920, height = 1600) {
+png(filename = `${outputdir}/opls/oplsda_loadingMN.png`, width = 1920, height = 1600) {
     ggplot(opls_loading, aes(x="P1", y = "P2", color = "VIP"), padding = [200 400 200 250])
     + stat_ellipse()
     + geom_point(
@@ -73,7 +73,7 @@ svg(file = `${outputdir}/opls/oplsda_loadingMN.svg`, width = 1920, height = 1600
 
 opls_score[, "class_id"] = rownames(opls_score);
 
-svg(file = `${outputdir}/opls/oplsda_scoreMN.svg`, width = 1920, height = 1600) {
+png(filename = `${outputdir}/opls/oplsda_scoreMN.png`, width = 1920, height = 1600) {
     
     let score_figure = ggplot(opls_score, aes(x="T1", y = "T2", color = "class_id", label = rownames(matrix)), 
         padding = [200 400 200 250])

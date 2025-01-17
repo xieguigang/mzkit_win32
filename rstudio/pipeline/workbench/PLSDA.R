@@ -60,7 +60,7 @@ write.csv(pls.da$loadingMN, file = `${outputdir}/plsda/plsda_loadingMN.csv`);
 let pls_score = pls.da$scoreMN;
 let pls_loading = pls.da$loadingMN;
 
-svg(file = `${outputdir}/plsda/plsda_loadingMN.svg`, width = 1920, height = 1600) {
+png(filename = `${outputdir}/plsda/plsda_loadingMN.png`, width = 1920, height = 1600) {
     ggplot(pls_loading, aes(x="P1", y = "P2", color = "VIP"), padding = [200 400 200 250])
     + stat_ellipse()
     + geom_point(
@@ -71,7 +71,7 @@ svg(file = `${outputdir}/plsda/plsda_loadingMN.svg`, width = 1920, height = 1600
 
 pls_score[, "class_id"] = rownames(pls_score);
 
-svg(file = `${outputdir}/plsda/plsda_scoreMN.svg`, width = 1920, height = 1600) {
+png(filename = `${outputdir}/plsda/plsda_scoreMN.png`, width = 1920, height = 1600) {
     
     let score_figure = ggplot(pls_score, aes(x="T1", y = "T2", color = "class_id", label = rownames(matrix)), 
         padding = [200 400 200 250])

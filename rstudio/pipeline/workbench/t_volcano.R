@@ -91,7 +91,7 @@ print(ttest,max.print =6);
 write.csv(ttest, file = file.path(output_dir, "ttest_diffsig.csv"));
 
 # plot volcano
-svg(file = file.path(output_dir,"volcano.svg"), size = [1800,1300]) {
+png(filename = file.path(output_dir,"volcano.png"), width = 1800, height = 1300) {
     ttest[,"pvalue"] = -log10(ttest$pvalue);
     ttest[,"id"] =rownames(ttest);
 
