@@ -91,13 +91,13 @@ print(ttest,max.print =6);
 write.csv(ttest, file = file.path(output_dir, "ttest_diffsig.csv"));
 
 # plot volcano
-svg(file = file.path(output_dir,"volcano.svg"), size = [3800,3300]) {
+svg(file = file.path(output_dir,"volcano.svg"), size = [1800,1300]) {
     ttest[,"pvalue"] = -log10(ttest$pvalue);
     ttest[,"id"] =rownames(ttest);
 
     # create ggplot layers and tweaks via ggplot style options
 	ggplot(ttest, aes(x = "log2fc", y = "pvalue"), padding = "padding:250px 500px 250px 300px;")
-	   + geom_point(aes(color = "reg_diff"), color = "black", shape = "circle", size = 50,alpha = 0.7)
+	   + geom_point(aes(color = "reg_diff"), color = "black", shape = "circle", size = 25,alpha = 0.7)
        + scale_colour_manual(values = list(
           up        = "#D22628",
           "not sig" = "black",
