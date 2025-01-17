@@ -85,6 +85,7 @@ Public Module MetaDNASearch
 --biodeep_ssid ""{ssid}"" 
 --raw ""{cacheRaw}"" 
 --save ""{outputdir}"" 
+/@set tqdm=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -111,6 +112,7 @@ Public Module MetaDNASearch
 --raw ""{cacheRaw}"" 
 --argv ""{argv}""
 --save ""{outputdir}"" 
+/@set tqdm=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -136,6 +138,7 @@ Public Module MetaDNASearch
 --argv ""{argv}""
 --mz-peaks
 --save ""{outputdir}"" 
+/@set tqdm=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)

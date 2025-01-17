@@ -78,7 +78,7 @@ Public Module DrawScatter
     Public Function GetContourData(raw As Raw) As ContourLayer()
         Dim cacheRaw As String = raw.cache
         Dim output_cache As String = TempFileSystem.GetAppSysTempFile("__save.json", App.PID.ToHexString, "contour_layers_")
-        Dim cli As String = $"""{RscriptPipelineTask.GetRScript("ms1_contour.R")}"" --mzPack ""{cacheRaw}"" --cache ""{output_cache}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{RscriptPipelineTask.GetRScript("ms1_contour.R")}"" --mzPack ""{cacheRaw}"" --cache ""{output_cache}"" /@set tqdm=false --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call cli.__DEBUG_ECHO

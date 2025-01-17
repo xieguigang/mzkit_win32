@@ -76,6 +76,7 @@ Public NotInheritable Class RscriptProgressTask
         Dim cli As String = $"""{Rscript}"" 
 --h5ad ""{h5ad}""
 --save ""{save}""
+/@set tqdm=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -110,6 +111,7 @@ Public NotInheritable Class RscriptProgressTask
 --tag ""{tag}""
 --save ""{save}""
 --targets ""{targetfile}""
+/@set tqdm=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -137,6 +139,7 @@ Public NotInheritable Class RscriptProgressTask
         Dim cli As String = $"""{Rscript}"" 
 --linear ""{linear}"" 
 --export ""{export}"" 
+/@set tqdm=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -176,6 +179,7 @@ Public NotInheritable Class RscriptProgressTask
         Dim cli As String = $"""{Rscript}"" 
 --imzML ""{imzML}"" 
 --cache ""{cachefile}"" 
+/@set tqdm=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -220,6 +224,7 @@ Public NotInheritable Class RscriptProgressTask
 --size ""{size.Width},{size.Height}""
 --dpi {dpi}
 --padding ""{padding}""
+/@set tqdm=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -278,6 +283,7 @@ Public NotInheritable Class RscriptProgressTask
 --dpi {dpi}
 --padding ""{padding}""
 --title ""{title}"" {overlapFlag} 
+/@set tqdm=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -327,7 +333,8 @@ Public NotInheritable Class RscriptProgressTask
         Dim cli As String = $"""{Rscript}"" 
 --bitmap ""{imagetmp}"" 
 --channels {channels.Select(Function(c) c.ToHtmlColor).JoinBy(";")} 
---save ""{jsontmp}""
+--save ""{jsontmp}"" 
+/@set tqdm=false
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
@@ -380,6 +387,7 @@ Public NotInheritable Class RscriptProgressTask
 --scaler ""{scaler}""
 --save ""{saveAs}"" 
 --mzdiff ""{tolerance}"" 
+/@set tqdm=false 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
@@ -423,7 +431,8 @@ Public NotInheritable Class RscriptProgressTask
         Dim cli As String = $"""{Rscript}""
 --rawdata ""{rawdata}""
 --cutoff {cutoff}
---save ""{savefile}""
+--save ""{savefile}"" 
+/@set tqdm=false 
 "
 
         Call ClusterMethodCommon(cli, noUI)
@@ -437,7 +446,8 @@ Public NotInheritable Class RscriptProgressTask
 --rawdata ""{rawdata}""
 --min_pts {min_pts}
 --eps {eps}
---save ""{savefile}""
+--save ""{savefile}"" 
+/@set tqdm=false 
 "
 
         Call ClusterMethodCommon(cli, noUI)
@@ -451,7 +461,8 @@ Public NotInheritable Class RscriptProgressTask
 --rawdata ""{rawdata}""
 --k {k} 
 {If(bisecting, "--bisecting-kmeans", "")} 
---save ""{savefile}""
+--save ""{savefile}"" 
+/@set tqdm=false 
 "
 
         Call ClusterMethodCommon(cli, noUI)
@@ -558,6 +569,7 @@ Public NotInheritable Class RscriptProgressTask
 --TrIQ ""{TrIQ}""
 --sink ""{saveAs.TrimSuffix}.log""
 {If(binary, "--bin", "")} 
+/@set tqdm=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -613,6 +625,7 @@ Public NotInheritable Class RscriptProgressTask
 --raw ""{mzpack}"" 
 --save ""{saveAs}"" 
 --regions ""{tempfile}"" 
+/@set tqdm=false 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -657,6 +670,7 @@ Public NotInheritable Class RscriptProgressTask
 --save ""{imageOut}"" 
 --title ""{title}"" 
 --plot ""{type}"" {If(show_tissue, " --show-tissue ", "")}
+/@set tqdm=false 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -696,6 +710,7 @@ Public NotInheritable Class RscriptProgressTask
 --title ""{title}"" 
 --plot ""{type}"" 
 --size ""{size}""
+/@set tqdm=false 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -732,6 +747,7 @@ Public NotInheritable Class RscriptProgressTask
 --matrix ""{data}"" 
 --png ""{imageOut}"" 
 --title ""{title}"" 
+/@set tqdm=false 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -769,7 +785,7 @@ Public NotInheritable Class RscriptProgressTask
             Call cli.AppendLine($"{arg.Key} ""{arg.Value}""")
         Next
 
-        Call cli.AppendLine($"--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}")
+        Call cli.AppendLine($" /@set tqdm=false --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}")
 
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli.ToString, workdir:=RscriptPipelineTask.Root)
 
