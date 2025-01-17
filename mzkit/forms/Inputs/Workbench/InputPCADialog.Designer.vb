@@ -25,12 +25,12 @@ Partial Class InputPCADialog
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -47,6 +47,16 @@ Partial Class InputPCADialog
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "PCA Parameters"
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(47, 128)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(138, 16)
+        Me.CheckBox1.TabIndex = 3
+        Me.CheckBox1.Text = "Show Sample Labels?"
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'Label2
         '
@@ -92,18 +102,6 @@ Partial Class InputPCADialog
         Me.Button2.TabIndex = 2
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Checked = True
-        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox1.Location = New System.Drawing.Point(47, 128)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(138, 16)
-        Me.CheckBox1.TabIndex = 3
-        Me.CheckBox1.Text = "Show Sample Labels?"
-        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'InputPCADialog
         '
