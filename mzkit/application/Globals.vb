@@ -255,6 +255,19 @@ Module Globals
                        End Function)
     End Function
 
+    Public Function LoadHMDB(println As Action(Of String), mode As String(), mzdiff As Tolerance) As MSSearch(Of MetaboliteAnnotation)
+        Dim key As String = $"[{mzdiff.ToString}]{mode.JoinBy(",")}"
+        Dim adducts = mode.Select(Function(type) Provider.ParseAdductModel(type)).ToArray
+
+        Static dataPack As MetaboliteAnnotation() = KEGGRepo.RequestHmdb
+        Static cache As New Dictionary(Of String, MSSearch(Of MetaboliteAnnotation))
+
+        Return cache.ComputeIfAbsent(key,
+            lazyValue:=Function()
+                           Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, adducts, mzdiff)
+                       End Function)
+    End Function
+
     Public Function LoadLipidMaps(println As Action(Of String), mode As String(), mzdiff As Tolerance) As MSSearch(Of LipidMaps.MetaData)
         Dim key As String = $"[{mzdiff.ToString}]{mode.JoinBy(",")}"
         Dim adducts = mode.Select(Function(type) Provider.ParseAdductModel(type)).ToArray

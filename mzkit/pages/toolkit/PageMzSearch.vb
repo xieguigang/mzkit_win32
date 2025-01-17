@@ -464,6 +464,7 @@ Public Class PageMzSearch
         CheckedListBox2.Items.Clear()
 
         CheckedListBox2.Items.Add("kegg")
+        CheckedListBox2.Items.Add("hmdb")
         CheckedListBox2.Items.Add("lipidmaps")
         CheckedListBox2.Items.Add("chebi")
         CheckedListBox2.Items.Add("metabolights")
@@ -480,6 +481,8 @@ Public Class PageMzSearch
                 Return Globals.LoadKEGG(AddressOf MyApplication.LogText, ionMode, tolerance)
             Case "lipidmaps"
                 Return Globals.LoadLipidMaps(AddressOf MyApplication.LogText, ionMode, tolerance)
+            Case "hmdb"
+                Return Globals.LoadHMDB(AddressOf MyApplication.LogText, ionMode, tolerance)
             Case "chebi"
                 Return Globals.LoadChEBI(AddressOf MyApplication.LogText, ionMode, tolerance)
             Case "metabolights"
