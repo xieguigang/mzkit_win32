@@ -40,6 +40,13 @@ Public Class frmSingleCellViewer
         TabText = Text
 
         WebKit.Init(WebView21)
+
+        AddHandler ribbonItems.ButtonViewSingleCellsEmbedding.ExecuteEvent, Sub() Call ViewEmbeddingTable()
+    End Sub
+
+    Private Sub ViewEmbeddingTable()
+        Dim embedding As UMAPPoint() = SingleCellScatter1.GetEmbedding.ToArray
+
     End Sub
 
     Public Sub DoRender()
