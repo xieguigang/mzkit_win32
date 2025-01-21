@@ -33,10 +33,10 @@ Partial Class FormMain : Inherits DocumentWindow
         Me.ViewAsHtmlToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.CopyFullPathToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ExportAsFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ShowSummaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ShowSummaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
@@ -76,36 +76,53 @@ Partial Class FormMain : Inherits DocumentWindow
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem, Me.ViewAsTextToolStripMenuItem, Me.ViewAsHtmlToolStripMenuItem, Me.ToolStripMenuItem2, Me.CopyFullPathToolStripMenuItem1, Me.ExportAsFileToolStripMenuItem, Me.ToolStripMenuItem1, Me.ShowSummaryToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 170)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(158, 148)
         '
         'ViewToolStripMenuItem
         '
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.ViewToolStripMenuItem.Text = "View"
         '
         'ViewAsTextToolStripMenuItem
         '
         Me.ViewAsTextToolStripMenuItem.Name = "ViewAsTextToolStripMenuItem"
-        Me.ViewAsTextToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewAsTextToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.ViewAsTextToolStripMenuItem.Text = "View As text"
         '
         'ViewAsHtmlToolStripMenuItem
         '
         Me.ViewAsHtmlToolStripMenuItem.Name = "ViewAsHtmlToolStripMenuItem"
-        Me.ViewAsHtmlToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewAsHtmlToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.ViewAsHtmlToolStripMenuItem.Text = "View As html"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(154, 6)
         '
         'CopyFullPathToolStripMenuItem1
         '
         Me.CopyFullPathToolStripMenuItem1.Name = "CopyFullPathToolStripMenuItem1"
-        Me.CopyFullPathToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.CopyFullPathToolStripMenuItem1.Size = New System.Drawing.Size(157, 22)
         Me.CopyFullPathToolStripMenuItem1.Text = "Copy Full Path"
+        '
+        'ExportAsFileToolStripMenuItem
+        '
+        Me.ExportAsFileToolStripMenuItem.Name = "ExportAsFileToolStripMenuItem"
+        Me.ExportAsFileToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
+        Me.ExportAsFileToolStripMenuItem.Text = "Export As File"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(154, 6)
+        '
+        'ShowSummaryToolStripMenuItem
+        '
+        Me.ShowSummaryToolStripMenuItem.Name = "ShowSummaryToolStripMenuItem"
+        Me.ShowSummaryToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
+        Me.ShowSummaryToolStripMenuItem.Text = "Show Summary"
         '
         'ImageList1
         '
@@ -113,23 +130,6 @@ Partial Class FormMain : Inherits DocumentWindow
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
         Me.ImageList1.Images.SetKeyName(0, "folder-documents.png")
         Me.ImageList1.Images.SetKeyName(1, "application-x-object.png")
-        '
-        'ExportAsFileToolStripMenuItem
-        '
-        Me.ExportAsFileToolStripMenuItem.Name = "ExportAsFileToolStripMenuItem"
-        Me.ExportAsFileToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ExportAsFileToolStripMenuItem.Text = "Export As File"
-        '
-        'ShowSummaryToolStripMenuItem
-        '
-        Me.ShowSummaryToolStripMenuItem.Name = "ShowSummaryToolStripMenuItem"
-        Me.ShowSummaryToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ShowSummaryToolStripMenuItem.Text = "Show Summary"
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(177, 6)
         '
         'FormMain
         '
