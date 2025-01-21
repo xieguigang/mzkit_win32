@@ -5,7 +5,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.SingleCel
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
-Imports Microsoft.VisualBasic.Net.HTTP
+Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Task
@@ -46,7 +46,20 @@ Public Class frmSingleCellViewer
 
     Private Sub ViewEmbeddingTable()
         Dim embedding As UMAPPoint() = SingleCellScatter1.GetEmbedding.ToArray
+        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(DockState.Document, title:="Single Cells Embedding")
 
+        Call table.LoadTable(
+            Sub(tbl)
+                Call tbl.Columns.Add("label", GetType(String))
+                Call tbl.Columns.Add("class_id", GetType(String))
+                Call tbl.Columns.Add("umap1", GetType(Double))
+                Call tbl.Columns.Add("umap2", GetType(Double))
+                Call tbl.Columns.Add("umap3", GetType(Double))
+
+                For Each scatter As UMAPPoint In embedding
+                    Call tbl.Rows.Add(scatter.label, scatter.class, scatter.x, scatter.y, scatter.z)
+                Next
+            End Sub)
     End Sub
 
     Public Sub DoRender()
