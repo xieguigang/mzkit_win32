@@ -597,7 +597,13 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonButton ButtonLCMSViewGroups { get; private set; }
         public RibbonGroup TableSampleData { get; private set; }
+        /// <summary>
+        /// View sample group information table.
+        /// </summary>
         public RibbonButton ButtonViewSampleInfo { get; private set; }
+        /// <summary>
+        /// View the raw metabolite peaks table data
+        /// </summary>
         public RibbonButton ButtonViewPeakTable { get; private set; }
         public RibbonSplitButton ButtonImportsLCMSAnnotations { get; private set; }
         public RibbonButton ButtonImportsLCAnnotation2 { get; private set; }
@@ -608,7 +614,7 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonGroup PanelLCMSAnalysis { get; private set; }
         /// <summary>
-        /// Metabolite Mass Filter
+        /// Metabolite mass filter by a given m/z range
         /// </summary>
         public RibbonButton ButtonLCMSMetabolite { get; private set; }
         /// <summary>

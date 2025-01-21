@@ -4258,7 +4258,7 @@
         <Image Id="1151" MinDPI="192">Res/gparted.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonViewPeakTable" Id="308" LabelTitle="View Peaktable" LabelDescription="View Peaktable" TooltipTitle="View Peaktable" TooltipDescription="View Peaktable">
+    <Command Name="cmdButtonViewPeakTable" Comment="View the raw metabolite peaks table data" Id="308" LabelTitle="View Peaktable" LabelDescription="View the raw metabolite peaks table data" TooltipTitle="View Peaktable" TooltipDescription="View the raw metabolite peaks table data">
       <Command.SmallImages>
         <Image MinDPI="192">Res/excel-icon.png</Image>
       </Command.SmallImages>
@@ -4266,7 +4266,7 @@
         <Image MinDPI="192">Res/excel-icon.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonViewSampleInfo" Id="284" LabelTitle="View SampleInfo" LabelDescription="View SampleInfo" TooltipTitle="View SampleInfo" TooltipDescription="View SampleInfo">
+    <Command Name="cmdButtonViewSampleInfo" Comment="View sample group information table." Id="284" LabelTitle="View SampleInfo" LabelDescription="View sample group information table." TooltipTitle="View SampleInfo" TooltipDescription="View sample group information table.">
       <Command.SmallImages>
         <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.SmallImages>
@@ -4350,7 +4350,7 @@
       </Command.TooltipDescription>
     </Command>
     <Command Name="cmdPanelLCMSAnalysis" Comment="Analysis" Id="320" LabelTitle="Analysis" LabelDescription="Analysis" TooltipTitle="Analysis" TooltipDescription="Analysis" />
-    <Command Name="cmdButtonLCMSMetabolite" Comment="Metabolite Mass Filter" Id="321" LabelTitle="Mass Filter" LabelDescription="Metabolite Mass Filter" TooltipTitle="Metabolite Mass Filter" TooltipDescription="Metabolite Mass Filter">
+    <Command Name="cmdButtonLCMSMetabolite" Comment="Metabolite mass filter by a given m/z range" Id="321" LabelTitle="Mass Filter" LabelDescription="Metabolite mass filter by a given m/z range" TooltipTitle="Metabolite Mass Filter" TooltipDescription="Metabolite Mass Filter">
       <Command.SmallImages>
         <Image MinDPI="192">Res/document-print-preview.png</Image>
       </Command.SmallImages>

@@ -1738,14 +1738,14 @@
 #define cmdButtonMSISignalCorrection_TooltipDescription_RESID 1149
 #define cmdButtonMSISignalCorrection_SmallImages_192__RESID 1150
 #define cmdButtonMSISignalCorrection_LargeImages_192__RESID 1151
-#define cmdButtonViewPeakTable 308 
+#define cmdButtonViewPeakTable 308  /* View the raw metabolite peaks table data */ 
 #define cmdButtonViewPeakTable_LabelTitle_RESID 60272
 #define cmdButtonViewPeakTable_LabelDescription_RESID 60273
 #define cmdButtonViewPeakTable_TooltipTitle_RESID 60274
 #define cmdButtonViewPeakTable_TooltipDescription_RESID 60275
 #define cmdButtonViewPeakTable_SmallImages_192__RESID 60276
 #define cmdButtonViewPeakTable_LargeImages_192__RESID 60277
-#define cmdButtonViewSampleInfo 284 
+#define cmdButtonViewSampleInfo 284  /* View sample group information table. */ 
 #define cmdButtonViewSampleInfo_LabelTitle_RESID 60278
 #define cmdButtonViewSampleInfo_LabelDescription_RESID 60279
 #define cmdButtonViewSampleInfo_TooltipTitle_RESID 60280
@@ -1794,7 +1794,7 @@
 #define cmdPanelLCMSAnalysis_LabelDescription_RESID 60297
 #define cmdPanelLCMSAnalysis_TooltipTitle_RESID 60298
 #define cmdPanelLCMSAnalysis_TooltipDescription_RESID 60299
-#define cmdButtonLCMSMetabolite 321  /* Metabolite Mass Filter */ 
+#define cmdButtonLCMSMetabolite 321  /* Metabolite mass filter by a given m/z range */ 
 #define cmdButtonLCMSMetabolite_LabelTitle_RESID 60300
 #define cmdButtonLCMSMetabolite_LabelDescription_RESID 60301
 #define cmdButtonLCMSMetabolite_TooltipTitle_RESID 60302

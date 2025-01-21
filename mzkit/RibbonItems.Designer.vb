@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Public Class RibbonItems
+    Partial Public Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -1775,12 +1775,18 @@ Namespace RibbonLib.Controls
             End Get
         End Property
         Private _ButtonViewSampleInfo As RibbonButton
+        ''' <summary>
+        ''' View sample group information table.
+        ''' </summary>
         Public ReadOnly Property ButtonViewSampleInfo As RibbonButton
             Get
                 Return _ButtonViewSampleInfo
             End Get
         End Property
         Private _ButtonViewPeakTable As RibbonButton
+        ''' <summary>
+        ''' View the raw metabolite peaks table data
+        ''' </summary>
         Public ReadOnly Property ButtonViewPeakTable As RibbonButton
             Get
                 Return _ButtonViewPeakTable
@@ -1821,7 +1827,7 @@ Namespace RibbonLib.Controls
         End Property
         Private _ButtonLCMSMetabolite As RibbonButton
         ''' <summary>
-        ''' Metabolite Mass Filter
+        ''' Metabolite mass filter by a given m/z range
         ''' </summary>
         Public ReadOnly Property ButtonLCMSMetabolite As RibbonButton
             Get

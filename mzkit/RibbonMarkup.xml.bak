@@ -4414,7 +4414,7 @@
         <Image MinDPI="192">Res/Tools2.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdLinearTable" Id="329" LabelTitle="Linear Table" LabelDescription="Linear Table" TooltipTitle="Linear Table" TooltipDescription="Linear Table">
+    <Command Name="cmdLinearTable" Comment="Open table page for create/edit linear table" Id="329" LabelTitle="Linear Table" LabelDescription="Open table page for create/edit linear table" TooltipTitle="Linear Table" TooltipDescription="Linear Table">
       <Command.SmallImages>
         <Image MinDPI="192">Res/icons8-graph-96.png</Image>
       </Command.SmallImages>
