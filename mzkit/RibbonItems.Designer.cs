@@ -276,6 +276,8 @@ namespace RibbonLib.Controls
             public const uint cmdPanelSingleCellsRawData = 303;
             public const uint cmdGroupSingleCellsFile = 304;
             public const uint cmdButtonOpenSingleCellsRawDataFile = 305;
+            public const uint cmdGroupAnalysisSingleCells = 332;
+            public const uint cmdButtonViewSingleCellsEmbedding = 330;
             public const uint cmdGroupReport = 311;
             public const uint cmdPanelReport = 312;
             public const uint cmdMenuReport = 313;
@@ -638,6 +640,11 @@ namespace RibbonLib.Controls
         public RibbonTab PanelSingleCellsRawData { get; private set; }
         public RibbonGroup GroupSingleCellsFile { get; private set; }
         public RibbonButton ButtonOpenSingleCellsRawDataFile { get; private set; }
+        public RibbonGroup GroupAnalysisSingleCells { get; private set; }
+        /// <summary>
+        /// View embedding table result of the single cells data.
+        /// </summary>
+        public RibbonButton ButtonViewSingleCellsEmbedding { get; private set; }
         /// <summary>
         /// Report
         /// </summary>
@@ -986,6 +993,8 @@ namespace RibbonLib.Controls
             PanelSingleCellsRawData = new RibbonTab(ribbon, Cmd.cmdPanelSingleCellsRawData);
             GroupSingleCellsFile = new RibbonGroup(ribbon, Cmd.cmdGroupSingleCellsFile);
             ButtonOpenSingleCellsRawDataFile = new RibbonButton(ribbon, Cmd.cmdButtonOpenSingleCellsRawDataFile);
+            GroupAnalysisSingleCells = new RibbonGroup(ribbon, Cmd.cmdGroupAnalysisSingleCells);
+            ButtonViewSingleCellsEmbedding = new RibbonButton(ribbon, Cmd.cmdButtonViewSingleCellsEmbedding);
             GroupReport = new RibbonTabGroup(ribbon, Cmd.cmdGroupReport);
             PanelReport = new RibbonTab(ribbon, Cmd.cmdPanelReport);
             MenuReport = new RibbonGroup(ribbon, Cmd.cmdMenuReport);

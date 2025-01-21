@@ -4422,6 +4422,16 @@
         <Image MinDPI="192">Res/icons8-graph-96.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonViewSingleCellsEmbedding" Comment="View embedding table result of the single cells data." Id="330" LabelTitle="View Embedding" LabelDescription="View embedding table result of the single cells data." TooltipTitle="View Embedding" TooltipDescription="View embedding table result of the single cells data.">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Color palette.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Color palette.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdPanelAnalysisSingleCells" Id="331" LabelTitle="Analysis" />
+    <Command Name="cmdGroupAnalysisSingleCells" Id="332" LabelTitle="Data Analysis" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4866,6 +4876,9 @@
           <Tab CommandName="cmdPanelSingleCellsRawData">
             <Group CommandName="cmdGroupSingleCellsFile">
               <Button CommandName="cmdButtonOpenSingleCellsRawDataFile" />
+            </Group>
+            <Group CommandName="cmdGroupAnalysisSingleCells" SizeDefinition="OneButton">
+              <Button CommandName="cmdButtonViewSingleCellsEmbedding" />
             </Group>
           </Tab>
         </TabGroup>

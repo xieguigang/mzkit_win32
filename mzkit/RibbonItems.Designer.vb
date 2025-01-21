@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Partial Public Class RibbonItems
+    Partial Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -273,6 +273,8 @@ Namespace RibbonLib.Controls
             Public Const cmdPanelSingleCellsRawData As UInteger = 303
             Public Const cmdGroupSingleCellsFile As UInteger = 304
             Public Const cmdButtonOpenSingleCellsRawDataFile As UInteger = 305
+            Public Const cmdGroupAnalysisSingleCells As UInteger = 332
+            Public Const cmdButtonViewSingleCellsEmbedding As UInteger = 330
             Public Const cmdGroupReport As UInteger = 311
             Public Const cmdPanelReport As UInteger = 312
             Public Const cmdMenuReport As UInteger = 313
@@ -1930,6 +1932,21 @@ Namespace RibbonLib.Controls
                 Return _ButtonOpenSingleCellsRawDataFile
             End Get
         End Property
+        Private _GroupAnalysisSingleCells As RibbonGroup
+        Public ReadOnly Property GroupAnalysisSingleCells As RibbonGroup
+            Get
+                Return _GroupAnalysisSingleCells
+            End Get
+        End Property
+        Private _ButtonViewSingleCellsEmbedding As RibbonButton
+        ''' <summary>
+        ''' View embedding table result of the single cells data.
+        ''' </summary>
+        Public ReadOnly Property ButtonViewSingleCellsEmbedding As RibbonButton
+            Get
+                Return _ButtonViewSingleCellsEmbedding
+            End Get
+        End Property
         Private _GroupReport As RibbonTabGroup
         ''' <summary>
         ''' Report
@@ -2533,6 +2550,8 @@ Namespace RibbonLib.Controls
             _PanelSingleCellsRawData = New RibbonTab(_ribbon, Cmd.cmdPanelSingleCellsRawData)
             _GroupSingleCellsFile = New RibbonGroup(_ribbon, Cmd.cmdGroupSingleCellsFile)
             _ButtonOpenSingleCellsRawDataFile = New RibbonButton(_ribbon, Cmd.cmdButtonOpenSingleCellsRawDataFile)
+            _GroupAnalysisSingleCells = New RibbonGroup(_ribbon, Cmd.cmdGroupAnalysisSingleCells)
+            _ButtonViewSingleCellsEmbedding = New RibbonButton(_ribbon, Cmd.cmdButtonViewSingleCellsEmbedding)
             _GroupReport = New RibbonTabGroup(_ribbon, Cmd.cmdGroupReport)
             _PanelReport = New RibbonTab(_ribbon, Cmd.cmdPanelReport)
             _MenuReport = New RibbonGroup(_ribbon, Cmd.cmdMenuReport)

@@ -1857,8 +1857,19 @@
 #define cmdLinearTable_TooltipDescription_RESID 60351
 #define cmdLinearTable_SmallImages_192__RESID 60352
 #define cmdLinearTable_LargeImages_192__RESID 60353
-#define InternalCmd2_LabelTitle_RESID 60354
-#define InternalCmd4_LabelTitle_RESID 60355
-#define InternalCmd6_LabelTitle_RESID 60356
-#define InternalCmd8_LabelTitle_RESID 60357
-#define InternalCmd10_LabelTitle_RESID 60358
+#define cmdButtonViewSingleCellsEmbedding 330  /* View embedding table result of the single cells data. */ 
+#define cmdButtonViewSingleCellsEmbedding_LabelTitle_RESID 60354
+#define cmdButtonViewSingleCellsEmbedding_LabelDescription_RESID 60355
+#define cmdButtonViewSingleCellsEmbedding_TooltipTitle_RESID 60356
+#define cmdButtonViewSingleCellsEmbedding_TooltipDescription_RESID 60357
+#define cmdButtonViewSingleCellsEmbedding_SmallImages_192__RESID 60358
+#define cmdButtonViewSingleCellsEmbedding_LargeImages_192__RESID 60359
+#define cmdPanelAnalysisSingleCells 331 
+#define cmdPanelAnalysisSingleCells_LabelTitle_RESID 60360
+#define cmdGroupAnalysisSingleCells 332 
+#define cmdGroupAnalysisSingleCells_LabelTitle_RESID 60361
+#define InternalCmd2_LabelTitle_RESID 60362
+#define InternalCmd4_LabelTitle_RESID 60363
+#define InternalCmd6_LabelTitle_RESID 60364
+#define InternalCmd8_LabelTitle_RESID 60365
+#define InternalCmd10_LabelTitle_RESID 60366
