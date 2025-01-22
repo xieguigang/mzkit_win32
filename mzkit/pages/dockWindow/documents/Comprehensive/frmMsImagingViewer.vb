@@ -2506,6 +2506,8 @@ Public Class frmMsImagingViewer
                        Sub(args)
                            Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
+                           loadedPixels.thumbnail = image
+
                            PixelSelector1.SetMsImagingOutput(image, params.GetMSIDimension, params.background, Nothing, Nothing, Nothing)
                            PixelSelector1.SetColorMapVisible(visible:=True)
                        End Sub)
@@ -2683,6 +2685,10 @@ Public Class frmMsImagingViewer
                     Sub(args)
                         Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
+                        If Not EmptyImagingData() Then
+                            loadedPixels.thumbnail = image
+                        End If
+
                         PixelSelector1.SetMsImagingOutput(image, dimensions, params.background, params.colors, {0, 1}, params.mapLevels)
                         PixelSelector1.SetColorMapVisible(visible:=True)
                     End Sub)
@@ -2716,6 +2722,10 @@ Public Class frmMsImagingViewer
         Dim render As Action =
             Sub()
                 Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
+
+                If Not EmptyImagingData() Then
+                    loadedPixels.thumbnail = image
+                End If
 
                 PixelSelector1.SetMsImagingOutput(image, dimensions, params.background, params.colors, {range.Min, range.Max}, params.mapLevels)
                 PixelSelector1.SetColorMapVisible(visible:=True)
