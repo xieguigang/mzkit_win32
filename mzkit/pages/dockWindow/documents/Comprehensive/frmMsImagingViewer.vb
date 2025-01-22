@@ -119,6 +119,7 @@ Imports Mzkit_win32.MSImagingViewerV2
 Imports MZKitWin32.Blender.CommonLibs
 Imports ServiceHub
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
+Imports SMRUCC.Rsharp.Runtime.Internal.Invokes
 Imports STImaging
 Imports STRaid
 Imports Task
@@ -1003,7 +1004,7 @@ Public Class frmMsImagingViewer
                 Using savefile As New SaveFileDialog With {.Filter = file.Filter}
                     If savefile.ShowDialog = DialogResult.OK Then
                         Dim input As New InputMSISlideLayout With {
-                            .layoutData = files.Select(AddressOf BaseName).JoinBy(","),
+                            .layoutData = files.Select(AddressOf basename).JoinBy(","),
                             .useFileNameAsSourceTag = True
                         }
 
@@ -2219,7 +2220,7 @@ Public Class frmMsImagingViewer
         Else
             ' 20240229
             ' title has been updated, used the title value
-            Call renderByMzList(mz, loadedPixels.text)
+            Call renderByMzList(mz, loadedPixels.Text)
         End If
     End Sub
 
@@ -2589,19 +2590,30 @@ Public Class frmMsImagingViewer
     ''' </summary>
     Dim loadedPixels As MSIRenderHistory
     Dim mzdiff As Tolerance
+    Dim titles As New Dictionary(Of String, String)
 
     Public Function GetTitle(mz As Double) As String
+        Dim key As String = mz.ToString("F3")
+
         If EmptyImagingData() Then
+            If titles.ContainsKey(key) Then
+                Return titles(key)
+            End If
+
             Return $"M/Z: {mz.ToString("F3")}"
+        ElseIf titles.ContainsKey(key) Then
+            Return titles(key)
         Else
             Return loadedPixels.GetTitle(mz)
         End If
     End Function
 
     Public Sub SetTitle(mz As IEnumerable(Of Double), title As String)
-        Me.title = title
-        Me.targetMz = mz.ToArray
-        Me.titles(targetMz(Scan0).ToString("F3")) = title
+        If Not loadedPixels Is Nothing Then
+            loadedPixels.Text = title
+        End If
+
+        Me.titles(mz.First.ToString("F3")) = title
     End Sub
 
     Public Sub renderByPixelsData(pixels As PixelData(), MsiDim As Size, rgb As RGBConfigs)
@@ -2674,8 +2686,7 @@ Public Class frmMsImagingViewer
         Dim range As New DoubleRange(pixels.Select(Function(p) p.intensity))
 
         Me.params.enableFilter = True
-        Me.rgb_configs = Nothing
-        Me.loadedPixels = pixels
+        Me.loadedPixels.data = pixels
         Me.blender.SetHEMap(GetHEMap())
         Me.blender.OpenSession(blender, dimensions, Nothing, params, Nothing)
         Me.PixelSelector1.MSICanvas.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Where(Function(str) Not str Is Nothing).Distinct)
