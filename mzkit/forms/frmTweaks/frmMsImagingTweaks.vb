@@ -168,7 +168,7 @@ UseCheckedList:
     Private Sub frmMsImagingTweaks_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.TabText = "MsImage Parameters"
         Me.renderList.Show()
-        Me.renderList.Close()
+        Me.renderList.Visible = False
 
         Call ApplyVsTheme(ContextMenuStrip1, ToolStrip1)
         Call ClearIons()

@@ -139,8 +139,8 @@
       </Command.LargeImages>
     </Command>
     <Command Name="cmdAnalysisPanel" Id="268" LabelTitle="Analysis" LabelDescription="Analysis" TooltipTitle="Analysis" TooltipDescription="Analysis" />
-    <Command Name="cmdPanelLCMSAnalysis" Comment="Analysis" Id="320" LabelTitle="Analysis" LabelDescription="Analysis" TooltipTitle="Analysis" TooltipDescription="Analysis" />
     <Command Name="cmdPanelAnalysisSingleCells" Id="331" LabelTitle="Analysis" />
+    <Command Name="cmdPanelLCMSAnalysis" Comment="Analysis" Id="320" LabelTitle="Analysis" LabelDescription="Analysis" TooltipTitle="Analysis" TooltipDescription="Analysis" />
     <Command Name="cmdTabAppStore" Id="216">
       <Command.LabelTitle>
         <String Id="35">App Store</String>
@@ -714,12 +714,12 @@
         <String Id="204">Data</String>
       </Command.LabelTitle>
     </Command>
+    <Command Name="cmdGroupAnalysisSingleCells" Id="332" LabelTitle="Data Analysis" />
     <Command Name="cmdTabTargeted" Id="102">
       <Command.LabelTitle>
         <String Id="205">Data Analysis</String>
       </Command.LabelTitle>
     </Command>
-    <Command Name="cmdGroupAnalysisSingleCells" Id="332" LabelTitle="Data Analysis" />
     <Command Name="cmdDataSummaryGroup" Id="271" LabelTitle="Data Summary" LabelDescription="Data Summary" TooltipTitle="Data Summary" TooltipDescription="Data Summary" />
     <Command Name="cmdTabLayout" Id="1035">
       <Command.LabelTitle>
@@ -1473,7 +1473,7 @@
         <Image Id="406" MinDPI="144">Res/view-dual.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonMSIHistory" Comment="View ms-imaging render history list" Id="333" LabelTitle="History" LabelDescription="View ms-imaging render history list" TooltipTitle="History List" TooltipDescription="View ms-imaging render history list">
+    <Command Name="cmdButtonMSIHistory" Comment="View ms-imaging render history list" Id="333" LabelTitle="Imaging History" LabelDescription="View ms-imaging render history list" TooltipTitle="History List" TooltipDescription="View ms-imaging render history list">
       <Command.SmallImages>
         <Image MinDPI="192">Res/document-open-recent.png</Image>
       </Command.SmallImages>
@@ -2282,20 +2282,6 @@
         <String Id="617">MSI Analysis</String>
       </Command.TooltipDescription>
     </Command>
-    <Command Name="cmdPanelMSIFilters" Comment="MS-imaging viewer tools" Id="230">
-      <Command.LabelTitle>
-        <String Id="618">MSI Viewer</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="619">MS-imaging viewer tools</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="620">MSI Filters</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="621">MSI Filters</String>
-      </Command.TooltipDescription>
-    </Command>
     <Command Name="cmdButtonMSIDebugger" Id="266" LabelTitle="MSI Service Debugger" LabelDescription="MSI Service Debugger" TooltipTitle="MSI Service Debugger" TooltipDescription="MSI Service Debugger">
       <Command.SmallImages>
         <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
@@ -2316,6 +2302,20 @@
       </Command.TooltipTitle>
       <Command.TooltipDescription>
         <String Id="625">MSI Snapshot</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdPanelMSIFilters" Comment="MS-imaging viewer tools" Id="230">
+      <Command.LabelTitle>
+        <String Id="618">MSI Viewer</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="619">MS-imaging viewer tools</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="620">MSI Filters</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="621">MSI Filters</String>
       </Command.TooltipDescription>
     </Command>
     <Command Name="cmdButtonMsImaging" Id="1167">

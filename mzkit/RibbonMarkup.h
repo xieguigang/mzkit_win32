@@ -77,13 +77,13 @@
 #define cmdAnalysisPanel_LabelDescription_RESID 60020
 #define cmdAnalysisPanel_TooltipTitle_RESID 60021
 #define cmdAnalysisPanel_TooltipDescription_RESID 60022
-#define cmdPanelLCMSAnalysis 320  /* Analysis */ 
-#define cmdPanelLCMSAnalysis_LabelTitle_RESID 60023
-#define cmdPanelLCMSAnalysis_LabelDescription_RESID 60024
-#define cmdPanelLCMSAnalysis_TooltipTitle_RESID 60025
-#define cmdPanelLCMSAnalysis_TooltipDescription_RESID 60026
 #define cmdPanelAnalysisSingleCells 331 
-#define cmdPanelAnalysisSingleCells_LabelTitle_RESID 60027
+#define cmdPanelAnalysisSingleCells_LabelTitle_RESID 60023
+#define cmdPanelLCMSAnalysis 320  /* Analysis */ 
+#define cmdPanelLCMSAnalysis_LabelTitle_RESID 60024
+#define cmdPanelLCMSAnalysis_LabelDescription_RESID 60025
+#define cmdPanelLCMSAnalysis_TooltipTitle_RESID 60026
+#define cmdPanelLCMSAnalysis_TooltipDescription_RESID 60027
 #define cmdTabAppStore 216 
 #define cmdTabAppStore_LabelTitle_RESID 35
 #define cmdTabAppStore_LabelDescription_RESID 36
@@ -296,10 +296,10 @@
 #define cmdButtonCopyProperties_LargeImages_144__RESID 203
 #define cmdGroupFormulaSearch 1093 
 #define cmdGroupFormulaSearch_LabelTitle_RESID 204
-#define cmdTabTargeted 102 
-#define cmdTabTargeted_LabelTitle_RESID 205
 #define cmdGroupAnalysisSingleCells 332 
 #define cmdGroupAnalysisSingleCells_LabelTitle_RESID 60038
+#define cmdTabTargeted 102 
+#define cmdTabTargeted_LabelTitle_RESID 205
 #define cmdDataSummaryGroup 271 
 #define cmdDataSummaryGroup_LabelTitle_RESID 60039
 #define cmdDataSummaryGroup_LabelDescription_RESID 60040
@@ -953,11 +953,6 @@
 #define cmdTabMSIAnalysis_LabelDescription_RESID 615
 #define cmdTabMSIAnalysis_TooltipTitle_RESID 616
 #define cmdTabMSIAnalysis_TooltipDescription_RESID 617
-#define cmdPanelMSIFilters 230  /* MS-imaging viewer tools */ 
-#define cmdPanelMSIFilters_LabelTitle_RESID 618
-#define cmdPanelMSIFilters_LabelDescription_RESID 619
-#define cmdPanelMSIFilters_TooltipTitle_RESID 620
-#define cmdPanelMSIFilters_TooltipDescription_RESID 621
 #define cmdButtonMSIDebugger 266 
 #define cmdButtonMSIDebugger_LabelTitle_RESID 60163
 #define cmdButtonMSIDebugger_LabelDescription_RESID 60164
@@ -970,6 +965,11 @@
 #define cmdTabMSISnapshot_LabelDescription_RESID 623
 #define cmdTabMSISnapshot_TooltipTitle_RESID 624
 #define cmdTabMSISnapshot_TooltipDescription_RESID 625
+#define cmdPanelMSIFilters 230  /* MS-imaging viewer tools */ 
+#define cmdPanelMSIFilters_LabelTitle_RESID 618
+#define cmdPanelMSIFilters_LabelDescription_RESID 619
+#define cmdPanelMSIFilters_TooltipTitle_RESID 620
+#define cmdPanelMSIFilters_TooltipDescription_RESID 621
 #define cmdButtonMsImaging 1167 
 #define cmdButtonMsImaging_LabelTitle_RESID 626
 #define cmdButtonMsImaging_LabelDescription_RESID 627
