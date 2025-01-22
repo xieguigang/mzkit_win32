@@ -102,6 +102,7 @@ Public Class frmMsImagingTweaks
 
     Friend checkedMz As New List(Of TreeNode)
     Friend viewer As frmMsImagingViewer
+    Friend renderList As New frmMSIHistoryList
 
     ''' <summary>
     ''' title of viewer current ion will be updates
@@ -166,6 +167,8 @@ UseCheckedList:
 
     Private Sub frmMsImagingTweaks_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.TabText = "MsImage Parameters"
+        Me.renderList.Show()
+        Me.renderList.Close()
 
         Call ApplyVsTheme(ContextMenuStrip1, ToolStrip1)
         Call ClearIons()

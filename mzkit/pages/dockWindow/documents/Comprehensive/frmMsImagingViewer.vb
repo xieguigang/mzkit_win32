@@ -165,6 +165,9 @@ Public Class frmMsImagingViewer
     Dim guid As String
     Dim _filePath As String
 
+    ''' <summary>
+    ''' used for render the background outline
+    ''' </summary>
     Friend TIC As PixelScanIntensity()
 
     Friend MSIservice As ServiceHub.MSIDataService
@@ -273,6 +276,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonAutoLocation.ExecuteEvent, Sub() Call autoLocation()
 
         AddHandler RibbonEvents.ribbonItems.ButtonMSIFilterPipeline.ExecuteEvent, Sub() Call configFilter()
+        AddHandler RibbonEvents.ribbonItems.ButtonMSIHistory.ExecuteEvent, Sub() Call OpenHistoryWindow()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -299,6 +303,12 @@ Public Class frmMsImagingViewer
         sampleRegions.viewer = Me
 
         PixelSelector1.MSICanvas.EditorConfigs = InputConfigTissueMap.GetPolygonEditorConfig
+    End Sub
+
+    Private Sub OpenHistoryWindow()
+        WindowModules.msImageParameters.renderList.Show()
+        WindowModules.msImageParameters.renderList.Visible = True
+        WindowModules.msImageParameters.renderList.WindowState = FormWindowState.Normal
     End Sub
 
     Public Shared Function loadFilters() As RasterPipeline

@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.MSImagingViewerV2
+﻿Imports System.ComponentModel
+Imports Mzkit_win32.MSImagingViewerV2
 
 Public Class frmMSIHistoryList
 
@@ -14,4 +15,10 @@ Public Class frmMSIHistoryList
 
     End Sub
 
+    Private Sub frmMSIHistoryList_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        e.Cancel = True
+
+        Me.WindowState = FormWindowState.Minimized
+        Me.Visible = False
+    End Sub
 End Class
