@@ -58,7 +58,11 @@ Public Class MSIRenderHistory
         End Set
     End Property
 
-    Public Overrides Property text As String
+    ''' <summary>
+    ''' Ion render title
+    ''' </summary>
+    ''' <returns></returns>
+    Public Overrides Property Text As String
         Get
             Return TextBox3.Text
         End Get

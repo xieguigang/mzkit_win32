@@ -2214,12 +2214,12 @@ Public Class frmMsImagingViewer
             .Distinct _
             .ToArray
 
-        If mz.Length = 0 Then
+        If mz.Length = 0 OrElse EmptyImagingData() Then
             Call Workbench.Warning("No ions selected for rendering!")
         Else
             ' 20240229
             ' title has been updated, used the title value
-            Call renderByMzList(mz, title)
+            Call renderByMzList(mz, loadedPixels.text)
         End If
     End Sub
 
@@ -2455,12 +2455,16 @@ Public Class frmMsImagingViewer
         End If
 
         mzdiff = params.GetTolerance
-        targetMz = selectedMz.Select(Function(a) a.mz).ToArray
-        rgb_configs = New RGBConfigs With {
+
+        Dim targetMz = selectedMz.Select(Function(a) a.mz).ToArray
+        Dim rgb_configs = New RGBConfigs With {
             .R = New MzAnnotation(r.title, r.mz),
             .G = New MzAnnotation(g.title, g.mz),
             .B = New MzAnnotation(b.title, b.mz)
         }
+
+        loadedPixels = New MSIRenderHistory With {.rgb = rgb_configs}
+        WindowModules.msImageParameters.renderList.Add(loadedPixels)
 
         Call ProgressSpinner.DoLoading(Sub() Call createRGB(MSIservice.LoadPixels(targetMz, mzdiff), r.mz, g.mz, b.mz))
         Call PixelSelector1.ShowMessage($"Render in RGB Channel Composition Mode: {selectedMz.Select(Function(d) d.title).JoinBy(", ")}")
