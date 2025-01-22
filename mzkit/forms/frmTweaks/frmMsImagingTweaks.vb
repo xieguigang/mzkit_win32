@@ -678,7 +678,7 @@ UseCheckedList:
         ).AsGDIImage
 
         If image Is Nothing Then
-            MyApplication.host.showStatusMessage("Error while run signal intensity histogram plot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("Error while run signal intensity histogram plot...")
         Else
             MyApplication.host.mzkitTool.ShowPlotImage(image, ImageLayout.Zoom)
             MyApplication.host.ShowMzkitToolkit()

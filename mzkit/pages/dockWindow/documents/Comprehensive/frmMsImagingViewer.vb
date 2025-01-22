@@ -2471,6 +2471,8 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub createRGB(pixels As PixelData(), r#, g#, b#)
+        Call Invoke(Sub() loadedPixels.data = pixels)
+
         If pixels.IsNullOrEmpty Then
             Call Workbench.Warning($"No ion hits!")
         Else
@@ -2627,8 +2629,9 @@ Public Class frmMsImagingViewer
             rendering = createRenderTask(pixels, params.GetMSIDimension)
             rendering()
         Else
-            rgb_configs = rgb
+            loadedPixels = New MSIRenderHistory With {.rgb = rgb}
             mzdiff = params.GetTolerance
+            WindowModules.msImageParameters.renderList.Add(loadedPixels)
 
             createRGB(pixels, rgb.R, rgb.G, rgb.B)
         End If
