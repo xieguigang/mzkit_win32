@@ -2198,6 +2198,7 @@ Public Class frmMsImagingViewer
             sampleRegions.Clear()
         End If
 
+        WindowModules.msImageParameters.renderList.Clear(info.GetMSIDimension)
         WindowModules.msImageParameters.viewer = Me
         WindowModules.msImageParameters.PropertyGrid1.SelectedObject = params
         WindowModules.msImageParameters.ClearIons()
@@ -2464,7 +2465,7 @@ Public Class frmMsImagingViewer
         }
 
         loadedPixels = New MSIRenderHistory With {.rgb = rgb_configs}
-        WindowModules.msImageParameters.renderList.Add(loadedPixels)
+        WindowModules.msImageParameters.renderList.Add(loadedPixels, mzdiff)
 
         Call ProgressSpinner.DoLoading(Sub() Call createRGB(MSIservice.LoadPixels(targetMz, mzdiff), r.mz, g.mz, b.mz))
         Call PixelSelector1.ShowMessage($"Render in RGB Channel Composition Mode: {selectedMz.Select(Function(d) d.title).JoinBy(", ")}")
@@ -2596,7 +2597,7 @@ Public Class frmMsImagingViewer
                 Call RenderPixelsLayer(pixels)
             End Sub)
 
-        Call WindowModules.msImageParameters.renderList.Add(loadedPixels)
+        Call WindowModules.msImageParameters.renderList.Add(loadedPixels, mzdiff)
         Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) std.Round(d, 4)).JoinBy(", ")}")
     End Sub
 
@@ -2657,7 +2658,7 @@ Public Class frmMsImagingViewer
         Else
             loadedPixels = New MSIRenderHistory With {.rgb = rgb}
             mzdiff = params.GetTolerance
-            WindowModules.msImageParameters.renderList.Add(loadedPixels)
+            WindowModules.msImageParameters.renderList.Add(loadedPixels, mzdiff)
 
             createRGB(pixels, rgb.R, rgb.G, rgb.B)
         End If

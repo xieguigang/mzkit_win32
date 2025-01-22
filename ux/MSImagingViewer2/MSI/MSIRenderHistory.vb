@@ -20,6 +20,7 @@ Public Class MSIRenderHistory
 
     Dim _rgb As RGBConfigs
     Dim _ions As MzAnnotation()
+    Dim mzerr As Tolerance
 
     Public Property rgb As RGBConfigs
         Get
@@ -45,6 +46,19 @@ Public Class MSIRenderHistory
 
     Public Property data As PixelData()
     Public Property mzdiff As Tolerance
+        Get
+            Return mzerr
+        End Get
+        Set(value As Tolerance)
+            mzerr = value
+
+            If mzerr Is Nothing Then
+                TextBox4.Text = Tolerance.PPM(20).ToString
+            Else
+                TextBox4.Text = mzerr.ToString
+            End If
+        End Set
+    End Property
 
     Public Property ions As MzAnnotation()
         Get
@@ -88,6 +102,7 @@ Public Class MSIRenderHistory
 
     Public Event TitleUpdated(card As MSIRenderHistory, title As String)
     Public Event ExportMatrixCDF(card As MSIRenderHistory)
+    Public Event LoadViewer(card As MSIRenderHistory)
 
     Public Function GetTitle(mz As Double) As String
         If Not _ions.IsNullOrEmpty Then
@@ -133,5 +148,9 @@ Public Class MSIRenderHistory
 
     Private Sub ExportMatrixCDFToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMatrixCDFToolStripMenuItem.Click
         RaiseEvent ExportMatrixCDF(Me)
+    End Sub
+
+    Private Sub LoadToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadToolStripMenuItem.Click
+        RaiseEvent LoadViewer(Me)
     End Sub
 End Class
