@@ -2214,12 +2214,12 @@ Public Class frmMsImagingViewer
             .Distinct _
             .ToArray
 
-        If mz.Length = 0 OrElse EmptyImagingData() Then
+        If mz.Length = 0 Then
             Call Workbench.Warning("No ions selected for rendering!")
         Else
             ' 20240229
             ' title has been updated, used the title value
-            Call renderByMzList(mz, loadedPixels.Text)
+            Call renderByMzList(mz, title)
         End If
     End Sub
 
@@ -2572,11 +2572,19 @@ Public Class frmMsImagingViewer
         End If
 
         mzdiff = params.GetTolerance
+        loadedPixels = New MSIRenderHistory With {
+            .Text = titleName,
+            .ions = mz _
+                .Select(Function(mzi) New MzAnnotation(mzi)) _
+                .ToArray
+        }
 
         Call SetTitle(selectedMz, titleName)
         Call ProgressSpinner.DoLoading(
             Sub()
                 Dim pixels = MSIservice.LoadPixels(selectedMz, mzdiff)
+
+                Call Me.Invoke(Sub() loadedPixels.data = pixels)
                 Call RenderPixelsLayer(pixels)
             End Sub)
 
@@ -2590,6 +2598,7 @@ Public Class frmMsImagingViewer
     Dim loadedPixels As MSIRenderHistory
     Dim mzdiff As Tolerance
     Dim titles As New Dictionary(Of String, String)
+    Dim title As String
 
     Public Function GetTitle(mz As Double) As String
         Dim key As String = mz.ToString("F3")
@@ -2612,6 +2621,7 @@ Public Class frmMsImagingViewer
             loadedPixels.Text = title
         End If
 
+        Me.title = title
         Me.titles(mz.First.ToString("F3")) = title
     End Sub
 
@@ -2971,7 +2981,7 @@ Public Class frmMsImagingViewer
     Private Sub ExportPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportPlotToolStripMenuItem.Click
         If Not checkService() Then
             Return
-        ElseIf EmptyImagingData Then
+        ElseIf EmptyImagingData() Then
             Call Workbench.Warning("No ion was selected to export MS-Imaging plot!")
             Return
         End If
