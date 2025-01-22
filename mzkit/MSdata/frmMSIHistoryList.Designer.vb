@@ -47,6 +47,7 @@ Partial Class frmMSIHistoryList
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(602, 660)
         Me.FlowLayoutPanel1.TabIndex = 1
+        Me.FlowLayoutPanel1.WrapContents = False
         '
         'frmMSIHistoryList
         '
