@@ -80,8 +80,11 @@ Public Class MSIRenderHistory
         End Get
         Set(value As String)
             TextBox3.Text = value
+            RaiseEvent TitleUpdated(Me, value)
         End Set
     End Property
+
+    Public Event TitleUpdated(card As MSIRenderHistory, title As String)
 
     Public Function GetTitle(mz As Double) As String
         If Not _ions.IsNullOrEmpty Then

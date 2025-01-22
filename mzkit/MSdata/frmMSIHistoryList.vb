@@ -4,12 +4,17 @@ Imports Mzkit_win32.MSImagingViewerV2
 Public Class frmMSIHistoryList
 
     Dim _list As New Queue(Of MSIRenderHistory)
+    Dim WithEvents _current As MSIRenderHistory
 
     Public Property MaxHistoryQueueSize As Integer = 10
     Public ReadOnly Property CurrentRender As MSIRenderHistory
+        Get
+            Return _current
+        End Get
+    End Property
 
     Public Sub Add(history As MSIRenderHistory)
-        _CurrentRender = history
+        _current = history
         _list.Enqueue(history)
 
         If _list.Count > MaxHistoryQueueSize Then
@@ -21,7 +26,9 @@ Public Class frmMSIHistoryList
 
         Call FlowLayoutPanel1.Controls.Add(history)
 
-        history.Width = FlowLayoutPanel1.Width * 0.9
+        AddHandler history.TitleUpdated, AddressOf _current_TitleUpdated
+        history.Width = FlowLayoutPanel1.Width * 0.95
+        history.Anchor = AnchorStyles.Left Or AnchorStyles.Top Or AnchorStyles.Right
     End Sub
 
     Private Sub frmMSIHistoryList_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -29,5 +36,9 @@ Public Class frmMSIHistoryList
 
         Me.WindowState = FormWindowState.Minimized
         Me.Visible = False
+    End Sub
+
+    Private Sub _current_TitleUpdated(card As MSIRenderHistory, title As String) Handles _current.TitleUpdated
+        ToolTip1.SetToolTip(card, title)
     End Sub
 End Class
