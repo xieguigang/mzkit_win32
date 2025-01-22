@@ -343,12 +343,12 @@ Public Class frmMsImagingViewer
 
         config.ConfigPipeline(opts.ToArray, settings.flags)
 
-        If loadedPixels.IsNullOrEmpty Then
+        If loadedPixels Is Nothing OrElse Not loadedPixels.HasData Then
             If Not TIC.IsNullOrEmpty Then
                 config.ConfigIntensity(TIC.Select(Function(i) i.totalIon).ToArray)
             End If
         Else
-            config.ConfigIntensity(loadedPixels.Select(Function(i) i.intensity).ToArray)
+            config.ConfigIntensity(loadedPixels.IntensityData.ToArray)
         End If
 
         Call InputDialog.Input(
@@ -530,18 +530,19 @@ Public Class frmMsImagingViewer
         Call Workbench.SuccessMessage($"Rotate the MS-imaging sample slide at angle {angle}.")
     End Sub
 
+    Private Function EmptyImagingData() As Boolean
+        Return loadedPixels Is Nothing OrElse Not loadedPixels.HasData
+    End Function
+
     Private Sub ViewMzBins()
-        If loadedPixels.IsNullOrEmpty Then
+        If EmptyImagingData() Then
             Call Workbench.Warning("No pixel layer data was loaded, please load a target ion at first!")
             Return
         End If
 
         Dim canvas As New ShowMzBins
 
-        Call ProgressSpinner.DoLoading(
-            Sub()
-                Call canvas.SetData(loadedPixels)
-            End Sub)
+        Call ProgressSpinner.DoLoading(Sub() Call canvas.SetData(loadedPixels.data))
         Call InputDialog.Input(Sub(cfg)
                                    ' do nothing
                                End Sub, config:=canvas)
