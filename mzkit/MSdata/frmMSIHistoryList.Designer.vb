@@ -24,6 +24,7 @@ Partial Class frmMSIHistoryList
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMSIHistoryList))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -31,15 +32,24 @@ Partial Class frmMSIHistoryList
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ToolStrip1.Size = New System.Drawing.Size(800, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(694, 25)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 25)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(694, 660)
+        Me.FlowLayoutPanel1.TabIndex = 1
         '
         'frmMSIHistoryList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(694, 685)
+        Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMSIHistoryList"
@@ -50,4 +60,5 @@ Partial Class frmMSIHistoryList
     End Sub
 
     Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
 End Class
