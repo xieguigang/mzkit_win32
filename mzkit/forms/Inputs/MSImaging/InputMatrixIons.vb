@@ -302,7 +302,7 @@ Public Class InputMatrixIons
 
         For Each mz As NamedValue(Of Double) In GetSelectedIons()
             Call RscriptProgressTask.ExportSingleIonPlot(
-               mz:=mz.Value,
+               mz:=New Double() {mz.Value},
                tolerance:=mzdiff,
                saveAs:=$"{folder.SelectedPath}/${mz.Value.ToString("F4")}.png",
                title:=$"{mz.Name} {mz.Description}",
