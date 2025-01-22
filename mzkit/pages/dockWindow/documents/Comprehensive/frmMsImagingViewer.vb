@@ -2588,6 +2588,7 @@ Public Class frmMsImagingViewer
                 Call RenderPixelsLayer(pixels)
             End Sub)
 
+        Call WindowModules.msImageParameters.renderList.Add(loadedPixels)
         Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) std.Round(d, 4)).JoinBy(", ")}")
     End Sub
 
