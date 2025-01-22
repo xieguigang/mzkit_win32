@@ -2527,16 +2527,22 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub renderEmpty()
-        rendering = New Action(Sub()
-                               End Sub)
+        Dim dims As New Size(params.scan_x, params.scan_y)
+        Dim empty As New Bitmap(params.scan_x, params.scan_y)
+
         PixelSelector1.SetMsImagingOutput(
-            New Bitmap(params.scan_x, params.scan_y),
-            New Size(params.scan_x, params.scan_y),
+            empty, dims,
             params.background,
             params.colors,
             {0, 1},
             1
         )
+        rendering = Sub()
+                    End Sub
+
+        If Not EmptyImagingData() Then
+            loadedPixels.thumbnail = empty
+        End If
 
         Call Workbench.Warning("no pixel data...")
     End Sub
