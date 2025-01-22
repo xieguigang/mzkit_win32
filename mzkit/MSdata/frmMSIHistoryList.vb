@@ -20,6 +20,8 @@ Public Class frmMSIHistoryList
         End If
 
         Call FlowLayoutPanel1.Controls.Add(history)
+
+        history.Width = FlowLayoutPanel1.Width * 0.9
     End Sub
 
     Private Sub frmMSIHistoryList_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
