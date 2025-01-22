@@ -37,6 +37,8 @@ Partial Class MSIRenderHistory
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.CopyThumbnailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveThumbnailFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -98,6 +100,8 @@ Partial Class MSIRenderHistory
         '
         'PictureBox1
         '
+        Me.PictureBox1.BackColor = System.Drawing.Color.Black
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox1.Location = New System.Drawing.Point(3, 3)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(149, 109)
@@ -106,9 +110,9 @@ Partial Class MSIRenderHistory
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadToolStripMenuItem, Me.ToolStripMenuItem1, Me.ExportMatrixCDFToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadToolStripMenuItem, Me.ToolStripMenuItem1, Me.CopyThumbnailToolStripMenuItem, Me.SaveThumbnailFileToolStripMenuItem, Me.ExportMatrixCDFToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(171, 54)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 120)
         '
         'ExportMatrixCDFToolStripMenuItem
         '
@@ -121,7 +125,7 @@ Partial Class MSIRenderHistory
         '
         Me.LoadToolStripMenuItem.Image = CType(resources.GetObject("LoadToolStripMenuItem.Image"), System.Drawing.Image)
         Me.LoadToolStripMenuItem.Name = "LoadToolStripMenuItem"
-        Me.LoadToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.LoadToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.LoadToolStripMenuItem.Text = "Load Into Viewer"
         '
         'ToolStripMenuItem1
@@ -146,6 +150,18 @@ Partial Class MSIRenderHistory
         Me.TextBox4.ReadOnly = True
         Me.TextBox4.Size = New System.Drawing.Size(147, 14)
         Me.TextBox4.TabIndex = 8
+        '
+        'CopyThumbnailToolStripMenuItem
+        '
+        Me.CopyThumbnailToolStripMenuItem.Name = "CopyThumbnailToolStripMenuItem"
+        Me.CopyThumbnailToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CopyThumbnailToolStripMenuItem.Text = "Copy Thumbnail"
+        '
+        'SaveThumbnailFileToolStripMenuItem
+        '
+        Me.SaveThumbnailFileToolStripMenuItem.Name = "SaveThumbnailFileToolStripMenuItem"
+        Me.SaveThumbnailFileToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaveThumbnailFileToolStripMenuItem.Text = "Save Thumbnail File"
         '
         'MSIRenderHistory
         '
@@ -184,4 +200,6 @@ Partial Class MSIRenderHistory
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
     Friend WithEvents Label4 As Label
     Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents CopyThumbnailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SaveThumbnailFileToolStripMenuItem As ToolStripMenuItem
 End Class

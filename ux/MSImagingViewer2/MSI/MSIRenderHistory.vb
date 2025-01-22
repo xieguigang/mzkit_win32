@@ -4,6 +4,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Linq
 Imports std = System.Math
 
@@ -152,5 +153,18 @@ Public Class MSIRenderHistory
 
     Private Sub LoadToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadToolStripMenuItem.Click
         RaiseEvent LoadViewer(Me)
+    End Sub
+
+    Private Sub CopyThumbnailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyThumbnailToolStripMenuItem.Click
+        Clipboard.Clear()
+        Clipboard.SetImage(PictureBox1.BackgroundImage)
+    End Sub
+
+    Private Sub SaveThumbnailFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveThumbnailFileToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "Image File(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call PictureBox1.BackgroundImage.SaveAs(file.FileName, ImageFormatExtensions.GetSaveImageFormat(file.FileName.ExtensionSuffix))
+            End If
+        End Using
     End Sub
 End Class
