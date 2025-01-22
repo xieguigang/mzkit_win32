@@ -170,7 +170,7 @@ Public Class frmMsImagingViewer
     ''' </summary>
     Friend TIC As PixelScanIntensity()
 
-    Friend MSIservice As ServiceHub.MSIDataService
+    Friend MSIservice As MSIDataService
     Friend params As MsImageProperty
     Friend HEMap As HEMapTools
     Friend DrawHeMapRegion As Boolean = False
@@ -215,7 +215,7 @@ Public Class frmMsImagingViewer
     ''' A unify method for start the ms-imaging data backend
     ''' </summary>
     Public Sub StartMSIService()
-        ServiceHub.MSIDataService.StartMSIService(hostReference:=MSIservice)
+        MSIDataService.StartMSIService(hostReference:=MSIservice)
 
         If blender Is Nothing Then
             Call HookBlender()
@@ -339,16 +339,18 @@ Public Class frmMsImagingViewer
             settings = Globals.Settings.msi_filters
         End If
 
-        Dim opts As Scaler() = settings.filters.Select(Function(si) Scaler.Parse(si)).ToArray
+        Dim opts As Scaler() = settings.filters _
+            .Select(Function(si) Scaler.Parse(si)) _
+            .ToArray
 
-        config.ConfigPipeline(opts.ToArray, settings.flags)
+        Call config.ConfigPipeline(opts.ToArray, settings.flags)
 
-        If loadedPixels Is Nothing OrElse Not loadedPixels.HasData Then
+        If EmptyImagingData() Then
             If Not TIC.IsNullOrEmpty Then
                 config.ConfigIntensity(TIC.Select(Function(i) i.totalIon).ToArray)
             End If
         Else
-            config.ConfigIntensity(loadedPixels.IntensityData.ToArray)
+            Call config.ConfigIntensity(loadedPixels.IntensityData.ToArray)
         End If
 
         Call InputDialog.Input(
