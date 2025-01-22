@@ -3,7 +3,7 @@ Imports Mzkit_win32.MSImagingViewerV2
 
 Public Class frmMSIHistoryList
 
-    Dim _list As Queue(Of MSIRenderHistory)
+    Dim _list As New Queue(Of MSIRenderHistory)
 
     Public Property MaxHistoryQueueSize As Integer = 10
     Public ReadOnly Property CurrentRender As MSIRenderHistory
