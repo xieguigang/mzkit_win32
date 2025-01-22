@@ -2471,7 +2471,7 @@ Public Class frmMsImagingViewer
         Call PixelSelector1.ShowMessage($"Render in RGB Channel Composition Mode: {selectedMz.Select(Function(d) d.title).JoinBy(", ")}")
     End Sub
 
-    Private Sub createRGB(pixels As PixelData(), r#, g#, b#)
+    Public Sub createRGB(pixels As PixelData(), r#, g#, b#)
         Call Invoke(Sub() loadedPixels.data = pixels)
 
         If pixels.IsNullOrEmpty Then
@@ -2564,6 +2564,11 @@ Public Class frmMsImagingViewer
             Call Invoke(rendering)
             Call Workbench.SuccessMessage("Rendering Complete!")
         End If
+    End Sub
+
+    Public Sub SetIonsHistory(card As MSIRenderHistory)
+        loadedPixels = card
+        RenderPixelsLayer(card.data)
     End Sub
 
     Friend Sub renderByMzList(mz As Double(), titleName As String)
@@ -2663,6 +2668,15 @@ Public Class frmMsImagingViewer
             createRGB(pixels, rgb.R, rgb.G, rgb.B)
         End If
 
+        Call Workbench.StatusMessage("Rendering Complete!")
+    End Sub
+
+    Public Sub SetRgbHistory(card As MSIRenderHistory)
+        Dim rgb = card.rgb
+
+        loadedPixels = card
+
+        Call createRGB(card.data, rgb.R, rgb.G, rgb.B)
         Call Workbench.StatusMessage("Rendering Complete!")
     End Sub
 
