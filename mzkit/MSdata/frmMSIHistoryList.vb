@@ -28,7 +28,6 @@ Public Class frmMSIHistoryList
 
         AddHandler history.TitleUpdated, AddressOf _current_TitleUpdated
         history.Width = FlowLayoutPanel1.Width * 0.95
-        history.Anchor = AnchorStyles.Left Or AnchorStyles.Top Or AnchorStyles.Right
     End Sub
 
     Private Sub frmMSIHistoryList_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -40,5 +39,13 @@ Public Class frmMSIHistoryList
 
     Private Sub _current_TitleUpdated(card As MSIRenderHistory, title As String) Handles _current.TitleUpdated
         ToolTip1.SetToolTip(card, title)
+    End Sub
+
+    Private Sub FlowLayoutPanel1_Resize(sender As Object, e As EventArgs) Handles FlowLayoutPanel1.Resize
+        Dim w As Integer = FlowLayoutPanel1.Width * 0.95
+
+        For Each card As MSIRenderHistory In FlowLayoutPanel1.Controls
+            card.Width = w
+        Next
     End Sub
 End Class
