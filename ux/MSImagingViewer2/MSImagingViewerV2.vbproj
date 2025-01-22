@@ -177,6 +177,12 @@
     <Compile Include="MSI\SpatialTile.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="MSI\MSIRenderHistory.Designer.vb">
+      <DependentUpon>MSIRenderHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MSI\MSIRenderHistory.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ViewerCtrl\Events\ImageViewerZoomEventArgs.vb" />
     <Compile Include="ViewerCtrl\Events\ImageViewerRotationEventArgs.vb" />
     <Compile Include="ViewerCtrl\KP-ImageViewerV2.vb">
@@ -212,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MSI\InputSpotColor.resx">
       <DependentUpon>InputSpotColor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSI\MSIRenderHistory.resx">
+      <DependentUpon>MSIRenderHistory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MSI\PixelSelector.resx">
       <DependentUpon>PixelSelector.vb</DependentUpon>
@@ -349,6 +358,14 @@
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\text%25html\html_netcore5.vbproj">
       <Project>{0b752d71-2852-4071-ac44-db37195cf8c3}</Project>
       <Name>html_netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj">
+      <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
+      <Name>mzmath-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\visualize\MsImaging\MsImaging.NET5.vbproj">
+      <Project>{2ca6510f-eeed-406c-a14b-a675e093b327}</Project>
+      <Name>MsImaging.NET5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\visualize\TissueMorphology\TissueMorphology.vbproj">
       <Project>{560a9982-7d34-44c8-a0de-6b86e119247e}</Project>
