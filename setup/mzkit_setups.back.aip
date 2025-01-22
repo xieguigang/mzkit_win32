@@ -459,6 +459,7 @@
     <ROW Component="BioDeep.dll_3" ComponentId="{326E9FE5-D52B-4FBF-AC81-22BECAEA4685}" Directory_="blender_Dir" Attributes="256" KeyPath="BioDeep.dll_2"/>
     <ROW Component="BioDeep.pdb" ComponentId="{A43A4C99-E463-4917-B458-0C0240FFCE18}" Directory_="APPDIR" Attributes="0" KeyPath="BioDeep.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectro_1_metry.ComprehensiveMsPlot.dll" ComponentId="{A2383FDF-EFC0-4D8E-BD76-88D7CF135526}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectro_2_metry.ComprehensiveMsPlot.pdb" ComponentId="{BC01721B-6678-4345-BE66-4C41D0417235}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrome_10_try.Assembly.ThermoRawFileReader." ComponentId="{947E960F-F90F-488B-8A0A-B25094BA1B03}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrome_2_try.Assembly.ThermoRawFileReade"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrome_11_try.GCxGC.dll" ComponentId="{F135BBEF-041D-4FE6-A42B-24D3E39AE413}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrome_1_try.GCxGC.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrome_1_try.Assembly.ThermoRawFileReader.d" ComponentId="{548FC39A-5C3E-4A9F-9ED8-C0E7BFB566C4}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader."/>
@@ -645,6 +646,7 @@
     <ROW Component="Centos.dll_3" ComponentId="{698A8400-1910-4763-B558-463DF07D4DC8}" Directory_="library_Dir" Attributes="256" KeyPath="Centos.dll_3"/>
     <ROW Component="Centos.dll_4" ComponentId="{0B959719-A72D-48A6-A2CD-DCFF01D1C8EE}" Directory_="blender_Dir" Attributes="256" KeyPath="Centos.dll_4"/>
     <ROW Component="Centos.pdb" ComponentId="{A4B0B6A9-CC5B-4C52-A215-D32EA6FCAEFE}" Directory_="APPDIR" Attributes="0" KeyPath="Centos.pdb" Type="4"/>
+    <ROW Component="Centos.pdb_1" ComponentId="{18259725-B92A-43C3-82E3-8F4EA6EAAA06}" Directory_="blender_Dir" Attributes="0" KeyPath="Centos.pdb_1" Type="4"/>
     <ROW Component="ChangeLog" ComponentId="{7AC405B6-A700-47D5-832D-ED500BDF1608}" Directory_="vips_Dir" Attributes="0" KeyPath="versions.json" Type="0"/>
     <ROW Component="ChangeLog_1" ComponentId="{387F5FB5-F391-4631-BA53-B91AE504928C}" Directory_="vips_Dir" Attributes="0" KeyPath="ChangeLog"/>
     <ROW Component="Clearcore2.Compression.dll" ComponentId="{0F6616D8-9FB4-4A8F-80F3-2FFA7882602A}" Directory_="APPDIR" Attributes="256" KeyPath="Clearcore2.Compression.dll"/>
@@ -920,6 +922,9 @@
     <ROW Component="MLkit.dll" ComponentId="{1CBF1239-53EE-4681-87D7-63EA4D833530}" Directory_="library_Dir" Attributes="256" KeyPath="MLkit.dll"/>
     <ROW Component="MZKitWin32.Blender.CommonLibs.dll" ComponentId="{C116E217-8882-4804-92D7-0E073A663D6F}" Directory_="blender_Dir" Attributes="256" KeyPath="MZKitWin32.Blender.CommonLibs.dll"/>
     <ROW Component="MZKitWin32.Blender.CommonLibs.dll_1" ComponentId="{84F1D86B-A782-4600-A548-2B7F25387F9E}" Directory_="APPDIR" Attributes="256" KeyPath="MZKitWin32.Blender.CommonLibs.dll_1"/>
+    <ROW Component="MZKitWin32.Blender.CommonLibs.pdb" ComponentId="{563A4F50-2EDD-453C-AFAB-6ED1D5A71B5E}" Directory_="APPDIR" Attributes="0" KeyPath="MZKitWin32.Blender.CommonLibs.pdb_1" Type="4"/>
+    <ROW Component="MZKitWin32.Blender.CommonLibs.pdb_1" ComponentId="{9119FC99-84ED-437F-9B94-59F89B002BFE}" Directory_="blender_Dir" Attributes="0" KeyPath="MZKitWin32.Blender.CommonLibs.pdb" Type="4"/>
+    <ROW Component="MZKitWin32.Blender.CommonLibs.xml" ComponentId="{79C2233A-61E2-4AEC-A999-36150B7E2C92}" Directory_="APPDIR" Attributes="0" KeyPath="MZKitWin32.Blender.CommonLibs.xml_1"/>
     <ROW Component="MZWorkRedis.dll" ComponentId="{78286F07-D230-44DD-AC53-033E532F79A9}" Directory_="host_Dir" Attributes="256" KeyPath="MZWorkRedis.dll"/>
     <ROW Component="MZWorkRedis.dll_2" ComponentId="{16021AC3-AB10-479E-BBF9-5E2E13881A5D}" Directory_="blender_Dir" Attributes="256" KeyPath="MZWorkRedis.dll_2"/>
     <ROW Component="MZWorkRedis.pdb" ComponentId="{898BF7DD-E99A-4B5E-B2DB-D5A0C06618CA}" Directory_="blender_Dir" Attributes="0" KeyPath="MZWorkRedis.pdb_1" Type="4"/>
@@ -1116,7 +1121,8 @@
     <ROW Component="Microsoft.VisualBasic.Drawing.Windows.xml" ComponentId="{D8332582-D4B3-4534-A3E2-40FF28326E7C}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Drawing.Window_1_s.xml"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.dll" ComponentId="{333520F2-5422-4835-8C56-46E053085771}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.dll"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.dll_1" ComponentId="{65C59EF3-D0CA-47A1-858D-CB4C2E58AEC6}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.dll_1"/>
-    <ROW Component="Microsoft.VisualBasic.Drawing.dll_2" ComponentId="{A2A00785-3FAB-4F2D-96E0-6C3EAE1C2E0B}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.dll_2"/>
+    <ROW Component="Microsoft.VisualBasic.Drawing.dll_2" ComponentId="{A2A00785-3FAB-4F2D-96E0-6C3EAE1C2E0B}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.pdb_1"/>
+    <ROW Component="Microsoft.VisualBasic.Drawing.dll_3" ComponentId="{8ECAA707-FFE6-43B1-8EF0-38C3E0F08FF4}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.pdb" ComponentId="{9A419366-FD01-4EE4-9BE8-C177BF5D3334}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Drawing.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.xml" ComponentId="{7AD9530E-9A36-43A3-8202-5EE04FFFF2F9}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Drawing.xml"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.AVIMedia.dll" ComponentId="{0638C001-D7E7-4D76-8389-B7386E4A6687}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.AVIMedia.dll"/>
@@ -20064,14 +20070,14 @@
     <ROW File="hmdb.csv" Component_="chebi_lite.obo" FileName="hmdb.csv" Attributes="0" SourcePath="..\rstudio\data\hmdb.csv" SelfReg="false"/>
     <ROW File="hmdb.zip" Component_="chebi_lite.obo" FileName="hmdb.zip" Attributes="0" SourcePath="..\rstudio\data\hmdb.zip" SelfReg="false"/>
     <ROW File="Centos.dll_4" Component_="Centos.dll_4" FileName="Centos.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Centos.dll" SelfReg="false"/>
-    <ROW File="Centos.pdb_1" Component_="Centos.dll_4" FileName="Centos.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Centos.pdb" SelfReg="false"/>
+    <ROW File="Centos.pdb_1" Component_="Centos.pdb_1" FileName="Centos.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Centos.pdb" SelfReg="false"/>
     <ROW File="MZKitWin32.Blender.CommonLibs.dll" Component_="MZKitWin32.Blender.CommonLibs.dll" FileName="MZKITW~1.DLL|MZKitWin32.Blender.CommonLibs.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\MZKitWin32.Blender.CommonLibs.dll" SelfReg="false"/>
-    <ROW File="MZKitWin32.Blender.CommonLibs.pdb" Component_="MZKitWin32.Blender.CommonLibs.dll" FileName="MZKITW~1.PDB|MZKitWin32.Blender.CommonLibs.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\MZKitWin32.Blender.CommonLibs.pdb" SelfReg="false"/>
+    <ROW File="MZKitWin32.Blender.CommonLibs.pdb" Component_="MZKitWin32.Blender.CommonLibs.pdb_1" FileName="MZKITW~1.PDB|MZKitWin32.Blender.CommonLibs.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\MZKitWin32.Blender.CommonLibs.pdb" SelfReg="false"/>
     <ROW File="SkiaSharp.dll_2" Component_="SkiaSharp.dll_2" FileName="SKIASH~1.DLL|SkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SkiaSharp.dll" SelfReg="false"/>
     <ROW File="SkiaSharp.Extended.dll_1" Component_="SkiaSharp.Extended.dll_1" FileName="SKIASH~2.DLL|SkiaSharp.Extended.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SkiaSharp.Extended.dll" SelfReg="false"/>
     <ROW File="SkiaSharp.Extended.Svg.dll_1" Component_="SkiaSharp.Extended.Svg.dll_1" FileName="SKIASH~3.DLL|SkiaSharp.Extended.Svg.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SkiaSharp.Extended.Svg.dll" SelfReg="false"/>
     <ROW File="Centos.xml_3" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="Centos.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Centos.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Drawing.dll_2" Component_="Microsoft.VisualBasic.Drawing.dll_2" FileName="MICROS~9.DLL|Microsoft.VisualBasic.Drawing.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Drawing.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Drawing.dll_2" Component_="Microsoft.VisualBasic.Drawing.dll_3" FileName="MICROS~9.DLL|Microsoft.VisualBasic.Drawing.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Drawing.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Drawing.pdb_1" Component_="Microsoft.VisualBasic.Drawing.dll_2" FileName="MICROS~9.PDB|Microsoft.VisualBasic.Drawing.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Drawing.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Drawing.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICROS~8.XML|Microsoft.VisualBasic.Drawing.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Drawing.xml" SelfReg="false"/>
     <ROW File="MZKitWin32.Blender.CommonLibs.xml" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MZKITW~1.XML|MZKitWin32.Blender.CommonLibs.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\MZKitWin32.Blender.CommonLibs.xml" SelfReg="false"/>
@@ -20084,10 +20090,10 @@
     <ROW File="libSkiaSharp.dll_8" Component_="libSkiaSharp.dll_8" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\runtimes\win-x64\native\libSkiaSharp.dll" SelfReg="false"/>
     <ROW File="libSkiaSharp.dll_9" Component_="libSkiaSharp.dll_9" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\runtimes\win-x86\native\libSkiaSharp.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll" Component_="BioNovoGene.Analytical.MassSpectro_1_metry.ComprehensiveMsPlot.dll" FileName="BIONO~39.DLL|BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" Component_="BioNovoGene.Analytical.MassSpectro_1_metry.ComprehensiveMsPlot.dll" FileName="BIONO~39.PDB|BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" Component_="BioNovoGene.Analytical.MassSpectro_2_metry.ComprehensiveMsPlot.pdb" FileName="BIONO~39.PDB|BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" SelfReg="false"/>
     <ROW File="MZKitWin32.Blender.CommonLibs.dll_1" Component_="MZKitWin32.Blender.CommonLibs.dll_1" FileName="MZKITW~1.DLL|MZKitWin32.Blender.CommonLibs.dll" Attributes="0" SourcePath="..\..\..\dist\bin\MZKitWin32.Blender.CommonLibs.dll" SelfReg="false"/>
-    <ROW File="MZKitWin32.Blender.CommonLibs.pdb_1" Component_="MZKitWin32.Blender.CommonLibs.dll_1" FileName="MZKITW~1.PDB|MZKitWin32.Blender.CommonLibs.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\MZKitWin32.Blender.CommonLibs.pdb" SelfReg="false"/>
-    <ROW File="MZKitWin32.Blender.CommonLibs.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZKITW~1.XML|MZKitWin32.Blender.CommonLibs.xml" Attributes="0" SourcePath="..\..\..\dist\bin\MZKitWin32.Blender.CommonLibs.xml" SelfReg="false"/>
+    <ROW File="MZKitWin32.Blender.CommonLibs.pdb_1" Component_="MZKitWin32.Blender.CommonLibs.pdb" FileName="MZKITW~1.PDB|MZKitWin32.Blender.CommonLibs.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\MZKitWin32.Blender.CommonLibs.pdb" SelfReg="false"/>
+    <ROW File="MZKitWin32.Blender.CommonLibs.xml_1" Component_="MZKitWin32.Blender.CommonLibs.xml" FileName="MZKITW~1.XML|MZKitWin32.Blender.CommonLibs.xml" Attributes="0" SourcePath="..\..\..\dist\bin\MZKitWin32.Blender.CommonLibs.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -23069,6 +23075,12 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="libSkiaSharp.dll_9"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectro_1_metry.ComprehensiveMsPlot.dll"/>
     <ROW Feature_="MainFeature" Component_="MZKitWin32.Blender.CommonLibs.dll_1"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="MZKitWin32.Blender.CommonLibs.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="MZKitWin32.Blender.CommonLibs.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectro_2_metry.ComprehensiveMsPlot.pdb"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Drawing.dll_3"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Centos.pdb_1"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="MZKitWin32.Blender.CommonLibs.pdb_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
