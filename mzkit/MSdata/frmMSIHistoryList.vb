@@ -18,10 +18,12 @@ Public Class frmMSIHistoryList
 
     Public Sub Clear(dims As Size)
         _dims = dims
-
         _list.Clear()
-        _current.Dispose()
-        _current = Nothing
+
+        If Not _current Is Nothing Then
+            _current.Dispose()
+            _current = Nothing
+        End If
     End Sub
 
     Public Sub Add(history As MSIRenderHistory, mzdiff As Tolerance)
