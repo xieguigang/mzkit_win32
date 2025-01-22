@@ -1,9 +1,11 @@
 ﻿Imports System.ComponentModel
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports Mzkit_win32.MSImagingViewerV2
 
 Public Class frmMSIHistoryList
 
     Dim _list As New Queue(Of MSIRenderHistory)
+    Dim _dims As Size
     Dim WithEvents _current As MSIRenderHistory
 
     Public Property MaxHistoryQueueSize As Integer = 10
@@ -13,7 +15,15 @@ Public Class frmMSIHistoryList
         End Get
     End Property
 
-    Public Sub Add(history As MSIRenderHistory)
+    Public Sub Clear(dims As Size)
+        _dims = dims
+
+        _list.Clear()
+        _current.Dispose()
+        _current = Nothing
+    End Sub
+
+    Public Sub Add(history As MSIRenderHistory, mzdiff As Tolerance)
         _current = history
         _list.Enqueue(history)
 
@@ -27,6 +37,9 @@ Public Class frmMSIHistoryList
         Call FlowLayoutPanel1.Controls.Add(history)
 
         AddHandler history.TitleUpdated, AddressOf _current_TitleUpdated
+        AddHandler history.ExportMatrixCDF, AddressOf exportCDF
+
+        history.mzdiff = mzdiff
         history.Width = FlowLayoutPanel1.Width * 0.95
     End Sub
 
@@ -39,6 +52,10 @@ Public Class frmMSIHistoryList
 
     Private Sub _current_TitleUpdated(card As MSIRenderHistory, title As String) Handles _current.TitleUpdated
         ToolTip1.SetToolTip(card, title)
+    End Sub
+
+    Private Sub exportCDF(card As MSIRenderHistory)
+        Call frmMsImagingViewer.SaveMatrixCDF(card.data, _dims, card.rgb, card.mzdiff)
     End Sub
 
     Private Sub FlowLayoutPanel1_Resize(sender As Object, e As EventArgs) Handles FlowLayoutPanel1.Resize

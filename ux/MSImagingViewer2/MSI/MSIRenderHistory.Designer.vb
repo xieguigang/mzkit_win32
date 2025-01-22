@@ -22,6 +22,7 @@ Partial Class MSIRenderHistory
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
@@ -29,7 +30,10 @@ Partial Class MSIRenderHistory
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ExportMatrixCDFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TextBox3
@@ -95,12 +99,25 @@ Partial Class MSIRenderHistory
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMatrixCDFToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        '
+        'ExportMatrixCDFToolStripMenuItem
+        '
+        Me.ExportMatrixCDFToolStripMenuItem.Name = "ExportMatrixCDFToolStripMenuItem"
+        Me.ExportMatrixCDFToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExportMatrixCDFToolStripMenuItem.Text = "Export Matrix CDF"
+        '
         'MSIRenderHistory
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.PictureBox1)
@@ -111,6 +128,7 @@ Partial Class MSIRenderHistory
         Me.Name = "MSIRenderHistory"
         Me.Size = New System.Drawing.Size(551, 115)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -122,4 +140,6 @@ Partial Class MSIRenderHistory
     Friend WithEvents Label3 As Label
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ExportMatrixCDFToolStripMenuItem As ToolStripMenuItem
 End Class

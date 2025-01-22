@@ -2849,10 +2849,14 @@ Public Class frmMsImagingViewer
             rgb_configs = Me.loadedPixels.rgb
         End If
 
+        Call SaveMatrixCDF(loadedPixels, dimension, rgb_configs, params.GetTolerance)
+    End Sub
+
+    Public Shared Sub SaveMatrixCDF(loadedPixels As PixelData(), dimension As Size, rgb_configs As RGBConfigs, mzdiff As Tolerance)
         Using file As New SaveFileDialog With {.Filter = "NetCDF(*.cdf)|*.cdf", .Title = "Save MS-Imaging Matrix"}
             If file.ShowDialog = DialogResult.OK Then
                 Using filesave As FileStream = file.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
-                    Call loadedPixels.CreateCDF(filesave, dimension, params.GetTolerance, rgb:=rgb_configs)
+                    Call loadedPixels.CreateCDF(filesave, dimension, mzdiff, rgb:=rgb_configs)
                 End Using
             End If
         End Using

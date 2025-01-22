@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing
 Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
@@ -43,6 +44,7 @@ Public Class MSIRenderHistory
     End Property
 
     Public Property data As PixelData()
+    Public Property mzdiff As Tolerance
 
     Public Property ions As MzAnnotation()
         Get
@@ -85,6 +87,7 @@ Public Class MSIRenderHistory
     End Property
 
     Public Event TitleUpdated(card As MSIRenderHistory, title As String)
+    Public Event ExportMatrixCDF(card As MSIRenderHistory)
 
     Public Function GetTitle(mz As Double) As String
         If Not _ions.IsNullOrEmpty Then
@@ -128,4 +131,7 @@ Public Class MSIRenderHistory
         End If
     End Function
 
+    Private Sub ExportMatrixCDFToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMatrixCDFToolStripMenuItem.Click
+        RaiseEvent ExportMatrixCDF(Me)
+    End Sub
 End Class
