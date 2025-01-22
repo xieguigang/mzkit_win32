@@ -1004,7 +1004,7 @@ Public Class frmMsImagingViewer
                 Using savefile As New SaveFileDialog With {.Filter = file.Filter}
                     If savefile.ShowDialog = DialogResult.OK Then
                         Dim input As New InputMSISlideLayout With {
-                            .layoutData = files.Select(AddressOf basename).JoinBy(","),
+                            .layoutData = files.Select(Function(path) path.BaseName).JoinBy(","),
                             .useFileNameAsSourceTag = True
                         }
 
