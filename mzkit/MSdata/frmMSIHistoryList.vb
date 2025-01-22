@@ -59,13 +59,17 @@ Public Class frmMSIHistoryList
     End Sub
 
     Private Sub MakeRendering(card As MSIRenderHistory)
+        Dim viewer = WindowModules.msImageParameters.viewer
+
         Call ProgressSpinner.DoLoading(
             Sub()
+                Call viewer.MSIservice.blender.channel.WriteBuffer(card.data)
+
                 If card.rgb Is Nothing Then
-                    Call WindowModules.msImageParameters.viewer.SetIonsHistory(card)
+                    Call viewer.SetIonsHistory(card)
                 Else
                     ' rgb rendering
-                    Call WindowModules.msImageParameters.viewer.SetRgbHistory(card)
+                    Call viewer.SetRgbHistory(card)
                 End If
             End Sub)
     End Sub
