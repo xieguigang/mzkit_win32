@@ -363,6 +363,10 @@
       <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
       <Name>mzmath-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\mzmath\SpatialMath\SpatialMath.vbproj">
+      <Project>{f9668b6b-e9cf-4ae0-8086-1f360a72b89b}</Project>
+      <Name>SpatialMath</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\visualize\MsImaging\MsImaging.NET5.vbproj">
       <Project>{2ca6510f-eeed-406c-a14b-a675e093b327}</Project>
       <Name>MsImaging.NET5</Name>

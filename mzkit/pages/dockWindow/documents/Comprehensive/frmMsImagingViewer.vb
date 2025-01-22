@@ -2570,16 +2570,8 @@ Public Class frmMsImagingViewer
     ''' the m/z tagged pixel layer data, this data field will be updated after
     ''' the specific m/z data has been fetched from the MSI data service
     ''' </summary>
-    Dim loadedPixels As PixelData()
-    Dim rgb_configs As RGBConfigs
-    Dim targetMz As Double()
-    Dim title As String
+    Dim loadedPixels As MSIRenderHistory
     Dim mzdiff As Tolerance
-
-    ''' <summary>
-    ''' [mz:F3 => name]
-    ''' </summary>
-    Dim titles As New Dictionary(Of String, String)
 
     Public Function GetTitle(mz As Double) As String
         Dim key As String = mz.ToString("F3")

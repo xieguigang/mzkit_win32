@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 
 Public Class MSIRenderHistory
@@ -29,6 +30,8 @@ Public Class MSIRenderHistory
             End If
         End Set
     End Property
+
+    Public Property data As PixelData()
 
     Public Property ions As MzAnnotation()
         Get
