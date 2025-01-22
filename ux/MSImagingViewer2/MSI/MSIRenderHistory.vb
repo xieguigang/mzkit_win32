@@ -163,7 +163,11 @@ Public Class MSIRenderHistory
     Private Sub SaveThumbnailFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveThumbnailFileToolStripMenuItem.Click
         Using file As New SaveFileDialog With {.Filter = "Image File(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp"}
             If file.ShowDialog = DialogResult.OK Then
-                Call PictureBox1.BackgroundImage.SaveAs(file.FileName, ImageFormatExtensions.GetSaveImageFormat(file.FileName.ExtensionSuffix))
+                Call PictureBox1.BackgroundImage.SaveAs(
+                    path:=file.FileName,
+                    format:=ImageFormatExtensions.GetSaveImageFormat(file.FileName.ExtensionSuffix),
+                    autoDispose:=False
+                )
             End If
         End Using
     End Sub
