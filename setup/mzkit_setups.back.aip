@@ -458,6 +458,7 @@
     <ROW Component="BioDeep.dll_2" ComponentId="{74747C54-9C3E-4DF3-A6D8-70DB44B177B5}" Directory_="blender_Dir" Attributes="256" KeyPath="BioDeep.pdb_1" Type="4"/>
     <ROW Component="BioDeep.dll_3" ComponentId="{326E9FE5-D52B-4FBF-AC81-22BECAEA4685}" Directory_="blender_Dir" Attributes="256" KeyPath="BioDeep.dll_2"/>
     <ROW Component="BioDeep.pdb" ComponentId="{A43A4C99-E463-4917-B458-0C0240FFCE18}" Directory_="APPDIR" Attributes="0" KeyPath="BioDeep.pdb" Type="4"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectro_1_metry.ComprehensiveMsPlot.dll" ComponentId="{A2383FDF-EFC0-4D8E-BD76-88D7CF135526}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrome_10_try.Assembly.ThermoRawFileReader." ComponentId="{947E960F-F90F-488B-8A0A-B25094BA1B03}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrome_2_try.Assembly.ThermoRawFileReade"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrome_11_try.GCxGC.dll" ComponentId="{F135BBEF-041D-4FE6-A42B-24D3E39AE413}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrome_1_try.GCxGC.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrome_1_try.Assembly.ThermoRawFileReader.d" ComponentId="{548FC39A-5C3E-4A9F-9ED8-C0E7BFB566C4}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader."/>
@@ -918,6 +919,7 @@
     <ROW Component="LocalLaplacianFilters.pdb" ComponentId="{2220C0A8-1F76-4591-8A3D-A395B1B3CEC6}" Directory_="APPDIR" Attributes="0" KeyPath="LocalLaplacianFilters.pdb" Type="4"/>
     <ROW Component="MLkit.dll" ComponentId="{1CBF1239-53EE-4681-87D7-63EA4D833530}" Directory_="library_Dir" Attributes="256" KeyPath="MLkit.dll"/>
     <ROW Component="MZKitWin32.Blender.CommonLibs.dll" ComponentId="{C116E217-8882-4804-92D7-0E073A663D6F}" Directory_="blender_Dir" Attributes="256" KeyPath="MZKitWin32.Blender.CommonLibs.dll"/>
+    <ROW Component="MZKitWin32.Blender.CommonLibs.dll_1" ComponentId="{84F1D86B-A782-4600-A548-2B7F25387F9E}" Directory_="APPDIR" Attributes="256" KeyPath="MZKitWin32.Blender.CommonLibs.dll_1"/>
     <ROW Component="MZWorkRedis.dll" ComponentId="{78286F07-D230-44DD-AC53-033E532F79A9}" Directory_="host_Dir" Attributes="256" KeyPath="MZWorkRedis.dll"/>
     <ROW Component="MZWorkRedis.dll_2" ComponentId="{16021AC3-AB10-479E-BBF9-5E2E13881A5D}" Directory_="blender_Dir" Attributes="256" KeyPath="MZWorkRedis.dll_2"/>
     <ROW Component="MZWorkRedis.pdb" ComponentId="{898BF7DD-E99A-4B5E-B2DB-D5A0C06618CA}" Directory_="blender_Dir" Attributes="0" KeyPath="MZWorkRedis.pdb_1" Type="4"/>
@@ -20081,6 +20083,11 @@
     <ROW File="libSkiaSharp.dll_7" Component_="libSkiaSharp.dll_7" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\runtimes\win-arm64\native\libSkiaSharp.dll" SelfReg="false"/>
     <ROW File="libSkiaSharp.dll_8" Component_="libSkiaSharp.dll_8" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\runtimes\win-x64\native\libSkiaSharp.dll" SelfReg="false"/>
     <ROW File="libSkiaSharp.dll_9" Component_="libSkiaSharp.dll_9" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\runtimes\win-x86\native\libSkiaSharp.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll" Component_="BioNovoGene.Analytical.MassSpectro_1_metry.ComprehensiveMsPlot.dll" FileName="BIONO~39.DLL|BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" Component_="BioNovoGene.Analytical.MassSpectro_1_metry.ComprehensiveMsPlot.dll" FileName="BIONO~39.PDB|BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.ComprehensiveMsPlot.pdb" SelfReg="false"/>
+    <ROW File="MZKitWin32.Blender.CommonLibs.dll_1" Component_="MZKitWin32.Blender.CommonLibs.dll_1" FileName="MZKITW~1.DLL|MZKitWin32.Blender.CommonLibs.dll" Attributes="0" SourcePath="..\..\..\dist\bin\MZKitWin32.Blender.CommonLibs.dll" SelfReg="false"/>
+    <ROW File="MZKitWin32.Blender.CommonLibs.pdb_1" Component_="MZKitWin32.Blender.CommonLibs.dll_1" FileName="MZKITW~1.PDB|MZKitWin32.Blender.CommonLibs.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\MZKitWin32.Blender.CommonLibs.pdb" SelfReg="false"/>
+    <ROW File="MZKitWin32.Blender.CommonLibs.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZKITW~1.XML|MZKitWin32.Blender.CommonLibs.xml" Attributes="0" SourcePath="..\..\..\dist\bin\MZKitWin32.Blender.CommonLibs.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -23060,6 +23067,8 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="libSkiaSharp.dll_7"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="libSkiaSharp.dll_8"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="libSkiaSharp.dll_9"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectro_1_metry.ComprehensiveMsPlot.dll"/>
+    <ROW Feature_="MainFeature" Component_="MZKitWin32.Blender.CommonLibs.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
