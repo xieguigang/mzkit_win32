@@ -783,6 +783,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\ISplashScreenUpdater.vb" />
+    <Compile Include="MSdata\frmMSIHistoryList.Designer.vb">
+      <DependentUpon>frmMSIHistoryList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MSdata\frmMSIHistoryList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MSdata\Module1.vb" />
     <Compile Include="MSdata\Module2.vb" />
     <Compile Include="MSdata\ggplotVisual.vb" />
@@ -1408,6 +1414,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\Workbench\InputPCADialog.resx">
       <DependentUpon>InputPCADialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSdata\frmMSIHistoryList.resx">
+      <DependentUpon>frmMSIHistoryList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\LCMS\frmLCMSLibrary.resx">
       <DependentUpon>frmLCMSLibrary.vb</DependentUpon>
