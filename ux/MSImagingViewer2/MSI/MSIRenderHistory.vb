@@ -35,6 +35,10 @@ Public Class MSIRenderHistory
             If Not value Is Nothing Then
                 _ions = Nothing
             End If
+
+            If Text.StringEmpty(, True) AndAlso Not value Is Nothing Then
+                Text = _rgb.ToString
+            End If
         End Set
     End Property
 
@@ -54,6 +58,14 @@ Public Class MSIRenderHistory
             If Not _ions.IsNullOrEmpty Then
                 TextBox1.Text = _ions.Select(Function(a) a.productMz.ToString("F4")).JoinBy(", ")
                 TextBox2.Text = If(_ions.Length = 1, "Single Ion Imaging", "Multiple Ions Rendering")
+            End If
+
+            If Text.StringEmpty(, True) AndAlso Not value.IsNullOrEmpty Then
+                If value.Length = 1 Then
+                    Text = If(value(0).annotation.StringEmpty(, True), value(0).ToString("F4"), value(0).annotation)
+                Else
+                    Text = value.Select(Function(i) i.productMz.ToString("F3")).JoinBy(",")
+                End If
             End If
         End Set
     End Property
@@ -85,6 +97,16 @@ Public Class MSIRenderHistory
         Return Not data.IsNullOrEmpty
     End Function
 
+    Public Function TargetMz() As Double()
+        If Not rgb Is Nothing Then
+            Return rgb.AsEnumerable.Select(Function(a) a.productMz).ToArray
+        ElseIf Not ions.IsNullOrEmpty Then
+            Return ions.Select(Function(a) a.productMz).ToArray
+        Else
+            Return {}
+        End If
+    End Function
+
     Public Function IntensityData() As IEnumerable(Of Double)
         Return From i As PixelData In data.SafeQuery Select i.intensity
     End Function
@@ -96,7 +118,7 @@ Public Class MSIRenderHistory
             .OrderBy(Function(i) std.Abs(i.productMz - mz)) _
             .FirstOrDefault
 
-        If annodata Is Nothing Then
+        If annodata Is Nothing OrElse annodata.annotation.StringEmpty(, True) Then
             Return $"M/Z: {mz}"
         Else
             Return annodata.annotation

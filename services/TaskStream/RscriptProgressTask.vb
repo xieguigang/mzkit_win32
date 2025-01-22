@@ -63,6 +63,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 
@@ -205,7 +206,7 @@ Public NotInheritable Class RscriptProgressTask
         Return cachefile
     End Function
 
-    Public Shared Sub ExportRGBIonsPlot(mz As Double(), tolerance As String, saveAs As String,
+    Public Shared Sub ExportRGBIonsPlot(rgbConfigs As String, tolerance As String, saveAs As String,
                                         filters As String(),
                                         size As Size,
                                         dpi As Integer,
@@ -216,7 +217,7 @@ Public NotInheritable Class RscriptProgressTask
         Dim filterfile As String = TempFileSystem.GetAppSysTempFile(".txt", prefix:="msi_filters")
         Dim cli As String = $"""{Rscript}"" 
 --app {Workbench.MSIServiceAppPort} 
---mzlist ""{mz.JoinBy(",")}"" 
+--mzlist ""{rgbConfigs.Base64String}"" 
 --save ""{saveAs}"" 
 --mzdiff ""{tolerance}"" 
 --filters ""{filterfile}""
@@ -256,7 +257,7 @@ Public NotInheritable Class RscriptProgressTask
         End If
     End Sub
 
-    Public Shared Sub ExportSingleIonPlot(mz As Double,
+    Public Shared Sub ExportSingleIonPlot(mz As Double(),
                                           tolerance As String,
                                           saveAs As String,
                                           background As String,
@@ -272,7 +273,7 @@ Public NotInheritable Class RscriptProgressTask
         Dim filterfile As String = TempFileSystem.GetAppSysTempFile(".txt", prefix:="msi_filters")
         Dim cli As String = $"""{Rscript}"" 
 --app {Workbench.MSIServiceAppPort} 
---mzlist ""{mz}"" 
+--mzlist ""{mz.JoinBy(",")}"" 
 --save ""{saveAs}"" 
 --backcolor ""{background}"" 
 --colors ""{colorSet}"" 

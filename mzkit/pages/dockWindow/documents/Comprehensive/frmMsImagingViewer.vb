@@ -2493,17 +2493,13 @@ Public Class frmMsImagingViewer
         Dim blender As Type = GetType(RGBIonMSIBlender) ' (R, G, B, TIC, params, loadFilters)
         Dim mzdiff = params.GetTolerance.GetScript
         Dim configs As New Dictionary(Of String, String) From {
-            {"rgb", rgb_configs.GetJSON},
+            {"rgb", loadedPixels.rgb.GetJSON},
             {"mzdiff", mzdiff}
         }
 
         Me.params.enableFilter = False
         Me.blender.SetHEMap(GetHEMap())
         Me.blender.OpenSession(blender, params.GetMSIDimension, Nothing, params, configs.GetJson)
-        Me.loadedPixels = R _
-            .JoinIterates(G) _
-            .JoinIterates(B) _
-            .ToArray
 
         Return Sub()
                    Call MyApplication.RegisterPlot(
@@ -2517,7 +2513,9 @@ Public Class frmMsImagingViewer
     End Function
 
     Friend Sub renderByName(name As String, titleName As String)
-        title = titleName
+        If Not loadedPixels Is Nothing Then
+            loadedPixels.Text = titleName
+        End If
 
         Call Workbench.StatusMessage($"Render layer of annotation: {titleName}")
         Call ProgressSpinner.DoLoading(
@@ -2593,12 +2591,10 @@ Public Class frmMsImagingViewer
     Dim mzdiff As Tolerance
 
     Public Function GetTitle(mz As Double) As String
-        Dim key As String = mz.ToString("F3")
-
-        If titles.ContainsKey(key) AndAlso Not titles(key).StringEmpty Then
-            Return titles(key)
+        If EmptyImagingData() Then
+            Return $"M/Z: {mz.ToString("F3")}"
         Else
-            Return $"M/Z: {key}"
+            Return loadedPixels.GetTitle(mz)
         End If
     End Function
 
@@ -2962,23 +2958,12 @@ Public Class frmMsImagingViewer
     Private Sub ExportPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportPlotToolStripMenuItem.Click
         If Not checkService() Then
             Return
-        ElseIf targetMz.IsNullOrEmpty Then
+        ElseIf EmptyImagingData Then
             Call Workbench.Warning("No ion was selected to export MS-Imaging plot!")
             Return
         End If
 
-        Dim filename As String
-
-        If targetMz.Length > 1 Then
-            filename = targetMz.Select(Function(d) d.ToString("F3")).JoinBy("+")
-        Else
-            If title.StringEmpty Then
-                filename = targetMz(0).ToString("F4")
-            Else
-                filename = title.NormalizePathString(False)
-            End If
-        End If
-
+        Dim filename As String = loadedPixels.Text.NormalizePathString(False)
         Dim save As New SetMSIPlotParameters
         Dim msi_filters As String() = loadFilters.Select(Function(f) f.ToScript).ToArray
 
@@ -2990,18 +2975,18 @@ Public Class frmMsImagingViewer
         Call save.SetFileName(filename)
         Call InputDialog.Input(
             setConfig:=Sub(cfg)
-                           If targetMz.Length > 1 Then
+                           If loadedPixels.rgb IsNot Nothing Then
                                Call RscriptProgressTask.ExportRGBIonsPlot(
-                                   targetMz, mzdiff.GetScript, saveAs:=save.FileName,
+                                   loadedPixels.rgb.GetJSON, mzdiff.GetScript, saveAs:=save.FileName,
                                    filters:=msi_filters,
                                    ticOverlaps:=params.showTotalIonOverlap,
                                    size:=cfg.GetPlotSize, dpi:=cfg.GetPlotDpi, padding:=cfg.GetPlotPadding)
                            Else
                                Call RscriptProgressTask.ExportSingleIonPlot(
-                                   mz:=targetMz(0),
+                                   mz:=loadedPixels.TargetMz,
                                    tolerance:=mzdiff.GetScript,
                                    saveAs:=save.FileName,
-                                   title:=title,
+                                   title:=loadedPixels.Text,
                                    filters:=msi_filters,
                                    background:=params.background.ToHtmlColor,
                                    colorSet:=params.colors.Description,
