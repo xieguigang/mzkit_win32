@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Partial Public Class RibbonItems
+    Partial Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -164,6 +164,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonAutoLocation As UInteger = 228
             Public Const cmdPanelMSIFilters As UInteger = 230
             Public Const cmdButtonMSIFilterPipeline As UInteger = 229
+            Public Const cmdButtonMSIHistory As UInteger = 333
             Public Const cmdTabMSIAnalysis As UInteger = 141
             Public Const cmdTabMSISnapshot As UInteger = 126
             Public Const cmdButtonMSIBasePeakIon As UInteger = 124
@@ -1240,6 +1241,9 @@ Namespace RibbonLib.Controls
             End Get
         End Property
         Private _PanelMSIFilters As RibbonGroup
+        ''' <summary>
+        ''' MS-imaging viewer tools
+        ''' </summary>
         Public ReadOnly Property PanelMSIFilters As RibbonGroup
             Get
                 Return _PanelMSIFilters
@@ -1249,6 +1253,15 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonMSIFilterPipeline As RibbonButton
             Get
                 Return _ButtonMSIFilterPipeline
+            End Get
+        End Property
+        Private _ButtonMSIHistory As RibbonButton
+        ''' <summary>
+        ''' View ms-imaging render history list
+        ''' </summary>
+        Public ReadOnly Property ButtonMSIHistory As RibbonButton
+            Get
+                Return _ButtonMSIHistory
             End Get
         End Property
         Private _TabMSIAnalysis As RibbonTab
@@ -2441,6 +2454,7 @@ Namespace RibbonLib.Controls
             _ButtonAutoLocation = New RibbonButton(_ribbon, Cmd.cmdButtonAutoLocation)
             _PanelMSIFilters = New RibbonGroup(_ribbon, Cmd.cmdPanelMSIFilters)
             _ButtonMSIFilterPipeline = New RibbonButton(_ribbon, Cmd.cmdButtonMSIFilterPipeline)
+            _ButtonMSIHistory = New RibbonButton(_ribbon, Cmd.cmdButtonMSIHistory)
             _TabMSIAnalysis = New RibbonTab(_ribbon, Cmd.cmdTabMSIAnalysis)
             _TabMSISnapshot = New RibbonGroup(_ribbon, Cmd.cmdTabMSISnapshot)
             _ButtonMSIBasePeakIon = New RibbonButton(_ribbon, Cmd.cmdButtonMSIBasePeakIon)

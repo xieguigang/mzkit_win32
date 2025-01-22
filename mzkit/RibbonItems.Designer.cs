@@ -167,6 +167,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonAutoLocation = 228;
             public const uint cmdPanelMSIFilters = 230;
             public const uint cmdButtonMSIFilterPipeline = 229;
+            public const uint cmdButtonMSIHistory = 333;
             public const uint cmdTabMSIAnalysis = 141;
             public const uint cmdTabMSISnapshot = 126;
             public const uint cmdButtonMSIBasePeakIon = 124;
@@ -502,8 +503,15 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonUpsideDown { get; private set; }
         public RibbonButton ButtonRotateSlide { get; private set; }
         public RibbonButton ButtonAutoLocation { get; private set; }
+        /// <summary>
+        /// MS-imaging viewer tools
+        /// </summary>
         public RibbonGroup PanelMSIFilters { get; private set; }
         public RibbonButton ButtonMSIFilterPipeline { get; private set; }
+        /// <summary>
+        /// View ms-imaging render history list
+        /// </summary>
+        public RibbonButton ButtonMSIHistory { get; private set; }
         public RibbonTab TabMSIAnalysis { get; private set; }
         public RibbonGroup TabMSISnapshot { get; private set; }
         public RibbonButton ButtonMSIBasePeakIon { get; private set; }
@@ -884,6 +892,7 @@ namespace RibbonLib.Controls
             ButtonAutoLocation = new RibbonButton(ribbon, Cmd.cmdButtonAutoLocation);
             PanelMSIFilters = new RibbonGroup(ribbon, Cmd.cmdPanelMSIFilters);
             ButtonMSIFilterPipeline = new RibbonButton(ribbon, Cmd.cmdButtonMSIFilterPipeline);
+            ButtonMSIHistory = new RibbonButton(ribbon, Cmd.cmdButtonMSIHistory);
             TabMSIAnalysis = new RibbonTab(ribbon, Cmd.cmdTabMSIAnalysis);
             TabMSISnapshot = new RibbonGroup(ribbon, Cmd.cmdTabMSISnapshot);
             ButtonMSIBasePeakIon = new RibbonButton(ribbon, Cmd.cmdButtonMSIBasePeakIon);
