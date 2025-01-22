@@ -2772,16 +2772,16 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub ExportMatrixToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMatrixToolStripMenuItem.Click
-        Dim loadedPixels As PixelData() = Me.loadedPixels
-
-        If loadedPixels.IsNullOrEmpty AndAlso TIC.IsNullOrEmpty Then
+        If EmptyImagingData() AndAlso TIC.IsNullOrEmpty Then
             Call Workbench.Warning("No loaded pixels data...")
             Return
         End If
 
         Dim dimension As New Size(params.scan_x, params.scan_y)
+        Dim loadedPixels As PixelData()
+        Dim rgb_configs As RGBConfigs = Nothing
 
-        If loadedPixels.IsNullOrEmpty Then
+        If EmptyImagingData() Then
             If MessageBox.Show("No ion layer data could be exports, export the summary heatmap layer of your ms-imaging data?",
                                "Export Heatmap Matrix",
                                MessageBoxButtons.OKCancel,
@@ -2807,6 +2807,9 @@ Public Class frmMsImagingViewer
             Else
                 Return
             End If
+        Else
+            loadedPixels = Me.loadedPixels.data
+            rgb_configs = Me.loadedPixels.rgb
         End If
 
         Using file As New SaveFileDialog With {.Filter = "NetCDF(*.cdf)|*.cdf", .Title = "Save MS-Imaging Matrix"}
