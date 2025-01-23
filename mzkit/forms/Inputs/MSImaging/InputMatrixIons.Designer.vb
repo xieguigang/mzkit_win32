@@ -65,10 +65,10 @@ Partial Class InputMatrixIons
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(12, 37)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 34)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(742, 369)
+        Me.TabControl1.Size = New System.Drawing.Size(742, 341)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage1
@@ -78,21 +78,24 @@ Partial Class InputMatrixIons
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(734, 343)
+        Me.TabPage1.Size = New System.Drawing.Size(734, 315)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Select Ions"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'AdvancedDataGridView1
         '
+        Me.AdvancedDataGridView1.AllowUserToAddRows = False
+        Me.AdvancedDataGridView1.AllowUserToDeleteRows = False
+        Me.AdvancedDataGridView1.BackgroundColor = System.Drawing.Color.Gainsboro
         Me.AdvancedDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.AdvancedDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.AdvancedDataGridView1.FilterAndSortEnabled = True
         Me.AdvancedDataGridView1.FilterStringChangedInvokeBeforeDatasourceUpdate = True
-        Me.AdvancedDataGridView1.Location = New System.Drawing.Point(3, 32)
+        Me.AdvancedDataGridView1.Location = New System.Drawing.Point(3, 30)
         Me.AdvancedDataGridView1.Name = "AdvancedDataGridView1"
         Me.AdvancedDataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.AdvancedDataGridView1.Size = New System.Drawing.Size(728, 308)
+        Me.AdvancedDataGridView1.Size = New System.Drawing.Size(728, 282)
         Me.AdvancedDataGridView1.SortStringChangedInvokeBeforeDatasourceUpdate = True
         Me.AdvancedDataGridView1.TabIndex = 0
         '
@@ -101,11 +104,11 @@ Partial Class InputMatrixIons
         Me.AdvancedDataGridViewSearchToolBar1.AllowMerge = False
         Me.AdvancedDataGridViewSearchToolBar1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.AdvancedDataGridViewSearchToolBar1.Location = New System.Drawing.Point(3, 3)
-        Me.AdvancedDataGridViewSearchToolBar1.MaximumSize = New System.Drawing.Size(0, 29)
-        Me.AdvancedDataGridViewSearchToolBar1.MinimumSize = New System.Drawing.Size(0, 29)
+        Me.AdvancedDataGridViewSearchToolBar1.MaximumSize = New System.Drawing.Size(0, 27)
+        Me.AdvancedDataGridViewSearchToolBar1.MinimumSize = New System.Drawing.Size(0, 27)
         Me.AdvancedDataGridViewSearchToolBar1.Name = "AdvancedDataGridViewSearchToolBar1"
         Me.AdvancedDataGridViewSearchToolBar1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.AdvancedDataGridViewSearchToolBar1.Size = New System.Drawing.Size(728, 29)
+        Me.AdvancedDataGridViewSearchToolBar1.Size = New System.Drawing.Size(728, 27)
         Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 1
         Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
         '
@@ -128,7 +131,7 @@ Partial Class InputMatrixIons
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(734, 343)
+        Me.TabPage2.Size = New System.Drawing.Size(734, 315)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Settings"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -137,128 +140,128 @@ Partial Class InputMatrixIons
         '
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(322, 49)
+        Me.ComboBox1.Location = New System.Drawing.Point(322, 45)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(194, 21)
+        Me.ComboBox1.Size = New System.Drawing.Size(194, 20)
         Me.ComboBox1.TabIndex = 13
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(319, 23)
+        Me.Label7.Location = New System.Drawing.Point(319, 21)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(89, 13)
+        Me.Label7.Size = New System.Drawing.Size(113, 12)
         Me.Label7.TabIndex = 12
         Me.Label7.Text = "Set Color Palatte:"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(191, 53)
+        Me.Label6.Location = New System.Drawing.Point(191, 49)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(12, 13)
+        Me.Label6.Size = New System.Drawing.Size(11, 12)
         Me.Label6.TabIndex = 11
         Me.Label6.Text = "x"
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(131, 50)
+        Me.TextBox2.Location = New System.Drawing.Point(131, 46)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(53, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(53, 21)
         Me.TextBox2.TabIndex = 10
         Me.TextBox2.Text = "2800"
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(209, 50)
+        Me.TextBox3.Location = New System.Drawing.Point(209, 46)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(53, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(53, 21)
         Me.TextBox3.TabIndex = 9
         Me.TextBox3.Text = "2100"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(21, 53)
+        Me.Label5.Location = New System.Drawing.Point(21, 49)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(69, 13)
+        Me.Label5.Size = New System.Drawing.Size(77, 12)
         Me.Label5.TabIndex = 8
         Me.Label5.Text = "Canvas Size:"
         '
         'txtMzdiff
         '
-        Me.txtMzdiff.Location = New System.Drawing.Point(131, 79)
+        Me.txtMzdiff.Location = New System.Drawing.Point(131, 73)
         Me.txtMzdiff.Name = "txtMzdiff"
-        Me.txtMzdiff.Size = New System.Drawing.Size(53, 20)
+        Me.txtMzdiff.Size = New System.Drawing.Size(53, 21)
         Me.txtMzdiff.TabIndex = 7
         Me.txtMzdiff.Text = "0.3"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(21, 82)
+        Me.Label4.Location = New System.Drawing.Point(21, 76)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(54, 13)
+        Me.Label4.Size = New System.Drawing.Size(65, 12)
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Mass Diff:"
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(23, 145)
+        Me.TextBox1.Location = New System.Drawing.Point(23, 134)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
         Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox1.Size = New System.Drawing.Size(694, 177)
+        Me.TextBox1.Size = New System.Drawing.Size(694, 164)
         Me.TextBox1.TabIndex = 5
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(21, 117)
+        Me.Label3.Location = New System.Drawing.Point(21, 108)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(78, 13)
+        Me.Label3.Size = New System.Drawing.Size(77, 12)
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Command Log:"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(21, 24)
+        Me.Label2.Location = New System.Drawing.Point(21, 22)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(73, 13)
+        Me.Label2.Size = New System.Drawing.Size(89, 12)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "Matrix Layout:"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(173, 23)
+        Me.Label1.Location = New System.Drawing.Point(173, 21)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(12, 13)
+        Me.Label1.Size = New System.Drawing.Size(11, 12)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "x"
         '
         'txtRows
         '
-        Me.txtRows.Location = New System.Drawing.Point(131, 21)
+        Me.txtRows.Location = New System.Drawing.Point(131, 19)
         Me.txtRows.Name = "txtRows"
-        Me.txtRows.Size = New System.Drawing.Size(36, 20)
+        Me.txtRows.Size = New System.Drawing.Size(36, 21)
         Me.txtRows.TabIndex = 1
         Me.txtRows.Text = "3"
         '
         'txtColumns
         '
-        Me.txtColumns.Location = New System.Drawing.Point(190, 21)
+        Me.txtColumns.Location = New System.Drawing.Point(190, 19)
         Me.txtColumns.Name = "txtColumns"
-        Me.txtColumns.Size = New System.Drawing.Size(38, 20)
+        Me.txtColumns.Size = New System.Drawing.Size(38, 21)
         Me.txtColumns.TabIndex = 0
         Me.txtColumns.Text = "3"
         '
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 457)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 420)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(766, 22)
         Me.StatusStrip1.TabIndex = 2
@@ -272,9 +275,9 @@ Partial Class InputMatrixIons
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(643, 417)
+        Me.Button1.Location = New System.Drawing.Point(643, 385)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 25)
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 3
         Me.Button1.Text = "Create"
         Me.Button1.UseVisualStyleBackColor = True
@@ -284,7 +287,7 @@ Partial Class InputMatrixIons
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
+        Me.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
         Me.MenuStrip1.Size = New System.Drawing.Size(766, 24)
         Me.MenuStrip1.TabIndex = 5
         Me.MenuStrip1.Text = "MenuStrip1"
@@ -310,9 +313,9 @@ Partial Class InputMatrixIons
         '
         'InputMatrixIons
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(766, 479)
+        Me.ClientSize = New System.Drawing.Size(766, 442)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
