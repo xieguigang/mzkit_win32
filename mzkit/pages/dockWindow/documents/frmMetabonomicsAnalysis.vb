@@ -15,6 +15,7 @@ Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA
@@ -1097,5 +1098,51 @@ Public Class frmMetabonomicsAnalysis
 
             Call tbl.Rows.Add(rowdata)
         Next
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+
+    End Sub
+
+    Private Sub PictureBox1_DoubleClick(sender As Object, e As EventArgs) Handles PictureBox1.DoubleClick
+        If PictureBox1.BackgroundImage IsNot Nothing Then
+            Dim tempfile = App.CurrentProcessTemp & $"/{App.NextTempName}.png"
+            Dim process As New Process()
+
+            PictureBox1.BackgroundImage.SaveAs(tempfile)
+
+            ' 设置进程启动信息
+            process.StartInfo.FileName = tempfile
+            process.StartInfo.UseShellExecute = True
+            process.StartInfo.ErrorDialog = True
+
+            ' 启动进程
+            Try
+                Call process.Start()
+            Catch ex As Exception
+                Call App.LogException(ex)
+                Call Workbench.Warning(ex.ToString)
+            End Try
+        End If
+    End Sub
+
+    Private Sub CopyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyToolStripMenuItem.Click
+        Clipboard.Clear()
+        Clipboard.SetImage(PictureBox1.BackgroundImage)
+    End Sub
+
+    Private Sub SaveImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveImageToolStripMenuItem.Click
+        If expression Is Nothing Then
+            Workbench.Warning("no expression data to make plot!")
+            Return
+        End If
+
+        Using File As New SaveFileDialog With {
+            .Filter = "Image file(*.png)|*.png|Svg image file(*.svg)|*.svg|Pdf image file(*.pdf)|*.pdf"
+        }
+            If File.ShowDialog = DialogResult.OK Then
+
+            End If
+        End Using
     End Sub
 End Class

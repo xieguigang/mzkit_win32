@@ -35,7 +35,13 @@ Partial Class frmMetabonomicsAnalysis
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewExpressionPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AutoPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.OpenInTableEditorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SaveImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripDropDownButton2 = New System.Windows.Forms.ToolStripDropDownButton()
@@ -48,8 +54,6 @@ Partial Class frmMetabonomicsAnalysis
         Me.BarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.OpenInTableEditorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -63,6 +67,7 @@ Partial Class frmMetabonomicsAnalysis
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip2.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -161,7 +166,7 @@ Partial Class frmMetabonomicsAnalysis
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewExpressionPlotToolStripMenuItem, Me.AutoPlotToolStripMenuItem, Me.ToolStripMenuItem1, Me.OpenInTableEditorToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 98)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 76)
         '
         'ViewExpressionPlotToolStripMenuItem
         '
@@ -177,15 +182,53 @@ Partial Class frmMetabonomicsAnalysis
         Me.AutoPlotToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
         Me.AutoPlotToolStripMenuItem.Text = "Auto Plot"
         '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(179, 6)
+        '
+        'OpenInTableEditorToolStripMenuItem
+        '
+        Me.OpenInTableEditorToolStripMenuItem.Image = CType(resources.GetObject("OpenInTableEditorToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.OpenInTableEditorToolStripMenuItem.Name = "OpenInTableEditorToolStripMenuItem"
+        Me.OpenInTableEditorToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.OpenInTableEditorToolStripMenuItem.Text = "Send To Table Editor"
+        '
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox1.ContextMenuStrip = Me.ContextMenuStrip2
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(684, 290)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
+        '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyToolStripMenuItem, Me.ToolStripMenuItem2, Me.SaveImageToolStripMenuItem})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(181, 76)
+        '
+        'CopyToolStripMenuItem
+        '
+        Me.CopyToolStripMenuItem.Image = CType(resources.GetObject("CopyToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
+        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CopyToolStripMenuItem.Text = "Copy"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(177, 6)
+        '
+        'SaveImageToolStripMenuItem
+        '
+        Me.SaveImageToolStripMenuItem.Image = CType(resources.GetObject("SaveImageToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.SaveImageToolStripMenuItem.Name = "SaveImageToolStripMenuItem"
+        Me.SaveImageToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaveImageToolStripMenuItem.Text = "Save Image"
         '
         'AdvancedDataGridViewSearchToolBar1
         '
@@ -277,18 +320,6 @@ Partial Class frmMetabonomicsAnalysis
         Me.BoxPlotToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.BoxPlotToolStripMenuItem.Text = "Box Plot"
         '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(179, 6)
-        '
-        'OpenInTableEditorToolStripMenuItem
-        '
-        Me.OpenInTableEditorToolStripMenuItem.Image = CType(resources.GetObject("OpenInTableEditorToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.OpenInTableEditorToolStripMenuItem.Name = "OpenInTableEditorToolStripMenuItem"
-        Me.OpenInTableEditorToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
-        Me.OpenInTableEditorToolStripMenuItem.Text = "Send To Table Editor"
-        '
         'frmMetabonomicsAnalysis
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -314,6 +345,7 @@ Partial Class frmMetabonomicsAnalysis
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip2.ResumeLayout(False)
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -345,4 +377,8 @@ Partial Class frmMetabonomicsAnalysis
     Friend WithEvents AutoPlotToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
     Friend WithEvents OpenInTableEditorToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
+    Friend WithEvents CopyToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents SaveImageToolStripMenuItem As ToolStripMenuItem
 End Class
