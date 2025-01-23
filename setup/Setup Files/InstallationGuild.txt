@@ -1,0 +1,11 @@
+## 1. install runtime files
+
+install all required runtime files inside the microsoft folder at first:
+
++ dotnet-sdk-8.0.405-win-x64.exe (https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
++ MicrosoftEdgeWebView2RuntimeInstallerX64.exe (https://developer.microsoft.com/zh-cn/microsoft-edge/webview2/?form=MA13LH#download)
++ NDP48-DevPack-ENU.exe (https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/net48)
+
+## 2. install mzkit
+
+then run the installer of mzkit workbench: mzkit_setups.exe

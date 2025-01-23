@@ -18,8 +18,8 @@ mzkit on SciCrunch: RRID:SCR_023936
 
 mzkit_win32 application required of .NET Framework 4.8 runtime:
 https://dotnet.microsoft.com/download/dotnet-framework/net48
-Rstudio application required of .NET Core 6.0(windows-x64) runtime:
-https://dotnet.microsoft.com/en-us/download/dotnet/6.0
+Rstudio application required of .NET Core 8.0(windows-x64) runtime:
+https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 Microsoft WebView2 runtime(windows-x64) is required for some interactive data visualization and analysis report generation:
 https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section
 Read GCxGC or GCMS netCDF rawdata file required of unidata netCDF-C library:
