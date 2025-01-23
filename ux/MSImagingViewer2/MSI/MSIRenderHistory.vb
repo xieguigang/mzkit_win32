@@ -79,7 +79,7 @@ Public Class MSIRenderHistory
 
             If Text.StringEmpty(, True) AndAlso Not value.IsNullOrEmpty Then
                 If value.Length = 1 Then
-                    Text = If(value(0).annotation.StringEmpty(, True), value(0).ToString("F4"), value(0).annotation)
+                    Text = If(value(0).annotation.StringEmpty(, True), value(0).productMz.ToString("F4"), value(0).annotation)
                 Else
                     Text = value.Select(Function(i) i.productMz.ToString("F3")).JoinBy(",")
                 End If
