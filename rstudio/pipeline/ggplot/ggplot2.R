@@ -41,7 +41,7 @@ const getGgplot = function() {
 }
 
 const plotGgplot = function() {
-	ggplot(myeloma, aes(x = "sample_group", y = "data"))
+	ggplot(myeloma, aes(x = "sample_group", y = "data"), padding = "padding: 10% 5% 10% 10%;")
 	# Add horizontal line at base mean 
 	+ geom_hline(yintercept = mean(group_data), linetype="dash", line.width = 6, color = "red")
 	+ getGgplot()
@@ -55,7 +55,7 @@ const plotGgplot = function() {
 	+ theme(
 		axis.text.x = element_text(angle = 45),
 		plot.title = element_text(family = "Cambria Math", size = 16),
-		panel.border = element_rect(size = 10, linetype = "Solid")
+		panel.border = element_rect(size = 0, linetype = "Solid")
 	)
 	;
 }
