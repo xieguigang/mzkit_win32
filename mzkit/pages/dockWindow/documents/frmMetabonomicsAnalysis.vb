@@ -449,7 +449,7 @@ Public Class frmMetabonomicsAnalysis
         Return exp
     End Function
 
-    Private Function plotExpression(name As String, exp As Dictionary(Of String, (color As String, Double()))) As Image
+    Private Function plotExpression(name As String, exp As Dictionary(Of String, (color As String, Double())), Optional imageOut As String = Nothing) As Image
         Dim expVisual As New Dictionary(Of String, (color As String, Double()))(exp)
 
         If groupsVisual IsNot Nothing AndAlso groupsVisual.Count > 0 Then
@@ -460,6 +460,7 @@ Public Class frmMetabonomicsAnalysis
             Next
         End If
 
+        Dim factor As Double = 3
         Dim json As String = ggplotVisual.encodeJSON(expVisual)
         Dim plotType As String
 
@@ -471,16 +472,27 @@ Public Class frmMetabonomicsAnalysis
             plotType = "violin"
         End If
 
-        Dim factor As Double = 3
-        Dim plot As Image = ggplotVisual.ggplot(json,
-               title:=name,
-               type:=plotType,
-               size:={
-                  PictureBox1.Width * factor,
-                  PictureBox1.Height * factor
-        })
+        If imageOut.StringEmpty(, True) Then
+            Dim plot As Image = ggplotVisual.ggplot(json,
+                title:=name,
+                type:=plotType,
+                size:={
+                    PictureBox1.Width * factor,
+                    PictureBox1.Height * factor
+            })
 
-        Return plot
+            Return plot
+        Else
+            Call ggplotVisual.ggplot(json,
+                title:=name,
+                type:=plotType,
+                size:={
+                    PictureBox1.Width * factor,
+                    PictureBox1.Height * factor
+            }, savefile:=imageOut)
+
+            Return Nothing
+        End If
     End Function
 
     Private Sub AdvancedDataGridView1_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles AdvancedDataGridView1.RowStateChanged
@@ -1141,7 +1153,22 @@ Public Class frmMetabonomicsAnalysis
             .Filter = "Image file(*.png)|*.png|Svg image file(*.svg)|*.svg|Pdf image file(*.pdf)|*.pdf"
         }
             If File.ShowDialog = DialogResult.OK Then
+                Call plotExpression(expression_name, expression, File.FileName)
 
+                Dim process As New Process()
+
+                ' 设置进程启动信息
+                process.StartInfo.FileName = File.FileName
+                process.StartInfo.UseShellExecute = True
+                process.StartInfo.ErrorDialog = True
+
+                ' 启动进程
+                Try
+                    Call process.Start()
+                Catch ex As Exception
+                    Call App.LogException(ex)
+                    Call Workbench.Warning(ex.ToString)
+                End Try
             End If
         End Using
     End Sub
