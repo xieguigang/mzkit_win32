@@ -309,6 +309,7 @@ Public Class frmMsImagingViewer
         WindowModules.msImageParameters.renderList.Show()
         WindowModules.msImageParameters.renderList.Visible = True
         WindowModules.msImageParameters.renderList.WindowState = FormWindowState.Normal
+        WindowModules.msImageParameters.renderList.Activate()
     End Sub
 
     Public Shared Function loadFilters() As RasterPipeline
