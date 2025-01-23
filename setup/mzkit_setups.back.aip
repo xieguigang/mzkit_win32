@@ -38,10 +38,10 @@
     <ROW Property="IAgree" Value="Yes" Type="4"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1033:{A0FD5BFE-0EA1-4A76-A440-D62BF9C0F512} 2052:{A0FD5BFE-0EA1-4A76-A440-D62BF9C0F512} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{1E9F5F4C-8209-4207-B634-CAC30B3BE5A2} 2052:{1E9F5F4C-8209-4207-B634-CAC30B3BE5A2} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="6.0.2025.0123" Options="32"/>
+    <ROW Property="ProductVersion" Value="6.1.2025.0123" Options="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -440,7 +440,7 @@
     <ROW Directory="zstdcodec_Dir" Directory_Parent="libs_Dir" DefaultDir="ZSTD-C~1|zstd-codec"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{0F8A0129-D7C8-4C4D-B25A-E98CAB6D8EED}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{8A72C9CF-1F18-48E5-80D9-D6D4F3AA4526}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="ARButton.js" ComponentId="{4E917137-D4FF-49F8-85C3-6A5835EE4133}" Directory_="webxr_Dir" Attributes="0" KeyPath="ARButton.js" Type="0"/>
     <ROW Component="AUTHORS" ComponentId="{C7BB9CCD-8E40-46A1-99A4-0164F34C94BA}" Directory_="sql.js_Dir" Attributes="0" KeyPath="AUTHORS" Type="0"/>
@@ -1121,7 +1121,7 @@
     <ROW Component="Microsoft.VisualBasic.Drawing.Windows.xml" ComponentId="{D8332582-D4B3-4534-A3E2-40FF28326E7C}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Drawing.Window_1_s.xml"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.dll" ComponentId="{333520F2-5422-4835-8C56-46E053085771}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.dll"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.dll_1" ComponentId="{65C59EF3-D0CA-47A1-858D-CB4C2E58AEC6}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.dll_1"/>
-    <ROW Component="Microsoft.VisualBasic.Drawing.dll_2" ComponentId="{A2A00785-3FAB-4F2D-96E0-6C3EAE1C2E0B}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.pdb_1"/>
+    <ROW Component="Microsoft.VisualBasic.Drawing.dll_2" ComponentId="{A2A00785-3FAB-4F2D-96E0-6C3EAE1C2E0B}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.dll_3" ComponentId="{8ECAA707-FFE6-43B1-8EF0-38C3E0F08FF4}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.pdb" ComponentId="{9A419366-FD01-4EE4-9BE8-C177BF5D3334}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Drawing.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.xml" ComponentId="{7AD9530E-9A36-43A3-8202-5EE04FFFF2F9}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Drawing.xml"/>
@@ -23302,7 +23302,7 @@
     <ROW XmlElement="swidentitlement_required_indicator" ParentElement="swidsoftware_identification_tag" Name="swid:entitlement_required_indicator" Condition="1" Order="0" Flags="14" Text="true" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidlicense_linkage" ParentElement="swidsoftware_identification_tag" Name="swid:license_linkage" Condition="1" Order="8" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidmajor" ParentElement="swidnumeric" Name="swid:major" Condition="1" Order="0" Flags="14" Text="6" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidminor" ParentElement="swidnumeric" Name="swid:minor" Condition="1" Order="1" Flags="14" Text="0" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidminor" ParentElement="swidnumeric" Name="swid:minor" Condition="1" Order="1" Flags="14" Text="1" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname" ParentElement="swidproduct_version" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[ProductVersion]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname_7" ParentElement="swidsoftware_creator" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname_8" ParentElement="swidsoftware_licensor" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
