@@ -43,7 +43,7 @@ const getGgplot = function() {
 const plotGgplot = function() {
 	ggplot(myeloma, aes(x = "sample_group", y = "data"), padding = "padding: 10% 5% 10% 10%;")
 	# Add horizontal line at base mean 
-	+ geom_hline(yintercept = mean(group_data), linetype="dash", line.width = 6, color = "red")
+	+ geom_hline(yintercept = mean(group_data), linetype="Dash", line.width = 4, color = "red")
 	+ getGgplot()
 	+ geom_jitter(width = 0.3, alpha = 1, color = sample_color)	
 	+ ggtitle(title_str)
@@ -53,7 +53,7 @@ const plotGgplot = function() {
 	+ stat_compare_means(method = "anova", label.y = 1600) # Add global annova p-value 
     + stat_compare_means(label = "p.signif", method = "t.test", ref.group = ".all.", hide.ns = TRUE)# Pairwise comparison against all
 	+ theme(
-		axis.text.x = element_text(angle = 45),
+		axis.text.x = element_text(angle = 30),
 		plot.title = element_text(family = "Cambria Math", size = 16),
 		panel.border = element_rect(size = 0, linetype = "Solid")
 	)
