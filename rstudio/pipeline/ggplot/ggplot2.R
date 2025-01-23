@@ -60,6 +60,23 @@ const plotGgplot = function() {
 	;
 }
 
-bitmap(file = savefile, size = as.integer(unlist(strsplit(size, ",")))) {
-	plotGgplot();
+let filetype = file.ext(savefile);
+let plot_size = as.integer(unlist(strsplit(size, ",")));
+
+switch(filetype, default -> stop(`invalid file type of plot output: ${filetype}`)) {
+    svg = {
+        svg(file = savefile, size = plot_size, dpi = 300) {
+            plotGgplot();
+        }
+    },
+    png = {
+        bitmap(file = savefile, size = plot_size, dpi = 300) {
+            plotGgplot();
+        }
+    },
+    pdf = {
+        pdf(file = savefile, size = plot_size, dpi = 300) {
+            plotGgplot();
+        }
+    }
 }
