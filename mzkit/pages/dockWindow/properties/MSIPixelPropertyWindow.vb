@@ -62,6 +62,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Shapes
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.Quantile
+Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -110,7 +111,8 @@ Public Class MSIPixelPropertyWindow
                         End Function) _
                 .ToArray
         }
-        Dim Q2line As New Line(New PointF(0, q.Query(0.5)), New PointF(1, q.Query(0.5)), New Pen(Color.Red, 10))
+        Dim q2 = q.Query(0.5)
+        Dim Q2line As New Line(New PointF(0, q2), New PointF(1, q2), New Stroke(Color.Red, 10))
 
         If DirectCast(PropertyGrid1.SelectedObject, PixelProperty).NumOfIons = 0 Then
             PictureBox1.BackgroundImage = Nothing
