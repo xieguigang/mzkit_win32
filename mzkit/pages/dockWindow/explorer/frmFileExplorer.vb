@@ -1007,7 +1007,7 @@ Public Class frmFileExplorer
                                         Using file As Stream = savefile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False),
                                             writer As New mzXMLWriter({}, {}, {}, file)
 
-                                            Call writer.WriteData(mzPack.MS, print:=s)
+                                            Call writer.WriteData(mzPack.MS, print:=s.Echo)
                                             Call s.SetProgress(prog)
                                             Call s.SetInfo($"Save mzPack data as mzXML file [{i + 1}/{rawList.Length}]...")
                                         End Using
