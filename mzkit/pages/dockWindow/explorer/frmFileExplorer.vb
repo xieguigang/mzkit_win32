@@ -997,7 +997,7 @@ Public Class frmFileExplorer
                                     Call s.SetProgressMode()
                                     Call s.SetProgress(0)
 
-                                    For i As Integer = openDevTools() To rawList.Length - 1
+                                    For i As Integer = 0 To rawList.Length - 1
                                         Dim raw As MZWork.Raw = rawList(i).LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
                                         Dim prog = i / rawList.Length * 100
                                         Dim mzPack As mzPack = raw.GetLoadedMzpack
