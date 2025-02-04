@@ -723,7 +723,8 @@ Public Class frmFileExplorer
             Return
         Else
             Using save As New SaveFileDialog With {
-                .Filter = "mzXML MsData(*.mzXML)|*.mzXML"
+                .Filter = "mzXML MsData(*.mzXML)|*.mzXML",
+                .FileName = $"{DirectCast(node.Tag, MZWork.Raw).source.BaseName}.mzXML"
             }
                 If save.ShowDialog = DialogResult.OK Then
                     Dim raw As MZWork.Raw = DirectCast(node.Tag, MZWork.Raw).LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
