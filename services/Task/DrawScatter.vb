@@ -67,6 +67,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D.MarchingSquares
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
+Imports Microsoft.VisualBasic.Math.Distributions
 Imports Microsoft.VisualBasic.Math.Quantile
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports PipelineHost
@@ -129,7 +130,19 @@ Public Module DrawScatter
                     End Function) _
             .IteratesALL _
             .ToArray
+        Dim max = 5000000
 
-        Return RawScatterPlot.Plot(samples:=ms1).AsGDIImage
+        ' make filter for the thumbnail data
+        ' 20250204
+        If ms1.Length > max Then
+            ms1 = ms1.TakeRandomly(max).ToArray
+        End If
+
+        Dim maxIonEZ = ms1.Select(Function(a) a.mz).GetTrIQRange(0.99)
+        Dim maxMz = maxionEZ.Max
+
+        Return RawScatterPlot _
+            .Plot(samples:=From i As ms1_scan In ms1 Where i.mz > maxMz) _
+            .AsGDIImage
     End Function
 End Module
