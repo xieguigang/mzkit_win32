@@ -138,6 +138,9 @@ Public Module DrawScatter
             ms1 = ms1.TakeRandomly(max).ToArray
         End If
 
+        ' 20250204 handling of the unexpected ultra-large mz
+        ' for proteomics data
+        ' when do thumbnail drawing
         Dim maxIonEZ = ms1.Select(Function(a) a.mz).GetTrIQRange(0.99)
         Dim maxMz = maxionEZ.Max
 
