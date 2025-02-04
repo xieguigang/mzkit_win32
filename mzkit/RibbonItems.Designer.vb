@@ -94,6 +94,8 @@ Namespace RibbonLib.Controls
             Public Const cmdCheckBoxShowKEGGAnnotation As UInteger = 153
             Public Const cmdCheckBoxShowMs2Fragment As UInteger = 4
             Public Const cmdCheckBoxXICRelative As UInteger = 96
+            Public Const cmdGroupMatrixViewerOptions As UInteger = 335
+            Public Const cmdButtonChkViewMSnProducts As UInteger = 334
             Public Const cmdTabReferenceLibrary As UInteger = 161
             Public Const cmdButtonSearchPubChem As UInteger = 227
             Public Const cmdOpenIonsLibrary As UInteger = 159
@@ -824,6 +826,24 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property CheckBoxXICRelative As RibbonCheckBox
             Get
                 Return _CheckBoxXICRelative
+            End Get
+        End Property
+        Private _GroupMatrixViewerOptions As RibbonGroup
+        ''' <summary>
+        ''' Matrix Viewer Options
+        ''' </summary>
+        Public ReadOnly Property GroupMatrixViewerOptions As RibbonGroup
+            Get
+                Return _GroupMatrixViewerOptions
+            End Get
+        End Property
+        Private _ButtonChkViewMSnProducts As RibbonToggleButton
+        ''' <summary>
+        ''' Show MSn Products
+        ''' </summary>
+        Public ReadOnly Property ButtonChkViewMSnProducts As RibbonToggleButton
+            Get
+                Return _ButtonChkViewMSnProducts
             End Get
         End Property
         Private _TabReferenceLibrary As RibbonGroup
@@ -2384,6 +2404,8 @@ Namespace RibbonLib.Controls
             _CheckBoxShowKEGGAnnotation = New RibbonCheckBox(_ribbon, Cmd.cmdCheckBoxShowKEGGAnnotation)
             _CheckBoxShowMs2Fragment = New RibbonCheckBox(_ribbon, Cmd.cmdCheckBoxShowMs2Fragment)
             _CheckBoxXICRelative = New RibbonCheckBox(_ribbon, Cmd.cmdCheckBoxXICRelative)
+            _GroupMatrixViewerOptions = New RibbonGroup(_ribbon, Cmd.cmdGroupMatrixViewerOptions)
+            _ButtonChkViewMSnProducts = New RibbonToggleButton(_ribbon, Cmd.cmdButtonChkViewMSnProducts)
             _TabReferenceLibrary = New RibbonGroup(_ribbon, Cmd.cmdTabReferenceLibrary)
             _ButtonSearchPubChem = New RibbonButton(_ribbon, Cmd.cmdButtonSearchPubChem)
             _OpenIonsLibrary = New RibbonButton(_ribbon, Cmd.cmdOpenIonsLibrary)

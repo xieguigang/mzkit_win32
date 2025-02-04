@@ -241,12 +241,14 @@ Public Class PageMzkitTools
         If raw.cacheFileExists OrElse raw.isInMemory Then
             Dim prop As SpectrumProperty = Nothing
             Dim showAnnotation As Boolean = RibbonEvents.ribbonItems.CheckBoxShowMs2Fragment.BooleanValue
+            Dim optProductsTree As Boolean = ribbonItems.ButtonChkViewMSnProducts.BooleanValue
             Dim scanData As LibraryMatrix = raw.GetSpectrum(
                 scanId:=scanId,
                 cutoff:=Globals.Settings.viewer.GetMethod,
                 reload:=Sub(src, cache) frmFileExplorer.getRawCache(src,, cache),
                 showAnnotation:=showAnnotation,
-                properties:=prop
+                properties:=prop,
+                loadProductTree:=optProductsTree
             )
 
             If scanData Is Nothing Then

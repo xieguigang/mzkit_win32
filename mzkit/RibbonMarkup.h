@@ -1875,8 +1875,20 @@
 #define cmdXIC_DaSpinner_LabelDescription_RESID 1167
 #define cmdXIC_DaSpinner_TooltipTitle_RESID 60367
 #define cmdXIC_DaSpinner_TooltipDescription_RESID 1168
-#define InternalCmd2_LabelTitle_RESID 60368
-#define InternalCmd4_LabelTitle_RESID 60369
-#define InternalCmd6_LabelTitle_RESID 60370
-#define InternalCmd8_LabelTitle_RESID 60371
-#define InternalCmd10_LabelTitle_RESID 60372
+#define cmdButtonChkViewMSnProducts 334  /* Show MSn Products */ 
+#define cmdButtonChkViewMSnProducts_LabelTitle_RESID 60368
+#define cmdButtonChkViewMSnProducts_LabelDescription_RESID 60369
+#define cmdButtonChkViewMSnProducts_TooltipTitle_RESID 60370
+#define cmdButtonChkViewMSnProducts_TooltipDescription_RESID 60371
+#define cmdButtonChkViewMSnProducts_SmallImages_192__RESID 60372
+#define cmdButtonChkViewMSnProducts_LargeImages_192__RESID 60373
+#define cmdGroupMatrixViewerOptions 335  /* Matrix Viewer Options */ 
+#define cmdGroupMatrixViewerOptions_LabelTitle_RESID 60374
+#define cmdGroupMatrixViewerOptions_LabelDescription_RESID 60375
+#define cmdGroupMatrixViewerOptions_TooltipTitle_RESID 60376
+#define cmdGroupMatrixViewerOptions_TooltipDescription_RESID 60377
+#define InternalCmd2_LabelTitle_RESID 60378
+#define InternalCmd4_LabelTitle_RESID 60379
+#define InternalCmd6_LabelTitle_RESID 60380
+#define InternalCmd8_LabelTitle_RESID 60381
+#define InternalCmd10_LabelTitle_RESID 60382
