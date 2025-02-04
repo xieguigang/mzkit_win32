@@ -141,11 +141,11 @@ Public Module DrawScatter
         ' 20250204 handling of the unexpected ultra-large mz
         ' for proteomics data
         ' when do thumbnail drawing
-        Dim maxIonEZ = ms1.Select(Function(a) a.mz).GetTrIQRange(0.99)
+        Dim maxIonEZ = ms1.Select(Function(a) a.mz).GetTrIQRange(0.9)
         Dim maxMz = maxionEZ.Max
 
         Return RawScatterPlot _
-            .Plot(samples:=From i As ms1_scan In ms1 Where i.mz > maxMz) _
+            .Plot(samples:=From i As ms1_scan In ms1 Where i.mz < maxMz) _
             .AsGDIImage
     End Function
 End Module
