@@ -108,6 +108,7 @@ Public Module MoleculeNetworking
                                 cutoff As LowAbundanceTrimming,
                                 reload As Action(Of String, String),
                                 showAnnotation As Boolean,
+                                loadProductTree As Boolean,
                                 Optional ByRef properties As SpectrumProperty = Nothing) As LibraryMatrix
         Dim attrs As ScanMS2
         Dim msLevel As Integer
@@ -140,6 +141,21 @@ Public Module MoleculeNetworking
                 .mz = ms1.mz,
                 .into = ms1.into
             }
+
+            If loadProductTree Then
+                Dim products = ms1.products.SafeQuery _
+                    .Select(Function(m2)
+                                Return m2.GetMs.UnifyTag($"MSn,precursor={m2.parentMz}")
+                            End Function) _
+                    .IteratesALL _
+                    .ToArray
+
+                attrs.product = New ScanMS2 With {
+                    .mz = products.Select(Function(a) a.mz).ToArray,
+                    .into = products.Select(Function(a) a.intensity).ToArray,
+                    .metadata = products.Select(Function(a) a.Annotation).ToArray
+                }
+            End If
         Else
             msLevel = 2
         End If
@@ -148,7 +164,7 @@ Public Module MoleculeNetworking
             .name = scanId,
             .centroid = False,
             .ms2 = attrs _
-                .GetMs _
+                .GetMs(loadProductTree, MSn:=msLevel) _
                 .ToArray _
                 .Centroid(If(msLevel = 1, ms1diff, ms2diff), cutoff) _
                 .ToArray
@@ -164,7 +180,10 @@ Public Module MoleculeNetworking
             'Dim candidate As Formula = Nothing
             'Dim precursor As New AdductIon
 
-            'scanData.ms2 = pa.FastFragmnetAssigner(peaks, candidate, precursor).Select(Function(i) New ms2 With {.mz = i.Mass, .intensity = i.Intensity, .Annotation = i.Formula.ToString}).ToArray
+            'scanData.ms2 = pa
+            '  .FastFragmnetAssigner(peaks, candidate, precursor)
+            '  .Select(Function(i) New ms2 With {.mz = i.Mass, .intensity = i.Intensity, .Annotation = i.Formula.ToString})
+            '  .ToArray
         End If
 
         Return scanData
