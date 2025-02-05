@@ -385,20 +385,23 @@ Public Class frmRawFeaturesList
             Workbench.Warning("No raw data file is selected!")
             Return
         ElseIf treeView1.SelectedNode Is Nothing OrElse treeView1.SelectedNode.Text Is Nothing Then
-            Call SelectedNotarget()
+            Call SelectedNotarget(Nothing)
             Return
         End If
 
         ' scan节点
         Dim raw As MZWork.Raw = CurrentOpenedFile
         Dim ppm As Double = MyApplication.host.GetPPMError()
-        Dim plotTIC As NamedCollection(Of ChromatogramTick) = raw.getXICMatrix(treeView1.SelectedNode.Text, ppm, relativeInto:=False)
+        Dim target_id = treeView1.SelectedNode.Text
+        Dim plotTIC As NamedCollection(Of ChromatogramTick) = raw.getXICMatrix(target_id, ppm, relativeInto:=False)
 
         If plotTIC.value.IsNullOrEmpty Then
             ' 当前没有选中MS2，但是可以显示选中的XIC
             If ions.Length > 0 Then
+            ElseIf Not raw.FindMs1Scan(target_id) Is Nothing Then
+                Call SelectedNotarget(ions:=raw.FindMs1Scan(target_id).GetMs)
             Else
-                Call SelectedNotarget()
+                Call SelectedNotarget(Nothing)
                 Return
             End If
         Else
@@ -408,10 +411,9 @@ Public Class frmRawFeaturesList
         Call MyApplication.mzkitRawViewer.ShowXIC(ppm, plotTIC, AddressOf GetXICCollection, raw.GetXICMaxYAxis)
     End Sub
 
-    Private Sub SelectedNotarget()
-        Call frmUntargettedViewer.SelectXICIon(
-            raw:=CurrentOpenedFile,
-            ms1:=CurrentOpenedFile _
+    Private Sub SelectedNotarget(ions As IEnumerable(Of ms2))
+        If ions Is Nothing Then
+            ions = CurrentOpenedFile _
                 .GetLoadedMzpack _
                 .MS _
                 .Select(Function(s1)
@@ -419,7 +421,12 @@ Public Class frmRawFeaturesList
                                 .OrderByDescending(Function(m1) m1.intensity) _
                                 .Take(10)
                         End Function) _
-                .IteratesALL,
+                .IteratesALL
+        End If
+
+        Call frmUntargettedViewer.SelectXICIon(
+            raw:=CurrentOpenedFile,
+            ms1:=ions,
             da:=0.01,
             apply:=Sub(xic_list)
                        Dim all = xic_list.ToArray
