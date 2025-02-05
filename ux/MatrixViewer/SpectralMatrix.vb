@@ -135,10 +135,11 @@ Public Class SpectralMatrix : Inherits DataMatrix
             gridFill:=args.gridFill.ToHtmlColor,
             barStroke:=$"stroke: steelblue; stroke-width: {args.line_width}px; stroke-dash: solid;",
             dpi:=ppi,
-            titleCSS:="font-style: normal; font-size: 14; font-family: " & FontFace.MicrosoftYaHei & ";",
+            titleCSS:="font-style: normal; font-size: 12; font-family: " & FontFace.MicrosoftYaHei & ";",
             labelCSS:="font-style: normal; font-size: 6; font-family: " & FontFace.MicrosoftYaHei & ";",
             axisLabelCSS:="font-style: normal; font-size: 8; font-family: " & FontFace.MicrosoftYaHei & ";",
-            axisTicksCSS:="font-style: normal; font-size: 8; font-family: " & FontFace.SegoeUI & ";"
+            axisTicksCSS:="font-style: normal; font-size: 8; font-family: " & FontFace.SegoeUI & ";",
+            showAnnotationText:=DrawAnnotation
         )
     End Function
 

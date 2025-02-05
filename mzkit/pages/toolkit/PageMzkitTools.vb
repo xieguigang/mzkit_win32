@@ -349,7 +349,10 @@ Public Class PageMzkitTools
 
         Call MyApplication.RegisterPlot(
               Sub(args)
-                  PictureBox1.BackgroundImage = _matrix.SetName(args.title).Plot(args, PictureBox1.Size).AsGDIImage
+                  ' draw the annotation text?
+                  Dim anno = ribbonItems.CheckBoxShowMs2Fragment.BooleanValue
+
+                  PictureBox1.BackgroundImage = _matrix.SetName(args.title).SetAnnotation(anno).Plot(args, PictureBox1.Size).AsGDIImage
               End Sub,
           width:=2100,
           height:=1200,
