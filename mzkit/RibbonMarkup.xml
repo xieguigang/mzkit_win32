@@ -4619,7 +4619,7 @@
               <CheckBox CommandName="cmdCheckBoxShowMs2Fragment" />
               <CheckBox CommandName="cmdCheckBoxXICRelative" />
             </Group>
-            <Group CommandName="cmdGroupMatrixViewerOptions" SizeDefinition="OneButton">
+            <Group CommandName="cmdGroupMatrixViewerOptions">
               <ToggleButton CommandName="cmdButtonChkViewMSnProducts" />
             </Group>
             <Group CommandName="cmdTabReferenceLibrary" SizeDefinition="TwoButtons">
