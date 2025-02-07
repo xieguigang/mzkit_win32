@@ -56,6 +56,14 @@
         <String Id="14">About MZKit</String>
       </Command.LabelTitle>
     </Command>
+    <Command Name="cmdButtonAddLCMSComparision" Comment="Add Comparision" Id="327" LabelTitle="Add Comparision" LabelDescription="Add Comparision" TooltipTitle="Add Comparision" TooltipDescription="Add Comparision">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonAddNewPolygon" Comment="Add new polygon on the tissue map and start to create a new tissue morphology feature." Id="149">
       <Command.LabelTitle>
         <String Id="15">Add New Polygon</String>
@@ -131,6 +139,8 @@
       </Command.LargeImages>
     </Command>
     <Command Name="cmdAnalysisPanel" Id="268" LabelTitle="Analysis" LabelDescription="Analysis" TooltipTitle="Analysis" TooltipDescription="Analysis" />
+    <Command Name="cmdPanelAnalysisSingleCells" Id="331" LabelTitle="Analysis" />
+    <Command Name="cmdPanelLCMSAnalysis" Comment="Analysis" Id="320" LabelTitle="Analysis" LabelDescription="Analysis" TooltipTitle="Analysis" TooltipDescription="Analysis" />
     <Command Name="cmdTabAppStore" Id="216">
       <Command.LabelTitle>
         <String Id="35">App Store</String>
@@ -503,6 +513,14 @@
         <Image Id="147" MinDPI="144">Res/edit-cut.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonClickScatter" Comment="Click Through Scatter" Id="326" LabelTitle="Click Through Scatter" LabelDescription="This toggle will affects of the behaviours when click on the scatter. Single spectrum alignment result will be shown if set this checked." TooltipTitle="Click Through Scatter" TooltipDescription="Click Through Scatter">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-12-cluster-58.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-12-cluster-58.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonClosePolygonEditor" Id="146">
       <Command.LabelTitle>
         <String Id="148">Close</String>
@@ -696,6 +714,7 @@
         <String Id="204">Data</String>
       </Command.LabelTitle>
     </Command>
+    <Command Name="cmdGroupAnalysisSingleCells" Id="332" LabelTitle="Data Analysis" />
     <Command Name="cmdTabTargeted" Id="102">
       <Command.LabelTitle>
         <String Id="205">Data Analysis</String>
@@ -858,6 +877,14 @@
       <Command.LabelTitle>
         <String Id="248">Exact Mass Search</String>
       </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdButtonReportTableView" Comment="View of the biodeep annotation result in heatmap table view" Id="325" LabelTitle="Excel Table View" LabelDescription="View of the biodeep annotation result in heatmap table view" TooltipTitle="View of the biodeep annotation result in heatmap table view" TooltipDescription="View of the biodeep annotation result in heatmap table view">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonExit" Id="1004">
       <Command.LabelTitle>
@@ -1245,6 +1272,14 @@
         <String Id="358">File Operations</String>
       </Command.LabelTitle>
     </Command>
+    <Command Name="cmdButtonLCMSFilterIons" Comment="Only show the ion features that has metabolite annotation." Id="322" LabelTitle="Filter Annotated" LabelDescription="Only show the ion features that has metabolite annotation." TooltipTitle="Only show the ion features that has metabolite annotation." TooltipDescription="Only show the ion features that has metabolite annotation.">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-select-all-240.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-select-all-240.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdTabFormulaSearch" Id="1092">
       <Command.LabelTitle>
         <String Id="359">Formula Result</String>
@@ -1436,6 +1471,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="406" MinDPI="144">Res/view-dual.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMSIHistory" Comment="View ms-imaging render history list" Id="333" LabelTitle="Imaging History" LabelDescription="View ms-imaging render history list" TooltipTitle="History List" TooltipDescription="View ms-imaging render history list">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/document-open-recent.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/document-open-recent.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonImport10x_genomics" Id="222">
@@ -1820,6 +1863,14 @@
         <Image Id="510" MinDPI="192">Res/office_chart_area_256px_540041_easyicon.net.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdLinearTable" Comment="Open table page for create/edit linear table" Id="329" LabelTitle="Linear Table" LabelDescription="Open table page for create/edit linear table" TooltipTitle="Linear Table" TooltipDescription="Linear Table">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-graph-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-graph-96.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonLoadHEMap" Id="203">
       <Command.LabelTitle>
         <String Id="511">Load HEMap</String>
@@ -1930,6 +1981,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="538" MinDPI="192">Res/folder-pictures.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonLCMSMetabolite" Comment="Metabolite mass filter by a given m/z range" Id="321" LabelTitle="Mass Filter" LabelDescription="Metabolite mass filter by a given m/z range" TooltipTitle="Metabolite Mass Filter" TooltipDescription="Metabolite Mass Filter">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/document-print-preview.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/document-print-preview.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdTitleSpectrumToolkit" Id="232">
@@ -2223,20 +2282,6 @@
         <String Id="617">MSI Analysis</String>
       </Command.TooltipDescription>
     </Command>
-    <Command Name="cmdPanelMSIFilters" Id="230">
-      <Command.LabelTitle>
-        <String Id="618">MSI Filters</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="619">MSI Filters</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="620">MSI Filters</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="621">MSI Filters</String>
-      </Command.TooltipDescription>
-    </Command>
     <Command Name="cmdButtonMSIDebugger" Id="266" LabelTitle="MSI Service Debugger" LabelDescription="MSI Service Debugger" TooltipTitle="MSI Service Debugger" TooltipDescription="MSI Service Debugger">
       <Command.SmallImages>
         <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
@@ -2257,6 +2302,20 @@
       </Command.TooltipTitle>
       <Command.TooltipDescription>
         <String Id="625">MSI Snapshot</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdPanelMSIFilters" Comment="MS-imaging viewer tools" Id="230">
+      <Command.LabelTitle>
+        <String Id="618">MSI Viewer</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="619">MS-imaging viewer tools</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="620">MSI Filters</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="621">MSI Filters</String>
       </Command.TooltipDescription>
     </Command>
     <Command Name="cmdButtonMsImaging" Id="1167">
@@ -3208,6 +3267,14 @@
       </Command.LargeImages>
     </Command>
     <Command Name="cmdTableSampleData" Id="288" LabelTitle="Sample Data" LabelDescription="Sample Data" TooltipTitle="Sample Data" TooltipDescription="Sample Data" />
+    <Command Name="cmdButtonReportSampleInfo" Comment="Sample Information" Id="328" LabelTitle="Sample Information" LabelDescription="Sample Information" TooltipTitle="Sample Information" TooltipDescription="Sample Information">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Tools2.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Tools2.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonSave" Id="1003">
       <Command.LabelTitle>
         <String Id="871">Save</String>
@@ -4210,6 +4277,22 @@
         <Image Id="1139" MinDPI="192">Res/icons8-particle-96.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonViewSingleCellsEmbedding" Comment="View embedding table result of the single cells data." Id="330" LabelTitle="View Embedding" LabelDescription="View embedding table result of the single cells data." TooltipTitle="View Embedding" TooltipDescription="View embedding table result of the single cells data.">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Color palette.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Color palette.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonLCMSViewGroups" Comment="View groups comparison visualization" Id="323" LabelTitle="View Groups" LabelDescription="View groups comparison visualization" TooltipTitle="View groups comparison visualization" TooltipDescription="View groups comparison visualization">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-dashboard-layout-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-dashboard-layout-96.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonViewScatter3dInSinglePage" Id="292" LabelTitle="View In Single Page" LabelDescription="View In Single Page" TooltipTitle="View In Single Page" TooltipDescription="View In Single Page">
       <Command.SmallImages>
         <Image MinDPI="192">Res/view-fullscreen.png</Image>
@@ -4258,7 +4341,7 @@
         <Image Id="1151" MinDPI="192">Res/gparted.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonViewPeakTable" Id="308" LabelTitle="View Peaktable" LabelDescription="View Peaktable" TooltipTitle="View Peaktable" TooltipDescription="View Peaktable">
+    <Command Name="cmdButtonViewPeakTable" Comment="View the raw metabolite peaks table data" Id="308" LabelTitle="View Peaktable" LabelDescription="View the raw metabolite peaks table data" TooltipTitle="View Peaktable" TooltipDescription="View the raw metabolite peaks table data">
       <Command.SmallImages>
         <Image MinDPI="192">Res/excel-icon.png</Image>
       </Command.SmallImages>
@@ -4266,7 +4349,7 @@
         <Image MinDPI="192">Res/excel-icon.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonViewSampleInfo" Id="284" LabelTitle="View SampleInfo" LabelDescription="View SampleInfo" TooltipTitle="View SampleInfo" TooltipDescription="View SampleInfo">
+    <Command Name="cmdButtonViewSampleInfo" Comment="View sample group information table." Id="284" LabelTitle="View SampleInfo" LabelDescription="View sample group information table." TooltipTitle="View SampleInfo" TooltipDescription="View sample group information table.">
       <Command.SmallImages>
         <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.SmallImages>
@@ -4318,6 +4401,14 @@
       </Command.LabelTitle>
     </Command>
     <Command Name="cmdLCMSVisualPanel" Id="277" LabelTitle="Visual" LabelDescription="Visual" TooltipTitle="Visual" TooltipDescription="Visual" />
+    <Command Name="cmdButtonViewVolcano" Comment="Volcano plot between two data groups" Id="324" LabelTitle="Volcano Plot" LabelDescription="Volcano plot between two data groups" TooltipTitle="Volcano plot between two data groups" TooltipDescription="Volcano plot between two data groups">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-volcano-100.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-volcano-100.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonXIC" Comment="Selective Ion Chromatography Data Plot" Id="1145">
       <Command.LabelTitle>
         <String Id="1161">XIC</String>
@@ -4349,79 +4440,15 @@
         <String Id="1168">Ion mz mass tolerance error for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
-    <Command Name="cmdPanelLCMSAnalysis" Comment="Analysis" Id="320" LabelTitle="Analysis" LabelDescription="Analysis" TooltipTitle="Analysis" TooltipDescription="Analysis" />
-    <Command Name="cmdButtonLCMSMetabolite" Comment="Metabolite Mass Filter" Id="321" LabelTitle="Mass Filter" LabelDescription="Metabolite Mass Filter" TooltipTitle="Metabolite Mass Filter" TooltipDescription="Metabolite Mass Filter">
+    <Command Name="cmdButtonChkViewMSnProducts" Comment="Show MSn Products" Id="334" LabelTitle="Show MSn Products" LabelDescription="Show MSn Products" TooltipTitle="Show MSn Products" TooltipDescription="Show MSn Products">
       <Command.SmallImages>
-        <Image MinDPI="192">Res/document-print-preview.png</Image>
+        <Image MinDPI="192">Res/icons8-molecule-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/document-print-preview.png</Image>
+        <Image MinDPI="192">Res/icons8-molecule-96.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonLCMSFilterIons" Comment="Only show the ion features that has metabolite annotation." Id="322" LabelTitle="Filter Annotated" LabelDescription="Only show the ion features that has metabolite annotation." TooltipTitle="Only show the ion features that has metabolite annotation." TooltipDescription="Only show the ion features that has metabolite annotation.">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-select-all-240.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-select-all-240.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonLCMSViewGroups" Comment="View groups comparison visualization" Id="323" LabelTitle="View Groups" LabelDescription="View groups comparison visualization" TooltipTitle="View groups comparison visualization" TooltipDescription="View groups comparison visualization">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-dashboard-layout-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-dashboard-layout-96.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonViewVolcano" Comment="Volcano plot between two data groups" Id="324" LabelTitle="Volcano Plot" LabelDescription="Volcano plot between two data groups" TooltipTitle="Volcano plot between two data groups" TooltipDescription="Volcano plot between two data groups">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-volcano-100.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-volcano-100.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonReportTableView" Comment="View of the biodeep annotation result in heatmap table view" Id="325" LabelTitle="Excel Table View" LabelDescription="View of the biodeep annotation result in heatmap table view" TooltipTitle="View of the biodeep annotation result in heatmap table view" TooltipDescription="View of the biodeep annotation result in heatmap table view">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/excel-icon.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/excel-icon.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonClickScatter" Comment="Click Through Scatter" Id="326" LabelTitle="Click Through Scatter" LabelDescription="This toggle will affects of the behaviours when click on the scatter. Single spectrum alignment result will be shown if set this checked." TooltipTitle="Click Through Scatter" TooltipDescription="Click Through Scatter">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-12-cluster-58.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-12-cluster-58.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonAddLCMSComparision" Comment="Add Comparision" Id="327" LabelTitle="Add Comparision" LabelDescription="Add Comparision" TooltipTitle="Add Comparision" TooltipDescription="Add Comparision">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-scatter-plot-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-scatter-plot-96.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonReportSampleInfo" Comment="Sample Information" Id="328" LabelTitle="Sample Information" LabelDescription="Sample Information" TooltipTitle="Sample Information" TooltipDescription="Sample Information">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/Tools2.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/Tools2.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdLinearTable" Id="329" LabelTitle="Linear Table" LabelDescription="Linear Table" TooltipTitle="Linear Table" TooltipDescription="Linear Table">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-graph-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-graph-96.png</Image>
-      </Command.LargeImages>
-    </Command>
+    <Command Name="cmdGroupMatrixViewerOptions" Comment="Matrix Viewer Options" Id="335" LabelTitle="Matrix Viewer Options" LabelDescription="Matrix Viewer Options" TooltipTitle="Matrix Viewer Options" TooltipDescription="Matrix Viewer Options" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4592,6 +4619,9 @@
               <CheckBox CommandName="cmdCheckBoxShowMs2Fragment" />
               <CheckBox CommandName="cmdCheckBoxXICRelative" />
             </Group>
+            <Group CommandName="cmdGroupMatrixViewerOptions">
+              <ToggleButton CommandName="cmdButtonChkViewMSnProducts" />
+            </Group>
             <Group CommandName="cmdTabReferenceLibrary" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonSearchPubChem" />
               <Button CommandName="cmdOpenIonsLibrary" />
@@ -4697,8 +4727,9 @@
               <Button CommandName="cmdButtonRotateSlide" />
               <Button CommandName="cmdButtonAutoLocation" />
             </Group>
-            <Group CommandName="cmdPanelMSIFilters" SizeDefinition="OneButton">
+            <Group CommandName="cmdPanelMSIFilters" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonMSIFilterPipeline" />
+              <Button CommandName="cmdButtonMSIHistory" />
             </Group>
           </Tab>
           <Tab CommandName="cmdTabMSIAnalysis" ApplicationModes="0,1">
@@ -4866,6 +4897,9 @@
           <Tab CommandName="cmdPanelSingleCellsRawData">
             <Group CommandName="cmdGroupSingleCellsFile">
               <Button CommandName="cmdButtonOpenSingleCellsRawDataFile" />
+            </Group>
+            <Group CommandName="cmdGroupAnalysisSingleCells" SizeDefinition="OneButton">
+              <Button CommandName="cmdButtonViewSingleCellsEmbedding" />
             </Group>
           </Tab>
         </TabGroup>

@@ -63,6 +63,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 
@@ -205,7 +206,7 @@ Public NotInheritable Class RscriptProgressTask
         Return cachefile
     End Function
 
-    Public Shared Sub ExportRGBIonsPlot(mz As Double(), tolerance As String, saveAs As String,
+    Public Shared Sub ExportRGBIonsPlot(rgbConfigs As String, tolerance As String, saveAs As String,
                                         filters As String(),
                                         size As Size,
                                         dpi As Integer,
@@ -216,7 +217,7 @@ Public NotInheritable Class RscriptProgressTask
         Dim filterfile As String = TempFileSystem.GetAppSysTempFile(".txt", prefix:="msi_filters")
         Dim cli As String = $"""{Rscript}"" 
 --app {Workbench.MSIServiceAppPort} 
---mzlist ""{mz.JoinBy(",")}"" 
+--mzlist ""{rgbConfigs.Base64String}"" 
 --save ""{saveAs}"" 
 --mzdiff ""{tolerance}"" 
 --filters ""{filterfile}""
@@ -256,7 +257,7 @@ Public NotInheritable Class RscriptProgressTask
         End If
     End Sub
 
-    Public Shared Sub ExportSingleIonPlot(mz As Double,
+    Public Shared Sub ExportSingleIonPlot(mz As Double(),
                                           tolerance As String,
                                           saveAs As String,
                                           background As String,
@@ -272,7 +273,7 @@ Public NotInheritable Class RscriptProgressTask
         Dim filterfile As String = TempFileSystem.GetAppSysTempFile(".txt", prefix:="msi_filters")
         Dim cli As String = $"""{Rscript}"" 
 --app {Workbench.MSIServiceAppPort} 
---mzlist ""{mz}"" 
+--mzlist ""{mz.JoinBy(",")}"" 
 --save ""{saveAs}"" 
 --backcolor ""{background}"" 
 --colors ""{colorSet}"" 
@@ -703,9 +704,21 @@ Public NotInheritable Class RscriptProgressTask
     Public Shared Function PlotStats(data As String, type As String, title As String, Optional size As String = "1920,1200") As Image
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim imageOut As String = $"{tempfile.ParentPath}/Rplot.png"
+
+        Call data.SaveTo(tempfile)
+        Call PlotStats(tempfile, type, title, imageOut, size)
+
+        If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
+            Return Nothing
+        Else
+            Return imageOut.LoadImage
+        End If
+    End Function
+
+    Public Shared Sub PlotStats(datafile As String, type As String, title As String, imageOut As String, Optional size As String = "1920,1200")
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot2.R")
         Dim cli As String = $"""{Rscript}"" 
---data ""{tempfile}"" 
+--data ""{datafile}"" 
 --save ""{imageOut}"" 
 --title ""{title}"" 
 --plot ""{type}"" 
@@ -716,9 +729,8 @@ Public NotInheritable Class RscriptProgressTask
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
-        Call data.SaveTo(tempfile)
         Call Workbench.LogText(pipeline.CommandLine)
-        Call Workbench.LogText(data)
+        Call Workbench.LogText(datafile.ReadAllText)
         Call TaskProgress.RunAction(
             run:=Sub(p)
                      p.SetProgressMode()
@@ -730,15 +742,9 @@ Public NotInheritable Class RscriptProgressTask
                      Call pipeline.Run()
 
                  End Sub,
-            title:="Create MSI sample table...",
-            info:="Loading MSI raw data file into viewer workspace...")
-
-        If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
-            Return Nothing
-        Else
-            Return imageOut.LoadImage
-        End If
-    End Function
+            title:=$"Plot {type} expression visual, {title}",
+            info:=$"Make expression plot of {title}...")
+    End Sub
 
     Public Shared Function PlotScatter3DStats(data As String, title As String) As Image
         Dim imageOut As String = $"{data.ParentPath}/Rplot.png"

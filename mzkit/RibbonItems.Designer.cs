@@ -97,6 +97,8 @@ namespace RibbonLib.Controls
             public const uint cmdCheckBoxShowKEGGAnnotation = 153;
             public const uint cmdCheckBoxShowMs2Fragment = 4;
             public const uint cmdCheckBoxXICRelative = 96;
+            public const uint cmdGroupMatrixViewerOptions = 335;
+            public const uint cmdButtonChkViewMSnProducts = 334;
             public const uint cmdTabReferenceLibrary = 161;
             public const uint cmdButtonSearchPubChem = 227;
             public const uint cmdOpenIonsLibrary = 159;
@@ -167,6 +169,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonAutoLocation = 228;
             public const uint cmdPanelMSIFilters = 230;
             public const uint cmdButtonMSIFilterPipeline = 229;
+            public const uint cmdButtonMSIHistory = 333;
             public const uint cmdTabMSIAnalysis = 141;
             public const uint cmdTabMSISnapshot = 126;
             public const uint cmdButtonMSIBasePeakIon = 124;
@@ -276,6 +279,8 @@ namespace RibbonLib.Controls
             public const uint cmdPanelSingleCellsRawData = 303;
             public const uint cmdGroupSingleCellsFile = 304;
             public const uint cmdButtonOpenSingleCellsRawDataFile = 305;
+            public const uint cmdGroupAnalysisSingleCells = 332;
+            public const uint cmdButtonViewSingleCellsEmbedding = 330;
             public const uint cmdGroupReport = 311;
             public const uint cmdPanelReport = 312;
             public const uint cmdMenuReport = 313;
@@ -426,6 +431,14 @@ namespace RibbonLib.Controls
         public RibbonCheckBox CheckBoxShowKEGGAnnotation { get; private set; }
         public RibbonCheckBox CheckBoxShowMs2Fragment { get; private set; }
         public RibbonCheckBox CheckBoxXICRelative { get; private set; }
+        /// <summary>
+        /// Matrix Viewer Options
+        /// </summary>
+        public RibbonGroup GroupMatrixViewerOptions { get; private set; }
+        /// <summary>
+        /// Show MSn Products
+        /// </summary>
+        public RibbonToggleButton ButtonChkViewMSnProducts { get; private set; }
         public RibbonGroup TabReferenceLibrary { get; private set; }
         public RibbonButton ButtonSearchPubChem { get; private set; }
         public RibbonButton OpenIonsLibrary { get; private set; }
@@ -500,8 +513,15 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonUpsideDown { get; private set; }
         public RibbonButton ButtonRotateSlide { get; private set; }
         public RibbonButton ButtonAutoLocation { get; private set; }
+        /// <summary>
+        /// MS-imaging viewer tools
+        /// </summary>
         public RibbonGroup PanelMSIFilters { get; private set; }
         public RibbonButton ButtonMSIFilterPipeline { get; private set; }
+        /// <summary>
+        /// View ms-imaging render history list
+        /// </summary>
+        public RibbonButton ButtonMSIHistory { get; private set; }
         public RibbonTab TabMSIAnalysis { get; private set; }
         public RibbonGroup TabMSISnapshot { get; private set; }
         public RibbonButton ButtonMSIBasePeakIon { get; private set; }
@@ -597,7 +617,13 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonButton ButtonLCMSViewGroups { get; private set; }
         public RibbonGroup TableSampleData { get; private set; }
+        /// <summary>
+        /// View sample group information table.
+        /// </summary>
         public RibbonButton ButtonViewSampleInfo { get; private set; }
+        /// <summary>
+        /// View the raw metabolite peaks table data
+        /// </summary>
         public RibbonButton ButtonViewPeakTable { get; private set; }
         public RibbonSplitButton ButtonImportsLCMSAnnotations { get; private set; }
         public RibbonButton ButtonImportsLCAnnotation2 { get; private set; }
@@ -608,7 +634,7 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonGroup PanelLCMSAnalysis { get; private set; }
         /// <summary>
-        /// Metabolite Mass Filter
+        /// Metabolite mass filter by a given m/z range
         /// </summary>
         public RibbonButton ButtonLCMSMetabolite { get; private set; }
         /// <summary>
@@ -632,6 +658,11 @@ namespace RibbonLib.Controls
         public RibbonTab PanelSingleCellsRawData { get; private set; }
         public RibbonGroup GroupSingleCellsFile { get; private set; }
         public RibbonButton ButtonOpenSingleCellsRawDataFile { get; private set; }
+        public RibbonGroup GroupAnalysisSingleCells { get; private set; }
+        /// <summary>
+        /// View embedding table result of the single cells data.
+        /// </summary>
+        public RibbonButton ButtonViewSingleCellsEmbedding { get; private set; }
         /// <summary>
         /// Report
         /// </summary>
@@ -801,6 +832,8 @@ namespace RibbonLib.Controls
             CheckBoxShowKEGGAnnotation = new RibbonCheckBox(ribbon, Cmd.cmdCheckBoxShowKEGGAnnotation);
             CheckBoxShowMs2Fragment = new RibbonCheckBox(ribbon, Cmd.cmdCheckBoxShowMs2Fragment);
             CheckBoxXICRelative = new RibbonCheckBox(ribbon, Cmd.cmdCheckBoxXICRelative);
+            GroupMatrixViewerOptions = new RibbonGroup(ribbon, Cmd.cmdGroupMatrixViewerOptions);
+            ButtonChkViewMSnProducts = new RibbonToggleButton(ribbon, Cmd.cmdButtonChkViewMSnProducts);
             TabReferenceLibrary = new RibbonGroup(ribbon, Cmd.cmdTabReferenceLibrary);
             ButtonSearchPubChem = new RibbonButton(ribbon, Cmd.cmdButtonSearchPubChem);
             OpenIonsLibrary = new RibbonButton(ribbon, Cmd.cmdOpenIonsLibrary);
@@ -871,6 +904,7 @@ namespace RibbonLib.Controls
             ButtonAutoLocation = new RibbonButton(ribbon, Cmd.cmdButtonAutoLocation);
             PanelMSIFilters = new RibbonGroup(ribbon, Cmd.cmdPanelMSIFilters);
             ButtonMSIFilterPipeline = new RibbonButton(ribbon, Cmd.cmdButtonMSIFilterPipeline);
+            ButtonMSIHistory = new RibbonButton(ribbon, Cmd.cmdButtonMSIHistory);
             TabMSIAnalysis = new RibbonTab(ribbon, Cmd.cmdTabMSIAnalysis);
             TabMSISnapshot = new RibbonGroup(ribbon, Cmd.cmdTabMSISnapshot);
             ButtonMSIBasePeakIon = new RibbonButton(ribbon, Cmd.cmdButtonMSIBasePeakIon);
@@ -980,6 +1014,8 @@ namespace RibbonLib.Controls
             PanelSingleCellsRawData = new RibbonTab(ribbon, Cmd.cmdPanelSingleCellsRawData);
             GroupSingleCellsFile = new RibbonGroup(ribbon, Cmd.cmdGroupSingleCellsFile);
             ButtonOpenSingleCellsRawDataFile = new RibbonButton(ribbon, Cmd.cmdButtonOpenSingleCellsRawDataFile);
+            GroupAnalysisSingleCells = new RibbonGroup(ribbon, Cmd.cmdGroupAnalysisSingleCells);
+            ButtonViewSingleCellsEmbedding = new RibbonButton(ribbon, Cmd.cmdButtonViewSingleCellsEmbedding);
             GroupReport = new RibbonTabGroup(ribbon, Cmd.cmdGroupReport);
             PanelReport = new RibbonTab(ribbon, Cmd.cmdPanelReport);
             MenuReport = new RibbonGroup(ribbon, Cmd.cmdMenuReport);

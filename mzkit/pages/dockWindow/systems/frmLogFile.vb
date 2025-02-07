@@ -2,6 +2,7 @@
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
 Imports Microsoft.VisualBasic.Text
+Imports Mzkit_win32.BasicMDIForm
 
 Public Class frmLogFile
 
@@ -20,6 +21,8 @@ Public Class frmLogFile
         For Each file As String In logfiles
             Call ComboBox1.Items.Add(file.BaseName)
         Next
+
+        Call ApplyVsTheme(ContextMenuStrip1)
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged() Handles ComboBox1.SelectedIndexChanged
@@ -43,7 +46,7 @@ Public Class frmLogFile
         End If
     End Sub
 
-    Private Shared Function TryParse(log As String) As (String, String)
+    Private Shared Function TryParse(log As String) As (cd As String, cmd As String)
         Dim lines As String() = Strings.Trim(log) _
             .LineTokens _
             .Where(Function(si) Not si.StartsWith("//")) _
@@ -91,5 +94,26 @@ Public Class frmLogFile
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Call ComboBox1_SelectedIndexChanged()
+    End Sub
+
+    Private Sub CopyCommandLineArgumentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyCommandLineArgumentsToolStripMenuItem.Click
+        If DataGridView1.Rows.Count = 0 Then
+            Return
+        End If
+        If DataGridView1.SelectedRows.Count = 0 Then
+            Return
+        End If
+
+        Dim row = DataGridView1.SelectedRows(0)
+        Dim cli As LogEntry = row.Tag
+
+        If cli.message.StringEmpty(, True) Then
+            Call Workbench.Warning("no commandline argument to copy!")
+        Else
+            Dim run = TryParse(cli.message)
+
+            Clipboard.Clear()
+            Clipboard.SetText(run.cmd)
+        End If
     End Sub
 End Class

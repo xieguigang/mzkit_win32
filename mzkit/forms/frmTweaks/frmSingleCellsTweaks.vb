@@ -13,4 +13,10 @@ Public Class frmSingleCellsTweaks
     Private Sub PropertyGrid1_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles PropertyGrid1.PropertyValueChanged
         WindowModules.singleCellViewer.DoRender()
     End Sub
+
+    Private Sub frmSingleCellsTweaks_Load(sender As Object, e As EventArgs) Handles Me.Load
+        TabText = "Single Cells Viewer"
+
+        Call ApplyVsTheme(ToolStrip1)
+    End Sub
 End Class

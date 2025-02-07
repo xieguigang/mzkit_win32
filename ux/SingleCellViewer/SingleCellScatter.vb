@@ -59,6 +59,7 @@
 #End Region
 
 Imports System.Drawing.Drawing2D
+Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
@@ -102,6 +103,11 @@ Public Class SingleCellScatter
     ''' does the data has been initialized?
     ''' </summary>
     Dim hasData As Boolean = False
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Function GetEmbedding() As IEnumerable(Of UMAPPoint)
+        Return rawDataList.SafeQuery
+    End Function
 
     Public Sub LoadCells(umap As IEnumerable(Of UMAPPoint))
         rawDataList = umap.ToArray

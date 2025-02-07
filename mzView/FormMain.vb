@@ -307,4 +307,27 @@ Public Class FormMain
             MessageBox.Show(data.ToString, "File Info", buttons:=MessageBoxButtons.OK, icon:=MessageBoxIcon.Information)
         End If
     End Sub
+
+    Private Sub Win7StyleTreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles Win7StyleTreeView1.AfterSelect
+        Dim node = Win7StyleTreeView1.SelectedNode
+
+        If node Is Nothing Then
+            Return
+        End If
+
+        Dim data As StreamObject = node.Tag
+
+        If data Is Nothing Then
+            Return
+        End If
+
+        Try
+            Dim attrs As LazyAttribute = data.attributes
+            Dim obj As Object = attrs.BuildDynamicTypeObject
+
+            Call Workbench.ShowProperties(obj)
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

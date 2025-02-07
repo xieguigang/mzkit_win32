@@ -109,12 +109,13 @@ Partial Class frmFileExplorer
         Me.XICPeaksToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContourPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ScatterViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChromatographyViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ConvertToMzXMLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeconvolutionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoleculeNetworkingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ScatterViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ChromatographyViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportAsMzXMLFilesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ctxMenuFiles.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.ctxMenuScript.SuspendLayout()
@@ -129,9 +130,9 @@ Partial Class frmFileExplorer
         '
         'ctxMenuFiles
         '
-        Me.ctxMenuFiles.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowSummaryToolStripMenuItem, Me.ChromatogramOverlapToolStripMenuItem, Me.ImportsToolStripMenuItem, Me.ToolStripMenuItem1, Me.DeleteToolStripMenuItem})
+        Me.ctxMenuFiles.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowSummaryToolStripMenuItem, Me.ChromatogramOverlapToolStripMenuItem, Me.ImportsToolStripMenuItem, Me.ExportAsMzXMLFilesToolStripMenuItem, Me.ToolStripMenuItem1, Me.DeleteToolStripMenuItem})
         Me.ctxMenuFiles.Name = "ContextMenuStrip1"
-        Me.ctxMenuFiles.Size = New System.Drawing.Size(201, 98)
+        Me.ctxMenuFiles.Size = New System.Drawing.Size(201, 142)
         '
         'ShowSummaryToolStripMenuItem
         '
@@ -274,7 +275,7 @@ Partial Class frmFileExplorer
         '
         Me.ctxMenuRawFile.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewSnapshotToolStripMenuItem, Me.OpenViewerToolStripMenuItem, Me.ToolStripMenuItem3, Me.ConvertToMzXMLToolStripMenuItem, Me.DeconvolutionToolStripMenuItem, Me.MoleculeNetworkingToolStripMenuItem})
         Me.ctxMenuRawFile.Name = "ctxMenuRawFile"
-        Me.ctxMenuRawFile.Size = New System.Drawing.Size(189, 142)
+        Me.ctxMenuRawFile.Size = New System.Drawing.Size(189, 120)
         '
         'ViewSnapshotToolStripMenuItem
         '
@@ -287,19 +288,19 @@ Partial Class frmFileExplorer
         'RawScatterToolStripMenuItem
         '
         Me.RawScatterToolStripMenuItem.Name = "RawScatterToolStripMenuItem"
-        Me.RawScatterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.RawScatterToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.RawScatterToolStripMenuItem.Text = "Raw Scatter"
         '
         'XICPeaksToolStripMenuItem
         '
         Me.XICPeaksToolStripMenuItem.Name = "XICPeaksToolStripMenuItem"
-        Me.XICPeaksToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.XICPeaksToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.XICPeaksToolStripMenuItem.Text = "XIC Peaks"
         '
         'ContourPlotToolStripMenuItem
         '
         Me.ContourPlotToolStripMenuItem.Name = "ContourPlotToolStripMenuItem"
-        Me.ContourPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ContourPlotToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.ContourPlotToolStripMenuItem.Text = "Contour Plot"
         '
         'OpenViewerToolStripMenuItem
@@ -309,6 +310,18 @@ Partial Class frmFileExplorer
         Me.OpenViewerToolStripMenuItem.Name = "OpenViewerToolStripMenuItem"
         Me.OpenViewerToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
         Me.OpenViewerToolStripMenuItem.Text = "Open Viewer"
+        '
+        'ScatterViewerToolStripMenuItem
+        '
+        Me.ScatterViewerToolStripMenuItem.Name = "ScatterViewerToolStripMenuItem"
+        Me.ScatterViewerToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.ScatterViewerToolStripMenuItem.Text = "Scatter Viewer"
+        '
+        'ChromatographyViewerToolStripMenuItem
+        '
+        Me.ChromatographyViewerToolStripMenuItem.Name = "ChromatographyViewerToolStripMenuItem"
+        Me.ChromatographyViewerToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.ChromatographyViewerToolStripMenuItem.Text = "Chromatography Viewer"
         '
         'ToolStripMenuItem3
         '
@@ -333,17 +346,11 @@ Partial Class frmFileExplorer
         Me.MoleculeNetworkingToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
         Me.MoleculeNetworkingToolStripMenuItem.Text = "Molecule Networking"
         '
-        'ScatterViewerToolStripMenuItem
+        'ExportAsMzXMLFilesToolStripMenuItem
         '
-        Me.ScatterViewerToolStripMenuItem.Name = "ScatterViewerToolStripMenuItem"
-        Me.ScatterViewerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ScatterViewerToolStripMenuItem.Text = "Scatter Viewer"
-        '
-        'ChromatographyViewerToolStripMenuItem
-        '
-        Me.ChromatographyViewerToolStripMenuItem.Name = "ChromatographyViewerToolStripMenuItem"
-        Me.ChromatographyViewerToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
-        Me.ChromatographyViewerToolStripMenuItem.Text = "Chromatography Viewer"
+        Me.ExportAsMzXMLFilesToolStripMenuItem.Name = "ExportAsMzXMLFilesToolStripMenuItem"
+        Me.ExportAsMzXMLFilesToolStripMenuItem.Size = New System.Drawing.Size(200, 22)
+        Me.ExportAsMzXMLFilesToolStripMenuItem.Text = "Export As mzXML Files"
         '
         'frmFileExplorer
         '
@@ -396,4 +403,5 @@ Partial Class frmFileExplorer
     Friend WithEvents MoleculeNetworkingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ScatterViewerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ChromatographyViewerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExportAsMzXMLFilesToolStripMenuItem As ToolStripMenuItem
 End Class

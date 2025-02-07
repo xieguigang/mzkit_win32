@@ -92,7 +92,6 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.Collection
-Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.csv
@@ -166,9 +165,12 @@ Public Class frmMsImagingViewer
     Dim guid As String
     Dim _filePath As String
 
+    ''' <summary>
+    ''' used for render the background outline
+    ''' </summary>
     Friend TIC As PixelScanIntensity()
 
-    Friend MSIservice As ServiceHub.MSIDataService
+    Friend MSIservice As MSIDataService
     Friend params As MsImageProperty
     Friend HEMap As HEMapTools
     Friend DrawHeMapRegion As Boolean = False
@@ -213,7 +215,7 @@ Public Class frmMsImagingViewer
     ''' A unify method for start the ms-imaging data backend
     ''' </summary>
     Public Sub StartMSIService()
-        ServiceHub.MSIDataService.StartMSIService(hostReference:=MSIservice)
+        MSIDataService.StartMSIService(hostReference:=MSIservice)
 
         If blender Is Nothing Then
             Call HookBlender()
@@ -274,6 +276,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonAutoLocation.ExecuteEvent, Sub() Call autoLocation()
 
         AddHandler RibbonEvents.ribbonItems.ButtonMSIFilterPipeline.ExecuteEvent, Sub() Call configFilter()
+        AddHandler RibbonEvents.ribbonItems.ButtonMSIHistory.ExecuteEvent, Sub() Call OpenHistoryWindow()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -300,6 +303,13 @@ Public Class frmMsImagingViewer
         sampleRegions.viewer = Me
 
         PixelSelector1.MSICanvas.EditorConfigs = InputConfigTissueMap.GetPolygonEditorConfig
+    End Sub
+
+    Private Sub OpenHistoryWindow()
+        WindowModules.msImageParameters.renderList.Show()
+        WindowModules.msImageParameters.renderList.Visible = True
+        WindowModules.msImageParameters.renderList.WindowState = FormWindowState.Normal
+        WindowModules.msImageParameters.renderList.Activate()
     End Sub
 
     Public Shared Function loadFilters() As RasterPipeline
@@ -330,16 +340,18 @@ Public Class frmMsImagingViewer
             settings = Globals.Settings.msi_filters
         End If
 
-        Dim opts As Scaler() = settings.filters.Select(Function(si) Scaler.Parse(si)).ToArray
+        Dim opts As Scaler() = settings.filters _
+            .Select(Function(si) Scaler.Parse(si)) _
+            .ToArray
 
-        config.ConfigPipeline(opts.ToArray, settings.flags)
+        Call config.ConfigPipeline(opts.ToArray, settings.flags)
 
-        If loadedPixels.IsNullOrEmpty Then
+        If EmptyImagingData() Then
             If Not TIC.IsNullOrEmpty Then
                 config.ConfigIntensity(TIC.Select(Function(i) i.totalIon).ToArray)
             End If
         Else
-            config.ConfigIntensity(loadedPixels.Select(Function(i) i.intensity).ToArray)
+            Call config.ConfigIntensity(loadedPixels.IntensityData.ToArray)
         End If
 
         Call InputDialog.Input(
@@ -521,18 +533,19 @@ Public Class frmMsImagingViewer
         Call Workbench.SuccessMessage($"Rotate the MS-imaging sample slide at angle {angle}.")
     End Sub
 
+    Private Function EmptyImagingData() As Boolean
+        Return loadedPixels Is Nothing OrElse Not loadedPixels.HasData
+    End Function
+
     Private Sub ViewMzBins()
-        If loadedPixels.IsNullOrEmpty Then
+        If EmptyImagingData() Then
             Call Workbench.Warning("No pixel layer data was loaded, please load a target ion at first!")
             Return
         End If
 
         Dim canvas As New ShowMzBins
 
-        Call ProgressSpinner.DoLoading(
-            Sub()
-                Call canvas.SetData(loadedPixels)
-            End Sub)
+        Call ProgressSpinner.DoLoading(Sub() Call canvas.SetData(loadedPixels.data))
         Call InputDialog.Input(Sub(cfg)
                                    ' do nothing
                                End Sub, config:=canvas)
@@ -991,7 +1004,7 @@ Public Class frmMsImagingViewer
                 Using savefile As New SaveFileDialog With {.Filter = file.Filter}
                     If savefile.ShowDialog = DialogResult.OK Then
                         Dim input As New InputMSISlideLayout With {
-                            .layoutData = files.Select(AddressOf BaseName).JoinBy(","),
+                            .layoutData = files.Select(Function(path) path.BaseName).JoinBy(","),
                             .useFileNameAsSourceTag = True
                         }
 
@@ -2186,6 +2199,7 @@ Public Class frmMsImagingViewer
             sampleRegions.Clear()
         End If
 
+        WindowModules.msImageParameters.renderList.Clear(info.GetMSIDimension)
         WindowModules.msImageParameters.viewer = Me
         WindowModules.msImageParameters.PropertyGrid1.SelectedObject = params
         WindowModules.msImageParameters.ClearIons()
@@ -2443,18 +2457,24 @@ Public Class frmMsImagingViewer
         End If
 
         mzdiff = params.GetTolerance
-        targetMz = selectedMz.Select(Function(a) a.mz).ToArray
-        rgb_configs = New RGBConfigs With {
+
+        Dim targetMz = selectedMz.Select(Function(a) a.mz).ToArray
+        Dim rgb_configs = New RGBConfigs With {
             .R = New MzAnnotation(r.title, r.mz),
             .G = New MzAnnotation(g.title, g.mz),
             .B = New MzAnnotation(b.title, b.mz)
         }
 
+        loadedPixels = New MSIRenderHistory With {.rgb = rgb_configs}
+        WindowModules.msImageParameters.renderList.Add(loadedPixels, mzdiff)
+
         Call ProgressSpinner.DoLoading(Sub() Call createRGB(MSIservice.LoadPixels(targetMz, mzdiff), r.mz, g.mz, b.mz))
         Call PixelSelector1.ShowMessage($"Render in RGB Channel Composition Mode: {selectedMz.Select(Function(d) d.title).JoinBy(", ")}")
     End Sub
 
-    Private Sub createRGB(pixels As PixelData(), r#, g#, b#)
+    Public Sub createRGB(pixels As PixelData(), r#, g#, b#)
+        Call Invoke(Sub() loadedPixels.data = pixels)
+
         If pixels.IsNullOrEmpty Then
             Call Workbench.Warning($"No ion hits!")
         Else
@@ -2475,22 +2495,20 @@ Public Class frmMsImagingViewer
         Dim blender As Type = GetType(RGBIonMSIBlender) ' (R, G, B, TIC, params, loadFilters)
         Dim mzdiff = params.GetTolerance.GetScript
         Dim configs As New Dictionary(Of String, String) From {
-            {"rgb", rgb_configs.GetJSON},
+            {"rgb", loadedPixels.rgb.GetJSON},
             {"mzdiff", mzdiff}
         }
 
         Me.params.enableFilter = False
         Me.blender.SetHEMap(GetHEMap())
         Me.blender.OpenSession(blender, params.GetMSIDimension, Nothing, params, configs.GetJson)
-        Me.loadedPixels = R _
-            .JoinIterates(G) _
-            .JoinIterates(B) _
-            .ToArray
 
         Return Sub()
                    Call MyApplication.RegisterPlot(
                        Sub(args)
                            Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
+
+                           loadedPixels.thumbnail = image
 
                            PixelSelector1.SetMsImagingOutput(image, params.GetMSIDimension, params.background, Nothing, Nothing, Nothing)
                            PixelSelector1.SetColorMapVisible(visible:=True)
@@ -2499,7 +2517,9 @@ Public Class frmMsImagingViewer
     End Function
 
     Friend Sub renderByName(name As String, titleName As String)
-        title = titleName
+        If Not loadedPixels Is Nothing Then
+            loadedPixels.Text = titleName
+        End If
 
         Call Workbench.StatusMessage($"Render layer of annotation: {titleName}")
         Call ProgressSpinner.DoLoading(
@@ -2511,16 +2531,22 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub renderEmpty()
-        rendering = New Action(Sub()
-                               End Sub)
+        Dim dims As New Size(params.scan_x, params.scan_y)
+        Dim empty As New Bitmap(params.scan_x, params.scan_y)
+
         PixelSelector1.SetMsImagingOutput(
-            New Bitmap(params.scan_x, params.scan_y),
-            New Size(params.scan_x, params.scan_y),
+            empty, dims,
             params.background,
             params.colors,
             {0, 1},
             1
         )
+        rendering = Sub()
+                    End Sub
+
+        If Not EmptyImagingData() Then
+            loadedPixels.thumbnail = empty
+        End If
 
         Call Workbench.Warning("no pixel data...")
     End Sub
@@ -2541,6 +2567,11 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
+    Public Sub SetIonsHistory(card As MSIRenderHistory)
+        loadedPixels = card
+        RenderPixelsLayer(card.data)
+    End Sub
+
     Friend Sub renderByMzList(mz As Double(), titleName As String)
         Dim selectedMz As New List(Of Double)
         Dim dotSize As New Size(3, 3)
@@ -2556,14 +2587,23 @@ Public Class frmMsImagingViewer
         End If
 
         mzdiff = params.GetTolerance
+        loadedPixels = New MSIRenderHistory With {
+            .Text = titleName,
+            .ions = mz _
+                .Select(Function(mzi) New MzAnnotation(mzi)) _
+                .ToArray
+        }
 
         Call SetTitle(selectedMz, titleName)
         Call ProgressSpinner.DoLoading(
             Sub()
                 Dim pixels = MSIservice.LoadPixels(selectedMz, mzdiff)
+
+                Call Me.Invoke(Sub() loadedPixels.data = pixels)
                 Call RenderPixelsLayer(pixels)
             End Sub)
 
+        Call WindowModules.msImageParameters.renderList.Add(loadedPixels, mzdiff)
         Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) std.Round(d, 4)).JoinBy(", ")}")
     End Sub
 
@@ -2571,31 +2611,34 @@ Public Class frmMsImagingViewer
     ''' the m/z tagged pixel layer data, this data field will be updated after
     ''' the specific m/z data has been fetched from the MSI data service
     ''' </summary>
-    Dim loadedPixels As PixelData()
-    Dim rgb_configs As RGBConfigs
-    Dim targetMz As Double()
-    Dim title As String
+    Dim loadedPixels As MSIRenderHistory
     Dim mzdiff As Tolerance
-
-    ''' <summary>
-    ''' [mz:F3 => name]
-    ''' </summary>
     Dim titles As New Dictionary(Of String, String)
+    Dim title As String
 
     Public Function GetTitle(mz As Double) As String
         Dim key As String = mz.ToString("F3")
 
-        If titles.ContainsKey(key) AndAlso Not titles(key).StringEmpty Then
+        If EmptyImagingData() Then
+            If titles.ContainsKey(key) Then
+                Return titles(key)
+            End If
+
+            Return $"M/Z: {mz.ToString("F3")}"
+        ElseIf titles.ContainsKey(key) Then
             Return titles(key)
         Else
-            Return $"M/Z: {key}"
+            Return loadedPixels.GetTitle(mz)
         End If
     End Function
 
     Public Sub SetTitle(mz As IEnumerable(Of Double), title As String)
+        If Not loadedPixels Is Nothing Then
+            loadedPixels.Text = title
+        End If
+
         Me.title = title
-        Me.targetMz = mz.ToArray
-        Me.titles(targetMz(Scan0).ToString("F3")) = title
+        Me.titles(mz.First.ToString("F3")) = title
     End Sub
 
     Public Sub renderByPixelsData(pixels As PixelData(), MsiDim As Size, rgb As RGBConfigs)
@@ -2619,12 +2662,22 @@ Public Class frmMsImagingViewer
             rendering = createRenderTask(pixels, params.GetMSIDimension)
             rendering()
         Else
-            rgb_configs = rgb
+            loadedPixels = New MSIRenderHistory With {.rgb = rgb}
             mzdiff = params.GetTolerance
+            WindowModules.msImageParameters.renderList.Add(loadedPixels, mzdiff)
 
             createRGB(pixels, rgb.R, rgb.G, rgb.B)
         End If
 
+        Call Workbench.StatusMessage("Rendering Complete!")
+    End Sub
+
+    Public Sub SetRgbHistory(card As MSIRenderHistory)
+        Dim rgb = card.rgb
+
+        loadedPixels = card
+
+        Call createRGB(card.data, rgb.R, rgb.G, rgb.B)
         Call Workbench.StatusMessage("Rendering Complete!")
     End Sub
 
@@ -2648,6 +2701,10 @@ Public Class frmMsImagingViewer
                     Sub(args)
                         Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
+                        If Not EmptyImagingData() Then
+                            loadedPixels.thumbnail = image
+                        End If
+
                         PixelSelector1.SetMsImagingOutput(image, dimensions, params.background, params.colors, {0, 1}, params.mapLevels)
                         PixelSelector1.SetColorMapVisible(visible:=True)
                     End Sub)
@@ -2667,8 +2724,7 @@ Public Class frmMsImagingViewer
         Dim range As New DoubleRange(pixels.Select(Function(p) p.intensity))
 
         Me.params.enableFilter = True
-        Me.rgb_configs = Nothing
-        Me.loadedPixels = pixels
+        Me.loadedPixels.data = pixels
         Me.blender.SetHEMap(GetHEMap())
         Me.blender.OpenSession(blender, dimensions, Nothing, params, Nothing)
         Me.PixelSelector1.MSICanvas.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Where(Function(str) Not str Is Nothing).Distinct)
@@ -2682,6 +2738,10 @@ Public Class frmMsImagingViewer
         Dim render As Action =
             Sub()
                 Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
+
+                If Not EmptyImagingData() Then
+                    loadedPixels.thumbnail = image
+                End If
 
                 PixelSelector1.SetMsImagingOutput(image, dimensions, params.background, params.colors, {range.Min, range.Max}, params.mapLevels)
                 PixelSelector1.SetColorMapVisible(visible:=True)
@@ -2765,16 +2825,16 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub ExportMatrixToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMatrixToolStripMenuItem.Click
-        Dim loadedPixels As PixelData() = Me.loadedPixels
-
-        If loadedPixels.IsNullOrEmpty AndAlso TIC.IsNullOrEmpty Then
+        If EmptyImagingData() AndAlso TIC.IsNullOrEmpty Then
             Call Workbench.Warning("No loaded pixels data...")
             Return
         End If
 
         Dim dimension As New Size(params.scan_x, params.scan_y)
+        Dim loadedPixels As PixelData()
+        Dim rgb_configs As RGBConfigs = Nothing
 
-        If loadedPixels.IsNullOrEmpty Then
+        If EmptyImagingData() Then
             If MessageBox.Show("No ion layer data could be exports, export the summary heatmap layer of your ms-imaging data?",
                                "Export Heatmap Matrix",
                                MessageBoxButtons.OKCancel,
@@ -2800,12 +2860,19 @@ Public Class frmMsImagingViewer
             Else
                 Return
             End If
+        Else
+            loadedPixels = Me.loadedPixels.data
+            rgb_configs = Me.loadedPixels.rgb
         End If
 
+        Call SaveMatrixCDF(loadedPixels, dimension, rgb_configs, params.GetTolerance)
+    End Sub
+
+    Public Shared Sub SaveMatrixCDF(loadedPixels As PixelData(), dimension As Size, rgb_configs As RGBConfigs, mzdiff As Tolerance)
         Using file As New SaveFileDialog With {.Filter = "NetCDF(*.cdf)|*.cdf", .Title = "Save MS-Imaging Matrix"}
             If file.ShowDialog = DialogResult.OK Then
                 Using filesave As FileStream = file.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
-                    Call loadedPixels.CreateCDF(filesave, dimension, params.GetTolerance, rgb:=rgb_configs)
+                    Call loadedPixels.CreateCDF(filesave, dimension, mzdiff, rgb:=rgb_configs)
                 End Using
             End If
         End Using
@@ -2951,23 +3018,12 @@ Public Class frmMsImagingViewer
     Private Sub ExportPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportPlotToolStripMenuItem.Click
         If Not checkService() Then
             Return
-        ElseIf targetMz.IsNullOrEmpty Then
+        ElseIf EmptyImagingData() Then
             Call Workbench.Warning("No ion was selected to export MS-Imaging plot!")
             Return
         End If
 
-        Dim filename As String
-
-        If targetMz.Length > 1 Then
-            filename = targetMz.Select(Function(d) d.ToString("F3")).JoinBy("+")
-        Else
-            If title.StringEmpty Then
-                filename = targetMz(0).ToString("F4")
-            Else
-                filename = title.NormalizePathString(False)
-            End If
-        End If
-
+        Dim filename As String = loadedPixels.Text.NormalizePathString(False)
         Dim save As New SetMSIPlotParameters
         Dim msi_filters As String() = loadFilters.Select(Function(f) f.ToScript).ToArray
 
@@ -2979,18 +3035,18 @@ Public Class frmMsImagingViewer
         Call save.SetFileName(filename)
         Call InputDialog.Input(
             setConfig:=Sub(cfg)
-                           If targetMz.Length > 1 Then
+                           If loadedPixels.rgb IsNot Nothing Then
                                Call RscriptProgressTask.ExportRGBIonsPlot(
-                                   targetMz, mzdiff.GetScript, saveAs:=save.FileName,
+                                   loadedPixels.rgb.GetJSON, mzdiff.GetScript, saveAs:=save.FileName,
                                    filters:=msi_filters,
                                    ticOverlaps:=params.showTotalIonOverlap,
                                    size:=cfg.GetPlotSize, dpi:=cfg.GetPlotDpi, padding:=cfg.GetPlotPadding)
                            Else
                                Call RscriptProgressTask.ExportSingleIonPlot(
-                                   mz:=targetMz(0),
+                                   mz:=loadedPixels.TargetMz,
                                    tolerance:=mzdiff.GetScript,
                                    saveAs:=save.FileName,
-                                   title:=title,
+                                   title:=loadedPixels.Text,
                                    filters:=msi_filters,
                                    background:=params.background.ToHtmlColor,
                                    colorSet:=params.colors.Description,

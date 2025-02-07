@@ -51,4 +51,17 @@ Module ggplotVisual
              title:=title.Replace(""""c, "'"),
              size:=size.JoinBy(","))
     End Function
+
+    Public Sub ggplot(pack As String, title As String, size As Integer(), savefile As String, Optional type As String = "violin|box|bar")
+        Dim packfile = App.CurrentProcessTemp & $"/{App.NextTempName}.json"
+
+        Call pack.SaveTo(packfile)
+        Call RscriptProgressTask.PlotStats(
+            packfile,
+            type:=type.Split("|"c).First,
+            title:=title.Replace(""""c, "'"),
+            imageOut:=savefile,
+            size:=size.JoinBy(",")
+        )
+    End Sub
 End Module

@@ -221,6 +221,7 @@
     <Compile Include="buzyIndicator\TaskProgress.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="RibbonExport.vb" />
     <Compile Include="DataGrid\GridLoaderHandler.vb" />
     <Compile Include="plugin\modules\DataTableViewer.vb" />
     <Compile Include="plugin\modules\LCMSViewerModule.vb" />
