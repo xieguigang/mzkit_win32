@@ -323,7 +323,7 @@ Public Class PageMzkitTools
 
             If Not hit.unique_id.StringEmpty Then
                 compound = kegg.GetCompound(hit.unique_id)
-                mzi.Annotation = $"{mzi.mz.ToString("F4")} {compound.commonNames.FirstOrDefault([default]:=hit.unique_id)}{hit.precursorType}"
+                mzi.Annotation = $"{mzi.mz.ToString("F4")} {compound.commonNames.FirstOrDefault([default]:=hit.unique_id)}{hit.precursor_type}"
             End If
         Next
     End Sub

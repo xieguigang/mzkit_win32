@@ -642,7 +642,7 @@ Friend Class LoadAnnotationResultTableTask
         Call grid.Columns.Add("score", GetType(Double))
         Call grid.Columns.Add("metadb", GetType(String))
 
-        For Each setList In result
+        For Each setList As NamedCollection(Of MzQuery) In result
             For Each ion As MzQuery In setList
                 Dim kegg = keggMeta.getAnnotation(ion.unique_id)
                 Dim exactMass As Double = FormulaScanner.ScanFormula(kegg.formula).ExactMass
@@ -655,7 +655,7 @@ Friend Class LoadAnnotationResultTableTask
                     ion.mz.ToString("F4"),
                     ion.mz_ref.ToString("F4"),
                     ion.ppm.ToString("F1"),
-                    ion.precursorType,
+                    ion.precursor_type,
                     ion.unique_id,
                     If(kegg.name, ion.unique_id),
                     kegg.formula,
