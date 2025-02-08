@@ -23,6 +23,7 @@ Partial Class frmLogFile : Inherits DocumentWindow
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmLogFile))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
@@ -34,8 +35,11 @@ Partial Class frmLogFile : Inherits DocumentWindow
         Me.Column4 = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CopyCommandLineArgumentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -71,12 +75,18 @@ Partial Class frmLogFile : Inherits DocumentWindow
         '
         'DataGridView1
         '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4})
+        Me.DataGridView1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(3, 17)
+        Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowTemplate.Height = 23
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(1151, 444)
         Me.DataGridView1.TabIndex = 0
         '
@@ -124,6 +134,19 @@ Partial Class frmLogFile : Inherits DocumentWindow
         Me.Button1.Text = "Reload"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyCommandLineArgumentsToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(247, 26)
+        '
+        'CopyCommandLineArgumentsToolStripMenuItem
+        '
+        Me.CopyCommandLineArgumentsToolStripMenuItem.Image = CType(resources.GetObject("CopyCommandLineArgumentsToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.CopyCommandLineArgumentsToolStripMenuItem.Name = "CopyCommandLineArgumentsToolStripMenuItem"
+        Me.CopyCommandLineArgumentsToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.CopyCommandLineArgumentsToolStripMenuItem.Text = "Copy CommandLine Arguments"
+        '
         'frmLogFile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -139,6 +162,7 @@ Partial Class frmLogFile : Inherits DocumentWindow
         Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         Me.GroupBox1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -154,4 +178,6 @@ Partial Class frmLogFile : Inherits DocumentWindow
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewLinkColumn
     Friend WithEvents Button1 As Button
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents CopyCommandLineArgumentsToolStripMenuItem As ToolStripMenuItem
 End Class

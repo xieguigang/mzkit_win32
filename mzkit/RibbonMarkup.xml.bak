@@ -4440,6 +4440,15 @@
         <String Id="1168">Ion mz mass tolerance error for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdButtonChkViewMSnProducts" Comment="Show MSn Products" Id="334" LabelTitle="Show MSn Products" LabelDescription="Show MSn Products" TooltipTitle="Show MSn Products" TooltipDescription="Show MSn Products">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-molecule-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-molecule-96.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdGroupMatrixViewerOptions" Comment="Matrix Viewer Options" Id="335" LabelTitle="Matrix Viewer Options" LabelDescription="Matrix Viewer Options" TooltipTitle="Matrix Viewer Options" TooltipDescription="Matrix Viewer Options" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4609,6 +4618,9 @@
               <CheckBox CommandName="cmdCheckBoxShowKEGGAnnotation" />
               <CheckBox CommandName="cmdCheckBoxShowMs2Fragment" />
               <CheckBox CommandName="cmdCheckBoxXICRelative" />
+            </Group>
+            <Group CommandName="cmdGroupMatrixViewerOptions">
+              <ToggleButton CommandName="cmdButtonChkViewMSnProducts" />
             </Group>
             <Group CommandName="cmdTabReferenceLibrary" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonSearchPubChem" />

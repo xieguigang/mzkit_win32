@@ -65,6 +65,10 @@ Public Class PipelineTask
     ''' <returns></returns>
     Public Shared ReadOnly Property Task As msconvert
 
+    ''' <summary>
+    ''' the exe file path of the msconvert cli tool
+    ''' </summary>
+    ''' <returns></returns>
     Public Shared ReadOnly Property Host As String
         Get
             Return Task.Path

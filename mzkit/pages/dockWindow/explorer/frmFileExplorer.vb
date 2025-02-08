@@ -723,7 +723,8 @@ Public Class frmFileExplorer
             Return
         Else
             Using save As New SaveFileDialog With {
-                .Filter = "mzXML MsData(*.mzXML)|*.mzXML"
+                .Filter = "mzXML MsData(*.mzXML)|*.mzXML",
+                .FileName = $"{DirectCast(node.Tag, MZWork.Raw).source.BaseName}.mzXML"
             }
                 If save.ShowDialog = DialogResult.OK Then
                     Dim raw As MZWork.Raw = DirectCast(node.Tag, MZWork.Raw).LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
@@ -977,5 +978,47 @@ Public Class frmFileExplorer
         Dim viewer = VisualStudio.ShowDocument(Of frmLCMSScatterViewer)()
 
         viewer.loadRaw(raw)
+    End Sub
+
+    Private Sub ExportAsMzXMLFilesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportAsMzXMLFilesToolStripMenuItem.Click
+        Dim rawList As MZWork.Raw() = WindowModules.fileExplorer.GetSelectedRaws.ToArray
+
+        If Not rawList.Any Then
+            Call Workbench.Warning("no raw data file was selected.")
+            Return
+        End If
+
+        Using dir As New FolderBrowserDialog With {.ShowNewFolderButton = True}
+            If dir.ShowDialog = DialogResult.OK Then
+                Dim folder = dir.SelectedPath
+
+                Call TaskProgress.LoadData(
+                    streamLoad:=Function(s As ITaskProgress)
+                                    Call s.SetProgressMode()
+                                    Call s.SetProgress(0)
+
+                                    For i As Integer = 0 To rawList.Length - 1
+                                        Dim raw As MZWork.Raw = rawList(i).LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
+                                        Dim prog = i / rawList.Length * 100
+                                        Dim mzPack As mzPack = raw.GetLoadedMzpack
+                                        Dim filename = raw.source.BaseName
+                                        Dim savefile = $"{folder}/{filename}.mzXML"
+
+                                        Using file As Stream = savefile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False),
+                                            writer As New mzXMLWriter({}, {}, {}, file)
+
+                                            Call writer.WriteData(mzPack.MS, print:=s.Echo)
+                                            Call s.SetProgress(prog)
+                                            Call s.SetInfo($"Save mzPack data as mzXML file [{i + 1}/{rawList.Length}]...")
+                                        End Using
+                                    Next
+
+                                    Return True
+                                End Function,
+                    title:="export files...",
+                    info:="export workspace files as mzXML outputs...",
+                    canbeCancel:=True)
+            End If
+        End Using
     End Sub
 End Class

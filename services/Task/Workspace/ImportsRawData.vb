@@ -152,6 +152,8 @@ Public Class ImportsRawData
         AddHandler pipeline.Finish, AddressOf success.Invoke
         AddHandler pipeline.SetMessage, AddressOf showProgress.Invoke
 
+        Call WorkStudio.LogCommandLine(PipelineTask.Host, cli, App.CurrentDirectory)
+
         Call pipeline.Run()
     End Sub
 End Class

@@ -79,6 +79,10 @@ Public Class FormMain : Implements AppHost
         End Get
     End Property
 
+    Private Function getSourceDir() As String
+        Return TextBox1.Text
+    End Function
+
     ''' <summary>
     ''' start run task
     ''' </summary>
@@ -93,7 +97,7 @@ Public Class FormMain : Implements AppHost
             Return
         End If
 
-        Dim source As String = TextBox1.Text
+        Dim source As String = getSourceDir()
         Dim output As String = TextBox2.Text
 
         If CurrentTask = FileApplicationClass.MSImaging Then
@@ -129,7 +133,8 @@ Public Class FormMain : Implements AppHost
     Public Sub AddTask(task As TaskProgress)
         Call Me.Invoke(
             Sub()
-                Call FlowLayoutPanel1.Controls.Add(task)
+                FlowLayoutPanel1.Controls.Add(task)
+                task.Width = FlowLayoutPanel1.Width - 15
             End Sub)
     End Sub
 
@@ -227,5 +232,15 @@ Public Class FormMain : Implements AppHost
 
     Public Sub SetTitle(title As String) Implements AppHost.SetTitle
         Call Invoke(Sub() Me.Text = title)
+    End Sub
+
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+        Dim files = getSourceDir.ListFiles("*.raw")
+
+        ListBox1.Items.Clear()
+
+        For Each file As String In files
+            Call ListBox1.Items.Add(file)
+        Next
     End Sub
 End Class

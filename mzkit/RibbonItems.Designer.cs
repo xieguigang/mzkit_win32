@@ -97,6 +97,8 @@ namespace RibbonLib.Controls
             public const uint cmdCheckBoxShowKEGGAnnotation = 153;
             public const uint cmdCheckBoxShowMs2Fragment = 4;
             public const uint cmdCheckBoxXICRelative = 96;
+            public const uint cmdGroupMatrixViewerOptions = 335;
+            public const uint cmdButtonChkViewMSnProducts = 334;
             public const uint cmdTabReferenceLibrary = 161;
             public const uint cmdButtonSearchPubChem = 227;
             public const uint cmdOpenIonsLibrary = 159;
@@ -429,6 +431,14 @@ namespace RibbonLib.Controls
         public RibbonCheckBox CheckBoxShowKEGGAnnotation { get; private set; }
         public RibbonCheckBox CheckBoxShowMs2Fragment { get; private set; }
         public RibbonCheckBox CheckBoxXICRelative { get; private set; }
+        /// <summary>
+        /// Matrix Viewer Options
+        /// </summary>
+        public RibbonGroup GroupMatrixViewerOptions { get; private set; }
+        /// <summary>
+        /// Show MSn Products
+        /// </summary>
+        public RibbonToggleButton ButtonChkViewMSnProducts { get; private set; }
         public RibbonGroup TabReferenceLibrary { get; private set; }
         public RibbonButton ButtonSearchPubChem { get; private set; }
         public RibbonButton OpenIonsLibrary { get; private set; }
@@ -822,6 +832,8 @@ namespace RibbonLib.Controls
             CheckBoxShowKEGGAnnotation = new RibbonCheckBox(ribbon, Cmd.cmdCheckBoxShowKEGGAnnotation);
             CheckBoxShowMs2Fragment = new RibbonCheckBox(ribbon, Cmd.cmdCheckBoxShowMs2Fragment);
             CheckBoxXICRelative = new RibbonCheckBox(ribbon, Cmd.cmdCheckBoxXICRelative);
+            GroupMatrixViewerOptions = new RibbonGroup(ribbon, Cmd.cmdGroupMatrixViewerOptions);
+            ButtonChkViewMSnProducts = new RibbonToggleButton(ribbon, Cmd.cmdButtonChkViewMSnProducts);
             TabReferenceLibrary = new RibbonGroup(ribbon, Cmd.cmdTabReferenceLibrary);
             ButtonSearchPubChem = new RibbonButton(ribbon, Cmd.cmdButtonSearchPubChem);
             OpenIonsLibrary = new RibbonButton(ribbon, Cmd.cmdOpenIonsLibrary);

@@ -257,7 +257,7 @@ Public Class ConnectToBioDeep
                         line.Background,
                         line.Activity,
                         line.Fisher.two_tail_pvalue,
-                        line.Hits.Select(Function(c) $"{c.unique_id} {c.precursorType}, m/z {c.mz.ToString("F4")}").JoinBy("; ")
+                        line.Hits.Select(Function(c) $"{c.unique_id} {c.precursor_type}, m/z {c.mz.ToString("F4")}").JoinBy("; ")
                     )
                 Next
             End Sub)

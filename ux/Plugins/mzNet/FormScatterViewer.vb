@@ -158,7 +158,7 @@ Public Class FormScatterViewer
                                 Dim annoData = reference.GetCompound(a.unique_id)
                                 annoData = New Metadata(annoData)
                                 annoData.mz = a.mz_ref
-                                annoData.adducts = a.precursorType
+                                annoData.adducts = a.precursor_type
                                 annoData.rt = rt_mean
                                 Return annoData
                             End Function) _

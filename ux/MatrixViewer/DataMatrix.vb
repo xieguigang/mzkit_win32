@@ -90,6 +90,7 @@ Public MustInherit Class DataMatrix
     End Property
 
     Public Property ResizeByCanvas As Boolean = True
+    Public Property DrawAnnotation As Boolean = False
 
     Public MustOverride ReadOnly Property UnderlyingType As Type
 
@@ -100,6 +101,11 @@ Public MustInherit Class DataMatrix
 
     Public Function SetName(name As String) As DataMatrix
         Me._name = name
+        Return Me
+    End Function
+
+    Public Function SetAnnotation(show As Boolean) As DataMatrix
+        DrawAnnotation = show
         Return Me
     End Function
 
