@@ -700,6 +700,12 @@ Public Class frmMain : Implements AppHost
     End Sub
 
     Private Sub frmMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        RaiseEvent CloseWorkbench(e)
+
+        If e.Cancel Then
+            Return
+        End If
+
         Globals.sharedProgressUpdater =
             Sub()
                 ' do nothing
@@ -854,7 +860,9 @@ Public Class frmMain : Implements AppHost
     End Sub
 
     Dim mzkitApp As Process = Process.GetCurrentProcess()
+
     Public Event ResizeForm As AppHost.ResizeFormEventHandler Implements AppHost.ResizeForm
+    Public Event CloseWorkbench As AppHost.CloseWorkbenchEventHandler Implements AppHost.CloseWorkbench
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Dim list = ServiceHub.Manager.Hub.ServicesList.ToArray
@@ -961,5 +969,15 @@ Public Class frmMain : Implements AppHost
             Sub()
                 Text = $"BioNovoGene MZKit Workbench [{title}]"
             End Sub)
+    End Sub
+
+    Public Sub SetWorkbenchVisible(visible As Boolean) Implements AppHost.SetWorkbenchVisible
+        Me.Visible = visible
+
+        If visible Then
+            Me.Activate()
+        Else
+            Me.Hide()
+        End If
     End Sub
 End Class

@@ -9,7 +9,9 @@ Public Interface AppHost
     ReadOnly Property ClientRectangle As Rectangle
 
     Event ResizeForm(newPos As Point, newSize As Size)
+    Event CloseWorkbench(args As FormClosingEventArgs)
 
+    Sub SetWorkbenchVisible(visible As Boolean)
     Sub SetWindowState(stat As FormWindowState)
     Sub Warning(msg As String)
     Sub StatusMessage(msg As String, Optional icon As Image = Nothing)
