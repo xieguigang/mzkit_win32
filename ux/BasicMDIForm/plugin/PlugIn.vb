@@ -92,19 +92,6 @@ Public MustInherit Class Plugin
                             hashlist(pluginData.id) = pluginData
                         End If
                     End If
-
-                    If registry.IsDisabled(pluginData.id) Then
-                        Continue For
-                    End If
-
-                    Try
-                        If Not plugin.Init(println) Then
-                            pluginData.status = "incompatible"
-                        End If
-                    Catch ex As Exception
-                        Call println($"Load plugin error: {ex.Message}")
-                        Call App.LogException(ex)
-                    End Try
                 End If
             Next
         Next
@@ -113,5 +100,31 @@ Public MustInherit Class Plugin
 
         Call registry.Save()
         Call println("scan plugin job done!")
+    End Sub
+
+    Public Shared Sub InitPlugins(println As Action(Of String))
+        Dim registry As RegistryFile = RegistryFile.LoadRegistry
+        Dim hashlist = registry.plugins.SafeQuery.ToDictionary(Function(p) p.id)
+
+        For Each plugin_id As String In MZKitPlugin.InMemoryLoaderRegistry.Keys
+            If registry.IsDisabled(plugin_id) Then
+                Continue For
+            End If
+
+            Dim plugin As Plugin = MZKitPlugin.InMemoryLoaderRegistry(plugin_id)
+
+            Try
+                If Not plugin.Init(println) Then
+                    ' pluginData.status = "incompatible"
+                End If
+            Catch ex As Exception
+                hashlist(plugin_id).status = "incompatible"
+
+                Call println($"Load plugin error: {ex.Message}")
+                Call App.LogException(ex)
+            End Try
+        Next
+
+        Call registry.Save()
     End Sub
 End Class

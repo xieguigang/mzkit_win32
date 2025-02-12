@@ -576,6 +576,7 @@ Public Class frmMain : Implements AppHost
         Call Globals.RegisterActions(AddressOf splashScreen.UpdateInformation)
 
         Call MyApplication.LogText(text.ToString)
+        ' just scan for the new plugins
         Call Plugin.LoadPlugins(
             println:=Sub(msg)
                          Call MyApplication.LogText(msg)
@@ -585,6 +586,9 @@ Public Class frmMain : Implements AppHost
         splashScreen.UpdateInformation("Ready!")
         showStatusMessage("Ready!")
         splashScreen.CloseWindow()
+
+        ' load and init of the plugins
+        Call Plugin.InitPlugins(AddressOf Workbench.LogText)
 
         If Not MyApplication.afterLoad Is Nothing Then
             Call MyApplication.afterLoad()
