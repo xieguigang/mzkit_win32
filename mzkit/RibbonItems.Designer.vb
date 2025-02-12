@@ -290,6 +290,14 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonClickScatter As UInteger = 326
             Public Const cmdButtonReportHeatMapColors As UInteger = 319
             Public Const cmdButtonReportSampleInfo As UInteger = 328
+            Public Const cmdMenuLabIA As UInteger = 336
+            Public Const cmdPageLabIA As UInteger = 337
+            Public Const cmdGroupLabIA As UInteger = 338
+            Public Const cmdButtonCreateLabIATask As UInteger = 339
+            Public Const cmdButtonEditLabIAQCIons As UInteger = 340
+            Public Const cmdButtonEditLabIAHBIons As UInteger = 341
+            Public Const cmdButtonLabIASettings As UInteger = 342
+            Public Const cmdButtonLabIALogin As UInteger = 343
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -2079,6 +2087,54 @@ Namespace RibbonLib.Controls
                 Return _ButtonReportSampleInfo
             End Get
         End Property
+        Private _MenuLabIA As RibbonTabGroup
+        Public ReadOnly Property MenuLabIA As RibbonTabGroup
+            Get
+                Return _MenuLabIA
+            End Get
+        End Property
+        Private _PageLabIA As RibbonTab
+        Public ReadOnly Property PageLabIA As RibbonTab
+            Get
+                Return _PageLabIA
+            End Get
+        End Property
+        Private _GroupLabIA As RibbonGroup
+        Public ReadOnly Property GroupLabIA As RibbonGroup
+            Get
+                Return _GroupLabIA
+            End Get
+        End Property
+        Private _ButtonCreateLabIATask As RibbonButton
+        Public ReadOnly Property ButtonCreateLabIATask As RibbonButton
+            Get
+                Return _ButtonCreateLabIATask
+            End Get
+        End Property
+        Private _ButtonEditLabIAQCIons As RibbonButton
+        Public ReadOnly Property ButtonEditLabIAQCIons As RibbonButton
+            Get
+                Return _ButtonEditLabIAQCIons
+            End Get
+        End Property
+        Private _ButtonEditLabIAHBIons As RibbonButton
+        Public ReadOnly Property ButtonEditLabIAHBIons As RibbonButton
+            Get
+                Return _ButtonEditLabIAHBIons
+            End Get
+        End Property
+        Private _ButtonLabIASettings As RibbonButton
+        Public ReadOnly Property ButtonLabIASettings As RibbonButton
+            Get
+                Return _ButtonLabIASettings
+            End Get
+        End Property
+        Private _ButtonLabIALogin As RibbonButton
+        Public ReadOnly Property ButtonLabIALogin As RibbonButton
+            Get
+                Return _ButtonLabIALogin
+            End Get
+        End Property
         Private _TabMain As RibbonTab
         Public ReadOnly Property TabMain As RibbonTab
             Get
@@ -2600,6 +2656,14 @@ Namespace RibbonLib.Controls
             _ButtonClickScatter = New RibbonToggleButton(_ribbon, Cmd.cmdButtonClickScatter)
             _ButtonReportHeatMapColors = New RibbonButton(_ribbon, Cmd.cmdButtonReportHeatMapColors)
             _ButtonReportSampleInfo = New RibbonButton(_ribbon, Cmd.cmdButtonReportSampleInfo)
+            _MenuLabIA = New RibbonTabGroup(_ribbon, Cmd.cmdMenuLabIA)
+            _PageLabIA = New RibbonTab(_ribbon, Cmd.cmdPageLabIA)
+            _GroupLabIA = New RibbonGroup(_ribbon, Cmd.cmdGroupLabIA)
+            _ButtonCreateLabIATask = New RibbonButton(_ribbon, Cmd.cmdButtonCreateLabIATask)
+            _ButtonEditLabIAQCIons = New RibbonButton(_ribbon, Cmd.cmdButtonEditLabIAQCIons)
+            _ButtonEditLabIAHBIons = New RibbonButton(_ribbon, Cmd.cmdButtonEditLabIAHBIons)
+            _ButtonLabIASettings = New RibbonButton(_ribbon, Cmd.cmdButtonLabIASettings)
+            _ButtonLabIALogin = New RibbonButton(_ribbon, Cmd.cmdButtonLabIALogin)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)

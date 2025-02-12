@@ -4449,6 +4449,49 @@
       </Command.LargeImages>
     </Command>
     <Command Name="cmdGroupMatrixViewerOptions" Comment="Matrix Viewer Options" Id="335" LabelTitle="Matrix Viewer Options" LabelDescription="Matrix Viewer Options" TooltipTitle="Matrix Viewer Options" TooltipDescription="Matrix Viewer Options" />
+    <Command Name="cmdMenuLabIA" Id="336" LabelTitle="实验室自动化" />
+    <Command Name="cmdPageLabIA" Id="337" LabelTitle="实验室自动化" />
+    <Command Name="cmdGroupLabIA" Id="338" LabelTitle="自动化客户端" />
+    <Command Name="cmdButtonCreateLabIATask" Id="339" LabelTitle="创建任务">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-add-100.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-add-100.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonEditLabIAQCIons" Id="340" LabelTitle="编辑质控离子">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/edit.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonEditLabIAHBIons" Id="341" LabelTitle="编辑混标离子">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Tools2.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Tools2.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonLabIASettings" Id="342" LabelTitle="设置">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/applications-system.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/applications-system.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonLabIALogin" Id="343" LabelTitle="切换实验员">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-merge-documents-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-merge-documents-96.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4916,6 +4959,17 @@
               <ToggleButton CommandName="cmdButtonClickScatter" />
               <Button CommandName="cmdButtonReportHeatMapColors" />
               <Button CommandName="cmdButtonReportSampleInfo" />
+            </Group>
+          </Tab>
+        </TabGroup>
+        <TabGroup CommandName="cmdMenuLabIA">
+          <Tab CommandName="cmdPageLabIA">
+            <Group CommandName="cmdGroupLabIA" SizeDefinition="FiveOrSixButtons">
+              <Button CommandName="cmdButtonCreateLabIATask" />
+              <Button CommandName="cmdButtonEditLabIAQCIons" />
+              <Button CommandName="cmdButtonEditLabIAHBIons" />
+              <Button CommandName="cmdButtonLabIASettings" />
+              <Button CommandName="cmdButtonLabIALogin" />
             </Group>
           </Tab>
         </TabGroup>

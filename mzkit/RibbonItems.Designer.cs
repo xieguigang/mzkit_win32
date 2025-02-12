@@ -293,6 +293,14 @@ namespace RibbonLib.Controls
             public const uint cmdButtonClickScatter = 326;
             public const uint cmdButtonReportHeatMapColors = 319;
             public const uint cmdButtonReportSampleInfo = 328;
+            public const uint cmdMenuLabIA = 336;
+            public const uint cmdPageLabIA = 337;
+            public const uint cmdGroupLabIA = 338;
+            public const uint cmdButtonCreateLabIATask = 339;
+            public const uint cmdButtonEditLabIAQCIons = 340;
+            public const uint cmdButtonEditLabIAHBIons = 341;
+            public const uint cmdButtonLabIASettings = 342;
+            public const uint cmdButtonLabIALogin = 343;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -702,6 +710,14 @@ namespace RibbonLib.Controls
         /// Sample Information
         /// </summary>
         public RibbonButton ButtonReportSampleInfo { get; private set; }
+        public RibbonTabGroup MenuLabIA { get; private set; }
+        public RibbonTab PageLabIA { get; private set; }
+        public RibbonGroup GroupLabIA { get; private set; }
+        public RibbonButton ButtonCreateLabIATask { get; private set; }
+        public RibbonButton ButtonEditLabIAQCIons { get; private set; }
+        public RibbonButton ButtonEditLabIAHBIons { get; private set; }
+        public RibbonButton ButtonLabIASettings { get; private set; }
+        public RibbonButton ButtonLabIALogin { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -1028,6 +1044,14 @@ namespace RibbonLib.Controls
             ButtonClickScatter = new RibbonToggleButton(ribbon, Cmd.cmdButtonClickScatter);
             ButtonReportHeatMapColors = new RibbonButton(ribbon, Cmd.cmdButtonReportHeatMapColors);
             ButtonReportSampleInfo = new RibbonButton(ribbon, Cmd.cmdButtonReportSampleInfo);
+            MenuLabIA = new RibbonTabGroup(ribbon, Cmd.cmdMenuLabIA);
+            PageLabIA = new RibbonTab(ribbon, Cmd.cmdPageLabIA);
+            GroupLabIA = new RibbonGroup(ribbon, Cmd.cmdGroupLabIA);
+            ButtonCreateLabIATask = new RibbonButton(ribbon, Cmd.cmdButtonCreateLabIATask);
+            ButtonEditLabIAQCIons = new RibbonButton(ribbon, Cmd.cmdButtonEditLabIAQCIons);
+            ButtonEditLabIAHBIons = new RibbonButton(ribbon, Cmd.cmdButtonEditLabIAHBIons);
+            ButtonLabIASettings = new RibbonButton(ribbon, Cmd.cmdButtonLabIASettings);
+            ButtonLabIALogin = new RibbonButton(ribbon, Cmd.cmdButtonLabIALogin);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);
