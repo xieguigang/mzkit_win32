@@ -299,6 +299,9 @@ namespace RibbonLib.Controls
             public const uint cmdButtonCreateLabIATask = 339;
             public const uint cmdButtonEditLabIAQCIons = 340;
             public const uint cmdButtonEditLabIAHBIons = 341;
+            public const uint cmdButtonGroupEditLabIATargettedIons = 346;
+            public const uint cmdButtonEditLabIAMRMIons = 344;
+            public const uint cmdButtonEditLabIASIMIons = 345;
             public const uint cmdButtonLabIASettings = 342;
             public const uint cmdButtonLabIALogin = 343;
             public const uint cmdTabMain = 1011;
@@ -716,6 +719,9 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonCreateLabIATask { get; private set; }
         public RibbonButton ButtonEditLabIAQCIons { get; private set; }
         public RibbonButton ButtonEditLabIAHBIons { get; private set; }
+        public RibbonDropDownButton ButtonGroupEditLabIATargettedIons { get; private set; }
+        public RibbonButton ButtonEditLabIAMRMIons { get; private set; }
+        public RibbonButton ButtonEditLabIASIMIons { get; private set; }
         public RibbonButton ButtonLabIASettings { get; private set; }
         public RibbonButton ButtonLabIALogin { get; private set; }
         public RibbonTab TabMain { get; private set; }
@@ -1050,6 +1056,9 @@ namespace RibbonLib.Controls
             ButtonCreateLabIATask = new RibbonButton(ribbon, Cmd.cmdButtonCreateLabIATask);
             ButtonEditLabIAQCIons = new RibbonButton(ribbon, Cmd.cmdButtonEditLabIAQCIons);
             ButtonEditLabIAHBIons = new RibbonButton(ribbon, Cmd.cmdButtonEditLabIAHBIons);
+            ButtonGroupEditLabIATargettedIons = new RibbonDropDownButton(ribbon, Cmd.cmdButtonGroupEditLabIATargettedIons);
+            ButtonEditLabIAMRMIons = new RibbonButton(ribbon, Cmd.cmdButtonEditLabIAMRMIons);
+            ButtonEditLabIASIMIons = new RibbonButton(ribbon, Cmd.cmdButtonEditLabIASIMIons);
             ButtonLabIASettings = new RibbonButton(ribbon, Cmd.cmdButtonLabIASettings);
             ButtonLabIALogin = new RibbonButton(ribbon, Cmd.cmdButtonLabIALogin);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);

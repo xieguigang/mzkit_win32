@@ -296,6 +296,9 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonCreateLabIATask As UInteger = 339
             Public Const cmdButtonEditLabIAQCIons As UInteger = 340
             Public Const cmdButtonEditLabIAHBIons As UInteger = 341
+            Public Const cmdButtonGroupEditLabIATargettedIons As UInteger = 346
+            Public Const cmdButtonEditLabIAMRMIons As UInteger = 344
+            Public Const cmdButtonEditLabIASIMIons As UInteger = 345
             Public Const cmdButtonLabIASettings As UInteger = 342
             Public Const cmdButtonLabIALogin As UInteger = 343
             Public Const cmdTabMain As UInteger = 1011
@@ -2123,6 +2126,24 @@ Namespace RibbonLib.Controls
                 Return _ButtonEditLabIAHBIons
             End Get
         End Property
+        Private _ButtonGroupEditLabIATargettedIons As RibbonDropDownButton
+        Public ReadOnly Property ButtonGroupEditLabIATargettedIons As RibbonDropDownButton
+            Get
+                Return _ButtonGroupEditLabIATargettedIons
+            End Get
+        End Property
+        Private _ButtonEditLabIAMRMIons As RibbonButton
+        Public ReadOnly Property ButtonEditLabIAMRMIons As RibbonButton
+            Get
+                Return _ButtonEditLabIAMRMIons
+            End Get
+        End Property
+        Private _ButtonEditLabIASIMIons As RibbonButton
+        Public ReadOnly Property ButtonEditLabIASIMIons As RibbonButton
+            Get
+                Return _ButtonEditLabIASIMIons
+            End Get
+        End Property
         Private _ButtonLabIASettings As RibbonButton
         Public ReadOnly Property ButtonLabIASettings As RibbonButton
             Get
@@ -2662,6 +2683,9 @@ Namespace RibbonLib.Controls
             _ButtonCreateLabIATask = New RibbonButton(_ribbon, Cmd.cmdButtonCreateLabIATask)
             _ButtonEditLabIAQCIons = New RibbonButton(_ribbon, Cmd.cmdButtonEditLabIAQCIons)
             _ButtonEditLabIAHBIons = New RibbonButton(_ribbon, Cmd.cmdButtonEditLabIAHBIons)
+            _ButtonGroupEditLabIATargettedIons = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonGroupEditLabIATargettedIons)
+            _ButtonEditLabIAMRMIons = New RibbonButton(_ribbon, Cmd.cmdButtonEditLabIAMRMIons)
+            _ButtonEditLabIASIMIons = New RibbonButton(_ribbon, Cmd.cmdButtonEditLabIASIMIons)
             _ButtonLabIASettings = New RibbonButton(_ribbon, Cmd.cmdButtonLabIASettings)
             _ButtonLabIALogin = New RibbonButton(_ribbon, Cmd.cmdButtonLabIALogin)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)

@@ -4492,6 +4492,30 @@
         <Image MinDPI="192">Res/icons8-merge-documents-96.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonEditLabIAMRMIons" Id="344" LabelTitle="编辑离子对信息">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/edit.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonEditLabIASIMIons" Id="345" LabelTitle="编辑靶向气质离子">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/edit.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonGroupEditLabIATargettedIons" Id="346" LabelTitle="编辑靶向离子信息">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/TextEditor.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/TextEditor.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4959,6 +4983,21 @@
               <ToggleButton CommandName="cmdButtonClickScatter" />
               <Button CommandName="cmdButtonReportHeatMapColors" />
               <Button CommandName="cmdButtonReportSampleInfo" />
+            </Group>
+          </Tab>
+        </TabGroup>
+        <TabGroup CommandName="cmdMenuLabIA">
+          <Tab CommandName="cmdPageLabIA">
+            <Group CommandName="cmdGroupLabIA" SizeDefinition="FiveOrSixButtons">
+              <Button CommandName="cmdButtonCreateLabIATask" />
+              <Button CommandName="cmdButtonEditLabIAQCIons" />
+              <Button CommandName="cmdButtonEditLabIAHBIons" />
+              <DropDownButton CommandName="cmdButtonGroupEditLabIATargettedIons">
+                <Button CommandName="cmdButtonEditLabIAMRMIons" />
+                <Button CommandName="cmdButtonEditLabIASIMIons" />
+              </DropDownButton>
+              <Button CommandName="cmdButtonLabIASettings" />
+              <Button CommandName="cmdButtonLabIALogin" />
             </Group>
           </Tab>
         </TabGroup>
