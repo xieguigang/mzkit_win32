@@ -22,7 +22,7 @@ obo
     download_url = "https://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi.obo",
     prefix_namespace = "http://purl.obolibrary.org/obo/chebi/"
 )
-|> set_namespace(dag = obo |> ontologyTree())
+|> set_namespace(dag = obo |> ontologyTree(), namespace = ["chemical entity" "role" "subatomic particle"])
 |> write.obo( "./chebi_lite.obo",  excludes = ["synonym", "relationship","alt_id","xref","subset"], 
         strip_namespace_prefix = "http://purl.obolibrary.org/obo/chebi/",
         strip_property_unit=TRUE)
