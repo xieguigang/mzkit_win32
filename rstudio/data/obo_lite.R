@@ -15,5 +15,12 @@ obo
     "http://purl.obolibrary.org/obo/chebi/inchi",
     "http://purl.obolibrary.org/obo/chebi/smiles"
 ])
+|> set_remarks([
+    "converts from the chebi.obo full dataset"
+])
+|> set_propertyValue(
+    download_url = "https://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi.obo",
+    prefix_namespace = "http://purl.obolibrary.org/obo/chebi/"
+)
 |> write.obo( "./chebi_lite.obo",  excludes = ["synonym", "relationship","alt_id","xref","subset"], strip_namespace_prefix = "http://purl.obolibrary.org/obo/chebi/")
 ;
