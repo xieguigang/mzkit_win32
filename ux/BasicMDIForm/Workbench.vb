@@ -206,6 +206,12 @@ Public NotInheritable Class Workbench
         Return newDoc
     End Function
 
+    Public Shared Function ShowDocument(page As DocumentWindow, Optional status As DockState = DockState.Document) As DocumentWindow
+        page.Show(AppHost.DockPanel)
+        page.DockState = status
+        Return page
+    End Function
+
     ''' <summary>
     ''' get color palette that used for do chartting plots
     ''' </summary>
