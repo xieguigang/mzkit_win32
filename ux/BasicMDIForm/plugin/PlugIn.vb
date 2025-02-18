@@ -59,7 +59,8 @@ Public MustInherit Class Plugin
 
         For Each path As String In files
             Try
-                asm = Assembly.LoadFile(path.GetFullPath)
+                path = path.GetFullPath.Replace("/", "\")
+                asm = Assembly.LoadFile(path)
             Catch ex As Exception
                 Call App.LogException(New Exception("incorrect clr assembly file: " & path, ex))
                 Continue For
