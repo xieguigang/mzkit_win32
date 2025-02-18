@@ -35,6 +35,7 @@ Public MustInherit Class Plugin
     Private Shared Iterator Function PopulateDllFiles() As IEnumerable(Of String())
         Yield $"{App.HOME}/plugins".EnumerateFiles("*.dll").ToArray
         Yield $"{App.LocalData}/plugins/".EnumerateFiles("*.dll").ToArray
+        Yield $"{App.HOME}".EnumerateFiles("*.dll").ToArray
 
         ' plugins_test used for test the internal plugin development
         If Container.AppEnvironment.IsDevelopmentMode Then
