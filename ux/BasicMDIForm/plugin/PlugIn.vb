@@ -63,6 +63,22 @@ Public MustInherit Class Plugin
                 path = path.GetFullPath.Replace("/", "\")
                 asm = Assembly.LoadFile(path)
             Catch ex As Exception
+                ' 20250219 there is a bug about the clr assembly reference to the 
+                ' ThermoFisher assembly files
+                ' which will cause the error of assembly is not allowed loading from the remote location
+                '
+                ' "E:\mzkit\ThermoFisher\Libs\Net471\ThermoFisher.CommonCore.BackgroundSubtraction.dll"
+                ' "E:\mzkit\ThermoFisher\Libs\Net471\ThermoFisher.CommonCore.Data.dll"
+                ' "E:\mzkit\ThermoFisher\Libs\Net471\ThermoFisher.CommonCore.MassPrecisionEstimator.dll"
+                ' "E:\mzkit\ThermoFisher\Libs\Net471\ThermoFisher.CommonCore.RawFileReader.dll"
+                '
+                ' do not reference to these assembly file in plugin project, instead of 
+                ' reference to the 
+                '
+                ' BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.dll
+                '
+                ' wrapper project
+                '
                 Call App.LogException(New Exception("incorrect clr assembly file: " & path, ex))
                 Continue For
             End Try
