@@ -45,23 +45,20 @@ Public Class ShowMSIRowScanSummary
         Me.DialogResult = DialogResult.OK
     End Sub
 
-    Private Sub ShowMSIRowScanSummary_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Call loadMeasure()
+    Private Async Sub ShowMSIRowScanSummary_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Await loadMeasure()
     End Sub
 
-    Private Async Sub loadMeasure()
+    Private Async Function loadMeasure() As Task
         Dim max As String = Await getMaxFile(files)
         Dim w As (n As Integer, basePeak As Double) = Await MeasureWidth(max)
 
-        Call Me.Invoke(
-            Sub()
-                TextBox1.Text = w.n
-                TextBox2.Text = files.Length.ToString
-                TextBox4.Text = w.basePeak
-                Label5.Text = "Done!"
-                Button1.Enabled = True
-            End Sub)
-    End Sub
+        TextBox1.Text = w.n
+        TextBox2.Text = files.Length.ToString
+        TextBox4.Text = w.basePeak
+        Label5.Text = "Done!"
+        Button1.Enabled = True
+    End Function
 
     Private Shared Async Function getMaxFile(files As String()) As Task(Of String)
         Return Await Task.Run(Function()
