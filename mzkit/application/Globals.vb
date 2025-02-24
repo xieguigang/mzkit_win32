@@ -179,6 +179,7 @@ Module Globals
         Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)
         Call LicenseFile.ApplyLicense()
         Call WorkStudio.LogCommandLine(localfs)
+        Call ShowMSIRowScanSummary.HookIonReader(AddressOf BioNovoGene.Analytical.MassSpectrometry.Assembly.CheckMatrixBaseIon)
 
         ' initialize for external plugin module
         MSImagingServiceModule.m_StartEngine = Sub() Call MSIDataService.StartMSIService(Nothing)
