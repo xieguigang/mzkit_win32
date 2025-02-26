@@ -2,11 +2,11 @@
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports TaskStream
-Imports DataFrame = Microsoft.VisualBasic.Data.Framework.IO.DataFrame
 Imports std = System.Math
 Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 
@@ -130,7 +130,7 @@ Public Class InputMatrixIons
     Friend ion_initialized As Boolean = False
 
     Public Sub Setup(mz As Double(), name As String(), precursor_type As String(), pixels As Integer(), density As Double())
-        Dim memoryData As New DataSet
+        Dim memoryData As New System.Data.DataSet
         Dim table As DataTable = memoryData.Tables.Add("memoryData")
 
         table.Columns.Add("select", GetType(Boolean))
@@ -165,20 +165,20 @@ Public Class InputMatrixIons
         AdvancedDataGridViewSearchToolBar1.SetColumns(AdvancedDataGridView1.Columns)
     End Sub
 
-    Private Function ReadTableAuto(fileName As String) As DataFrame
+    Private Function ReadTableAuto(fileName As String) As DataFrameResolver
         If fileName.ExtensionSuffix("csv") Then
-            Return DataFrame.Load(fileName)
+            Return DataFrameResolver.Load(fileName)
         Else
 #Disable Warning
             Dim xlsx As xlsx = xlsx.Open(fileName)
-            Dim view As DataFrame = Nothing
+            Dim view As DataFrameResolver = Nothing
             Dim titles As Index(Of String)
 #Enable Warning
 
             For Each name As String In xlsx.SheetNames
                 Dim sheet = xlsx.GetTable(name)
 
-                view = DataFrame.CreateObject(file:=sheet)
+                view = DataFrameResolver.CreateObject(file:=sheet)
                 titles = view.HeadTitles.Indexing
 
                 If {"name", "formula"}.All(Function(str) str Like titles) Then
@@ -196,7 +196,7 @@ Public Class InputMatrixIons
                 ' the fields is required:
                 '   name: the metabolite name
                 '   formula: the molecule formula for evaluate the exact mass
-                Dim data As DataFrame = ReadTableAuto(file.FileName)
+                Dim data As DataFrameResolver = ReadTableAuto(file.FileName)
                 Dim name_i As Integer = data.GetOrdinal("name")
                 Dim formula_i As Integer = data.GetOrdinal("formula")
 
@@ -219,7 +219,7 @@ Public Class InputMatrixIons
         End Using
     End Sub
 
-    Private Sub setupMzRange(data As DataFrame, name_i As Integer, formula_i As Integer, mzrange_i As Integer)
+    Private Sub setupMzRange(data As DataFrameResolver, name_i As Integer, formula_i As Integer, mzrange_i As Integer)
         Dim name As String() = data.Column(name_i).ToArray
         Dim formula As String() = data.Column(formula_i).ToArray
         Dim mzList As Double() = data.Column(mzrange_i).Select(Function(str) str.ParseDouble).ToArray
@@ -256,7 +256,7 @@ Public Class InputMatrixIons
         Call Setup(mzList, name.ToArray, precursor_type.ToArray, pixels.ToArray, density.ToArray)
     End Sub
 
-    Private Sub setupAllIons(data As DataFrame, name_i As Integer, formula_i As Integer)
+    Private Sub setupAllIons(data As DataFrameResolver, name_i As Integer, formula_i As Integer)
         Dim name As String() = data.Column(name_i).ToArray
         Dim formula As String() = data.Column(formula_i).ToArray
         Dim exact_mass As Double() = formula _

@@ -218,7 +218,7 @@ Friend MustInherit Class WindowModules
         Call ShowTable(DataFrameResolver.CreateObject(table.ToCsvDoc), title)
     End Sub
 
-    Public Shared Sub ShowTable(dataframe As DataFrame, title As String)
+    Public Shared Sub ShowTable(dataframe As DataFrameResolver, title As String)
         Call VisualStudio _
             .ShowDocument(Of frmTableViewer)(title:=title) _
             .LoadTable(Sub(grid)
@@ -226,7 +226,7 @@ Friend MustInherit Class WindowModules
                        End Sub)
     End Sub
 
-    Private Shared Sub loadInternal(grid As DataTable, dataframe As DataFrame)
+    Private Shared Sub loadInternal(grid As DataTable, dataframe As DataFrameResolver)
         Dim numericFields As Index(Of String) = {"mz", "rt", "rtmin", "rtmax", "mzmin", "mzmax"}
         Dim schema As New List(Of Type)
         Dim i As i32 = Scan0

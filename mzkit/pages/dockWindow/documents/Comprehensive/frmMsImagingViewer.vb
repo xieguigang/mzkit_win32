@@ -673,7 +673,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub LoadImportAnnotationTable(table As File, fileName As String)
-        Dim annotations As AnnotationTableReader = AnnotationTableReader.Load(DataFrame.CreateObject(table))
+        Dim annotations As AnnotationTableReader = AnnotationTableReader.Load(DataFrameResolver.CreateObject(table))
 
         If annotations.hasMissing Then
             Return
@@ -725,7 +725,7 @@ Public Class frmMsImagingViewer
             Return New AnnotationTableReader
         End Function
 
-        Public Shared Function Load(df As DataFrame) As AnnotationTableReader
+        Public Shared Function Load(df As DataFrameResolver) As AnnotationTableReader
             Dim name = df.GetColumnValues({"name", "Name"})
             Dim formula = df.GetColumnValues({"formula", "Formula"})
             Dim adducts = df.GetColumnValues({"precursor_type", "precursor", "adducts"})
@@ -1109,7 +1109,7 @@ Public Class frmMsImagingViewer
     ''' <param name="fileName"></param>
     Private Sub loadHEMapMatrix(fileName As String)
         Dim file As File = Microsoft.VisualBasic.Data.Framework.IO.File.Load(fileName)
-        Dim table = DataFrame.CreateObject(file)
+        Dim table = DataFrameResolver.CreateObject(file)
 
         If table.GetOrdinal("x") = -1 OrElse table.GetOrdinal("y") = -1 Then
             MessageBox.Show(

@@ -76,6 +76,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
 Imports Microsoft.VisualBasic.Data.Framework
+Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Drawing
@@ -95,7 +96,6 @@ Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
-Imports DataFrame = Microsoft.VisualBasic.Data.Framework.IO.DataFrame
 Imports Xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 
 Public Class frmMsImagingTweaks
@@ -706,12 +706,12 @@ UseCheckedList:
 
                     Call Workbench.SuccessMessage($"Load {names.Length} layers for run data visualization.")
                 Else
-                    Dim table As DataFrame
+                    Dim table As DataFrameResolver
 
                     If file.FileName.ExtensionSuffix("csv") Then
-                        table = DataFrame.Load(file.FileName)
+                        table = DataFrameResolver.Load(file.FileName)
                     Else
-                        table = DataFrame.CreateObject(Xlsx.Open(file.FileName).GetTable(0))
+                        table = DataFrameResolver.CreateObject(Xlsx.Open(file.FileName).GetTable(0))
                     End If
 
                     Dim mz As Double() = table(table.GetOrdinal("mz")).AsDouble

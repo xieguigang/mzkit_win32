@@ -30,7 +30,6 @@ Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
 Imports csv = Microsoft.VisualBasic.Data.Framework.IO.File
-Imports DataFrame = Microsoft.VisualBasic.Data.Framework.IO.DataFrame
 Imports Matrix = SMRUCC.genomics.Analysis.HTS.DataFrame.Matrix
 Imports std = System.Math
 
@@ -214,9 +213,9 @@ Public Class frmMetabonomicsAnalysis
         Next
     End Sub
 
-    Public Delegate Sub LoadDataCallback(sampleinfo As SampleInfo(), properties As String(), df As DataFrame, workdir As String)
+    Public Delegate Sub LoadDataCallback(sampleinfo As SampleInfo(), properties As String(), df As DataFrameResolver, workdir As String)
 
-    Public Shared Sub LoadData(df As DataFrame, sourcefile As String, callback As LoadDataCallback)
+    Public Shared Sub LoadData(df As DataFrameResolver, sourcefile As String, callback As LoadDataCallback)
         Dim wizard As New InputImportsPeaktableDialog
         Dim checkTitles As Index(Of String) = df.HeadTitles.Indexing
         Dim checks As String()() = {
@@ -256,7 +255,7 @@ Public Class frmMetabonomicsAnalysis
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub LoadData(table As csv, sourcefile As String, callback As LoadDataCallback)
-        Call LoadData(df:=DataFrame.CreateObject(table), sourcefile, callback)
+        Call LoadData(df:=DataFrameResolver.CreateObject(table), sourcefile, callback)
     End Sub
 
     ''' <summary>
@@ -267,7 +266,7 @@ Public Class frmMetabonomicsAnalysis
     ''' <param name="df"></param>
     ''' <param name="workdir"></param>
     ''' <param name="title"></param>
-    Public Sub LoadData(sampleinfo As SampleInfo(), properties As String(), df As DataFrame, workdir As String, title As String)
+    Public Sub LoadData(sampleinfo As SampleInfo(), properties As String(), df As DataFrameResolver, workdir As String, title As String)
         ' show data
         Dim peaks As New List(Of xcms2)
         Dim peak As xcms2
@@ -735,7 +734,7 @@ Public Class frmMetabonomicsAnalysis
 
                  If i > -1 Then
                      Dim tab As frmTableViewer = tables(i)
-                     Dim df As DataFrame = tab.AdvancedDataGridView1.GetDataFrame
+                     Dim df As DataFrameResolver = tab.AdvancedDataGridView1.GetDataFrame
 
                      Call importsMetaboliteCommon(df)
                  End If
@@ -784,7 +783,7 @@ Public Class frmMetabonomicsAnalysis
             End Sub, config:=selector)
     End Sub
 
-    Private Sub importsMetaboliteCommon(df As DataFrame)
+    Private Sub importsMetaboliteCommon(df As DataFrameResolver)
         Dim xcms_id As Integer = df.GetOrdinal("xcms_id", "ID")
         Dim name As Integer = df.GetOrdinal("name")
         Dim formula As Integer = df.GetOrdinal("formula")
@@ -843,7 +842,7 @@ Public Class frmMetabonomicsAnalysis
     Private Sub importsMetaboliteFile()
         Using file As New OpenFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
-                Call importsMetaboliteCommon(df:=DataFrame.Load(file.FileName))
+                Call importsMetaboliteCommon(df:=DataFrameResolver.Load(file.FileName))
             End If
         End Using
     End Sub

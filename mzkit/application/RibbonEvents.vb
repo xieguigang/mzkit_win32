@@ -347,7 +347,7 @@ Module RibbonEvents
             Dim source As BindingSource = tablePage.AdvancedDataGridView1.DataSource
             Dim dataset As System.Data.DataSet = source.DataSource
             Dim table As DataTable = dataset.Tables.Item(Scan0)
-            Dim df As DataFrame = table.DataFrame
+            Dim df As DataFrameResolver = table.DataFrame
 
             Call frmMetabonomicsAnalysis.LoadData(df, Nothing, AddressOf New LoadMetabolismData With {.title = tablePage.TabText}.load)
         Else
@@ -398,13 +398,11 @@ Module RibbonEvents
         End Using
     End Sub
 
-
-
     Private Class LoadMetabolismData
 
         Public title As String
 
-        Friend Sub load(sampleinfo As SampleInfo(), properties As String(), df As DataFrame, workdir As String)
+        Friend Sub load(sampleinfo As SampleInfo(), properties As String(), df As DataFrameResolver, workdir As String)
             VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)(title:=title).LoadData(sampleinfo, properties, df, workdir, title)
         End Sub
 
