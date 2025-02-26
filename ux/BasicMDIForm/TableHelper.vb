@@ -14,7 +14,7 @@ Public Module TableHelper
     ''' <param name="saveHeader"></param>
     ''' <returns></returns>
     <Extension>
-    Public Function GetDataFrame(table2 As DataGridView, Optional saveHeader As Boolean = True) As DataFrame
+    Public Function GetDataFrame(table2 As DataGridView, Optional saveHeader As Boolean = True) As DataFrameResolver
         Dim row As New RowObject
         Dim src As BindingSource = table2.DataSource
         Dim headers As New List(Of String)
@@ -61,7 +61,7 @@ Public Module TableHelper
             df.RemoveAt(Scan0)
         End If
 
-        Return DataFrame.CreateObject(headers, df)
+        Return DataFrameResolver.CreateObject(headers, df)
     End Function
 
     ''' <summary>

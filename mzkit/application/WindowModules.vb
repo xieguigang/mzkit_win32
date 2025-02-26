@@ -215,7 +215,7 @@ Friend MustInherit Class WindowModules
     End Sub
 
     Public Shared Sub ShowTable(Of T As {INamedValue, DynamicPropertyBase(Of String)})(table As IEnumerable(Of T), title As String)
-        Call ShowTable(DataFrame.CreateObject(table.ToCsvDoc), title)
+        Call ShowTable(DataFrameResolver.CreateObject(table.ToCsvDoc), title)
     End Sub
 
     Public Shared Sub ShowTable(dataframe As DataFrame, title As String)

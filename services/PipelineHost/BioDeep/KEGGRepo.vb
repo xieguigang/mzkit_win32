@@ -197,7 +197,7 @@ Public Module KEGGRepo
     Public Function RequestMetabolights() As MetaboliteAnnotation()
         Using zip As New ZipArchive(getMZKitPackage.Open(FileMode.Open, doClear:=False))
             Using pack = If(zip.GetEntry("data\MetaboLights.csv"), zip.GetEntry("data/MetaboLights.csv")).Open
-                Dim packData As DataFrame = DataFrame.Load(pack)
+                Dim packData As DataFrameResolver = DataFrameResolver.Load(pack)
                 Dim id As String() = packData("id")
                 Dim name As String() = packData("name")
                 Dim formula As String() = packData("formula")
