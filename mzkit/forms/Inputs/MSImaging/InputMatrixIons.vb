@@ -6,7 +6,7 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports TaskStream
-Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
+Imports DataFrame = Microsoft.VisualBasic.Data.Framework.IO.DataFrame
 Imports std = System.Math
 Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 

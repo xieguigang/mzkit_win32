@@ -13,8 +13,8 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.MS
 Imports BioNovoGene.BioDeep.MSFinder
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ComponentModel.Collection
-Imports Microsoft.VisualBasic.Data.csv
-Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Data.Framework
+Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
@@ -29,8 +29,8 @@ Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
-Imports csv = Microsoft.VisualBasic.Data.csv.IO.File
-Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
+Imports csv = Microsoft.VisualBasic.Data.Framework.IO.File
+Imports DataFrame = Microsoft.VisualBasic.Data.Framework.IO.DataFrame
 Imports Matrix = SMRUCC.genomics.Analysis.HTS.DataFrame.Matrix
 Imports std = System.Math
 

@@ -94,8 +94,8 @@ Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
-Imports Microsoft.VisualBasic.Data.csv
-Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Data.Framework
+Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Drawing
@@ -125,7 +125,7 @@ Imports Task
 Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 Imports Bitmap = System.Drawing.Bitmap
-Imports File = Microsoft.VisualBasic.Data.csv.IO.File
+Imports File = Microsoft.VisualBasic.Data.Framework.IO.File
 Imports std = System.Math
 
 Public Class frmMsImagingViewer
@@ -1108,7 +1108,7 @@ Public Class frmMsImagingViewer
     ''' </summary>
     ''' <param name="fileName"></param>
     Private Sub loadHEMapMatrix(fileName As String)
-        Dim file As File = Microsoft.VisualBasic.Data.csv.IO.File.Load(fileName)
+        Dim file As File = Microsoft.VisualBasic.Data.Framework.IO.File.Load(fileName)
         Dim table = DataFrame.CreateObject(file)
 
         If table.GetOrdinal("x") = -1 OrElse table.GetOrdinal("y") = -1 Then

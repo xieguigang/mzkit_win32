@@ -8,15 +8,15 @@ Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.PoolData
 Imports BioNovoGene.BioDeep.MSEngine
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
-Imports Microsoft.VisualBasic.Data
-Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Data.Framework
+Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.Distributions
 Imports Microsoft.VisualBasic.MIME
-Imports Microsoft.VisualBasic.MIME.Office.Excel.XLS
+Imports Microsoft.VisualBasic.MIME.Office.Excel.XLS.MsHtml
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Microsoft.VisualBasic.Net.Http
 Imports Mzkit_win32.BasicMDIForm
@@ -357,7 +357,7 @@ Public Class FormScatterViewer
             Call System.Windows.Forms.Application.DoEvents()
         Next
 
-        Call New csv.IO.File(table) _
+        Call New IO.File(table) _
             .ToExcel("MetaIons", width:=New Dictionary(Of String, String) From {{"spectra", "450"}}) _
             .SaveTo(xlsfile)
 

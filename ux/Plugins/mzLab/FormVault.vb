@@ -7,15 +7,16 @@ Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib
 Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib.Validation
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein
-Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Data.Framework
+Imports Microsoft.VisualBasic.Data.Framework.IO
+Imports Microsoft.VisualBasic.Data.Framework.IO.CSVFile
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Math.Information
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
-Imports Mzkit_win32.BasicMDIForm
 Imports Microsoft.VisualBasic.Serialization.Bencoding
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
-Imports Microsoft.VisualBasic.Data.csv.IO
 
 Public Class FormVault
 
@@ -300,7 +301,7 @@ Public Class FormVault
 
         Call Clipboard.Clear()
         Call Clipboard.SetText(content.ToBEncodeString)
-    End Sub 
+    End Sub
 
     ''' <summary>
     ''' open a folder for export one peaktable file and multiple raw data mzpack for run annotation validation test

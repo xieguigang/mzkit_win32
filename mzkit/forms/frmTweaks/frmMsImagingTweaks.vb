@@ -75,7 +75,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
-Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Drawing
@@ -95,7 +95,7 @@ Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
-Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
+Imports DataFrame = Microsoft.VisualBasic.Data.Framework.IO.DataFrame
 Imports Xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 
 Public Class frmMsImagingTweaks
