@@ -119,7 +119,7 @@ Public Class PageMoleculeNetworking
             Return
         End If
 
-        Dim df As DataFrame = DataFrame.Load(umap3)
+        Dim df As DataFrameResolver = DataFrameResolver.Load(umap3)
         Dim labels As String() = df.Column(0).ToArray
         Dim x As Double() = df.GetColumnValues("x").Select(AddressOf Val).ToArray
         Dim y As Double() = df.GetColumnValues("y").Select(AddressOf Val).ToArray

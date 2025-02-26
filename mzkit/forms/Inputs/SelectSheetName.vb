@@ -74,7 +74,7 @@ Public Class SelectSheetName
             Sub()
                 Call MyApplication.host.Invoke(
                     Sub()
-                        Call WindowModules.ShowTable(DataFrame.CreateObject(table), title)
+                        Call WindowModules.ShowTable(DataFrameResolver.CreateObject(table), title)
                     End Sub)
             End Sub)
     End Sub
