@@ -563,7 +563,11 @@ Namespace ServiceHub
                 .regions = region
             }
             Dim buffer = BSON.GetBuffer(GetType(RegionLoader).GetJsonElement(payload, New JSONSerializerOptions))
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.Bootstrapping, buffer.ToArray))
+            Dim data As RequestStream
+            Dim retry As Integer = 3
+re0:
+            retry -= 1
+            data = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.Bootstrapping, buffer.ToArray))
 
             Try
                 Return BSON _
@@ -574,6 +578,13 @@ Namespace ServiceHub
                     Dim str As String = data.GetString(Encoding.UTF8)
 
                     If Not str.StringEmpty(, True) Then
+                        If str = "HTTP/505" Then
+                            If retry > -1 Then
+                                Call Workbench.LogText($"unknown server error: {str}, retry this http call!")
+                                GoTo re0
+                            End If
+                        End If
+
                         Call Workbench.Warning(str)
                         Call App.LogException(New Exception(str, ex))
 
