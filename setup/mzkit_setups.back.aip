@@ -38,10 +38,10 @@
     <ROW Property="IAgree" Value="Yes" Type="4"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1033:{1C5201D4-A0C7-452B-AD74-408E34328335} 2052:{1C5201D4-A0C7-452B-AD74-408E34328335} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{96D93D8B-31DF-4E04-98E0-AE813E523230} 2052:{96D93D8B-31DF-4E04-98E0-AE813E523230} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="6.1.2025.0220" Options="32"/>
+    <ROW Property="ProductVersion" Value="6.1.2025.0227" Options="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -441,7 +441,7 @@
     <ROW Directory="zstdcodec_Dir" Directory_Parent="libs_Dir" DefaultDir="ZSTD-C~1|zstd-codec"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{A9C4C0C3-B8CD-430E-8351-948AE6D1506D}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{E8429DAF-1C4C-4A03-9E00-323043D418C7}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="ARButton.js" ComponentId="{4E917137-D4FF-49F8-85C3-6A5835EE4133}" Directory_="webxr_Dir" Attributes="0" KeyPath="ARButton.js" Type="0"/>
     <ROW Component="AUTHORS" ComponentId="{C7BB9CCD-8E40-46A1-99A4-0164F34C94BA}" Directory_="sql.js_Dir" Attributes="0" KeyPath="AUTHORS" Type="0"/>
@@ -2667,6 +2667,7 @@
     <ROW Component="msconvertGUI.resources.dll" ComponentId="{192DC6A5-65E9-4EE8-A369-07118C2B3EDE}" Directory_="zhCN_Dir" Attributes="256" KeyPath="msconvertGUI.resources.dll"/>
     <ROW Component="msconvertGUI.resources.dll_1" ComponentId="{99725A07-C5DF-4C9B-8A99-7D8ABE8B6D4A}" Directory_="zhHant_Dir" Attributes="256" KeyPath="msconvertGUI.resources.dll_1"/>
     <ROW Component="msconvertGUI.resources.dll_2" ComponentId="{1467150A-96DC-4E80-AA1B-A54E2F521ECB}" Directory_="jaJP_Dir" Attributes="256" KeyPath="msconvertGUI.resources.dll_2"/>
+    <ROW Component="msconvertGUI.xml" ComponentId="{61EB72E5-73C2-4B45-98AC-BF1331194C63}" Directory_="APPDIR" Attributes="0" KeyPath="msconvertGUI.xml"/>
     <ROW Component="msmpisetup.exe" ComponentId="{3078F7F3-F025-4770-B5C1-4AF5B2861DE7}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="msmpisetup.exe"/>
     <ROW Component="mux.h" ComponentId="{EC9CE583-894D-4C08-9A9D-C6FABADC5F73}" Directory_="webp_Dir" Attributes="0" KeyPath="mux.h"/>
     <ROW Component="mux_types.h" ComponentId="{F8EA9FB2-A491-4946-BA74-2A0076E16A9A}" Directory_="webp_Dir" Attributes="0" KeyPath="mux_types.h"/>
@@ -19797,6 +19798,7 @@
     <ROW File="settings.json_5" Component_="settings.json_5" FileName="SETTIN~1.JSO|settings.json" Attributes="0" SourcePath="..\rstudio\data\.vscode\settings.json" SelfReg="false"/>
     <ROW File="obo_lite.R" Component_="chebi_lite.obo" FileName="obo_lite.R" Attributes="0" SourcePath="..\rstudio\data\obo_lite.R" SelfReg="false"/>
     <ROW File="Newtonsoft.Json.dll_1" Component_="Newtonsoft.Json.dll_1" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Newtonsoft.Json.dll" SelfReg="false"/>
+    <ROW File="msconvertGUI.xml" Component_="msconvertGUI.xml" FileName="MSCONV~2.XML|msconvertGUI.xml" Attributes="0" SourcePath="..\..\..\dist\bin\msconvertGUI.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -22656,6 +22658,7 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="MZKitWin32.Blender.CommonLibs.pdb_1"/>
     <ROW Feature_="MainFeature" Component_="settings.json_5"/>
     <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll_1"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="msconvertGUI.xml"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -22888,7 +22891,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="220" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="227" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>
