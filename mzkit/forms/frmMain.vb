@@ -77,6 +77,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
@@ -501,7 +502,9 @@ Public Class frmMain : Implements AppHost
 
         Globals.loadedSettings = False
         Globals.sharedProgressUpdater = AddressOf splashScreen.UpdateInformation
-        Thread.Sleep(2000)
+
+        Call FormulaScanner.SetupAdductsScanner()
+        Call Thread.Sleep(2000)
 
         Do While App.Running AndAlso Globals.loadedSettings
             Thread.Sleep(1)
