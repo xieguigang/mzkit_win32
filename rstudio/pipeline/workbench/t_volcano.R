@@ -85,8 +85,14 @@ reg[i] = "down";
 
 ttest[, "reg_diff"] = reg;
 
+let no_sigs = all("not sig" == ttest$reg_diff);
+
 print("get t-test result of the metabolites different expression:");
 print(ttest,max.print =6);
+
+if (no_sigs) {
+    print("no different expression metabolites!d");
+}
 
 write.csv(ttest, file = file.path(output_dir, "ttest_diffsig.csv"));
 
@@ -96,7 +102,7 @@ png(filename = file.path(output_dir,"volcano.png"), width = 1600, height = 1200)
     ttest[,"id"] =rownames(ttest);
 
     # create ggplot layers and tweaks via ggplot style options
-	ggplot(ttest, aes(x = "log2fc", y = "pvalue"), padding = "padding:150px 300px 150px 200px;")
+	let p = ggplot(ttest, aes(x = "log2fc", y = "pvalue"), padding = "padding:150px 300px 150px 200px;")
 	   + geom_point(aes(color = "reg_diff"), color = "black", shape = "circle", size = 25,alpha = 0.7)
        + scale_colour_manual(values = list(
           up        = "#D22628",
@@ -104,9 +110,16 @@ png(filename = file.path(output_dir,"volcano.png"), width = 1600, height = 1200)
           down      = "#0091D5"
        ), alpha = 0.7)
        # + geom_text(aes(label = "id"), check_overlap = TRUE, size = 8)
-       + geom_hline(yintercept = -log10(pvalue),      color = "red", line.width = 5, linetype = "dash")
-       + geom_vline(xintercept =  log2fc, color = "red", line.width = 5, linetype = "dash")
-       + geom_vline(xintercept = -log2fc, color = "red", line.width = 5, linetype = "dash")
+       ;
+
+       if (!no_sigs) {
+          p = p + geom_hline(yintercept = -log10(pvalue),      color = "red", line.width = 5, linetype = "dash")
+                + geom_vline(xintercept =  log2fc, color = "red", line.width = 5, linetype = "dash")
+                + geom_vline(xintercept = -log2fc, color = "red", line.width = 5, linetype = "dash")
+                ;
+       }
+       
+       p 
        + labs(x = "log2(FoldChange)", y = "-log10(P.value)")
        + ggtitle(`Volcano Plot (${trial} vs ${control})`)
        + scale_x_continuous(labels = "F2")
