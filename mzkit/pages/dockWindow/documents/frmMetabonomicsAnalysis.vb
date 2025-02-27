@@ -319,7 +319,15 @@ Public Class frmMetabonomicsAnalysis
         End Using
     End Sub
 
-    Public Sub LoadWorkspace(dir As String)
+    Public Sub LoadWorkspace(dir As String, Optional buzy As Boolean = True)
+        If buzy Then
+            Call ProgressSpinner.DoLoading(Sub() Call LoadWorkspaceTask(dir), host:=Me)
+        Else
+            Call LoadWorkspaceTask(dir)
+        End If
+    End Sub
+
+    Private Sub LoadWorkspaceTask(dir As String)
         Dim rawdata As String = $"{dir}/peakset.xcms"
         Dim normdata As String = $"{dir}/norm.xcms"
         Dim sourcefile As String = If(normdata.FileLength > 0, normdata, rawdata)
