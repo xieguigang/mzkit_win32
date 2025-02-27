@@ -977,7 +977,7 @@ UseCheckedList:
 
             Dim poly = region.GetPolygons.ToArray
 
-            Return Await Task(Of Dictionary(Of String, Double())).Run(
+            Return Await System.Threading.Tasks.Task.Run(
                 Function()
                     Return host.viewer.MSIservice.SpatialBootstrapping(poly, dims, target, mzdiff, nsamples, cov)
                 End Function)
@@ -1030,7 +1030,7 @@ UseCheckedList:
 
             Call p.SetInfo($"Build expression peaktable for all selected feature ions!")
 
-            For Each ion In target
+            For Each ion As KeyValuePair(Of String, Double) In target
                 Dim peak As New xcms2(ion.Value, 0) With {
                     .ID = ion.Key,
                     .Properties = New Dictionary(Of String, Double)
