@@ -575,6 +575,8 @@ Namespace ServiceHub
 
                     If Not str.StringEmpty(, True) Then
                         Call Workbench.Warning(str)
+                        Call App.LogException(New Exception(str, ex))
+
                         Return Nothing
                     End If
                 Catch ex2 As Exception
