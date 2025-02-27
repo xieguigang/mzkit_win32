@@ -578,16 +578,14 @@ re0:
                     Dim str As String = data.GetString(Encoding.UTF8)
 
                     If Not str.StringEmpty(, True) Then
-                        If str = "HTTP/505" Then
-                            If retry > -1 Then
-                                Call Workbench.LogText($"unknown server error: {str}, retry this http call!")
-                                GoTo re0
-                            End If
-                        End If
-
                         Call Workbench.Warning(str)
                         Call App.LogException(New Exception(str, ex))
+                    End If
 
+                    If retry > -1 Then
+                        Call Workbench.LogText($"unknown server error: {str}, retry this http call!")
+                        GoTo re0
+                    Else
                         Return Nothing
                     End If
                 Catch ex2 As Exception
