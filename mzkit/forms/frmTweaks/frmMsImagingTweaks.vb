@@ -541,7 +541,14 @@ UseCheckedList:
                 Dim data = SampleData.ExtractSample(layer, regions, n:=nsamples, coverage:=cov)
 
                 For Each r As TissueRegion In regions
-                    r.tags = data(r.label).Select(Function(d) d.ToString).ToArray
+                    r.tags = data(r.label).AsCharacter(format:="G8").ToArray
+
+                    ' 20250227 the label of the region should not be integer value
+                    ' or the json decode of the region label key will be
+                    ' treated as the integer index
+                    If r.label.IsPattern("\d+") Then
+                        r.label = "region_" & r.label
+                    End If
                 Next
             End Sub, host:=Me)
 
