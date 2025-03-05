@@ -8,15 +8,14 @@ namespace molmil {
         onAtomPick;
         downloadInProgress;
 
+        SID;
+
         // ** main molmil object **
 
         constructor(canvas) {
             this.canvas = canvas;
-
             this.renderer = new molmil.render(this);
-
             this.defaultCanvas = [canvas, this.renderer];
-
             this.onAtomPick = function () { };
             this.downloadInProgress = 0;
 

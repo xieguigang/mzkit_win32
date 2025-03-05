@@ -9,7 +9,6 @@ namespace molmil {
     }
 
     export function autoSetup(options: options = <any>{}, canvas = null) {
-
         if (!options.hasOwnProperty("enable")) options.enable = ["ui", "cli", "cli-hash", "drag-n-drop"];
 
         if (!canvas) {
