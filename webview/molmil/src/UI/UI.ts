@@ -3,6 +3,19 @@ namespace molmil {
   // ** menu interface **
   export class UI {
 
+    soup;
+    canvas;
+    LM;
+    RM;
+    molSelection;
+    molRef;
+    complexMenu;
+    contextMenuStructuresChain;
+
+    onLMshow;
+    onLMhide;
+
+    UI: UI;
 
     constructor(soup) {
       this.soup = soup;
@@ -2575,13 +2588,13 @@ namespace molmil {
 
       contentBox.id = "nw_align";
 
-      for (var i in molmil.alignInfo) {
+      for (let i in molmil.alignInfo) {
         if (!UI.soup.chains.includes(molmil.alignInfo[i].chain1) || !UI.soup.chains.includes(molmil.alignInfo[i].chain2)) continue;
         alignments.push(molmil.alignInfo[i]);
       }
 
       if (alignments.length > 1) {
-        for (var i = 0; i < alignments.length; i++) {
+        for (let i = 0; i < alignments.length; i++) {
           var tmp = contentBox.pushNode("span", alignments[i].chain1.CID + " vs " + alignments[i].chain2.CID);
           tmp.aid = i;
           tmp.onclick = function () { show(this.aid); };

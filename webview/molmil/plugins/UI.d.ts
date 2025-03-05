@@ -1,6 +1,17 @@
 /// <reference path="../molmil.d.ts" />
 declare namespace molmil {
     class UI {
+        soup: any;
+        canvas: any;
+        LM: any;
+        RM: any;
+        molSelection: any;
+        molRef: any;
+        complexMenu: any;
+        contextMenuStructuresChain: any;
+        onLMshow: any;
+        onLMhide: any;
+        UI: UI;
         constructor(soup: any);
         init(): void;
         deleteEntry(entry: any): void;
