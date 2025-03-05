@@ -304,6 +304,10 @@ namespace RibbonLib.Controls
             public const uint cmdButtonEditLabIASIMIons = 345;
             public const uint cmdButtonLabIASettings = 342;
             public const uint cmdButtonLabIALogin = 343;
+            public const uint cmdMenuMolmil = 347;
+            public const uint cmdPanelMolmilFile = 348;
+            public const uint cmdGroupMolmilFile = 349;
+            public const uint cmdButtonMolmilOpenFile = 350;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -724,6 +728,10 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonEditLabIASIMIons { get; private set; }
         public RibbonButton ButtonLabIASettings { get; private set; }
         public RibbonButton ButtonLabIALogin { get; private set; }
+        public RibbonTabGroup MenuMolmil { get; private set; }
+        public RibbonTab PanelMolmilFile { get; private set; }
+        public RibbonGroup GroupMolmilFile { get; private set; }
+        public RibbonButton ButtonMolmilOpenFile { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -1061,6 +1069,10 @@ namespace RibbonLib.Controls
             ButtonEditLabIASIMIons = new RibbonButton(ribbon, Cmd.cmdButtonEditLabIASIMIons);
             ButtonLabIASettings = new RibbonButton(ribbon, Cmd.cmdButtonLabIASettings);
             ButtonLabIALogin = new RibbonButton(ribbon, Cmd.cmdButtonLabIALogin);
+            MenuMolmil = new RibbonTabGroup(ribbon, Cmd.cmdMenuMolmil);
+            PanelMolmilFile = new RibbonTab(ribbon, Cmd.cmdPanelMolmilFile);
+            GroupMolmilFile = new RibbonGroup(ribbon, Cmd.cmdGroupMolmilFile);
+            ButtonMolmilOpenFile = new RibbonButton(ribbon, Cmd.cmdButtonMolmilOpenFile);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);

@@ -301,6 +301,10 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonEditLabIASIMIons As UInteger = 345
             Public Const cmdButtonLabIASettings As UInteger = 342
             Public Const cmdButtonLabIALogin As UInteger = 343
+            Public Const cmdMenuMolmil As UInteger = 347
+            Public Const cmdPanelMolmilFile As UInteger = 348
+            Public Const cmdGroupMolmilFile As UInteger = 349
+            Public Const cmdButtonMolmilOpenFile As UInteger = 350
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -2156,6 +2160,30 @@ Namespace RibbonLib.Controls
                 Return _ButtonLabIALogin
             End Get
         End Property
+        Private _MenuMolmil As RibbonTabGroup
+        Public ReadOnly Property MenuMolmil As RibbonTabGroup
+            Get
+                Return _MenuMolmil
+            End Get
+        End Property
+        Private _PanelMolmilFile As RibbonTab
+        Public ReadOnly Property PanelMolmilFile As RibbonTab
+            Get
+                Return _PanelMolmilFile
+            End Get
+        End Property
+        Private _GroupMolmilFile As RibbonGroup
+        Public ReadOnly Property GroupMolmilFile As RibbonGroup
+            Get
+                Return _GroupMolmilFile
+            End Get
+        End Property
+        Private _ButtonMolmilOpenFile As RibbonButton
+        Public ReadOnly Property ButtonMolmilOpenFile As RibbonButton
+            Get
+                Return _ButtonMolmilOpenFile
+            End Get
+        End Property
         Private _TabMain As RibbonTab
         Public ReadOnly Property TabMain As RibbonTab
             Get
@@ -2688,6 +2716,10 @@ Namespace RibbonLib.Controls
             _ButtonEditLabIASIMIons = New RibbonButton(_ribbon, Cmd.cmdButtonEditLabIASIMIons)
             _ButtonLabIASettings = New RibbonButton(_ribbon, Cmd.cmdButtonLabIASettings)
             _ButtonLabIALogin = New RibbonButton(_ribbon, Cmd.cmdButtonLabIALogin)
+            _MenuMolmil = New RibbonTabGroup(_ribbon, Cmd.cmdMenuMolmil)
+            _PanelMolmilFile = New RibbonTab(_ribbon, Cmd.cmdPanelMolmilFile)
+            _GroupMolmilFile = New RibbonGroup(_ribbon, Cmd.cmdGroupMolmilFile)
+            _ButtonMolmilOpenFile = New RibbonButton(_ribbon, Cmd.cmdButtonMolmilOpenFile)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)

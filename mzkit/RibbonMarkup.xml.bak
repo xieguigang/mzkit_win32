@@ -4516,6 +4516,17 @@
         <Image MinDPI="192">Res/TextEditor.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdMenuMolmil" Id="347" LabelTitle="Molmil" LabelDescription="Molmil" TooltipTitle="Molmil" TooltipDescription="Molmil" Keytip="Molmil" />
+    <Command Name="cmdPanelMolmilFile" Id="348" LabelTitle="Molmil File" LabelDescription="Molmil File" TooltipTitle="Molmil File" TooltipDescription="Molmil File" Keytip="Molmil File" />
+    <Command Name="cmdGroupMolmilFile" Id="349" LabelTitle="File" LabelDescription="File" TooltipTitle="File" TooltipDescription="File" Keytip="File" />
+    <Command Name="cmdButtonMolmilOpenFile" Id="350" LabelTitle="Open" LabelDescription="Open" TooltipTitle="Open" TooltipDescription="Open" Keytip="Open">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4998,6 +5009,13 @@
               </DropDownButton>
               <Button CommandName="cmdButtonLabIASettings" />
               <Button CommandName="cmdButtonLabIALogin" />
+            </Group>
+          </Tab>
+        </TabGroup>
+        <TabGroup CommandName="cmdMenuMolmil">
+          <Tab CommandName="cmdPanelMolmilFile">
+            <Group CommandName="cmdGroupMolmilFile">
+              <Button CommandName="cmdButtonMolmilOpenFile" />
             </Group>
           </Tab>
         </TabGroup>
