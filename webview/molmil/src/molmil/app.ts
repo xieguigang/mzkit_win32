@@ -45,5 +45,13 @@ window.addEventListener("message", function (e) {
     }
 }, false);
 
+if (typeof (requestAnimationFrame) != "undefined") molmil.animate_molmilViewers();
+
+if (!window.molmil_dep) {
+    var dep = document.createElement("script")
+    dep.src = molmil.settings.src + "molmil_dep.js";
+    var head = document.getElementsByTagName("head")[0];
+    head.appendChild(dep);
+}
 
 molmil.initSettings();

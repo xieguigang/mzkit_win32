@@ -21,7 +21,7 @@ namespace molmil {
     }
 
     export function findResidueRings(molObj) {
-        var bondInfo = {}, atomRef = {}, i;
+        var bondInfo = {}, atomRef = {};
         for (i = 0; i < molObj.atoms.length; i++) {
             bondInfo[molObj.atoms[i].AID] = [];
             atomRef[molObj.atoms[i].AID] = molObj.atoms[i];
@@ -48,10 +48,10 @@ namespace molmil {
         return Object.values(ringlist);
     };
 
+    /**
+     * geometry object, used to generate protein geometry; atoms, bonds, loops, helices, sheets
+    */
     export class _geometry {
-
-        // ** geometry object, used to generate protein geometry; atoms, bonds, loops, helices, sheets **
-
 
         templates = { sphere: { base: {} }, cylinder: [], dome: {} };
         detail_lvs = 5;
@@ -60,6 +60,21 @@ namespace molmil {
         sheetHeight = .125;
         skipClearBuffer = false;
         onGenerate = null;
+        modelId;
+
+        buffer1;
+        buffer2;
+        buffer3;
+        buffer4;
+        buffer5;
+
+        atoms2draw = [];
+        xna2draw = [];
+        wfatoms2draw = [];
+        trace = [];
+        bonds2draw = [];
+        lines2draw = [];
+        bondRef = {};
 
         generator(objects, soup, name, programOptions) {
             return molmil.loadPlugin(molmil.settings.src + "plugins/misc.js", this.generator, this, [objects, soup, name, programOptions]);
@@ -137,7 +152,7 @@ namespace molmil {
         generate(structures, render, detail_or) {
             this.reset();
             var chains = [], cchains = [];
-            for (var s = 0, c; s < structures.length; s++) {
+            for (var s = 0; s < structures.length; s++) {
                 if (!(structures[s] instanceof molmil.entryObject) || structures[s].display == false) continue;
                 for (var c = 0; c < structures[s].chains.length; c++) {
                     if (!structures[s].chains[c]) continue;
@@ -612,7 +627,7 @@ namespace molmil {
         };
 
         // ** creates and registers the programs within the renderer object **
-        registerPrograms(renderer, initOnly) {
+        registerPrograms(renderer, initOnly = null) {
             if (!renderer.program1 || !renderer.gl.programInit) {
                 renderer.program1 = this.build_simple_render_program(null, null, renderer, { has_ID: true, solid: true, alphaMode: this.buffer1 ? this.buffer1.alphaMode : false });
                 renderer.addProgram(renderer.program1);
@@ -757,7 +772,7 @@ namespace molmil {
         initChains(chains, render, detail_or) {
             detail_or = detail_or || 0;
 
-            var chain, a, b;
+            var chain;
 
             var atoms2draw = this.atoms2draw; var wfatoms2draw = this.wfatoms2draw; var xna2draw = this.xna2draw;
 
@@ -2820,8 +2835,6 @@ namespace molmil {
             this.buffer1.vP = vP;
             this.buffer1.iP = iP;
         }
-
-
     }
 
     export const geometry: _geometry = new _geometry();

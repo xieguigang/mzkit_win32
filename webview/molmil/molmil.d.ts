@@ -531,12 +531,10 @@ declare namespace molmil {
     function colorBfactor(selection: any, soup: any, colorFunc: any): void;
     function pointerLoc_setup(canvas: any): void;
     function pointerLock_update(e: any): void;
-    function startWebVR(that: any): void;
     function autoSetup(options: any, canvas: any): any;
     function processExternalCommand(cmd: any, commandBuffer: any): void;
     function bindCanvasInputs(canvas: any): any;
     function promode_elastic(id: any, mode: any, type: any, soup: any): void;
-    function normalFromMat3(a: any, out: any): any;
     function transformObject(obj: any, matrix: any): void;
     function cloneObject(obj: any, settings: any): any;
     function orient(atoms: any, soup: any, xyzs: any): void;
@@ -544,7 +542,6 @@ declare namespace molmil {
     function record(canvas: any, video_path: any, video_framerate: any): void;
     function end_record(canvas: any): void;
     function getState(): void;
-    function initVR(soup: any, callback: any): void;
 }
 declare namespace molmil {
     function localStorageGET(field: any, except: any): any;
@@ -559,6 +556,9 @@ declare namespace molmil {
     function exportSTL(soup: any): any;
     function buCheck(assembly_id: any, displayMode: any, colorMode: any, struct: any, soup: any): any;
     function findResidueRings(molObj: any): any;
+    /**
+     * geometry object, used to generate protein geometry; atoms, bonds, loops, helices, sheets
+    */
     class _geometry {
         templates: {
             sphere: {
@@ -573,6 +573,19 @@ declare namespace molmil {
         sheetHeight: number;
         skipClearBuffer: boolean;
         onGenerate: any;
+        modelId: any;
+        buffer1: any;
+        buffer2: any;
+        buffer3: any;
+        buffer4: any;
+        buffer5: any;
+        atoms2draw: any[];
+        xna2draw: any[];
+        wfatoms2draw: any[];
+        trace: any[];
+        bonds2draw: any[];
+        lines2draw: any[];
+        bondRef: {};
         generator(objects: any, soup: any, name: any, programOptions: any): any;
         getSphere(r: any, detail_lv: any): any;
         getCylinder(detail_lv: any): any;
@@ -580,7 +593,7 @@ declare namespace molmil {
         generateSphere(r: any, detail_lv: any): any;
         generate(structures: any, render: any, detail_or: any): void;
         build_simple_render_program(vertices_: any, indices_: any, renderer: any, settings: any): any;
-        registerPrograms(renderer: any, initOnly: any): void;
+        registerPrograms(renderer: any, initOnly?: any): void;
         reset(): void;
         updateNormals(obj: any): void;
         initChains(chains: any, render: any, detail_or: any): void;
@@ -716,6 +729,7 @@ declare namespace molmil {
     function loadFilePointer(fileObj: any, func: any, canvas: any): boolean;
 }
 declare namespace molmil {
+    function normalFromMat3(a: any, out: any): any;
     function getAtomXYZ(atom: any, soup: any): any[];
     function calcMMDistance(a1: any, a2: any, soup: any): any;
     function calcAngle(a1: any, a2: any, a3: any): number;
@@ -728,6 +742,10 @@ declare namespace molmil {
     function calcRMSD(atoms1: any, atoms2: any, transform: any): any;
     function arrayMin(arr: any): any;
     function arrayMax(arr: any): any;
+}
+declare namespace molmil {
+    function startWebVR(that: any): void;
+    function initVR(soup: any, callback: any): void;
 }
 declare namespace molmil {
     class atomObject {

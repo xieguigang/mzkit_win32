@@ -29,6 +29,8 @@ namespace molmil {
             fileObjects: {}
         };
         commandBuffer = [];
+        icon;
+        consoleBox;
 
         constructor(canvas) {
             for (var e in window)
