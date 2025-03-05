@@ -33,6 +33,11 @@ namespace RibbonLib.Controls
             public const uint cmdTitleShowComprehensive = 231;
             public const uint cmdButtonMsImaging = 1167;
             public const uint cmdMenuButtonToolkit = 236;
+            public const uint cmdMenuTableTools = 253;
+            public const uint cmdButtonOpenTableTool = 252;
+            public const uint cmdButtonVenn = 260;
+            public const uint cmdAppMenuViewers = 352;
+            public const uint cmdButtonMolmilToolkit = 351;
             public const uint cmdMenuOpticalMicroscopyTools = 235;
             public const uint cmdButtonOpenVirtualSlideFile = 234;
             public const uint cmdButtonViewMRI = 263;
@@ -43,9 +48,6 @@ namespace RibbonLib.Controls
             public const uint cmdButtonLogFile = 306;
             public const uint cmdButtonOpenAppData = 316;
             public const uint cmdButtonMSIDebugger = 266;
-            public const uint cmdMenuTableTools = 253;
-            public const uint cmdButtonOpenTableTool = 252;
-            public const uint cmdButtonVenn = 260;
             public const uint cmdButtonSettings = 1051;
             public const uint cmdButtonAbout = 1021;
             public const uint cmdButtonBioDeep = 1022;
@@ -370,6 +372,17 @@ namespace RibbonLib.Controls
         public RibbonMenuGroup TitleShowComprehensive { get; private set; }
         public RibbonButton ButtonMsImaging { get; private set; }
         public RibbonDropDownButton MenuButtonToolkit { get; private set; }
+        public RibbonMenuGroup MenuTableTools { get; private set; }
+        public RibbonButton ButtonOpenTableTool { get; private set; }
+        public RibbonButton ButtonVenn { get; private set; }
+        /// <summary>
+        /// Data Viewer
+        /// </summary>
+        public RibbonMenuGroup AppMenuViewers { get; private set; }
+        /// <summary>
+        /// Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB.
+        /// </summary>
+        public RibbonButton ButtonMolmilToolkit { get; private set; }
         public RibbonMenuGroup MenuOpticalMicroscopyTools { get; private set; }
         public RibbonButton ButtonOpenVirtualSlideFile { get; private set; }
         public RibbonButton ButtonViewMRI { get; private set; }
@@ -383,9 +396,6 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonButton ButtonOpenAppData { get; private set; }
         public RibbonButton ButtonMSIDebugger { get; private set; }
-        public RibbonMenuGroup MenuTableTools { get; private set; }
-        public RibbonButton ButtonOpenTableTool { get; private set; }
-        public RibbonButton ButtonVenn { get; private set; }
         public RibbonButton ButtonSettings { get; private set; }
         public RibbonButton ButtonAbout { get; private set; }
         public RibbonButton ButtonBioDeep { get; private set; }
@@ -798,6 +808,11 @@ namespace RibbonLib.Controls
             TitleShowComprehensive = new RibbonMenuGroup(ribbon, Cmd.cmdTitleShowComprehensive);
             ButtonMsImaging = new RibbonButton(ribbon, Cmd.cmdButtonMsImaging);
             MenuButtonToolkit = new RibbonDropDownButton(ribbon, Cmd.cmdMenuButtonToolkit);
+            MenuTableTools = new RibbonMenuGroup(ribbon, Cmd.cmdMenuTableTools);
+            ButtonOpenTableTool = new RibbonButton(ribbon, Cmd.cmdButtonOpenTableTool);
+            ButtonVenn = new RibbonButton(ribbon, Cmd.cmdButtonVenn);
+            AppMenuViewers = new RibbonMenuGroup(ribbon, Cmd.cmdAppMenuViewers);
+            ButtonMolmilToolkit = new RibbonButton(ribbon, Cmd.cmdButtonMolmilToolkit);
             MenuOpticalMicroscopyTools = new RibbonMenuGroup(ribbon, Cmd.cmdMenuOpticalMicroscopyTools);
             ButtonOpenVirtualSlideFile = new RibbonButton(ribbon, Cmd.cmdButtonOpenVirtualSlideFile);
             ButtonViewMRI = new RibbonButton(ribbon, Cmd.cmdButtonViewMRI);
@@ -808,9 +823,6 @@ namespace RibbonLib.Controls
             ButtonLogFile = new RibbonButton(ribbon, Cmd.cmdButtonLogFile);
             ButtonOpenAppData = new RibbonButton(ribbon, Cmd.cmdButtonOpenAppData);
             ButtonMSIDebugger = new RibbonButton(ribbon, Cmd.cmdButtonMSIDebugger);
-            MenuTableTools = new RibbonMenuGroup(ribbon, Cmd.cmdMenuTableTools);
-            ButtonOpenTableTool = new RibbonButton(ribbon, Cmd.cmdButtonOpenTableTool);
-            ButtonVenn = new RibbonButton(ribbon, Cmd.cmdButtonVenn);
             ButtonSettings = new RibbonButton(ribbon, Cmd.cmdButtonSettings);
             ButtonAbout = new RibbonButton(ribbon, Cmd.cmdButtonAbout);
             ButtonBioDeep = new RibbonButton(ribbon, Cmd.cmdButtonBioDeep);

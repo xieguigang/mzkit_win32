@@ -4527,6 +4527,22 @@
         <Image MinDPI="192">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonMolmilToolkit" Comment="Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB." Id="351" LabelTitle="Molmil Toolkit" LabelDescription="Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB." TooltipTitle="Molmil Toolkit" TooltipDescription="Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB." Keytip="Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB.">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdAppMenuViewers" Comment="Data Viewer" Id="352" LabelTitle="Data Viewer" LabelDescription="Data Viewer" TooltipTitle="Data Viewer" TooltipDescription="Data Viewer" Keytip="Data Viewer">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/3d scanning.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/3d scanning.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4588,6 +4604,13 @@
               </MenuGroup>
             </DropDownButton>
             <DropDownButton CommandName="cmdMenuButtonToolkit">
+              <MenuGroup CommandName="cmdMenuTableTools" Class="MajorItems">
+                <Button CommandName="cmdButtonOpenTableTool" />
+                <Button CommandName="cmdButtonVenn" />
+              </MenuGroup>
+              <MenuGroup CommandName="cmdAppMenuViewers" Class="MajorItems">
+                <Button CommandName="cmdButtonMolmilToolkit" />
+              </MenuGroup>
               <MenuGroup CommandName="cmdMenuOpticalMicroscopyTools" Class="MajorItems">
                 <Button CommandName="cmdButtonOpenVirtualSlideFile" />
                 <Button CommandName="cmdButtonViewMRI" />
@@ -4600,10 +4623,6 @@
                   <Button CommandName="cmdButtonOpenAppData" />
                   <Button CommandName="cmdButtonMSIDebugger" />
                 </DropDownButton>
-              </MenuGroup>
-              <MenuGroup CommandName="cmdMenuTableTools" Class="MajorItems">
-                <Button CommandName="cmdButtonOpenTableTool" />
-                <Button CommandName="cmdButtonVenn" />
               </MenuGroup>
             </DropDownButton>
           </MenuGroup>

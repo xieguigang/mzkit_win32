@@ -1951,8 +1951,24 @@
 #define cmdButtonMolmilOpenFile_TooltipDescription_RESID 60424
 #define cmdButtonMolmilOpenFile_SmallImages_192__RESID 60425
 #define cmdButtonMolmilOpenFile_LargeImages_192__RESID 60426
-#define InternalCmd2_LabelTitle_RESID 60427
-#define InternalCmd4_LabelTitle_RESID 60428
-#define InternalCmd6_LabelTitle_RESID 60429
-#define InternalCmd8_LabelTitle_RESID 60430
-#define InternalCmd10_LabelTitle_RESID 60431
+#define cmdButtonMolmilToolkit 351  /* Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB. */ 
+#define cmdButtonMolmilToolkit_LabelTitle_RESID 60427
+#define cmdButtonMolmilToolkit_LabelDescription_RESID 60428
+#define cmdButtonMolmilToolkit_Keytip_RESID 60429
+#define cmdButtonMolmilToolkit_TooltipTitle_RESID 60430
+#define cmdButtonMolmilToolkit_TooltipDescription_RESID 60431
+#define cmdButtonMolmilToolkit_SmallImages_192__RESID 60432
+#define cmdButtonMolmilToolkit_LargeImages_192__RESID 60433
+#define cmdAppMenuViewers 352  /* Data Viewer */ 
+#define cmdAppMenuViewers_LabelTitle_RESID 60434
+#define cmdAppMenuViewers_LabelDescription_RESID 60435
+#define cmdAppMenuViewers_Keytip_RESID 60436
+#define cmdAppMenuViewers_TooltipTitle_RESID 60437
+#define cmdAppMenuViewers_TooltipDescription_RESID 60438
+#define cmdAppMenuViewers_SmallImages_192__RESID 60439
+#define cmdAppMenuViewers_LargeImages_192__RESID 60440
+#define InternalCmd2_LabelTitle_RESID 60441
+#define InternalCmd4_LabelTitle_RESID 60442
+#define InternalCmd6_LabelTitle_RESID 60443
+#define InternalCmd8_LabelTitle_RESID 60444
+#define InternalCmd10_LabelTitle_RESID 60445

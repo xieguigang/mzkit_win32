@@ -30,6 +30,11 @@ Namespace RibbonLib.Controls
             Public Const cmdTitleShowComprehensive As UInteger = 231
             Public Const cmdButtonMsImaging As UInteger = 1167
             Public Const cmdMenuButtonToolkit As UInteger = 236
+            Public Const cmdMenuTableTools As UInteger = 253
+            Public Const cmdButtonOpenTableTool As UInteger = 252
+            Public Const cmdButtonVenn As UInteger = 260
+            Public Const cmdAppMenuViewers As UInteger = 352
+            Public Const cmdButtonMolmilToolkit As UInteger = 351
             Public Const cmdMenuOpticalMicroscopyTools As UInteger = 235
             Public Const cmdButtonOpenVirtualSlideFile As UInteger = 234
             Public Const cmdButtonViewMRI As UInteger = 263
@@ -40,9 +45,6 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonLogFile As UInteger = 306
             Public Const cmdButtonOpenAppData As UInteger = 316
             Public Const cmdButtonMSIDebugger As UInteger = 266
-            Public Const cmdMenuTableTools As UInteger = 253
-            Public Const cmdButtonOpenTableTool As UInteger = 252
-            Public Const cmdButtonVenn As UInteger = 260
             Public Const cmdButtonSettings As UInteger = 1051
             Public Const cmdButtonAbout As UInteger = 1021
             Public Const cmdButtonBioDeep As UInteger = 1022
@@ -447,6 +449,42 @@ Namespace RibbonLib.Controls
                 Return _MenuButtonToolkit
             End Get
         End Property
+        Private _MenuTableTools As RibbonMenuGroup
+        Public ReadOnly Property MenuTableTools As RibbonMenuGroup
+            Get
+                Return _MenuTableTools
+            End Get
+        End Property
+        Private _ButtonOpenTableTool As RibbonButton
+        Public ReadOnly Property ButtonOpenTableTool As RibbonButton
+            Get
+                Return _ButtonOpenTableTool
+            End Get
+        End Property
+        Private _ButtonVenn As RibbonButton
+        Public ReadOnly Property ButtonVenn As RibbonButton
+            Get
+                Return _ButtonVenn
+            End Get
+        End Property
+        Private _AppMenuViewers As RibbonMenuGroup
+        ''' <summary>
+        ''' Data Viewer
+        ''' </summary>
+        Public ReadOnly Property AppMenuViewers As RibbonMenuGroup
+            Get
+                Return _AppMenuViewers
+            End Get
+        End Property
+        Private _ButtonMolmilToolkit As RibbonButton
+        ''' <summary>
+        ''' Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB.
+        ''' </summary>
+        Public ReadOnly Property ButtonMolmilToolkit As RibbonButton
+            Get
+                Return _ButtonMolmilToolkit
+            End Get
+        End Property
         Private _MenuOpticalMicroscopyTools As RibbonMenuGroup
         Public ReadOnly Property MenuOpticalMicroscopyTools As RibbonMenuGroup
             Get
@@ -508,24 +546,6 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonMSIDebugger As RibbonButton
             Get
                 Return _ButtonMSIDebugger
-            End Get
-        End Property
-        Private _MenuTableTools As RibbonMenuGroup
-        Public ReadOnly Property MenuTableTools As RibbonMenuGroup
-            Get
-                Return _MenuTableTools
-            End Get
-        End Property
-        Private _ButtonOpenTableTool As RibbonButton
-        Public ReadOnly Property ButtonOpenTableTool As RibbonButton
-            Get
-                Return _ButtonOpenTableTool
-            End Get
-        End Property
-        Private _ButtonVenn As RibbonButton
-        Public ReadOnly Property ButtonVenn As RibbonButton
-            Get
-                Return _ButtonVenn
             End Get
         End Property
         Private _ButtonSettings As RibbonButton
@@ -2445,6 +2465,11 @@ Namespace RibbonLib.Controls
             _TitleShowComprehensive = New RibbonMenuGroup(_ribbon, Cmd.cmdTitleShowComprehensive)
             _ButtonMsImaging = New RibbonButton(_ribbon, Cmd.cmdButtonMsImaging)
             _MenuButtonToolkit = New RibbonDropDownButton(_ribbon, Cmd.cmdMenuButtonToolkit)
+            _MenuTableTools = New RibbonMenuGroup(_ribbon, Cmd.cmdMenuTableTools)
+            _ButtonOpenTableTool = New RibbonButton(_ribbon, Cmd.cmdButtonOpenTableTool)
+            _ButtonVenn = New RibbonButton(_ribbon, Cmd.cmdButtonVenn)
+            _AppMenuViewers = New RibbonMenuGroup(_ribbon, Cmd.cmdAppMenuViewers)
+            _ButtonMolmilToolkit = New RibbonButton(_ribbon, Cmd.cmdButtonMolmilToolkit)
             _MenuOpticalMicroscopyTools = New RibbonMenuGroup(_ribbon, Cmd.cmdMenuOpticalMicroscopyTools)
             _ButtonOpenVirtualSlideFile = New RibbonButton(_ribbon, Cmd.cmdButtonOpenVirtualSlideFile)
             _ButtonViewMRI = New RibbonButton(_ribbon, Cmd.cmdButtonViewMRI)
@@ -2455,9 +2480,6 @@ Namespace RibbonLib.Controls
             _ButtonLogFile = New RibbonButton(_ribbon, Cmd.cmdButtonLogFile)
             _ButtonOpenAppData = New RibbonButton(_ribbon, Cmd.cmdButtonOpenAppData)
             _ButtonMSIDebugger = New RibbonButton(_ribbon, Cmd.cmdButtonMSIDebugger)
-            _MenuTableTools = New RibbonMenuGroup(_ribbon, Cmd.cmdMenuTableTools)
-            _ButtonOpenTableTool = New RibbonButton(_ribbon, Cmd.cmdButtonOpenTableTool)
-            _ButtonVenn = New RibbonButton(_ribbon, Cmd.cmdButtonVenn)
             _ButtonSettings = New RibbonButton(_ribbon, Cmd.cmdButtonSettings)
             _ButtonAbout = New RibbonButton(_ribbon, Cmd.cmdButtonAbout)
             _ButtonBioDeep = New RibbonButton(_ribbon, Cmd.cmdButtonBioDeep)
