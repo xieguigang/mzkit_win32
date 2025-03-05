@@ -800,6 +800,12 @@
     <Compile Include="pages\dockWindow\documents\frmMRIViewer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmMolmilViewer.Designer.vb">
+      <DependentUpon>frmMolmilViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmMolmilViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\LCMS\frmLCMSLibrary.Designer.vb">
       <DependentUpon>frmLCMSLibrary.vb</DependentUpon>
     </Compile>
