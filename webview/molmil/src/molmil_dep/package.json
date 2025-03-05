@@ -1,0 +1,17 @@
+{
+  "name": "molmil_dep",
+  "version": "0.0.0",
+  "description": "dependency manager and runtime for molmil viewer",
+  "main": "molmil_dep.js",
+  "author": {
+    "name": "Gert-Jan Bekker; xieguigang"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.25",
+    "@types/node": "^6.14.10",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "npm": "^9.7.2"
+  }
+}
