@@ -1,0 +1,724 @@
+/*!
+ * molmil.css
+ *
+ * Molmil molecular web viewer: https://github.com/gjbekker/molmil
+ * 
+ * By Gert-Jan Bekker
+ * License: LGPLv3
+ *   See https://github.com/gjbekker/molmil/blob/master/LICENCE.md
+ */
+
+:root {
+  --BACKGROUND_COLOR: 0, 0, 0;
+  --BACKGROUND_ALPHA: 0.5;
+  --FOREGROUND_COLOR: 255, 255, 255;
+}
+
+select {
+  padding: .25em;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#console {
+  border: 1px solid #888;
+  width: 50%;
+  font-family: Lucida Console;
+  text-align: left;
+}
+
+#console_log {
+  width: 100%;
+  height: 18em;
+  max-height: 18em;
+  overflow: auto;
+}
+  
+#console_log > span {
+  height: 100%;
+  display: table;
+  padding: .33em;
+}
+  
+#console_log > span > span {
+  display: table-cell;
+  vertical-align: bottom;
+}
+  
+#console_sb {
+  position:absolute;
+  margin-top: .25em;
+  margin-left: .5em;
+  
+}
+  
+#console_input {
+  padding: .33em;
+  max-height: 4.67em;
+  overflow:auto;
+  padding-left: 1.5em;
+  display:block;
+}
+
+.smallButton {
+  display: inline-block;
+  font-size: 1.5em;
+  border: 1px solid red;
+  border-radius: .5em;
+  margin: .125em;
+  padding: .25em;
+}
+
+.smallButton:hover {
+  background-color: yellow;
+  cursor: pointer;
+}
+
+.molmil_UI_center {
+  border: 1px solid red;
+  border-radius: 1em;
+  padding: .5em;
+  background-color: white;
+}
+
+.molmil_menu_popup {
+  border: 1px solid red;
+  border-radius: 1em;
+  padding: .25em 1em;
+  display: inline-block;
+  margin-left: .25em;
+  text-align: center;
+  background-color: white;
+  vertical-align: top;
+}
+
+.molmil_popup_inner {
+  position: relative;
+  top: -50%;
+  left: -50%;
+}
+
+.molmil_UI_container {
+  position: relative;
+  display: inline-block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  font-family: verdana, meiryo, sans-serif, Arial Unicode MS, Cambria Math;
+}
+
+.molmil_UI_LB {
+  position: absolute;
+  top: .5em;
+  left: .5em;
+  z-index: 10;
+}
+
+.molmil_UI_cl_box {
+  position: absolute;
+  bottom: 0em;
+  width: 100%;
+  z-index: 9;
+  display:block;
+  text-align: left;
+
+  font-family: Lucida Console;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.molmil_UI_cl_icon {
+  position: absolute;
+  bottom: 0em;
+  left: 0em;
+  z-index: 9;
+  cursor: pointer;
+  pointer-events: auto;
+  padding: 0.5em;
+  color: rgb(var(--FOREGROUND_COLOR));
+}
+
+.molmil_UI_cl_input {
+  display: block;
+  padding: .5em;
+  padding-left: 2.5em;
+  position:absolute;
+  bottom: 0px;
+  width: calc(100% - 2em);
+  pointer-events: auto;
+  height: 1em;
+  
+
+  background-color: rgb(var(--BACKGROUND_COLOR));
+  color: rgb(var(--FOREGROUND_COLOR));
+  display: none;
+}
+
+.molmil_UI_cl_logbox {
+  padding: .33em;
+  position: absolute;
+  overflow: auto;
+  width: calc(100% - .75em - 1px);
+  max-height: calc(100% - 2.67em);
+  bottom: 2em;
+  pointer-events: auto;
+  resize: vertical;
+  
+  -webkit-touch-callout: text !important;
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  -o-user-select: text !important;
+  user-select: text !important;
+  
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  
+  border: 1px solid rgb(var(--FOREGROUND_COLOR));
+  color: rgb(var(--FOREGROUND_COLOR));
+  background-color: rgba(var(--BACKGROUND_COLOR), 0.25);
+  display: none;
+  
+  overflow: initial;
+  pointer-events: auto;
+}
+
+.molmil_UI_cl_logbox:hover {
+  background-color: rgba(var(--BACKGROUND_COLOR), 0.85);
+}
+
+.molmil_UI_LB_icon {
+  border-radius: 1em;
+  border: 1px solid red;
+  padding: .5em;
+  vertical-align: top;
+  width: 4em;
+  height: 4em;
+  display: inline-block;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  color: rgb(var(--FOREGROUND_COLOR));
+}
+
+.molmil_UI_RB {
+  position: absolute;
+  top: .5em;
+  right: 0em;
+  z-index: 10;
+}
+
+.molmil_UI_RB_icon {
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+  border: 1px solid red;
+  border-right: 0px;
+  padding: .33em .5em 1em .5em;
+  display: inline-block;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.molmil_UI_LB_icon:hover {
+  background-color: rgba(var(--BACKGROUND_COLOR), .67);
+  cursor: pointer;
+  border-width: 2px;
+  margin: -1px;
+}
+
+.molmil_UI_RB_icon:hover {
+  background-color: rgba(var(--BACKGROUND_COLOR), .67);
+  cursor: pointer;
+  border-width: 2px;
+  margin: -1px 0 -1px -1px;
+}
+
+.molmil_UI_RM {
+  border: 1px solid red;
+  border-right: 0px;
+  border-bottom-left-radius: 1em;
+  padding: .5em;
+  display: inline-block;
+  text-align: left;
+  background-color: white;
+  vertical-align: top;
+  width: 15em;
+  min-height: 15em;
+  max-height: 30em;
+  overflow: auto;
+}
+
+.molmil_UI_LM {
+  border: 1px solid red;
+  border-radius: 1em;
+  padding: .25em .5em;
+  display: inline-block;
+  margin-left: .25em;
+  text-align: left;
+  background-color: white;
+  vertical-align: top;
+}
+
+.molmil_UI_ME {
+  padding: .25em;
+}
+
+.molmil_UI_ME:hover {
+  background-color: yellow;
+  cursor: pointer;
+}
+
+.optCat_p {
+  cursor: pointer;
+  width: 1.25em;
+  display: inline-block;
+  font-family: courier;
+  text-align: center;
+}
+
+.optCat_n {
+  cursor: pointer;
+  display: inline-block;
+  width: calc(100% - 1.5em);
+}
+
+.optCat_n:hover {
+  background-color: yellow;
+}
+
+.optCat_k {
+  font-size: .8em;
+  color: lightgrey;
+  cursor: default;
+}
+
+.optCat_k:hover {
+  color: rgb(var(--FOREGROUND_COLOR));
+}
+
+.optCat_k+span {
+  float: right;
+  padding: 0 0.5em 0 0.5em;
+}
+
+.optCat_k+span:hover {
+  background-color: yellow;
+  cursor: pointer;
+}
+
+.unselectableText {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.contextMenu {
+  position: absolute;
+  border: 1px solid red;
+  border-radius: 1em;
+  padding: .5em;
+  background-color: white;
+  min-width: 10em;
+  font-size: .8em;
+  z-index: 9999;
+}
+
+.cM_sub {
+  top: calc(-.5em - 1px);
+  left: 10.75em;
+  font-size: 1em !important;
+}
+
+.contextMenu_E {
+  cursor: pointer;
+  position: relative;
+}
+
+.contextMenu_E:hover,.contextMenu_E_sel {
+  background-color: yellow;
+}
+
+.contextMenu_E span {
+  float: right;
+}
+
+
+/* new UI */
+
+.molmil_popup {
+  display: inline-block;
+  position: absolute;
+  border: 1px solid red;
+  border-radius: 1em;
+  background-color: white;
+  z-index: 9999;
+  top: .5em;
+  left: 7.5em;
+  text-align:center;
+}
+
+.molmil_popup > div {
+  border-bottom: 1px solid red;
+  padding: .5em 2.5em .5em 2.5em;
+}
+
+.molmil_popup > table {
+  border-spacing: 0;
+  padding: .5em;
+  margin: 0 2em 0 2em;
+}
+
+.molmil_popup > button {
+  margin: .5em;
+}
+
+#molmil_UI_complexMenu {
+  display: inline-block;
+  position: absolute;
+  border: 1px solid red;
+  border-radius: 1em;
+  background-color: white;
+  min-width: 10em;
+  font-size: .8em;
+  z-index: 9999;
+  border-spacing: 0;
+  font-family: verdana, meiryo, sans-serif, Arial Unicode MS, Cambria Math;
+}
+
+#molmil_UI_complexMenu > tr:nth-child(1) > td {
+  padding: .25em .5em .25em .5em;
+  border-bottom: 1px solid red;
+}
+
+
+#molmil_UI_complexMenu > tr:nth-child(2) > td:nth-child(1) {
+  padding: .25em .5em 0.5em .5em;
+  vertical-align: middle;
+  width: 1em;
+}
+
+#molmil_UI_complexMenu > tr:nth-child(2) > td:nth-child(1):hover {
+  background-color: yellow;
+  cursor: pointer;
+  border-bottom-left-radius: 1em;
+}
+
+#molmil_UI_complexMenu > tr:nth-child(2) > td:nth-child(2) {
+  padding: .25em 0 0.25em .5em;
+  height: 100%;
+  min-width: 7em;
+  border-left: 1px solid red;
+}
+
+#molmil_UI_complexMenu > tr:nth-child(2) > td:nth-child(2) > div {
+  padding: 0.25em .25em 0.25em 0.25em;
+  width: calc(100% - 1em);
+  display: block;
+}
+
+#molmil_UI_complexMenu > tr:nth-child(2) > td:nth-child(2) > div > span:nth-child(2) {
+  position: relative;
+  float: right;
+}
+
+#molmil_UI_complexMenu > tr:nth-child(2) > td:nth-child(2) > div:hover {
+  background-color: yellow;
+  cursor: pointer;
+}
+
+[contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+
+@media only screen and (max-width: 60em) {
+  #styleif {
+    left: 5.6em !important;
+    width: calc(100% - 7.5em) !important;
+  }
+}
+
+#styleif {
+  position: absolute;
+  top: 0;
+  
+  width: calc(100% - 20em);
+  left: 10em;
+  
+  pointer-events: none;
+  color: rgb(var(--FOREGROUND_COLOR));
+  
+  transition: width,left .2s linear !important;
+}
+
+#styleif > div {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  pointer-events: auto;
+  
+  
+  transition: background .2s linear !important;
+}
+
+#styleif:hover > div {
+  background-color: rgba(var(--BACKGROUND_COLOR), .67);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  
+  transition: none !important;
+}
+
+#styleif > :nth-child(1) {
+  height: 0px;
+
+  opacity: 0;
+  visibility: hidden;
+  
+  transition: opacity 0.3s ease-out;
+  font-size: .75em;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+#styleif > :nth-child(1).visible {
+  border: 1px solid rgb(var(--FOREGROUND_COLOR));
+  border-top: none;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  
+  padding: .33em .67em .33em .67em;
+  
+  opacity: 1;
+  visibility: visible;
+  height: auto;
+  overflow: auto;
+  resize: vertical;
+  max-height: 25em;
+}
+
+#styleif > :nth-child(1) h1 {
+  margin: 0;
+}
+
+#styleif > :nth-child(1) hr {
+  margin-left: calc(-.75em + 1px);
+  margin-right: calc(-.75em + 1px);
+  background-color: rgb(var(--FOREGROUND_COLOR));
+  height: 1px;
+  border-width: 0;
+}
+
+#styleif > :nth-child(2) {
+  border: 1px solid rgb(var(--FOREGROUND_COLOR));
+  border-top: none;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  padding: .25em .5em .5em .5em;
+  
+  display: inline-block;
+  
+  margin-left: 50%;
+  transform: translate(-50%, 0);
+  letter-spacing: 1px;
+  width: 7em;
+  text-align: center;
+}
+
+#styleif > :nth-child(2):hover {
+  color: #C8323A;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: bold;
+  letter-spacing: 0px;
+  padding-left: calc(0.5em + 0.5px);
+  padding-right: calc(0.5em + 0.5px);
+}
+
+
+#styleif > :nth-child(3) {
+  border: 1px solid rgb(var(--FOREGROUND_COLOR));
+  border-radius: 1em;
+  padding: .25em;
+  margin-top: .125em;
+  
+  display: inline-block;
+  
+  margin-left: 50%;
+  transform: translate(-50%, 0);
+  
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-out;
+  width: 7.5em;
+}
+
+#styleif > :nth-child(3).visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+#styleif > :nth-child(3) > div {
+  padding: .25em;
+}
+
+#styleif > :nth-child(3) > div:hover {
+  color: #C8323A;
+  cursor: pointer;
+}
+
+#styleif table span, #styleif table input {
+  vertical-align: middle;
+} 
+
+canvas {
+  background-color: rgb(var(--BACKGROUND_COLOR));
+}
+
+#styleif form {
+}
+
+button {
+  padding: .33em .67em .33em .67em;
+  display: inline-block;
+  border: 1px solid #C0C0C0;
+  margin: .25em;
+  border-radius: .25em;
+  background: #DCDCDC;
+  font-weight: bold;
+  color: rgb(var(--FOREGROUND_COLOR));
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+button:disabled {
+  filter: grayscale(100%);
+  color: grey;
+}
+
+button:focus {
+  outline:none;
+}
+
+#nw_edmap_dl a {
+  margin-right: 1em;
+}
+
+#nw_edmap_dl a:hover {
+  color: #C8323A;
+}
+
+#nw_edmap_dl div {
+  display: inline-block;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  padding: 0 .25em 0 .25em;
+}
+
+#nw_edmap_dl div > :nth-child(1):hover, #nw_edmap_dl div > :nth-child(2):hover {
+  cursor: pointer;
+  color: #C8323A;
+}
+
+#nw_edmap_dl div > :nth-child(1) {
+}
+
+#nw_edmap_dl div > :nth-child(2) {
+  margin: 0 0 0 .25em;
+  display: inline-block;
+  font-size: 2em;
+}
+
+
+.dragdiv {
+  position: absolute;
+  z-index: 11;
+  background-color: white;
+  border: 1px solid rgb(var(--FOREGROUND_COLOR));
+  padding: 1em;
+}
+
+.dragdiv > :first-child {
+  padding: 0 1em 1em 1em;
+  margin: 0 -1em 1em -1em;
+  cursor: move;
+  z-index: 12;
+  border-bottom: 1px solid rgb(var(--FOREGROUND_COLOR));
+  font-weight: bold;
+}
+
+#nw_site_tbl {
+  width: 100%;
+  font-size: inherit;
+  margin-bottom: 2em;
+}
+
+#nw_site_tbl td[rowspan]{
+  vertical-align: top;
+  width: 2em;
+}
+
+#nw_site_tbl input {
+  cursor: pointer;
+}
+
+#nw_site_tbl td[colspan]{
+  background-color: rgb(0, 51, 102);
+  font-weight: bold;
+  padding: .25em;
+  cursor: pointer;
+}
+
+#nw_site_tbl td:not([rowspan]):nth-child(1){
+  color: rgb(204, 0, 0);
+  width: 8em;
+}
+
+#nw_align table {
+  font-family: monospace;
+  white-space: pre;
+}
+
+#nw_align .nw_align_align {
+  color: grey;
+}
+
+#nw_align table b {
+  color: green;
+}
+
+#molmil_info_popup.visible {
+  display: block!important;
+}
+
+#molmil_info_popup {
+  border-radius: .5em;
+  display: none;
+  position: absolute;
+  padding: 0.5em;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #eeeeeeaa;
+  font-weight: bold;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

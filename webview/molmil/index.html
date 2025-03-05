@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="icon" href="molmil.ico" />
+
+  <title>Molmil</title>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+      overflow: hidden;
+    }
+  </style>
+
+  <script src="coi-serviceworker.min.js" async defer></script>
+  <script src="molmil.js" async defer></script>
+
+</head>
+
+<body onload="molmil.autoSetup();">
+  <canvas class="molmilViewer"></canvas>
+</body>
+
+</html>
