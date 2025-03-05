@@ -250,6 +250,7 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.ButtonOpenPeakFeatures, Sub() Call loadPeakFeatures())
         Call HookRibbon(ribbonItems.ButtonLogFile, Sub() Call openLogTable())
         Call HookRibbon(ribbonItems.ButtonOpenAppData, Sub() Call openAppData())
+        Call HookRibbon(ribbonItems.ButtonMolmilToolkit, Sub() Call openMolmil())
 
         LCMSViewerModule.lcmsViewerhHandle = AddressOf openLcmsScatter
     End Sub
@@ -265,6 +266,10 @@ Module RibbonEvents
                         Call apply(Designer.GetColors(config.GetColorMap.Description, n:=100).Select(Function(c) c.ToHtmlColor).ToArray)
                     End Sub)
             End Sub
+    End Sub
+
+    Private Sub openMolmil()
+        Call VisualStudio.ShowDocument(Of frmMolmilViewer)(DockState.Document, "Molmil Molecular Viewer")
     End Sub
 
     Public Sub openAppData()

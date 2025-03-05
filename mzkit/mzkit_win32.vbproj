@@ -1424,6 +1424,9 @@
     <EmbeddedResource Include="MSdata\frmMSIHistoryList.resx">
       <DependentUpon>frmMSIHistoryList.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmMolmilViewer.resx">
+      <DependentUpon>frmMolmilViewer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\LCMS\frmLCMSLibrary.resx">
       <DependentUpon>frmLCMSLibrary.vb</DependentUpon>
     </EmbeddedResource>
