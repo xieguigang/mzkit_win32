@@ -1,6 +1,5 @@
 module molmil_dep {
     // settings
-
     export var staticHOST: string = "";
     export var fontSize: number = 16;
 
