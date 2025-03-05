@@ -38,29 +38,29 @@ Public Class frmMolmilViewer
     Private Sub startHttp()
         webPort = Net.Tcp.GetFirstAvailablePort(9001)
         localfs = New Process With {
-        .StartInfo = New ProcessStartInfo With {
-            .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",
-            .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {webPort} --parent={App.PID}",
-            .CreateNoWindow = True,
-            .WindowStyle = ProcessWindowStyle.Hidden,
-            .UseShellExecute = True
+            .StartInfo = New ProcessStartInfo With {
+                .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",
+                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {webPort} --parent={App.PID}",
+                .CreateNoWindow = True,
+                .WindowStyle = ProcessWindowStyle.Hidden,
+                .UseShellExecute = True
+            }
         }
-    }
 
         Call localfs.Start()
         Call App.AddExitCleanHook(Sub() Call localfs.Kill())
         Call Hub.Register(New Service With {
-        .CPU = 0,
-        .Name = "Molmil molecule viewer",
-        .Description = "Host the Molmil molecular viewer model data(pdb files) read/loading from the local filesystem, and then rendering on the 3d model viewer.",
-        .isAlive = True,
-        .Memory = 0,
-        .PID = localfs.Id,
-        .Port = webPort,
-        .Protocol = "HTTP 1.0",
-        .StartTime = Now.ToString,
-        .CommandLine = Service.GetCommandLine(localfs)
-    })
+            .CPU = 0,
+            .Name = "Molmil molecule viewer",
+            .Description = "Host the Molmil molecular viewer model data(pdb files) read/loading from the local filesystem, and then rendering on the 3d model viewer.",
+            .isAlive = True,
+            .Memory = 0,
+            .PID = localfs.Id,
+            .Port = webPort,
+            .Protocol = "HTTP 1.0",
+            .StartTime = Now.ToString,
+            .CommandLine = Service.GetCommandLine(localfs)
+        })
 
         Call WorkStudio.LogCommandLine(localfs)
     End Sub

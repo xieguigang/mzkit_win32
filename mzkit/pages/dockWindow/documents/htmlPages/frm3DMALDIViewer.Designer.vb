@@ -39,7 +39,7 @@ Partial Class frm3DMALDIViewer
         Me.WebView21.Dock = System.Windows.Forms.DockStyle.Fill
         Me.WebView21.Location = New System.Drawing.Point(0, 0)
         Me.WebView21.Name = "WebView21"
-        Me.WebView21.Size = New System.Drawing.Size(865, 565)
+        Me.WebView21.Size = New System.Drawing.Size(865, 421)
         Me.WebView21.TabIndex = 0
         Me.WebView21.ZoomFactor = 1.0R
         '
@@ -59,7 +59,7 @@ Partial Class frm3DMALDIViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(865, 565)
+        Me.ClientSize = New System.Drawing.Size(865, 421)
         Me.Controls.Add(Me.WebView21)
         Me.DoubleBuffered = True
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)

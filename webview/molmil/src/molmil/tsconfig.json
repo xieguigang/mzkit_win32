@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "es5",
+      "dom.iterable",
+      "scripthost"
+    ],
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "../../",
+    "outFile": "../../molmil.js",
+    "declaration": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

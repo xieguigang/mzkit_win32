@@ -1,0 +1,17 @@
+{
+  "name": "molmil",
+  "version": "0.0.0",
+  "description": "Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB.",
+  "main": "molmil.js",
+  "author": {
+    "name": "Gert-Jan Bekker; xieguigang"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.25",
+    "@types/node": "^6.14.10",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "npm": "^9.7.2"
+  }
+}
