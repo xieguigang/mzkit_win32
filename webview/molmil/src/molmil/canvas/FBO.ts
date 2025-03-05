@@ -1,9 +1,20 @@
 namespace molmil {
 
+    /**
+     * fbo 
+    */
     export class FBO {
 
-
-        // fbo
+        width;
+        height;
+        gl;
+        textures;
+        colourNumber;
+        fbo;
+        fbo2;
+        colorRenderbuffer;
+        depthBuffer;
+        multisample;
 
         constructor(gl, width, height) {
             this.width = width; this.height = height; this.gl = gl;

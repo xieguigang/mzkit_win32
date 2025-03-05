@@ -19,6 +19,7 @@ namespace molmil {
         cli_canvas;
         cli_soup;
         global;
+        colors;
     }
 
     export const commandLines = {};
@@ -31,6 +32,12 @@ namespace molmil {
         commandBuffer = [];
         icon;
         consoleBox;
+        canvas;
+        soup;
+        run;
+        logBox;
+        initDone;
+        altCommandIF;
 
         constructor(canvas) {
             for (var e in window)

@@ -7469,8 +7469,10 @@ var molmil;
 })(molmil || (molmil = {}));
 var molmil;
 (function (molmil) {
+    /**
+     * fbo
+    */
     var FBO = /** @class */ (function () {
-        // fbo
         function FBO(gl, width, height) {
             this.width = width;
             this.height = height;
@@ -7589,8 +7591,8 @@ var molmil;
 })(molmil || (molmil = {}));
 var molmil;
 (function (molmil) {
+    // ** camera object **
     var glCamera = /** @class */ (function () {
-        // ** camera object **
         function glCamera() {
             this.reset();
         }

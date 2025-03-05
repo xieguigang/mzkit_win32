@@ -1,12 +1,25 @@
 namespace molmil {
 
+    // ** camera object **
     export class glCamera {
 
+        x;
+        y;
+        z;
+        QPitch;
+        QHeading;
+        QView;
+        QRoll;
+        Qtmp;
+        pitchAngle;
+        vrXYZ;
+        vrXYZupdated;
+        headingAngle;
+        rollAngle;
 
-
-        // ** camera object **
-
-        constructor() { this.reset(); }
+        constructor() {
+            this.reset();
+        }
 
         reset() {
             this.x = this.y = this.z = 0.0;
