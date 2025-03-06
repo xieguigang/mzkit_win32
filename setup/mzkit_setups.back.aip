@@ -92,6 +92,7 @@
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="SQLite_Dir" Directory_Parent="licenses_Dir" DefaultDir="SQLite"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="UI_Dir" Directory_Parent="src_1_Dir" DefaultDir="UI"/>
     <ROW Directory="UltivueIAMain_waifu2x_art_scale_Dir" Directory_Parent="deep_zoom_image_Dir" DefaultDir="ULTIVU~1|Ultivue-IA-Main_waifu2x_art_scale_files"/>
     <ROW Directory="__10_Dir" Directory_Parent="CMU1.ndpi1_files_Dir" DefaultDir="5"/>
     <ROW Directory="__11_Dir" Directory_Parent="CMU1.ndpi1_files_Dir" DefaultDir="6"/>
@@ -141,9 +142,11 @@
     <ROW Directory="bridge_Dir" Directory_Parent="obj2_Dir" DefaultDir="bridge"/>
     <ROW Directory="brotli_1_Dir" Directory_Parent="libs_Dir" DefaultDir="brotli"/>
     <ROW Directory="brotli_Dir" Directory_Parent="include_1_Dir" DefaultDir="brotli"/>
+    <ROW Directory="build_1_Dir" Directory_Parent="molmil_Dir" DefaultDir="build"/>
     <ROW Directory="build_Dir" Directory_Parent="three.js_Dir" DefaultDir="build"/>
     <ROW Directory="cairo_1_Dir" Directory_Parent="include_1_Dir" DefaultDir="cairo"/>
     <ROW Directory="cairo_Dir" Directory_Parent="licenses_Dir" DefaultDir="cairo"/>
+    <ROW Directory="canvas_Dir" Directory_Parent="molmil_1_Dir" DefaultDir="canvas"/>
     <ROW Directory="cfitsio4.3.0_Dir" Directory_Parent="lib_5_Dir" DefaultDir="CFITSI~1.0|cfitsio-4.3.0"/>
     <ROW Directory="cfmid2_Dir" Directory_Parent="NewFolder_Dir" DefaultDir="cfm-id2"/>
     <ROW Directory="clustering_Dir" Directory_Parent="pipeline_Dir" DefaultDir="CLUSTE~1|clustering"/>
@@ -200,6 +203,7 @@
     <ROW Directory="gdkpixbuf2.0_Dir" Directory_Parent="include_1_Dir" DefaultDir="GDK-PI~1.0|gdk-pixbuf-2.0"/>
     <ROW Directory="gdkpixbuf_1_Dir" Directory_Parent="gdkpixbuf2.0_Dir" DefaultDir="GDK-PI~1|gdk-pixbuf"/>
     <ROW Directory="gdkpixbuf_Dir" Directory_Parent="licenses_Dir" DefaultDir="GDK-PI~1|gdk-pixbuf"/>
+    <ROW Directory="geometry_Dir" Directory_Parent="molmil_1_Dir" DefaultDir="geometry"/>
     <ROW Directory="geopackage_1_Dir" Directory_Parent="lazylibs_Dir" DefaultDir="GEOPAC~1|geopackage"/>
     <ROW Directory="geopackage_Dir" Directory_Parent="libs_Dir" DefaultDir="GEOPAC~1|geopackage"/>
     <ROW Directory="gettext_Dir" Directory_Parent="share_Dir" DefaultDir="gettext"/>
@@ -252,6 +256,7 @@
     <ROW Directory="lazylibs_Dir" Directory_Parent="potree_Dir" DefaultDir="lazylibs"/>
     <ROW Directory="less_1_Dir" Directory_Parent="colorpicker3.4.3_Dir" DefaultDir="less"/>
     <ROW Directory="less_Dir" Directory_Parent="fontawesome6_Dir" DefaultDir="less"/>
+    <ROW Directory="lib_1_Dir" Directory_Parent="molmil_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_2_Dir" Directory_Parent="unix_1_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_3_Dir" Directory_Parent="win_1_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_4_Dir" Directory_Parent="openslidewin64_Dir" DefaultDir="lib"/>
@@ -301,6 +306,9 @@
     <ROW Directory="mixed_Dir" Directory_Parent="themes_Dir" DefaultDir="mixed"/>
     <ROW Directory="models_1_Dir" Directory_Parent="resources_Dir" DefaultDir="models"/>
     <ROW Directory="models_Dir" Directory_Parent="cfmid2_Dir" DefaultDir="models"/>
+    <ROW Directory="molmil_1_Dir" Directory_Parent="src_1_Dir" DefaultDir="molmil"/>
+    <ROW Directory="molmil_Dir" Directory_Parent="webview_Dir" DefaultDir="molmil"/>
+    <ROW Directory="molmil_dep_Dir" Directory_Parent="src_1_Dir" DefaultDir="MOLMIL~1|molmil_dep"/>
     <ROW Directory="mozjpeg_Dir" Directory_Parent="cmake_Dir" DefaultDir="mozjpeg"/>
     <ROW Directory="native_10_Dir" Directory_Parent="linuxarm_1_Dir" DefaultDir="native"/>
     <ROW Directory="native_11_Dir" Directory_Parent="linuxarm64_1_Dir" DefaultDir="native"/>
@@ -329,6 +337,7 @@
     <ROW Directory="nifti_Dir" Directory_Parent="include_1_Dir" DefaultDir="nifti"/>
     <ROW Directory="nvidia_Dir" Directory_Parent="plugins_Dir" DefaultDir="nvidia"/>
     <ROW Directory="obj2_Dir" Directory_Parent="loaders_Dir" DefaultDir="obj2"/>
+    <ROW Directory="objects_Dir" Directory_Parent="molmil_1_Dir" DefaultDir="objects"/>
     <ROW Directory="openjpeg2.5_1_Dir" Directory_Parent="lib_5_Dir" DefaultDir="OPENJP~1.5|openjpeg-2.5"/>
     <ROW Directory="openjpeg2.5_Dir" Directory_Parent="include_1_Dir" DefaultDir="OPENJP~1.5|openjpeg-2.5"/>
     <ROW Directory="openlayers3_Dir" Directory_Parent="libs_Dir" DefaultDir="OPENLA~1|openlayers3"/>
@@ -353,6 +362,7 @@
     <ROW Directory="pixman_Dir" Directory_Parent="licenses_Dir" DefaultDir="pixman"/>
     <ROW Directory="pkgconfig_Dir" Directory_Parent="lib_5_Dir" DefaultDir="PKGCON~1|pkgconfig"/>
     <ROW Directory="plasio_Dir" Directory_Parent="libs_Dir" DefaultDir="plasio"/>
+    <ROW Directory="plugins_1_Dir" Directory_Parent="molmil_Dir" DefaultDir="plugins"/>
     <ROW Directory="plugins_Dir" Directory_Parent="APPDIR" DefaultDir="plugins"/>
     <ROW Directory="poppler_Dir" Directory_Parent="include_1_Dir" DefaultDir="poppler"/>
     <ROW Directory="potree_Dir" Directory_Parent="vendor_Dir" DefaultDir="potree"/>
@@ -370,6 +380,7 @@
     <ROW Directory="scss_Dir" Directory_Parent="fontawesome6_Dir" DefaultDir="scss"/>
     <ROW Directory="se_Dir" Directory_Parent="lang_Dir" DefaultDir="se"/>
     <ROW Directory="services_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="services"/>
+    <ROW Directory="shaders_1_Dir" Directory_Parent="molmil_Dir" DefaultDir="shaders"/>
     <ROW Directory="shaders_Dir" Directory_Parent="potree_Dir" DefaultDir="shaders"/>
     <ROW Directory="shapefile_Dir" Directory_Parent="libs_Dir" DefaultDir="SHAPEF~1|shapefile"/>
     <ROW Directory="shapefiles_Dir" Directory_Parent="resources_Dir" DefaultDir="SHAPEF~1|shapefiles"/>
@@ -384,6 +395,7 @@
     <ROW Directory="sprites_Dir" Directory_Parent="fontawesome6_Dir" DefaultDir="sprites"/>
     <ROW Directory="sql.js_1_Dir" Directory_Parent="lazylibs_Dir" DefaultDir="sql.js"/>
     <ROW Directory="sql.js_Dir" Directory_Parent="libs_Dir" DefaultDir="sql.js"/>
+    <ROW Directory="src_1_Dir" Directory_Parent="molmil_Dir" DefaultDir="src"/>
     <ROW Directory="src_Dir" Directory_Parent="MeshLine_Dir" DefaultDir="src"/>
     <ROW Directory="static_Dir" Directory_Parent="ketcher_Dir" DefaultDir="static"/>
     <ROW Directory="stats.js_Dir" Directory_Parent="libs_Dir" DefaultDir="stats.js"/>
@@ -448,6 +460,7 @@
     <ROW Component="AUTHORS.txt" ComponentId="{32051106-F535-4643-BAA2-4D9350AADDD9}" Directory_="jqueryui_Dir" Attributes="0" KeyPath="AUTHORS.txt" Type="0"/>
     <ROW Component="AUTHORS_1" ComponentId="{CB9CDB3A-BE62-477C-AD2C-643251C3B162}" Directory_="sql.js_1_Dir" Attributes="0" KeyPath="AUTHORS_1" Type="0"/>
     <ROW Component="Accessibility.dll" ComponentId="{24E03178-DE6B-4F94-812F-734CB32AC877}" Directory_="host_Dir" Attributes="0" KeyPath="Accessibility.dll"/>
+    <ROW Component="Array.ts" ComponentId="{C5C2A129-AD69-4DC2-BFD6-12AFD4AEDA97}" Directory_="molmil_dep_Dir" Attributes="0" KeyPath="Array.ts" Type="0"/>
     <ROW Component="B.png" ComponentId="{1A9D9E84-142F-4083-9550-066EEEEE050F}" Directory_="navigation_Dir" Attributes="0" KeyPath="B.png" Type="0"/>
     <ROW Component="BUILD" ComponentId="{15FC120D-622C-4879-A3A3-896CD8C2E096}" Directory_="brotli_1_Dir" Attributes="0" KeyPath="BUILD" Type="0"/>
     <ROW Component="BinaryDecoderWorker.js" ComponentId="{E1396F16-69F2-427E-9E20-D4F769637090}" Directory_="workers_1_Dir" Attributes="0" KeyPath="BinaryDecoderWorker.js" Type="0"/>
@@ -653,6 +666,7 @@
     <ROW Component="Darwinism.IPC.Networking.pdb_1" ComponentId="{0966F80D-1C8E-49FC-9F41-09499332F131}" Directory_="blender_Dir" Attributes="0" KeyPath="Darwinism.IPC.Networking.pdb" Type="4"/>
     <ROW Component="DecoderWorker.js" ComponentId="{5C0036BA-6BBD-4689-ACB6-24BB046E3982}" Directory_="__31_Dir" Attributes="0" KeyPath="DecoderWorker.js" Type="0"/>
     <ROW Component="DevTools" ComponentId="{3BCB9EDB-4D19-44D2-9583-3E021560CCBC}" Directory_="DevTools_Dir" Attributes="0"/>
+    <ROW Component="FBO.ts" ComponentId="{74C8376B-31CC-4982-838E-F8D9E1F1CC66}" Directory_="canvas_Dir" Attributes="0" KeyPath="FBO.ts" Type="0"/>
     <ROW Component="FFTW3Config.cmake" ComponentId="{94DD92B2-FF67-4A88-8FC9-610082F69BE0}" Directory_="fftw3_Dir" Attributes="0" KeyPath="FFTW3lConfigVersion.cmake" Type="0"/>
     <ROW Component="FFTW3Config.cmake_1" ComponentId="{34EF6687-4C24-4CBB-8B41-519D9F19C749}" Directory_="fftw3_Dir" Attributes="0" KeyPath="FFTW3Config.cmake"/>
     <ROW Component="FFTW3ConfigVersion.cmake" ComponentId="{89BB40D6-6EC9-4F4F-A950-150D8DE09A04}" Directory_="fftw3_Dir" Attributes="0" KeyPath="FFTW3ConfigVersion.cmake"/>
@@ -1149,16 +1163,14 @@
     <ROW Component="Microsoft.VisualBasic.Math.Core.pdb" ComponentId="{3E6E2A2A-AE5A-42AE-A816-46F373F8238D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Core.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.DataFrame.dll" ComponentId="{38D1FAA6-CCD7-44F2-BE53-96806E0BBC27}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.DataFrame.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.DataFrame.dll.config" ComponentId="{1173843B-40F0-4235-B066-B9846516DC23}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.DataFrame.dll.config_3"/>
-    <ROW Component="Microsoft.VisualBasic.Math.DataFrame.dll.config_1" ComponentId="{6EFB2D3B-5F61-4794-9041-B70E327051B2}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.DataFrame.dll.config_2"/>
-    <ROW Component="Microsoft.VisualBasic.Math.DataFrame.dll_1" ComponentId="{ACE0A4BD-815C-40E9-8A2C-6E22F7C12DDE}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.DataFrame.pdb_1" Type="4"/>
-    <ROW Component="Microsoft.VisualBasic.Math.DataFrame.dll_2" ComponentId="{C498E882-67F3-495A-9A39-ECF63E880FA5}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.DataFrame.dll_1"/>
-    <ROW Component="Microsoft.VisualBasic.Math.DataFrame.dll_4" ComponentId="{6240C1E0-F144-4920-B3BF-EA48C5776C1C}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.DataFrame.dll_4"/>
-    <ROW Component="Microsoft.VisualBasic.Math.DataFrame.dll_5" ComponentId="{21F86978-6139-4A7F-AF8F-E9F639B60E7D}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.DataFrame.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.Math.DataFrame.pdb" ComponentId="{568B9E1C-1FA5-47E7-A0B5-5BB1E1B38429}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.DataFrame.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.Lambda.dll" ComponentId="{C04A3C96-73DE-4FB1-8F9C-1D5FA4278133}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Lambda.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.Lambda.dll.config" ComponentId="{5DF220CA-5CC1-4AC8-BAFB-B47C732828C2}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Lambda.dll.config_1"/>
     <ROW Component="Microsoft.VisualBasic.Math.Lambda.dll_5" ComponentId="{B052AC47-E3F2-480C-883D-A12EF16D0928}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Lambda.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.Math.Lambda.pdb" ComponentId="{FE440C52-8812-4675-92C9-0212EAF954FF}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Lambda.pdb" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll" ComponentId="{136E37EF-6BDC-4EEF-B975-812BCA9412D6}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_1" ComponentId="{D5704CE9-584D-4E18-AFF6-4AB3D04EC8DC}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_2" ComponentId="{7654CF8E-B9A4-4F41-93FC-B7F59970B02D}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll" ComponentId="{C1743B21-4A9C-4103-84B1-C8567243FC5C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" ComponentId="{EA8C100A-F9A9-46F6-801F-4DB302826574}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.dll" ComponentId="{C939EC15-B2C6-4A1D-B75C-50CA5765D902}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.dll"/>
@@ -1468,7 +1480,6 @@
     <ROW Component="System.Numerics.Vectors.dll" ComponentId="{0C97B7E6-8953-48C2-90FC-6413F0DA1F27}" Directory_="dzitools_Dir" Attributes="0" KeyPath="System.Numerics.Vectors.dll"/>
     <ROW Component="System.Numerics.Vectors.dll_1" ComponentId="{C7EF9939-D472-4572-AFB1-5F8F6DE709A8}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Numerics.Vectors.dll_1"/>
     <ROW Component="System.Numerics.Vectors.dll_2" ComponentId="{3D47FC0B-6349-41D3-92EC-307A6F2D8E41}" Directory_="APPDIR" Attributes="256" KeyPath="System.Numerics.Vectors.dll_2"/>
-    <ROW Component="System.Private.Uri.dll_1" ComponentId="{1C578406-E173-421F-BF8D-D732CBABFDBA}" Directory_="dzitools_Dir" Attributes="0" KeyPath="System.Private.Uri.dll_1"/>
     <ROW Component="System.Resources.Extensions.dll" ComponentId="{5F9E9865-E3D8-4C64-AFE0-E6767759C7E9}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Resources.Extensions.dll"/>
     <ROW Component="System.Resources.Extensions.dll_2" ComponentId="{B47D114C-9C87-44AE-A66F-9E847ECC0EE9}" Directory_="dzitools_Dir" Attributes="0" KeyPath="System.Resources.Extensions.dll_2"/>
     <ROW Component="System.Resources.Extensions.dll_5" ComponentId="{7EC4EF76-1BA4-4D1F-A6ED-3632F865E587}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Resources.Extensions.dll_5"/>
@@ -1558,15 +1569,18 @@
     <ROW Component="_Ex2_Orbitrap_CID.mzXML" ComponentId="{C52A99A4-9792-40B5-92C9-AF7714D8C19F}" Directory_="demo_Dir" Attributes="256" KeyPath="_Ex2_Orbitrap_CID.mzXML" Type="0"/>
     <ROW Component="add.svg" ComponentId="{95A497B1-940C-49A9-8410-0639AF2C6E37}" Directory_="icons_Dir" Attributes="0" KeyPath="add.svg" Type="0"/>
     <ROW Component="addressbook.svg" ComponentId="{AE560DA1-4F6C-417F-814A-8841463F97E2}" Directory_="regular_Dir" Attributes="0" KeyPath="addressbook.svg" Type="0"/>
+    <ROW Component="align.ts" ComponentId="{8DACB14B-B750-460F-840D-1A9F2641ACDE}" Directory_="molmil_1_Dir" Attributes="0" KeyPath="align.ts" Type="0"/>
     <ROW Component="aligned_allocator.h" ComponentId="{E48669ED-F998-41D8-8BFC-E5F31AA54157}" Directory_="hwy_Dir" Attributes="0" KeyPath="timer.h" Type="0"/>
     <ROW Component="aligned_allocator.h_1" ComponentId="{891011DA-140B-4431-A702-183912E41E74}" Directory_="hwy_Dir" Attributes="0" KeyPath="aligned_allocator.h"/>
     <ROW Component="all.css" ComponentId="{3E512B76-F413-4E5F-A44E-42AF540C8D88}" Directory_="css_3_Dir" Attributes="0" KeyPath="all.css" Type="0"/>
     <ROW Component="all.js" ComponentId="{7BF1218D-A7EE-4804-869D-85509F9F6E5B}" Directory_="js_3_Dir" Attributes="0" KeyPath="all.js" Type="0"/>
+    <ROW Component="alpha_dummy.glsl" ComponentId="{CAEBA463-9D68-4583-B028-7B6448E1090F}" Directory_="shaders_1_Dir" Attributes="0" KeyPath="alpha_dummy.glsl" Type="0"/>
     <ROW Component="alphahorizontal.png" ComponentId="{DD9A9A0A-43F7-4948-BC21-C9EC9B5F5C8C}" Directory_="bootstrapcolorpicker_Dir" Attributes="0" KeyPath="alphahorizontal.png" Type="0"/>
     <ROW Component="animate.h" ComponentId="{1B60B983-88A7-4AFB-BE01-624E9665D5E7}" Directory_="magick_Dir" Attributes="0" KeyPath="xwindow.h" Type="0"/>
     <ROW Component="animate.h_1" ComponentId="{D15720C6-2CAC-4EC8-A760-F5F6D6813A06}" Directory_="wand_Dir" Attributes="0" KeyPath="pixelwand.h" Type="0"/>
     <ROW Component="animate.h_2" ComponentId="{28FF3799-7B6C-4384-81B7-E4A00B922D0F}" Directory_="wand_Dir" Attributes="0" KeyPath="animate.h_1"/>
     <ROW Component="animate.h_3" ComponentId="{C6F3E0FF-C5C3-4E79-9E8E-FFA1370195F6}" Directory_="magick_Dir" Attributes="0" KeyPath="animate.h"/>
+    <ROW Component="animationObj.ts" ComponentId="{4442C67C-E782-4452-B77D-9ABB4C7CAFBC}" Directory_="UI_Dir" Attributes="0" KeyPath="animationObj.ts" Type="0"/>
     <ROW Component="annotate.h" ComponentId="{89EB88AD-8C68-4996-B949-63A0F4DB4783}" Directory_="magick_Dir" Attributes="0" KeyPath="annotate.h"/>
     <ROW Component="aom.h" ComponentId="{7413BD9F-A2C1-4680-986D-BAFACF8D6C9A}" Directory_="aom_Dir" Attributes="0" KeyPath="aom_integer.h" Type="0"/>
     <ROW Component="aom.h_1" ComponentId="{4E17838C-1FB6-4EF2-B194-E48C73266FEA}" Directory_="aom_Dir" Attributes="0" KeyPath="aom.h"/>
@@ -1593,6 +1607,7 @@
     <ROW Component="arm_sveinl.h" ComponentId="{DE3BD7CB-3D9F-4E3A-B184-DA400393C078}" Directory_="ops_Dir" Attributes="0" KeyPath="arm_sveinl.h"/>
     <ROW Component="article_diagnostic_pathology.pdf" ComponentId="{A62F48F3-C8F4-412B-BD5F-EB6F8727F9A2}" Directory_="ndpitools_Dir" Attributes="0" KeyPath="article_diagnostic_pathology.pdf" Type="0"/>
     <ROW Component="artifact.h" ComponentId="{1B80DA7D-1F33-41F4-8E73-BF5EA79893F3}" Directory_="magick_Dir" Attributes="0" KeyPath="artifact.h"/>
+    <ROW Component="atomObject.ts" ComponentId="{FFBAD90A-6077-4B5D-B44E-8A34014BF837}" Directory_="objects_Dir" Attributes="0" KeyPath="atomObject.ts" Type="0"/>
     <ROW Component="attribute.h" ComponentId="{11B9ECA8-E5E5-4E96-BB5C-0A27C7EAEB86}" Directory_="magick_Dir" Attributes="0" KeyPath="attribute.h"/>
     <ROW Component="autohint.conf" ComponentId="{0F60232F-6ACE-4DBA-A750-1BD66DC75E70}" Directory_="conf.avail_Dir" Attributes="0" KeyPath="autohint.conf"/>
     <ROW Component="autohintifnohinting.conf" ComponentId="{3082D51A-D459-44EE-A191-006A86118E24}" Directory_="conf.avail_Dir" Attributes="0" KeyPath="autohintifnohinting.conf"/>
@@ -1619,6 +1634,7 @@
     <ROW Component="brands.svg" ComponentId="{14E0E091-93C3-480B-A160-A685CAA3C940}" Directory_="sprites_Dir" Attributes="0" KeyPath="brands.svg" Type="0"/>
     <ROW Component="brick_pavement.jpg" ComponentId="{9E7A521C-4D00-40E2-9B84-7E4F7E8D7293}" Directory_="textures_Dir" Attributes="0" KeyPath="brick_pavement.jpg" Type="0"/>
     <ROW Component="buf.h" ComponentId="{40353EFC-94B9-4A63-9204-59A55376AED6}" Directory_="vips_1_Dir" Attributes="0" KeyPath="buf.h"/>
+    <ROW Component="build.mjs" ComponentId="{9D2C5017-BCFE-4408-A6AB-812A641D5A40}" Directory_="build_1_Dir" Attributes="0" KeyPath="build.mjs" Type="0"/>
     <ROW Component="buildMSIIndex.R" ComponentId="{4CAB334A-A78A-445B-A09F-95533697E87E}" Directory_="pipeline_Dir" Attributes="256" KeyPath="buildMSIIndex.R" Type="0"/>
     <ROW Component="bullet.png" ComponentId="{3465134B-9242-4F8E-A4E4-7A574D8C86D0}" Directory_="img_Dir" Attributes="0" KeyPath="bullet.png" Type="0"/>
     <ROW Component="bundle.js" ComponentId="{6511EAE4-D891-4FEB-A822-B414376F8953}" Directory_="zstdcodec_Dir" Attributes="0" KeyPath="bundle.js" Type="0"/>
@@ -1663,6 +1679,7 @@
     <ROW Component="chebi_lite.obo" ComponentId="{F06AF326-68FE-455D-A085-4C6A69857DEE}" Directory_="data_Dir" Attributes="0" KeyPath="chebi_lite.obo" Type="0"/>
     <ROW Component="chevrotain.module.min.js" ComponentId="{5A5C6E7F-8068-459E-97B1-6A9CAF68C648}" Directory_="libs_1_Dir" Attributes="0" KeyPath="chevrotain.module.min.js" Type="0"/>
     <ROW Component="chvalid.h" ComponentId="{4C965D2A-F2AA-4BFC-8F6C-B84E18BB1695}" Directory_="libxml_Dir" Attributes="0" KeyPath="chvalid.h"/>
+    <ROW Component="cif.js" ComponentId="{3BEB4C69-36E6-4384-B869-FC381EAB1B8F}" Directory_="lib_1_Dir" Attributes="0" KeyPath="cif.js" Type="0"/>
     <ROW Component="cipher.h" ComponentId="{8BFF472A-A1F8-470C-A6E7-01626A7819A5}" Directory_="magick_Dir" Attributes="0" KeyPath="cipher.h"/>
     <ROW Component="client.h" ComponentId="{8185A03D-E5E9-4CAC-A835-F53E0A284690}" Directory_="magick_Dir" Attributes="0" KeyPath="client.h"/>
     <ROW Component="cm.R" ComponentId="{3CD5DE4D-333C-4DDE-9CE3-380E661317ED}" Directory_="textures_1_Dir" Attributes="0" KeyPath="cm.R" Type="0"/>
@@ -1976,6 +1993,7 @@
     <ROW Component="genums.h" ComponentId="{DCE6CA9B-366B-479D-A534-5AF5EF43E0C2}" Directory_="gobject_Dir" Attributes="0" KeyPath="genums.h"/>
     <ROW Component="genviron.h" ComponentId="{E9AB8377-B0ED-451C-9008-557C8EBB9BFD}" Directory_="glib_1_Dir" Attributes="0" KeyPath="genviron.h"/>
     <ROW Component="geometry.h" ComponentId="{79C72434-9654-4F39-A708-9ED73B70CA42}" Directory_="magick_Dir" Attributes="0" KeyPath="geometry.h"/>
+    <ROW Component="geometry.ts" ComponentId="{600D31EC-11ED-49FE-9C19-496255EB7662}" Directory_="geometry_Dir" Attributes="0" KeyPath="geometry.ts" Type="0"/>
     <ROW Component="geopackage.js" ComponentId="{986417CA-3F79-4A62-BC88-2F76EB03468B}" Directory_="geopackage_Dir" Attributes="0" KeyPath="geopackage.js" Type="0"/>
     <ROW Component="geopackage.js_1" ComponentId="{491D6D38-CF0B-4D67-B4F5-5CB7FACE3E9A}" Directory_="geopackage_1_Dir" Attributes="0" KeyPath="geopackage.js_1" Type="0"/>
     <ROW Component="gerror.h" ComponentId="{ED7483FD-E1A8-4CB4-9694-52492CD117F6}" Directory_="glib_1_Dir" Attributes="0" KeyPath="gerror.h"/>
@@ -2020,6 +2038,7 @@
     <ROW Component="giovisibility.h" ComponentId="{ED47F8E0-D6BD-40F9-9330-EA84F04E7EAE}" Directory_="gio_1_Dir" Attributes="0" KeyPath="giovisibility.h"/>
     <ROW Component="giowindows2.0.pc" ComponentId="{46AA5F8A-834D-4F6F-9A07-73F836A29890}" Directory_="pkgconfig_Dir" Attributes="0" KeyPath="giowindows2.0.pc"/>
     <ROW Component="gitignore" ComponentId="{E6E0F870-C04E-47FE-A106-28AB195B44B3}" Directory_="colorpicker3.4.3_Dir" Attributes="0" KeyPath="gitignore" Type="0"/>
+    <ROW Component="gitignore_1" ComponentId="{9FA978FC-E05B-429F-9EDA-42FD3849F029}" Directory_="molmil_Dir" Attributes="0" KeyPath="gitignore_1" Type="0"/>
     <ROW Component="gkeyfile.h" ComponentId="{A3FBBBE2-4E8D-45D0-97F9-8A7D47927EAE}" Directory_="glib_1_Dir" Attributes="0" KeyPath="gkeyfile.h"/>
     <ROW Component="gl.pc" ComponentId="{913CFE46-AF1A-4A2D-B741-CE867ACC85B1}" Directory_="pkgconfig_Dir" Attributes="0" KeyPath="gl.pc"/>
     <ROW Component="glib.h" ComponentId="{2B2F20A2-29C8-4E05-ACF1-9DA90A40FE7A}" Directory_="glib2.0_Dir" Attributes="0" KeyPath="glib.h"/>
@@ -2606,6 +2625,7 @@
     <ROW Component="linq.d.ts" ComponentId="{1F9C0D72-4086-4153-8444-6C2A25C52E5B}" Directory_="js_1_Dir" Attributes="0" KeyPath="linq.d.ts" Type="0"/>
     <ROW Component="list.h" ComponentId="{13A59581-B97C-48B0-97F8-10E87053F80F}" Directory_="magick_Dir" Attributes="0" KeyPath="list.h"/>
     <ROW Component="list.h_1" ComponentId="{55837064-B023-4BA5-80EB-792B91EF3318}" Directory_="libxml_Dir" Attributes="0" KeyPath="list.h_1"/>
+    <ROW Component="loaders.js" ComponentId="{C239C500-F21C-4372-9B09-3B1EE4F9A1CA}" Directory_="plugins_1_Dir" Attributes="0" KeyPath="loaders.js" Type="0"/>
     <ROW Component="local.conf" ComponentId="{9C86BBB2-F3D8-48BF-8341-2C0C732C5320}" Directory_="conf.d_Dir" Attributes="0" KeyPath="local.conf"/>
     <ROW Component="local.conf_1" ComponentId="{A0BC570B-CA67-4753-938D-09E25570224F}" Directory_="conf.avail_Dir" Attributes="0" KeyPath="local.conf_1"/>
     <ROW Component="locale_.h" ComponentId="{44CBAB8D-299D-43B6-90D1-572F3C5DE5ED}" Directory_="magick_Dir" Attributes="0" KeyPath="locale_.h"/>
@@ -3441,7 +3461,6 @@
     <ROW File="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll_5" Component_="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll_5" FileName="MICRO~33.DLL|Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.XGBoost.dll_5" Component_="Microsoft.VisualBasic.MachineLearning.XGBoost.dll_5" FileName="MICRO~34.DLL|Microsoft.VisualBasic.MachineLearning.XGBoost.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MachineLearning.XGBoost.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Core.dll_7" Component_="Microsoft.VisualBasic.Math.Core.dll_7" FileName="MICRO~35.DLL|Microsoft.VisualBasic.Math.Core.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.Core.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.DataFrame.dll_5" Component_="Microsoft.VisualBasic.Math.DataFrame.dll_5" FileName="MICRO~36.DLL|Microsoft.VisualBasic.Math.DataFrame.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.DataFrame.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Lambda.dll_5" Component_="Microsoft.VisualBasic.Math.Lambda.dll_5" FileName="MICRO~37.DLL|Microsoft.VisualBasic.Math.Lambda.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.Lambda.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.dll_5" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll_5" FileName="MICRO~38.DLL|Microsoft.VisualBasic.Math.ODEsSolver.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.ODEsSolver.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Randomizer.dll_5" Component_="Microsoft.VisualBasic.Math.Randomizer.dll_5" FileName="MICRO~39.DLL|Microsoft.VisualBasic.Math.Randomizer.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.Randomizer.dll" SelfReg="false"/>
@@ -3495,7 +3514,6 @@
     <ROW File="Microsoft.VisualBasic.DeepLearning.dll" Component_="Microsoft.VisualBasic.DeepLearning.dll" FileName="MICRO~25.DLL|Microsoft.VisualBasic.DeepLearning.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DeepLearning.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll" Component_="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll" FileName="MICRO~26.DLL|Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.dll_4" Component_="Microsoft.VisualBasic.MachineLearning.dll_4" FileName="MICRO~27.DLL|Microsoft.VisualBasic.MachineLearning.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MachineLearning.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.DataFrame.dll_4" Component_="Microsoft.VisualBasic.Math.DataFrame.dll_4" FileName="MICRO~28.DLL|Microsoft.VisualBasic.Math.DataFrame.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Math.DataFrame.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MIME.application.rdf_xml.dll_1" Component_="Microsoft.VisualBasic.MIME.application.rdf_xml.dll_1" FileName="MICRO~29.DLL|Microsoft.VisualBasic.MIME.application.rdf_xml.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MIME.application.rdf_xml.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MIME.application.rdf_xml.dll.config_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICROS~3.CON|Microsoft.VisualBasic.MIME.application.rdf_xml.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MIME.application.rdf_xml.dll.config" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Data.GO_OWL.dll" Component_="SMRUCC.genomics.Data.GO_OWL.dll" FileName="SMRUCC~5.DLL|SMRUCC.genomics.Data.GO_OWL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\SMRUCC.genomics.Data.GO_OWL.dll" SelfReg="false"/>
@@ -15137,9 +15155,6 @@
     <ROW File="Microsoft.VisualBasic.Math.Core.dll.config_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config_2" FileName="MICROS~2.CON|Microsoft.VisualBasic.Math.Core.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Core.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Core.pdb_1" Component_="Microsoft.VisualBasic.Math.Core.dll_2" FileName="MICRO~19.PDB|Microsoft.VisualBasic.Math.Core.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Core.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Core.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~15.XML|Microsoft.VisualBasic.Math.Core.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Core.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.DataFrame.dll_1" Component_="Microsoft.VisualBasic.Math.DataFrame.dll_2" FileName="MICRO~20.DLL|Microsoft.VisualBasic.Math.DataFrame.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.DataFrame.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.DataFrame.pdb_1" Component_="Microsoft.VisualBasic.Math.DataFrame.dll_1" FileName="MICRO~20.PDB|Microsoft.VisualBasic.Math.DataFrame.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.DataFrame.pdb" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.DataFrame.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~16.XML|Microsoft.VisualBasic.Math.DataFrame.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.DataFrame.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.dll_2" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll_3" FileName="MICRO~21.DLL|Microsoft.VisualBasic.Math.ODEsSolver.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.ODEsSolver.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.pdb_1" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll_2" FileName="MICRO~21.PDB|Microsoft.VisualBasic.Math.ODEsSolver.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.ODEsSolver.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~17.XML|Microsoft.VisualBasic.Math.ODEsSolver.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.ODEsSolver.xml" SelfReg="false"/>
@@ -19403,7 +19418,6 @@
     <ROW File="Microsoft.VisualBasic.DataStorage.netCDF.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~31.XML|Microsoft.VisualBasic.DataStorage.netCDF.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DataStorage.netCDF.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~32.XML|Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.dll.config" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICROS~6.CON|Microsoft.VisualBasic.MachineLearning.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MachineLearning.dll.config" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.DataFrame.dll.config" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICROS~7.CON|Microsoft.VisualBasic.Math.DataFrame.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Math.DataFrame.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.dll.config" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICROS~8.CON|Microsoft.VisualBasic.Math.ODEsSolver.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Math.ODEsSolver.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Statistics.dll.config" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICROS~9.CON|Microsoft.VisualBasic.Math.Statistics.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Math.Statistics.dll.config" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Data.Rhea.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="SMRUC~11.XML|SMRUCC.genomics.Data.Rhea.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\SMRUCC.genomics.Data.Rhea.xml" SelfReg="false"/>
@@ -19414,7 +19428,6 @@
     <ROW File="Microsoft.VisualBasic.DataMining.Framework.dll.config_1" Component_="base.deps.json" FileName="MICROS~8.CON|Microsoft.VisualBasic.DataMining.Framework.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.DataMining.Framework.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DataMining.UMAP.dll.config" Component_="base.deps.json" FileName="MICROS~9.CON|Microsoft.VisualBasic.DataMining.UMAP.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.DataMining.UMAP.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.dll.config_1" Component_="base.deps.json" FileName="MICRO~10.CON|Microsoft.VisualBasic.MachineLearning.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MachineLearning.dll.config" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.DataFrame.dll.config_1" Component_="base.deps.json" FileName="MICRO~11.CON|Microsoft.VisualBasic.Math.DataFrame.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.DataFrame.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Lambda.dll.config" Component_="base.deps.json" FileName="MICRO~12.CON|Microsoft.VisualBasic.Math.Lambda.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.Lambda.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.dll.config_1" Component_="base.deps.json" FileName="MICRO~13.CON|Microsoft.VisualBasic.Math.ODEsSolver.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.ODEsSolver.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Randomizer.dll.config" Component_="base.deps.json" FileName="MICRO~14.CON|Microsoft.VisualBasic.Math.Randomizer.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.Randomizer.dll.config" SelfReg="false"/>
@@ -19463,7 +19476,6 @@
     <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~31.XML|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DataStorage.HDSPack.xml_3" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~32.XML|Microsoft.VisualBasic.DataStorage.HDSPack.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.HDSPack.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DataStorage.netCDF.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~33.XML|Microsoft.VisualBasic.DataStorage.netCDF.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.netCDF.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.DataFrame.dll.config_2" Component_="Microsoft.VisualBasic.Math.DataFrame.dll.config_1" FileName="MICROS~8.CON|Microsoft.VisualBasic.Math.DataFrame.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.DataFrame.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.dll.config_2" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll.config_1" FileName="MICROS~9.CON|Microsoft.VisualBasic.Math.ODEsSolver.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.ODEsSolver.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll_1" Component_="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll_2" FileName="MICRO~36.DLL|Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll.config_1" Component_="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll.config_1" FileName="MICRO~10.CON|Microsoft.VisualBasic.Math.Statistics.ANOVA.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Statistics.ANOVA.dll.config" SelfReg="false"/>
@@ -19728,7 +19740,6 @@
     <ROW File="System.Text.Encodings.Web.dll_1" Component_="System.Text.Encodings.Web.dll_1" FileName="SYSTE~17.DLL|System.Text.Encodings.Web.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Text.Encodings.Web.dll" SelfReg="false"/>
     <ROW File="libSkiaSharp.dll_4" Component_="libSkiaSharp.dll_4" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\arm64\libSkiaSharp.dll" SelfReg="false"/>
     <ROW File="System.Diagnostics.DiagnosticSource._1_dll" Component_="System.Diagnostics.DiagnosticSource._1_dll" FileName="SYSTEM~2.DLL|System.Diagnostics.DiagnosticSource.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\System.Diagnostics.DiagnosticSource.dll" SelfReg="false"/>
-    <ROW File="System.Private.Uri.dll_1" Component_="System.Private.Uri.dll_1" FileName="SYSTE~15.DLL|System.Private.Uri.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\System.Private.Uri.dll" SelfReg="false"/>
     <ROW File="libSkiaSharp.dll_5" Component_="libSkiaSharp.dll_5" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\x64\libSkiaSharp.dll" SelfReg="false"/>
     <ROW File="libSkiaSharp.dll_6" Component_="libSkiaSharp.dll_6" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\x86\libSkiaSharp.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrome_2_try.Assembly.ThermoRawFileReade" Component_="BioNovoGene.Analytical.MassSpectrome_10_try.Assembly.ThermoRawFileReader." FileName="BIONO~26.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.dll" SelfReg="false"/>
@@ -19799,6 +19810,110 @@
     <ROW File="obo_lite.R" Component_="chebi_lite.obo" FileName="obo_lite.R" Attributes="0" SourcePath="..\rstudio\data\obo_lite.R" SelfReg="false"/>
     <ROW File="Newtonsoft.Json.dll_1" Component_="Newtonsoft.Json.dll_1" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Newtonsoft.Json.dll" SelfReg="false"/>
     <ROW File="msconvertGUI.xml" Component_="msconvertGUI.xml" FileName="MSCONV~2.XML|msconvertGUI.xml" Attributes="0" SourcePath="..\..\..\dist\bin\msconvertGUI.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix.dll" Component_="Microsoft.VisualBasic.Math.Matrix.dll" FileName="MICRO~14.DLL|Microsoft.VisualBasic.Math.Matrix.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Math.Matrix.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix.dll.config" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~11.CON|Microsoft.VisualBasic.Math.Matrix.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Math.Matrix.dll.config" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix.dll_1" Component_="Microsoft.VisualBasic.Math.Matrix.dll_1" FileName="MICRO~28.DLL|Microsoft.VisualBasic.Math.Matrix.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.Matrix.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix._1_dll.config" Component_="base.deps.json" FileName="MICRO~19.CON|Microsoft.VisualBasic.Math.Matrix.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.Matrix.dll.config" SelfReg="false"/>
+    <ROW File="gitignore_1" Component_="gitignore_1" FileName="GITIGN~1|.gitignore" Attributes="0" SourcePath="..\webview\molmil\.gitignore" SelfReg="false"/>
+    <ROW File="build.mjs" Component_="build.mjs" FileName="build.mjs" Attributes="0" SourcePath="..\webview\molmil\build\build.mjs" SelfReg="false"/>
+    <ROW File="package.json_2" Component_="build.mjs" FileName="PACKAG~1.JSO|package.json" Attributes="0" SourcePath="..\webview\molmil\build\package.json" SelfReg="false"/>
+    <ROW File="coiserviceworker.min.js" Component_="gitignore_1" FileName="COI-SE~1.JS|coi-serviceworker.min.js" Attributes="0" SourcePath="..\webview\molmil\coi-serviceworker.min.js" SelfReg="false"/>
+    <ROW File="index.html_6" Component_="gitignore_1" FileName="INDEX~1.HTM|index.html" Attributes="0" SourcePath="..\webview\molmil\index.html" SelfReg="false"/>
+    <ROW File="cif.js" Component_="cif.js" FileName="cif.js" Attributes="0" SourcePath="..\webview\molmil\lib\cif.js" SelfReg="false"/>
+    <ROW File="ffmpeg_handler.js" Component_="cif.js" FileName="FFMPEG~1.JS|ffmpeg_handler.js" Attributes="0" SourcePath="..\webview\molmil\lib\ffmpeg_handler.js" SelfReg="false"/>
+    <ROW File="FileSaver.js" Component_="cif.js" FileName="FILESA~1.JS|FileSaver.js" Attributes="0" SourcePath="..\webview\molmil\lib\FileSaver.js" SelfReg="false"/>
+    <ROW File="glmatrixmin.js" Component_="cif.js" FileName="GL-MAT~1.JS|gl-matrix-min.js" Attributes="0" SourcePath="..\webview\molmil\lib\gl-matrix-min.js" SelfReg="false"/>
+    <ROW File="mmtf.js" Component_="cif.js" FileName="mmtf.js" Attributes="0" SourcePath="..\webview\molmil\lib\mmtf.js" SelfReg="false"/>
+    <ROW File="pako.js" Component_="cif.js" FileName="pako.js" Attributes="0" SourcePath="..\webview\molmil\lib\pako.js" SelfReg="false"/>
+    <ROW File="unzipit.min.js" Component_="cif.js" FileName="UNZIPI~1.JS|unzipit.min.js" Attributes="0" SourcePath="..\webview\molmil\lib\unzipit.min.js" SelfReg="false"/>
+    <ROW File="vrml.min.js" Component_="cif.js" FileName="VRMLMI~1.JS|vrml.min.js" Attributes="0" SourcePath="..\webview\molmil\lib\vrml.min.js" SelfReg="false"/>
+    <ROW File="webvrpolyfill.min.js" Component_="cif.js" FileName="WEBVR-~1.JS|webvr-polyfill.min.js" Attributes="0" SourcePath="..\webview\molmil\lib\webvr-polyfill.min.js" SelfReg="false"/>
+    <ROW File="LICENCE.md" Component_="gitignore_1" FileName="LICENCE.md" Attributes="0" SourcePath="..\webview\molmil\LICENCE.md" SelfReg="false"/>
+    <ROW File="LICENSE_21" Component_="gitignore_1" FileName="LICENSE" Attributes="0" SourcePath="..\webview\molmil\LICENSE" SelfReg="false"/>
+    <ROW File="manual.md" Component_="gitignore_1" FileName="manual.md" Attributes="0" SourcePath="..\webview\molmil\manual.md" SelfReg="false"/>
+    <ROW File="molmil.css" Component_="gitignore_1" FileName="molmil.css" Attributes="0" SourcePath="..\webview\molmil\molmil.css" SelfReg="false"/>
+    <ROW File="molmil.d.ts" Component_="gitignore_1" FileName="MOLMIL~1.TS|molmil.d.ts" Attributes="0" SourcePath="..\webview\molmil\molmil.d.ts" SelfReg="false"/>
+    <ROW File="molmil.ico" Component_="gitignore_1" FileName="molmil.ico" Attributes="0" SourcePath="..\webview\molmil\molmil.ico" SelfReg="false"/>
+    <ROW File="molmil.js" Component_="gitignore_1" FileName="molmil.js" Attributes="0" SourcePath="..\webview\molmil\molmil.js" SelfReg="false"/>
+    <ROW File="molmil.js.map" Component_="gitignore_1" FileName="MOLMIL~1.MAP|molmil.js.map" Attributes="0" SourcePath="..\webview\molmil\molmil.js.map" SelfReg="false"/>
+    <ROW File="molmil_dep.d.ts" Component_="gitignore_1" FileName="MOLMIL~2.TS|molmil_dep.d.ts" Attributes="0" SourcePath="..\webview\molmil\molmil_dep.d.ts" SelfReg="false"/>
+    <ROW File="molmil_dep.js" Component_="gitignore_1" FileName="MOLMIL~1.JS|molmil_dep.js" Attributes="0" SourcePath="..\webview\molmil\molmil_dep.js" SelfReg="false"/>
+    <ROW File="molmil_dep.js.map" Component_="gitignore_1" FileName="MOLMIL~2.MAP|molmil_dep.js.map" Attributes="0" SourcePath="..\webview\molmil\molmil_dep.js.map" SelfReg="false"/>
+    <ROW File="loaders.js" Component_="loaders.js" FileName="loaders.js" Attributes="0" SourcePath="..\webview\molmil\plugins\loaders.js" SelfReg="false"/>
+    <ROW File="mdanal.js" Component_="loaders.js" FileName="md-anal.js" Attributes="0" SourcePath="..\webview\molmil\plugins\md-anal.js" SelfReg="false"/>
+    <ROW File="misc.js" Component_="loaders.js" FileName="misc.js" Attributes="0" SourcePath="..\webview\molmil\plugins\misc.js" SelfReg="false"/>
+    <ROW File="pymolscript.js" Component_="loaders.js" FileName="PYMOL-~1.JS|pymol-script.js" Attributes="0" SourcePath="..\webview\molmil\plugins\pymol-script.js" SelfReg="false"/>
+    <ROW File="savers.js" Component_="loaders.js" FileName="savers.js" Attributes="0" SourcePath="..\webview\molmil\plugins\savers.js" SelfReg="false"/>
+    <ROW File="UI.d.ts" Component_="loaders.js" FileName="UID~1.TS|UI.d.ts" Attributes="0" SourcePath="..\webview\molmil\plugins\UI.d.ts" SelfReg="false"/>
+    <ROW File="UI.js" Component_="loaders.js" FileName="UI.js" Attributes="0" SourcePath="..\webview\molmil\plugins\UI.js" SelfReg="false"/>
+    <ROW File="UI.js.map" Component_="loaders.js" FileName="UIJS~1.MAP|UI.js.map" Attributes="0" SourcePath="..\webview\molmil\plugins\UI.js.map" SelfReg="false"/>
+    <ROW File="vrml.js" Component_="loaders.js" FileName="vrml.js" Attributes="0" SourcePath="..\webview\molmil\plugins\vrml.js" SelfReg="false"/>
+    <ROW File="README.md_15" Component_="gitignore_1" FileName="README.md" Attributes="0" SourcePath="..\webview\molmil\README.md" SelfReg="false"/>
+    <ROW File="alpha_dummy.glsl" Component_="alpha_dummy.glsl" FileName="ALPHA_~1.GLS|alpha_dummy.glsl" Attributes="0" SourcePath="..\webview\molmil\shaders\alpha_dummy.glsl" SelfReg="false"/>
+    <ROW File="anaglyph.glsl" Component_="alpha_dummy.glsl" FileName="ANAGLY~1.GLS|anaglyph.glsl" Attributes="0" SourcePath="..\webview\molmil\shaders\anaglyph.glsl" SelfReg="false"/>
+    <ROW File="atomSelection.glsl" Component_="alpha_dummy.glsl" FileName="ATOMSE~1.GLS|atomSelection.glsl" Attributes="0" SourcePath="..\webview\molmil\shaders\atomSelection.glsl" SelfReg="false"/>
+    <ROW File="billboardShader.glsl" Component_="alpha_dummy.glsl" FileName="BILLBO~1.GLS|billboardShader.glsl" Attributes="0" SourcePath="..\webview\molmil\shaders\billboardShader.glsl" SelfReg="false"/>
+    <ROW File="imposterPoints.glsl" Component_="alpha_dummy.glsl" FileName="IMPOST~1.GLS|imposterPoints.glsl" Attributes="0" SourcePath="..\webview\molmil\shaders\imposterPoints.glsl" SelfReg="false"/>
+    <ROW File="imposterPoints_depth.glsl" Component_="alpha_dummy.glsl" FileName="IMPOST~2.GLS|imposterPoints_depth.glsl" Attributes="0" SourcePath="..\webview\molmil\shaders\imposterPoints_depth.glsl" SelfReg="false"/>
+    <ROW File="imposterPoints_render.glsl" Component_="alpha_dummy.glsl" FileName="IMPOST~3.GLS|imposterPoints_render.glsl" Attributes="0" SourcePath="..\webview\molmil\shaders\imposterPoints_render.glsl" SelfReg="false"/>
+    <ROW File="lines.glsl" Component_="alpha_dummy.glsl" FileName="LINES~1.GLS|lines.glsl" Attributes="0" SourcePath="..\webview\molmil\shaders\lines.glsl" SelfReg="false"/>
+    <ROW File="linesPicking.glsl" Component_="alpha_dummy.glsl" FileName="LINESP~1.GLS|linesPicking.glsl" Attributes="0" SourcePath="..\webview\molmil\shaders\linesPicking.glsl" SelfReg="false"/>
+    <ROW File="picking.glsl" Component_="alpha_dummy.glsl" FileName="PICKIN~1.GLS|picking.glsl" Attributes="0" SourcePath="..\webview\molmil\shaders\picking.glsl" SelfReg="false"/>
+    <ROW File="standard.glsl" Component_="alpha_dummy.glsl" FileName="STANDA~1.GLS|standard.glsl" Attributes="0" SourcePath="..\webview\molmil\shaders\standard.glsl" SelfReg="false"/>
+    <ROW File="align.ts" Component_="align.ts" FileName="align.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\align.ts" SelfReg="false"/>
+    <ROW File="app.ts" Component_="align.ts" FileName="app.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\app.ts" SelfReg="false"/>
+    <ROW File="FBO.ts" Component_="FBO.ts" FileName="FBO.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\canvas\FBO.ts" SelfReg="false"/>
+    <ROW File="glCamera.ts" Component_="FBO.ts" FileName="glCamera.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\canvas\glCamera.ts" SelfReg="false"/>
+    <ROW File="render.ts" Component_="FBO.ts" FileName="render.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\canvas\render.ts" SelfReg="false"/>
+    <ROW File="shaderEngine.ts" Component_="FBO.ts" FileName="SHADER~1.TS|shaderEngine.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\canvas\shaderEngine.ts" SelfReg="false"/>
+    <ROW File="SNFG.ts" Component_="FBO.ts" FileName="SNFG.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\canvas\SNFG.ts" SelfReg="false"/>
+    <ROW File="viewer.ts" Component_="FBO.ts" FileName="viewer.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\canvas\viewer.ts" SelfReg="false"/>
+    <ROW File="cli.ts" Component_="align.ts" FileName="cli.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\cli.ts" SelfReg="false"/>
+    <ROW File="color.ts" Component_="align.ts" FileName="color.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\color.ts" SelfReg="false"/>
+    <ROW File="extends.ts" Component_="align.ts" FileName="extends.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\extends.ts" SelfReg="false"/>
+    <ROW File="file.ts" Component_="align.ts" FileName="file.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\file.ts" SelfReg="false"/>
+    <ROW File="geometry.ts" Component_="geometry.ts" FileName="geometry.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\geometry\geometry.ts" SelfReg="false"/>
+    <ROW File="math.ts" Component_="align.ts" FileName="math.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\math.ts" SelfReg="false"/>
+    <ROW File="molmil.ts" Component_="align.ts" FileName="molmil.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\molmil.ts" SelfReg="false"/>
+    <ROW File="molmil_dep.esproj" Component_="align.ts" FileName="MOLMIL~1.ESP|molmil_dep.esproj" Attributes="0" SourcePath="..\webview\molmil\src\molmil\molmil_dep.esproj" SelfReg="false"/>
+    <ROW File="nuget.config" Component_="align.ts" FileName="NUGET~1.CON|nuget.config" Attributes="0" SourcePath="..\webview\molmil\src\molmil\nuget.config" SelfReg="false"/>
+    <ROW File="atomObject.ts" Component_="atomObject.ts" FileName="ATOMOB~1.TS|atomObject.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\objects\atomObject.ts" SelfReg="false"/>
+    <ROW File="chainObject.ts" Component_="atomObject.ts" FileName="CHAINO~1.TS|chainObject.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\objects\chainObject.ts" SelfReg="false"/>
+    <ROW File="entryObject.ts" Component_="atomObject.ts" FileName="ENTRYO~1.TS|entryObject.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\objects\entryObject.ts" SelfReg="false"/>
+    <ROW File="labelObject.ts" Component_="atomObject.ts" FileName="LABELO~1.TS|labelObject.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\objects\labelObject.ts" SelfReg="false"/>
+    <ROW File="molObject.ts" Component_="atomObject.ts" FileName="MOLOBJ~1.TS|molObject.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\objects\molObject.ts" SelfReg="false"/>
+    <ROW File="polygonObject.ts" Component_="atomObject.ts" FileName="POLYGO~1.TS|polygonObject.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\objects\polygonObject.ts" SelfReg="false"/>
+    <ROW File="options.ts" Component_="align.ts" FileName="options.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\options.ts" SelfReg="false"/>
+    <ROW File="packagelock.json" Component_="align.ts" FileName="PACKAG~1.JSO|package-lock.json" Attributes="0" SourcePath="..\webview\molmil\src\molmil\package-lock.json" SelfReg="false"/>
+    <ROW File="package.json_3" Component_="align.ts" FileName="PACKAG~2.JSO|package.json" Attributes="0" SourcePath="..\webview\molmil\src\molmil\package.json" SelfReg="false"/>
+    <ROW File="settings.ts" Component_="align.ts" FileName="settings.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\settings.ts" SelfReg="false"/>
+    <ROW File="tsconfig.json" Component_="align.ts" FileName="TSCONF~1.JSO|tsconfig.json" Attributes="0" SourcePath="..\webview\molmil\src\molmil\tsconfig.json" SelfReg="false"/>
+    <ROW File="vr.ts" Component_="align.ts" FileName="vr.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil\vr.ts" SelfReg="false"/>
+    <ROW File="Array.ts" Component_="Array.ts" FileName="Array.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil_dep\Array.ts" SelfReg="false"/>
+    <ROW File="CallRemote.ts" Component_="Array.ts" FileName="CALLRE~1.TS|CallRemote.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil_dep\CallRemote.ts" SelfReg="false"/>
+    <ROW File="dBT.ts" Component_="Array.ts" FileName="dBT.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil_dep\dBT.ts" SelfReg="false"/>
+    <ROW File="Element.ts" Component_="Array.ts" FileName="Element.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil_dep\Element.ts" SelfReg="false"/>
+    <ROW File="general.ts" Component_="Array.ts" FileName="general.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil_dep\general.ts" SelfReg="false"/>
+    <ROW File="molmil_dep.esproj_1" Component_="Array.ts" FileName="MOLMIL~1.ESP|molmil_dep.esproj" Attributes="0" SourcePath="..\webview\molmil\src\molmil_dep\molmil_dep.esproj" SelfReg="false"/>
+    <ROW File="molmil_dep.ts" Component_="Array.ts" FileName="MOLMIL~1.TS|molmil_dep.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil_dep\molmil_dep.ts" SelfReg="false"/>
+    <ROW File="nuget.config_1" Component_="Array.ts" FileName="NUGET~1.CON|nuget.config" Attributes="0" SourcePath="..\webview\molmil\src\molmil_dep\nuget.config" SelfReg="false"/>
+    <ROW File="Object.ts" Component_="Array.ts" FileName="Object.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil_dep\Object.ts" SelfReg="false"/>
+    <ROW File="packagelock.json_1" Component_="Array.ts" FileName="PACKAG~1.JSO|package-lock.json" Attributes="0" SourcePath="..\webview\molmil\src\molmil_dep\package-lock.json" SelfReg="false"/>
+    <ROW File="package.json_573" Component_="Array.ts" FileName="PACKAG~2.JSO|package.json" Attributes="0" SourcePath="..\webview\molmil\src\molmil_dep\package.json" SelfReg="false"/>
+    <ROW File="settings.ts_1" Component_="Array.ts" FileName="settings.ts" Attributes="0" SourcePath="..\webview\molmil\src\molmil_dep\settings.ts" SelfReg="false"/>
+    <ROW File="tsconfig.json_3" Component_="Array.ts" FileName="TSCONF~1.JSO|tsconfig.json" Attributes="0" SourcePath="..\webview\molmil\src\molmil_dep\tsconfig.json" SelfReg="false"/>
+    <ROW File="animationObj.ts" Component_="animationObj.ts" FileName="ANIMAT~1.TS|animationObj.ts" Attributes="0" SourcePath="..\webview\molmil\src\UI\animationObj.ts" SelfReg="false"/>
+    <ROW File="app.ts_1" Component_="animationObj.ts" FileName="app.ts" Attributes="0" SourcePath="..\webview\molmil\src\UI\app.ts" SelfReg="false"/>
+    <ROW File="menu.ts" Component_="animationObj.ts" FileName="menu.ts" Attributes="0" SourcePath="..\webview\molmil\src\UI\menu.ts" SelfReg="false"/>
+    <ROW File="molmil_ui.esproj" Component_="animationObj.ts" FileName="MOLMIL~1.ESP|molmil_ui.esproj" Attributes="0" SourcePath="..\webview\molmil\src\UI\molmil_ui.esproj" SelfReg="false"/>
+    <ROW File="nuget.config_2" Component_="animationObj.ts" FileName="NUGET~1.CON|nuget.config" Attributes="0" SourcePath="..\webview\molmil\src\UI\nuget.config" SelfReg="false"/>
+    <ROW File="packagelock.json_2" Component_="animationObj.ts" FileName="PACKAG~1.JSO|package-lock.json" Attributes="0" SourcePath="..\webview\molmil\src\UI\package-lock.json" SelfReg="false"/>
+    <ROW File="package.json_574" Component_="animationObj.ts" FileName="PACKAG~2.JSO|package.json" Attributes="0" SourcePath="..\webview\molmil\src\UI\package.json" SelfReg="false"/>
+    <ROW File="tsconfig.json_4" Component_="animationObj.ts" FileName="TSCONF~1.JSO|tsconfig.json" Attributes="0" SourcePath="..\webview\molmil\src\UI\tsconfig.json" SelfReg="false"/>
+    <ROW File="UI.ts" Component_="animationObj.ts" FileName="UI.ts" Attributes="0" SourcePath="..\webview\molmil\src\UI\UI.ts" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix.dll_2" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2" FileName="MICROS~8.DLL|Microsoft.VisualBasic.Math.Matrix.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix._2_dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICROS~3.CON|Microsoft.VisualBasic.Math.Matrix.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.dll.config" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix.pdb" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2" FileName="MICROS~8.PDB|Microsoft.VisualBasic.Math.Matrix.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -20316,7 +20431,6 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll_5"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.XGBoost.dll_5"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Core.dll_7"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.DataFrame.dll_5"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Lambda.dll_5"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll_5"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Randomizer.dll_5"/>
@@ -20359,7 +20473,6 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DeepLearning.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.dll_4"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.DataFrame.dll_4"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.application.rdf_xml.dll_1"/>
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Data.GO_OWL.dll"/>
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.foundation.OBO_Foundry.dll_1"/>
@@ -20781,7 +20894,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Imaging.dll_2"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Imaging.Landscape.dll_2"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Core.dll_2"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.DataFrame.dll_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll_2"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.SignalProcessing.dll_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Statistics.dll_1"/>
@@ -20828,7 +20940,6 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.netCDF.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Imaging.dll_3"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Imaging.Landscape.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.DataFrame.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Statistics.dll_3"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.application.json.dll_4"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.Html.dll_3"/>
@@ -20990,7 +21101,6 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll.config_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Statistics.dll.config_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataMining.Framework.dll.config_1"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.DataFrame.dll.config_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll.config_1"/>
     <ROW Feature_="MainFeature" Component_="Flute.Http.dll_2"/>
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll"/>
@@ -22600,7 +22710,6 @@
     <ROW Feature_="MainFeature" Component_="System.Text.Encodings.Web.dll_1"/>
     <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_4"/>
     <ROW Feature_="MainFeature" Component_="System.Diagnostics.DiagnosticSource._1_dll"/>
-    <ROW Feature_="MainFeature" Component_="System.Private.Uri.dll_1"/>
     <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_5"/>
     <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_6"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrome_3_try.Assembly.ThermoRawFileReader.d"/>
@@ -22659,6 +22768,20 @@
     <ROW Feature_="MainFeature" Component_="settings.json_5"/>
     <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="msconvertGUI.xml"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Matrix.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Matrix.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="gitignore_1"/>
+    <ROW Feature_="MainFeature" Component_="build.mjs"/>
+    <ROW Feature_="MainFeature" Component_="cif.js"/>
+    <ROW Feature_="MainFeature" Component_="loaders.js"/>
+    <ROW Feature_="MainFeature" Component_="alpha_dummy.glsl"/>
+    <ROW Feature_="MainFeature" Component_="align.ts"/>
+    <ROW Feature_="MainFeature" Component_="FBO.ts"/>
+    <ROW Feature_="MainFeature" Component_="geometry.ts"/>
+    <ROW Feature_="MainFeature" Component_="atomObject.ts"/>
+    <ROW Feature_="MainFeature" Component_="Array.ts"/>
+    <ROW Feature_="MainFeature" Component_="animationObj.ts"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -22841,7 +22964,7 @@
     <ROW Directory_="zhCN_Dir" SourcePath="..\..\..\dist\bin\zh-CN" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="enUS_Dir" SourcePath="..\..\..\dist\bin\en-US" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="zhHant_Dir" SourcePath="..\..\..\dist\bin\zh-Hant" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
-    <ROW Directory_="webview_Dir" SourcePath="..\webview" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
+    <ROW Directory_="webview_Dir" SourcePath="..\webview" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\node_modules" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="cfmid2_Dir" SourcePath="..\dist\cfm-id2" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="bin32_Dir" SourcePath="..\dist\hdf5\bin32" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="bin64_Dir" SourcePath="..\dist\hdf5\bin64" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
