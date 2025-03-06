@@ -175,13 +175,14 @@ Public NotInheritable Class RscriptProgressTask
     ''' <returns>
     ''' this function returns the cache file path of the conversion output
     ''' </returns>
-    Public Shared Function CreateMSIIndex(imzML As String, getGuid As Func(Of String, String)) As String
+    Public Shared Function CreateMSIIndex(imzML As String, getGuid As Func(Of String, String), centroid As Boolean) As String
         Dim Rscript As String = RscriptPipelineTask.GetRScript("buildMSIIndex.R")
         Dim uid As String = getGuid(imzML.ChangeSuffix("ibd"))
         Dim cachefile As String = App.AppSystemTemp & "/MSI_imzML/" & uid
         Dim cli As String = $"""{Rscript}"" 
 --imzML ""{imzML}"" 
 --cache ""{cachefile}"" 
+{If(centroid, "--centroid", "")} 
 /@set tqdm=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
