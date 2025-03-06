@@ -362,7 +362,6 @@ Imports MZWorkPack
                                      metadata:=contentMeta) _
                         .CLICode
                 End Using
-
             Else
                 mzPack = Converter.LoadimzML(target, 0, defaultIon, AddressOf RunSlavePipeline.SendProgress)
             End If
