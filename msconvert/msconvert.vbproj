@@ -158,6 +158,10 @@
       <Project>{9efd79a7-b385-4d67-9d23-8940453e5d03}</Project>
       <Name>binarydata-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\HDSPack\HDSPack.vbproj">
+      <Project>{94f88528-276b-4e6f-afb6-870d5e367f6f}</Project>
+      <Name>HDSPack</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\netCDF\netCDF.vbproj">
       <Project>{b6cdc844-f263-459b-9d42-1b917629dcae}</Project>
       <Name>netCDF</Name>
