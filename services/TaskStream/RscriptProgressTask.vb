@@ -172,7 +172,9 @@ Public NotInheritable Class RscriptProgressTask
     ''' convert imzML to mzpack
     ''' </summary>
     ''' <param name="imzML"></param>
-    ''' <returns></returns>
+    ''' <returns>
+    ''' this function returns the cache file path of the conversion output
+    ''' </returns>
     Public Shared Function CreateMSIIndex(imzML As String, getGuid As Func(Of String, String)) As String
         Dim Rscript As String = RscriptPipelineTask.GetRScript("buildMSIIndex.R")
         Dim uid As String = getGuid(imzML.ChangeSuffix("ibd"))
@@ -185,6 +187,8 @@ Public NotInheritable Class RscriptProgressTask
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
+        ' the cache file of current imzML rawdata file is already
+        ' existsed in the cache location
         If cachefile.FileLength > 1024 Then
             Return cachefile
         Else
@@ -199,8 +203,8 @@ Public NotInheritable Class RscriptProgressTask
 
                          Call pipeline.Run()
                      End Sub,
-                title:="Open imzML...",
-                info:="Loading MSI raw data file into viewer workspace...")
+                title:="Open imzML/ibd rawdata file...",
+                info:="Make file format conversion, from imzML to mzpack format, loading MSI raw data file into viewer workspace...")
         End If
 
         Return cachefile

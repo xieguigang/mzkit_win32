@@ -365,10 +365,13 @@ Public Class frmMain : Implements AppHost
                              Return guid
                          End Function)
 
+            ' cache file is mzpack cache file
+            ' send to the service backend for load msi rawdata
             WindowModules.viewer.LoadRender(cachefile, imzML)
             Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {imzML.FileName}")
         End If
 
+        ' update ui title information
         Return WindowModules.viewer.MSIViewerInit0(imzML)
     End Function
 

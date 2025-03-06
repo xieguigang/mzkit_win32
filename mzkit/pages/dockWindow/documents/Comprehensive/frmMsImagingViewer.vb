@@ -2022,6 +2022,11 @@ Public Class frmMsImagingViewer
 
     Const GB As Long = 1024 * 1024 * 1024
 
+    ''' <summary>
+    ''' update the title display
+    ''' </summary>
+    ''' <param name="rawfile"></param>
+    ''' <returns></returns>
     Friend Function MSIViewerInit0(rawfile As String) As String
         If rawfile.FileLength > 1.5 * GB Then
             If MessageBox.Show("The raw data file size is too big, MZKit may takes a very long time to rendering, continute to display the default MS-imaging rendering?",
