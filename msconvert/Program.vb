@@ -10,6 +10,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.DataObjects
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.CommandLine
@@ -323,7 +324,12 @@ Imports MZWorkPack
     ''' <returns></returns>
     <ExportAPI("/msi_pack")>
     <Description("Pack the imzML file as the mzkit MS-Imaging mzpack rawdata file")>
-    <Usage("/msi_pack /target <file.imzML> [/dims <w,h,default=NULL> /default_ion <1/-1> /fly_stream <auto/true/false, default=auto> /output <result.mzPack>]")>
+    <Usage("/msi_pack /target <file.imzML> [
+                                            /dims <w,h,default=NULL> 
+                                            /default_ion <1/-1> 
+                                            /fly_stream <auto/true/false, default=auto> 
+                                            /centroid <da:0.01,default=> 
+                                            /output <result.mzPack>]")>
     <Argument("/dims", True, CLITypes.Integer, PipelineTypes.undefined,
               AcceptTypes:={GetType(Integer())},
               Description:="Set the image dimension size for the ms-imaging data pack output, this options apply for the rawdata which is not a imzML file.")>
@@ -337,6 +343,7 @@ Imports MZWorkPack
         Dim defaultIon As IonModes = CInt(args("/default_ion") Or 1)
         Dim mzPack As mzPack
         Dim fly As String = args("/fly_stream") Or "auto"
+        Dim centroid As String = args("/centroid") Or ""
 
         If target.ExtensionSuffix("imzml") Then
             Dim ibd As String = target.ChangeSuffix("ibd")
@@ -346,10 +353,13 @@ Imports MZWorkPack
                     target:=target,
                     output:=output,
                     defaultIon:=defaultIon,
-                    progress:=AddressOf RunSlavePipeline.SendProgress
+                    progress:=AddressOf RunSlavePipeline.SendProgress,
+                    make_centroid:=Tolerance.ParseScript(centroid)
                 ).CLICode
             Else
-                mzPack = Converter.LoadimzML(target, 0, defaultIon, AddressOf RunSlavePipeline.SendProgress)
+                mzPack = Converter.LoadimzML(target, 0, defaultIon,
+                                             make_centroid:=Tolerance.ParseScript(centroid),
+                                             progress:=AddressOf RunSlavePipeline.SendProgress)
             End If
         Else
             Dim dims As String = args("/dims")

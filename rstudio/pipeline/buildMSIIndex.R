@@ -13,6 +13,8 @@ const imzML as string = ?"--imzML" || stop("no raw data file provided!");
 const in_batch as boolean = ?"--batch" || FALSE;
 [@info "intensity cutoff for removes noise data."]
 const cutoff as double = ?"--into_cutoff" || 0.0;
+[@info "make the spectrum in each spot centroid?"]
+const make_centroid as boolean = ?"--centroid" || FALSE;
 
 [@info "the file path of the MSI indexed cache file."]
 [@type "filepath"]
@@ -43,5 +45,6 @@ if (in_batch) {
         );
     }
 } else {
-    BackgroundTask::cache.MSI(imzML, cache, cutoff);
+    BackgroundTask::cache.MSI(imzML, cache, cutoff, 
+        make_centroid = make_centroid );
 }

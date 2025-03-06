@@ -298,7 +298,10 @@ Module BackgroundTask
     ''' <param name="imzML"></param>
     ''' <param name="cacheFile"></param>
     <ExportAPI("cache.MSI")>
-    Public Sub CreateMSIIndex(imzML As String, cacheFile As String, Optional cutoff As Double = 0.01, Optional default_ion As IonModes = IonModes.Positive)
+    Public Sub CreateMSIIndex(imzML As String, cacheFile As String,
+                              Optional cutoff As Double = 0.01,
+                              Optional make_centroid As Boolean = False,
+                              Optional default_ion As IonModes = IonModes.Positive)
         Dim mzpack As mzPack
         Dim ibd As String = imzML.ChangeSuffix("ibd")
 
@@ -308,7 +311,7 @@ Module BackgroundTask
             If ibd.FileLength > 2 * ByteSize.GB Then
                 Try
                     ' fly stream mode for the conversion
-                    Call imzMLConvertor.ConvertImzMLOntheFly(imzML, cacheFile,, AddressOf RunSlavePipeline.SendProgress)
+                    Call imzMLConvertor.ConvertImzMLOntheFly(imzML, cacheFile,, make_centroid, AddressOf RunSlavePipeline.SendProgress)
                     Call RunSlavePipeline.SendProgress(100, "build pixels index...")
                 Catch ex As Exception
                     Call App.LogException(ex)
