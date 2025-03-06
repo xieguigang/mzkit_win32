@@ -70,6 +70,7 @@ Imports System.Text
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
@@ -88,6 +89,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Emit.Delegates
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.Container
@@ -348,18 +350,44 @@ Public Class frmMain : Implements AppHost
     End Sub
 
     Friend Function showMsImaging(imzML As String, debug As Boolean) As String
-        WindowModules.viewer.Show(m_dockPanel)
-        WindowModules.msImageParameters.Show(m_dockPanel)
+        Dim ibdfile As String = imzML.ChangeSuffix("ibd")
+
+        Call WindowModules.viewer.Show(m_dockPanel)
+        Call WindowModules.msImageParameters.Show(m_dockPanel)
 
         If imzML.ExtensionSuffix("mzpack", "h5") Then
             Call showMzPackMSI(imzML, debug)
+        ElseIf imzML.ExtensionSuffix("imzml") AndAlso Not ibdfile.FileExists Then
+            If MessageBox.Show($"The corresponding ibd rawdata file could not be found: 
+
+{ibdfile}
+
+Just display the sample outline based on the metadata which could be extract from the imzML file?",
+                               "Missing rawdata file", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) = DialogResult.OK Then
+
+                Dim outline As mzPack = TaskProgress.LoadData(
+                    streamLoad:=Function(p As ITaskProgress)
+                                    Return imzMLConvertor.ScanShadows(imzML).ScalePixels
+                                End Function,
+                    title:="Build sample outline",
+                    info:="Extract the sample metadata from the imzML header file.",
+                    host:=Me)
+                Dim cachefile As String = App.AppSystemTemp & "/" & outline.metadata.GetJson.MD5 & ".mzPack"
+
+                Call outline.WriteV2(cachefile)
+                Call WindowModules.viewer.LoadRender(cachefile, imzML)
+                Call Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {imzML.FileName}")
+            Else
+                Call Workbench.Warning($"MSImaging file {imzML} could not be load due to the reason of missing ibd rawdata file.")
+                Return Nothing
+            End If
         Else
             ' create mzPack cache at first for imzML file
             ' and then load the mzPack data
             Dim cachefile As String = RscriptProgressTask.CreateMSIIndex(
                 imzML:=imzML,
                 getGuid:=Function(filepath)
-                             Dim ibd As ibdReader = ibdReader.Open(filepath.ChangeSuffix("ibd"))
+                             Dim ibd As ibdReader = ibdReader.Open(ibdfile)
                              Dim guid As String = ibd.UUID
 
                              Return guid
