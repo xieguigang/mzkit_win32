@@ -322,18 +322,30 @@ Imports MZWorkPack
     ''' <returns></returns>
     <ExportAPI("/msi_pack")>
     <Description("Pack the imzML file as the mzkit MS-Imaging mzpack rawdata file")>
-    <Usage("/msi_pack /target <file.imzML> [/dims <w,h,default=NULL> /default_ion <1/-1> /output <result.mzPack>]")>
+    <Usage("/msi_pack /target <file.imzML> [/dims <w,h,default=NULL> /default_ion <1/-1> /fly_stream <auto/true/false, default=auto> /output <result.mzPack>]")>
     <Argument("/dims", True, CLITypes.Integer, PipelineTypes.undefined,
               AcceptTypes:={GetType(Integer())},
               Description:="Set the image dimension size for the ms-imaging data pack output, this options apply for the rawdata which is not a imzML file.")>
+    <Argument("/fly_stream", True, CLITypes.String, PipelineTypes.std_in,
+              AcceptTypes:={GetType(String)},
+              Description:="deal with the ultra large size imzML rawdata file in stream mode? auto mode means auto switch to fly stream mode when 
+              the ibd rawdata file size is greater than 4GB. Some metadata will be lost in fly stream mode.")>
     Public Function MSIPack(args As CommandLine) As Integer
         Dim target As String = args <= "/target"
         Dim output As String = args("/output") Or target.ChangeSuffix("mzPack")
         Dim defaultIon As IonModes = CInt(args("/default_ion") Or 1)
         Dim mzPack As mzPack
+        Dim fly As String = args("/fly_stream") Or "auto"
 
         If target.ExtensionSuffix("imzml") Then
-            mzPack = Converter.LoadimzML(target, 0, defaultIon, AddressOf RunSlavePipeline.SendProgress)
+            Dim ibd As String = target.ChangeSuffix("ibd")
+
+            If (ibd.FileLength > 4 * ByteSize.GB AndAlso Strings.LCase(fly) = "auto") OrElse Strings.LCase(fly) = "true" Then
+                ' convert file on the fly
+
+            Else
+                mzPack = Converter.LoadimzML(target, 0, defaultIon, AddressOf RunSlavePipeline.SendProgress)
+            End If
         Else
             Dim dims As String = args("/dims")
 
