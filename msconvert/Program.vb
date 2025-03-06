@@ -7,7 +7,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging.MALDI_3D
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.DataObjects
@@ -343,25 +342,12 @@ Imports MZWorkPack
             Dim ibd As String = target.ChangeSuffix("ibd")
 
             If (ibd.FileLength > 4 * ByteSize.GB AndAlso Strings.LCase(fly) = "auto") OrElse Strings.LCase(fly) = "true" Then
-                ' convert file on the fly
-                Dim allscans As ScanData() = Nothing
-                Dim imzml As imzMLMetadata = Nothing
-                Dim metadata = Converter.loadimzMLMetadata(target, allscans, metadata:=imzml)
-                Dim ibdStream As Stream = ibd.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-                Dim ibdreader As New ibdReader(ibdStream, imzml.format)
-                Dim filename As String = imzml.sourcefiles.First.FileName
-                Dim contentMeta As Dictionary(Of String, String) = imzml.AsList
-
-                Using s As Stream = output.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
-                    Return allscans _
-                        .LoadScanStream(ibdreader, filename, defaultIon, , AddressOf RunSlavePipeline.SendProgress) _
-                        .WriteStream(file:=s,
-                                     source:=filename,
-                                     meta_size:=64 * ByteSize.MB,
-                                     [class]:=FileApplicationClass.MSImaging,
-                                     metadata:=contentMeta) _
-                        .CLICode
-                End Using
+                Return imzMLConvertor.ConvertImzMLOntheFly(
+                    target:=target,
+                    output:=output,
+                    defaultIon:=defaultIon,
+                    progress:=AddressOf RunSlavePipeline.SendProgress
+                ).CLICode
             Else
                 mzPack = Converter.LoadimzML(target, 0, defaultIon, AddressOf RunSlavePipeline.SendProgress)
             End If
