@@ -38,10 +38,10 @@
     <ROW Property="IAgree" Value="Yes" Type="4"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1033:{C4D94A72-7049-47D0-8B01-333670788892} 2052:{C4D94A72-7049-47D0-8B01-333670788892} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{6C2824E9-8BCE-4371-9B9B-25EEAC210C51} 2052:{6C2824E9-8BCE-4371-9B9B-25EEAC210C51} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="6.2.2025.0227" Options="32"/>
+    <ROW Property="ProductVersion" Value="6.2.2025.0306" Options="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -453,7 +453,7 @@
     <ROW Directory="zstdcodec_Dir" Directory_Parent="libs_Dir" DefaultDir="ZSTD-C~1|zstd-codec"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{95F452BD-74DD-4B9D-9040-CF12314E279D}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{C5781471-4460-48E5-9DCB-6395966CBA30}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="ARButton.js" ComponentId="{4E917137-D4FF-49F8-85C3-6A5835EE4133}" Directory_="webxr_Dir" Attributes="0" KeyPath="ARButton.js" Type="0"/>
     <ROW Component="AUTHORS" ComponentId="{C7BB9CCD-8E40-46A1-99A4-0164F34C94BA}" Directory_="sql.js_Dir" Attributes="0" KeyPath="AUTHORS" Type="0"/>
@@ -1161,9 +1161,6 @@
     <ROW Component="Microsoft.VisualBasic.Math.Core.dll_3" ComponentId="{E1E36BCC-2169-482A-BD4D-9C37DA54DA2E}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Core.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Math.Core.dll_7" ComponentId="{A9643024-BA01-414B-8F48-2E08C2477EC3}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Core.dll_7"/>
     <ROW Component="Microsoft.VisualBasic.Math.Core.pdb" ComponentId="{3E6E2A2A-AE5A-42AE-A816-46F373F8238D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Core.pdb" Type="4"/>
-    <ROW Component="Microsoft.VisualBasic.Math.DataFrame.dll" ComponentId="{38D1FAA6-CCD7-44F2-BE53-96806E0BBC27}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.DataFrame.dll"/>
-    <ROW Component="Microsoft.VisualBasic.Math.DataFrame.dll.config" ComponentId="{1173843B-40F0-4235-B066-B9846516DC23}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.DataFrame.dll.config_3"/>
-    <ROW Component="Microsoft.VisualBasic.Math.DataFrame.pdb" ComponentId="{568B9E1C-1FA5-47E7-A0B5-5BB1E1B38429}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.DataFrame.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.Lambda.dll" ComponentId="{C04A3C96-73DE-4FB1-8F9C-1D5FA4278133}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Lambda.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.Lambda.dll.config" ComponentId="{5DF220CA-5CC1-4AC8-BAFB-B47C732828C2}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Lambda.dll.config_1"/>
     <ROW Component="Microsoft.VisualBasic.Math.Lambda.dll_5" ComponentId="{B052AC47-E3F2-480C-883D-A12EF16D0928}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Lambda.dll_5"/>
@@ -1171,6 +1168,7 @@
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll" ComponentId="{136E37EF-6BDC-4EEF-B975-812BCA9412D6}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_1" ComponentId="{D5704CE9-584D-4E18-AFF6-4AB3D04EC8DC}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_2" ComponentId="{7654CF8E-B9A4-4F41-93FC-B7F59970B02D}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_2"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_3" ComponentId="{24E4C6C5-0E73-483A-B823-D690E925DDBC}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll" ComponentId="{C1743B21-4A9C-4103-84B1-C8567243FC5C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" ComponentId="{EA8C100A-F9A9-46F6-801F-4DB302826574}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.dll" ComponentId="{C939EC15-B2C6-4A1D-B75C-50CA5765D902}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.dll"/>
@@ -3183,7 +3181,6 @@
     <ROW File="Microsoft.VisualBasic.MachineLearning.XGBoost.dll" Component_="Microsoft.VisualBasic.MachineLearning.XGBoost.dll" FileName="MICRO~36.DLL|Microsoft.VisualBasic.MachineLearning.XGBoost.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.XGBoost.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Core.dll" Component_="Microsoft.VisualBasic.Math.Core.dll" FileName="MICRO~37.DLL|Microsoft.VisualBasic.Math.Core.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Core.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Core.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MICROS~5.CON|Microsoft.VisualBasic.Math.Core.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Core.dll.config" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.DataFrame.dll" Component_="Microsoft.VisualBasic.Math.DataFrame.dll" FileName="MICRO~38.DLL|Microsoft.VisualBasic.Math.DataFrame.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.DataFrame.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Lambda.dll" Component_="Microsoft.VisualBasic.Math.Lambda.dll" FileName="MICRO~39.DLL|Microsoft.VisualBasic.Math.Lambda.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Lambda.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.dll" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll" FileName="MICRO~40.DLL|Microsoft.VisualBasic.Math.ODEsSolver.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.ODEsSolver.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll" Component_="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll" FileName="MICRO~41.DLL|Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll" SelfReg="false"/>
@@ -4584,7 +4581,6 @@
     <ROW File="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.pdb" Component_="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.pdb" FileName="MICRO~41.PDB|Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.XGBoost.pdb" Component_="Microsoft.VisualBasic.MachineLearning.XGBoost.pdb" FileName="MICRO~42.PDB|Microsoft.VisualBasic.MachineLearning.XGBoost.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.XGBoost.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Core.pdb" Component_="Microsoft.VisualBasic.Math.Core.pdb" FileName="MICRO~43.PDB|Microsoft.VisualBasic.Math.Core.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Core.pdb" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.DataFrame.pdb" Component_="Microsoft.VisualBasic.Math.DataFrame.pdb" FileName="MICRO~44.PDB|Microsoft.VisualBasic.Math.DataFrame.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.DataFrame.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Lambda.pdb" Component_="Microsoft.VisualBasic.Math.Lambda.pdb" FileName="MICRO~45.PDB|Microsoft.VisualBasic.Math.Lambda.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Lambda.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" Component_="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" FileName="MICRO~46.PDB|Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.pdb" Component_="Microsoft.VisualBasic.Math.ODEsSolver.pdb" FileName="MICRO~47.PDB|Microsoft.VisualBasic.Math.ODEsSolver.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.ODEsSolver.pdb" SelfReg="false"/>
@@ -4715,7 +4711,6 @@
     <ROW File="Microsoft.VisualBasic.MachineLearning.XGBoost.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="MICRO~32.XML|Microsoft.VisualBasic.MachineLearning.XGBoost.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.XGBoost.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="MICRO~33.XML|Microsoft.VisualBasic.MachineLearning.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Core.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="MICRO~34.XML|Microsoft.VisualBasic.Math.Core.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Core.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.DataFrame.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="MICRO~35.XML|Microsoft.VisualBasic.Math.DataFrame.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.DataFrame.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Lambda.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="MICRO~36.XML|Microsoft.VisualBasic.Math.Lambda.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Lambda.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="MICRO~37.XML|Microsoft.VisualBasic.Math.ODEsSolver.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.ODEsSolver.Extensions.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="MICRO~38.XML|Microsoft.VisualBasic.Math.ODEsSolver.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.ODEsSolver.xml" SelfReg="false"/>
@@ -19505,7 +19500,6 @@
     <ROW File="Microsoft.VisualBasic.DataStorage.netCDF.xml_2" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="MICRO~64.XML|Microsoft.VisualBasic.DataStorage.netCDF.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataStorage.netCDF.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml_1" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="MICRO~65.XML|Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.dll.config_3" Component_="Microsoft.VisualBasic.MachineLearning.dll.config" FileName="MICRO~11.CON|Microsoft.VisualBasic.MachineLearning.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.dll.config" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.DataFrame.dll.config_3" Component_="Microsoft.VisualBasic.Math.DataFrame.dll.config" FileName="MICRO~12.CON|Microsoft.VisualBasic.Math.DataFrame.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.DataFrame.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Lambda.dll.config_1" Component_="Microsoft.VisualBasic.Math.Lambda.dll.config" FileName="MICRO~13.CON|Microsoft.VisualBasic.Math.Lambda.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Lambda.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.dll.config_3" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll.config" FileName="MICRO~14.CON|Microsoft.VisualBasic.Math.ODEsSolver.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.ODEsSolver.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Randomizer.dll.config_1" Component_="Microsoft.VisualBasic.Math.Randomizer.dll.config" FileName="MICRO~15.CON|Microsoft.VisualBasic.Math.Randomizer.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Randomizer.dll.config" SelfReg="false"/>
@@ -19914,6 +19908,9 @@
     <ROW File="Microsoft.VisualBasic.Math.Matrix.dll_2" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2" FileName="MICROS~8.DLL|Microsoft.VisualBasic.Math.Matrix.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix._2_dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICROS~3.CON|Microsoft.VisualBasic.Math.Matrix.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix.pdb" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2" FileName="MICROS~8.PDB|Microsoft.VisualBasic.Math.Matrix.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix.dll_3" Component_="Microsoft.VisualBasic.Math.Matrix.dll_3" FileName="MICRO~30.DLL|Microsoft.VisualBasic.Math.Matrix.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix._3_dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MICROS~2.CON|Microsoft.VisualBasic.Math.Matrix.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.dll.config" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix.pdb_1" Component_="Microsoft.VisualBasic.Math.Matrix.dll_3" FileName="MICRO~35.PDB|Microsoft.VisualBasic.Math.Matrix.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -20232,7 +20229,6 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.XGBoost.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Core.dll"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.DataFrame.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Lambda.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll"/>
@@ -20727,7 +20723,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.MachineLearning.XGBoost.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Core.pdb"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.DataFrame.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Lambda.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.ODEsSolver.pdb"/>
@@ -21089,7 +21084,6 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataMining.Framework.dll.config"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.dll.config"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Lambda.dll.config"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.DataFrame.dll.config"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Statistics.dll.config"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll.config"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll.config"/>
@@ -22780,6 +22774,7 @@
     <ROW Feature_="MainFeature" Component_="geometry.ts"/>
     <ROW Feature_="MainFeature" Component_="atomObject.ts"/>
     <ROW Feature_="MainFeature" Component_="Array.ts"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Matrix.dll_3"/>
     <ROW Feature_="MainFeature" Component_="animationObj.ts"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2"/>
   </COMPONENT>
@@ -23014,7 +23009,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="227" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="306" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>
