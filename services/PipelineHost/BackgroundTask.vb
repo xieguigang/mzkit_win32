@@ -65,6 +65,7 @@ Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.LinearQuantitative.Data
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
@@ -83,6 +84,7 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 Imports Microsoft.VisualBasic.Data.Bootstrapping
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
@@ -298,11 +300,28 @@ Module BackgroundTask
     <ExportAPI("cache.MSI")>
     Public Sub CreateMSIIndex(imzML As String, cacheFile As String, Optional cutoff As Double = 0.01, Optional default_ion As IonModes = IonModes.Positive)
         Dim mzpack As mzPack
+        Dim ibd As String = imzML.ChangeSuffix("ibd")
 
         RunSlavePipeline.SendProgress(0, "Create workspace cache file, wait for a while...")
 
         If imzML.ExtensionSuffix("imzML") Then
-            mzpack = Converter.LoadimzML(imzML, cutoff, default_ion, AddressOf RunSlavePipeline.SendProgress)
+            If ibd.FileLength > 2 * ByteSize.GB Then
+                Try
+                    ' fly stream mode for the conversion
+                    Call imzMLConvertor.ConvertImzMLOntheFly(imzML, cacheFile,, AddressOf RunSlavePipeline.SendProgress)
+                    Call RunSlavePipeline.SendProgress(100, "build pixels index...")
+                Catch ex As Exception
+                    Call App.LogException(ex)
+                Finally
+
+                End Try
+
+                Call RunSlavePipeline.SendProgress(100, "Job done!")
+
+                Return
+            Else
+                mzpack = Converter.LoadimzML(imzML, cutoff, default_ion, AddressOf RunSlavePipeline.SendProgress)
+            End If
         Else
             mzpack = mzPack.ReadAll(imzML.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
         End If
@@ -315,6 +334,7 @@ Module BackgroundTask
                 Call mzpack.Write(temp, progress:=AddressOf RunSlavePipeline.SendMessage)
             End Using
         Catch ex As Exception
+            Call App.LogException(ex)
         Finally
             Call RunSlavePipeline.SendProgress(100, "Job done!")
         End Try
