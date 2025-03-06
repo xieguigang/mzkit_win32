@@ -304,6 +304,11 @@ Module BackgroundTask
                               Optional default_ion As IonModes = IonModes.Positive)
         Dim mzpack As mzPack
         Dim ibd As String = imzML.ChangeSuffix("ibd")
+        Dim toleranceErr As Tolerance = Nothing
+
+        If make_centroid Then
+            toleranceErr = Tolerance.DeltaMass(0.01)
+        End If
 
         RunSlavePipeline.SendProgress(0, "Create workspace cache file, wait for a while...")
 
@@ -311,7 +316,7 @@ Module BackgroundTask
             If ibd.FileLength > 2 * ByteSize.GB Then
                 Try
                     ' fly stream mode for the conversion
-                    Call imzMLConvertor.ConvertImzMLOntheFly(imzML, cacheFile,, make_centroid, AddressOf RunSlavePipeline.SendProgress)
+                    Call imzMLConvertor.ConvertImzMLOntheFly(imzML, cacheFile,, toleranceErr, AddressOf RunSlavePipeline.SendProgress)
                     Call RunSlavePipeline.SendProgress(100, "build pixels index...")
                 Catch ex As Exception
                     Call App.LogException(ex)
@@ -323,7 +328,7 @@ Module BackgroundTask
 
                 Return
             Else
-                mzpack = Converter.LoadimzML(imzML, cutoff, default_ion, AddressOf RunSlavePipeline.SendProgress)
+                mzpack = Converter.LoadimzML(imzML, cutoff, default_ion, toleranceErr, AddressOf RunSlavePipeline.SendProgress)
             End If
         Else
             mzpack = mzPack.ReadAll(imzML.Open(FileMode.Open, doClear:=False, [readOnly]:=True))

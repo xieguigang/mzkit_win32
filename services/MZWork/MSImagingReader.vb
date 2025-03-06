@@ -84,7 +84,7 @@ Public Module MSImagingReader
             End Using
         End If
         If filepath.ExtensionSuffix("imzml") Then
-            Dim mzPack = Converter.LoadimzML(filepath, 0, IonModes.Positive, AddressOf RunSlavePipeline.SendProgress)
+            Dim mzPack = Converter.LoadimzML(filepath, 0, IonModes.Positive, Nothing, AddressOf RunSlavePipeline.SendProgress)
             mzPack.source = filepath.FileName
             Return mzPack
         End If
