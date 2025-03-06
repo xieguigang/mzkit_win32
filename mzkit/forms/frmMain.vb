@@ -405,7 +405,7 @@ Are you want to make your data to be pre-processing before load it into computer
                 centroid:=centroid,
                 imzML:=imzML,
                 getGuid:=Function(filepath)
-                             Dim ibd As ibdReader = ibdReader.Open(ibdfile)
+                             Dim ibd As ibdReader = ibdReader.Open(ibdfile, aggresive:=False)
                              Dim guid As String = ibd.UUID
 
                              Return guid
