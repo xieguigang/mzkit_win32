@@ -1169,6 +1169,7 @@
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_1" ComponentId="{D5704CE9-584D-4E18-AFF6-4AB3D04EC8DC}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_2" ComponentId="{7654CF8E-B9A4-4F41-93FC-B7F59970B02D}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_3" ComponentId="{24E4C6C5-0E73-483A-B823-D690E925DDBC}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_3"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Matrix.pdb" ComponentId="{3CDEC19C-CA3F-435C-8A92-0544AAAAC359}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Matrix.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll" ComponentId="{C1743B21-4A9C-4103-84B1-C8567243FC5C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" ComponentId="{EA8C100A-F9A9-46F6-801F-4DB302826574}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.dll" ComponentId="{C939EC15-B2C6-4A1D-B75C-50CA5765D902}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.dll"/>
@@ -19910,7 +19911,7 @@
     <ROW File="Microsoft.VisualBasic.Math.Matrix.pdb" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2" FileName="MICROS~8.PDB|Microsoft.VisualBasic.Math.Matrix.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix.dll_3" Component_="Microsoft.VisualBasic.Math.Matrix.dll_3" FileName="MICRO~30.DLL|Microsoft.VisualBasic.Math.Matrix.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix._3_dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MICROS~2.CON|Microsoft.VisualBasic.Math.Matrix.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.dll.config" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.Matrix.pdb_1" Component_="Microsoft.VisualBasic.Math.Matrix.dll_3" FileName="MICRO~35.PDB|Microsoft.VisualBasic.Math.Matrix.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix.pdb_1" Component_="Microsoft.VisualBasic.Math.Matrix.pdb" FileName="MICRO~35.PDB|Microsoft.VisualBasic.Math.Matrix.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -22775,6 +22776,7 @@
     <ROW Feature_="MainFeature" Component_="atomObject.ts"/>
     <ROW Feature_="MainFeature" Component_="Array.ts"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Matrix.dll_3"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Matrix.pdb"/>
     <ROW Feature_="MainFeature" Component_="animationObj.ts"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2"/>
   </COMPONENT>
