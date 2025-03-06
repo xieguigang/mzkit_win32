@@ -316,7 +316,7 @@ Module BackgroundTask
             If ibd.FileLength > 2 * ByteSize.GB Then
                 Try
                     ' fly stream mode for the conversion
-                    Call imzMLConvertor.ConvertImzMLOntheFly(imzML, cacheFile,, toleranceErr, AddressOf RunSlavePipeline.SendProgress)
+                    Call imzMLConvertor.ConvertImzMLOntheFly(imzML, cacheFile,, toleranceErr, , AddressOf RunSlavePipeline.SendProgress)
                     Call RunSlavePipeline.SendProgress(100, "build pixels index...")
                 Catch ex As Exception
                     Call App.LogException(ex)
