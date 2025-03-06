@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::167a5197771a438176d4ee3734562904, mzkit\services\PipelineHost\BackgroundTask.vb"
+﻿#Region "Microsoft.VisualBasic::e0695983bfac409ea77edf3c3d82581e, mzkit\services\PipelineHost\BackgroundTask.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 611
-    '    Code Lines: 467 (76.43%)
-    ' Comment Lines: 57 (9.33%)
-    '    - Xml Docs: 66.67%
+    '   Total Lines: 639
+    '    Code Lines: 490 (76.68%)
+    ' Comment Lines: 58 (9.08%)
+    '    - Xml Docs: 65.52%
     ' 
-    '   Blank Lines: 87 (14.24%)
-    '     File Size: 25.46 KB
+    '   Blank Lines: 91 (14.24%)
+    '     File Size: 26.65 KB
 
 
     ' Module BackgroundTask

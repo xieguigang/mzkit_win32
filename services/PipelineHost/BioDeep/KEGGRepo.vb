@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::60eb00c265748cd6110eb111b5f95ee8, mzkit\services\PipelineHost\BioDeep\KEGGRepo.vb"
+﻿#Region "Microsoft.VisualBasic::d986426a69086f93dc7376eeb7509d3d, mzkit\services\PipelineHost\BioDeep\KEGGRepo.vb"
 
     ' Author:
     ' 
@@ -37,19 +37,19 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 211
-    '    Code Lines: 157 (74.41%)
-    ' Comment Lines: 16 (7.58%)
+    '   Total Lines: 252
+    '    Code Lines: 190 (75.40%)
+    ' Comment Lines: 16 (6.35%)
     '    - Xml Docs: 0.00%
     ' 
-    '   Blank Lines: 38 (18.01%)
-    '     File Size: 8.39 KB
+    '   Blank Lines: 46 (18.25%)
+    '     File Size: 10.10 KB
 
 
     ' Module KEGGRepo
     ' 
-    '     Function: getMZKitPackage, loadBackground, RequestChebi, RequestKEGGCompounds, RequestKEGGMaps
-    '               RequestKeggReactionNetwork, RequestLipidMaps, RequestMetabolights, unzip
+    '     Function: getMZKitPackage, loadBackground, RequestChebi, RequestHmdb, RequestKEGGCompounds
+    '               RequestKEGGMaps, RequestKeggReactionNetwork, RequestLipidMaps, RequestMetabolights, unzip
     ' 
     ' /********************************************************************************/
 

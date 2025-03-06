@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::d4903445a52b44ac4b53883b1e224555, mzkit\msconvertGUI\FormMain.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::7095a88752ee1d2b187fba544fc3d33b, mzkit\msconvertGUI\FormMain.Designer.vb"
 
     ' Author:
     ' 

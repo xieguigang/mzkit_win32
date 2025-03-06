@@ -1,62 +1,62 @@
-﻿#Region "Microsoft.VisualBasic::32ef252ad7a8b4814360089e8f64b8d1, mzkit\mzblender\MSImaging\SummaryMSIBlender.vb"
+﻿#Region "Microsoft.VisualBasic::9f68f087e1f236807489982ba745deb2, mzkit\mzblender\MSImaging\SummaryMSIBlender.vb"
 
-' Author:
-' 
-'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-' 
-' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-' 
-' 
-' MIT License
-' 
-' 
-' Permission is hereby granted, free of charge, to any person obtaining a copy
-' of this software and associated documentation files (the "Software"), to deal
-' in the Software without restriction, including without limitation the rights
-' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-' copies of the Software, and to permit persons to whom the Software is
-' furnished to do so, subject to the following conditions:
-' 
-' The above copyright notice and this permission notice shall be included in all
-' copies or substantial portions of the Software.
-' 
-' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-' SOFTWARE.
-
-
-
-' /********************************************************************************/
-
-' Summaries:
+    ' Author:
+    ' 
+    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+    ' 
+    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+    ' 
+    ' 
+    ' MIT License
+    ' 
+    ' 
+    ' Permission is hereby granted, free of charge, to any person obtaining a copy
+    ' of this software and associated documentation files (the "Software"), to deal
+    ' in the Software without restriction, including without limitation the rights
+    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    ' copies of the Software, and to permit persons to whom the Software is
+    ' furnished to do so, subject to the following conditions:
+    ' 
+    ' The above copyright notice and this permission notice shall be included in all
+    ' copies or substantial portions of the Software.
+    ' 
+    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    ' SOFTWARE.
 
 
-' Code Statistics:
 
-'   Total Lines: 158
-'    Code Lines: 111 (70.25%)
-' Comment Lines: 21 (13.29%)
-'    - Xml Docs: 66.67%
-' 
-'   Blank Lines: 26 (16.46%)
-'     File Size: 6.14 KB
+    ' /********************************************************************************/
+
+    ' Summaries:
 
 
-' Class SummaryMSIBlender
-' 
-'     Properties: dimensions
-' 
-'     Constructor: (+1 Overloads) Sub New
-' 
-'     Function: GetTrIQIntensity, (+3 Overloads) Rendering
-' 
-'     Sub: SetIntensityRange
-' 
-' /********************************************************************************/
+    ' Code Statistics:
+
+    '   Total Lines: 162
+    '    Code Lines: 114 (70.37%)
+    ' Comment Lines: 21 (12.96%)
+    '    - Xml Docs: 66.67%
+    ' 
+    '   Blank Lines: 27 (16.67%)
+    '     File Size: 6.27 KB
+
+
+    ' Class SummaryMSIBlender
+    ' 
+    '     Properties: dimensions
+    ' 
+    '     Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Function: GetTrIQIntensity, (+3 Overloads) Rendering
+    ' 
+    '     Sub: SetIntensityRange
+    ' 
+    ' /********************************************************************************/
 
 #End Region
 

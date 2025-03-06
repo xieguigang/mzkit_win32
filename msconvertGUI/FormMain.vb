@@ -1,62 +1,63 @@
-﻿#Region "Microsoft.VisualBasic::b8cf18aee2a2c67bc8411d276205d073, mzkit\msconvertGUI\FormMain.vb"
+﻿#Region "Microsoft.VisualBasic::49c37a59d098ab3a9c68062460b57109, mzkit\msconvertGUI\FormMain.vb"
 
-' Author:
-' 
-'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-' 
-' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-' 
-' 
-' MIT License
-' 
-' 
-' Permission is hereby granted, free of charge, to any person obtaining a copy
-' of this software and associated documentation files (the "Software"), to deal
-' in the Software without restriction, including without limitation the rights
-' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-' copies of the Software, and to permit persons to whom the Software is
-' furnished to do so, subject to the following conditions:
-' 
-' The above copyright notice and this permission notice shall be included in all
-' copies or substantial portions of the Software.
-' 
-' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-' SOFTWARE.
-
-
-
-' /********************************************************************************/
-
-' Summaries:
+    ' Author:
+    ' 
+    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+    ' 
+    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+    ' 
+    ' 
+    ' MIT License
+    ' 
+    ' 
+    ' Permission is hereby granted, free of charge, to any person obtaining a copy
+    ' of this software and associated documentation files (the "Software"), to deal
+    ' in the Software without restriction, including without limitation the rights
+    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    ' copies of the Software, and to permit persons to whom the Software is
+    ' furnished to do so, subject to the following conditions:
+    ' 
+    ' The above copyright notice and this permission notice shall be included in all
+    ' copies or substantial portions of the Software.
+    ' 
+    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    ' SOFTWARE.
 
 
-' Code Statistics:
 
-'   Total Lines: 169
-'    Code Lines: 118 (69.82%)
-' Comment Lines: 16 (9.47%)
-'    - Xml Docs: 93.75%
-' 
-'   Blank Lines: 35 (20.71%)
-'     File Size: 6.16 KB
+    ' /********************************************************************************/
+
+    ' Summaries:
 
 
-' Class FormMain
-' 
-'     Properties: AppHost_ClientRectangle, arguments, CurrentTask, DockPanel
-' 
-'     Function: GetClientSize, GetDesktopLocation, GetWindowState
-' 
-'     Sub: AddTask, Button1_Click, Button2_Click, Button3_Click, ExitToolStripMenuItem_Click
-'          ExportMSImagingFileToolStripMenuItem_Click, FormMain_Load, FormMain_Resize, ListBox1_SelectedIndexChanged, LogText
-'          SetTitle, SetWindowState, ShowProperties, StatusMessage, Warning
-' 
-' /********************************************************************************/
+    ' Code Statistics:
+
+    '   Total Lines: 200
+    '    Code Lines: 142 (71.00%)
+    ' Comment Lines: 16 (8.00%)
+    '    - Xml Docs: 93.75%
+    ' 
+    '   Blank Lines: 42 (21.00%)
+    '     File Size: 7.14 KB
+
+
+    ' Class FormMain
+    ' 
+    '     Properties: AppHost_ClientRectangle, arguments, CurrentTask, DockPanel
+    ' 
+    '     Function: GetClientSize, GetDesktopLocation, getSourceDir, GetWindowState
+    ' 
+    '     Sub: AddTask, Button1_Click, Button2_Click, Button3_Click, ExitToolStripMenuItem_Click
+    '          ExportMSImagingFileToolStripMenuItem_Click, FormMain_Closing, FormMain_Load, FormMain_Resize, ListBox1_SelectedIndexChanged
+    '          LogText, SetTitle, SetWindowState, SetWorkbenchVisible, ShowProperties
+    '          StatusMessage, TextBox1_TextChanged, Warning
+    ' 
+    ' /********************************************************************************/
 
 #End Region
 

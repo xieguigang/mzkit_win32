@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::be8db0617871f547055c7ded5fe3cfb5, mzkit\services\MZWork\MSImagingReader.vb"
+﻿#Region "Microsoft.VisualBasic::2cab60dd06f0664d8e5a87cf2895ae09, mzkit\services\MZWork\MSImagingReader.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 66.67%
     ' 
     '   Blank Lines: 8 (7.77%)
-    '     File Size: 4.35 KB
+    '     File Size: 4.36 KB
 
 
     ' Module MSImagingReader

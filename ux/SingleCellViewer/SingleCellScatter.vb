@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::dd8714520c7aac55e2c79cc7da5f1032, mzkit\ux\SingleCellViewer\SingleCellScatter.vb"
+﻿#Region "Microsoft.VisualBasic::9d4f6a52a58bfd6a5443ab2ef567a32f, mzkit\ux\SingleCellViewer\SingleCellScatter.vb"
 
     ' Author:
     ' 
@@ -37,18 +37,18 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 232
-    '    Code Lines: 173 (74.57%)
-    ' Comment Lines: 14 (6.03%)
+    '   Total Lines: 238
+    '    Code Lines: 178 (74.79%)
+    ' Comment Lines: 14 (5.88%)
     '    - Xml Docs: 92.86%
     ' 
-    '   Blank Lines: 45 (19.40%)
-    '     File Size: 8.42 KB
+    '   Blank Lines: 46 (19.33%)
+    '     File Size: 8.64 KB
 
 
     ' Class SingleCellScatter
     ' 
-    '     Function: GetCanvas, GetCell, RenderScatter
+    '     Function: GetCanvas, GetCell, GetEmbedding, RenderScatter
     ' 
     '     Sub: FilterByCluster, FilterByUMAPSpace, LoadCells, LoadCellViews, PictureBox1_MouseClick
     '          PictureBox1_MouseMove, PictureBox1_SizeChanged, RenderScatter, ResetDataView, SetRender
