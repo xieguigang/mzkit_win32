@@ -386,8 +386,11 @@ Just display the sample outline based on the metadata which could be extract fro
             Dim centroid As Boolean = False
 
             If ibdfile.FileLength > 4 * ByteSize.GB Then
-                If MessageBox.Show($"We found that the data file size of the ibd file '{ibdfile}' 
-is too large({StringFormats.Lanudry(ibdfile.FileLength)} > 4GB) for processing in mzkit, 
+                If MessageBox.Show($"We found that the data file size of the ibd file 
+
+'{ibdfile}' 
+
+is too big({StringFormats.Lanudry(ibdfile.FileLength)} > 4GB) for processing in mzkit, 
 unless we make pre-processing of the rawdata. 
 
 Are you want to make your data to be pre-processing before load it into computer memory?",
