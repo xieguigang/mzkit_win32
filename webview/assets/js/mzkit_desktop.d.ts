@@ -480,6 +480,13 @@ declare namespace apps.systems {
         close_page(): void;
     }
 }
+declare namespace localfile {
+    var base64: string;
+    var parse: (base64: string) => void;
+    function clear(): void;
+    function commit(): void;
+    function load(block: string): void;
+}
 declare namespace apps.viewer {
     /**
      * UMAPPoint

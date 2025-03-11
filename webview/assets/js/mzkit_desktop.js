@@ -1746,6 +1746,24 @@ var apps;
         systems.settings = settings;
     })(systems = apps.systems || (apps.systems = {}));
 })(apps || (apps = {}));
+var localfile;
+(function (localfile) {
+    localfile.base64 = "";
+    function clear() {
+        localfile.base64 = "";
+    }
+    localfile.clear = clear;
+    function commit() {
+        if (!isNullOrUndefined(localfile.parse)) {
+            localfile.parse(localfile.base64);
+        }
+    }
+    localfile.commit = commit;
+    function load(block) {
+        localfile.base64 = localfile.base64 + block;
+    }
+    localfile.load = load;
+})(localfile || (localfile = {}));
 var apps;
 (function (apps) {
     var viewer;
