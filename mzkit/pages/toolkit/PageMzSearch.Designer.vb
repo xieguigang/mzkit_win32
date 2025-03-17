@@ -107,28 +107,23 @@ Partial Class PageMzSearch
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.CheckedListBox4 = New System.Windows.Forms.CheckedListBox()
+        Me.cboxNegAdducts = New System.Windows.Forms.CheckedListBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.CheckedListBox3 = New System.Windows.Forms.CheckedListBox()
+        Me.cboxPosAdducts = New System.Windows.Forms.CheckedListBox()
         Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
-        Me.CheckedListBox2 = New System.Windows.Forms.CheckedListBox()
+        Me.cboxDatabaseList = New System.Windows.Forms.CheckedListBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.CheckedListBox5 = New System.Windows.Forms.CheckedListBox()
         Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.Label10 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.AdductsPresetsLabel = New System.Windows.Forms.Label()
+        Me.AdductsPresets = New System.Windows.Forms.ComboBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -144,9 +139,7 @@ Partial Class PageMzSearch
         Me.GroupBox2.SuspendLayout()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage5.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -314,7 +307,16 @@ Partial Class PageMzSearch
         'GroupBox1
         '
         resources.ApplyResources(Me.GroupBox1, "GroupBox1")
+        Me.GroupBox1.Controls.Add(Me.AdductsPresets)
+        Me.GroupBox1.Controls.Add(Me.AdductsPresetsLabel)
+        Me.GroupBox1.Controls.Add(Me.Button3)
+        Me.GroupBox1.Controls.Add(Me.GroupBox3)
         Me.GroupBox1.Controls.Add(Me.TabControl2)
+        Me.GroupBox1.Controls.Add(Me.GroupBox2)
+        Me.GroupBox1.Controls.Add(Me.CheckedListBox1)
+        Me.GroupBox1.Controls.Add(Me.Label8)
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown1)
+        Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.TabStop = False
         '
@@ -328,44 +330,37 @@ Partial Class PageMzSearch
         '
         'TabPage4
         '
-        Me.TabPage4.Controls.Add(Me.GroupBox3)
-        Me.TabPage4.Controls.Add(Me.GroupBox2)
-        Me.TabPage4.Controls.Add(Me.CheckedListBox1)
-        Me.TabPage4.Controls.Add(Me.Button3)
         Me.TabPage4.Controls.Add(Me.Label9)
-        Me.TabPage4.Controls.Add(Me.Label7)
-        Me.TabPage4.Controls.Add(Me.NumericUpDown1)
-        Me.TabPage4.Controls.Add(Me.CheckedListBox2)
-        Me.TabPage4.Controls.Add(Me.Label8)
+        Me.TabPage4.Controls.Add(Me.cboxDatabaseList)
         resources.ApplyResources(Me.TabPage4, "TabPage4")
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.CheckedListBox4)
+        Me.GroupBox3.Controls.Add(Me.cboxNegAdducts)
         resources.ApplyResources(Me.GroupBox3, "GroupBox3")
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.TabStop = False
         '
-        'CheckedListBox4
+        'cboxNegAdducts
         '
-        resources.ApplyResources(Me.CheckedListBox4, "CheckedListBox4")
-        Me.CheckedListBox4.FormattingEnabled = True
-        Me.CheckedListBox4.Name = "CheckedListBox4"
+        resources.ApplyResources(Me.cboxNegAdducts, "cboxNegAdducts")
+        Me.cboxNegAdducts.FormattingEnabled = True
+        Me.cboxNegAdducts.Name = "cboxNegAdducts"
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.CheckedListBox3)
+        Me.GroupBox2.Controls.Add(Me.cboxPosAdducts)
         resources.ApplyResources(Me.GroupBox2, "GroupBox2")
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.TabStop = False
         '
-        'CheckedListBox3
+        'cboxPosAdducts
         '
-        resources.ApplyResources(Me.CheckedListBox3, "CheckedListBox3")
-        Me.CheckedListBox3.FormattingEnabled = True
-        Me.CheckedListBox3.Name = "CheckedListBox3"
+        resources.ApplyResources(Me.cboxPosAdducts, "cboxPosAdducts")
+        Me.cboxPosAdducts.FormattingEnabled = True
+        Me.cboxPosAdducts.Name = "cboxPosAdducts"
         '
         'CheckedListBox1
         '
@@ -398,11 +393,11 @@ Partial Class PageMzSearch
         Me.NumericUpDown1.Name = "NumericUpDown1"
         Me.NumericUpDown1.Value = New Decimal(New Integer() {20, 0, 0, 0})
         '
-        'CheckedListBox2
+        'cboxDatabaseList
         '
-        Me.CheckedListBox2.FormattingEnabled = True
-        resources.ApplyResources(Me.CheckedListBox2, "CheckedListBox2")
-        Me.CheckedListBox2.Name = "CheckedListBox2"
+        Me.cboxDatabaseList.FormattingEnabled = True
+        resources.ApplyResources(Me.cboxDatabaseList, "cboxDatabaseList")
+        Me.cboxDatabaseList.Name = "cboxDatabaseList"
         '
         'Label8
         '
@@ -411,30 +406,11 @@ Partial Class PageMzSearch
         '
         'TabPage5
         '
-        Me.TabPage5.Controls.Add(Me.GroupBox4)
         Me.TabPage5.Controls.Add(Me.NumericUpDown3)
         Me.TabPage5.Controls.Add(Me.Label12)
-        Me.TabPage5.Controls.Add(Me.NumericUpDown2)
-        Me.TabPage5.Controls.Add(Me.Label11)
-        Me.TabPage5.Controls.Add(Me.Button4)
-        Me.TabPage5.Controls.Add(Me.ComboBox2)
-        Me.TabPage5.Controls.Add(Me.Label10)
         resources.ApplyResources(Me.TabPage5, "TabPage5")
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.UseVisualStyleBackColor = True
-        '
-        'GroupBox4
-        '
-        Me.GroupBox4.Controls.Add(Me.CheckedListBox5)
-        resources.ApplyResources(Me.GroupBox4, "GroupBox4")
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.TabStop = False
-        '
-        'CheckedListBox5
-        '
-        resources.ApplyResources(Me.CheckedListBox5, "CheckedListBox5")
-        Me.CheckedListBox5.FormattingEnabled = True
-        Me.CheckedListBox5.Name = "CheckedListBox5"
         '
         'NumericUpDown3
         '
@@ -450,38 +426,6 @@ Partial Class PageMzSearch
         resources.ApplyResources(Me.Label12, "Label12")
         Me.Label12.Name = "Label12"
         '
-        'NumericUpDown2
-        '
-        Me.NumericUpDown2.Increment = New Decimal(New Integer() {5, 0, 0, 0})
-        resources.ApplyResources(Me.NumericUpDown2, "NumericUpDown2")
-        Me.NumericUpDown2.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        Me.NumericUpDown2.Name = "NumericUpDown2"
-        Me.NumericUpDown2.Value = New Decimal(New Integer() {20, 0, 0, 0})
-        '
-        'Label11
-        '
-        resources.ApplyResources(Me.Label11, "Label11")
-        Me.Label11.Name = "Label11"
-        '
-        'Button4
-        '
-        resources.ApplyResources(Me.Button4, "Button4")
-        Me.Button4.Name = "Button4"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Items.AddRange(New Object() {resources.GetString("ComboBox2.Items"), resources.GetString("ComboBox2.Items1")})
-        resources.ApplyResources(Me.ComboBox2, "ComboBox2")
-        Me.ComboBox2.Name = "ComboBox2"
-        '
-        'Label10
-        '
-        resources.ApplyResources(Me.Label10, "Label10")
-        Me.Label10.Name = "Label10"
-        '
         'TextBox3
         '
         resources.ApplyResources(Me.TextBox3, "TextBox3")
@@ -493,6 +437,18 @@ Partial Class PageMzSearch
         '
         resources.ApplyResources(Me.Label6, "Label6")
         Me.Label6.Name = "Label6"
+        '
+        'AdductsPresetsLabel
+        '
+        resources.ApplyResources(Me.AdductsPresetsLabel, "AdductsPresetsLabel")
+        Me.AdductsPresetsLabel.Name = "AdductsPresetsLabel"
+        '
+        'AdductsPresets
+        '
+        Me.AdductsPresets.FormattingEnabled = True
+        Me.AdductsPresets.Items.AddRange(New Object() {resources.GetString("AdductsPresets.Items"), resources.GetString("AdductsPresets.Items1"), resources.GetString("AdductsPresets.Items2")})
+        resources.ApplyResources(Me.AdductsPresets, "AdductsPresets")
+        Me.AdductsPresets.Name = "AdductsPresets"
         '
         'PageMzSearch
         '
@@ -514,6 +470,7 @@ Partial Class PageMzSearch
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
@@ -522,9 +479,7 @@ Partial Class PageMzSearch
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
-        Me.GroupBox4.ResumeLayout(False)
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -561,22 +516,17 @@ Partial Class PageMzSearch
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents NumericUpDown1 As NumericUpDown
-    Friend WithEvents CheckedListBox2 As CheckedListBox
+    Friend WithEvents cboxDatabaseList As CheckedListBox
     Friend WithEvents Label9 As Label
     Friend WithEvents TabControl2 As TabControl
     Friend WithEvents TabPage4 As TabPage
     Friend WithEvents TabPage5 As TabPage
-    Friend WithEvents Label10 As Label
-    Friend WithEvents ComboBox2 As ComboBox
-    Friend WithEvents Button4 As Button
-    Friend WithEvents NumericUpDown2 As NumericUpDown
-    Friend WithEvents Label11 As Label
     Friend WithEvents NumericUpDown3 As NumericUpDown
     Friend WithEvents Label12 As Label
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents CheckedListBox3 As CheckedListBox
-    Friend WithEvents CheckedListBox4 As CheckedListBox
-    Friend WithEvents GroupBox4 As GroupBox
-    Friend WithEvents CheckedListBox5 As CheckedListBox
+    Friend WithEvents cboxPosAdducts As CheckedListBox
+    Friend WithEvents cboxNegAdducts As CheckedListBox
+    Friend WithEvents AdductsPresetsLabel As Label
+    Friend WithEvents AdductsPresets As ComboBox
 End Class

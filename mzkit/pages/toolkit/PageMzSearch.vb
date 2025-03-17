@@ -291,7 +291,7 @@ Public Class PageMzSearch
 
         CheckedListBox1.SetItemChecked(0, True)
         ComboBox1.SelectedIndex = 0
-        ComboBox2.SelectedIndex = 0
+        AdductsPresets.SelectedIndex = 0
 
         Call ComboBox2_SelectedIndexChanged()
         Call loadAdductsPosNeg()
@@ -455,24 +455,24 @@ Public Class PageMzSearch
     End Sub
 
     Public Iterator Function getDatabaseNames() As IEnumerable(Of String)
-        For Each check In CheckedListBox2.CheckedItems
+        For Each check In cboxDatabaseList.CheckedItems
             Yield check.ToString
         Next
     End Function
 
     Public Sub ReloadMetaDatabase()
-        CheckedListBox2.Items.Clear()
+        cboxDatabaseList.Items.Clear()
 
-        CheckedListBox2.Items.Add("kegg")
-        CheckedListBox2.Items.Add("hmdb")
-        CheckedListBox2.Items.Add("lipidmaps")
-        CheckedListBox2.Items.Add("chebi")
-        CheckedListBox2.Items.Add("metabolights")
+        cboxDatabaseList.Items.Add("kegg")
+        cboxDatabaseList.Items.Add("hmdb")
+        cboxDatabaseList.Items.Add("lipidmaps")
+        cboxDatabaseList.Items.Add("chebi")
+        cboxDatabaseList.Items.Add("metabolights")
 
-        CheckedListBox2.SetItemChecked(0, True)
-        CheckedListBox2.SetItemChecked(1, True)
-        CheckedListBox2.SetItemChecked(2, True)
-        CheckedListBox2.SetItemChecked(3, True)
+        cboxDatabaseList.SetItemChecked(0, True)
+        cboxDatabaseList.SetItemChecked(1, True)
+        cboxDatabaseList.SetItemChecked(2, True)
+        cboxDatabaseList.SetItemChecked(3, True)
     End Sub
 
     Private Function getDatabase(name As String, ionMode As String(), tolerance As Tolerance) As IMzQuery
@@ -501,31 +501,31 @@ Public Class PageMzSearch
     End Function
 
     Private Sub loadAdductsPosNeg()
-        CheckedListBox3.Items.Clear()
-        CheckedListBox4.Items.Clear()
+        cboxPosAdducts.Items.Clear()
+        cboxNegAdducts.Items.Clear()
 
         For Each adduct As MzCalculator In Provider.Positives
-            Call CheckedListBox3.Items.Add(adduct.ToString, std.Abs(adduct.charge) = 1 AndAlso adduct.M = 1)
+            Call cboxPosAdducts.Items.Add(adduct.ToString, std.Abs(adduct.charge) = 1 AndAlso adduct.M = 1)
         Next
         For Each adduct As MzCalculator In Provider.Negatives
-            Call CheckedListBox4.Items.Add(adduct.ToString, std.Abs(adduct.charge) = 1 AndAlso adduct.M = 1)
+            Call cboxNegAdducts.Items.Add(adduct.ToString, std.Abs(adduct.charge) = 1 AndAlso adduct.M = 1)
         Next
     End Sub
 
     Private Iterator Function GetAdducts() As IEnumerable(Of String)
         If CheckedListBox1.GetItemChecked(0) Then
             ' has positive
-            For i As Integer = 0 To CheckedListBox3.Items.Count - 1
-                If CheckedListBox3.GetItemChecked(i) Then
-                    Yield CStr(CheckedListBox3.Items(i))
+            For i As Integer = 0 To cboxPosAdducts.Items.Count - 1
+                If cboxPosAdducts.GetItemChecked(i) Then
+                    Yield CStr(cboxPosAdducts.Items(i))
                 End If
             Next
         End If
         If CheckedListBox1.GetItemChecked(1) Then
             ' has negative
-            For i As Integer = 0 To CheckedListBox4.Items.Count - 1
-                If CheckedListBox4.GetItemChecked(i) Then
-                    Yield CStr(CheckedListBox4.Items(i))
+            For i As Integer = 0 To cboxNegAdducts.Items.Count - 1
+                If cboxNegAdducts.GetItemChecked(i) Then
+                    Yield CStr(cboxNegAdducts.Items(i))
                 End If
             Next
         End If
@@ -592,8 +592,8 @@ Public Class PageMzSearch
                End Sub
     End Function
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim ionMode As IonModes = If(ComboBox2.SelectedIndex <= 0, IonModes.Positive, IonModes.Negative)
+    Private Sub Button4_Click(sender As Object, e As EventArgs)
+        Dim ionMode As IonModes = If(AdductsPresets.SelectedIndex <= 0, IonModes.Positive, IonModes.Negative)
         Dim ppm As Double = NumericUpDown2.Value
         Dim permutations As Integer = NumericUpDown3.Value
         Dim args As New MassSearchArguments With {
@@ -614,8 +614,8 @@ Public Class PageMzSearch
         Next
     End Function
 
-    Private Sub ComboBox2_SelectedIndexChanged() Handles ComboBox2.SelectedIndexChanged
-        Dim ionMode As IonModes = Provider.ParseIonMode(ComboBox2.Items(ComboBox2.SelectedIndex).ToString)
+    Private Sub ComboBox2_SelectedIndexChanged() Handles AdductsPresets.SelectedIndexChanged
+        Dim ionMode As IonModes = Provider.ParseIonMode(AdductsPresets.Items(AdductsPresets.SelectedIndex).ToString)
         Dim adducts = If(ionMode = IonModes.Positive, Provider.Positives, Provider.Negatives)
 
         CheckedListBox5.Items.Clear()
