@@ -1331,7 +1331,7 @@
     <value>1</value>
   </data>
   <data name="TabControl2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 313</value>
+    <value>22, 317</value>
   </data>
   <data name="TabControl2.Size" type="System.Drawing.Size, System.Drawing">
     <value>721, 189</value>
@@ -1453,25 +1453,25 @@
   <data name="&gt;&gt;Label8.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="NumericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="NumericPpmSearch.Location" type="System.Drawing.Point, System.Drawing">
     <value>43, 141</value>
   </data>
-  <data name="NumericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="NumericPpmSearch.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 21</value>
   </data>
-  <data name="NumericUpDown1.TabIndex" type="System.Int32, mscorlib">
+  <data name="NumericPpmSearch.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;NumericUpDown1.Name" xml:space="preserve">
-    <value>NumericUpDown1</value>
+  <data name="&gt;&gt;NumericPpmSearch.Name" xml:space="preserve">
+    <value>NumericPpmSearch</value>
   </data>
-  <data name="&gt;&gt;NumericUpDown1.Type" xml:space="preserve">
+  <data name="&gt;&gt;NumericPpmSearch.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;NumericUpDown1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;NumericPpmSearch.Parent" xml:space="preserve">
     <value>GroupBox1</value>
   </data>
-  <data name="&gt;&gt;NumericUpDown1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;NumericPpmSearch.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
   <data name="Label7.AutoSize" type="System.Boolean, mscorlib">

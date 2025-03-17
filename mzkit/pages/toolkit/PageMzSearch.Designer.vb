@@ -104,26 +104,26 @@ Partial Class PageMzSearch
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TabControl2 = New System.Windows.Forms.TabControl()
-        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.AdductsPresets = New System.Windows.Forms.ComboBox()
+        Me.AdductsPresetsLabel = New System.Windows.Forms.Label()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.cboxNegAdducts = New System.Windows.Forms.CheckedListBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.cboxPosAdducts = New System.Windows.Forms.CheckedListBox()
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.TabControl2 = New System.Windows.Forms.TabControl()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
         Me.cboxDatabaseList = New System.Windows.Forms.CheckedListBox()
-        Me.Label8 = New System.Windows.Forms.Label()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown()
         Me.Label12 = New System.Windows.Forms.Label()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.cboxPosAdducts = New System.Windows.Forms.CheckedListBox()
+        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.NumericPpmSearch = New System.Windows.Forms.NumericUpDown()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.AdductsPresetsLabel = New System.Windows.Forms.Label()
-        Me.AdductsPresets = New System.Windows.Forms.ComboBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -133,13 +133,13 @@ Partial Class PageMzSearch
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage5.SuspendLayout()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
+        CType(Me.NumericPpmSearch, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -315,10 +315,42 @@ Partial Class PageMzSearch
         Me.GroupBox1.Controls.Add(Me.GroupBox2)
         Me.GroupBox1.Controls.Add(Me.CheckedListBox1)
         Me.GroupBox1.Controls.Add(Me.Label8)
-        Me.GroupBox1.Controls.Add(Me.NumericUpDown1)
+        Me.GroupBox1.Controls.Add(Me.NumericPpmSearch)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.TabStop = False
+        '
+        'AdductsPresets
+        '
+        Me.AdductsPresets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.AdductsPresets.FormattingEnabled = True
+        Me.AdductsPresets.Items.AddRange(New Object() {resources.GetString("AdductsPresets.Items"), resources.GetString("AdductsPresets.Items1"), resources.GetString("AdductsPresets.Items2")})
+        resources.ApplyResources(Me.AdductsPresets, "AdductsPresets")
+        Me.AdductsPresets.Name = "AdductsPresets"
+        '
+        'AdductsPresetsLabel
+        '
+        resources.ApplyResources(Me.AdductsPresetsLabel, "AdductsPresetsLabel")
+        Me.AdductsPresetsLabel.Name = "AdductsPresetsLabel"
+        '
+        'Button3
+        '
+        resources.ApplyResources(Me.Button3, "Button3")
+        Me.Button3.Name = "Button3"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.cboxNegAdducts)
+        resources.ApplyResources(Me.GroupBox3, "GroupBox3")
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.TabStop = False
+        '
+        'cboxNegAdducts
+        '
+        resources.ApplyResources(Me.cboxNegAdducts, "cboxNegAdducts")
+        Me.cboxNegAdducts.FormattingEnabled = True
+        Me.cboxNegAdducts.Name = "cboxNegAdducts"
         '
         'TabControl2
         '
@@ -336,73 +368,16 @@ Partial Class PageMzSearch
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.cboxNegAdducts)
-        resources.ApplyResources(Me.GroupBox3, "GroupBox3")
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.TabStop = False
-        '
-        'cboxNegAdducts
-        '
-        resources.ApplyResources(Me.cboxNegAdducts, "cboxNegAdducts")
-        Me.cboxNegAdducts.FormattingEnabled = True
-        Me.cboxNegAdducts.Name = "cboxNegAdducts"
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.cboxPosAdducts)
-        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.TabStop = False
-        '
-        'cboxPosAdducts
-        '
-        resources.ApplyResources(Me.cboxPosAdducts, "cboxPosAdducts")
-        Me.cboxPosAdducts.FormattingEnabled = True
-        Me.cboxPosAdducts.Name = "cboxPosAdducts"
-        '
-        'CheckedListBox1
-        '
-        Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Items.AddRange(New Object() {resources.GetString("CheckedListBox1.Items"), resources.GetString("CheckedListBox1.Items1")})
-        resources.ApplyResources(Me.CheckedListBox1, "CheckedListBox1")
-        Me.CheckedListBox1.Name = "CheckedListBox1"
-        '
-        'Button3
-        '
-        resources.ApplyResources(Me.Button3, "Button3")
-        Me.Button3.Name = "Button3"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
         'Label9
         '
         resources.ApplyResources(Me.Label9, "Label9")
         Me.Label9.Name = "Label9"
-        '
-        'Label7
-        '
-        resources.ApplyResources(Me.Label7, "Label7")
-        Me.Label7.Name = "Label7"
-        '
-        'NumericUpDown1
-        '
-        Me.NumericUpDown1.Increment = New Decimal(New Integer() {5, 0, 0, 0})
-        resources.ApplyResources(Me.NumericUpDown1, "NumericUpDown1")
-        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Value = New Decimal(New Integer() {20, 0, 0, 0})
         '
         'cboxDatabaseList
         '
         Me.cboxDatabaseList.FormattingEnabled = True
         resources.ApplyResources(Me.cboxDatabaseList, "cboxDatabaseList")
         Me.cboxDatabaseList.Name = "cboxDatabaseList"
-        '
-        'Label8
-        '
-        resources.ApplyResources(Me.Label8, "Label8")
-        Me.Label8.Name = "Label8"
         '
         'TabPage5
         '
@@ -426,6 +401,44 @@ Partial Class PageMzSearch
         resources.ApplyResources(Me.Label12, "Label12")
         Me.Label12.Name = "Label12"
         '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.cboxPosAdducts)
+        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.TabStop = False
+        '
+        'cboxPosAdducts
+        '
+        resources.ApplyResources(Me.cboxPosAdducts, "cboxPosAdducts")
+        Me.cboxPosAdducts.FormattingEnabled = True
+        Me.cboxPosAdducts.Name = "cboxPosAdducts"
+        '
+        'CheckedListBox1
+        '
+        Me.CheckedListBox1.FormattingEnabled = True
+        Me.CheckedListBox1.Items.AddRange(New Object() {resources.GetString("CheckedListBox1.Items"), resources.GetString("CheckedListBox1.Items1")})
+        resources.ApplyResources(Me.CheckedListBox1, "CheckedListBox1")
+        Me.CheckedListBox1.Name = "CheckedListBox1"
+        '
+        'Label8
+        '
+        resources.ApplyResources(Me.Label8, "Label8")
+        Me.Label8.Name = "Label8"
+        '
+        'NumericPpmSearch
+        '
+        Me.NumericPpmSearch.Increment = New Decimal(New Integer() {5, 0, 0, 0})
+        resources.ApplyResources(Me.NumericPpmSearch, "NumericPpmSearch")
+        Me.NumericPpmSearch.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.NumericPpmSearch.Name = "NumericPpmSearch"
+        Me.NumericPpmSearch.Value = New Decimal(New Integer() {20, 0, 0, 0})
+        '
+        'Label7
+        '
+        resources.ApplyResources(Me.Label7, "Label7")
+        Me.Label7.Name = "Label7"
+        '
         'TextBox3
         '
         resources.ApplyResources(Me.TextBox3, "TextBox3")
@@ -437,18 +450,6 @@ Partial Class PageMzSearch
         '
         resources.ApplyResources(Me.Label6, "Label6")
         Me.Label6.Name = "Label6"
-        '
-        'AdductsPresetsLabel
-        '
-        resources.ApplyResources(Me.AdductsPresetsLabel, "AdductsPresetsLabel")
-        Me.AdductsPresetsLabel.Name = "AdductsPresetsLabel"
-        '
-        'AdductsPresets
-        '
-        Me.AdductsPresets.FormattingEnabled = True
-        Me.AdductsPresets.Items.AddRange(New Object() {resources.GetString("AdductsPresets.Items"), resources.GetString("AdductsPresets.Items1"), resources.GetString("AdductsPresets.Items2")})
-        resources.ApplyResources(Me.AdductsPresets, "AdductsPresets")
-        Me.AdductsPresets.Name = "AdductsPresets"
         '
         'PageMzSearch
         '
@@ -471,15 +472,15 @@ Partial Class PageMzSearch
         Me.TabPage3.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
+        CType(Me.NumericPpmSearch, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -515,7 +516,7 @@ Partial Class PageMzSearch
     Friend WithEvents CheckedListBox1 As CheckedListBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents NumericPpmSearch As NumericUpDown
     Friend WithEvents cboxDatabaseList As CheckedListBox
     Friend WithEvents Label9 As Label
     Friend WithEvents TabControl2 As TabControl
