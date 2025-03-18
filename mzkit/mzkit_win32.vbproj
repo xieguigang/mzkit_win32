@@ -1647,6 +1647,10 @@
     <EmbeddedResource Include="RibbonMarkup.ribbon" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Erica\src\SingleCell\SingleExpression\SingleExpression.vbproj">
+      <Project>{44faa87f-a187-45b5-8ce2-78ccd8583adc}</Project>
+      <Name>SingleExpression</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Erica\src\STImaging\STImaging.vbproj">
       <Project>{5f242bb6-da7d-4e08-b4a9-3405f361a35b}</Project>
       <Name>STImaging</Name>
