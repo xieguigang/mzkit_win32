@@ -536,6 +536,14 @@ Public Class PageMzSearch
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        If TabControlMs1SearchAlgorithm.SelectedTab Is TabSimpleMs1Search Then
+            Call simpleMs1Search()
+        Else
+            Call MummichogSearch()
+        End If
+    End Sub
+
+    Private Sub simpleMs1Search()
         ' get selected ion modes
         ' pos
         ' neg
@@ -595,7 +603,7 @@ Public Class PageMzSearch
                End Sub
     End Function
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs)
+    Private Sub MummichogSearch()
         Dim ionMode As IonModes = IonModes.Unknown
         Dim modes As String() = (From x As Object
                                  In CheckedListBox1.CheckedItems

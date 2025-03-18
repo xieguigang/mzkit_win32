@@ -109,11 +109,11 @@ Partial Class PageMzSearch
         Me.Button3 = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.cboxNegAdducts = New System.Windows.Forms.CheckedListBox()
-        Me.TabControl2 = New System.Windows.Forms.TabControl()
-        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.TabControlMs1SearchAlgorithm = New System.Windows.Forms.TabControl()
+        Me.TabSimpleMs1Search = New System.Windows.Forms.TabPage()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.cboxDatabaseList = New System.Windows.Forms.CheckedListBox()
-        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.TabMummichogSearch = New System.Windows.Forms.TabPage()
         Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -134,9 +134,9 @@ Partial Class PageMzSearch
         Me.TabPage3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
-        Me.TabControl2.SuspendLayout()
-        Me.TabPage4.SuspendLayout()
-        Me.TabPage5.SuspendLayout()
+        Me.TabControlMs1SearchAlgorithm.SuspendLayout()
+        Me.TabSimpleMs1Search.SuspendLayout()
+        Me.TabMummichogSearch.SuspendLayout()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         CType(Me.NumericPpmSearch, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -311,7 +311,7 @@ Partial Class PageMzSearch
         Me.GroupBox1.Controls.Add(Me.AdductsPresetsLabel)
         Me.GroupBox1.Controls.Add(Me.Button3)
         Me.GroupBox1.Controls.Add(Me.GroupBox3)
-        Me.GroupBox1.Controls.Add(Me.TabControl2)
+        Me.GroupBox1.Controls.Add(Me.TabControlMs1SearchAlgorithm)
         Me.GroupBox1.Controls.Add(Me.GroupBox2)
         Me.GroupBox1.Controls.Add(Me.CheckedListBox1)
         Me.GroupBox1.Controls.Add(Me.Label8)
@@ -352,21 +352,21 @@ Partial Class PageMzSearch
         Me.cboxNegAdducts.FormattingEnabled = True
         Me.cboxNegAdducts.Name = "cboxNegAdducts"
         '
-        'TabControl2
+        'TabControlMs1SearchAlgorithm
         '
-        resources.ApplyResources(Me.TabControl2, "TabControl2")
-        Me.TabControl2.Controls.Add(Me.TabPage4)
-        Me.TabControl2.Controls.Add(Me.TabPage5)
-        Me.TabControl2.Name = "TabControl2"
-        Me.TabControl2.SelectedIndex = 0
+        resources.ApplyResources(Me.TabControlMs1SearchAlgorithm, "TabControlMs1SearchAlgorithm")
+        Me.TabControlMs1SearchAlgorithm.Controls.Add(Me.TabSimpleMs1Search)
+        Me.TabControlMs1SearchAlgorithm.Controls.Add(Me.TabMummichogSearch)
+        Me.TabControlMs1SearchAlgorithm.Name = "TabControlMs1SearchAlgorithm"
+        Me.TabControlMs1SearchAlgorithm.SelectedIndex = 0
         '
-        'TabPage4
+        'TabSimpleMs1Search
         '
-        Me.TabPage4.Controls.Add(Me.Label9)
-        Me.TabPage4.Controls.Add(Me.cboxDatabaseList)
-        resources.ApplyResources(Me.TabPage4, "TabPage4")
-        Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.UseVisualStyleBackColor = True
+        Me.TabSimpleMs1Search.Controls.Add(Me.Label9)
+        Me.TabSimpleMs1Search.Controls.Add(Me.cboxDatabaseList)
+        resources.ApplyResources(Me.TabSimpleMs1Search, "TabSimpleMs1Search")
+        Me.TabSimpleMs1Search.Name = "TabSimpleMs1Search"
+        Me.TabSimpleMs1Search.UseVisualStyleBackColor = True
         '
         'Label9
         '
@@ -379,13 +379,13 @@ Partial Class PageMzSearch
         resources.ApplyResources(Me.cboxDatabaseList, "cboxDatabaseList")
         Me.cboxDatabaseList.Name = "cboxDatabaseList"
         '
-        'TabPage5
+        'TabMummichogSearch
         '
-        Me.TabPage5.Controls.Add(Me.NumericUpDown3)
-        Me.TabPage5.Controls.Add(Me.Label12)
-        resources.ApplyResources(Me.TabPage5, "TabPage5")
-        Me.TabPage5.Name = "TabPage5"
-        Me.TabPage5.UseVisualStyleBackColor = True
+        Me.TabMummichogSearch.Controls.Add(Me.NumericUpDown3)
+        Me.TabMummichogSearch.Controls.Add(Me.Label12)
+        resources.ApplyResources(Me.TabMummichogSearch, "TabMummichogSearch")
+        Me.TabMummichogSearch.Name = "TabMummichogSearch"
+        Me.TabMummichogSearch.UseVisualStyleBackColor = True
         '
         'NumericUpDown3
         '
@@ -473,11 +473,11 @@ Partial Class PageMzSearch
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
-        Me.TabControl2.ResumeLayout(False)
-        Me.TabPage4.ResumeLayout(False)
-        Me.TabPage4.PerformLayout()
-        Me.TabPage5.ResumeLayout(False)
-        Me.TabPage5.PerformLayout()
+        Me.TabControlMs1SearchAlgorithm.ResumeLayout(False)
+        Me.TabSimpleMs1Search.ResumeLayout(False)
+        Me.TabSimpleMs1Search.PerformLayout()
+        Me.TabMummichogSearch.ResumeLayout(False)
+        Me.TabMummichogSearch.PerformLayout()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         CType(Me.NumericPpmSearch, System.ComponentModel.ISupportInitialize).EndInit()
@@ -519,9 +519,9 @@ Partial Class PageMzSearch
     Friend WithEvents NumericPpmSearch As NumericUpDown
     Friend WithEvents cboxDatabaseList As CheckedListBox
     Friend WithEvents Label9 As Label
-    Friend WithEvents TabControl2 As TabControl
-    Friend WithEvents TabPage4 As TabPage
-    Friend WithEvents TabPage5 As TabPage
+    Friend WithEvents TabControlMs1SearchAlgorithm As TabControl
+    Friend WithEvents TabSimpleMs1Search As TabPage
+    Friend WithEvents TabMummichogSearch As TabPage
     Friend WithEvents NumericUpDown3 As NumericUpDown
     Friend WithEvents Label12 As Label
     Friend WithEvents GroupBox3 As GroupBox
