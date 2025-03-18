@@ -283,6 +283,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonOpenSingleCellsRawDataFile = 305;
             public const uint cmdGroupAnalysisSingleCells = 332;
             public const uint cmdButtonViewSingleCellsEmbedding = 330;
+            public const uint cmdButtonExportSingleExpression = 353;
             public const uint cmdGroupReport = 311;
             public const uint cmdPanelReport = 312;
             public const uint cmdMenuReport = 313;
@@ -689,6 +690,10 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonButton ButtonViewSingleCellsEmbedding { get; private set; }
         /// <summary>
+        /// Export Expression Matrix
+        /// </summary>
+        public RibbonButton ButtonExportSingleExpression { get; private set; }
+        /// <summary>
         /// Report
         /// </summary>
         public RibbonTabGroup GroupReport { get; private set; }
@@ -1058,6 +1063,7 @@ namespace RibbonLib.Controls
             ButtonOpenSingleCellsRawDataFile = new RibbonButton(ribbon, Cmd.cmdButtonOpenSingleCellsRawDataFile);
             GroupAnalysisSingleCells = new RibbonGroup(ribbon, Cmd.cmdGroupAnalysisSingleCells);
             ButtonViewSingleCellsEmbedding = new RibbonButton(ribbon, Cmd.cmdButtonViewSingleCellsEmbedding);
+            ButtonExportSingleExpression = new RibbonButton(ribbon, Cmd.cmdButtonExportSingleExpression);
             GroupReport = new RibbonTabGroup(ribbon, Cmd.cmdGroupReport);
             PanelReport = new RibbonTab(ribbon, Cmd.cmdPanelReport);
             MenuReport = new RibbonGroup(ribbon, Cmd.cmdMenuReport);

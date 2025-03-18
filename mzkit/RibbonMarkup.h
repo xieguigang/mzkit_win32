@@ -1967,8 +1967,16 @@
 #define cmdAppMenuViewers_TooltipDescription_RESID 60438
 #define cmdAppMenuViewers_SmallImages_192__RESID 60439
 #define cmdAppMenuViewers_LargeImages_192__RESID 60440
-#define InternalCmd2_LabelTitle_RESID 60441
-#define InternalCmd4_LabelTitle_RESID 60442
-#define InternalCmd6_LabelTitle_RESID 60443
-#define InternalCmd8_LabelTitle_RESID 60444
-#define InternalCmd10_LabelTitle_RESID 60445
+#define cmdButtonExportSingleExpression 353  /* Export Expression Matrix */ 
+#define cmdButtonExportSingleExpression_LabelTitle_RESID 60441
+#define cmdButtonExportSingleExpression_LabelDescription_RESID 60442
+#define cmdButtonExportSingleExpression_Keytip_RESID 60443
+#define cmdButtonExportSingleExpression_TooltipTitle_RESID 60444
+#define cmdButtonExportSingleExpression_TooltipDescription_RESID 60445
+#define cmdButtonExportSingleExpression_SmallImages_192__RESID 60446
+#define cmdButtonExportSingleExpression_LargeImages_192__RESID 60447
+#define InternalCmd2_LabelTitle_RESID 60448
+#define InternalCmd4_LabelTitle_RESID 60449
+#define InternalCmd6_LabelTitle_RESID 60450
+#define InternalCmd8_LabelTitle_RESID 60451
+#define InternalCmd10_LabelTitle_RESID 60452

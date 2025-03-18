@@ -280,6 +280,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonOpenSingleCellsRawDataFile As UInteger = 305
             Public Const cmdGroupAnalysisSingleCells As UInteger = 332
             Public Const cmdButtonViewSingleCellsEmbedding As UInteger = 330
+            Public Const cmdButtonExportSingleExpression As UInteger = 353
             Public Const cmdGroupReport As UInteger = 311
             Public Const cmdPanelReport As UInteger = 312
             Public Const cmdMenuReport As UInteger = 313
@@ -2015,6 +2016,15 @@ Namespace RibbonLib.Controls
                 Return _ButtonViewSingleCellsEmbedding
             End Get
         End Property
+        Private _ButtonExportSingleExpression As RibbonButton
+        ''' <summary>
+        ''' Export Expression Matrix
+        ''' </summary>
+        Public ReadOnly Property ButtonExportSingleExpression As RibbonButton
+            Get
+                Return _ButtonExportSingleExpression
+            End Get
+        End Property
         Private _GroupReport As RibbonTabGroup
         ''' <summary>
         ''' Report
@@ -2715,6 +2725,7 @@ Namespace RibbonLib.Controls
             _ButtonOpenSingleCellsRawDataFile = New RibbonButton(_ribbon, Cmd.cmdButtonOpenSingleCellsRawDataFile)
             _GroupAnalysisSingleCells = New RibbonGroup(_ribbon, Cmd.cmdGroupAnalysisSingleCells)
             _ButtonViewSingleCellsEmbedding = New RibbonButton(_ribbon, Cmd.cmdButtonViewSingleCellsEmbedding)
+            _ButtonExportSingleExpression = New RibbonButton(_ribbon, Cmd.cmdButtonExportSingleExpression)
             _GroupReport = New RibbonTabGroup(_ribbon, Cmd.cmdGroupReport)
             _PanelReport = New RibbonTab(_ribbon, Cmd.cmdPanelReport)
             _MenuReport = New RibbonGroup(_ribbon, Cmd.cmdMenuReport)

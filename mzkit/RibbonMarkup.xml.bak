@@ -4543,6 +4543,14 @@
         <Image MinDPI="192">Res/3d scanning.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonExportSingleExpression" Comment="Export Expression Matrix" Id="353" LabelTitle="Export Expression Matrix" LabelDescription="Export Expression Matrix" TooltipTitle="Export Expression Matrix" TooltipDescription="Export Expression Matrix" Keytip="Export Expression Matrix">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4995,8 +5003,9 @@
             <Group CommandName="cmdGroupSingleCellsFile">
               <Button CommandName="cmdButtonOpenSingleCellsRawDataFile" />
             </Group>
-            <Group CommandName="cmdGroupAnalysisSingleCells" SizeDefinition="OneButton">
+            <Group CommandName="cmdGroupAnalysisSingleCells" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonViewSingleCellsEmbedding" />
+              <Button CommandName="cmdButtonExportSingleExpression" />
             </Group>
           </Tab>
         </TabGroup>
