@@ -1,60 +1,60 @@
 ﻿#Region "Microsoft.VisualBasic::9d4f6a52a58bfd6a5443ab2ef567a32f, mzkit\ux\SingleCellViewer\SingleCellScatter.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 238
-    '    Code Lines: 178 (74.79%)
-    ' Comment Lines: 14 (5.88%)
-    '    - Xml Docs: 92.86%
-    ' 
-    '   Blank Lines: 46 (19.33%)
-    '     File Size: 8.64 KB
+' Summaries:
 
 
-    ' Class SingleCellScatter
-    ' 
-    '     Function: GetCanvas, GetCell, GetEmbedding, RenderScatter
-    ' 
-    '     Sub: FilterByCluster, FilterByUMAPSpace, LoadCells, LoadCellViews, PictureBox1_MouseClick
-    '          PictureBox1_MouseMove, PictureBox1_SizeChanged, RenderScatter, ResetDataView, SetRender
-    '          ShowMessage
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 238
+'    Code Lines: 178 (74.79%)
+' Comment Lines: 14 (5.88%)
+'    - Xml Docs: 92.86%
+' 
+'   Blank Lines: 46 (19.33%)
+'     File Size: 8.64 KB
+
+
+' Class SingleCellScatter
+' 
+'     Function: GetCanvas, GetCell, GetEmbedding, RenderScatter
+' 
+'     Sub: FilterByCluster, FilterByUMAPSpace, LoadCells, LoadCellViews, PictureBox1_MouseClick
+'          PictureBox1_MouseMove, PictureBox1_SizeChanged, RenderScatter, ResetDataView, SetRender
+'          ShowMessage
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -76,6 +76,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
 Imports Microsoft.VisualBasic.MIME.Html.CSS
+Imports SingleExpression
 Imports std = System.Math
 
 Public Class SingleCellScatter
@@ -83,21 +84,21 @@ Public Class SingleCellScatter
     ''' <summary>
     ''' the raw input data list
     ''' </summary>
-    Dim rawDataList As UMAPPoint()
-    Dim rawClusters As Dictionary(Of String, UMAPPoint())
+    Dim rawDataList As IEmbeddingScatter()
+    Dim rawClusters As Dictionary(Of String, IEmbeddingScatter())
 
     ''' <summary>
     ''' the data view list of current scatter data selection
     ''' </summary>
-    Dim umap_scatter As UMAPPoint()
+    Dim umap_scatter As IEmbeddingScatter()
     Dim clusters_plot As SerialData()
 
     Dim umap_x, umap_y As Vector
     Dim umap_width As DoubleRange
     Dim umap_height As DoubleRange
 
-    Dim x_axis As BlockSearchFunction(Of UMAPPoint)
-    Dim y_axis As BlockSearchFunction(Of UMAPPoint)
+    Dim x_axis As BlockSearchFunction(Of IEmbeddingScatter)
+    Dim y_axis As BlockSearchFunction(Of IEmbeddingScatter)
 
     ''' <summary>
     ''' does the data has been initialized?
@@ -105,14 +106,14 @@ Public Class SingleCellScatter
     Dim hasData As Boolean = False
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Function GetEmbedding() As IEnumerable(Of UMAPPoint)
+    Public Function GetEmbedding() As IEnumerable(Of IEmbeddingScatter)
         Return rawDataList.SafeQuery
     End Function
 
-    Public Sub LoadCells(umap As IEnumerable(Of UMAPPoint))
+    Public Sub LoadCells(umap As IEnumerable(Of IEmbeddingScatter))
         rawDataList = umap.ToArray
         rawClusters = rawDataList _
-            .GroupBy(Function(c) c.class) _
+            .GroupBy(Function(c) c.cluster) _
             .ToDictionary(Function(c) c.Key,
                           Function(c)
                               Return c.ToArray
@@ -133,7 +134,7 @@ Public Class SingleCellScatter
         Call LoadCellViews(clusters.Select(Function(key) rawClusters(key)).IteratesALL)
     End Sub
 
-    Private Sub LoadCellViews(umap As IEnumerable(Of UMAPPoint))
+    Private Sub LoadCellViews(umap As IEnumerable(Of IEmbeddingScatter))
         Me.umap_scatter = umap.ToArray
         Me.umap_width = New DoubleRange(umap.Select(Function(c) c.x))
         Me.umap_height = New DoubleRange(umap.Select(Function(c) c.y))
@@ -148,8 +149,8 @@ Public Class SingleCellScatter
             Dim dx As Double = umap_width.Length / blocks
             Dim dy As Double = umap_height.Length / blocks
 
-            x_axis = New BlockSearchFunction(Of UMAPPoint)(umap_scatter, Function(i) i.x, dx, fuzzy:=True)
-            y_axis = New BlockSearchFunction(Of UMAPPoint)(umap_scatter, Function(i) i.y, dy, fuzzy:=True)
+            x_axis = New BlockSearchFunction(Of IEmbeddingScatter)(umap_scatter, Function(i) i.x, dx, fuzzy:=True)
+            y_axis = New BlockSearchFunction(Of IEmbeddingScatter)(umap_scatter, Function(i) i.y, dy, fuzzy:=True)
         End If
     End Sub
 
@@ -166,7 +167,7 @@ Public Class SingleCellScatter
 
         BackColor = args.background
         clusters_plot = umap_scatter _
-            .GroupBy(Function(c) c.class) _
+            .GroupBy(Function(c) c.cluster) _
             .Select(Function(s)
                         Return New SerialData With {
                             .color = ++colors,
