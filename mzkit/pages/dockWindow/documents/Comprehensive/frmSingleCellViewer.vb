@@ -66,6 +66,10 @@ Public Class frmSingleCellViewer
         Call SingleCellScatter1.SetRender(WindowModules.singleCellsParameters.args)
     End Sub
 
+    ''' <summary>
+    ''' load umap data into viewer context
+    ''' </summary>
+    ''' <param name="file"></param>
     Public Sub LoadMzkitRawdata(file As mzPack)
         Dim singleCells As UMAPPoint() = file.ResolveSingleCells.ToArray
 
