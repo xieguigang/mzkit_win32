@@ -159,13 +159,51 @@ Public Class SingleCellScatter
     ''' </summary>
     ''' <param name="args"></param>
     Public Sub SetRender(args As SingleCellViewerArguments)
-        Dim colors As LoopArray(Of Color) = Designer.GetColors(args.colorSet.Description)
-
         If Not hasData Then
             Return
+        Else
+            BackColor = args.background
         End If
 
-        BackColor = args.background
+        If args.heatmap Then
+            Call LoadHeatmapData(args)
+        Else
+            Call LoadClusterData(args)
+        End If
+
+        Call RenderScatter()
+    End Sub
+
+    Private Sub LoadHeatmapData(args As SingleCellViewerArguments)
+        Dim scatter = umap_scatter.OfType(Of SingleExpression.SingleExpression).ToArray
+        Dim range As New DoubleRange(scatter.Select(Function(a) a.expression))
+        Dim colors As String() = Designer.GetColors(ScalerPalette.Seismic.Description, 30) _
+            .Select(Function(c) c.ToHtmlColor) _
+            .ToArray
+        Dim offset As New DoubleRange(0, colors.Length - 1)
+        Dim points As New List(Of PointData)
+
+        For Each exp In scatter
+            Call points.Add(New PointData(exp.Get2dEmbedding) With {
+                .color = colors(CInt(range.ScaleMapping(exp.expression, offset))),
+                .value = exp.expression
+            })
+        Next
+
+        clusters_plot = {New SerialData With {
+            .lineType = DashStyle.Dot,
+            .pointSize = args.pointSize,
+            .shape = LegendStyles.Circle,
+            .pts = points.ToArray,
+            .width = 0,
+            .color = Color.Black,
+            .title = "Expression HeatMap"
+        }}
+    End Sub
+
+    Private Sub LoadClusterData(args As SingleCellViewerArguments)
+        Dim colors As LoopArray(Of Color) = Designer.GetColors(args.colorSet.Description)
+
         clusters_plot = umap_scatter _
             .GroupBy(Function(c) c.cluster) _
             .Select(Function(s)
@@ -182,8 +220,6 @@ Public Class SingleCellScatter
                         }
                     End Function) _
             .ToArray
-
-        Call RenderScatter()
     End Sub
 
     Private Sub RenderScatter()
