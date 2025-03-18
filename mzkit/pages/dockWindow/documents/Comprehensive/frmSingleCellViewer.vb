@@ -66,6 +66,8 @@ Public Class frmSingleCellViewer
         Call SingleCellScatter1.SetRender(WindowModules.singleCellsParameters.args)
     End Sub
 
+
+
     ''' <summary>
     ''' load umap data into viewer context
     ''' </summary>
