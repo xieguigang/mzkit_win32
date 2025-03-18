@@ -17,6 +17,6 @@ Public Class frmSingleCellsTweaks
     Private Sub frmSingleCellsTweaks_Load(sender As Object, e As EventArgs) Handles Me.Load
         TabText = "Single Cells Viewer"
 
-        Call ApplyVsTheme(ToolStrip1)
+        Call ApplyVsTheme(ToolStrip1, ContextMenuStrip1)
     End Sub
 End Class
