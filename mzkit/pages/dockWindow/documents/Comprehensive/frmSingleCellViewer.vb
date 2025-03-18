@@ -3,6 +3,7 @@ Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.SingleCells
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Net.Http
@@ -66,7 +67,20 @@ Public Class frmSingleCellViewer
         Call SingleCellScatter1.SetRender(WindowModules.singleCellsParameters.args)
     End Sub
 
+    Public Sub DoRenderExpression(mz As Double)
+        Dim tol As Tolerance = Tolerance.DeltaMass(0.01)
+        Dim scatter As SingleExpression.SingleExpression() = dataIndex.Values _
+            .AsParallel _
+            .Select(Function(s)
+                        Return s.ResolveSingleExpression(mz, tol)
+                    End Function) _
+            .ToArray
 
+        WindowModules.singleCellsParameters.args.SetHeatmapMode(True)
+
+        SingleCellScatter1.LoadCells(scatter)
+        SingleCellScatter1.SetRender(WindowModules.singleCellsParameters.args)
+    End Sub
 
     ''' <summary>
     ''' load umap data into viewer context
@@ -82,7 +96,9 @@ Public Class frmSingleCellViewer
                               Return c.First
                           End Function)
 
+        WindowModules.singleCellsParameters.args.SetHeatmapMode(False)
         WindowModules.singleCellsParameters.SetSingleCells(singleCells)
+
         SingleCellScatter1.LoadCells(singleCells)
         SingleCellScatter1.SetRender(WindowModules.singleCellsParameters.args)
     End Sub

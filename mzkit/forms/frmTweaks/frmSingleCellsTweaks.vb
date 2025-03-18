@@ -33,7 +33,7 @@ Public Class frmSingleCellsTweaks
     End Sub
 
     Private Sub ViewIonMzExpression(mz As Double)
-
+        Call ProgressSpinner.DoLoading(Sub() Call WindowModules.singleCellViewer.DoRenderExpression(mz), host:=WindowModules.singleCellViewer)
     End Sub
 
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
