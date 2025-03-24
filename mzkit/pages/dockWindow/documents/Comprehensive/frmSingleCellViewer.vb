@@ -163,6 +163,11 @@ Public Class frmSingleCellViewer
 
             Return
         Else
+            If WindowModules.MSIPixelProperty.DockState = DockState.Hidden Then
+                WindowModules.MSIPixelProperty.DockState = DockState.DockRight
+            End If
+
+            Call SpectralViewerModule.ViewSpectral(pixel)
             Call WindowModules.MSIPixelProperty.SetSingleCell(pixel, info)
             Call Workbench.StatusMessage($"Select {pixel.scan_id}, totalIons: {info.TotalIon.ToString("G3")}, basePeak m/z: {info.TopIonMz.ToString("F4")}")
         End If
