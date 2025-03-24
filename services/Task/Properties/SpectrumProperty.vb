@@ -164,6 +164,14 @@ Public Class SpectrumProperty : Implements ICopyProperties
         End If
     End Sub
 
+    Sub New(ms1 As ScanMS1)
+        Call Me.New(ms1.GetMs.ToArray, 1)
+    End Sub
+
+    Sub New(MSn As ScanMS2)
+        Call Me.New(MSn.scan_id, "n/a", 2, MSn)
+    End Sub
+
     Sub New(scanId As String, rawfile As String, msLevel As Integer, attrs As ScanMS2)
         Call Me.New(ms2:=attrs.GetMs.ToArray, msLevel)
 
