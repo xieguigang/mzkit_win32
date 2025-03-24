@@ -96,8 +96,8 @@ Public Class frmSingleCellViewer
                               Return c.First
                           End Function)
 
-        WindowModules.singleCellsParameters.args.SetHeatmapMode(False)
         WindowModules.singleCellsParameters.SetSingleCells(singleCells)
+        WindowModules.singleCellsParameters.args.SetHeatmapMode(False)
 
         SingleCellScatter1.LoadCells(singleCells)
         SingleCellScatter1.SetRender(WindowModules.singleCellsParameters.args)
