@@ -153,7 +153,7 @@ Public Class frmSingleCellViewer
     End Sub
 
     Private Sub SingleCellScatter1_SelectCell(cell_id As String, umap As UMAPPoint) Handles SingleCellScatter1.SelectCell
-        Dim pixel As ScanMS1 = Nothing
+        Dim pixel As ScanMS1 = dataIndex.TryGetValue(cell_id)
         Dim info As PixelProperty = Nothing
 
         If pixel Is Nothing Then

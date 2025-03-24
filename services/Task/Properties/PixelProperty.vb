@@ -68,6 +68,9 @@ Imports Microsoft.VisualBasic.Math.Information
 Imports Microsoft.VisualBasic.Math.Quantile
 Imports std = System.Math
 
+''' <summary>
+''' common used spot data model for ms-imaging/singlecells rawdata
+''' </summary>
 Public Class PixelProperty
 
     <Description("the base peak ion m/z of current pixel spot mass spectrum, which its ion intensity value is the max one in current spectrum")>

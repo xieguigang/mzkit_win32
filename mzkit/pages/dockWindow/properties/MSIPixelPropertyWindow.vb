@@ -85,6 +85,8 @@ Public Class MSIPixelPropertyWindow
     Public Sub SetSingleCell(cell As ScanMS1, ByRef props As PixelProperty)
         Select Case Me.DockState
             Case DockState.DockBottomAutoHide, DockState.DockLeftAutoHide, DockState.DockRightAutoHide, DockState.DockTopAutoHide, DockState.Hidden, DockState.Unknown
+                ' 20250324
+                ' just returtns the object, not update ui
                 props = New PixelProperty(cell)
                 Return
             Case Else
