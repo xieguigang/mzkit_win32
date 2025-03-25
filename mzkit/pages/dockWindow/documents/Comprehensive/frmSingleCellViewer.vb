@@ -96,8 +96,8 @@ Public Class frmSingleCellViewer
                               Return c.First
                           End Function)
 
-        WindowModules.singleCellsParameters.args.SetHeatmapMode(False)
         WindowModules.singleCellsParameters.SetSingleCells(singleCells)
+        WindowModules.singleCellsParameters.args.SetHeatmapMode(False)
 
         SingleCellScatter1.LoadCells(singleCells)
         SingleCellScatter1.SetRender(WindowModules.singleCellsParameters.args)
@@ -153,7 +153,7 @@ Public Class frmSingleCellViewer
     End Sub
 
     Private Sub SingleCellScatter1_SelectCell(cell_id As String, umap As UMAPPoint) Handles SingleCellScatter1.SelectCell
-        Dim pixel As ScanMS1 = Nothing
+        Dim pixel As ScanMS1 = dataIndex.TryGetValue(cell_id)
         Dim info As PixelProperty = Nothing
 
         If pixel Is Nothing Then
@@ -163,6 +163,11 @@ Public Class frmSingleCellViewer
 
             Return
         Else
+            If WindowModules.MSIPixelProperty.DockState = DockState.Hidden Then
+                WindowModules.MSIPixelProperty.DockState = DockState.DockRight
+            End If
+
+            Call SpectralViewerModule.ViewSpectral(pixel)
             Call WindowModules.MSIPixelProperty.SetSingleCell(pixel, info)
             Call Workbench.StatusMessage($"Select {pixel.scan_id}, totalIons: {info.TotalIon.ToString("G3")}, basePeak m/z: {info.TopIonMz.ToString("F4")}")
         End If

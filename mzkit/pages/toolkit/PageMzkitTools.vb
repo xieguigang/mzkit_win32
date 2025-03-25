@@ -678,6 +678,20 @@ Public Class PageMzkitTools
 
                 Call VisualStudio.ShowProperties(New SpectrumProperty(.ByRef))
             End With
+        ElseIf TypeOf data Is ScanMS1 Then
+            With DirectCast(data, ScanMS1)
+                matrix = .GetPeaks.ToArray
+                name = .scan_id
+
+                Call VisualStudio.ShowProperties(New SpectrumProperty(.ByRef))
+            End With
+        ElseIf TypeOf data Is ScanMS2 Then
+            With DirectCast(data, ScanMS2)
+                matrix = .GetMs.ToArray
+                name = .scan_id
+
+                Call VisualStudio.ShowProperties(New SpectrumProperty(.ByRef))
+            End With
         Else
             Call Workbench.Warning($"the spectral view for {data.GetType.FullName} is not implements yet...")
             Return

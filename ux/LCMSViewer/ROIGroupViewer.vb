@@ -9,23 +9,43 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Math
 
+''' <summary>
+''' ROI XIC group viewer
+''' </summary>
 Public Class ROIGroupViewer
 
     Dim samples As NamedCollection(Of ms1_scan)()
     Dim viewers As PictureBox()
+
+    ''' <summary>
+    ''' the reference m/z value
+    ''' </summary>
     Dim mz As Double
     Dim rt As Double
     Dim current As NamedCollection(Of ms1_scan)
     Dim dt As Double = 7.5
-    Dim massdiff As Tolerance = Tolerance.DeltaMass(0.01)
+
+    ''' <summary>
+    ''' the mass tolerance error for extract xic value from the input scatter data
+    ''' </summary>
+    Dim xicErr As Tolerance = Tolerance.DeltaMass(0.01)
+    ''' <summary>
+    ''' the mass tolerance error for extract the scatter density data from the input scatter data
+    ''' </summary>
+    Dim mzErr As Tolerance = Tolerance.PPM(30)
 
     Public Property ROIViewerHeight As Integer = 100
 
     Public Event SelectFile(filename As String)
 
     Public Async Function SetMassDiff(err As Tolerance) As Task
-        massdiff = err
+        xicErr = err
         Await Rendering()
+    End Function
+
+    Public Async Function SetScatterDiff(err As Tolerance) As Task
+        mzErr = err
+        Await RenderingSelection()
     End Function
 
     Public Iterator Function GetXic() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
@@ -37,7 +57,7 @@ Public Class ROIGroupViewer
     Private Function TakeXic(file As NamedCollection(Of ms1_scan)) As IEnumerable(Of ChromatogramTick)
         Return file _
             .AsParallel _
-            .Where(Function(a) massdiff(a.mz, mz)) _
+            .Where(Function(a) xicErr(a.mz, mz)) _
             .GroupBy(Function(i) i.scan_time, offsets:=0.25) _
             .Select(Function(i)
                         Return New ChromatogramTick(Val(i.name), i.Average(Function(a) a.intensity))
@@ -102,7 +122,7 @@ Public Class ROIGroupViewer
         Dim unifySize As String = $"{newWidth * scale },{ROIViewerHeight * scale }"
         Dim render As GraphicsData
 
-        ' make rendering
+        ' make rendering of the sample files XIC group data
         For i As Integer = 0 To viewers.Length - 1
             xic = TakeXic(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan))).ToArray
             xic_data = New NamedCollection(Of ChromatogramTick)(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)).name, xic)
@@ -126,6 +146,10 @@ Public Class ROIGroupViewer
         Await RenderingSelection()
     End Function
 
+    ''' <summary>
+    ''' Make render xic and scatter
+    ''' </summary>
+    ''' <returns></returns>
     Private Async Function RenderingSelection() As Task
         If current.IsEmpty Then
             Return
@@ -139,10 +163,15 @@ Public Class ROIGroupViewer
             .padding = "padding:100px 100px 200px 200px;",
             .colorSet = ScalerPalette.FlexImaging.Description
         }
-        Dim density As New PlotMassWindowXIC(current, mz, massdiff, theme)
-        Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=120, driver:=Drivers.GDI))
+        Dim density As New PlotMassWindowXIC(current, mz, xicErr, theme, mzErr:=mzErr)
+        Dim render As Func(Of Image) =
+            Function()
+                Return density _
+                    .Plot(size, ppi:=120, driver:=Drivers.GDI) _
+                    .AsGDIImage
+            End Function
 
-        PictureBox1.BackgroundImage = render.AsGDIImage
+        PictureBox1.BackgroundImage = Await Task.Run(render)
     End Function
 
     Private Async Sub ROIGroupViewer_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged

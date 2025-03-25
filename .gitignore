@@ -450,3 +450,5 @@ setup/Setup Files/microsoft/NDP48-DevPack-ENU.exe
 setup/Setup Files/MZKit-20250123-Setup Files.zip
 setup/Setup Files/MZKit-20250227-Setup Files.zip
 setup/Setup Files/MZKit-20250306-Setup Files.zip
+setup/Prerequisites/.NET 8.0/dotnet-runtime-8.0.10-win-x64.exe
+setup/Prerequisites/.NET 8.0/windowsdesktop-runtime-8.0.10-win-x64.exe
