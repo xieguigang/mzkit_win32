@@ -9,14 +9,25 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Math
 
+''' <summary>
+''' ROI XIC group viewer
+''' </summary>
 Public Class ROIGroupViewer
 
     Dim samples As NamedCollection(Of ms1_scan)()
     Dim viewers As PictureBox()
+
+    ''' <summary>
+    ''' the reference m/z value
+    ''' </summary>
     Dim mz As Double
     Dim rt As Double
     Dim current As NamedCollection(Of ms1_scan)
     Dim dt As Double = 7.5
+
+    ''' <summary>
+    ''' the mass tolerance error for extract xic value from the input scatter data
+    ''' </summary>
     Dim massdiff As Tolerance = Tolerance.DeltaMass(0.01)
 
     Public Property ROIViewerHeight As Integer = 100
@@ -102,7 +113,7 @@ Public Class ROIGroupViewer
         Dim unifySize As String = $"{newWidth * scale },{ROIViewerHeight * scale }"
         Dim render As GraphicsData
 
-        ' make rendering
+        ' make rendering of the sample files XIC group data
         For i As Integer = 0 To viewers.Length - 1
             xic = TakeXic(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan))).ToArray
             xic_data = New NamedCollection(Of ChromatogramTick)(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)).name, xic)
@@ -126,6 +137,10 @@ Public Class ROIGroupViewer
         Await RenderingSelection()
     End Function
 
+    ''' <summary>
+    ''' Make render xic and scatter
+    ''' </summary>
+    ''' <returns></returns>
     Private Async Function RenderingSelection() As Task
         If current.IsEmpty Then
             Return
@@ -140,9 +155,14 @@ Public Class ROIGroupViewer
             .colorSet = ScalerPalette.FlexImaging.Description
         }
         Dim density As New PlotMassWindowXIC(current, mz, massdiff, theme)
-        Dim render As GraphicsData = Await Task(Of GraphicsData).Run(Function() density.Plot(size, ppi:=120, driver:=Drivers.GDI))
+        Dim render As Func(Of Image) =
+            Function()
+                Return density _
+                    .Plot(size, ppi:=120, driver:=Drivers.GDI) _
+                    .AsGDIImage
+            End Function
 
-        PictureBox1.BackgroundImage = render.AsGDIImage
+        PictureBox1.BackgroundImage = Await Task.Run(render)
     End Function
 
     Private Async Sub ROIGroupViewer_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
