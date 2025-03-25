@@ -1416,6 +1416,8 @@
     <ROW Component="ServiceHub.dll" ComponentId="{4369CD89-DD64-442D-A5B3-F0B82F6220EE}" Directory_="APPDIR" Attributes="256" KeyPath="ServiceHub.dll"/>
     <ROW Component="ServiceHub.dll_1" ComponentId="{FF86F3AD-AB71-4FE2-95DF-A0B8B1EB1D2E}" Directory_="host_Dir" Attributes="256" KeyPath="ServiceHub.dll_1"/>
     <ROW Component="ServiceHub.pdb" ComponentId="{BEC4661C-8A81-460A-A7CB-D9DE3B621304}" Directory_="APPDIR" Attributes="0" KeyPath="ServiceHub.pdb" Type="4"/>
+    <ROW Component="SingleExpression.dll" ComponentId="{CA124D07-175A-40F0-91EC-1C286D0CF420}" Directory_="host_Dir" Attributes="256" KeyPath="SingleExpression.dll"/>
+    <ROW Component="SingleExpression.dll_1" ComponentId="{7626EDB0-8923-4251-962C-D786A9F744E7}" Directory_="blender_Dir" Attributes="256" KeyPath="SingleExpression.dll_1"/>
     <ROW Component="SkiaSharp.Extended.Svg.dll" ComponentId="{496CA523-636D-4E12-9446-F07C82CD894B}" Directory_="bin_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.Svg.dll"/>
     <ROW Component="SkiaSharp.Extended.Svg.dll_1" ComponentId="{6A9E310C-DEE3-4F40-BE07-FC3EB584A73E}" Directory_="blender_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.Svg.dll_1"/>
     <ROW Component="SkiaSharp.Extended.dll" ComponentId="{A4532608-43D3-4A1E-B2E1-9E8073430F2A}" Directory_="bin_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.dll"/>
@@ -19912,6 +19914,10 @@
     <ROW File="Microsoft.VisualBasic.Math.Matrix.dll_3" Component_="Microsoft.VisualBasic.Math.Matrix.dll_3" FileName="MICRO~30.DLL|Microsoft.VisualBasic.Math.Matrix.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix._3_dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MICROS~2.CON|Microsoft.VisualBasic.Math.Matrix.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix.pdb_1" Component_="Microsoft.VisualBasic.Math.Matrix.pdb" FileName="MICRO~35.PDB|Microsoft.VisualBasic.Math.Matrix.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.pdb" SelfReg="false"/>
+    <ROW File="SingleExpression.dll" Component_="SingleExpression.dll" FileName="SINGLE~1.DLL|SingleExpression.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\SingleExpression.dll" SelfReg="false"/>
+    <ROW File="STRaid.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="STRaid.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\STRaid.xml" SelfReg="false"/>
+    <ROW File="SingleExpression.dll_1" Component_="SingleExpression.dll_1" FileName="SINGLE~1.DLL|SingleExpression.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SingleExpression.dll" SelfReg="false"/>
+    <ROW File="SingleExpression.pdb" Component_="SingleExpression.dll_1" FileName="SINGLE~1.PDB|SingleExpression.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SingleExpression.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -22779,6 +22785,8 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Matrix.pdb"/>
     <ROW Feature_="MainFeature" Component_="animationObj.ts"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="SingleExpression.dll"/>
+    <ROW Feature_="MainFeature" Component_="SingleExpression.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
