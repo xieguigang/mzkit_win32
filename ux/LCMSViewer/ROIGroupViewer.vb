@@ -28,15 +28,24 @@ Public Class ROIGroupViewer
     ''' <summary>
     ''' the mass tolerance error for extract xic value from the input scatter data
     ''' </summary>
-    Dim massdiff As Tolerance = Tolerance.DeltaMass(0.01)
+    Dim xicErr As Tolerance = Tolerance.DeltaMass(0.01)
+    ''' <summary>
+    ''' the mass tolerance error for extract the scatter density data from the input scatter data
+    ''' </summary>
+    Dim mzErr As Tolerance = Tolerance.PPM(30)
 
     Public Property ROIViewerHeight As Integer = 100
 
     Public Event SelectFile(filename As String)
 
     Public Async Function SetMassDiff(err As Tolerance) As Task
-        massdiff = err
+        xicErr = err
         Await Rendering()
+    End Function
+
+    Public Async Function SetScatterDiff(err As Tolerance) As Task
+        mzErr = err
+        Await RenderingSelection()
     End Function
 
     Public Iterator Function GetXic() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
@@ -48,7 +57,7 @@ Public Class ROIGroupViewer
     Private Function TakeXic(file As NamedCollection(Of ms1_scan)) As IEnumerable(Of ChromatogramTick)
         Return file _
             .AsParallel _
-            .Where(Function(a) massdiff(a.mz, mz)) _
+            .Where(Function(a) xicErr(a.mz, mz)) _
             .GroupBy(Function(i) i.scan_time, offsets:=0.25) _
             .Select(Function(i)
                         Return New ChromatogramTick(Val(i.name), i.Average(Function(a) a.intensity))
@@ -154,7 +163,7 @@ Public Class ROIGroupViewer
             .padding = "padding:100px 100px 200px 200px;",
             .colorSet = ScalerPalette.FlexImaging.Description
         }
-        Dim density As New PlotMassWindowXIC(current, mz, massdiff, theme)
+        Dim density As New PlotMassWindowXIC(current, mz, xicErr, theme, mzErr:=mzErr)
         Dim render As Func(Of Image) =
             Function()
                 Return density _
