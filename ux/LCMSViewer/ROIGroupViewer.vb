@@ -157,15 +157,20 @@ Public Class ROIGroupViewer
 
         Dim scale As Double = 2.5
         Dim size As String = $"{PictureBox1.Width * scale},{PictureBox1.Height * scale}"
-        Dim theme As New Theme With {
-            .pointSize = 12,
-            .drawLegend = False,
-            .padding = "padding:100px 100px 200px 200px;",
-            .colorSet = ScalerPalette.FlexImaging.Description
-        }
-        Dim density As New PlotMassWindowXIC(current, mz, xicErr, theme, mzErr:=mzErr)
         Dim render As Func(Of Image) =
             Function()
+                Dim theme As New Theme With {
+                    .pointSize = 12,
+                    .drawLegend = False,
+                    .padding = "padding:100px 100px 200px 200px;",
+                    .colorSet = ScalerPalette.FlexImaging.Description
+                }
+                Dim density As New PlotMassWindowXIC(
+                    current, mz, xicErr,
+                    theme:=theme,
+                    mzErr:=mzErr
+                )
+
                 Return density _
                     .Plot(size, ppi:=120, driver:=Drivers.GDI) _
                     .AsGDIImage
