@@ -163,7 +163,8 @@ Public Class ROIGroupViewer
                     .pointSize = 12,
                     .drawLegend = False,
                     .padding = "padding:100px 100px 200px 200px;",
-                    .colorSet = ScalerPalette.FlexImaging.Description
+                    .colorSet = ScalerPalette.FlexImaging.Description,
+                    .YaxisTickFormat = "F4"
                 }
                 Dim density As New PlotMassWindowXIC(
                     current, mz, xicErr,
