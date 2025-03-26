@@ -289,10 +289,6 @@
       <Project>{5dce233f-c0e1-41b8-827a-872b0c8cc3bc}</Project>
       <Name>assembly-netcore5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\assembly\SignalReader\SignalReader.vbproj">
-      <Project>{4491210e-d07d-409b-8028-43e8256c93e0}</Project>
-      <Name>SignalReader</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj">
       <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
       <Name>mzmath-netcore5</Name>
