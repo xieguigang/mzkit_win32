@@ -1178,6 +1178,7 @@
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_2" ComponentId="{7654CF8E-B9A4-4F41-93FC-B7F59970B02D}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_3" ComponentId="{24E4C6C5-0E73-483A-B823-D690E925DDBC}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.pdb" ComponentId="{3CDEC19C-CA3F-435C-8A92-0544AAAAC359}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Matrix.pdb_1" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Matrix.xml" ComponentId="{35EAED81-4617-4D80-BD73-082564E7500E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Matrix.xml"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll" ComponentId="{C1743B21-4A9C-4103-84B1-C8567243FC5C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" ComponentId="{EA8C100A-F9A9-46F6-801F-4DB302826574}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.dll" ComponentId="{C939EC15-B2C6-4A1D-B75C-50CA5765D902}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.dll"/>
@@ -1415,6 +1416,7 @@
     <ROW Component="STRaid.dll" ComponentId="{8A128E7A-02FE-46C8-ABB2-C3B899B36071}" Directory_="host_Dir" Attributes="256" KeyPath="STRaid.dll"/>
     <ROW Component="STRaid.dll_1" ComponentId="{3BA98F20-DADB-4CB4-B520-EF491AB80278}" Directory_="APPDIR" Attributes="256" KeyPath="STRaid.dll_1"/>
     <ROW Component="STRaid.pdb" ComponentId="{4CBF49EC-16D9-41F7-B9F9-45497895C4DF}" Directory_="APPDIR" Attributes="0" KeyPath="STRaid.pdb" Type="4"/>
+    <ROW Component="STRaid.xml" ComponentId="{53E15DA7-3142-4763-BC15-D9DAFA37F376}" Directory_="APPDIR" Attributes="0" KeyPath="STRaid.xml_1"/>
     <ROW Component="Sciex.Clearcore.FMan.dll" ComponentId="{DAAE4A1D-ED09-435A-BDDE-0E78B5A3B2C9}" Directory_="APPDIR" Attributes="256" KeyPath="Sciex.Clearcore.FMan.dll"/>
     <ROW Component="Sciex.Data.Processing.dll" ComponentId="{522DD82E-7494-44CE-B106-A16BDA17E216}" Directory_="APPDIR" Attributes="256" KeyPath="Sciex.Data.Processing.dll"/>
     <ROW Component="Sciex.Data.SimpleTypes.dll" ComponentId="{47F975C2-643E-40C2-94D6-712785A0E318}" Directory_="APPDIR" Attributes="256" KeyPath="Sciex.Data.SimpleTypes.dll"/>
@@ -1427,6 +1429,7 @@
     <ROW Component="SingleExpression.dll" ComponentId="{CA124D07-175A-40F0-91EC-1C286D0CF420}" Directory_="host_Dir" Attributes="256" KeyPath="SingleExpression.dll"/>
     <ROW Component="SingleExpression.dll_1" ComponentId="{7626EDB0-8923-4251-962C-D786A9F744E7}" Directory_="blender_Dir" Attributes="256" KeyPath="SingleExpression.dll_1"/>
     <ROW Component="SingleExpression.dll_2" ComponentId="{A98F7FDA-CC5A-4999-84A8-47065D0EFABB}" Directory_="APPDIR" Attributes="256" KeyPath="SingleExpression.dll_2"/>
+    <ROW Component="SingleExpression.pdb" ComponentId="{7A5672E6-17CC-4CC0-8074-3BA5B8CF5D67}" Directory_="APPDIR" Attributes="0" KeyPath="SingleExpression.pdb_1" Type="4"/>
     <ROW Component="SkiaSharp.Extended.Svg.dll" ComponentId="{496CA523-636D-4E12-9446-F07C82CD894B}" Directory_="bin_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.Svg.dll"/>
     <ROW Component="SkiaSharp.Extended.Svg.dll_1" ComponentId="{6A9E310C-DEE3-4F40-BE07-FC3EB584A73E}" Directory_="blender_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.Svg.dll_1"/>
     <ROW Component="SkiaSharp.Extended.dll" ComponentId="{A4532608-43D3-4A1E-B2E1-9E8073430F2A}" Directory_="bin_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.dll"/>
@@ -19932,10 +19935,10 @@
     <ROW File="Microsoft.VisualBasic.Runtime.xml_1" Component_="Flute.Http.xml" FileName="MICROS~6.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.xml_3" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~27.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.xml_4" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICROS~9.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.Matrix.xml" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MICRO~35.XML|Microsoft.VisualBasic.Math.Matrix.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix.xml" Component_="Microsoft.VisualBasic.Math.Matrix.xml" FileName="MICRO~35.XML|Microsoft.VisualBasic.Math.Matrix.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.xml" SelfReg="false"/>
     <ROW File="SingleExpression.dll_2" Component_="SingleExpression.dll_2" FileName="SINGLE~1.DLL|SingleExpression.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SingleExpression.dll" SelfReg="false"/>
-    <ROW File="SingleExpression.pdb_1" Component_="SingleExpression.dll_2" FileName="SINGLE~1.PDB|SingleExpression.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SingleExpression.pdb" SelfReg="false"/>
-    <ROW File="STRaid.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="STRaid.xml" Attributes="0" SourcePath="..\..\..\dist\bin\STRaid.xml" SelfReg="false"/>
+    <ROW File="SingleExpression.pdb_1" Component_="SingleExpression.pdb" FileName="SINGLE~1.PDB|SingleExpression.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SingleExpression.pdb" SelfReg="false"/>
+    <ROW File="STRaid.xml_1" Component_="STRaid.xml" FileName="STRaid.xml" Attributes="0" SourcePath="..\..\..\dist\bin\STRaid.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -22818,6 +22821,9 @@
     <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
     <ROW Feature_="BF57E49C4E0C98AF391A28FF818B" Component_="BF57E49C4E0C98AF391A28FF818B"/>
     <ROW Feature_="MainFeature" Component_="SingleExpression.dll_2"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Matrix.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="STRaid.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SingleExpression.pdb"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
