@@ -1975,8 +1975,15 @@
 #define cmdButtonExportSingleExpression_TooltipDescription_RESID 60445
 #define cmdButtonExportSingleExpression_SmallImages_192__RESID 60446
 #define cmdButtonExportSingleExpression_LargeImages_192__RESID 60447
-#define InternalCmd2_LabelTitle_RESID 60448
-#define InternalCmd4_LabelTitle_RESID 60449
-#define InternalCmd6_LabelTitle_RESID 60450
-#define InternalCmd8_LabelTitle_RESID 60451
-#define InternalCmd10_LabelTitle_RESID 60452
+#define cmdButtonSortByMz 354  /* Sort By M/Z */ 
+#define cmdButtonSortByMz_LabelTitle_RESID 60448
+#define cmdButtonSortByMz_LabelDescription_RESID 60449
+#define cmdButtonSortByMz_TooltipTitle_RESID 60450
+#define cmdButtonSortByMz_TooltipDescription_RESID 60451
+#define cmdButtonSortByMz_SmallImages_192__RESID 60452
+#define cmdButtonSortByMz_LargeImages_144__RESID 60453
+#define InternalCmd2_LabelTitle_RESID 60454
+#define InternalCmd4_LabelTitle_RESID 60455
+#define InternalCmd6_LabelTitle_RESID 60456
+#define InternalCmd8_LabelTitle_RESID 60457
+#define InternalCmd10_LabelTitle_RESID 60458

@@ -4551,6 +4551,14 @@
         <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonSortByMz" Comment="Sort By M/Z" Id="354" LabelTitle="Sort By M/Z" LabelDescription="Sort By M/Z" TooltipTitle="Sort By M/Z" TooltipDescription="Sort By M/Z">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/view-dual.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/view-dual.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -5021,6 +5029,7 @@
               <ToggleButton CommandName="cmdToggleShowRT" />
               <ToggleButton CommandName="cmdButtonClickScatter" />
               <Button CommandName="cmdButtonReportHeatMapColors" />
+              <ToggleButton CommandName="cmdButtonSortByMz" />
               <Button CommandName="cmdButtonReportSampleInfo" />
             </Group>
           </Tab>

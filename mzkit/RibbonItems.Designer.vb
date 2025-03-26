@@ -292,6 +292,7 @@ Namespace RibbonLib.Controls
             Public Const cmdToggleShowRT As UInteger = 317
             Public Const cmdButtonClickScatter As UInteger = 326
             Public Const cmdButtonReportHeatMapColors As UInteger = 319
+            Public Const cmdButtonSortByMz As UInteger = 354
             Public Const cmdButtonReportSampleInfo As UInteger = 328
             Public Const cmdMenuLabIA As UInteger = 336
             Public Const cmdPageLabIA As UInteger = 337
@@ -2115,6 +2116,15 @@ Namespace RibbonLib.Controls
                 Return _ButtonReportHeatMapColors
             End Get
         End Property
+        Private _ButtonSortByMz As RibbonToggleButton
+        ''' <summary>
+        ''' Sort By M/Z
+        ''' </summary>
+        Public ReadOnly Property ButtonSortByMz As RibbonToggleButton
+            Get
+                Return _ButtonSortByMz
+            End Get
+        End Property
         Private _ButtonReportSampleInfo As RibbonButton
         ''' <summary>
         ''' Sample Information
@@ -2737,6 +2747,7 @@ Namespace RibbonLib.Controls
             _ToggleShowRT = New RibbonToggleButton(_ribbon, Cmd.cmdToggleShowRT)
             _ButtonClickScatter = New RibbonToggleButton(_ribbon, Cmd.cmdButtonClickScatter)
             _ButtonReportHeatMapColors = New RibbonButton(_ribbon, Cmd.cmdButtonReportHeatMapColors)
+            _ButtonSortByMz = New RibbonToggleButton(_ribbon, Cmd.cmdButtonSortByMz)
             _ButtonReportSampleInfo = New RibbonButton(_ribbon, Cmd.cmdButtonReportSampleInfo)
             _MenuLabIA = New RibbonTabGroup(_ribbon, Cmd.cmdMenuLabIA)
             _PageLabIA = New RibbonTab(_ribbon, Cmd.cmdPageLabIA)

@@ -295,6 +295,7 @@ namespace RibbonLib.Controls
             public const uint cmdToggleShowRT = 317;
             public const uint cmdButtonClickScatter = 326;
             public const uint cmdButtonReportHeatMapColors = 319;
+            public const uint cmdButtonSortByMz = 354;
             public const uint cmdButtonReportSampleInfo = 328;
             public const uint cmdMenuLabIA = 336;
             public const uint cmdPageLabIA = 337;
@@ -729,6 +730,10 @@ namespace RibbonLib.Controls
         public RibbonToggleButton ButtonClickScatter { get; private set; }
         public RibbonButton ButtonReportHeatMapColors { get; private set; }
         /// <summary>
+        /// Sort By M/Z
+        /// </summary>
+        public RibbonToggleButton ButtonSortByMz { get; private set; }
+        /// <summary>
         /// Sample Information
         /// </summary>
         public RibbonButton ButtonReportSampleInfo { get; private set; }
@@ -1075,6 +1080,7 @@ namespace RibbonLib.Controls
             ToggleShowRT = new RibbonToggleButton(ribbon, Cmd.cmdToggleShowRT);
             ButtonClickScatter = new RibbonToggleButton(ribbon, Cmd.cmdButtonClickScatter);
             ButtonReportHeatMapColors = new RibbonButton(ribbon, Cmd.cmdButtonReportHeatMapColors);
+            ButtonSortByMz = new RibbonToggleButton(ribbon, Cmd.cmdButtonSortByMz);
             ButtonReportSampleInfo = new RibbonButton(ribbon, Cmd.cmdButtonReportSampleInfo);
             MenuLabIA = new RibbonTabGroup(ribbon, Cmd.cmdMenuLabIA);
             PageLabIA = new RibbonTab(ribbon, Cmd.cmdPageLabIA);
