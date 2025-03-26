@@ -19928,6 +19928,9 @@
     <ROW File="STRaid.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="STRaid.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\STRaid.xml" SelfReg="false"/>
     <ROW File="SingleExpression.dll_1" Component_="SingleExpression.dll_1" FileName="SINGLE~1.DLL|SingleExpression.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SingleExpression.dll" SelfReg="false"/>
     <ROW File="SingleExpression.pdb" Component_="SingleExpression.dll_1" FileName="SINGLE~1.PDB|SingleExpression.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SingleExpression.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Runtime.xml_1" Component_="Flute.Http.xml" FileName="MICROS~6.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Runtime.xml_3" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~27.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Runtime.xml_4" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICROS~9.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
