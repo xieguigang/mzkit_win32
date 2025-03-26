@@ -168,7 +168,8 @@ Public Class ROIGroupViewer
                 Dim density As New PlotMassWindowXIC(
                     current, mz, xicErr,
                     theme:=theme,
-                    mzErr:=mzErr
+                    mzErr:=mzErr,
+                    mzdiff:=0.0001
                 )
 
                 Return density _
