@@ -243,6 +243,14 @@ Public Class ColorScaler
         Call UpdateColors(callEvents:=True)
     End Sub
 
+    Private Sub SetRangeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetRangeToolStripMenuItem.Click
+        Try
+            RaiseEvent RequestSetCustomRange()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     Private Sub PictureBox1_MouseHover(sender As Object, e As EventArgs) Handles PictureBox1.MouseHover
         Dim h As Double = PictureBox1.PointToClient(MousePosition).Y
         Dim dh As Double = PictureBox1.Height - h

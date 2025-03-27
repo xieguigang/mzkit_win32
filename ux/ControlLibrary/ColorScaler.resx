@@ -117,141 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="PictureBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
+  <metadata name="picUpperbound.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ContextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="picUpperbound.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 10</value>
-  </data>
-  <data name="&gt;&gt;ResetToolStripMenuItem.Name" xml:space="preserve">
-    <value>ResetToolStripMenuItem</value>
-  </data>
-  <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 6</value>
-  </data>
-  <data name="&gt;&gt;ToolTip1.Name" xml:space="preserve">
-    <value>ToolTip1</value>
-  </data>
-  <data name="&gt;&gt;picUpperbound.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;ToolTip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="picLowerbound.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 576</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="PictureBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="picUpperbound.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="SetRangeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
-  </data>
-  <data name="&gt;&gt;picLowerbound.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PictureBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="picLowerbound.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 589</value>
-  </data>
-  <data name="ContextMenuStrip1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;ContextMenuStrip1.Name" xml:space="preserve">
-    <value>ContextMenuStrip1</value>
-  </data>
-  <data name="&gt;&gt;picLowerbound.Name" xml:space="preserve">
-    <value>picLowerbound</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>ColorScaler</value>
-  </data>
-  <data name="SetRangeToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Set Intensity Scale Range For the Heatmap Rendering</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ResetToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-</value>
-  </data>
-  <data name="SetRangeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Set Range</value>
-  </data>
-  <data name="ResetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
-  </data>
-  <data name="ContextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 54</value>
-  </data>
-  <data name="PictureBox1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;ToolStripMenuItem1.Name" xml:space="preserve">
-    <value>ToolStripMenuItem1</value>
-  </data>
   <data name="SetRangeToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAABGdBTUEAALGPC/xhBQAAqitJREFUeF7t
@@ -984,29 +856,123 @@
         wfzCdQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="&gt;&gt;picUpperbound.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="SetRangeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
-  <data name="&gt;&gt;ContextMenuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="SetRangeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set Range</value>
   </data>
-  <data name="picLowerbound.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 10</value>
+  <data name="SetRangeToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Set Intensity Scale Range For the Heatmap Rendering</value>
   </data>
-  <data name="&gt;&gt;picUpperbound.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 6</value>
+  </data>
+  <data name="ResetToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="ResetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
   <data name="ResetToolStripMenuItem.Text" xml:space="preserve">
     <value>Reset</value>
   </data>
-  <data name="&gt;&gt;SetRangeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ResetToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Reset the intensity scale range to the original [min, max] range of the raw data input.</value>
   </data>
+  <data name="ContextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 76</value>
+  </data>
+  <data name="&gt;&gt;ContextMenuStrip1.Name" xml:space="preserve">
+    <value>ContextMenuStrip1</value>
+  </data>
+  <data name="&gt;&gt;ContextMenuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="picUpperbound.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 2</value>
+  </data>
+  <data name="picUpperbound.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 10</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="picUpperbound.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;ToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;picUpperbound.Name" xml:space="preserve">
+    <value>picUpperbound</value>
+  </data>
+  <data name="&gt;&gt;picUpperbound.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;picUpperbound.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;picUpperbound.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="picLowerbound.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="picLowerbound.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 576</value>
+  </data>
+  <data name="picLowerbound.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 10</value>
+  </data>
+  <data name="picLowerbound.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;picLowerbound.Name" xml:space="preserve">
+    <value>picLowerbound</value>
+  </data>
+  <data name="&gt;&gt;picLowerbound.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;picLowerbound.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1014,64 +980,83 @@
   <data name="&gt;&gt;picLowerbound.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <metadata name="PictureBox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="PictureBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
   <data name="PictureBox1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
-  </data>
-  <data name="&gt;&gt;picUpperbound.Name" xml:space="preserve">
-    <value>picUpperbound</value>
-  </data>
-  <data name="ResetToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Reset the intensity scale range to the original [min, max] range of the raw data input.</value>
-  </data>
-  <data name="&gt;&gt;PictureBox1.Name" xml:space="preserve">
-    <value>PictureBox1</value>
-  </data>
-  <data name="&gt;&gt;PictureBox1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="picLowerbound.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
-  </data>
-  <data name="&gt;&gt;PictureBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="PictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 508</value>
-  </data>
-  <data name="&gt;&gt;ResetToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SetRangeToolStripMenuItem.Name" xml:space="preserve">
-    <value>SetRangeToolStripMenuItem</value>
-  </data>
-  <data name="picUpperbound.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 2</value>
   </data>
   <data name="PictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 30</value>
   </data>
-  <metadata name="picUpperbound.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="PictureBox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ContextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="picLowerbound.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <data name="PictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 508</value>
+  </data>
+  <data name="PictureBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;PictureBox1.Name" xml:space="preserve">
+    <value>PictureBox1</value>
+  </data>
+  <data name="&gt;&gt;PictureBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PictureBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;PictureBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>174, 17</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>174, 17</value>
-  </metadata>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 589</value>
+  </data>
+  <data name="&gt;&gt;SetRangeToolStripMenuItem.Name" xml:space="preserve">
+    <value>SetRangeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;SetRangeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItem1.Name" xml:space="preserve">
+    <value>ToolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ResetToolStripMenuItem.Name" xml:space="preserve">
+    <value>ResetToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;ResetToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolTip1.Name" xml:space="preserve">
+    <value>ToolTip1</value>
+  </data>
+  <data name="&gt;&gt;ToolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ColorScaler</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
