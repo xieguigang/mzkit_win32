@@ -4,6 +4,7 @@ Imports System.Reflection
 Imports System.Runtime.InteropServices
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Partial Public Class KpImageViewer : Inherits UserControl
 
@@ -11,9 +12,9 @@ Partial Public Class KpImageViewer : Inherits UserControl
     Private Shared Function GetKeyState(key As Integer) As Short
     End Function
 
-    Private drawEngine As KP_DrawEngine
-    Private drawing As KP_DrawObject
-    Private previewField As Bitmap
+    Private m_drawEngine As KP_DrawEngine
+    Private m_drawing As KP_DrawObject
+    Private m_preview As Bitmap
 
     Private animationEnabled As Boolean = False
     Private selectMode As Boolean = False
@@ -58,9 +59,9 @@ Partial Public Class KpImageViewer : Inherits UserControl
         Set(value As Boolean)
             animationEnabled = value
 
-            If drawing IsNot Nothing Then
-                If drawing.Gif IsNot Nothing Then
-                    drawing.Gif.UpdateAnimator()
+            If m_drawing IsNot Nothing Then
+                If m_drawing.Gif IsNot Nothing Then
+                    m_drawing.Gif.UpdateAnimator()
                 End If
             End If
         End Set
@@ -140,19 +141,19 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Public ReadOnly Property Zoom As Double
         Get
-            Return Math.Round(drawing.Zoom * 100, 0)
+            Return Math.Round(m_drawing.Zoom * 100, 0)
         End Get
     End Property
 
     Public ReadOnly Property OriginalSize As Size
         Get
-            Return drawing.OriginalSize
+            Return m_drawing.OriginalSize
         End Get
     End Property
 
     Public ReadOnly Property CurrentSize As Size
         Get
-            Return drawing.CurrentSize
+            Return m_drawing.CurrentSize
         End Get
     End Property
 
@@ -241,7 +242,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
     'End Property
 
     Public Sub OpenImageFile(value As String)
-        drawing.OpenImageByPath(value)
+        m_drawing.OpenImageByPath(value)
         UpdatePanels(True)
         ToggleMultiPage()
     End Sub
@@ -252,10 +253,10 @@ Partial Public Class KpImageViewer : Inherits UserControl
     ''' <returns></returns>
     Public Property Image As Bitmap
         Get
-            Return drawing.Image
+            Return m_drawing.Image
         End Get
         Set(value As Bitmap)
-            drawing.Image = value
+            m_drawing.Image = value
 
             UpdatePanels(True)
             ToggleMultiPage()
@@ -264,12 +265,12 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Public Property Rotation As Integer
         Get
-            Return drawing.Rotation
+            Return m_drawing.Rotation
         End Get
         Set(value As Integer)
             ' Making sure the rotation is 0, 90, 180 or 270 degrees!
             If value = 90 OrElse value = 180 OrElse value = 270 OrElse value = 0 Then
-                drawing.Rotation = value
+                m_drawing.Rotation = value
             End If
         End Set
     End Property
@@ -290,14 +291,14 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
                 ' pbFull.Width = pbFull.Width + (4 + panelPreview.Width)
 
-                If drawing.MultiPage Then
+                If m_drawing.MultiPage Then
                     ' panelNavigation.Location = panelPreview.Location
                 Else
                     ' panelMenu.Width = pbFull.Width
                 End If
 
                 InitControl()
-                drawing.AvoidOutOfScreen()
+                m_drawing.AvoidOutOfScreen()
                 pbFull.Refresh()
             Else
                 SplitContainer1.Dock = DockStyle.None
@@ -310,7 +311,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
                 ' pbFull.Width = pbFull.Width - (4 + panelPreview.Width)
 
-                If drawing.MultiPage Then
+                If m_drawing.MultiPage Then
                     'panelNavigation.Location = New Point(
                     '    panelPreview.Location.X, 
                     '    pbPanel.Location.Y + (pbPanel.Size.Height + 5))
@@ -319,7 +320,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
                 End If
 
                 InitControl()
-                drawing.AvoidOutOfScreen()
+                m_drawing.AvoidOutOfScreen()
                 pbFull.Refresh()
 
                 UpdatePanels(True)
@@ -379,8 +380,8 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Public Sub New()
         ' DrawEngine & DrawObject initiralization
-        drawEngine = New KP_DrawEngine()
-        drawing = New KP_DrawObject(Me)
+        m_drawEngine = New KP_DrawEngine()
+        m_drawing = New KP_DrawObject(Me)
 
         ' Stream to initialize the cursors.
         Dim imgStream As Stream = Nothing
@@ -413,22 +414,22 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Private Sub DisposeControl()
         ' No memory leaks here
-        If drawing IsNot Nothing Then
-            drawing.Dispose()
+        If m_drawing IsNot Nothing Then
+            m_drawing.Dispose()
         End If
 
-        If drawEngine IsNot Nothing Then
-            drawEngine.Dispose()
+        If m_drawEngine IsNot Nothing Then
+            m_drawEngine.Dispose()
         End If
 
-        If previewField IsNot Nothing Then
-            previewField.Dispose()
+        If m_preview IsNot Nothing Then
+            m_preview.Dispose()
         End If
     End Sub
 
     Public Sub InitControl()
         ' Make sure panel is DoubleBuffering
-        drawEngine.CreateDoubleBuffer(pbFull.CreateGraphics(), pbFull.Size.Width, pbFull.Size.Height, pbPanelAirscape.Size.Width, pbPanelAirscape.Size.Height)
+        m_drawEngine.CreateDoubleBuffer(pbFull.CreateGraphics(), pbFull.Size.Width, pbFull.Size.Height, pbPanelAirscape.Size.Width, pbPanelAirscape.Size.Height)
     End Sub
 
     Private Sub FocusOnMe()
@@ -483,25 +484,25 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Private Sub KP_ImageViewerV2_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         InitControl()
-        drawing.AvoidOutOfScreen()
+        m_drawing.AvoidOutOfScreen()
         UpdatePanels(True)
     End Sub
 
     Private Sub pbFull_Paint(sender As Object, e As PaintEventArgs) Handles pbFull.Paint
         ' Can I double buffer?
-        If drawEngine.CanDoubleBuffer() Then
+        If m_drawEngine.CanDoubleBuffer() Then
             ' Yes I can!
-            drawEngine.g.FillRectangle(New SolidBrush(pbFull.BackColor), e.ClipRectangle.X, e.ClipRectangle.Y, e.ClipRectangle.Width, e.ClipRectangle.Height)
+            m_drawEngine.g.FillRectangle(New SolidBrush(pbFull.BackColor), e.ClipRectangle.X, e.ClipRectangle.Y, e.ClipRectangle.Width, e.ClipRectangle.Height)
 
             ' Drawing to backBuffer
-            drawing.Draw(drawEngine.g)
+            m_drawing.Draw(m_drawEngine.g)
 
             If animationEnabled Then
                 Call ImageAnimator.UpdateFrames()
             End If
 
             ' Drawing to Panel
-            drawEngine.Render(e.Graphics)
+            m_drawEngine.Render(e.Graphics)
         End If
     End Sub
 
@@ -523,7 +524,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
                 ptSelectionEnd.Y = -1
             Else
                 ' Start dragging
-                drawing.BeginDrag(New Point(e.X, e.Y))
+                m_drawing.BeginDrag(New Point(e.X, e.Y))
 
                 ' Fancy cursor
                 If grabCursor IsNot Nothing Then
@@ -552,14 +553,14 @@ Partial Public Class KpImageViewer : Inherits UserControl
             Dim ptPbFull = PointToScreen(pbFull.Location)
 
             ' Zoom to my selection
-            drawing.ZoomToSelection(rect, ptPbFull)
+            m_drawing.ZoomToSelection(rect, ptPbFull)
 
             ' Refresh my screen & update my preview panel
             pbFull.Refresh()
             UpdatePanels(True)
         Else
             ' Stop dragging and update my panels
-            drawing.EndDrag()
+            m_drawing.EndDrag()
             UpdatePanels(True)
 
             ' Fancy cursor
@@ -586,8 +587,8 @@ Partial Public Class KpImageViewer : Inherits UserControl
             End If
         Else
             ' Keep dragging
-            drawing.Drag(New Point(e.X, e.Y))
-            If drawing.IsDragging Then
+            m_drawing.Drag(New Point(e.X, e.Y))
+            If m_drawing.IsDragging Then
                 UpdatePanels(False)
             Else
                 ' I'm not dragging OR selecting
@@ -609,13 +610,13 @@ Partial Public Class KpImageViewer : Inherits UserControl
     End Sub
 
     Private Sub KP_ImageViewerV2_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel
-        drawing.Scroll(sender, e)
+        m_drawing.Scroll(sender, e)
 
-        If drawing.Image IsNot Nothing Then
+        If m_drawing.Image IsNot Nothing Then
             If e.Delta < 0 Then
-                OnZoom(New ImageViewerZoomEventArgs(drawing.Zoom, KpZoom.ZoomOut))
+                OnZoom(New ImageViewerZoomEventArgs(m_drawing.Zoom, KpZoom.ZoomOut))
             Else
-                OnZoom(New ImageViewerZoomEventArgs(drawing.Zoom, KpZoom.ZoomIn))
+                OnZoom(New ImageViewerZoomEventArgs(m_drawing.Zoom, KpZoom.ZoomIn))
             End If
         End If
 
@@ -635,75 +636,75 @@ Partial Public Class KpImageViewer : Inherits UserControl
     End Sub
 
     Public Sub Rotate90() Handles ToolStripButtonRotate90.Click
-        If drawing IsNot Nothing Then
-            drawing.Rotate90()
+        If m_drawing IsNot Nothing Then
+            m_drawing.Rotate90()
 
             ' AfterRotation Event
-            OnRotation(New ImageViewerRotationEventArgs(drawing.Rotation))
+            OnRotation(New ImageViewerRotationEventArgs(m_drawing.Rotation))
             UpdatePanels(True)
             ToggleMultiPage()
         End If
     End Sub
 
     Public Sub Rotate180()
-        If drawing IsNot Nothing Then
-            drawing.Rotate180()
+        If m_drawing IsNot Nothing Then
+            m_drawing.Rotate180()
 
             ' AfterRotation Event
-            OnRotation(New ImageViewerRotationEventArgs(drawing.Rotation))
+            OnRotation(New ImageViewerRotationEventArgs(m_drawing.Rotation))
             UpdatePanels(True)
             ToggleMultiPage()
         End If
     End Sub
 
     Public Sub Rotate270() Handles ToolStripButtonRotate270.Click
-        If drawing IsNot Nothing Then
-            drawing.Rotate270()
+        If m_drawing IsNot Nothing Then
+            m_drawing.Rotate270()
 
             ' AfterRotation Event
-            OnRotation(New ImageViewerRotationEventArgs(drawing.Rotation))
+            OnRotation(New ImageViewerRotationEventArgs(m_drawing.Rotation))
             UpdatePanels(True)
             ToggleMultiPage()
         End If
     End Sub
 
     Private Sub btnZoomOut_Click(sender As Object, e As EventArgs) Handles ToolStripButtonZoomOut.Click
-        drawing.ZoomOut()
+        m_drawing.ZoomOut()
 
         ' AfterZoom Event
-        If drawing.Image IsNot Nothing Then
-            OnZoom(New ImageViewerZoomEventArgs(drawing.Zoom, KpZoom.ZoomOut))
+        If m_drawing.Image IsNot Nothing Then
+            OnZoom(New ImageViewerZoomEventArgs(m_drawing.Zoom, KpZoom.ZoomOut))
         End If
         UpdatePanels(True)
     End Sub
 
     Private Sub btnZoomIn_Click(sender As Object, e As EventArgs) Handles ToolStripButtonZoomIn.Click
-        drawing.ZoomIn()
+        m_drawing.ZoomIn()
 
         ' AfterZoom Event
-        If drawing.Image IsNot Nothing Then
-            OnZoom(New ImageViewerZoomEventArgs(drawing.Zoom, KpZoom.ZoomIn))
+        If m_drawing.Image IsNot Nothing Then
+            OnZoom(New ImageViewerZoomEventArgs(m_drawing.Zoom, KpZoom.ZoomIn))
         End If
         UpdatePanels(True)
     End Sub
 
     Private Sub btnFitToScreen_Click(sender As Object, e As EventArgs) Handles ToolStripButtonFitToScreen.Click
-        drawing.FitToScreen()
+        m_drawing.FitToScreen()
         UpdatePanels(True)
     End Sub
 
     Private Sub cbZoom_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBoxZoom.SelectedIndexChanged
         Dim zoom = (ToolStripComboBoxZoom.SelectedIndex + 1) * 0.25
-        Dim originalZoom = drawing.Zoom
+        Dim originalZoom = m_drawing.Zoom
 
-        If drawing.Zoom <> zoom Then
-            drawing.SetZoom(zoom)
+        If m_drawing.Zoom <> zoom Then
+            m_drawing.SetZoom(zoom)
 
-            If drawing.Image IsNot Nothing Then
+            If m_drawing.Image IsNot Nothing Then
                 If zoom > originalZoom Then
-                    OnZoom(New ImageViewerZoomEventArgs(drawing.Zoom, KpZoom.ZoomIn))
+                    OnZoom(New ImageViewerZoomEventArgs(m_drawing.Zoom, KpZoom.ZoomIn))
                 Else
-                    OnZoom(New ImageViewerZoomEventArgs(drawing.Zoom, KpZoom.ZoomOut))
+                    OnZoom(New ImageViewerZoomEventArgs(m_drawing.Zoom, KpZoom.ZoomOut))
                 End If
             End If
 
@@ -712,57 +713,57 @@ Partial Public Class KpImageViewer : Inherits UserControl
     End Sub
 
     Private Sub UpdatePanels(updatePreview As Boolean)
-        If drawing.CurrentSize.Width > 0 AndAlso drawing.OriginalSize.Width > 0 Then
+        If m_drawing.CurrentSize.Width > 0 AndAlso m_drawing.OriginalSize.Width > 0 Then
             ' Make sure panel is up to date
             pbFull.Refresh()
 
             ' Calculate zoom
-            Dim zoom = Math.Round(drawing.CurrentSize.Width / drawing.OriginalSize.Width, 2)
+            Dim zoom = Math.Round(m_drawing.CurrentSize.Width / m_drawing.OriginalSize.Width, 2)
 
             ' Display zoom in percentages
             ToolStripComboBoxZoom.Text = zoom * 100 & "%"
 
-            If updatePreview AndAlso drawing.PreviewImage IsNot Nothing AndAlso pbPanelAirscape.Visible = True Then
+            If updatePreview AndAlso m_drawing.PreviewImage IsNot Nothing AndAlso pbPanelAirscape.Visible = True Then
                 ' No memory leaks here
-                If previewField IsNot Nothing Then
-                    previewField.Dispose()
-                    previewField = Nothing
+                If m_preview IsNot Nothing Then
+                    m_preview.Dispose()
+                    m_preview = Nothing
                 End If
 
                 ' New preview
-                previewField = New Bitmap(drawing.PreviewImage.Size.Width, drawing.PreviewImage.Size.Height)
+                m_preview = New Bitmap(m_drawing.PreviewImage.Size.Width, m_drawing.PreviewImage.Size.Height)
 
                 ' Make sure panel is the same size as the bitmap
-                If pbPanelAirscape.Size <> drawing.PreviewImage.Size Then
-                    pbPanelAirscape.Size = drawing.PreviewImage.Size
+                If pbPanelAirscape.Size <> m_drawing.PreviewImage.Size Then
+                    pbPanelAirscape.Size = m_drawing.PreviewImage.Size
                 End If
 
                 ' New Graphics from the new bitmap we created (Empty)
-                Using g = Graphics.FromImage(previewField)
+                Using g = Graphics.FromImage(m_preview)
                     ' Draw the image on the bitmap
-                    g.DrawImage(drawing.PreviewImage, 0, 0, drawing.PreviewImage.Size.Width, drawing.PreviewImage.Size.Height)
+                    g.DrawImage(m_drawing.PreviewImage, 0, 0, m_drawing.PreviewImage.Size.Width, m_drawing.PreviewImage.Size.Height)
 
-                    Dim ratioX = drawing.PreviewImage.Size.Width / drawing.CurrentSize.Width
-                    Dim ratioY = drawing.PreviewImage.Size.Height / drawing.CurrentSize.Height
+                    Dim ratioX = m_drawing.PreviewImage.Size.Width / m_drawing.CurrentSize.Width
+                    Dim ratioY = m_drawing.PreviewImage.Size.Height / m_drawing.CurrentSize.Height
 
                     Dim boxWidth = pbFull.Width * ratioX
                     Dim boxHeight = pbFull.Height * ratioY
-                    Dim positionX = (drawing.BoundingBox.X - drawing.BoundingBox.X * 2) * ratioX
-                    Dim positionY = (drawing.BoundingBox.Y - drawing.BoundingBox.Y * 2) * ratioY
+                    Dim positionX = (m_drawing.BoundingBox.X - m_drawing.BoundingBox.X * 2) * ratioX
+                    Dim positionY = (m_drawing.BoundingBox.Y - m_drawing.BoundingBox.Y * 2) * ratioY
 
                     ' Making the red pen
                     Dim pen As Pen = New Pen(Color.Red, 1)
 
-                    If boxHeight >= drawing.PreviewImage.Size.Height Then
-                        boxHeight = drawing.PreviewImage.Size.Height - 1
-                    ElseIf boxHeight + positionY > drawing.PreviewImage.Size.Height Then
-                        boxHeight = drawing.PreviewImage.Size.Height - positionY
+                    If boxHeight >= m_drawing.PreviewImage.Size.Height Then
+                        boxHeight = m_drawing.PreviewImage.Size.Height - 1
+                    ElseIf boxHeight + positionY > m_drawing.PreviewImage.Size.Height Then
+                        boxHeight = m_drawing.PreviewImage.Size.Height - positionY
                     End If
 
-                    If boxWidth >= drawing.PreviewImage.Size.Width Then
-                        boxWidth = drawing.PreviewImage.Size.Width - 1
-                    ElseIf boxWidth + positionX > drawing.PreviewImage.Size.Width Then
-                        boxWidth = drawing.PreviewImage.Size.Width - positionX
+                    If boxWidth >= m_drawing.PreviewImage.Size.Width Then
+                        boxWidth = m_drawing.PreviewImage.Size.Width - 1
+                    ElseIf boxWidth + positionX > m_drawing.PreviewImage.Size.Width Then
+                        boxWidth = m_drawing.PreviewImage.Size.Width - positionX
                     End If
 
                     ' Draw the rectangle on the bitmap
@@ -770,14 +771,14 @@ Partial Public Class KpImageViewer : Inherits UserControl
                 End Using
 
                 ' Display the bitmap
-                pbPanelAirscape.Image = previewField
+                pbPanelAirscape.Image = m_preview
             End If
         End If
     End Sub
 
     Private Sub pbPanel_MouseDown(sender As Object, e As MouseEventArgs) Handles pbPanelAirscape.MouseDown
         If panelDragging = False Then
-            drawing.JumpToOrigin(
+            m_drawing.JumpToOrigin(
                 e.X,
                 e.Y,
                 pbPanelAirscape.Width,
@@ -792,9 +793,9 @@ Partial Public Class KpImageViewer : Inherits UserControl
     End Sub
 
     Private Sub pbFull_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles pbFull.MouseDoubleClick
-        drawing.JumpToOrigin(
-            e.X + (drawing.BoundingBox.X - drawing.BoundingBox.X * 2),
-            e.Y + (drawing.BoundingBox.Y - drawing.BoundingBox.Y * 2),
+        m_drawing.JumpToOrigin(
+            e.X + (m_drawing.BoundingBox.X - m_drawing.BoundingBox.X * 2),
+            e.Y + (m_drawing.BoundingBox.Y - m_drawing.BoundingBox.Y * 2),
             pbFull.Width,
             pbFull.Height
         )
@@ -809,7 +810,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
             pbFull.Cursor = Cursors.Cross
         Else
             ' Fancy cursor if not dragging
-            If Not drawing.IsDragging Then
+            If Not m_drawing.IsDragging Then
                 pbFull.Cursor = dragCursor
             End If
         End If
@@ -825,7 +826,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Private Sub pbPanel_MouseMove(sender As Object, e As MouseEventArgs) Handles pbPanelAirscape.MouseMove
         If panelDragging Then
-            drawing.JumpToOrigin(e.X, e.Y, pbPanelAirscape.Width, pbPanelAirscape.Height, pbFull.Width, pbFull.Height)
+            m_drawing.JumpToOrigin(e.X, e.Y, pbPanelAirscape.Width, pbPanelAirscape.Height, pbFull.Width, pbFull.Height)
             UpdatePanels(True)
         End If
     End Sub
@@ -868,7 +869,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
                         ' Make it a double!
                         Dim zoomDouble = zoom / 100
 
-                        drawing.SetZoom(zoomDouble)
+                        m_drawing.SetZoom(zoomDouble)
                         UpdatePanels(True)
                     End If
                 End If
@@ -1066,11 +1067,22 @@ Partial Public Class KpImageViewer : Inherits UserControl
         Me.Image = New Bitmap(image)
     End Sub
 
+    Dim intensityRange As Double()
+
     Public Sub UpdateColorScaler(range As Double(), colorSet As ScalerPalette, mapLevels As Integer)
+        Dim max As Double = If(range.IsNullOrEmpty, 255, range.Max)
+        Dim min As Double = If(range.IsNullOrEmpty, 0, range.Min)
+
+        If max = min Then
+            min = 0
+        End If
+
         ColorScaler1.ScalerLevels = mapLevels
         ColorScaler1.ScalerPalette = colorSet
-        ColorScaler1.SetIntensityMax(If(range.IsNullOrEmpty, 255, range.Max))
+        ColorScaler1.SetIntensityMax(max)
         ColorScaler1.UpdateColors(callEvents:=False)
+
+        intensityRange = {min, max}
     End Sub
 
     Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
@@ -1089,7 +1101,19 @@ Partial Public Class KpImageViewer : Inherits UserControl
     End Sub
 
     Private Sub ColorScaler1_RequestSetCustomRange() Handles ColorScaler1.RequestSetCustomRange
+        Dim range As New InputIntensityRange
+        Dim customRange As Action(Of InputIntensityRange) =
+            Sub(config)
+                RaiseEvent SetRange(config.ValueRange)
+            End Sub
 
+        If intensityRange.IsNullOrEmpty Then
+            intensityRange = {0, 255}
+        ElseIf intensityRange.Length = 1 Then
+            intensityRange = {0, intensityRange(0)}
+        End If
+
+        Call InputDialog.Input(customRange, config:=range.SetRange(intensityRange(0), intensityRange(1)))
     End Sub
 End Class
 
