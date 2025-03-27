@@ -37,6 +37,12 @@ Partial Public Class KpImageViewer : Inherits UserControl
     Public Event AfterZoom As ImageViewerZoomEventHandler
     Public Event SetRange(range As DoubleRange)
 
+    Public ReadOnly Property ColorScalerMenuUI As ContextMenuStrip
+        Get
+            Return ColorScaler1.MenuUI
+        End Get
+    End Property
+
     Protected Overridable Sub OnZoom(e As ImageViewerZoomEventArgs)
         RaiseEvent AfterZoom(Me, e)
     End Sub
