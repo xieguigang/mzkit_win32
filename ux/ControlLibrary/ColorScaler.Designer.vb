@@ -26,12 +26,12 @@ Partial Class ColorScaler
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ColorScaler))
         Me.picUpperbound = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SetRangeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ResetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.picLowerbound = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.SetRangeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.picUpperbound, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.picLowerbound, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -40,81 +40,67 @@ Partial Class ColorScaler
         '
         'picUpperbound
         '
+        resources.ApplyResources(Me.picUpperbound, "picUpperbound")
         Me.picUpperbound.BackColor = System.Drawing.Color.Black
         Me.picUpperbound.ContextMenuStrip = Me.ContextMenuStrip1
         Me.picUpperbound.Cursor = System.Windows.Forms.Cursors.NoMoveVert
-        Me.picUpperbound.Location = New System.Drawing.Point(2, 2)
         Me.picUpperbound.Name = "picUpperbound"
-        Me.picUpperbound.Size = New System.Drawing.Size(152, 10)
-        Me.picUpperbound.TabIndex = 0
         Me.picUpperbound.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.picUpperbound, resources.GetString("picUpperbound.ToolTip"))
         '
         'ContextMenuStrip1
         '
+        resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetRangeToolStripMenuItem, Me.ToolStripMenuItem1, Me.ResetToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 76)
-        '
-        'ResetToolStripMenuItem
-        '
-        Me.ResetToolStripMenuItem.Image = CType(resources.GetObject("ResetToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.ResetToolStripMenuItem.Name = "ResetToolStripMenuItem"
-        Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ResetToolStripMenuItem.Text = "Reset"
-        Me.ResetToolStripMenuItem.ToolTipText = "Reset the intensity scale range to the original [min, max] range of the raw data " &
-    "input."
-        '
-        'picLowerbound
-        '
-        Me.picLowerbound.BackColor = System.Drawing.Color.Black
-        Me.picLowerbound.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.picLowerbound.Cursor = System.Windows.Forms.Cursors.NoMoveVert
-        Me.picLowerbound.Location = New System.Drawing.Point(3, 576)
-        Me.picLowerbound.Name = "picLowerbound"
-        Me.picLowerbound.Size = New System.Drawing.Size(151, 10)
-        Me.picLowerbound.TabIndex = 1
-        Me.picLowerbound.TabStop = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.PictureBox1.Location = New System.Drawing.Point(3, 30)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(149, 508)
-        Me.PictureBox1.TabIndex = 2
-        Me.PictureBox1.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.ContextMenuStrip1, resources.GetString("ContextMenuStrip1.ToolTip"))
         '
         'SetRangeToolStripMenuItem
         '
+        resources.ApplyResources(Me.SetRangeToolStripMenuItem, "SetRangeToolStripMenuItem")
         Me.SetRangeToolStripMenuItem.AutoToolTip = True
-        Me.SetRangeToolStripMenuItem.Image = CType(resources.GetObject("SetRangeToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SetRangeToolStripMenuItem.Name = "SetRangeToolStripMenuItem"
-        Me.SetRangeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.SetRangeToolStripMenuItem.Text = "Set Range"
-        Me.SetRangeToolStripMenuItem.ToolTipText = "Set Intensity Scale Range For the Heatmap Rendering"
         '
         'ToolStripMenuItem1
         '
+        resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(177, 6)
+        '
+        'ResetToolStripMenuItem
+        '
+        resources.ApplyResources(Me.ResetToolStripMenuItem, "ResetToolStripMenuItem")
+        Me.ResetToolStripMenuItem.Name = "ResetToolStripMenuItem"
+        '
+        'picLowerbound
+        '
+        resources.ApplyResources(Me.picLowerbound, "picLowerbound")
+        Me.picLowerbound.BackColor = System.Drawing.Color.Black
+        Me.picLowerbound.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.picLowerbound.Cursor = System.Windows.Forms.Cursors.NoMoveVert
+        Me.picLowerbound.Name = "picLowerbound"
+        Me.picLowerbound.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.picLowerbound, resources.GetString("picLowerbound.ToolTip"))
+        '
+        'PictureBox1
+        '
+        resources.ApplyResources(Me.PictureBox1, "PictureBox1")
+        Me.PictureBox1.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.PictureBox1, resources.GetString("PictureBox1.ToolTip"))
         '
         'ColorScaler
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.picLowerbound)
         Me.Controls.Add(Me.picUpperbound)
         Me.DoubleBuffered = True
         Me.Name = "ColorScaler"
-        Me.Size = New System.Drawing.Size(155, 589)
+        Me.ToolTip1.SetToolTip(Me, resources.GetString("$this.ToolTip"))
         CType(Me.picUpperbound, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.picLowerbound, System.ComponentModel.ISupportInitialize).EndInit()

@@ -255,6 +255,9 @@
     <EmbeddedResource Include="ColorScaler.resx">
       <DependentUpon>ColorScaler.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ColorScaler.zh-CN.resx">
+      <DependentUpon>ColorScaler.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
