@@ -23,12 +23,15 @@ Partial Class ColorScaler
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ColorScaler))
         Me.picUpperbound = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ResetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.picLowerbound = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.SetRangeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.picUpperbound, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.picLowerbound, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,15 +51,18 @@ Partial Class ColorScaler
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetRangeToolStripMenuItem, Me.ToolStripMenuItem1, Me.ResetToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(103, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 76)
         '
         'ResetToolStripMenuItem
         '
+        Me.ResetToolStripMenuItem.Image = CType(resources.GetObject("ResetToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ResetToolStripMenuItem.Name = "ResetToolStripMenuItem"
-        Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(102, 22)
+        Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ResetToolStripMenuItem.Text = "Reset"
+        Me.ResetToolStripMenuItem.ToolTipText = "Reset the intensity scale range to the original [min, max] range of the raw data " &
+    "input."
         '
         'picLowerbound
         '
@@ -81,6 +87,20 @@ Partial Class ColorScaler
         Me.PictureBox1.Size = New System.Drawing.Size(149, 508)
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
+        '
+        'SetRangeToolStripMenuItem
+        '
+        Me.SetRangeToolStripMenuItem.AutoToolTip = True
+        Me.SetRangeToolStripMenuItem.Image = CType(resources.GetObject("SetRangeToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.SetRangeToolStripMenuItem.Name = "SetRangeToolStripMenuItem"
+        Me.SetRangeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SetRangeToolStripMenuItem.Text = "Set Range"
+        Me.SetRangeToolStripMenuItem.ToolTipText = "Set Intensity Scale Range For the Heatmap Rendering"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(177, 6)
         '
         'ColorScaler
         '
@@ -109,4 +129,6 @@ Partial Class ColorScaler
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ResetToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents SetRangeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
 End Class

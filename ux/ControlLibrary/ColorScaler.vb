@@ -40,6 +40,12 @@ Public Class ColorScaler
         End Set
     End Property
 
+    Public ReadOnly Property MenuUI As ContextMenuStrip
+        Get
+            Return ContextMenuStrip1
+        End Get
+    End Property
+
     ''' <summary>
     ''' range in [0,1]
     ''' </summary>
