@@ -1087,6 +1087,10 @@ Partial Public Class KpImageViewer : Inherits UserControl
     Private Sub ColorScaler1_SetRange(range As DoubleRange) Handles ColorScaler1.SetRange
         RaiseEvent SetRange(range)
     End Sub
+
+    Private Sub ColorScaler1_RequestSetCustomRange() Handles ColorScaler1.RequestSetCustomRange
+
+    End Sub
 End Class
 
 

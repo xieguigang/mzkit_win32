@@ -71,6 +71,7 @@ Public Class ColorScaler
     End Property
 
     Public Event SetRange(range As DoubleRange)
+    Public Event RequestSetCustomRange()
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     <DebuggerStepThrough>

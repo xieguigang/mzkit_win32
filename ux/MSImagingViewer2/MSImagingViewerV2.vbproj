@@ -144,6 +144,12 @@
     <Compile Include="MSI\Editor\Edge.vb" />
     <Compile Include="MSI\Editor\Polygon.vb" />
     <Compile Include="MSI\Editor\Vertex.vb" />
+    <Compile Include="MSI\InputIntensityRange.Designer.vb">
+      <DependentUpon>InputIntensityRange.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MSI\InputIntensityRange.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MSI\InputRotateMatrix.Designer.vb">
       <DependentUpon>InputRotateMatrix.vb</DependentUpon>
     </Compile>
@@ -212,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HEStainViewer\InputSetUILooks.resx">
       <DependentUpon>InputSetUILooks.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSI\InputIntensityRange.resx">
+      <DependentUpon>InputIntensityRange.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MSI\InputLabelText.resx">
       <DependentUpon>InputLabelText.vb</DependentUpon>
