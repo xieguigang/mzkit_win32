@@ -430,7 +430,7 @@ Public Class frmRawFeaturesList
             da:=0.01,
             apply:=Sub(xic_list)
                        Dim all = xic_list.ToArray
-                       Dim first = all.First
+                       Dim first As NamedCollection(Of ChromatogramTick) = all.FirstOrDefault
                        Dim populateOthers As PopulateXic =
                             Iterator Function(ppmVal) As IEnumerable(Of NamedCollection(Of ChromatogramTick))
                                 For Each item In all.Skip(1)
@@ -441,8 +441,12 @@ Public Class frmRawFeaturesList
                                 Next
                             End Function
 
-                       Call MyApplication.mzkitRawViewer.showMatrix(first.value, first.description)
-                       Call MyApplication.mzkitRawViewer.ShowXIC(15, first, populateOthers, CurrentOpenedFile.GetXICMaxYAxis)
+                       If Not first.IsEmpty Then
+                           Call MyApplication.mzkitRawViewer.showMatrix(first.value, first.description)
+                           Call MyApplication.mzkitRawViewer.ShowXIC(15, first, populateOthers, CurrentOpenedFile.GetXICMaxYAxis)
+                       Else
+                           Call Workbench.Warning("No ions list for show XIC overlaps.")
+                       End If
                    End Sub,
             cancel:=Sub()
                         Workbench.Warning("No ion data selected for create XIC plot!")
