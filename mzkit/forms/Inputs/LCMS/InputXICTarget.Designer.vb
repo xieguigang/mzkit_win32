@@ -88,6 +88,7 @@ Partial Class InputXICTarget
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabControl1.SuspendLayout()
@@ -164,6 +165,7 @@ Partial Class InputXICTarget
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.LinkLabel1)
         Me.TabPage1.Controls.Add(Me.TextBox1)
         Me.TabPage1.Controls.Add(Me.ComboBox1)
         Me.TabPage1.Controls.Add(Me.RadioButton2)
@@ -189,17 +191,31 @@ Partial Class InputXICTarget
         '
         'DataGridView1
         '
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.BackgroundColor = System.Drawing.Color.LightGray
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(3, 3)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 23
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(375, 162)
         Me.DataGridView1.TabIndex = 0
         '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.AutoSize = True
+        Me.LinkLabel1.Location = New System.Drawing.Point(237, 26)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(107, 12)
+        Me.LinkLabel1.TabIndex = 5
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "Show overlaps all"
+        '
         'Column1
         '
+        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.Column1.HeaderText = "Display Name"
         Me.Column1.Name = "Column1"
         '
@@ -237,6 +253,7 @@ Partial Class InputXICTarget
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
 End Class

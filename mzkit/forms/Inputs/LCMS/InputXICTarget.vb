@@ -58,6 +58,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports any = Microsoft.VisualBasic.Scripting
+Imports std = System.Math
 
 Public Class InputXICTarget
 
@@ -110,11 +111,14 @@ Public Class InputXICTarget
         End If
     End Sub
 
+    Dim mzset As New List(Of Double)
+
     Public Sub SetIons(mz As IEnumerable(Of Double))
         ComboBox1.Items.Clear()
 
         For Each mzi As Double In mz
             Call ComboBox1.Items.Add(mzi.ToString("F4"))
+            Call mzset.Add(mzi)
         Next
     End Sub
 
@@ -139,5 +143,15 @@ Public Class InputXICTarget
     Private Sub TextBox1_GotFocus(sender As Object, e As EventArgs) Handles TextBox1.GotFocus
         RadioButton2.Checked = True
         RadioButton1.Checked = False
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Call DataGridView1.Rows.Clear()
+
+        For Each mz As Double In mzset
+            Call DataGridView1.Rows.Add($"m/z {mz.ToString("F4")}", std.Round(mz, 4))
+        Next
+
+        TabControl1.SelectedTab = TabPage2
     End Sub
 End Class

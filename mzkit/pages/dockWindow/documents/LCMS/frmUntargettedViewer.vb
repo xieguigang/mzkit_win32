@@ -243,12 +243,22 @@ Public Class frmUntargettedViewer
                 Dim rawpack As mzPack = raw.GetLoadedMzpack
                 Dim list As New List(Of NamedCollection(Of ChromatogramTick))
 
-                For Each serial As NamedValue(Of Double) In getConfig.GetInputOverlaps
-                    Call list.Add(New NamedCollection(Of ChromatogramTick)(
-                                  name:=serial.Name,
-                                  value:=rawpack.GetXIC(serial.Value, Tolerance.DeltaMass(da)),
-                                  description:=serial.Value.ToString))
-                Next
+                Call TaskProgress.RunAction(
+                    run:=Sub(task As ITaskProgress)
+                             Dim overlapTarget = getConfig.GetInputOverlaps.ToArray
+
+                             Call task.SetProgressMode()
+
+                             For Each serial As NamedValue(Of Double) In getConfig.GetInputOverlaps
+                                 Call task.SetProgress(list.Count / overlapTarget.Length * 100, $"Extract xic data for {serial.Name}...")
+                                 Call list.Add(New NamedCollection(Of ChromatogramTick)(
+                                    name:=serial.Name,
+                                    value:=rawpack.GetXIC(serial.Value, Tolerance.DeltaMass(da)),
+                                    description:=serial.Value.ToString))
+                             Next
+                         End Sub,
+                    title:="Load Xic overlaps data",
+                    info:="Extract xic overlaps data from rawdata file...")
 
                 Call apply(list)
             Else
