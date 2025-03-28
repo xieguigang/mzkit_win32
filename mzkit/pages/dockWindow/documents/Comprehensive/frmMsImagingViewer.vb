@@ -2224,6 +2224,15 @@ Public Class frmMsImagingViewer
         If mz.Length = 0 Then
             Call Workbench.Warning("No ions selected for rendering!")
         Else
+            If mz.Length > 10 Then
+                If MessageBox.Show($"We found that {mz.Length} ions was choosen to make heatmap render, this progress will be very slow, continute to processing?",
+                                   "Too many data",
+                                   MessageBoxButtons.OKCancel,
+                                   MessageBoxIcon.Warning) = DialogResult.Cancel Then
+                    Return
+                End If
+            End If
+
             ' 20240229
             ' title has been updated, used the title value
             Call renderByMzList(mz, title)
