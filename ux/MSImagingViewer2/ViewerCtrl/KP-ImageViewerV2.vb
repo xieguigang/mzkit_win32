@@ -37,7 +37,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Public Delegate Sub ImageViewerZoomEventHandler(sender As Object, e As ImageViewerZoomEventArgs)
     Public Event AfterZoom As ImageViewerZoomEventHandler
-    Public Event SetRange(range As DoubleRange)
+    Public Event SetRange(norm As DoubleRange, intensity As DoubleRange)
 
     Public ReadOnly Property ColorScalerMenuUI As ContextMenuStrip
         Get
@@ -1100,7 +1100,21 @@ Partial Public Class KpImageViewer : Inherits UserControl
     End Sub
 
     Private Sub ColorScaler1_SetRange(range As DoubleRange) Handles ColorScaler1.SetRange
-        RaiseEvent SetRange(range)
+        Dim std As New DoubleRange(0, 1)
+
+        Call InitializeRange(intensityRange)
+
+        Dim data As New DoubleRange(intensityRange)
+
+        ' 20250328
+        ' range value is normalized range in [0,1]
+        ' translate to intensity custom range from [0,1] normalized range
+        Dim lower = std.ScaleMapping(range.Min, data)
+        Dim upper = std.ScaleMapping(range.Max, data)
+
+        _CustomIntensityRange = New DoubleRange(lower, upper)
+
+        RaiseEvent SetRange(range, CustomIntensityRange)
     End Sub
 
     Private Shared Sub InitializeRange(ByRef rangeValue As Double())
@@ -1110,6 +1124,8 @@ Partial Public Class KpImageViewer : Inherits UserControl
             rangeValue = {0, rangeValue(0)}
         End If
     End Sub
+
+    Public ReadOnly Property CustomIntensityRange As DoubleRange
 
     Private Sub ColorScaler1_RequestSetCustomRange() Handles ColorScaler1.RequestSetCustomRange
         Dim range As New InputIntensityRange
@@ -1136,8 +1152,9 @@ Partial Public Class KpImageViewer : Inherits UserControl
                 If lower < 0 Then lower = 0
                 If upper < 0 Then upper = 0
 
-                RaiseEvent SetRange(New DoubleRange(lower, upper))
+                RaiseEvent SetRange(New DoubleRange(lower, upper), dataRange)
 
+                _CustomIntensityRange = dataRange
                 ColorScaler1.ScalerRange = New DoubleRange(lower, upper)
             End Sub
 

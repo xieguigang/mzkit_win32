@@ -13,6 +13,7 @@ Public Class ColorScaler
     Dim colorSet As ScalerPalette = ScalerPalette.FlexImaging
     Dim mapLevels As Integer = 250
     Dim intensityMax As Double = 10 ^ 6
+    Dim maxWidthOfColorBar As Integer = 30
 
     Public ReadOnly Property ColorBarWidth As Integer
         Get
@@ -230,7 +231,7 @@ Public Class ColorScaler
 
     Private Sub ResizeColorBar()
         PictureBox1.Location = New Point(1, picUpperbound.Location.Y + 12)
-        PictureBox1.Size = New Size(Width - 2, picLowerbound.Top - picUpperbound.Bottom - 5)
+        PictureBox1.Size = New Size(ColorBarWidth - 2, picLowerbound.Top - picUpperbound.Bottom - 5)
     End Sub
 
     Private Sub picUpperbound_MouseUp(sender As Object, e As MouseEventArgs) Handles picUpperbound.MouseUp

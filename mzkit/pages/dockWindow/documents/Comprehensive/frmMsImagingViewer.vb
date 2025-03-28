@@ -2515,6 +2515,7 @@ Public Class frmMsImagingViewer
 
                            loadedPixels.thumbnail = image
 
+                           ' no intensity range for rgb stack imaging
                            PixelSelector1.SetMsImagingOutput(image, params.GetMSIDimension, params.background, Nothing, Nothing, Nothing)
                            PixelSelector1.SetColorMapVisible(visible:=True)
                        End Sub)
@@ -2739,6 +2740,12 @@ Public Class frmMsImagingViewer
                End Sub
     End Function
 
+    ''' <summary>
+    ''' single ion ms-imaging render
+    ''' </summary>
+    ''' <param name="args"></param>
+    ''' <param name="dimensions"></param>
+    ''' <param name="range"></param>
     Private Sub registerTask(args As PlotProperty, dimensions As Size, range As DoubleRange)
         Dim render As Action =
             Sub()
