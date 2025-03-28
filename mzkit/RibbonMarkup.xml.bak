@@ -4401,7 +4401,7 @@
       </Command.LabelTitle>
     </Command>
     <Command Name="cmdLCMSVisualPanel" Id="277" LabelTitle="Visual" LabelDescription="Visual" TooltipTitle="Visual" TooltipDescription="Visual" />
-    <Command Name="cmdButtonViewVolcano" Comment="Volcano plot between two data groups" Id="324" LabelTitle="Volcano Plot" LabelDescription="Volcano plot between two data groups" TooltipTitle="Volcano plot between two data groups" TooltipDescription="Volcano plot between two data groups">
+    <Command Name="cmdButtonViewVolcano" Comment="Make t-test for the different expression between two sample group data, and make volcano plot based on the t-test result." Id="324" LabelTitle="Volcano Plot" LabelDescription="Make t-test for the different expression between two sample group data, and make volcano plot based on the t-test result." TooltipTitle="Volcano plot between two data groups" TooltipDescription="Make t-test for the different expression between two sample group data, and make volcano plot based on the t-test result.">
       <Command.SmallImages>
         <Image MinDPI="192">Res/icons8-volcano-100.png</Image>
       </Command.SmallImages>
@@ -4440,7 +4440,7 @@
         <String Id="1168">Ion mz mass tolerance error for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
-    <Command Name="cmdButtonChkViewMSnProducts" Comment="Show MSn Products" Id="334" LabelTitle="Show MSn Products" LabelDescription="Show MSn Products" TooltipTitle="Show MSn Products" TooltipDescription="Show MSn Products">
+    <Command Name="cmdButtonChkViewMSnProducts" Comment="Show MS/MS and other levels MSn products tree spectrum fragment overlaps inside current spectrum graph" Id="334" LabelTitle="Show MSn Products" LabelDescription="Show MS/MS and other levels MSn products tree spectrum fragment overlaps inside current spectrum graph" TooltipTitle="Show MSn Products" TooltipDescription="Show MS/MS and other levels MSn products tree spectrum fragment overlaps inside current spectrum graph">
       <Command.SmallImages>
         <Image MinDPI="192">Res/icons8-molecule-96.png</Image>
       </Command.SmallImages>
@@ -4557,6 +4557,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image MinDPI="144">Res/view-dual.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonQCRsd" Comment="View QC RSD histogram bars" Id="355" LabelTitle="QC RSD" LabelDescription="View QC RSD histogram bars" TooltipTitle="View QC RSD histogram bars" TooltipDescription="View QC RSD histogram bars" Keytip="View QC RSD histogram bars">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-show-property-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-show-property-96.png</Image>
       </Command.LargeImages>
     </Command>
   </Application.Commands>
@@ -4947,7 +4955,7 @@
         </TabGroup>
         <TabGroup CommandName="cmdMetaboAnalysis">
           <Tab CommandName="cmdDataSummaryPanel">
-            <Group CommandName="cmdWorkbenchFile" SizeDefinition="ThreeButtons">
+            <Group CommandName="cmdWorkbenchFile" SizeDefinition="FourButtons">
               <SplitButton>
                 <SplitButton.ButtonItem>
                   <Button CommandName="cmdButtonOpenWorkspace" />
@@ -4957,6 +4965,7 @@
               </SplitButton>
               <Button CommandName="cmdButtonOpenTableTool" />
               <Button CommandName="cmdButtonPreProcessing" />
+              <Button CommandName="cmdButtonQCRsd" />
             </Group>
             <Group CommandName="cmdDataSummaryGroup" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonPCA" />

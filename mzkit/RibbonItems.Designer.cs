@@ -247,6 +247,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonOpenLCMSWorkspaceFolder = 283;
             public const uint cmdButtonExportMatrix2 = 309;
             public const uint cmdButtonPreProcessing = 307;
+            public const uint cmdButtonQCRsd = 355;
             public const uint cmdDataSummaryGroup = 271;
             public const uint cmdButtonPCA = 272;
             public const uint cmdButtonPLSDA = 273;
@@ -463,7 +464,7 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonGroup GroupMatrixViewerOptions { get; private set; }
         /// <summary>
-        /// Show MSn Products
+        /// Show MS/MS and other levels MSn products tree spectrum fragment overlaps inside current spectrum graph
         /// </summary>
         public RibbonToggleButton ButtonChkViewMSnProducts { get; private set; }
         public RibbonGroup TabReferenceLibrary { get; private set; }
@@ -630,6 +631,10 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonOpenLCMSWorkspaceFolder { get; private set; }
         public RibbonButton ButtonExportMatrix2 { get; private set; }
         public RibbonButton ButtonPreProcessing { get; private set; }
+        /// <summary>
+        /// View QC RSD histogram bars
+        /// </summary>
+        public RibbonButton ButtonQCRsd { get; private set; }
         public RibbonGroup DataSummaryGroup { get; private set; }
         public RibbonButton ButtonPCA { get; private set; }
         public RibbonButton ButtonPLSDA { get; private set; }
@@ -669,7 +674,7 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonToggleButton ButtonLCMSFilterIons { get; private set; }
         /// <summary>
-        /// Volcano plot between two data groups
+        /// Make t-test for the different expression between two sample group data, and make volcano plot based on the t-test result.
         /// </summary>
         public RibbonButton ButtonViewVolcano { get; private set; }
         public RibbonTabGroup MenuGroupGCxGC { get; private set; }
@@ -1032,6 +1037,7 @@ namespace RibbonLib.Controls
             ButtonOpenLCMSWorkspaceFolder = new RibbonButton(ribbon, Cmd.cmdButtonOpenLCMSWorkspaceFolder);
             ButtonExportMatrix2 = new RibbonButton(ribbon, Cmd.cmdButtonExportMatrix2);
             ButtonPreProcessing = new RibbonButton(ribbon, Cmd.cmdButtonPreProcessing);
+            ButtonQCRsd = new RibbonButton(ribbon, Cmd.cmdButtonQCRsd);
             DataSummaryGroup = new RibbonGroup(ribbon, Cmd.cmdDataSummaryGroup);
             ButtonPCA = new RibbonButton(ribbon, Cmd.cmdButtonPCA);
             ButtonPLSDA = new RibbonButton(ribbon, Cmd.cmdButtonPLSDA);

@@ -244,6 +244,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonOpenLCMSWorkspaceFolder As UInteger = 283
             Public Const cmdButtonExportMatrix2 As UInteger = 309
             Public Const cmdButtonPreProcessing As UInteger = 307
+            Public Const cmdButtonQCRsd As UInteger = 355
             Public Const cmdDataSummaryGroup As UInteger = 271
             Public Const cmdButtonPCA As UInteger = 272
             Public Const cmdButtonPLSDA As UInteger = 273
@@ -876,7 +877,7 @@ Namespace RibbonLib.Controls
         End Property
         Private _ButtonChkViewMSnProducts As RibbonToggleButton
         ''' <summary>
-        ''' Show MSn Products
+        ''' Show MS/MS and other levels MSn products tree spectrum fragment overlaps inside current spectrum graph
         ''' </summary>
         Public ReadOnly Property ButtonChkViewMSnProducts As RibbonToggleButton
             Get
@@ -1777,6 +1778,15 @@ Namespace RibbonLib.Controls
                 Return _ButtonPreProcessing
             End Get
         End Property
+        Private _ButtonQCRsd As RibbonButton
+        ''' <summary>
+        ''' View QC RSD histogram bars
+        ''' </summary>
+        Public ReadOnly Property ButtonQCRsd As RibbonButton
+            Get
+                Return _ButtonQCRsd
+            End Get
+        End Property
         Private _DataSummaryGroup As RibbonGroup
         Public ReadOnly Property DataSummaryGroup As RibbonGroup
             Get
@@ -1917,7 +1927,7 @@ Namespace RibbonLib.Controls
         End Property
         Private _ButtonViewVolcano As RibbonButton
         ''' <summary>
-        ''' Volcano plot between two data groups
+        ''' Make t-test for the different expression between two sample group data, and make volcano plot based on the t-test result.
         ''' </summary>
         Public ReadOnly Property ButtonViewVolcano As RibbonButton
             Get
@@ -2699,6 +2709,7 @@ Namespace RibbonLib.Controls
             _ButtonOpenLCMSWorkspaceFolder = New RibbonButton(_ribbon, Cmd.cmdButtonOpenLCMSWorkspaceFolder)
             _ButtonExportMatrix2 = New RibbonButton(_ribbon, Cmd.cmdButtonExportMatrix2)
             _ButtonPreProcessing = New RibbonButton(_ribbon, Cmd.cmdButtonPreProcessing)
+            _ButtonQCRsd = New RibbonButton(_ribbon, Cmd.cmdButtonQCRsd)
             _DataSummaryGroup = New RibbonGroup(_ribbon, Cmd.cmdDataSummaryGroup)
             _ButtonPCA = New RibbonButton(_ribbon, Cmd.cmdButtonPCA)
             _ButtonPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonPLSDA)

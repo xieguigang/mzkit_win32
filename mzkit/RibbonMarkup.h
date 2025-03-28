@@ -1856,7 +1856,7 @@
 #define cmdLCMSVisualPanel_LabelDescription_RESID 60357
 #define cmdLCMSVisualPanel_TooltipTitle_RESID 60358
 #define cmdLCMSVisualPanel_TooltipDescription_RESID 60359
-#define cmdButtonViewVolcano 324  /* Volcano plot between two data groups */ 
+#define cmdButtonViewVolcano 324  /* Make t-test for the different expression between two sample group data, and make volcano plot based on the t-test result. */ 
 #define cmdButtonViewVolcano_LabelTitle_RESID 60360
 #define cmdButtonViewVolcano_LabelDescription_RESID 60361
 #define cmdButtonViewVolcano_TooltipTitle_RESID 60362
@@ -1875,7 +1875,7 @@
 #define cmdXIC_DaSpinner_LabelDescription_RESID 1167
 #define cmdXIC_DaSpinner_TooltipTitle_RESID 60367
 #define cmdXIC_DaSpinner_TooltipDescription_RESID 1168
-#define cmdButtonChkViewMSnProducts 334  /* Show MSn Products */ 
+#define cmdButtonChkViewMSnProducts 334  /* Show MS/MS and other levels MSn products tree spectrum fragment overlaps inside current spectrum graph */ 
 #define cmdButtonChkViewMSnProducts_LabelTitle_RESID 60368
 #define cmdButtonChkViewMSnProducts_LabelDescription_RESID 60369
 #define cmdButtonChkViewMSnProducts_TooltipTitle_RESID 60370
@@ -1982,8 +1982,16 @@
 #define cmdButtonSortByMz_TooltipDescription_RESID 60451
 #define cmdButtonSortByMz_SmallImages_192__RESID 60452
 #define cmdButtonSortByMz_LargeImages_144__RESID 60453
-#define InternalCmd2_LabelTitle_RESID 60454
-#define InternalCmd4_LabelTitle_RESID 60455
-#define InternalCmd6_LabelTitle_RESID 60456
-#define InternalCmd8_LabelTitle_RESID 60457
-#define InternalCmd10_LabelTitle_RESID 60458
+#define cmdButtonQCRsd 355  /* View QC RSD histogram bars */ 
+#define cmdButtonQCRsd_LabelTitle_RESID 60454
+#define cmdButtonQCRsd_LabelDescription_RESID 60455
+#define cmdButtonQCRsd_Keytip_RESID 60456
+#define cmdButtonQCRsd_TooltipTitle_RESID 60457
+#define cmdButtonQCRsd_TooltipDescription_RESID 60458
+#define cmdButtonQCRsd_SmallImages_192__RESID 60459
+#define cmdButtonQCRsd_LargeImages_192__RESID 60460
+#define InternalCmd2_LabelTitle_RESID 60461
+#define InternalCmd4_LabelTitle_RESID 60462
+#define InternalCmd6_LabelTitle_RESID 60463
+#define InternalCmd8_LabelTitle_RESID 60464
+#define InternalCmd10_LabelTitle_RESID 60465
