@@ -3211,9 +3211,9 @@ Public Class frmMsImagingViewer
                 End Function, canbeCancel:=True)
     End Sub
 
-    Private Sub PixelSelector1_SetRange(range As DoubleRange) Handles PixelSelector1.SetRange
+    Private Sub PixelSelector1_SetRange(norm As DoubleRange, intensity As DoubleRange) Handles PixelSelector1.SetRange
         If Not blender Is Nothing Then
-            Call blender.SetIntensityRange(range)
+            Call blender.SetIntensityRange(norm)
             Call rendering()
         End If
     End Sub
