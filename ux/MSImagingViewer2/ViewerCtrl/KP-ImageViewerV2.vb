@@ -1137,6 +1137,8 @@ Partial Public Class KpImageViewer : Inherits UserControl
                 If upper < 0 Then upper = 0
 
                 RaiseEvent SetRange(New DoubleRange(lower, upper))
+
+                ColorScaler1.ScalerRange = New DoubleRange(lower, upper)
             End Sub
 
         Call InputDialog.Input(customRange, config:=range.SetRange(intensityRange, customRangeValue))
