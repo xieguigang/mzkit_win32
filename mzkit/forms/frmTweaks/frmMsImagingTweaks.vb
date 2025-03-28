@@ -814,7 +814,7 @@ UseCheckedList:
             .padding_top = padding.Top
         }
 
-        Call proc.SetProgressMode()
+        ' Call proc.SetProgressMode()
         ' Call proc.SetProgress(0)
 
         For i As Integer = 0 To list.Nodes.Count - 1
@@ -825,7 +825,8 @@ UseCheckedList:
             If Not n.Checked Then
                 Continue For
             Else
-                Call proc.SetProgress(CInt(i / list.Nodes.Count * 100), tick)
+                ' Call proc.SetProgress(CInt(i / list.Nodes.Count * 100), tick)
+                Call proc.SetInfo(tick)
             End If
 
             Dim fileName As String = n.Text.NormalizePathString(False, ".")
