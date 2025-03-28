@@ -67,6 +67,7 @@ Public Class ColorScaler
             picLowerbound.Location = New Point(1, lowerTop)
 
             UpdateColors(callEvents:=False)
+            ResizeColorBar()
         End Set
     End Property
 
@@ -205,8 +206,7 @@ Public Class ColorScaler
             mousePos = e.Location
             picUpperbound.Location = newPos
 
-            PictureBox1.Location = New Point(1, newPos.Y + 12)
-            PictureBox1.Size = New Size(width - 2, picLowerbound.Top - picUpperbound.Bottom - 5)
+            Call ResizeColorBar()
         End If
     End Sub
 
@@ -223,8 +223,14 @@ Public Class ColorScaler
 
             mousePos = e.Location
             picLowerbound.Location = newPos
-            PictureBox1.Size = New Size(width - 2, picLowerbound.Top - picUpperbound.Bottom - 5)
+
+            Call ResizeColorBar()
         End If
+    End Sub
+
+    Private Sub ResizeColorBar()
+        PictureBox1.Location = New Point(1, picUpperbound.Location.Y + 12)
+        PictureBox1.Size = New Size(Width - 2, picLowerbound.Top - picUpperbound.Bottom - 5)
     End Sub
 
     Private Sub picUpperbound_MouseUp(sender As Object, e As MouseEventArgs) Handles picUpperbound.MouseUp
