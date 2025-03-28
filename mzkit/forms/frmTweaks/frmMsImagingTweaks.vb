@@ -866,7 +866,12 @@ UseCheckedList:
                 blender.SetClampRange(config.IntensityRange)
                 Dim image As Image = blender.Rendering(args, canvas)
 
-                Call image.SaveAs(path)
+                Using gfx As Graphics2D = Graphics2D.CreateDevice(canvas, filled:=Color.Transparent)
+                    Call gfx.DrawImage(image, 0, 0, canvas.Width, canvas.Height)
+                    Call gfx.Flush()
+                    Call gfx.ImageResource.SaveAs(path)
+                End Using
+
                 Call Workbench.SuccessMessage($"Imaging render for {n.Text} success and save at location: {path}!")
             End If
 
