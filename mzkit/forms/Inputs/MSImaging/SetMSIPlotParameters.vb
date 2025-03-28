@@ -10,6 +10,10 @@ Public Class SetMSIPlotParameters
         End Get
     End Property
 
+    ''' <summary>
+    ''' gets the selected filepath or the folder path
+    ''' </summary>
+    ''' <returns></returns>
     Public ReadOnly Property SelectedPath As String
         Get
             Return TextBox1.Text
@@ -59,11 +63,25 @@ Public Class SetMSIPlotParameters
         Return Me
     End Function
 
+    Public Function SetUnifyPadding(padding As Integer) As SetMSIPlotParameters
+        NumericUpDown4.Value = padding
+        NumericUpDown5.Value = padding
+        NumericUpDown6.Value = padding
+        NumericUpDown7.Value = padding
+
+        Return Me
+    End Function
+
     Public Function SetFileName(filename As String) As SetMSIPlotParameters
         TextBox1.Text = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) & "\" & filename & ".png"
         Return Me
     End Function
 
+    ''' <summary>
+    ''' this function do nothing if the given intensity range value is nothing
+    ''' </summary>
+    ''' <param name="range"></param>
+    ''' <returns></returns>
     Public Function SetIntensityRange(range As DoubleRange) As SetMSIPlotParameters
         If Not range Is Nothing Then
             TextBox2.Text = range.Min
@@ -89,12 +107,16 @@ Public Class SetMSIPlotParameters
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If SetDir Then
+            ' select folder mode
+            ' used for batch export of the ms-imaging
             Using folder As New FolderBrowserDialog With {.ShowNewFolderButton = True}
                 If folder.ShowDialog = DialogResult.OK Then
                     TextBox1.Text = folder.SelectedPath
                 End If
             End Using
         Else
+            ' select file path
+            ' used for just export a single ms-imaging plot image file
             Using file As New SaveFileDialog With {
                 .FileName = TextBox1.Text,
                 .Filter = "Image File(*.png)|*.png|Scalable Vector Graphics(*.svg)|*.svg|PDF image(*.pdf)|*.pdf"

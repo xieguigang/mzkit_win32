@@ -81,8 +81,15 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
     ReadOnly intensity As Double()
     ReadOnly TIC As Image
 
+    ''' <summary>
+    ''' clamp range for the heatmap rendering
+    ''' </summary>
     Dim plotRange As DoubleRange
 
+    ''' <summary>
+    ''' the intensity value of the rawdata
+    ''' </summary>
+    ''' <returns></returns>
     Public ReadOnly Property range As DoubleRange
     Public ReadOnly Property dimensionSize As Size
         Get
@@ -112,19 +119,9 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         Dim filter As RasterPipeline = Me.filters
 
         If Not plotRange Is Nothing Then
-            pixels = pixels _
-                .Select(Function(p)
-                            Dim into As Double = p.intensity
-
-                            If into > plotRange.Max Then
-                                into = plotRange.Max
-                            ElseIf into < plotRange.Min Then
-                                into = plotRange.Min
-                            End If
-
-                            Return New PixelData(p.x, p.y, into)
-                        End Function) _
-                .ToArray
+            With plotRange
+                pixels = pixels.Clamp(.Min, .Max).ToArray
+            End With
         End If
 
         Dim pixelFilter As New SingleIonLayer With {
@@ -164,7 +161,11 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         Dim min As Double = std.ScaleMapping(normRange.Min, range)
         Dim max As Double = std.ScaleMapping(normRange.Max, range)
 
-        plotRange = New DoubleRange(min, max)
+        Call SetClampRange(New DoubleRange(min, max))
+    End Sub
+
+    Public Sub SetClampRange(range As DoubleRange)
+        plotRange = range
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>

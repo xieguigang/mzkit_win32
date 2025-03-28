@@ -85,6 +85,7 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.application.json
+Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
@@ -751,44 +752,61 @@ UseCheckedList:
 
     Private Sub ExportEachSelectedLayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportEachSelectedLayersToolStripMenuItem.Click
         Dim list = Win7StyleTreeView1.Nodes(0)
+        Dim folder As New SetMSIPlotParameters With {.SetDir = True}
 
-        Using folder As New FolderBrowserDialog With {.Description = "Select a folder to export images"}
-            If folder.ShowDialog = DialogResult.OK Then
-                Dim dir As String = folder.SelectedPath
-                Dim params = WindowModules.viewer.params
-                Dim size As String = $"{params.scan_x},{params.scan_y}"
-                Dim MSIservice = WindowModules.viewer.MSIservice
-                Dim TIC = TaskProgress.LoadData(
-                    Function(echo As Action(Of String))
-                        Dim layer = MSIservice.LoadSummaryLayer(IntensitySummary.Total, False)
-                        Dim render As Image = SummaryMSIBlender.Rendering(layer, New Size(params.scan_x, params.scan_y), "gray", 255, "black")
+        Call folder _
+            .SetDimensionSize(viewer.params.GetMSIDimension) _
+            .SetFolder(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)) _
+            .SetIntensityRange(viewer.PixelSelector1.CustomIntensityRange) _
+            .SetUnifyPadding(10)
 
-                        Return render
-                    End Function,
-                    title:="Load TIC layer",
-                    info:="Fetch layer pixels data from data serivces backend!"
-                )
-
-                params.Hqx = HqxScales.Hqx_4x
-
-                Call TaskProgress.LoadData(
-                    streamLoad:=Function(proc As ITaskProgress)
-                                    Return ExportLayers(proc, list, TIC, dir)
-                                End Function,
-                    title:="Plot each selected image layers...",
-                    info:="Export image rendering...",
-                    host:=WindowModules.viewer)
-            End If
-        End Using
+        Call InputDialog.Input(
+            setConfig:=Sub(config)
+                           Call MakeExport(config, list)
+                       End Sub,
+            config:=folder)
     End Sub
 
-    Private Function ExportLayers(proc As ITaskProgress, list As TreeNode, TIC As Image, dir As String) As Boolean
+    Private Sub MakeExport(folder As SetMSIPlotParameters, list As TreeNode)
+        Dim params = WindowModules.viewer.params
+        Dim size As String = $"{params.scan_x},{params.scan_y}"
+        Dim MSIservice = WindowModules.viewer.MSIservice
+        Dim TIC = TaskProgress.LoadData(
+            Function(echo As Action(Of String))
+                Dim layer = MSIservice.LoadSummaryLayer(IntensitySummary.Total, False)
+                Dim render As Image = SummaryMSIBlender.Rendering(layer, New Size(params.scan_x, params.scan_y), "gray", 255, "black")
+
+                Return render
+            End Function,
+            title:="Load TIC layer",
+            info:="Fetch layer pixels data from data serivces backend!"
+        )
+
+        ' params.Hqx = HqxScales.Hqx_4x
+
+        Call TaskProgress.LoadData(
+            streamLoad:=Function(proc As ITaskProgress)
+                            Return ExportLayers(proc, list, TIC, folder)
+                        End Function,
+            title:="Plot selected image layers...",
+            info:="Export image rendering...",
+            host:=WindowModules.viewer)
+    End Sub
+
+    Private Function ExportLayers(proc As ITaskProgress, list As TreeNode, TIC As Image, config As SetMSIPlotParameters) As Boolean
         Dim params = WindowModules.viewer.params
         Dim mzdiff = params.GetTolerance
         Dim echo = proc.Echo
         Dim MSIservice = WindowModules.viewer.MSIservice
-        Dim args As New PlotProperty
-        Dim canvas As New Size(params.scan_x * 3, params.scan_y * 3)
+        Dim canvas As Size = config.GetPlotSize
+        Dim dir As String = config.SelectedPath
+        Dim padding = PaddingLayout.EvaluateFromCSS(New CSSEnvirnment(canvas), config.GetPlotPadding)
+        Dim args As New PlotProperty With {
+            .padding_bottom = padding.Bottom,
+            .padding_left = padding.Left,
+            .padding_right = padding.Right,
+            .padding_top = padding.Top
+        }
 
         Call proc.SetProgressMode()
         Call proc.SetProgress(0)
@@ -821,7 +839,7 @@ UseCheckedList:
                 Dim maxInto = pixels.Select(Function(a) a.intensity).Max
                 params.SetIntensityMax(maxInto, New Point())
                 Dim blender As New SingleIonMSIBlender(pixels, frmMsImagingViewer.loadFilters, params, TIC)
-                Dim range As DoubleRange = blender.range
+                blender.SetClampRange(config.IntensityRange)
                 Dim image As Image = blender.Rendering(args, canvas)
 
                 Call image.SaveAs(path)
