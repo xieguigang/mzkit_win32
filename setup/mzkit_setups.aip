@@ -19093,7 +19093,6 @@
     <ROW File="STRaid.xml_1" Component_="STRaid.xml" FileName="STRaid.xml" Attributes="0" SourcePath="..\..\..\dist\bin\STRaid.xml" SelfReg="false"/>
     <ROW File="settings.json" Component_="settings.json" FileName="SETTIN~1.JSO|settings.json" Attributes="0" SourcePath="..\rstudio\pipeline\.vscode\settings.json" SelfReg="false"/>
     <ROW File="xvba_debug.log_2" Component_="xvba_debug.log_2" FileName="XVBA_D~1.LOG|xvba_debug.log" Attributes="0" SourcePath="..\rstudio\pipeline\logs\xvba_debug.log" SelfReg="false"/>
-    <ROW File="nrrd" Component_="d_canvas.css" FileName="413095~1.NRR|413.0958.nrrd" Attributes="0" SourcePath="..\webview\assets\413.0958.nrrd" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
