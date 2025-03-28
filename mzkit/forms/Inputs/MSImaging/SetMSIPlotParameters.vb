@@ -66,6 +66,15 @@ Public Class SetMSIPlotParameters
         Return Me
     End Function
 
+    Public Function SetRGBMode(flag As Boolean) As SetMSIPlotParameters
+        If flag Then
+            TextBox2.Enabled = False
+            TextBox3.Enabled = False
+        End If
+
+        Return Me
+    End Function
+
     Public Function SetFolder(dir As String) As SetMSIPlotParameters
         TextBox1.Text = dir
         Return Me

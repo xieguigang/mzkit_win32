@@ -3038,16 +3038,17 @@ Public Class frmMsImagingViewer
         Dim filename As String = loadedPixels.Text.NormalizePathString(False)
         Dim save As New SetMSIPlotParameters
         Dim msi_filters As String() = loadFilters.Select(Function(f) f.ToScript).ToArray
+        Dim loadRgb As Boolean = loadedPixels.rgb IsNot Nothing
 
         ' the ms-imaging filter has been turn off
         If Not params.enableFilter Then
             msi_filters = {}
         End If
 
-        Call save.SetFileName(filename)
+        Call save.SetFileName(filename).SetRGBMode(loadRgb).SetIntensityRange(PixelSelector1.CustomIntensityRange)
         Call InputDialog.Input(
             setConfig:=Sub(cfg)
-                           If loadedPixels.rgb IsNot Nothing Then
+                           If loadRgb Then
                                Call RscriptProgressTask.ExportRGBIonsPlot(
                                    loadedPixels.rgb.GetJSON, mzdiff.GetScript, saveAs:=save.FileName,
                                    filters:=msi_filters,
