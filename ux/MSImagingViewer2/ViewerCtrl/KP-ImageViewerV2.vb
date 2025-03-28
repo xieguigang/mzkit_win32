@@ -4,6 +4,7 @@ Imports System.Reflection
 Imports System.Runtime.InteropServices
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Partial Public Class KpImageViewer : Inherits UserControl
@@ -1102,16 +1103,34 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Private Sub ColorScaler1_RequestSetCustomRange() Handles ColorScaler1.RequestSetCustomRange
         Dim range As New InputIntensityRange
-        Dim customRange As Action(Of InputIntensityRange) =
-            Sub(config)
-                RaiseEvent SetRange(config.ValueRange)
-            End Sub
 
         If intensityRange.IsNullOrEmpty Then
             intensityRange = {0, 255}
         ElseIf intensityRange.Length = 1 Then
             intensityRange = {0, intensityRange(0)}
         End If
+
+        Dim rawRange As DoubleRange = intensityRange
+
+        If rawRange.Length = 0 Then
+            ' [0,0]
+            Call Workbench.Warning("no intensity range data could be found, load imaging data at first!")
+            Return
+        End If
+
+        Dim len As Double = rawRange.Length
+        Dim customRange As Action(Of InputIntensityRange) =
+            Sub(config)
+                Dim dataRange As DoubleRange = config.ValueRange
+                ' needs to scale to [0,1] normalized range
+                Dim lower = (dataRange.Min - rawRange.Min) / len
+                Dim upper = (dataRange.Max - rawRange.Min) / len
+
+                If lower < 0 Then lower = 0
+                If upper < 0 Then upper = 0
+
+                RaiseEvent SetRange(New DoubleRange(lower, upper))
+            End Sub
 
         Call InputDialog.Input(customRange, config:=range.SetRange(intensityRange(0), intensityRange(1)))
     End Sub

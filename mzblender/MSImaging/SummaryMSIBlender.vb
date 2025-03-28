@@ -211,6 +211,7 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
     Public Overrides Sub SetIntensityRange(normRange As DoubleRange)
         Dim std As New DoubleRange(0, 1)
         Dim range As New DoubleRange(intensity)
+        ' mapping [0,1] normRange to the rawdata intensity range
         Dim min As Double = std.ScaleMapping(normRange.Min, range)
         Dim max As Double = std.ScaleMapping(normRange.Max, range)
 
