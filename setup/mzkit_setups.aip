@@ -297,7 +297,6 @@
     <ROW Directory="linuxx64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~4|linux-x64"/>
     <ROW Directory="loaders_Dir" Directory_Parent="three.js_Dir" DefaultDir="loaders"/>
     <ROW Directory="logs_1_Dir" Directory_Parent="three_Dir" DefaultDir="logs"/>
-    <ROW Directory="logs_2_Dir" Directory_Parent="pipeline_Dir" DefaultDir="logs"/>
     <ROW Directory="logs_3_Dir" Directory_Parent="workbench_Dir" DefaultDir="logs"/>
     <ROW Directory="logs_4_Dir" Directory_Parent="MSImaging_Dir" DefaultDir="logs"/>
     <ROW Directory="logs_5_Dir" Directory_Parent="data_Dir" DefaultDir="logs"/>
@@ -432,7 +431,6 @@
     <ROW Directory="vscode_3_Dir" Directory_Parent="three_Dir" DefaultDir="VSCODE~1|.vscode"/>
     <ROW Directory="vscode_4_Dir" Directory_Parent="workbench_Dir" DefaultDir="VSCODE~1|.vscode"/>
     <ROW Directory="vscode_5_Dir" Directory_Parent="data_Dir" DefaultDir="VSCODE~1|.vscode"/>
-    <ROW Directory="vscode_Dir" Directory_Parent="pipeline_Dir" DefaultDir="VSCODE~1|.vscode"/>
     <ROW Directory="wand_Dir" Directory_Parent="ImageMagick6_1_Dir" DefaultDir="wand"/>
     <ROW Directory="webfonts_Dir" Directory_Parent="fontawesome6_Dir" DefaultDir="webfonts"/>
     <ROW Directory="webp_Dir" Directory_Parent="include_1_Dir" DefaultDir="webp"/>
@@ -1133,6 +1131,7 @@
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_2" ComponentId="{B1E08CAA-19A8-42BC-B2A4-70156A66C9DD}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_3" ComponentId="{82F4ACCC-DFC3-4032-B40A-9347D3180506}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.pdb" ComponentId="{C1AB7371-85CB-451F-8C53-BFF8A00504C3}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Matrix.pdb_1" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Matrix.pdb_1" ComponentId="{BCB64288-0149-442A-A6B1-23EE9798E166}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Matrix.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.xml" ComponentId="{65CF8DA1-5A9C-420C-AA41-DD3F1B4CBBB0}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Matrix.xml"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll" ComponentId="{C1743B21-4A9C-4103-84B1-C8567243FC5C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" ComponentId="{EA8C100A-F9A9-46F6-801F-4DB302826574}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" Type="4"/>
@@ -1181,6 +1180,7 @@
     <ROW Component="Microsoft.VisualBasic.Runtime.pdb" ComponentId="{C3C6EE63-5E49-4EBC-9E4E-CF616B3B6E5E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Runtime.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.pdb_1" ComponentId="{EB512494-C0ED-42F0-A0BC-5A7FD4215E69}" Directory_="nvidia_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Runtime.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.pdb_2" ComponentId="{F78F965D-6E35-4472-A53B-BE897ED75C52}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Runtime.pdb_2" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.Runtime.xml" ComponentId="{59368349-BBC6-4FF7-A220-99E9F21007B1}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Runtime.xml_4"/>
     <ROW Component="Microsoft.VisualBasic.Windows.Forms.Console.dll" ComponentId="{66BFAC4E-7321-4D6E-A0DA-E80383C39C90}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Windows.Forms.Console.dll"/>
     <ROW Component="Microsoft.VisualBasic.Windows.Forms.Console.pdb" ComponentId="{37F21EDE-D4C8-4BB5-B377-5DE12A60412D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Windows.Forms.Console.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll" ComponentId="{CAE24AF6-7012-4899-98DB-30E10197A174}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll"/>
@@ -1452,6 +1452,7 @@
     <ROW Component="SingleExpression.dll_1" ComponentId="{A4E5B046-8684-449D-9424-242B4639E0CA}" Directory_="blender_Dir" Attributes="256" KeyPath="SingleExpression.dll_1"/>
     <ROW Component="SingleExpression.dll_2" ComponentId="{F16E52C0-6DAC-47A0-BB8C-B9B74FCDCFE6}" Directory_="APPDIR" Attributes="256" KeyPath="SingleExpression.dll_2"/>
     <ROW Component="SingleExpression.pdb" ComponentId="{964E2690-BEB4-4F3D-8571-039F2AA1631D}" Directory_="APPDIR" Attributes="0" KeyPath="SingleExpression.pdb_1" Type="4"/>
+    <ROW Component="SingleExpression.pdb_1" ComponentId="{4B2F9C8D-6C6A-421F-89DB-DFB6E1BA0117}" Directory_="blender_Dir" Attributes="0" KeyPath="SingleExpression.pdb" Type="4"/>
     <ROW Component="SkiaSharp.Extended.Svg.dll" ComponentId="{7E583060-593F-4738-B0C6-A4687CFF400E}" Directory_="bin_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.Svg.dll"/>
     <ROW Component="SkiaSharp.Extended.Svg.dll_1" ComponentId="{8A2E4418-E3DC-4EE9-A4EB-D5E4C652F2D5}" Directory_="blender_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.Svg.dll_1"/>
     <ROW Component="SkiaSharp.Extended.dll" ComponentId="{6C46A5F3-B475-44DC-ADC2-2AA9EFB619B3}" Directory_="bin_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.dll"/>
@@ -1923,7 +1924,6 @@
     <ROW Component="resetdirssample.conf" ComponentId="{34CA0A22-CCCE-4927-A693-6C95F88360E7}" Directory_="conf.avail_Dir" Attributes="0" KeyPath="resetdirssample.conf" Type="0"/>
     <ROW Component="roxygenNet.dll" ComponentId="{E0E9A75E-58C3-4143-B990-88737EBD1D95}" Directory_="library_Dir" Attributes="256" KeyPath="roxygenNet.dll"/>
     <ROW Component="rsvgcairo.h" ComponentId="{63DCB387-84DD-4E36-BEF0-C35A6204F1F1}" Directory_="librsvg_Dir" Attributes="0" KeyPath="rsvgcairo.h" Type="0"/>
-    <ROW Component="settings.json" ComponentId="{EE36A3C9-49B6-4EE8-9346-B986B6549B11}" Directory_="vscode_Dir" Attributes="0" KeyPath="settings.json" Type="0"/>
     <ROW Component="settings.json_1" ComponentId="{ACFA1EFB-7AAD-43B6-A657-91ED689BE589}" Directory_="vscode_1_Dir" Attributes="0" KeyPath="settings.json_1" Type="0"/>
     <ROW Component="settings.json_2" ComponentId="{F5CC00B8-7C72-4A8D-AA3F-2B23BE4C0A19}" Directory_="vscode_2_Dir" Attributes="0" KeyPath="settings.json_2" Type="0"/>
     <ROW Component="settings.json_3" ComponentId="{D1F5AF02-BAA1-4795-9CC5-CE66FE4638FC}" Directory_="vscode_3_Dir" Attributes="0" KeyPath="settings.json_3" Type="0"/>
@@ -1964,7 +1964,6 @@
     <ROW Component="wkhtmltopdf.exe" ComponentId="{34D00DE0-29AE-47D0-B48C-A07DBC004E06}" Directory_="NewFolder_Dir" Attributes="256" KeyPath="wkhtmltopdf.exe"/>
     <ROW Component="xvba_debug.log" ComponentId="{3D1C50C9-9ECB-4E9B-93F1-10140FDAD2CD}" Directory_="logs_Dir" Attributes="0" KeyPath="xvba_debug.log" Type="0"/>
     <ROW Component="xvba_debug.log_1" ComponentId="{BD84FADA-7BE6-4F89-B336-916976EBCC94}" Directory_="logs_1_Dir" Attributes="0" KeyPath="xvba_debug.log_1" Type="0"/>
-    <ROW Component="xvba_debug.log_2" ComponentId="{98DEA489-D032-458F-855C-CDF20CBC33CC}" Directory_="logs_2_Dir" Attributes="0" KeyPath="xvba_debug.log_2" Type="0"/>
     <ROW Component="xvba_debug.log_3" ComponentId="{FF23B730-0EB8-4FC9-AB46-33450FD19CF0}" Directory_="logs_3_Dir" Attributes="0" KeyPath="xvba_debug.log_3" Type="0"/>
     <ROW Component="xvba_debug.log_4" ComponentId="{98CDB6FB-7236-4126-8F8D-7C9F6C38185D}" Directory_="logs_4_Dir" Attributes="0" KeyPath="xvba_debug.log_4" Type="0"/>
     <ROW Component="xvba_debug.log_5" ComponentId="{1A96DED2-AECF-4AA5-ABA1-34503F91FD79}" Directory_="logs_5_Dir" Attributes="0" KeyPath="xvba_debug.log_5" Type="0"/>
@@ -3671,7 +3670,6 @@
     <ROW File="export_ms2.R" Component_="plot_cdf_tic.R" FileName="EXPORT~1.R|export_ms2.R" Attributes="0" SourcePath="..\rstudio\demo\export_ms2.R" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll_1" FileName="BIONO~35.DLL|BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" FileName="BIONO~35.PDB|BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" SelfReg="false"/>
-    <ROW File="settings.json" Component_="settings.json" FileName="SETTIN~1.JSO|settings.json" Attributes="0" SourcePath="..\rstudio\pipeline\.vscode\settings.json" SelfReg="false"/>
     <ROW File="settings.json_1" Component_="settings.json_1" FileName="SETTIN~1.JSO|settings.json" Attributes="0" SourcePath="..\rstudio\pipeline\MSImaging\.vscode\settings.json" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.VAE.dll" Component_="Microsoft.VisualBasic.MachineLearning.VAE.dll" FileName="MICRO~59.DLL|Microsoft.VisualBasic.MachineLearning.VAE.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MachineLearning.VAE.dll" SelfReg="false"/>
     <ROW File="BlenderHost.deps.json" Component_="BioDeep.dll.config" FileName="BLENDE~1.JSO|BlenderHost.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BlenderHost.deps.json" SelfReg="false"/>
@@ -18815,7 +18813,6 @@
     <ROW File="Newtonsoft.Json.dll_2" Component_="Newtonsoft.Json.dll_2" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Newtonsoft.Json.dll" SelfReg="false"/>
     <ROW File="System.IO.Packaging.dll" Component_="System.IO.Packaging.dll" FileName="SYSTE~14.DLL|System.IO.Packaging.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\System.IO.Packaging.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~33.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
-    <ROW File="xvba_debug.log_2" Component_="xvba_debug.log_2" FileName="XVBA_D~1.LOG|xvba_debug.log" Attributes="0" SourcePath="..\rstudio\pipeline\logs\xvba_debug.log" SelfReg="false"/>
     <ROW File="preprocessing.R" Component_="OPLSDA.R" FileName="PREPRO~1.R|preprocessing.R" Attributes="0" SourcePath="..\rstudio\pipeline\workbench\preprocessing.R" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Imaging.Landscape.xml_1" Component_="Microsoft.VisualBasic.Imaging.Landscape.xml_1" FileName="MICRO~24.XML|Microsoft.VisualBasic.Imaging.Landscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Imaging.Landscape.xml" SelfReg="false"/>
     <ROW File="make_peaktable.R" Component_="make_peaktable.R" FileName="MAKE_P~1.R|make_peaktable.R" Attributes="0" SourcePath="..\..\..\Rscript\Library\mzkit_app\tools\make_peaktable.R" SelfReg="false"/>
@@ -19072,11 +19069,11 @@
     <ROW File="xvba_debug.log_5" Component_="xvba_debug.log_5" FileName="XVBA_D~1.LOG|xvba_debug.log" Attributes="0" SourcePath="..\rstudio\data\logs\xvba_debug.log" SelfReg="false"/>
     <ROW File="obo_lite.R" Component_="chebi_lite.obo" FileName="obo_lite.R" Attributes="0" SourcePath="..\rstudio\data\obo_lite.R" SelfReg="false"/>
     <ROW File="SingleExpression.dll_1" Component_="SingleExpression.dll_1" FileName="SINGLE~1.DLL|SingleExpression.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SingleExpression.dll" SelfReg="false"/>
-    <ROW File="SingleExpression.pdb" Component_="SingleExpression.dll_1" FileName="SINGLE~1.PDB|SingleExpression.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SingleExpression.pdb" SelfReg="false"/>
+    <ROW File="SingleExpression.pdb" Component_="SingleExpression.pdb_1" FileName="SINGLE~1.PDB|SingleExpression.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SingleExpression.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix.dll_2" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2" FileName="MICROS~9.DLL|Microsoft.VisualBasic.Math.Matrix.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix.dll.config_2" Component_="BioDeep.dll.config" FileName="MICRO~13.CON|Microsoft.VisualBasic.Math.Matrix.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.dll.config" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.Matrix.pdb" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2" FileName="MICROS~9.PDB|Microsoft.VisualBasic.Math.Matrix.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.pdb" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Runtime.xml_4" Component_="BioDeep.dll.config" FileName="MICROS~8.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix.pdb" Component_="Microsoft.VisualBasic.Math.Matrix.pdb_1" FileName="MICROS~9.PDB|Microsoft.VisualBasic.Math.Matrix.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Runtime.xml_4" Component_="Microsoft.VisualBasic.Runtime.xml" FileName="MICROS~8.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix.dll_3" Component_="Microsoft.VisualBasic.Math.Matrix.dll_3" FileName="MICRO~56.DLL|Microsoft.VisualBasic.Math.Matrix.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix.dll.config_3" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MICRO~19.CON|Microsoft.VisualBasic.Math.Matrix.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix.pdb_1" Component_="Microsoft.VisualBasic.Math.Matrix.pdb" FileName="MICRO~68.PDB|Microsoft.VisualBasic.Math.Matrix.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.pdb" SelfReg="false"/>
@@ -19939,7 +19936,6 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="settings.json"/>
     <ROW Feature_="MainFeature" Component_="settings.json_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.VAE.dll"/>
     <ROW Feature_="MainFeature" Component_="BioDeep.dll.config"/>
@@ -20644,7 +20640,6 @@
     <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll_2"/>
     <ROW Feature_="MainFeature" Component_="System.IO.Packaging.dll"/>
-    <ROW Feature_="MainFeature" Component_="xvba_debug.log_2"/>
     <ROW Feature_="MainFeature" Component_="make_peaktable.R"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Imaging.Landscape.xml"/>
     <ROW Feature_="MainFeature" Component_="settings.json_4"/>
@@ -20797,6 +20792,9 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="STRaid.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Matrix.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="SingleExpression.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Runtime.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Matrix.pdb_1"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SingleExpression.pdb_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -20988,7 +20986,6 @@
     <ROW Directory_="dzitools_Dir" SourcePath="..\..\..\dist\bin\tools\dzitools" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|*.pdb|*.xml" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="deDE_Dir" SourcePath="..\..\..\dist\bin\de-DE" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="vips_Dir" SourcePath="..\services\dzitools\dist\vips" Feature="MainFeature" ExcludeFlags="6" FileAddOptions="4"/>
-    <ROW Directory_="vscode_Dir" SourcePath="..\rstudio\pipeline\.vscode" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="clustering_Dir" SourcePath="..\rstudio\pipeline\clustering" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="vscode_1_Dir" SourcePath="..\rstudio\pipeline\MSImaging\.vscode" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="workbench_Dir" SourcePath="..\rstudio\pipeline\workbench" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
