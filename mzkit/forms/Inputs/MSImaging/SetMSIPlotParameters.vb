@@ -57,6 +57,15 @@ Public Class SetMSIPlotParameters
         Return Me
     End Function
 
+    Public Function SetIntensityRange(range As DoubleRange) As SetMSIPlotParameters
+        If Not range Is Nothing Then
+            TextBox2.Text = range.Min
+            TextBox3.Text = range.Max
+        End If
+
+        Return Me
+    End Function
+
     Public Function SetFolder(dir As String) As SetMSIPlotParameters
         TextBox1.Text = dir
         Return Me
