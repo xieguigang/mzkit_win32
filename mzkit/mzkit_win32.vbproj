@@ -1394,6 +1394,9 @@
     <EmbeddedResource Include="forms\Inputs\MSImaging\SetMSIPlotParameters.resx">
       <DependentUpon>SetMSIPlotParameters.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\MSImaging\SetMSIPlotParameters.zh-CN.resx">
+      <DependentUpon>SetMSIPlotParameters.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\SetTableMzSource.resx">
       <DependentUpon>SetTableMzSource.vb</DependentUpon>
     </EmbeddedResource>

@@ -24,8 +24,14 @@ Partial Class SetMSIPlotParameters
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SetMSIPlotParameters))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -47,6 +53,7 @@ Partial Class SetMSIPlotParameters
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,15 +66,13 @@ Partial Class SetMSIPlotParameters
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(22, 22)
+        resources.ApplyResources(Me.Label1, "Label1")
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(101, 12)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Image Save File:"
         '
         'GroupBox1
         '
+        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
+        Me.GroupBox1.Controls.Add(Me.GroupBox3)
         Me.GroupBox1.Controls.Add(Me.NumericUpDown3)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.Label3)
@@ -79,101 +84,101 @@ Partial Class SetMSIPlotParameters
         Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.GroupBox2)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(703, 307)
-        Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Export Plot Image"
+        '
+        'GroupBox3
+        '
+        resources.ApplyResources(Me.GroupBox3, "GroupBox3")
+        Me.GroupBox3.Controls.Add(Me.TextBox3)
+        Me.GroupBox3.Controls.Add(Me.Label10)
+        Me.GroupBox3.Controls.Add(Me.TextBox2)
+        Me.GroupBox3.Controls.Add(Me.Label9)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.TabStop = False
+        '
+        'TextBox3
+        '
+        resources.ApplyResources(Me.TextBox3, "TextBox3")
+        Me.TextBox3.Name = "TextBox3"
+        '
+        'Label10
+        '
+        resources.ApplyResources(Me.Label10, "Label10")
+        Me.Label10.Name = "Label10"
+        '
+        'TextBox2
+        '
+        resources.ApplyResources(Me.TextBox2, "TextBox2")
+        Me.TextBox2.Name = "TextBox2"
+        '
+        'Label9
+        '
+        resources.ApplyResources(Me.Label9, "Label9")
+        Me.Label9.Name = "Label9"
         '
         'NumericUpDown3
         '
+        resources.ApplyResources(Me.NumericUpDown3, "NumericUpDown3")
         Me.NumericUpDown3.Increment = New Decimal(New Integer() {20, 0, 0, 0})
-        Me.NumericUpDown3.Location = New System.Drawing.Point(103, 111)
         Me.NumericUpDown3.Maximum = New Decimal(New Integer() {2000, 0, 0, 0})
         Me.NumericUpDown3.Minimum = New Decimal(New Integer() {100, 0, 0, 0})
         Me.NumericUpDown3.Name = "NumericUpDown3"
-        Me.NumericUpDown3.Size = New System.Drawing.Size(120, 21)
-        Me.NumericUpDown3.TabIndex = 9
         Me.NumericUpDown3.Value = New Decimal(New Integer() {120, 0, 0, 0})
         '
         'Label4
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(25, 113)
+        resources.ApplyResources(Me.Label4, "Label4")
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(29, 12)
-        Me.Label4.TabIndex = 8
-        Me.Label4.Text = "PPI:"
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(239, 91)
+        resources.ApplyResources(Me.Label3, "Label3")
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(11, 12)
-        Me.Label3.TabIndex = 7
-        Me.Label3.Text = "x"
         '
         'CheckBox1
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(416, 86)
+        resources.ApplyResources(Me.CheckBox1, "CheckBox1")
         Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(126, 16)
-        Me.CheckBox1.TabIndex = 6
-        Me.CheckBox1.Text = "Keep Aspect Ratio"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'NumericUpDown2
         '
+        resources.ApplyResources(Me.NumericUpDown2, "NumericUpDown2")
         Me.NumericUpDown2.Increment = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.NumericUpDown2.Location = New System.Drawing.Point(266, 84)
         Me.NumericUpDown2.Maximum = New Decimal(New Integer() {20000, 0, 0, 0})
         Me.NumericUpDown2.Minimum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.NumericUpDown2.Name = "NumericUpDown2"
-        Me.NumericUpDown2.Size = New System.Drawing.Size(120, 21)
-        Me.NumericUpDown2.TabIndex = 5
         Me.NumericUpDown2.Value = New Decimal(New Integer() {2000, 0, 0, 0})
         '
         'NumericUpDown1
         '
+        resources.ApplyResources(Me.NumericUpDown1, "NumericUpDown1")
         Me.NumericUpDown1.Increment = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.NumericUpDown1.Location = New System.Drawing.Point(103, 84)
         Me.NumericUpDown1.Maximum = New Decimal(New Integer() {20000, 0, 0, 0})
         Me.NumericUpDown1.Minimum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(120, 21)
-        Me.NumericUpDown1.TabIndex = 4
         Me.NumericUpDown1.Value = New Decimal(New Integer() {3300, 0, 0, 0})
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(25, 86)
+        resources.ApplyResources(Me.Label2, "Label2")
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(29, 12)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Size"
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(599, 47)
+        resources.ApplyResources(Me.Button1, "Button1")
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "..."
         Me.Button1.UseVisualStyleBackColor = True
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(24, 49)
+        resources.ApplyResources(Me.TextBox1, "TextBox1")
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(555, 21)
-        Me.TextBox1.TabIndex = 1
         '
         'GroupBox2
         '
+        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
         Me.GroupBox2.Controls.Add(Me.Label8)
         Me.GroupBox2.Controls.Add(Me.Label7)
         Me.GroupBox2.Controls.Add(Me.Label6)
@@ -182,119 +187,85 @@ Partial Class SetMSIPlotParameters
         Me.GroupBox2.Controls.Add(Me.NumericUpDown4)
         Me.GroupBox2.Controls.Add(Me.NumericUpDown6)
         Me.GroupBox2.Controls.Add(Me.NumericUpDown5)
-        Me.GroupBox2.Location = New System.Drawing.Point(27, 147)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(243, 141)
-        Me.GroupBox2.TabIndex = 15
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "padding: top right bottom left;"
         '
         'Label8
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(61, 108)
+        resources.ApplyResources(Me.Label8, "Label8")
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(35, 12)
-        Me.Label8.TabIndex = 18
-        Me.Label8.Text = "Left:"
         '
         'Label7
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(49, 81)
+        resources.ApplyResources(Me.Label7, "Label7")
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(47, 12)
-        Me.Label7.TabIndex = 17
-        Me.Label7.Text = "Bottom:"
         '
         'Label6
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(55, 54)
+        resources.ApplyResources(Me.Label6, "Label6")
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(41, 12)
-        Me.Label6.TabIndex = 16
-        Me.Label6.Text = "Right:"
         '
         'Label5
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(67, 27)
+        resources.ApplyResources(Me.Label5, "Label5")
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(29, 12)
-        Me.Label5.TabIndex = 15
-        Me.Label5.Text = "Top:"
         '
         'NumericUpDown7
         '
+        resources.ApplyResources(Me.NumericUpDown7, "NumericUpDown7")
         Me.NumericUpDown7.Increment = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.NumericUpDown7.Location = New System.Drawing.Point(111, 106)
         Me.NumericUpDown7.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.NumericUpDown7.Name = "NumericUpDown7"
-        Me.NumericUpDown7.Size = New System.Drawing.Size(85, 21)
-        Me.NumericUpDown7.TabIndex = 14
         Me.NumericUpDown7.Value = New Decimal(New Integer() {300, 0, 0, 0})
         '
         'NumericUpDown4
         '
+        resources.ApplyResources(Me.NumericUpDown4, "NumericUpDown4")
         Me.NumericUpDown4.Increment = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.NumericUpDown4.Location = New System.Drawing.Point(111, 25)
         Me.NumericUpDown4.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.NumericUpDown4.Name = "NumericUpDown4"
-        Me.NumericUpDown4.Size = New System.Drawing.Size(85, 21)
-        Me.NumericUpDown4.TabIndex = 11
         Me.NumericUpDown4.Value = New Decimal(New Integer() {200, 0, 0, 0})
         '
         'NumericUpDown6
         '
+        resources.ApplyResources(Me.NumericUpDown6, "NumericUpDown6")
         Me.NumericUpDown6.Increment = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.NumericUpDown6.Location = New System.Drawing.Point(111, 79)
         Me.NumericUpDown6.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.NumericUpDown6.Name = "NumericUpDown6"
-        Me.NumericUpDown6.Size = New System.Drawing.Size(85, 21)
-        Me.NumericUpDown6.TabIndex = 13
         Me.NumericUpDown6.Value = New Decimal(New Integer() {250, 0, 0, 0})
         '
         'NumericUpDown5
         '
+        resources.ApplyResources(Me.NumericUpDown5, "NumericUpDown5")
         Me.NumericUpDown5.Increment = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.NumericUpDown5.Location = New System.Drawing.Point(111, 52)
         Me.NumericUpDown5.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.NumericUpDown5.Name = "NumericUpDown5"
-        Me.NumericUpDown5.Size = New System.Drawing.Size(85, 21)
-        Me.NumericUpDown5.TabIndex = 12
         Me.NumericUpDown5.Value = New Decimal(New Integer() {600, 0, 0, 0})
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(509, 325)
+        resources.ApplyResources(Me.Button2, "Button2")
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 2
-        Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(613, 325)
+        resources.ApplyResources(Me.Button3, "Button3")
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 3
-        Me.Button3.Text = "OK"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'SetMSIPlotParameters
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(728, 360)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "SetMSIPlotParameters"
-        Me.Text = "Set MS-Imaging Plot Parameters"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -330,4 +301,9 @@ Partial Class SetMSIPlotParameters
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Label9 As Label
 End Class
