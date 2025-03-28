@@ -51,6 +51,13 @@ const totalIonLayer = {
         NULL;
     }
 }
+const clamp_range = {
+    if (nchar(intensity_range) == 0) {
+        NULL;
+    } else {
+        unlist(strsplit(intensity_range,",")) |> as.numeric();
+    }
+}
 
 print(`load ${length(pixelsData)} pixels data from given m/z:`);
 print(mzlist);
@@ -84,7 +91,8 @@ let make_plot = function() {
 			color     = colorSet,
             pixel_render = TRUE,
             raster = totalIonLayer,
-            colorLevels = colorLevels
+            colorLevels = colorLevels,
+            clamp = clamp_range 
 	   )
        + msi_filters
 	   + geom_MSIbackground(bg)
