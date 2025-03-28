@@ -778,7 +778,7 @@ UseCheckedList:
                 streamLoad:=Function(echo As Action(Of String))
                                 If params.showTotalIonOverlap Then
                                     Dim layer = MSIservice.LoadSummaryLayer(IntensitySummary.Total, False)
-                                    Dim render As Image = SummaryMSIBlender.Rendering(layer, New Size(params.scan_x, params.scan_y), "lightgray", 255, "transparent")
+                                    Dim render As Image = SummaryMSIBlender.Rendering(layer, New Size(params.scan_x, params.scan_y), "gray", 60, "transparent")
 
                                     Return render
                                 Else
@@ -802,7 +802,7 @@ UseCheckedList:
     Private Function ExportLayers(proc As ITaskProgress, list As TreeNode, TIC As Image, config As SetMSIPlotParameters) As Boolean
         Dim params = WindowModules.viewer.params
         Dim mzdiff = params.GetTolerance
-        Dim echo = proc.Echo
+        ' Dim echo = proc.Echo
         Dim MSIservice = WindowModules.viewer.MSIservice
         Dim canvas As Size = config.GetPlotSize
         Dim dir As String = config.SelectedPath
@@ -815,7 +815,7 @@ UseCheckedList:
         }
 
         Call proc.SetProgressMode()
-        Call proc.SetProgress(0)
+        ' Call proc.SetProgress(0)
 
         For i As Integer = 0 To list.Nodes.Count - 1
             Dim n = list.Nodes(i)
