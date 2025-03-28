@@ -1,4 +1,6 @@
-﻿Public Class SetMSIPlotParameters
+﻿Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+
+Public Class SetMSIPlotParameters
 
     Public Property SetDir As Boolean = False
 
@@ -23,6 +25,19 @@
     Public ReadOnly Property GetPlotDpi As Integer
         Get
             Return NumericUpDown3.Value
+        End Get
+    End Property
+
+    Public ReadOnly Property IntensityRange As DoubleRange
+        Get
+            Dim min As Double = Val(TextBox2.Text)
+            Dim max As Double = Val(TextBox3.Text)
+
+            If min = max Then
+                Return Nothing
+            Else
+                Return New DoubleRange(min, max)
+            End If
         End Get
     End Property
 
