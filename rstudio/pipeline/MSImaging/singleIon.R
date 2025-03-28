@@ -19,6 +19,7 @@ const filter_file as string = ?"--filters" || "";
 const colorSet as string = ?"--colors" || "viridis:turbo";
 const colorLevels as integer = ?"--levels" || 120;
 const hostName as string = ?"--host" || "localhost";
+const intensity_range as string = ?"--range" || NULL;
 
 # config plot parameters
 let plot_size          = ?"--size" || "3300,2000";
