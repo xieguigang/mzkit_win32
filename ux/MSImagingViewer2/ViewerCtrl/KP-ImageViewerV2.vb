@@ -1112,7 +1112,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         Dim lower = std.ScaleMapping(range.Min, data)
         Dim upper = std.ScaleMapping(range.Max, data)
 
-        _CustomIntensityRange = New DoubleRange(lower, upper)
+        customRangeValue = {lower, upper}
 
         RaiseEvent SetRange(range, CustomIntensityRange)
     End Sub
@@ -1126,6 +1126,10 @@ Partial Public Class KpImageViewer : Inherits UserControl
     End Sub
 
     Public ReadOnly Property CustomIntensityRange As DoubleRange
+        Get
+            Return New DoubleRange(customRangeValue)
+        End Get
+    End Property
 
     Private Sub ColorScaler1_RequestSetCustomRange() Handles ColorScaler1.RequestSetCustomRange
         Dim range As New InputIntensityRange
@@ -1154,7 +1158,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
                 RaiseEvent SetRange(New DoubleRange(lower, upper), dataRange)
 
-                _CustomIntensityRange = dataRange
+                customRangeValue = {dataRange.Min, dataRange.Max}
                 ColorScaler1.ScalerRange = New DoubleRange(lower, upper)
             End Sub
 
