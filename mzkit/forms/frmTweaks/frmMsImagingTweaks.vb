@@ -771,22 +771,24 @@ UseCheckedList:
         Dim params = WindowModules.viewer.params
         Dim size As String = $"{params.scan_x},{params.scan_y}"
         Dim MSIservice = WindowModules.viewer.MSIservice
-        Dim TIC = TaskProgress.LoadData(
-            Function(echo As Action(Of String))
-                If params.showTotalIonOverlap Then
-                    Dim layer = MSIservice.LoadSummaryLayer(IntensitySummary.Total, False)
-                    Dim render As Image = SummaryMSIBlender.Rendering(layer, New Size(params.scan_x, params.scan_y), "lightgray", 255, "transparent")
+        Dim TIC As Image = Nothing
 
-                    Return render
-                Else
-                    Return Nothing
-                End If
-            End Function,
-            title:="Load TIC layer",
-            info:="Fetch layer pixels data from data serivces backend!"
-        )
+        If params.showTotalIonOverlap Then
+            TIC = TaskProgress.LoadData(
+                streamLoad:=Function(echo As Action(Of String))
+                                If params.showTotalIonOverlap Then
+                                    Dim layer = MSIservice.LoadSummaryLayer(IntensitySummary.Total, False)
+                                    Dim render As Image = SummaryMSIBlender.Rendering(layer, New Size(params.scan_x, params.scan_y), "lightgray", 255, "transparent")
 
-        ' params.Hqx = HqxScales.Hqx_4x
+                                    Return render
+                                Else
+                                    Return Nothing
+                                End If
+                            End Function,
+                title:="Load TIC layer",
+                info:="Fetch layer pixels data from data serivces backend!"
+            )
+        End If
 
         Call TaskProgress.LoadData(
             streamLoad:=Function(proc As ITaskProgress)
