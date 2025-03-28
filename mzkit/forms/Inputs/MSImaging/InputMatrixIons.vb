@@ -10,6 +10,9 @@ Imports TaskStream
 Imports std = System.Math
 Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 
+''' <summary>
+''' [NxN] matrix layout render of the ms-imaging
+''' </summary>
 Public Class InputMatrixIons
 
     Public ReadOnly Property MSILayout As Size
@@ -310,6 +313,7 @@ Public Class InputMatrixIons
                colorSet:=colorSet,
                overlapTotalIons:=True,
                filters:=filters,
+               intensityRange:=Nothing,
                size:=folder.GetPlotSize,
                dpi:=folder.GetPlotDpi,
                padding:=folder.GetPlotPadding,

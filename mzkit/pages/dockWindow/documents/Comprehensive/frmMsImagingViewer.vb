@@ -3064,6 +3064,7 @@ Public Class frmMsImagingViewer
                                    background:=params.background.ToHtmlColor,
                                    colorSet:=params.colors.Description,
                                    overlapTotalIons:=params.showTotalIonOverlap,
+                                   intensityRange:=cfg.IntensityRange,
                                    size:=cfg.GetPlotSize, dpi:=cfg.GetPlotDpi, padding:=cfg.GetPlotPadding,
                                    colorLevels:=params.mapLevels
                                )

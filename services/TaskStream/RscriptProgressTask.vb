@@ -61,6 +61,7 @@ Imports System.Text
 Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Net.Http
@@ -270,6 +271,7 @@ Public NotInheritable Class RscriptProgressTask
                                           filters As String(),
                                           colorLevels As Integer,
                                           overlapTotalIons As Boolean,
+                                          intensityRange As DoubleRange,
                                           size As Size, dpi As Integer, padding As String,
                                           Optional title As String = "")
 
@@ -283,6 +285,7 @@ Public NotInheritable Class RscriptProgressTask
 --backcolor ""{background}"" 
 --colors ""{colorSet}"" 
 --filters ""{filterfile}""
+{If(intensityRange Is Nothing, "", $"--range {intensityRange.Min},{intensityRange.Max}")}
 --mzdiff ""{tolerance}"" 
 --levels {colorLevels}
 --size ""{size.Width},{size.Height}""
