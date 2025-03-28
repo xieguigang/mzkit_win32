@@ -3045,7 +3045,11 @@ Public Class frmMsImagingViewer
             msi_filters = {}
         End If
 
-        Call save.SetFileName(filename).SetRGBMode(loadRgb).SetIntensityRange(PixelSelector1.CustomIntensityRange)
+        Call save.SetFileName(filename) _
+            .SetRGBMode(loadRgb) _
+            .SetIntensityRange(PixelSelector1.CustomIntensityRange) _
+            .SetDimensionSize(dims:=params.GetMSIDimension)
+
         Call InputDialog.Input(
             setConfig:=Sub(cfg)
                            If loadRgb Then

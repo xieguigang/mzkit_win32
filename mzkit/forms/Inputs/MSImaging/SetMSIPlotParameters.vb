@@ -52,6 +52,15 @@ Public Class SetMSIPlotParameters
         End Get
     End Property
 
+    Public Function SetDimensionSize(dims As Size) As SetMSIPlotParameters
+        Dim scaleDefault As Integer = 5
+
+        NumericUpDown1.Value = dims.Width * scaleDefault
+        NumericUpDown2.Value = dims.Height * scaleDefault
+
+        Return Me
+    End Function
+
     Public Function SetFileName(filename As String) As SetMSIPlotParameters
         TextBox1.Text = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) & "\" & filename & ".png"
         Return Me
