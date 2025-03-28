@@ -1069,6 +1069,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
     End Sub
 
     Dim intensityRange As Double()
+    Dim customRangeValue As Double()
 
     Public Sub UpdateColorScaler(range As Double(), colorSet As ScalerPalette, mapLevels As Integer)
         Dim max As Double = If(range.IsNullOrEmpty, 255, range.Max)
@@ -1084,6 +1085,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         ColorScaler1.UpdateColors(callEvents:=False)
 
         intensityRange = {min, max}
+        customRangeValue = intensityRange
     End Sub
 
     Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
@@ -1101,14 +1103,19 @@ Partial Public Class KpImageViewer : Inherits UserControl
         RaiseEvent SetRange(range)
     End Sub
 
+    Private Shared Sub InitializeRange(ByRef rangeValue As Double())
+        If rangeValue.IsNullOrEmpty Then
+            rangeValue = {0, 255}
+        ElseIf RangeValue.Length = 1 Then
+            rangeValue = {0, rangeValue(0)}
+        End If
+    End Sub
+
     Private Sub ColorScaler1_RequestSetCustomRange() Handles ColorScaler1.RequestSetCustomRange
         Dim range As New InputIntensityRange
 
-        If intensityRange.IsNullOrEmpty Then
-            intensityRange = {0, 255}
-        ElseIf intensityRange.Length = 1 Then
-            intensityRange = {0, intensityRange(0)}
-        End If
+        Call InitializeRange(intensityRange)
+        Call InitializeRange(customRangeValue)
 
         Dim rawRange As DoubleRange = intensityRange
 
@@ -1132,7 +1139,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
                 RaiseEvent SetRange(New DoubleRange(lower, upper))
             End Sub
 
-        Call InputDialog.Input(customRange, config:=range.SetRange(intensityRange(0), intensityRange(1)))
+        Call InputDialog.Input(customRange, config:=range.SetRange(intensityRange, customRangeValue))
     End Sub
 End Class
 

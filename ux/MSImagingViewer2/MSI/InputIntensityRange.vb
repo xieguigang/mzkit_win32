@@ -12,9 +12,12 @@ Public Class InputIntensityRange
         Me.DialogResult = DialogResult.Cancel
     End Sub
 
-    Public Function SetRange(min As Double, max As Double) As InputIntensityRange
-        TextBox1.Text = min
-        TextBox2.Text = max
+    Dim intensityRangeValue As DoubleRange
+
+    Public Function SetRange(intensityRange As DoubleRange, custom As DoubleRange) As InputIntensityRange
+        TextBox1.Text = custom.Min
+        TextBox2.Text = custom.Max
+        intensityRangeValue = intensityRange
 
         Return Me
     End Function
@@ -28,5 +31,10 @@ Public Class InputIntensityRange
         End If
 
         Me.DialogResult = DialogResult.OK
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        TextBox1.Text = intensityRangeValue.Min
+        TextBox2.Text = intensityRangeValue.Max
     End Sub
 End Class
