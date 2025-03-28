@@ -708,22 +708,29 @@ UseCheckedList:
                 If file.FileName.ExtensionSuffix("txt") Then
                     Dim names As String() = file.FileName.ReadAllLines
 
-                    For Each Name As String In names
-                        folder.Nodes.Add(Name).Tag = Name
-                    Next
-
+                    Call ProgressSpinner.DoLoading(Sub()
+                                                       ' imports gene id
+                                                       For Each Name As String In names
+                                                           folder.Nodes.Add(Name).Tag = Name
+                                                       Next
+                                                   End Sub, host:=Me)
                     Call Workbench.SuccessMessage($"Load {names.Length} layers for run data visualization.")
                 Else
                     Dim table As DataFrameResolver
+                    Dim mz As Double() = Nothing
+                    Dim name As String() = Nothing
 
-                    If file.FileName.ExtensionSuffix("csv") Then
-                        table = DataFrameResolver.Load(file.FileName)
-                    Else
-                        table = DataFrameResolver.CreateObject(Xlsx.Open(file.FileName).GetTable(0))
-                    End If
+                    Call ProgressSpinner.DoLoading(
+                        Sub()
+                            If file.FileName.ExtensionSuffix("csv") Then
+                                table = DataFrameResolver.Load(file.FileName)
+                            Else
+                                table = DataFrameResolver.CreateObject(Xlsx.Open(file.FileName).GetTable(0))
+                            End If
 
-                    Dim mz As Double() = table(table.GetOrdinal("mz")).AsDouble
-                    Dim name As String() = table(table.GetOrdinal("name")).ToArray
+                            mz = table(table.GetOrdinal("mz")).AsDouble
+                            name = table(table.GetOrdinal("name")).ToArray
+                        End Sub)
 
                     Call ImportsIons(name, mz)
                 End If
@@ -735,17 +742,27 @@ UseCheckedList:
         Dim folder = Win7StyleTreeView1.Nodes(0)
 
         Call folder.Nodes.Clear()
+        Call TaskProgress.RunAction(
+           run:=Sub(p As ITaskProgress)
+                    For i As Integer = 0 To mz.Length - 1
+                        If mz(i) <= 0.0 Then
+                            Continue For
+                        End If
 
-        For i As Integer = 0 To mz.Length - 1
-            If mz(i) <= 0.0 Then
-                Continue For
-            End If
+                        Dim label As String = $"{labels(i)} [m/z {mz(i).ToString("F4")}]"
+                        Dim node = folder.Nodes.Add(label)
 
-            Dim label As String = $"{labels(i)} [m/z {mz(i).ToString("F4")}]"
-            Dim node = folder.Nodes.Add(label)
+                        node.Tag = mz(i)
 
-            node.Tag = mz(i)
-        Next
+                        If p.TaskCanceled Then
+                            Exit For
+                        End If
+                    Next
+                End Sub,
+           title:="Imports ion list",
+           info:=$"Load {mz.Length} metabolites ion data into the ms-imaging data viewer...",
+           cancel:=DoNothing,
+           host:=Me)
 
         Call Workbench.StatusMessage($"Load {mz.Length} ions for run data visualization.")
     End Sub
