@@ -180,6 +180,12 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
 
     Friend webkitLoaded As Boolean = False
 
+    Public ReadOnly Property TaskCanceled As Boolean Implements ITaskProgress.TaskCanceled
+        Get
+            Return dialogClosed
+        End Get
+    End Property
+
     ''' <summary>
     ''' 
     ''' </summary>

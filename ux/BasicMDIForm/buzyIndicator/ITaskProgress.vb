@@ -1,5 +1,7 @@
 ﻿Public Interface ITaskProgress
 
+    ReadOnly Property TaskCanceled As Boolean
+
     Sub SetProgressMode()
     ''' <summary>
     ''' progress value between [0,100]

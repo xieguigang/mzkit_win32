@@ -796,6 +796,7 @@ UseCheckedList:
                         End Function,
             title:="Plot selected image layers...",
             info:="Export image rendering...",
+            canbeCancel:=True,
             host:=WindowModules.viewer)
     End Sub
 
@@ -850,6 +851,10 @@ UseCheckedList:
 
                 Call image.SaveAs(path)
                 Call Workbench.SuccessMessage($"Imaging render for {n.Text} success and save at location: {path}!")
+            End If
+
+            If proc.TaskCanceled Then
+                Exit For
             End If
         Next
 
