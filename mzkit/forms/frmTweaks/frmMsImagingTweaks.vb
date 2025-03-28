@@ -773,10 +773,14 @@ UseCheckedList:
         Dim MSIservice = WindowModules.viewer.MSIservice
         Dim TIC = TaskProgress.LoadData(
             Function(echo As Action(Of String))
-                Dim layer = MSIservice.LoadSummaryLayer(IntensitySummary.Total, False)
-                Dim render As Image = SummaryMSIBlender.Rendering(layer, New Size(params.scan_x, params.scan_y), "gray", 255, "black")
+                If params.showTotalIonOverlap Then
+                    Dim layer = MSIservice.LoadSummaryLayer(IntensitySummary.Total, False)
+                    Dim render As Image = SummaryMSIBlender.Rendering(layer, New Size(params.scan_x, params.scan_y), "lightgray", 255, "transparent")
 
-                Return render
+                    Return render
+                Else
+                    Return Nothing
+                End If
             End Function,
             title:="Load TIC layer",
             info:="Fetch layer pixels data from data serivces backend!"
@@ -813,19 +817,18 @@ UseCheckedList:
 
         For i As Integer = 0 To list.Nodes.Count - 1
             Dim n = list.Nodes(i)
-
-            Call proc.SetProgress(i / list.Nodes.Count * 100)
+            Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
+            Dim tick As String = $"processing '{n.Text}' ({val})"
 
             If Not n.Checked Then
                 Continue For
+            Else
+                Call proc.SetProgress(CInt(i / list.Nodes.Count * 100), tick)
             End If
 
-            Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
             Dim fileName As String = n.Text.NormalizePathString(False, ".")
             Dim path As String = $"{dir}/{If(fileName.Length > 128, fileName.Substring(0, 127) & "...", fileName)}.png"
             Dim pixels As PixelData()
-
-            Call echo($"processing '{n.Text}' ({val})")
 
             If val.IsSimpleNumber Then
                 pixels = MSIservice.LoadPixels(New Double() {Conversion.Val(val)}, mzdiff)

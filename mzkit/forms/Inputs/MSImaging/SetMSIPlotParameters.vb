@@ -56,7 +56,7 @@ Public Class SetMSIPlotParameters
         End Get
     End Property
 
-    Public Function SetDimensionSize(dims As Size, Optional scaleDefault As Integer = 5) As SetMSIPlotParameters
+    Public Function SetDimensionSize(dims As Size, Optional scaleDefault As Integer = 10) As SetMSIPlotParameters
         NumericUpDown1.Value = dims.Width * scaleDefault
         NumericUpDown2.Value = dims.Height * scaleDefault
 
