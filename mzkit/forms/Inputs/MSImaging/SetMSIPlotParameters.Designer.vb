@@ -71,7 +71,6 @@ Partial Class SetMSIPlotParameters
         '
         'GroupBox1
         '
-        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Controls.Add(Me.GroupBox3)
         Me.GroupBox1.Controls.Add(Me.NumericUpDown3)
         Me.GroupBox1.Controls.Add(Me.Label4)
@@ -84,16 +83,17 @@ Partial Class SetMSIPlotParameters
         Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.GroupBox2)
+        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.TabStop = False
         '
         'GroupBox3
         '
-        resources.ApplyResources(Me.GroupBox3, "GroupBox3")
         Me.GroupBox3.Controls.Add(Me.TextBox3)
         Me.GroupBox3.Controls.Add(Me.Label10)
         Me.GroupBox3.Controls.Add(Me.TextBox2)
         Me.GroupBox3.Controls.Add(Me.Label9)
+        resources.ApplyResources(Me.GroupBox3, "GroupBox3")
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.TabStop = False
         '
@@ -119,8 +119,8 @@ Partial Class SetMSIPlotParameters
         '
         'NumericUpDown3
         '
-        resources.ApplyResources(Me.NumericUpDown3, "NumericUpDown3")
         Me.NumericUpDown3.Increment = New Decimal(New Integer() {20, 0, 0, 0})
+        resources.ApplyResources(Me.NumericUpDown3, "NumericUpDown3")
         Me.NumericUpDown3.Maximum = New Decimal(New Integer() {2000, 0, 0, 0})
         Me.NumericUpDown3.Minimum = New Decimal(New Integer() {100, 0, 0, 0})
         Me.NumericUpDown3.Name = "NumericUpDown3"
@@ -144,19 +144,19 @@ Partial Class SetMSIPlotParameters
         '
         'NumericUpDown2
         '
-        resources.ApplyResources(Me.NumericUpDown2, "NumericUpDown2")
         Me.NumericUpDown2.Increment = New Decimal(New Integer() {1000, 0, 0, 0})
+        resources.ApplyResources(Me.NumericUpDown2, "NumericUpDown2")
         Me.NumericUpDown2.Maximum = New Decimal(New Integer() {20000, 0, 0, 0})
-        Me.NumericUpDown2.Minimum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.NumericUpDown2.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NumericUpDown2.Name = "NumericUpDown2"
         Me.NumericUpDown2.Value = New Decimal(New Integer() {2000, 0, 0, 0})
         '
         'NumericUpDown1
         '
-        resources.ApplyResources(Me.NumericUpDown1, "NumericUpDown1")
         Me.NumericUpDown1.Increment = New Decimal(New Integer() {1000, 0, 0, 0})
+        resources.ApplyResources(Me.NumericUpDown1, "NumericUpDown1")
         Me.NumericUpDown1.Maximum = New Decimal(New Integer() {20000, 0, 0, 0})
-        Me.NumericUpDown1.Minimum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.NumericUpDown1.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NumericUpDown1.Name = "NumericUpDown1"
         Me.NumericUpDown1.Value = New Decimal(New Integer() {3300, 0, 0, 0})
         '
@@ -178,7 +178,6 @@ Partial Class SetMSIPlotParameters
         '
         'GroupBox2
         '
-        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
         Me.GroupBox2.Controls.Add(Me.Label8)
         Me.GroupBox2.Controls.Add(Me.Label7)
         Me.GroupBox2.Controls.Add(Me.Label6)
@@ -187,6 +186,7 @@ Partial Class SetMSIPlotParameters
         Me.GroupBox2.Controls.Add(Me.NumericUpDown4)
         Me.GroupBox2.Controls.Add(Me.NumericUpDown6)
         Me.GroupBox2.Controls.Add(Me.NumericUpDown5)
+        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.TabStop = False
         '
@@ -212,32 +212,32 @@ Partial Class SetMSIPlotParameters
         '
         'NumericUpDown7
         '
-        resources.ApplyResources(Me.NumericUpDown7, "NumericUpDown7")
         Me.NumericUpDown7.Increment = New Decimal(New Integer() {100, 0, 0, 0})
+        resources.ApplyResources(Me.NumericUpDown7, "NumericUpDown7")
         Me.NumericUpDown7.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.NumericUpDown7.Name = "NumericUpDown7"
         Me.NumericUpDown7.Value = New Decimal(New Integer() {300, 0, 0, 0})
         '
         'NumericUpDown4
         '
-        resources.ApplyResources(Me.NumericUpDown4, "NumericUpDown4")
         Me.NumericUpDown4.Increment = New Decimal(New Integer() {100, 0, 0, 0})
+        resources.ApplyResources(Me.NumericUpDown4, "NumericUpDown4")
         Me.NumericUpDown4.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.NumericUpDown4.Name = "NumericUpDown4"
         Me.NumericUpDown4.Value = New Decimal(New Integer() {200, 0, 0, 0})
         '
         'NumericUpDown6
         '
-        resources.ApplyResources(Me.NumericUpDown6, "NumericUpDown6")
         Me.NumericUpDown6.Increment = New Decimal(New Integer() {100, 0, 0, 0})
+        resources.ApplyResources(Me.NumericUpDown6, "NumericUpDown6")
         Me.NumericUpDown6.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.NumericUpDown6.Name = "NumericUpDown6"
         Me.NumericUpDown6.Value = New Decimal(New Integer() {250, 0, 0, 0})
         '
         'NumericUpDown5
         '
-        resources.ApplyResources(Me.NumericUpDown5, "NumericUpDown5")
         Me.NumericUpDown5.Increment = New Decimal(New Integer() {100, 0, 0, 0})
+        resources.ApplyResources(Me.NumericUpDown5, "NumericUpDown5")
         Me.NumericUpDown5.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.NumericUpDown5.Name = "NumericUpDown5"
         Me.NumericUpDown5.Value = New Decimal(New Integer() {600, 0, 0, 0})
