@@ -70,6 +70,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Math.Distributions
 Imports MZKitWin32.Blender.CommonLibs
+Imports HeatMapParameters = Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.HeatMapParameters
 Imports Image = System.Drawing.Image
 
 Public Class SingleIonMSIBlender : Inherits MSImagingBlender
@@ -137,12 +138,12 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
 
         Dim background As Image = If(params.showTotalIonOverlap, TIC, Nothing)
         Dim drawer As New PixelRender(heatmapRender:=False, overlaps:=background.CTypeFromGdiImage)
+        Dim heatmap As New HeatMapParameters(params.colors, params.mapLevels)
         ' generates image in size dimensionSize
         Dim image As Image = drawer.RenderPixels(
             pixels:=MsImaging.Drawer.GetPixelsMatrix(pixelFilter),
             dimension:=dimensionSize,
-            mapLevels:=params.mapLevels,
-            colorSet:=params.colors.Description
+            heatmap:=heatmap
         ).AsGDIImage.CTypeGdiImage
 
         image = DrawOutlines(image)
