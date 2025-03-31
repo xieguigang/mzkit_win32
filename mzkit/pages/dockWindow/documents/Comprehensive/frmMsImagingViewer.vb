@@ -2600,6 +2600,9 @@ Public Class frmMsImagingViewer
         Else
             Workbench.StatusMessage($"Run MS-Image rendering for {selectedMz.Count} selected ions...")
         End If
+        If params Is Nothing Then
+            Call Workbench.Warning("Please load the ms-imaging rawdata at first!")
+        End If
 
         mzdiff = params.GetTolerance
         loadedPixels = New MSIRenderHistory With {
