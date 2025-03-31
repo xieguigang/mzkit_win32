@@ -146,6 +146,11 @@ UseCheckedList:
     End Function
 
     Private Iterator Function getCheckedIons() As IEnumerable(Of (title As String, mz As Double))
+        If viewer Is Nothing OrElse viewer.params Is Nothing Then
+            Call Workbench.Warning("no ms-imaging rawdata was loaded for make ion imaging rendering.")
+            Return
+        End If
+
         If checkedMz.Count > 0 Then
             For Each node In checkedMz
                 Call viewer.SetTitle({node.Tag}, node.Text)
@@ -276,6 +281,10 @@ UseCheckedList:
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ViewLayerButton.Click
+        If WindowModules.viewer.params Is Nothing Then
+            Call Workbench.Warning("Please load the ms-imaging rawdata into the workspace at first!")
+            Return
+        End If
         If ToolStripSpringTextBox1.Text.StringEmpty Then
             Call MyApplication.host.showStatusMessage("no ions data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
         ElseIf ToolStripSpringTextBox1.Text.IsNumeric(True) Then
@@ -771,6 +780,11 @@ UseCheckedList:
         Dim list = Win7StyleTreeView1.Nodes(0)
         Dim folder As New SetMSIPlotParameters With {.SetDir = True}
 
+        If viewer Is Nothing OrElse viewer.params Is Nothing Then
+            Call Workbench.Warning("Please load ms-imaging rawdata into this workspace at first!")
+            Return
+        End If
+
         Call folder _
             .SetDimensionSize(viewer.params.GetMSIDimension) _
             .SetFolder(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)) _
@@ -894,6 +908,11 @@ UseCheckedList:
 
     Private Sub LoadAllAnnotationLayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadAllAnnotationLayersToolStripMenuItem.Click
         Dim list = Win7StyleTreeView1.Nodes(0)
+
+        If viewer Is Nothing OrElse viewer.MSIservice Is Nothing Then
+            Call Workbench.Warning("no ms-imaging rawdata for run data visualization is loaded.")
+            Return
+        End If
 
         Call ProgressSpinner.DoLoading(
             Sub()
