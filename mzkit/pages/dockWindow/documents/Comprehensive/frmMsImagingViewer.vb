@@ -2602,6 +2602,7 @@ Public Class frmMsImagingViewer
         End If
         If params Is Nothing Then
             Call Workbench.Warning("Please load the ms-imaging rawdata at first!")
+            Return
         End If
 
         mzdiff = params.GetTolerance
