@@ -34,6 +34,10 @@ Public Class SetMSIPlotParameters
 
     Public ReadOnly Property IntensityRange As DoubleRange
         Get
+            If Not ChkIntensityClamp.Checked Then
+                Return Nothing
+            End If
+
             Dim min As Double = Val(TextBox2.Text)
             Dim max As Double = Val(TextBox3.Text)
 
@@ -111,6 +115,8 @@ Public Class SetMSIPlotParameters
 
     Public Function SetFolder(dir As String) As SetMSIPlotParameters
         TextBox1.Text = dir
+        ChkIntensityClamp.Checked = False
+
         Return Me
     End Function
 

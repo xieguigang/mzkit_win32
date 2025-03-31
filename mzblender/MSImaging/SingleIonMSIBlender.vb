@@ -165,6 +165,13 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         Call SetClampRange(New DoubleRange(min, max))
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="range"></param>
+    ''' <remarks>
+    ''' set <paramref name="range"/> parameter value to nothing for cancel the intensity range clamp operation
+    ''' </remarks>
     Public Sub SetClampRange(range As DoubleRange)
         plotRange = range
     End Sub

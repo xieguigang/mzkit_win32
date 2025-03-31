@@ -124,17 +124,14 @@
   <data name="Label1.Text" xml:space="preserve">
     <value>成像图文件保存路径：</value>
   </data>
-  <data name="GroupBox1.Text" xml:space="preserve">
-    <value>导出成像图</value>
-  </data>
-  <data name="GroupBox3.Text" xml:space="preserve">
-    <value>设定信号强度范围</value>
-  </data>
   <data name="Label10.Text" xml:space="preserve">
     <value>强度上限值：</value>
   </data>
   <data name="Label9.Text" xml:space="preserve">
     <value>强度下限值：</value>
+  </data>
+  <data name="GroupBox3.Text" xml:space="preserve">
+    <value>设定信号强度范围</value>
   </data>
   <data name="CheckBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 16</value>
@@ -147,9 +144,6 @@
   </data>
   <data name="Label2.Text" xml:space="preserve">
     <value>尺寸大小：</value>
-  </data>
-  <data name="GroupBox2.Text" xml:space="preserve">
-    <value>页边距：上 右 下 左；</value>
   </data>
   <data name="Label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>49, 108</value>
@@ -192,6 +186,12 @@
   </data>
   <data name="NumericUpDown5.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 52</value>
+  </data>
+  <data name="GroupBox2.Text" xml:space="preserve">
+    <value>页边距：上 右 下 左；</value>
+  </data>
+  <data name="GroupBox1.Text" xml:space="preserve">
+    <value>导出成像图</value>
   </data>
   <data name="Button2.Text" xml:space="preserve">
     <value>取消</value>

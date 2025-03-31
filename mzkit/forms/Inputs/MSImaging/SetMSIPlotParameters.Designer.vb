@@ -52,6 +52,7 @@ Partial Class SetMSIPlotParameters
         Me.NumericUpDown5 = New System.Windows.Forms.NumericUpDown()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.ChkIntensityClamp = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,6 +90,7 @@ Partial Class SetMSIPlotParameters
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.ChkIntensityClamp)
         Me.GroupBox3.Controls.Add(Me.TextBox3)
         Me.GroupBox3.Controls.Add(Me.Label10)
         Me.GroupBox3.Controls.Add(Me.TextBox2)
@@ -254,6 +256,14 @@ Partial Class SetMSIPlotParameters
         Me.Button3.Name = "Button3"
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'ChkIntensityClamp
+        '
+        resources.ApplyResources(Me.ChkIntensityClamp, "ChkIntensityClamp")
+        Me.ChkIntensityClamp.Checked = True
+        Me.ChkIntensityClamp.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ChkIntensityClamp.Name = "ChkIntensityClamp"
+        Me.ChkIntensityClamp.UseVisualStyleBackColor = True
+        '
         'SetMSIPlotParameters
         '
         resources.ApplyResources(Me, "$this")
@@ -306,4 +316,5 @@ Partial Class SetMSIPlotParameters
     Friend WithEvents Label10 As Label
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Label9 As Label
+    Friend WithEvents ChkIntensityClamp As CheckBox
 End Class
