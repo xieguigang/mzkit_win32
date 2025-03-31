@@ -728,18 +728,25 @@ UseCheckedList:
                     Dim table As DataFrameResolver
                     Dim mz As Double() = Nothing
                     Dim name As String() = Nothing
+                    Dim ex As Exception = Nothing
 
                     Call ProgressSpinner.DoLoading(
-                        Sub()
-                            If file.FileName.ExtensionSuffix("csv") Then
-                                table = DataFrameResolver.Load(file.FileName)
-                            Else
-                                table = DataFrameResolver.CreateObject(Xlsx.Open(file.FileName).GetTable(0))
-                            End If
+                        loading:=Sub()
+                                     If file.FileName.ExtensionSuffix("csv") Then
+                                         table = DataFrameResolver.Load(file.FileName)
+                                     Else
+                                         table = DataFrameResolver.CreateObject(Xlsx.Open(file.FileName).GetTable(0))
+                                     End If
 
-                            mz = table(table.GetOrdinal("mz")).AsDouble
-                            name = table(table.GetOrdinal("name")).ToArray
-                        End Sub)
+                                     mz = table(table.GetOrdinal("mz")).AsDouble
+                                     name = table(table.GetOrdinal("name")).ToArray
+                                 End Sub,
+                        ex:=ex)
+
+                    If ex IsNot Nothing Then
+                        MessageBox.Show(ex.Message, "Error While Imports Annotation Table", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Return
+                    End If
 
                     Call ImportsIons(name, mz)
                 End If

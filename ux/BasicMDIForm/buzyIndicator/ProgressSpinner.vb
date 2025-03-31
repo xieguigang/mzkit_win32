@@ -61,6 +61,8 @@ Public Class ProgressSpinner
 
     Dim theImage As Image = My.Resources.spinner
 
+    Public ReadOnly Property ex As Exception = Nothing
+
     <DebuggerStepThrough>
     Sub RunAnimation()
         ' the image Is set up for animation using the
@@ -106,13 +108,15 @@ Public Class ProgressSpinner
     ''' <remarks>
     ''' 这个函数会阻塞线程
     ''' </remarks>
-    Public Shared Sub DoLoading(loading As Action, Optional host As Form = Nothing)
+    Public Shared Sub DoLoading(loading As Action, Optional host As Form = Nothing, Optional ByRef ex As Exception = Nothing)
         Dim spinner As New ProgressSpinner
         Dim mask As MaskForm = MaskForm.CreateMask(Workbench.AppHost)
         Dim task = getLoadingTask(loading, host, spinner)
 
         Call task.Start()
         Call mask.ShowDialogForm(spinner)
+
+        ex = spinner.ex
     End Sub
 
     Private Shared Function getLoadingTask(loading As Action, host As Form, spinner As ProgressSpinner) As Tasks.Task
@@ -129,6 +133,9 @@ Public Class ProgressSpinner
                 Catch ex As Exception
                     Call App.LogException(ex)
                     Call Workbench.Warning(ex.ToString)
+                    Call Thread.Sleep(1000)
+
+                    spinner._ex = ex
                 End Try
 
                 Call spinner.CloseWindow()
