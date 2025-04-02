@@ -68,6 +68,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
@@ -815,8 +816,10 @@ UseCheckedList:
             TIC = TaskProgress.LoadData(
                 streamLoad:=Function(echo As Action(Of String))
                                 If params.showTotalIonOverlap Then
-                                    Dim layer = MSIservice.LoadSummaryLayer(IntensitySummary.Total, False)
-                                    Dim render As Image = SummaryMSIBlender.Rendering(layer, New Size(params.scan_x, params.scan_y), "gray", 60, "transparent")
+                                    Dim layer As PixelScanIntensity() = MSIservice.LoadSummaryLayer(IntensitySummary.Total, False)
+                                    Dim filters As RasterPipeline = frmMsImagingViewer.loadFilters
+                                    Dim dims As New Size(params.scan_x, params.scan_y)
+                                    Dim render As Image = SummaryMSIBlender.Rendering(layer, dims, "gray", 60, "transparent")
 
                                     Return render
                                 Else
