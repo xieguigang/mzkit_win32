@@ -39,30 +39,7 @@ const pixelsData = app::getMSIData(
 );
 const dataPack = pixelPack(pixelsData, dims = app::getMSIDimensions(MSI_service = appPort));
 const mz_tag as string = `m/z ${round(mzlist[1], 4)}`;
-const totalIonLayer = {
-    if (overlap_totalIons) {
-        raster_blending(
-            pixels = app::getTotalIons(appPort, host = hostName), 
-            dims = as.object(dataPack)$GetDimensionSize(),
-            scale = "gray",
-            levels = 255
-        );
-    } else {
-        NULL;
-    }
-}
-const clamp_range = {
-    if (nchar(intensity_range) == 0) {
-        NULL;
-    } else {
-        unlist(strsplit(intensity_range,",")) |> as.numeric();
-    }
-}
 
-print(`load ${length(pixelsData)} pixels data from given m/z:`);
-print(mzlist);
-
-let filetype = file.ext(savefile);
 let msi_filters = {
     if (file.exists(filter_file) && (length(readLines(filter_file)) > 0)) {
         print("apply of the image filter from config file:");
@@ -75,6 +52,31 @@ let msi_filters = {
         );
     }
 }
+let totalIonLayer = {
+    if (overlap_totalIons) {
+        raster_blending(
+            pixels  = app::getTotalIons(appPort, host = hostName), 
+            dims    = as.object(dataPack)$GetDimensionSize(),
+            scale   = "gray",
+            levels  = 60,
+            filters = msi_filters
+        );
+    } else {
+        NULL;
+    }
+}
+let clamp_range = {
+    if (nchar(intensity_range) == 0) {
+        NULL;
+    } else {
+        unlist(strsplit(intensity_range,",")) |> as.numeric();
+    }
+}
+
+print(`load ${length(pixelsData)} pixels data from given m/z:`);
+print(mzlist);
+
+let filetype = file.ext(savefile);
 let make_plot = function() {
     # load mzpack/imzML raw data file
     # and config ggplot data source driver 
