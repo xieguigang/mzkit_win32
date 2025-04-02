@@ -819,7 +819,8 @@ UseCheckedList:
                                     Dim layer As PixelScanIntensity() = MSIservice.LoadSummaryLayer(IntensitySummary.Total, False)
                                     Dim filters As RasterPipeline = frmMsImagingViewer.loadFilters
                                     Dim dims As New Size(params.scan_x, params.scan_y)
-                                    Dim render As Image = SummaryMSIBlender.Rendering(layer, dims, "gray", 60, "transparent")
+                                    Dim processedRaster As PixelData() = filters.DoIntensityScale(layer.CreatePixelData(Of PixelData), dims)
+                                    Dim render As Image = SummaryMSIBlender.Rendering(processedRaster.ExtractPixels.ToArray, dims, "gray", 60, "transparent")
 
                                     Return render
                                 Else
