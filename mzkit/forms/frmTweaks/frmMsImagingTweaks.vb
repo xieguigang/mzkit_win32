@@ -840,6 +840,16 @@ UseCheckedList:
             info:="Export image rendering...",
             canbeCancel:=True,
             host:=WindowModules.viewer)
+
+        If MessageBox.Show("Plot image export task finished, view the export result folder?", "View Result", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
+            Call New Process With {
+                .StartInfo = New ProcessStartInfo With {
+                    .FileName = "explorer.exe",
+                    .Arguments = folder.SelectedPath,
+                    .UseShellExecute = True
+                }
+            }.Start()
+        End If
     End Sub
 
     Private Function ExportLayers(proc As ITaskProgress, list As TreeNode, TIC As Image, config As SetMSIPlotParameters) As Boolean
