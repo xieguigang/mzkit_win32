@@ -28,6 +28,7 @@ Partial Class SetMSIPlotParameters
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.ChkIntensityClamp = New System.Windows.Forms.CheckBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
@@ -52,7 +53,6 @@ Partial Class SetMSIPlotParameters
         Me.NumericUpDown5 = New System.Windows.Forms.NumericUpDown()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.ChkIntensityClamp = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,6 +98,14 @@ Partial Class SetMSIPlotParameters
         resources.ApplyResources(Me.GroupBox3, "GroupBox3")
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.TabStop = False
+        '
+        'ChkIntensityClamp
+        '
+        resources.ApplyResources(Me.ChkIntensityClamp, "ChkIntensityClamp")
+        Me.ChkIntensityClamp.Checked = True
+        Me.ChkIntensityClamp.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ChkIntensityClamp.Name = "ChkIntensityClamp"
+        Me.ChkIntensityClamp.UseVisualStyleBackColor = True
         '
         'TextBox3
         '
@@ -255,14 +263,6 @@ Partial Class SetMSIPlotParameters
         resources.ApplyResources(Me.Button3, "Button3")
         Me.Button3.Name = "Button3"
         Me.Button3.UseVisualStyleBackColor = True
-        '
-        'ChkIntensityClamp
-        '
-        resources.ApplyResources(Me.ChkIntensityClamp, "ChkIntensityClamp")
-        Me.ChkIntensityClamp.Checked = True
-        Me.ChkIntensityClamp.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ChkIntensityClamp.Name = "ChkIntensityClamp"
-        Me.ChkIntensityClamp.UseVisualStyleBackColor = True
         '
         'SetMSIPlotParameters
         '

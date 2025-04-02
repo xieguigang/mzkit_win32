@@ -189,4 +189,9 @@ Public Class SetMSIPlotParameters
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Me.DialogResult = DialogResult.OK
     End Sub
+
+    Private Sub ChkIntensityClamp_CheckedChanged(sender As Object, e As EventArgs) Handles ChkIntensityClamp.CheckedChanged
+        TextBox2.Enabled = ChkIntensityClamp.Checked
+        TextBox3.Enabled = ChkIntensityClamp.Checked
+    End Sub
 End Class
