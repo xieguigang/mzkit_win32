@@ -221,8 +221,15 @@ Public Class Service : Implements IDisposable
 
                 Call RunSlavePipeline.SendMessage($" * summary pixels: {pixels.Length}")
 
+                If Not filters Is Nothing Then
+                    pixels = filters _
+                        .DoIntensityScale(pixels.CreatePixelData(Of PixelData), dims) _
+                        .ExtractPixels _
+                        .ToArray
+                End If
+
                 TIC = pixels
-                TICImage = SummaryMSIBlender.Rendering(TIC, dims, "gray", 250, "transparent")
+                TICImage = SummaryMSIBlender.Rendering(TIC, dims, "gray", 60, "transparent")
                 blender = New SummaryMSIBlender(pixels, filters) With {
                     .filters = filters,
                     .sample_outline = sample_outlines
