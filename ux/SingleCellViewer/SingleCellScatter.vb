@@ -175,7 +175,7 @@ Public Class SingleCellScatter
     End Sub
 
     Private Sub LoadHeatmapData(args As SingleCellViewerArguments)
-        Dim scatter = umap_scatter.OfType(Of SingleExpression.SingleExpression).ToArray
+        Dim scatter = umap_scatter.OfType(Of SingleExpression).ToArray
         Dim range As New DoubleRange(scatter.Select(Function(a) a.expression))
         Dim colors As String() = Designer.GetColors(ScalerPalette.Seismic.Description, 30) _
             .Select(Function(c) c.ToHtmlColor) _
@@ -183,7 +183,7 @@ Public Class SingleCellScatter
         Dim offset As New DoubleRange(0, colors.Length - 1)
         Dim points As New List(Of PointData)
 
-        For Each exp In scatter
+        For Each exp As SingleExpression In scatter
             Call points.Add(New PointData(exp.Get2dEmbedding) With {
                 .color = colors(CInt(range.ScaleMapping(exp.expression, offset))),
                 .value = exp.expression
