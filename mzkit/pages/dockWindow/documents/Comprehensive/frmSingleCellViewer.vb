@@ -9,6 +9,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
+Imports SMRUCC.genomics.Analysis.SingleCell
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -69,7 +70,7 @@ Public Class frmSingleCellViewer
 
     Public Sub DoRenderExpression(mz As Double)
         Dim tol As Tolerance = Tolerance.DeltaMass(0.01)
-        Dim scatter As SingleExpression.SingleExpression() = dataIndex.Values _
+        Dim scatter As SingleExpression() = dataIndex.Values _
             .AsParallel _
             .Select(Function(s)
                         Return s.ResolveSingleExpression(mz, tol)

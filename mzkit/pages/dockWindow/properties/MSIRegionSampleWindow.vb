@@ -13,6 +13,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
+Imports SMRUCC.genomics.Analysis.Spatial.RAID
 
 Public Class MSIRegionSampleWindow
 
@@ -111,7 +112,7 @@ Public Class MSIRegionSampleWindow
 
         AddHandler region_tile.ApplySave,
             Sub(tile)
-                Call saveManualMoveRegionLocation(tile, Region, ctl)
+                Call saveManualMoveRegionLocation(tile, region, ctl)
                 Call canvas.Controls.Remove(tile)
             End Sub
     End Sub

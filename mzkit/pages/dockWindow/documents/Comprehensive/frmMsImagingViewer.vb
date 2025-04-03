@@ -119,8 +119,8 @@ Imports Mzkit_win32.MSImagingViewerV2
 Imports MZKitWin32.Blender.CommonLibs
 Imports ServiceHub
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
-Imports STImaging
-Imports STRaid
+Imports SMRUCC.genomics.Analysis.Spatial.Imaging
+Imports SMRUCC.genomics.Analysis.Spatial.RAID
 Imports Task
 Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
