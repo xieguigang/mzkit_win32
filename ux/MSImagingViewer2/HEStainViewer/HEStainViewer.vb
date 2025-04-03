@@ -6,7 +6,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
-Imports STImaging
+Imports SMRUCC.genomics.Analysis.Spatial.Imaging
 Imports std = System.Math
 
 Public Class HEStainViewer

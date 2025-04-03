@@ -14,7 +14,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
-Imports STImaging
+Imports SMRUCC.genomics.Analysis.Spatial.Imaging
 
 Public Class SpatialTile
 

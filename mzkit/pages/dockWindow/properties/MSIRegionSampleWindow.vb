@@ -13,7 +13,6 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
-Imports STRaid
 
 Public Class MSIRegionSampleWindow
 
