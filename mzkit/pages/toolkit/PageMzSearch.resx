@@ -561,6 +561,48 @@
   <data name="TabControlMs1SearchAlgorithm.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="chkUniqueMetabolites.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkUniqueMetabolites.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 169</value>
+  </data>
+  <data name="chkUniqueMetabolites.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 16</value>
+  </data>
+  <data name="chkUniqueMetabolites.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="chkUniqueMetabolites.Text" xml:space="preserve">
+    <value>Make Unique Metabolites</value>
+  </data>
+  <data name="&gt;&gt;chkUniqueMetabolites.Name" xml:space="preserve">
+    <value>chkUniqueMetabolites</value>
+  </data>
+  <data name="&gt;&gt;chkUniqueMetabolites.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkUniqueMetabolites.Parent" xml:space="preserve">
+    <value>TabSimpleMs1Search</value>
+  </data>
+  <data name="&gt;&gt;chkUniqueMetabolites.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="Label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 12</value>
+  </data>
+  <data name="Label9.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="Label9.Text" xml:space="preserve">
+    <value>Select Database:</value>
+  </data>
   <data name="&gt;&gt;Label9.Name" xml:space="preserve">
     <value>Label9</value>
   </data>
@@ -571,7 +613,16 @@
     <value>TabSimpleMs1Search</value>
   </data>
   <data name="&gt;&gt;Label9.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
+  </data>
+  <data name="cboxDatabaseList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>125, 16</value>
+  </data>
+  <data name="cboxDatabaseList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 132</value>
+  </data>
+  <data name="cboxDatabaseList.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;cboxDatabaseList.Name" xml:space="preserve">
     <value>cboxDatabaseList</value>
@@ -583,7 +634,7 @@
     <value>TabSimpleMs1Search</value>
   </data>
   <data name="&gt;&gt;cboxDatabaseList.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="TabSimpleMs1Search.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -1662,54 +1713,6 @@
   </data>
   <data name="&gt;&gt;cboxNegAdducts.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="Label9.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="Label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="Label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 12</value>
-  </data>
-  <data name="Label9.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="Label9.Text" xml:space="preserve">
-    <value>Select Database:</value>
-  </data>
-  <data name="&gt;&gt;Label9.Name" xml:space="preserve">
-    <value>Label9</value>
-  </data>
-  <data name="&gt;&gt;Label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Label9.Parent" xml:space="preserve">
-    <value>TabSimpleMs1Search</value>
-  </data>
-  <data name="&gt;&gt;Label9.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="cboxDatabaseList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 16</value>
-  </data>
-  <data name="cboxDatabaseList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 132</value>
-  </data>
-  <data name="cboxDatabaseList.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;cboxDatabaseList.Name" xml:space="preserve">
-    <value>cboxDatabaseList</value>
-  </data>
-  <data name="&gt;&gt;cboxDatabaseList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboxDatabaseList.Parent" xml:space="preserve">
-    <value>TabSimpleMs1Search</value>
-  </data>
-  <data name="&gt;&gt;cboxDatabaseList.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="NumericUpDown3.Location" type="System.Drawing.Point, System.Drawing">
     <value>102, 15</value>

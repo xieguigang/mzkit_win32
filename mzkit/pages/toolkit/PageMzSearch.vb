@@ -571,6 +571,7 @@ Public Class PageMzSearch
                 Return database
             End Function, info:="Load annotation database repository data...")
 
+        Dim makeUnique As Boolean = chkUniqueMetabolites.Checked
         Dim anno As NamedCollection(Of MzQuery)() = TaskProgress.LoadData(
             streamLoad:=Function(print As Action(Of String)) keggMeta.MSetAnnotation(mzset, print).ToArray,
             title:="Peak List Annotation",

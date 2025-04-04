@@ -111,6 +111,7 @@ Partial Class PageMzSearch
         Me.cboxNegAdducts = New System.Windows.Forms.CheckedListBox()
         Me.TabControlMs1SearchAlgorithm = New System.Windows.Forms.TabControl()
         Me.TabSimpleMs1Search = New System.Windows.Forms.TabPage()
+        Me.chkUniqueMetabolites = New System.Windows.Forms.CheckBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.cboxDatabaseList = New System.Windows.Forms.CheckedListBox()
         Me.TabMummichogSearch = New System.Windows.Forms.TabPage()
@@ -362,11 +363,20 @@ Partial Class PageMzSearch
         '
         'TabSimpleMs1Search
         '
+        Me.TabSimpleMs1Search.Controls.Add(Me.chkUniqueMetabolites)
         Me.TabSimpleMs1Search.Controls.Add(Me.Label9)
         Me.TabSimpleMs1Search.Controls.Add(Me.cboxDatabaseList)
         resources.ApplyResources(Me.TabSimpleMs1Search, "TabSimpleMs1Search")
         Me.TabSimpleMs1Search.Name = "TabSimpleMs1Search"
         Me.TabSimpleMs1Search.UseVisualStyleBackColor = True
+        '
+        'chkUniqueMetabolites
+        '
+        resources.ApplyResources(Me.chkUniqueMetabolites, "chkUniqueMetabolites")
+        Me.chkUniqueMetabolites.Checked = True
+        Me.chkUniqueMetabolites.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkUniqueMetabolites.Name = "chkUniqueMetabolites"
+        Me.chkUniqueMetabolites.UseVisualStyleBackColor = True
         '
         'Label9
         '
@@ -530,4 +540,5 @@ Partial Class PageMzSearch
     Friend WithEvents cboxNegAdducts As CheckedListBox
     Friend WithEvents AdductsPresetsLabel As Label
     Friend WithEvents AdductsPresets As ComboBox
+    Friend WithEvents chkUniqueMetabolites As CheckBox
 End Class
