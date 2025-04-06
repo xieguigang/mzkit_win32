@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::759c9860627f677f15bd3af8c0b3f4fa, mzkit\mzblender\MSIRender\Service.vb"
+﻿#Region "Microsoft.VisualBasic::0059c601a6860d7480e0e0852600b176, mzkit\mzblender\MSIRender\Service.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 265
-    '    Code Lines: 198 (74.72%)
-    ' Comment Lines: 23 (8.68%)
+    '   Total Lines: 272
+    '    Code Lines: 204 (75.00%)
+    ' Comment Lines: 23 (8.46%)
     '    - Xml Docs: 17.39%
     ' 
-    '   Blank Lines: 44 (16.60%)
-    '     File Size: 11.76 KB
+    '   Blank Lines: 45 (16.54%)
+    '     File Size: 12.04 KB
 
 
     ' Class Service

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::9f68f087e1f236807489982ba745deb2, mzkit\mzblender\MSImaging\SummaryMSIBlender.vb"
+﻿#Region "Microsoft.VisualBasic::44a4280dd59ca1cf71464c5da7f8095b, mzkit\mzblender\MSImaging\SummaryMSIBlender.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 162
-    '    Code Lines: 114 (70.37%)
-    ' Comment Lines: 21 (12.96%)
-    '    - Xml Docs: 66.67%
+    '   Total Lines: 163
+    '    Code Lines: 114 (69.94%)
+    ' Comment Lines: 22 (13.50%)
+    '    - Xml Docs: 63.64%
     ' 
-    '   Blank Lines: 27 (16.67%)
-    '     File Size: 6.27 KB
+    '   Blank Lines: 27 (16.56%)
+    '     File Size: 6.34 KB
 
 
     ' Class SummaryMSIBlender

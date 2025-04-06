@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::ebf31c33d0a70c336d22a7d39456d004, mzkit\mzblender\MSImaging\SingleIonMSIBlender.vb"
+﻿#Region "Microsoft.VisualBasic::839c4585c70f275a126de083cee72f9f, mzkit\mzblender\MSImaging\SingleIonMSIBlender.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 112
-    '    Code Lines: 86 (76.79%)
-    ' Comment Lines: 7 (6.25%)
-    '    - Xml Docs: 42.86%
+    '   Total Lines: 121
+    '    Code Lines: 82 (67.77%)
+    ' Comment Lines: 21 (17.36%)
+    '    - Xml Docs: 76.19%
     ' 
-    '   Blank Lines: 19 (16.96%)
-    '     File Size: 4.30 KB
+    '   Blank Lines: 18 (14.88%)
+    '     File Size: 4.53 KB
 
 
     ' Class SingleIonMSIBlender
@@ -54,7 +54,7 @@
     ' 
     '     Function: GetTrIQIntensity, Rendering
     ' 
-    '     Sub: SetIntensityRange
+    '     Sub: SetClampRange, SetIntensityRange
     ' 
     ' /********************************************************************************/
 
