@@ -144,6 +144,10 @@ Public Class MSIPixelPropertyWindow
         Dim w As Integer = PictureBox1.Width * scale
         Dim h As Integer = PictureBox1.Height * scale
 
+        If serial Is Nothing Then
+            Return Nothing
+        End If
+
         Try
             Return {serial}.Plot(
                 size:=$"{w},{h}",
