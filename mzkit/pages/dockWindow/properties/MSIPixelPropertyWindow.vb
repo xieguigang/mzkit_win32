@@ -140,7 +140,7 @@ Public Class MSIPixelPropertyWindow
     End Sub
 
     Private Function Plot() As Image
-        Dim scale As Single = 2
+        Dim scale As Single = 5
         Dim w As Integer = PictureBox1.Width * scale
         Dim h As Integer = PictureBox1.Height * scale
 
@@ -151,7 +151,7 @@ Public Class MSIPixelPropertyWindow
         Try
             Return {serial}.Plot(
                 size:=$"{w},{h}",
-                padding:="padding:50px 50px 100px 200px;",
+                padding:="padding:50px 50px 100px 250px;",
                 fill:=True,
                 ablines:={Q2line},
                 YtickFormat:="G2",
