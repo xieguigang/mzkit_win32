@@ -24,7 +24,16 @@ Public Class MSIRegionSampleWindow
     End Property
 
     Friend dimension As Size
-    Friend canvas As PixelSelector
+
+    Public ReadOnly Property canvas As PixelSelector
+        Get
+            If viewer Is Nothing Then
+                Return Nothing
+            Else
+                Return viewer.PixelSelector1.MSICanvas
+            End If
+        End Get
+    End Property
 
     ''' <summary>
     ''' the sample region pixels
@@ -48,9 +57,10 @@ Public Class MSIRegionSampleWindow
             .ToArray
     End Sub
 
-    Public Sub TurnUpsideDown(selector As PixelSelector)
+    Public Sub TurnUpsideDown()
+        Dim selector As PixelSelector = canvas
+
         dimension = selector.dimension_size
-        canvas = selector
 
         For Each card As RegionSampleCard In FlowLayoutPanel1.Controls
             If Not card.tissue Is Nothing Then
@@ -70,12 +80,9 @@ Public Class MSIRegionSampleWindow
         Call updateLayerRendering()
     End Sub
 
-    Public Overloads Sub LoadTissueMaps(tissues As TissueRegion(), canvas As PixelSelector, Optional append As Boolean = False)
-        If canvas Is Nothing Then
-            canvas = WindowModules.viewer.PixelSelector1.MSICanvas
-        End If
+    Public Overloads Sub LoadTissueMaps(tissues As TissueRegion(), Optional append As Boolean = False)
+        Dim canvas = WindowModules.viewer.PixelSelector1.MSICanvas
 
-        Me.canvas = canvas
         Me.dimension = canvas.dimension_size
         Me.importsFile = $"Load {tissues.Length} tissue region maps!"
 
@@ -173,11 +180,10 @@ Public Class MSIRegionSampleWindow
     ''' <summary>
     ''' 某一个样本区域可能是由多个不连续的区域所组成的
     ''' </summary>
-    Friend Sub Add(selector As PixelSelector)
-        dimension = selector.dimension_size
-        canvas = selector
+    Friend Sub Add()
+        dimension = canvas.dimension_size
 
-        Call Add(selector.GetPolygons(popAll:=True), is_raster:=False)
+        Call Add(canvas.GetPolygons(popAll:=True), is_raster:=False)
     End Sub
 
     Private Function Add(sample_group As IEnumerable(Of Polygon2D), is_raster As Boolean) As RegionSampleCard
@@ -227,6 +233,7 @@ Public Class MSIRegionSampleWindow
 
     Private Sub MSIRegionSampleWindow_Load(sender As Object, e As EventArgs) Handles Me.Load
         TabText = Text
+        viewer = WindowModules.viewer
 
         Call ApplyVsTheme(ToolStrip1)
     End Sub
@@ -287,7 +294,7 @@ Public Class MSIRegionSampleWindow
         Next
     End Function
 
-    Public Sub RenderLayer(canvas As PixelSelector)
+    Public Sub RenderLayer()
         Dim picCanvas As Size = canvas.Size
         Dim layerSize As Size = canvas.dimension_size
         Dim configs = InputConfigTissueMap.GetTissueMapViewerConfig
@@ -315,8 +322,6 @@ still happends for large slide image.",
             Call App.LogException(ex)
             Return
         End Try
-
-        Me.canvas = canvas
 
         canvas.tissue_layer = layer
         canvas.RedrawCanvas()
@@ -405,7 +410,7 @@ still happends for large slide image.",
     Private Sub updateLayerRendering()
         If Not canvas Is Nothing Then
             If RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue Then
-                Call RenderLayer(canvas)
+                Call RenderLayer()
             End If
 
             canvas.EditorConfigs = InputConfigTissueMap.GetPolygonEditorConfig
@@ -475,7 +480,7 @@ still happends for large slide image.",
             Call InputDialog.Input(
                 Sub(cfg)
                     ' update to new regions
-                    Call LoadTissueMaps(cfg.GetMergedRegions, canvas)
+                    Call LoadTissueMaps(cfg.GetMergedRegions)
                     Call updateLayerRendering()
                 End Sub, config:=getFormula)
         End If
@@ -504,7 +509,7 @@ still happends for large slide image.",
             .ToArray
 
         ' update to new regions
-        Call LoadTissueMaps(polygons, canvas)
+        Call LoadTissueMaps(polygons)
         Call updateLayerRendering()
     End Sub
 
@@ -591,7 +596,7 @@ still happends for large slide image.",
 
         ' refresh the control UI
         Call Clear()
-        Call LoadTissueMaps(polygons, canvas)
+        Call LoadTissueMaps(polygons)
 
         If labels.Length > 0 Then
             Call Workbench.SuccessMessage($"Group {labels.Length} un-labbled spots into nearest tissue region success!")
