@@ -99,9 +99,15 @@ Public Class MSIPixelPropertyWindow
         Call plotIntensityQuantile(cell.GetMs)
     End Sub
 
+    Dim serial As SerialData
+    Dim q2 As Double
+    Dim Q2line As Line
+
     Private Sub plotIntensityQuantile(spectrum As IEnumerable(Of ms2))
         Dim q As QuantileEstimationGK = spectrum.Select(Function(i) i.intensity).GKQuantile
-        Dim serial As New SerialData With {
+
+        q2 = q.Query(0.5)
+        serial = New SerialData With {
             .color = Color.SteelBlue,
             .lineType = DashStyle.Dash,
             .pointSize = 10,
@@ -114,29 +120,13 @@ Public Class MSIPixelPropertyWindow
                         End Function) _
                 .ToArray
         }
-        Dim q2 = q.Query(0.5)
-        Dim Q2line As New Line(New PointF(0, q2), New PointF(1, q2), New Stroke(Color.Red, 10))
+        Q2line = New Line(New PointF(0, q2), New PointF(1, q2), New Stroke(Color.Red, 10))
 
         If DirectCast(PropertyGrid1.SelectedObject, PixelProperty).NumOfIons = 0 Then
+            serial = Nothing
             PictureBox1.BackgroundImage = Nothing
         Else
-            Try
-                PictureBox1.BackgroundImage = {serial}.Plot(
-                    size:="900,600",
-                    padding:="padding:50px 50px 100px 200px;",
-                    fill:=True,
-                    ablines:={Q2line},
-                    YtickFormat:="G2",
-                    XtickFormat:="F1",
-                    gridFill:="white",
-                    showLegend:=False,
-                    interplot:=Splines.B_Spline,
-                    nticksX:=5,
-                    nticksY:=5
-                ).AsGDIImage
-            Catch ex As Exception
-
-            End Try
+            Call PictureBox1_SizeChanged(Nothing, Nothing)
         End If
     End Sub
 
@@ -144,4 +134,32 @@ Public Class MSIPixelPropertyWindow
         TabText = "MSI Pixel Properties"
         PictureBox1.BackgroundImageLayout = ImageLayout.Zoom
     End Sub
+
+    Private Async Sub PictureBox1_SizeChanged(sender As Object, e As EventArgs) Handles PictureBox1.SizeChanged
+        PictureBox1.BackgroundImage = Await System.Threading.Tasks.Task.Run(AddressOf Plot)
+    End Sub
+
+    Private Function Plot() As Image
+        Dim scale As Single = 2
+        Dim w As Integer = PictureBox1.Width * scale
+        Dim h As Integer = PictureBox1.Height * scale
+
+        Try
+            Return {serial}.Plot(
+                size:=$"{w},{h}",
+                padding:="padding:50px 50px 100px 200px;",
+                fill:=True,
+                ablines:={Q2line},
+                YtickFormat:="G2",
+                XtickFormat:="F1",
+                showLegend:=False,
+                interplot:=Splines.B_Spline,
+                nticksX:=6,
+                nticksY:=8,
+                fillPie:=False
+            ).AsGDIImage
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
 End Class
