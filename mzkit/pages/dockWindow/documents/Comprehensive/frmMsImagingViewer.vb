@@ -281,7 +281,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
                 If RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue Then
-                    Call sampleRegions.RenderLayer(PixelSelector1.MSICanvas)
+                    Call sampleRegions.RenderLayer()
                 Else
                     Call sampleRegions.ClearLayer(PixelSelector1.MSICanvas)
                 End If
@@ -1229,7 +1229,7 @@ Public Class frmMsImagingViewer
                         Call Me.Invoke(Sub() LoadRender(info, FilePath))
                         Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
                         Call Me.Invoke(Sub() Call StartNewPolygon())
-                        Call Me.Invoke(Sub() Call sampleRegions.TurnUpsideDown(PixelSelector1.MSICanvas))
+                        Call Me.Invoke(Sub() Call sampleRegions.TurnUpsideDown())
                     End If
 
                     Return 0
@@ -1443,8 +1443,8 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub ImportsTissueMorphology(tissues As TissueRegion(), Optional append As Boolean = False)
-        sampleRegions.LoadTissueMaps(tissues, PixelSelector1.MSICanvas, append)
-        sampleRegions.RenderLayer(PixelSelector1.MSICanvas)
+        sampleRegions.LoadTissueMaps(tissues, append)
+        sampleRegions.RenderLayer()
 
         RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue = True
 
@@ -2938,7 +2938,7 @@ Public Class frmMsImagingViewer
     Private Sub AddSampleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSampleToolStripMenuItem.Click
         If PixelSelector1.MSICanvas.HasRegionSelection Then
             If Not DrawHeMapRegion Then
-                Call sampleRegions.Add(PixelSelector1.MSICanvas)
+                Call sampleRegions.Add()
             Else
                 Dim regions = PixelSelector1.MSICanvas _
                   .GetPolygons(popAll:=True) _
