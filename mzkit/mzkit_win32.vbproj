@@ -1718,6 +1718,10 @@
       <Project>{1afb24d2-41dd-4a5a-9ac6-dde4c83adc31}</Project>
       <Name>networking</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\ggplot\src\ggplot\ggplot.NET5.vbproj">
+      <Project>{56610d10-4171-7364-7d65-579fe89c7114}</Project>
+      <Name>ggplot.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\httpd\src\Flute\Flute.NET5.vbproj">
       <Project>{11e35b0b-e524-4aff-929e-3a7a24926e3d}</Project>
       <Name>Flute.NET5</Name>
