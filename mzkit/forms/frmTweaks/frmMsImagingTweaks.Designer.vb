@@ -96,6 +96,11 @@ Partial Class frmMsImagingTweaks
         Me.RenderLayerCompositionModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RenderingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportEachSelectedLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CombineBoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CombineBarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CombineViolinPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
+        Me.NoStatisticalChartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.LoadAllAnnotationLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadBasePeakIonsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -115,11 +120,6 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
-        Me.CombineBoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CombineBarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CombineViolinPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
-        Me.NoStatisticalChartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -218,6 +218,41 @@ Partial Class frmMsImagingTweaks
         Me.ExportEachSelectedLayersToolStripMenuItem.Name = "ExportEachSelectedLayersToolStripMenuItem"
         Me.ExportEachSelectedLayersToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.ExportEachSelectedLayersToolStripMenuItem.Text = "Export Each Selected Layers"
+        '
+        'CombineBoxPlotToolStripMenuItem
+        '
+        Me.CombineBoxPlotToolStripMenuItem.CheckOnClick = True
+        Me.CombineBoxPlotToolStripMenuItem.Name = "CombineBoxPlotToolStripMenuItem"
+        Me.CombineBoxPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CombineBoxPlotToolStripMenuItem.Text = "Combine Box Plot"
+        '
+        'CombineBarPlotToolStripMenuItem
+        '
+        Me.CombineBarPlotToolStripMenuItem.CheckOnClick = True
+        Me.CombineBarPlotToolStripMenuItem.Name = "CombineBarPlotToolStripMenuItem"
+        Me.CombineBarPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CombineBarPlotToolStripMenuItem.Text = "Combine Bar Plot"
+        '
+        'CombineViolinPlotToolStripMenuItem
+        '
+        Me.CombineViolinPlotToolStripMenuItem.CheckOnClick = True
+        Me.CombineViolinPlotToolStripMenuItem.Name = "CombineViolinPlotToolStripMenuItem"
+        Me.CombineViolinPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CombineViolinPlotToolStripMenuItem.Text = "Combine Violin Plot"
+        '
+        'ToolStripMenuItem5
+        '
+        Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
+        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(177, 6)
+        '
+        'NoStatisticalChartToolStripMenuItem
+        '
+        Me.NoStatisticalChartToolStripMenuItem.Checked = True
+        Me.NoStatisticalChartToolStripMenuItem.CheckOnClick = True
+        Me.NoStatisticalChartToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.NoStatisticalChartToolStripMenuItem.Name = "NoStatisticalChartToolStripMenuItem"
+        Me.NoStatisticalChartToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.NoStatisticalChartToolStripMenuItem.Text = "No Statistical Chart"
         '
         'ToolStripMenuItem1
         '
@@ -369,41 +404,6 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton4.Name = "ToolStripButton4"
         Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton4.Text = "Analysis Selected Ions In Metabonomics Workbench"
-        '
-        'CombineBoxPlotToolStripMenuItem
-        '
-        Me.CombineBoxPlotToolStripMenuItem.CheckOnClick = True
-        Me.CombineBoxPlotToolStripMenuItem.Name = "CombineBoxPlotToolStripMenuItem"
-        Me.CombineBoxPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CombineBoxPlotToolStripMenuItem.Text = "Combine Box Plot"
-        '
-        'CombineBarPlotToolStripMenuItem
-        '
-        Me.CombineBarPlotToolStripMenuItem.CheckOnClick = True
-        Me.CombineBarPlotToolStripMenuItem.Name = "CombineBarPlotToolStripMenuItem"
-        Me.CombineBarPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CombineBarPlotToolStripMenuItem.Text = "Combine Bar Plot"
-        '
-        'CombineViolinPlotToolStripMenuItem
-        '
-        Me.CombineViolinPlotToolStripMenuItem.CheckOnClick = True
-        Me.CombineViolinPlotToolStripMenuItem.Name = "CombineViolinPlotToolStripMenuItem"
-        Me.CombineViolinPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CombineViolinPlotToolStripMenuItem.Text = "Combine Violin Plot"
-        '
-        'ToolStripMenuItem5
-        '
-        Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
-        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(177, 6)
-        '
-        'NoStatisticalChartToolStripMenuItem
-        '
-        Me.NoStatisticalChartToolStripMenuItem.Checked = True
-        Me.NoStatisticalChartToolStripMenuItem.CheckOnClick = True
-        Me.NoStatisticalChartToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.NoStatisticalChartToolStripMenuItem.Name = "NoStatisticalChartToolStripMenuItem"
-        Me.NoStatisticalChartToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.NoStatisticalChartToolStripMenuItem.Text = "No Statistical Chart"
         '
         'frmMsImagingTweaks
         '

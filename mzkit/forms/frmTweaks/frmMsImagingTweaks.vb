@@ -1154,4 +1154,32 @@ UseCheckedList:
             Return True
         End Function
     End Class
+
+    Private Sub CombineBoxPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CombineBoxPlotToolStripMenuItem.Click
+        CombineBoxPlotToolStripMenuItem.Checked = True
+        CombineBarPlotToolStripMenuItem.Checked = False
+        CombineViolinPlotToolStripMenuItem.Checked = False
+        NoStatisticalChartToolStripMenuItem.Checked = False
+    End Sub
+
+    Private Sub CombineBarPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CombineBarPlotToolStripMenuItem.Click
+        CombineBoxPlotToolStripMenuItem.Checked = False
+        CombineBarPlotToolStripMenuItem.Checked = True
+        CombineViolinPlotToolStripMenuItem.Checked = False
+        NoStatisticalChartToolStripMenuItem.Checked = False
+    End Sub
+
+    Private Sub CombineViolinPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CombineViolinPlotToolStripMenuItem.Click
+        CombineBoxPlotToolStripMenuItem.Checked = False
+        CombineBarPlotToolStripMenuItem.Checked = False
+        CombineViolinPlotToolStripMenuItem.Checked = True
+        NoStatisticalChartToolStripMenuItem.Checked = False
+    End Sub
+
+    Private Sub NoStatisticalChartToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NoStatisticalChartToolStripMenuItem.Click
+        CombineBoxPlotToolStripMenuItem.Checked = False
+        CombineBarPlotToolStripMenuItem.Checked = False
+        CombineViolinPlotToolStripMenuItem.Checked = False
+        NoStatisticalChartToolStripMenuItem.Checked = True
+    End Sub
 End Class
