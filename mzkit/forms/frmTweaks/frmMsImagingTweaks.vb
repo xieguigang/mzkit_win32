@@ -598,7 +598,7 @@ UseCheckedList:
         If data Is Nothing Then
             Return
         Else
-            Call showPlot(data, ggplotGroup.bar, mz)
+            Call showPlot(data, ggplotGroup.cstr_bar, mz)
         End If
     End Sub
 
@@ -609,7 +609,7 @@ UseCheckedList:
         If data Is Nothing Then
             Return
         Else
-            Call showPlot(data, ggplotGroup.violin, mz)
+            Call showPlot(data, ggplotGroup.cstr_violin, mz)
         End If
     End Sub
 
@@ -620,7 +620,7 @@ UseCheckedList:
         If data Is Nothing Then
             Return
         Else
-            Call showPlot(data, ggplotGroup.box, mz)
+            Call showPlot(data, ggplotGroup.cstr_box, mz)
         End If
     End Sub
 
@@ -1157,11 +1157,11 @@ UseCheckedList:
 
     Private Function GetLayerChartType() As String
         If CombineBoxPlotToolStripMenuItem.Checked Then
-            Return ggplotGroup.box
+            Return ggplotGroup.cstr_box
         ElseIf CombineBarPlotToolStripMenuItem.Checked Then
-            Return ggplotGroup.bar
+            Return ggplotGroup.cstr_bar
         ElseIf CombineViolinPlotToolStripMenuItem.Checked Then
-            Return ggplotGroup.violin
+            Return ggplotGroup.cstr_violin
         Else
             Return ""
         End If
