@@ -684,8 +684,8 @@ var molmil;
         imposterSpheres: false,
         BGCOLOR: [1.0, 1.0, 1.0, 1.0],
         backboneAtoms4Display: { "N": 1, "C": 1, "O": 1, "H": 1, "OXT": 1, "OC1": 1, "OC2": 1, "H1": 1, "H2": 1, "H3": 1, "HA": 1, "HA2": 1, "HA3": 1, "CN": 1, "CM": 1, "CH3": 1 },
-        projectionMode: 1, // 1: perspective, 2: orthographic
-        colorMode: 1, // 1: rasmol, 2: jmol
+        projectionMode: 1,
+        colorMode: 1,
         smoothFactor: 2,
         glsl_shaders: [
             ["shaders/standard.glsl"],
@@ -703,13 +703,13 @@ var molmil;
             ["shaders/standard.glsl", "standard_shader_transparent", "#define ALPHA_MODE 1\n#define TRANSPARENT_ONLY 1"],
             ["shaders/standard.glsl", "standard_alpha_uniform_color", "#define ALPHA_MODE 1\n#define UNIFORM_COLOR 1\n"],
             ["shaders/standard.glsl", "standard_alphaSet_uniform_color", "#define ALPHA_SET 1\n#define UNIFORM_COLOR 1\n"],
-            ["shaders/standard.glsl", "standard_slab", "#define ENABLE_SLAB 1\n"], // standard_slab
-            ["shaders/standard.glsl", "standard_slabColor", "#define ENABLE_SLAB 1\n#define ENABLE_SLABCOLOR 1\n"], // standard_slabColor
+            ["shaders/standard.glsl", "standard_slab", "#define ENABLE_SLAB 1\n"],
+            ["shaders/standard.glsl", "standard_slabColor", "#define ENABLE_SLAB 1\n#define ENABLE_SLABCOLOR 1\n"],
             //["shaders/imposterPoints.glsl", "points_uniform_color", "#define UNIFORM_COLOR 1\n", ["EXT_frag_depth"]],  // upgrade this to webgl2...
             ["shaders/anaglyph.glsl"],
             ["shaders/billboardShader.glsl"]
         ],
-        glsl_fog: 0, // 0: off, 1: on
+        glsl_fog: 0,
         skipClearGeometryBuffer: true,
         stereoMode: 0,
         stereoFocalFraction: 1.5,
