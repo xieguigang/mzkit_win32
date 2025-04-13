@@ -1,4 +1,4 @@
-/// <reference path="../molmil.d.ts" />
+/// <reference path="../src/deps/molmil.d.ts" />
 declare namespace molmil {
     class UI {
         soup: any;

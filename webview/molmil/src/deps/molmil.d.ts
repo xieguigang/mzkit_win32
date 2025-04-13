@@ -1,4 +1,6 @@
 /// <reference path="molmil_dep.d.ts" />
+/// <reference path="src/deps/UI.d.ts" />
+/// <reference types="node" />
 declare namespace molmil {
     const alignInfo: {};
     function align(A: any, B: any, options: any): any;
@@ -15,11 +17,20 @@ declare namespace molmil {
         cli_canvas: any;
         cli_soup: any;
         global: any;
+        colors: any;
     }
     export const commandLines: {};
     export class commandLine {
         environment: environment;
         commandBuffer: any[];
+        icon: any;
+        consoleBox: any;
+        canvas: any;
+        soup: any;
+        run: any;
+        logBox: any;
+        initDone: any;
+        altCommandIF: any;
         constructor(canvas: any);
         buildGUI(): void;
         eval(command: any): void;
@@ -454,7 +465,7 @@ declare namespace molmil {
     function handle_contextMenu_touchHold(): void;
     function handle_contextMenu_touchEnd(event: any): void;
     function toggleEntry(obj: any, dm: any, rebuildGeometry: any, soup: any): void;
-    function displayEntry(obj: any, dm: any, rebuildGeometry: any, soup: any, settings: any): void;
+    function displayEntry(obj: any, dm: any, rebuildGeometry?: boolean, soup?: any, settings?: {}): void;
     function quickModelColor(type: any, options: any, soup: any): void;
     function colorEntry(obj: any, cm: any, setting: any, rebuildGeometry: any, soup: any): void;
     function getAtomFromMolecule(molecule: any, atomName: any): any;
@@ -484,7 +495,7 @@ declare namespace molmil {
     function buildBondsList4Molecule(bonds: any, molecule: any, xyzRef: any): void;
     function isBlackListed(): boolean;
     function addEnableMolmilButton(canvas: any): any;
-    function createViewer(target: any, width: any, height: any, soupObject: any): any;
+    function createViewer(target: any, width?: any, height?: any, soupObject?: any): any;
     function selectQLV(renderer: any, QLV: any, rebuildGeometry: any): void;
     function interpolateHsl(length: any, startH: any, endH: any): any[];
     function interpolateBR(length: any): any[];
@@ -531,8 +542,7 @@ declare namespace molmil {
     function colorBfactor(selection: any, soup: any, colorFunc: any): void;
     function pointerLoc_setup(canvas: any): void;
     function pointerLock_update(e: any): void;
-    function autoSetup(options: any, canvas: any): any;
-    function processExternalCommand(cmd: any, commandBuffer: any): void;
+    function processExternalCommand(cmd: any, commandBuffer?: any): void;
     function bindCanvasInputs(canvas: any): any;
     function promode_elastic(id: any, mode: any, type: any, soup: any): void;
     function transformObject(obj: any, matrix: any): void;
@@ -615,7 +625,20 @@ declare namespace molmil {
     const geometry: _geometry;
 }
 declare namespace molmil {
+    /**
+     * fbo
+    */
     class FBO {
+        width: any;
+        height: any;
+        gl: any;
+        textures: any;
+        colourNumber: any;
+        fbo: any;
+        fbo2: any;
+        colorRenderbuffer: any;
+        depthBuffer: any;
+        multisample: any;
         constructor(gl: any, width: any, height: any);
         addTexture(textureID: any, internalFormat: any, format: any): void;
         setup(): void;
@@ -629,6 +652,19 @@ declare namespace molmil {
 }
 declare namespace molmil {
     class glCamera {
+        x: any;
+        y: any;
+        z: any;
+        QPitch: any;
+        QHeading: any;
+        QView: any;
+        QRoll: any;
+        Qtmp: any;
+        pitchAngle: any;
+        vrXYZ: any;
+        vrXYZupdated: any;
+        headingAngle: any;
+        rollAngle: any;
         constructor();
         reset(): void;
         generateMatrix(): any;
@@ -676,6 +712,7 @@ declare namespace molmil {
         defaultCanvas: any;
         onAtomPick: any;
         downloadInProgress: any;
+        SID: any;
         constructor(canvas: any);
         toString(): string;
         reloadSettings(): void;
@@ -742,6 +779,14 @@ declare namespace molmil {
     function calcRMSD(atoms1: any, atoms2: any, transform: any): any;
     function arrayMin(arr: any): any;
     function arrayMax(arr: any): any;
+}
+declare namespace molmil {
+    interface options {
+        enable: string[];
+        environment: any;
+        callback: any;
+    }
+    function autoSetup(options?: options, canvas?: any): any;
 }
 declare namespace molmil {
     function startWebVR(that: any): void;

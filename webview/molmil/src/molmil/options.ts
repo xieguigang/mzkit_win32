@@ -1,4 +1,4 @@
-/// <reference path="../../plugins/UI.d.ts"/>
+/// <reference path="../deps/UI.d.ts"/>
 
 namespace molmil {
 

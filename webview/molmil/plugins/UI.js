@@ -3182,7 +3182,7 @@ var molmil;
     }());
     molmil.animationObj = animationObj;
 })(molmil || (molmil = {}));
-///<reference path="../../molmil.d.ts" />
+/// <reference path="../deps/molmil.d.ts"/>
 var molmil;
 (function (molmil) {
     function setOnContextMenu(obj, func, lefttoo) {

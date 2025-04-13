@@ -782,8 +782,8 @@ var molmil;
 var molmil;
 (function (molmil) {
     function initSettings() {
-        cifDicLocJSON = "https://pdbj.org/molmil2/mmcif_pdbx_v50_summary.json";
-        cifDicLoc = "https://data.pdbj.org/pdbjplus/dictionaries/mmcif_pdbx.dic";
+        var cifDicLocJSON = "https://pdbj.org/molmil2/mmcif_pdbx_v50_summary.json";
+        var cifDicLoc = "https://data.pdbj.org/pdbjplus/dictionaries/mmcif_pdbx.dic";
         var colors = {
             DUMMY: [255, 20, 147],
             H: [255, 255, 255],
@@ -10652,7 +10652,7 @@ var molmil;
     }
     molmil.arrayMax = arrayMax;
 })(molmil || (molmil = {}));
-/// <reference path="../../plugins/UI.d.ts"/>
+/// <reference path="../deps/UI.d.ts"/>
 var molmil;
 (function (molmil) {
     function autoSetup(options, canvas) {

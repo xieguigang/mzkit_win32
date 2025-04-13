@@ -1,1 +1,1 @@
-///<reference path="../../molmil.d.ts" />
+/// <reference path="../deps/molmil.d.ts"/>
