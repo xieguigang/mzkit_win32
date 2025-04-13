@@ -88,3 +88,11 @@ declare namespace molmil {
     function setOnContextMenu(obj: any, func: any, lefttoo: any): void;
     function initVideo(UI: any): void;
 }
+declare namespace molmil {
+    const nfilesproc: {
+        nfiles: number;
+        maxfiles: number;
+        data: any[];
+    };
+    function renderOnlyFinal(soup: any, structures: any): void;
+}

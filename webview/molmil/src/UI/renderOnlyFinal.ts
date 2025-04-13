@@ -1,6 +1,13 @@
 namespace molmil {
 
-    export const nfilesproc = { nfiles: 0, maxfiles: 0, data: [] };
+    export const nfilesproc = {
+        // [0]
+        nfiles: 0,
+        // [1]
+        maxfiles: 0,
+        // [2]
+        data: []
+    };
 
     export function renderOnlyFinal(soup, structures) {
         nfilesproc.nfiles++;
