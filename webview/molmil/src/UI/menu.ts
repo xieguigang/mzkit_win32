@@ -73,7 +73,7 @@ namespace molmil {
                     mjsFunc(canvas, canvas.mjs_fileBin[mjsFile]);
                     return false;
                 }
-                nfilesproc[1] = count;
+                nfilesproc.maxfiles = count;
 
                 for (i = 0; i < count; i++) {
                     file = dict[items[i]];
