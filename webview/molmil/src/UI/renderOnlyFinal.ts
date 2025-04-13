@@ -1,14 +1,14 @@
 namespace molmil {
 
-    export const nfilesproc = [0, 0, []];
+    export const nfilesproc = { nfiles: 0, maxfiles: 0, data: [] };
 
     export function renderOnlyFinal(soup, structures) {
-        nfilesproc[0]++;
-        if (Array.isArray(structures)) nfilesproc[2] = nfilesproc[2].concat(structures)
-        else nfilesproc[2].push(structures);
-        if (nfilesproc[0] < nfilesproc[1]) return;
-        molmil.displayEntry(nfilesproc[2], 1);
-        molmil.colorEntry(nfilesproc[2], 1, null, true, soup);
-        nfilesproc[2] = [];
+        nfilesproc.nfiles++;
+        if (Array.isArray(structures)) nfilesproc.data = nfilesproc.data.concat(structures)
+        else nfilesproc.data.push(structures);
+        if (nfilesproc.nfiles < nfilesproc.maxfiles) return;
+        molmil.displayEntry(nfilesproc.data, 1);
+        molmil.colorEntry(nfilesproc.data, 1, null, true, soup);
+        nfilesproc.data = [];
     }
 }

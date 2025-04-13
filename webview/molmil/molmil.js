@@ -1655,6 +1655,9 @@ var molmil;
     molmil.toggleEntry = toggleEntry;
     // ** change display mode of a system/chain/molecule/atom **
     function displayEntry(obj, dm, rebuildGeometry, soup, settings) {
+        if (rebuildGeometry === void 0) { rebuildGeometry = null; }
+        if (soup === void 0) { soup = null; }
+        if (settings === void 0) { settings = {}; }
         soup = soup || molmil.cli_soup || molmil.fetchCanvas().molmilViewer;
         if (obj instanceof Array) {
             for (var i = 0; i < obj.length; i++)
@@ -1665,7 +1668,7 @@ var molmil;
             }
             return;
         }
-        settings = settings || {};
+        // settings = settings || {};
         if (soup && ((soup.SCstuff && dm % 1 == 0) || (!soup.SCstuff && dm % 1 != 0)))
             molmil.geometry.reInitChains = true;
         var m, a, c, chain, mol, backboneAtoms = molmil.configBox.backboneAtoms4Display;
