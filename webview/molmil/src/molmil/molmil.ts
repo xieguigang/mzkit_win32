@@ -1,8 +1,8 @@
 namespace molmil {
 
   export function initSettings() {
-    cifDicLocJSON = "https://pdbj.org/molmil2/mmcif_pdbx_v50_summary.json";
-    cifDicLoc = "https://data.pdbj.org/pdbjplus/dictionaries/mmcif_pdbx.dic";
+    const cifDicLocJSON = "https://pdbj.org/molmil2/mmcif_pdbx_v50_summary.json";
+    const cifDicLoc = "https://data.pdbj.org/pdbjplus/dictionaries/mmcif_pdbx.dic";
 
     var colors = {
       DUMMY: [255, 20, 147],

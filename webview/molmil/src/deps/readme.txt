@@ -1,0 +1,1 @@
+copy the generated typescript definition file to here for the source code development
