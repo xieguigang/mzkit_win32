@@ -3255,7 +3255,7 @@ var molmil;
                     mjsFunc(canvas, canvas.mjs_fileBin[mjsFile]);
                     return false;
                 }
-                molmil.nfilesproc[1] = count;
+                molmil.nfilesproc.maxfiles = count;
                 for (i = 0; i < count; i++) {
                     file = dict[items[i]];
                     if (file instanceof File) {
@@ -3613,7 +3613,14 @@ var molmil;
 })(molmil || (molmil = {}));
 var molmil;
 (function (molmil) {
-    molmil.nfilesproc = { nfiles: 0, maxfiles: 0, data: [] };
+    molmil.nfilesproc = {
+        // [0]
+        nfiles: 0,
+        // [1]
+        maxfiles: 0,
+        // [2]
+        data: []
+    };
     function renderOnlyFinal(soup, structures) {
         molmil.nfilesproc.nfiles++;
         if (Array.isArray(structures))
