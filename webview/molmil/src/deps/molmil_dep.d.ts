@@ -1,4 +1,3 @@
-/// <reference types="node" />
 declare namespace molmil_dep {
     function extendsArray(): void;
 }
@@ -21,7 +20,7 @@ declare namespace molmil_dep {
         responseType: any;
         forceSSL: boolean;
         URL: any;
-        constructor(method: any, crossDomain: any);
+        constructor(method: any, crossDomain?: boolean);
         initRequest(crossDomain: any): void;
         AddParameter(variable: any, value: any): void;
         AddParameters(list: any): void;
@@ -42,7 +41,7 @@ declare namespace molmil_dep {
 declare namespace molmil_dep {
     function extendsObject(): void;
 }
-declare namespace molmil_dep {
+declare module molmil_dep {
     function Strip(String: any, what?: any): any;
     function isTouchDevice(): boolean;
     function getKeyFromObject(obj: any, key: any, defaultReturn: any): any;
@@ -56,7 +55,7 @@ declare namespace molmil_dep {
     function initCheck(): void;
     function init(): void;
     function findPos(obj: any): number[];
-    function asyncStart(func: any, argList: any, thisArg: any, n: any): NodeJS.Timer;
+    function asyncStart(func: any, argList: any, thisArg: any, n: any): number;
     function focusOnTextEnd(el: any): void;
     function Rounding(what: any, decimals: any): number;
     function strRounding(what: any, decimals: any): string;
@@ -99,7 +98,7 @@ declare namespace molmil_dep {
     }
     const dBT: _dBT;
 }
-declare namespace molmil_dep {
+declare module molmil_dep {
     var staticHOST: string;
     var fontSize: number;
 }
