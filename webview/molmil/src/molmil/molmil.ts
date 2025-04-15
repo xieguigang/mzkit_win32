@@ -1,8 +1,8 @@
 namespace molmil {
 
   export function initSettings() {
-    cifDicLocJSON = "https://pdbj.org/molmil2/mmcif_pdbx_v50_summary.json";
-    cifDicLoc = "https://data.pdbj.org/pdbjplus/dictionaries/mmcif_pdbx.dic";
+    const cifDicLocJSON = "https://pdbj.org/molmil2/mmcif_pdbx_v50_summary.json";
+    const cifDicLoc = "https://data.pdbj.org/pdbjplus/dictionaries/mmcif_pdbx.dic";
 
     var colors = {
       DUMMY: [255, 20, 147],
@@ -746,7 +746,7 @@ namespace molmil {
   }
 
   // ** change display mode of a system/chain/molecule/atom **
-  export function displayEntry(obj, dm, rebuildGeometry, soup, settings) {
+  export function displayEntry(obj, dm, rebuildGeometry: boolean = null, soup = null, settings: {} = {}) {
     soup = soup || molmil.cli_soup || molmil.fetchCanvas().molmilViewer;
     if (obj instanceof Array) {
       for (var i = 0; i < obj.length; i++) molmil.displayEntry(obj[i], dm, null, null, settings);
@@ -756,7 +756,7 @@ namespace molmil {
       }
       return;
     }
-    settings = settings || {};
+    // settings = settings || {};
 
     if (soup && ((soup.SCstuff && dm % 1 == 0) || (!soup.SCstuff && dm % 1 != 0))) molmil.geometry.reInitChains = true;
 
@@ -2926,7 +2926,7 @@ namespace molmil {
 
   // END
 
-  export function processExternalCommand(cmd, commandBuffer=null) {
+  export function processExternalCommand(cmd, commandBuffer = null) {
     var canvas = molmil.fetchCanvas();
     if (cmd.hasOwnProperty("ping") && commandBuffer !== undefined) {
       if (!canvas || !canvas.setupDone) return;

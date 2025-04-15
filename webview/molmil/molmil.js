@@ -684,8 +684,8 @@ var molmil;
         imposterSpheres: false,
         BGCOLOR: [1.0, 1.0, 1.0, 1.0],
         backboneAtoms4Display: { "N": 1, "C": 1, "O": 1, "H": 1, "OXT": 1, "OC1": 1, "OC2": 1, "H1": 1, "H2": 1, "H3": 1, "HA": 1, "HA2": 1, "HA3": 1, "CN": 1, "CM": 1, "CH3": 1 },
-        projectionMode: 1, // 1: perspective, 2: orthographic
-        colorMode: 1, // 1: rasmol, 2: jmol
+        projectionMode: 1,
+        colorMode: 1,
         smoothFactor: 2,
         glsl_shaders: [
             ["shaders/standard.glsl"],
@@ -703,13 +703,13 @@ var molmil;
             ["shaders/standard.glsl", "standard_shader_transparent", "#define ALPHA_MODE 1\n#define TRANSPARENT_ONLY 1"],
             ["shaders/standard.glsl", "standard_alpha_uniform_color", "#define ALPHA_MODE 1\n#define UNIFORM_COLOR 1\n"],
             ["shaders/standard.glsl", "standard_alphaSet_uniform_color", "#define ALPHA_SET 1\n#define UNIFORM_COLOR 1\n"],
-            ["shaders/standard.glsl", "standard_slab", "#define ENABLE_SLAB 1\n"], // standard_slab
-            ["shaders/standard.glsl", "standard_slabColor", "#define ENABLE_SLAB 1\n#define ENABLE_SLABCOLOR 1\n"], // standard_slabColor
+            ["shaders/standard.glsl", "standard_slab", "#define ENABLE_SLAB 1\n"],
+            ["shaders/standard.glsl", "standard_slabColor", "#define ENABLE_SLAB 1\n#define ENABLE_SLABCOLOR 1\n"],
             //["shaders/imposterPoints.glsl", "points_uniform_color", "#define UNIFORM_COLOR 1\n", ["EXT_frag_depth"]],  // upgrade this to webgl2...
             ["shaders/anaglyph.glsl"],
             ["shaders/billboardShader.glsl"]
         ],
-        glsl_fog: 0, // 0: off, 1: on
+        glsl_fog: 0,
         skipClearGeometryBuffer: true,
         stereoMode: 0,
         stereoFocalFraction: 1.5,
@@ -782,8 +782,8 @@ var molmil;
 var molmil;
 (function (molmil) {
     function initSettings() {
-        cifDicLocJSON = "https://pdbj.org/molmil2/mmcif_pdbx_v50_summary.json";
-        cifDicLoc = "https://data.pdbj.org/pdbjplus/dictionaries/mmcif_pdbx.dic";
+        var cifDicLocJSON = "https://pdbj.org/molmil2/mmcif_pdbx_v50_summary.json";
+        var cifDicLoc = "https://data.pdbj.org/pdbjplus/dictionaries/mmcif_pdbx.dic";
         var colors = {
             DUMMY: [255, 20, 147],
             H: [255, 255, 255],
@@ -1655,6 +1655,9 @@ var molmil;
     molmil.toggleEntry = toggleEntry;
     // ** change display mode of a system/chain/molecule/atom **
     function displayEntry(obj, dm, rebuildGeometry, soup, settings) {
+        if (rebuildGeometry === void 0) { rebuildGeometry = null; }
+        if (soup === void 0) { soup = null; }
+        if (settings === void 0) { settings = {}; }
         soup = soup || molmil.cli_soup || molmil.fetchCanvas().molmilViewer;
         if (obj instanceof Array) {
             for (var i = 0; i < obj.length; i++)
@@ -1665,7 +1668,7 @@ var molmil;
             }
             return;
         }
-        settings = settings || {};
+        // settings = settings || {};
         if (soup && ((soup.SCstuff && dm % 1 == 0) || (!soup.SCstuff && dm % 1 != 0)))
             molmil.geometry.reInitChains = true;
         var m, a, c, chain, mol, backboneAtoms = molmil.configBox.backboneAtoms4Display;
@@ -10649,7 +10652,7 @@ var molmil;
     }
     molmil.arrayMax = arrayMax;
 })(molmil || (molmil = {}));
-/// <reference path="../../plugins/UI.d.ts"/>
+/// <reference path="../deps/UI.d.ts"/>
 var molmil;
 (function (molmil) {
     function autoSetup(options, canvas) {

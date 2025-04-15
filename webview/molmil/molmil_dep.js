@@ -46,6 +46,7 @@ var molmil_dep;
 (function (molmil_dep) {
     var CallRemote = /** @class */ (function () {
         function CallRemote(method, crossDomain) {
+            if (crossDomain === void 0) { crossDomain = false; }
             this.formData = null;
             this.request = null;
             this.Method = method;

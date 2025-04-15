@@ -21,7 +21,7 @@ namespace molmil_dep {
         forceSSL: boolean;
         URL;
 
-        constructor(method, crossDomain) {
+        constructor(method, crossDomain = false) {
             this.formData = null; this.request = null; this.Method = method; this.parameters = <any>[], this.headers = {};
             if (method == "POSTv2" && typeof (FormData) != "undefined") { this.formData = new FormData(); }
             else if (method == "POSTv2") { this.Method = "POST"; }

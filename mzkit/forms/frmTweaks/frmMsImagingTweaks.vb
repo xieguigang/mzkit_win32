@@ -72,6 +72,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
+Imports ggplot.layers
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
@@ -82,7 +83,6 @@ Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
-Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.application.json
@@ -349,9 +349,9 @@ UseCheckedList:
         Dim mz3() = getCheckedIons.ToArray
 
         If mz3.Length = 0 Then
-            Call MyApplication.host.showStatusMessage("no ions data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("no ions data...")
         ElseIf Parameters Is Nothing Then
-            Call MyApplication.host.warning("MS-imaging data is not loaded yet!")
+            Call Workbench.Warning("MS-imaging data is not loaded yet!")
             Return
         End If
 
@@ -387,7 +387,7 @@ UseCheckedList:
             ElseIf firstFile.ExtensionSuffix("CDF") Then
                 Call loadRenderFromCDF(firstFile)
             Else
-                Call MyApplication.host.showStatusMessage("invalid file type!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning("invalid file type!")
             End If
         End If
     End Sub
@@ -491,7 +491,7 @@ UseCheckedList:
                     Call Me.Invoke(Sub() Call loadBasePeakMz())
                 End Sub)
         Else
-            Call MyApplication.host.showStatusMessage("No MSI raw data file was loaded!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("No MSI raw data file was loaded!")
         End If
     End Sub
 
@@ -510,17 +510,6 @@ UseCheckedList:
             ViewLayerButton.Text = "View MS-Imaging Layer"
         Else
             ViewLayerButton.Text = "List formula ions at here"
-        End If
-    End Sub
-
-    Private Sub BoxPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BoxPlotToolStripMenuItem.Click
-        Dim mz As Double
-        Dim data = getVector(mz)
-
-        If data Is Nothing Then
-            Return
-        Else
-            Call showPlot(data, "box", mz)
         End If
     End Sub
 
@@ -609,7 +598,7 @@ UseCheckedList:
         If data Is Nothing Then
             Return
         Else
-            Call showPlot(data, "bar", mz)
+            Call showPlot(data, ggplotGroup.cstr_bar, mz)
         End If
     End Sub
 
@@ -620,7 +609,18 @@ UseCheckedList:
         If data Is Nothing Then
             Return
         Else
-            Call showPlot(data, "violin", mz)
+            Call showPlot(data, ggplotGroup.cstr_violin, mz)
+        End If
+    End Sub
+
+    Private Sub BoxPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BoxPlotToolStripMenuItem.Click
+        Dim mz As Double
+        Dim data = getVector(mz)
+
+        If data Is Nothing Then
+            Return
+        Else
+            Call showPlot(data, ggplotGroup.cstr_box, mz)
         End If
     End Sub
 
@@ -651,7 +651,7 @@ UseCheckedList:
         End If
 
         If image Is Nothing Then
-            MyApplication.host.showStatusMessage("Error while run ggplot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("Error while run ggplot...")
         Else
             Dim expr = data.ToDictionary(Function(t) t.label,
                                          Function(t)
@@ -1154,4 +1154,44 @@ UseCheckedList:
             Return True
         End Function
     End Class
+
+    Private Function GetLayerChartType() As String
+        If CombineBoxPlotToolStripMenuItem.Checked Then
+            Return ggplotGroup.cstr_box
+        ElseIf CombineBarPlotToolStripMenuItem.Checked Then
+            Return ggplotGroup.cstr_bar
+        ElseIf CombineViolinPlotToolStripMenuItem.Checked Then
+            Return ggplotGroup.cstr_violin
+        Else
+            Return ""
+        End If
+    End Function
+
+    Private Sub CombineBoxPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CombineBoxPlotToolStripMenuItem.Click
+        CombineBoxPlotToolStripMenuItem.Checked = True
+        CombineBarPlotToolStripMenuItem.Checked = False
+        CombineViolinPlotToolStripMenuItem.Checked = False
+        NoStatisticalChartToolStripMenuItem.Checked = False
+    End Sub
+
+    Private Sub CombineBarPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CombineBarPlotToolStripMenuItem.Click
+        CombineBoxPlotToolStripMenuItem.Checked = False
+        CombineBarPlotToolStripMenuItem.Checked = True
+        CombineViolinPlotToolStripMenuItem.Checked = False
+        NoStatisticalChartToolStripMenuItem.Checked = False
+    End Sub
+
+    Private Sub CombineViolinPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CombineViolinPlotToolStripMenuItem.Click
+        CombineBoxPlotToolStripMenuItem.Checked = False
+        CombineBarPlotToolStripMenuItem.Checked = False
+        CombineViolinPlotToolStripMenuItem.Checked = True
+        NoStatisticalChartToolStripMenuItem.Checked = False
+    End Sub
+
+    Private Sub NoStatisticalChartToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NoStatisticalChartToolStripMenuItem.Click
+        CombineBoxPlotToolStripMenuItem.Checked = False
+        CombineBarPlotToolStripMenuItem.Checked = False
+        CombineViolinPlotToolStripMenuItem.Checked = False
+        NoStatisticalChartToolStripMenuItem.Checked = True
+    End Sub
 End Class

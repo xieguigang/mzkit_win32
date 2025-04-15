@@ -2,6 +2,7 @@
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.Container
+Imports RibbonLib.Interop
 Imports System.ComponentModel
 Imports System.Runtime.InteropServices
 Imports System.Threading
@@ -72,6 +73,19 @@ Public Class frmMolmilViewer
     Private Sub frm3DMALDIViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call startHttp()
         Call WebKit.Init(Me.WebView21)
+
+        ribbonItems.MenuMolmil.ContextAvailable = ContextAvailability.Active
+
+        AddHandler ribbonItems.ButtonMolmilOpenFile.ExecuteEvent, Sub() OpenPdb()
+    End Sub
+
+    Private Sub OpenPdb()
+        Using file As New OpenFileDialog With {.Filter = "Protein Structure Data(*.pdb)|*.pdb"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim pdb_txt As String = file.FileName.ReadAllText
+
+            End If
+        End Using
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
