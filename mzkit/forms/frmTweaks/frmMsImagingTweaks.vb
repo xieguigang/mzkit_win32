@@ -778,7 +778,7 @@ UseCheckedList:
                 End Sub,
            title:="Imports ion list",
            info:=$"Load {mz.Length} metabolites ion data into the ms-imaging data viewer...",
-           cancel:=DoNothing,
+           cancel:=AddressOf DoNothing,
            host:=Me)
 
         Call Workbench.StatusMessage($"Load {mz.Length} ions for run data visualization.")
