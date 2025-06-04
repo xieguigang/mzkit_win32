@@ -3078,7 +3078,7 @@ Public Class frmMsImagingViewer
                                    saveAs:=save.FileName,
                                    title:=loadedPixels.Text,
                                    filters:=msi_filters,
-                                   background:=params.background.ToHtmlColor,
+                                   background:=params.background.ToHtmlColor(allowTransparent:=True),
                                    colorSet:=params.colors.Description,
                                    overlapTotalIons:=params.showTotalIonOverlap,
                                    intensityRange:=cfg.IntensityRange,
