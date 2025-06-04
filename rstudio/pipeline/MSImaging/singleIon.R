@@ -59,7 +59,8 @@ let totalIonLayer = {
             dims    = as.object(dataPack)$GetDimensionSize(),
             scale   = "gray",
             levels  = 60,
-            filters = msi_filters
+            filters = msi_filters,
+            backcolor = bg
         );
     } else {
         NULL;
