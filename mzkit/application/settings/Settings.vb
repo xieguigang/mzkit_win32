@@ -84,7 +84,7 @@ Namespace Configuration
         Public Property recentFiles As String()
 
         Public Property local_blender As Boolean = True
-
+        Public Property last_msi_folder As String
         Public Property workspaceFile As String
         ''' <summary>
         ''' username|password
@@ -124,6 +124,7 @@ Namespace Configuration
             msi_filters = Filters.DefaultFilters
             tissue_map = TissueMap.GetDefault
             local_blender = True
+            last_msi_folder = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
 
             Return Me
         End Function
