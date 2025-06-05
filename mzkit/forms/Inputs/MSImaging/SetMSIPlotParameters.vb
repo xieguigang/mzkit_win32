@@ -85,8 +85,10 @@ Public Class SetMSIPlotParameters
         Return Me
     End Function
 
+    Shared lastDir As String = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
+
     Public Function SetFileName(filename As String) As SetMSIPlotParameters
-        TextBox1.Text = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) & "\" & filename & ".png"
+        TextBox1.Text = lastDir & "\" & filename & ".png"
         Return Me
     End Function
 
@@ -138,6 +140,7 @@ Public Class SetMSIPlotParameters
             }
                 If file.ShowDialog = DialogResult.OK Then
                     TextBox1.Text = file.FileName
+                    lastDir = file.FileName.ParentPath
                 End If
             End Using
         End If
