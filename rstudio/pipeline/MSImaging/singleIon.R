@@ -104,7 +104,10 @@ let make_plot = function() {
        + labs(x = "Dimension(X)", y = "Dimension(Y)")
        + scale_x_continuous(labels = "F0")
        + scale_y_continuous(labels = "F0")
-       + theme(panel.grid = element_blank())
+       + theme(
+           panel.grid = element_blank(), 
+           plot.background = ifelse(tolower(bg) == "transparent", "transparent", "white")
+       )
     ;
 }
 
