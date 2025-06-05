@@ -1178,9 +1178,11 @@
     <ROW Component="Microsoft.VisualBasic.Math.Lambda.dll_5" ComponentId="{B052AC47-E3F2-480C-883D-A12EF16D0928}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Lambda.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.Math.Lambda.pdb" ComponentId="{FE440C52-8812-4675-92C9-0212EAF954FF}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Lambda.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll" ComponentId="{136E37EF-6BDC-4EEF-B975-812BCA9412D6}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll.config" ComponentId="{2DE90B4B-78D8-42B9-9215-E00523CD8E8F}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Matrix._2_dll.config"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_1" ComponentId="{D5704CE9-584D-4E18-AFF6-4AB3D04EC8DC}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_1"/>
-    <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_2" ComponentId="{7654CF8E-B9A4-4F41-93FC-B7F59970B02D}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_2"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_2" ComponentId="{7654CF8E-B9A4-4F41-93FC-B7F59970B02D}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.pdb"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_3" ComponentId="{24E4C6C5-0E73-483A-B823-D690E925DDBC}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_3"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_4" ComponentId="{BAC652DA-E795-4DCF-8277-C0E38EBC203C}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.pdb" ComponentId="{3CDEC19C-CA3F-435C-8A92-0544AAAAC359}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Matrix.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.xml" ComponentId="{35EAED81-4617-4D80-BD73-082564E7500E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Matrix.xml"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll" ComponentId="{C1743B21-4A9C-4103-84B1-C8567243FC5C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll"/>
@@ -1373,12 +1375,17 @@
     <ROW Component="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll" ComponentId="{4FBA250B-D1E3-4DB8-8E7A-44B08D9C6AA4}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll"/>
     <ROW Component="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll_1" ComponentId="{6B69DBD4-041E-4911-B286-16055D1A1291}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll_1"/>
     <ROW Component="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.pdb" ComponentId="{BD3FA4C6-6C74-4B14-91EF-03F1BBE5E74A}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.pdb" Type="4"/>
-    <ROW Component="SMRUCC.genomics.Analysis.SingleCel_1_l.Expression.dll" ComponentId="{70851D92-A914-416A-9D35-3588C418AED9}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.SingleCel_1_l.Expression.dll"/>
+    <ROW Component="SMRUCC.genomics.Analysis.SingleCel_1_l.Expression.dll" ComponentId="{70851D92-A914-416A-9D35-3588C418AED9}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.SingleCell.Expression.pdb"/>
     <ROW Component="SMRUCC.genomics.Analysis.SingleCel_2_l.Expression.dll" ComponentId="{2A96A32F-FFD9-48CC-B434-793067A0BB3B}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.SingleCel_2_l.Expression.dll"/>
+    <ROW Component="SMRUCC.genomics.Analysis.SingleCel_3_l.Expression.pdb" ComponentId="{4ED41AA7-4E52-4B48-B50D-72F6F2B32E4B}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.Analysis.SingleCel_1_l.Expression.pdb" Type="4"/>
+    <ROW Component="SMRUCC.genomics.Analysis.SingleCel_4_l.Expression.dll" ComponentId="{0581C653-F0C1-4645-8FCA-8AF70732B668}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.SingleCel_1_l.Expression.dll"/>
     <ROW Component="SMRUCC.genomics.Analysis.SingleCell.Expression.dll" ComponentId="{6CBF601A-0935-4A71-8BDE-5F96DE5109E3}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.SingleCell.Expression.dll"/>
     <ROW Component="SMRUCC.genomics.Analysis.Spatial.I_1_maging.dll" ComponentId="{96F5028D-2B43-4E03-BA4C-FE1F4538BDF4}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.Spatial.I_1_maging.dll"/>
+    <ROW Component="SMRUCC.genomics.Analysis.Spatial.I_2_maging.pdb" ComponentId="{215EF448-C865-4198-916D-8D439396F749}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.Analysis.Spatial.Imaging.pdb" Type="4"/>
     <ROW Component="SMRUCC.genomics.Analysis.Spatial.Imaging.dll" ComponentId="{44F6D549-CC32-476F-B28F-4184D324F244}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.Spatial.Imaging.dll"/>
     <ROW Component="SMRUCC.genomics.Analysis.Spatial.RAID.dll" ComponentId="{2D169FF2-C9E8-4E83-9926-D821BB440F6E}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.Spatial.RAID.dll"/>
+    <ROW Component="SMRUCC.genomics.Analysis.Spatial.RAID.pdb" ComponentId="{3CB782C2-5FF1-4B99-91B3-8F6D6B1C55E1}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.Analysis.Spatial.RAID.pdb" Type="4"/>
+    <ROW Component="SMRUCC.genomics.Analysis.Spatial.RAID.xml" ComponentId="{996D5DD9-7AAB-4BB0-8F9C-6578247337AA}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.Analysis.Spatial.R_1_AID.xml"/>
     <ROW Component="SMRUCC.genomics.Analysis.Spatial.R_1_AID.dll" ComponentId="{41096700-9883-4130-84C5-8FA8D29D85DB}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.Spatial.R_1_AID.dll"/>
     <ROW Component="SMRUCC.genomics.Annotation.dll" ComponentId="{75A82B33-8BA2-437B-9F78-BD82ED8EDD16}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Annotation.dll"/>
     <ROW Component="SMRUCC.genomics.Annotation.dll_1" ComponentId="{FB6FF8B2-ED4B-4F9D-BBF5-2DAE949F4FF8}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Annotation.dll_1"/>
@@ -1442,6 +1449,7 @@
     <ROW Component="SingleExpression.dll_1" ComponentId="{7626EDB0-8923-4251-962C-D786A9F744E7}" Directory_="blender_Dir" Attributes="256" KeyPath="SingleExpression.dll_1"/>
     <ROW Component="SingleExpression.dll_2" ComponentId="{A98F7FDA-CC5A-4999-84A8-47065D0EFABB}" Directory_="APPDIR" Attributes="256" KeyPath="SingleExpression.dll_2"/>
     <ROW Component="SingleExpression.pdb" ComponentId="{7A5672E6-17CC-4CC0-8074-3BA5B8CF5D67}" Directory_="APPDIR" Attributes="0" KeyPath="SingleExpression.pdb_1" Type="4"/>
+    <ROW Component="SingleExpression.pdb_1" ComponentId="{311F6128-7133-462C-A247-A830A2FBCEE3}" Directory_="blender_Dir" Attributes="0" KeyPath="SingleExpression.pdb" Type="4"/>
     <ROW Component="SkiaSharp.Extended.Svg.dll" ComponentId="{496CA523-636D-4E12-9446-F07C82CD894B}" Directory_="bin_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.Svg.dll"/>
     <ROW Component="SkiaSharp.Extended.Svg.dll_1" ComponentId="{6A9E310C-DEE3-4F40-BE07-FC3EB584A73E}" Directory_="blender_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.Svg.dll_1"/>
     <ROW Component="SkiaSharp.Extended.dll" ComponentId="{A4532608-43D3-4A1E-B2E1-9E8073430F2A}" Directory_="bin_Dir" Attributes="0" KeyPath="SkiaSharp.Extended.dll"/>
@@ -2037,6 +2045,8 @@
     <ROW Component="gfilteroutputstream.h" ComponentId="{3D4712B8-12EB-48EF-8439-8A22D41B79AE}" Directory_="gio_1_Dir" Attributes="0" KeyPath="gfilteroutputstream.h"/>
     <ROW Component="ggettext.h" ComponentId="{E89CCE64-1DD3-46DA-9CDB-B0E4BE760CF7}" Directory_="glib_1_Dir" Attributes="0" KeyPath="ggettext.h"/>
     <ROW Component="ggplot.dll" ComponentId="{D4C09D23-CCB8-4091-AF46-B89D6D31648A}" Directory_="APPDIR" Attributes="256" KeyPath="ggplot.dll"/>
+    <ROW Component="ggplot.pdb" ComponentId="{EB285808-B6C2-47CB-8EE5-23E5919EF0E5}" Directory_="APPDIR" Attributes="0" KeyPath="ggplot.pdb" Type="4"/>
+    <ROW Component="ggplot.xml" ComponentId="{CE98FDA2-829D-4EE5-91B8-F9B8D1C0E983}" Directory_="APPDIR" Attributes="0" KeyPath="ggplot.xml"/>
     <ROW Component="ggplot2.R" ComponentId="{023AC957-2102-4B0E-BC0F-DB37073393BD}" Directory_="ggplot_Dir" Attributes="0" KeyPath="ggplot2.R" Type="0"/>
     <ROW Component="ghash.h" ComponentId="{718F9098-8424-4CBB-9F2E-AF5DFA0007E2}" Directory_="glib_1_Dir" Attributes="0" KeyPath="ghash.h"/>
     <ROW Component="ghmac.h" ComponentId="{AEDF7E95-66C8-4074-84F8-EF6C61757836}" Directory_="glib_1_Dir" Attributes="0" KeyPath="ghmac.h"/>
@@ -19935,8 +19945,8 @@
     <ROW File="package.json_574" Component_="animationObj.ts" FileName="PACKAG~2.JSO|package.json" Attributes="0" SourcePath="..\webview\molmil\src\UI\package.json" SelfReg="false"/>
     <ROW File="tsconfig.json_4" Component_="animationObj.ts" FileName="TSCONF~1.JSO|tsconfig.json" Attributes="0" SourcePath="..\webview\molmil\src\UI\tsconfig.json" SelfReg="false"/>
     <ROW File="UI.ts" Component_="animationObj.ts" FileName="UI.ts" Attributes="0" SourcePath="..\webview\molmil\src\UI\UI.ts" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.Matrix.dll_2" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2" FileName="MICROS~8.DLL|Microsoft.VisualBasic.Math.Matrix.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.Matrix._2_dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICROS~3.CON|Microsoft.VisualBasic.Math.Matrix.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.dll.config" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix.dll_2" Component_="Microsoft.VisualBasic.Math.Matrix.dll_4" FileName="MICROS~8.DLL|Microsoft.VisualBasic.Math.Matrix.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Matrix._2_dll.config" Component_="Microsoft.VisualBasic.Math.Matrix.dll.config" FileName="MICROS~3.CON|Microsoft.VisualBasic.Math.Matrix.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix.pdb" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2" FileName="MICROS~8.PDB|Microsoft.VisualBasic.Math.Matrix.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Math.Matrix.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix.dll_3" Component_="Microsoft.VisualBasic.Math.Matrix.dll_3" FileName="MICRO~30.DLL|Microsoft.VisualBasic.Math.Matrix.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix._3_dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MICROS~2.CON|Microsoft.VisualBasic.Math.Matrix.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.dll.config" SelfReg="false"/>
@@ -19944,7 +19954,7 @@
     <ROW File="SingleExpression.dll" Component_="SingleExpression.dll" FileName="SINGLE~1.DLL|SingleExpression.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\SingleExpression.dll" SelfReg="false"/>
     <ROW File="STRaid.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="STRaid.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\STRaid.xml" SelfReg="false"/>
     <ROW File="SingleExpression.dll_1" Component_="SingleExpression.dll_1" FileName="SINGLE~1.DLL|SingleExpression.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SingleExpression.dll" SelfReg="false"/>
-    <ROW File="SingleExpression.pdb" Component_="SingleExpression.dll_1" FileName="SINGLE~1.PDB|SingleExpression.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SingleExpression.pdb" SelfReg="false"/>
+    <ROW File="SingleExpression.pdb" Component_="SingleExpression.pdb_1" FileName="SINGLE~1.PDB|SingleExpression.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SingleExpression.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.xml_1" Component_="Flute.Http.xml" FileName="MICROS~6.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.xml_3" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~27.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.xml_4" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICROS~9.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
@@ -19968,18 +19978,18 @@
     <ROW File="renderOnlyFinal.ts" Component_="initVideo.ts" FileName="RENDER~1.TS|renderOnlyFinal.ts" Attributes="0" SourcePath="..\webview\molmil\src\UI\menu\renderOnlyFinal.ts" SelfReg="false"/>
     <ROW File="setOnContextMenu.ts" Component_="initVideo.ts" FileName="SETONC~1.TS|setOnContextMenu.ts" Attributes="0" SourcePath="..\webview\molmil\src\UI\menu\setOnContextMenu.ts" SelfReg="false"/>
     <ROW File="pathway_charts.R" Component_="singleIon.R" FileName="PATHWA~1.R|pathway_charts.R" Attributes="0" SourcePath="..\rstudio\pipeline\MSImaging\pathway_charts.R" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Analysis.SingleCel_1_l.Expression.dll" Component_="SMRUCC.genomics.Analysis.SingleCel_1_l.Expression.dll" FileName="SMRUCC~1.DLL|SMRUCC.genomics.Analysis.SingleCell.Expression.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.Analysis.SingleCell.Expression.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Analysis.SingleCel_1_l.Expression.dll" Component_="SMRUCC.genomics.Analysis.SingleCel_4_l.Expression.dll" FileName="SMRUCC~1.DLL|SMRUCC.genomics.Analysis.SingleCell.Expression.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.Analysis.SingleCell.Expression.dll" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Analysis.SingleCell.Expression.pdb" Component_="SMRUCC.genomics.Analysis.SingleCel_1_l.Expression.dll" FileName="SMRUCC~1.PDB|SMRUCC.genomics.Analysis.SingleCell.Expression.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.Analysis.SingleCell.Expression.pdb" SelfReg="false"/>
     <ROW File="ggplot.dll" Component_="ggplot.dll" FileName="ggplot.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ggplot.dll" SelfReg="false"/>
-    <ROW File="ggplot.pdb" Component_="ggplot.dll" FileName="ggplot.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\ggplot.pdb" SelfReg="false"/>
-    <ROW File="ggplot.xml" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="ggplot.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ggplot.xml" SelfReg="false"/>
+    <ROW File="ggplot.pdb" Component_="ggplot.pdb" FileName="ggplot.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\ggplot.pdb" SelfReg="false"/>
+    <ROW File="ggplot.xml" Component_="ggplot.xml" FileName="ggplot.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ggplot.xml" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Analysis.SingleCel_2_l.Expression.dll" Component_="SMRUCC.genomics.Analysis.SingleCel_2_l.Expression.dll" FileName="SMRUC~20.DLL|SMRUCC.genomics.Analysis.SingleCell.Expression.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.SingleCell.Expression.dll" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Analysis.SingleCel_1_l.Expression.pdb" Component_="SMRUCC.genomics.Analysis.SingleCel_2_l.Expression.dll" FileName="SMRUC~20.PDB|SMRUCC.genomics.Analysis.SingleCell.Expression.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.SingleCell.Expression.pdb" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Analysis.SingleCel_1_l.Expression.pdb" Component_="SMRUCC.genomics.Analysis.SingleCel_3_l.Expression.pdb" FileName="SMRUC~20.PDB|SMRUCC.genomics.Analysis.SingleCell.Expression.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.SingleCell.Expression.pdb" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Analysis.Spatial.I_1_maging.dll" Component_="SMRUCC.genomics.Analysis.Spatial.I_1_maging.dll" FileName="SMRUC~21.DLL|SMRUCC.genomics.Analysis.Spatial.Imaging.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.Spatial.Imaging.dll" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Analysis.Spatial.Imaging.pdb" Component_="SMRUCC.genomics.Analysis.Spatial.I_1_maging.dll" FileName="SMRUC~21.PDB|SMRUCC.genomics.Analysis.Spatial.Imaging.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.Spatial.Imaging.pdb" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Analysis.Spatial.Imaging.pdb" Component_="SMRUCC.genomics.Analysis.Spatial.I_2_maging.pdb" FileName="SMRUC~21.PDB|SMRUCC.genomics.Analysis.Spatial.Imaging.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.Spatial.Imaging.pdb" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Analysis.Spatial.R_1_AID.dll" Component_="SMRUCC.genomics.Analysis.Spatial.R_1_AID.dll" FileName="SMRUC~22.DLL|SMRUCC.genomics.Analysis.Spatial.RAID.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.Spatial.RAID.dll" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Analysis.Spatial.RAID.pdb" Component_="SMRUCC.genomics.Analysis.Spatial.R_1_AID.dll" FileName="SMRUC~22.PDB|SMRUCC.genomics.Analysis.Spatial.RAID.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.Spatial.RAID.pdb" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Analysis.Spatial.R_1_AID.xml" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="SMRUC~18.XML|SMRUCC.genomics.Analysis.Spatial.RAID.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.Spatial.RAID.xml" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Analysis.Spatial.RAID.pdb" Component_="SMRUCC.genomics.Analysis.Spatial.RAID.pdb" FileName="SMRUC~22.PDB|SMRUCC.genomics.Analysis.Spatial.RAID.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.Spatial.RAID.pdb" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Analysis.Spatial.R_1_AID.xml" Component_="SMRUCC.genomics.Analysis.Spatial.RAID.xml" FileName="SMRUC~18.XML|SMRUCC.genomics.Analysis.Spatial.RAID.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.Spatial.RAID.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -22878,6 +22888,16 @@
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Analysis.SingleCel_2_l.Expression.dll"/>
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Analysis.Spatial.I_1_maging.dll"/>
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Analysis.Spatial.R_1_AID.dll"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="ggplot.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.Analysis.Spatial.RAID.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.Analysis.Spatial.I_2_maging.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="ggplot.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.Analysis.SingleCel_3_l.Expression.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.Analysis.Spatial.RAID.pdb"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Matrix.dll_4"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Analysis.SingleCel_4_l.Expression.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Matrix.dll.config"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SingleExpression.pdb_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
