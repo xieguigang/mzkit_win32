@@ -13,7 +13,7 @@ obo
     "http://purl.obolibrary.org/obo/chebi/monoisotopicmass",
     "http://purl.obolibrary.org/obo/chebi/inchikey",
     "http://purl.obolibrary.org/obo/chebi/inchi",
-    "http://purl.obolibrary.org/obo/chebi/smiles"
+    "http://purl.obolibrary.org/obo/chebi/mass"
 ])
 |> set_remarks([
     "converts from the chebi.obo full dataset"
@@ -23,7 +23,7 @@ obo
     prefix_namespace = "http://purl.obolibrary.org/obo/chebi/"
 )
 |> set_namespace(dag = obo |> ontologyTree(), namespace = ["chemical entity" "role" "subatomic particle"])
-|> write.obo( "./chebi_lite.obo",  excludes = ["synonym", "relationship","alt_id","xref","subset"], 
+|> write.obo( "./chebi_lite.obo",  excludes = ["relationship","alt_id","subset"], 
         strip_namespace_prefix = "http://purl.obolibrary.org/obo/chebi/",
         strip_property_unit=TRUE)
 ;
