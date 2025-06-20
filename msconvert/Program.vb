@@ -343,7 +343,7 @@ Imports MZWorkPack
         Dim defaultIon As IonModes = CInt(args("/default_ion") Or 1)
         Dim mzPack As mzPack
         Dim fly As String = args("/fly_stream") Or "auto"
-        Dim centroid As String = args("/centroid") Or ""
+        Dim centroid As String = args("/centroid") Or "da:0.01"
 
         If target.ExtensionSuffix("imzml") Then
             Dim ibd As String = target.ChangeSuffix("ibd")
