@@ -63,6 +63,12 @@ Public Class IonLibrary : Implements Enumeration(Of IonPair)
     Dim dadot3 As Tolerance = Tolerance.DeltaMass(0.3)
     Dim ions As IonPair()
 
+    Public ReadOnly Property IsEmpty As Boolean
+        Get
+            Return ions.IsNullOrEmpty
+        End Get
+    End Property
+
     Sub New(ions As IEnumerable(Of IonPair))
         Me.ions = ions.ToArray
     End Sub

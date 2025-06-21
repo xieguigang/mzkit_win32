@@ -62,7 +62,9 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
 Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports Task
@@ -375,6 +377,25 @@ Public Class frmSRMIonsExplorer
         End If
 
         Dim files As String() = chrs.Select(Function(c) filepath(c.name)).ToArray
+        Dim ionsLib As IonLibrary = Globals.LoadIonLibrary
+        Dim workdir As String = TempFileSystem.GetAppSysTempFile(".html", App.PID, "batch_MRM_workdir").ParentPath
+
+        If ionsLib.IsEmpty Then
+            If MessageBox.Show("No ion pairs information was founded in the MRM ions library, please config the ions library at first!",
+                            "No Ions Library",
+                            MessageBoxButtons.OKCancel,
+                            MessageBoxIcon.Exclamation) Then
+
+                Call VisualStudio.ShowSingleDocument(Of frmMRMLibrary)(Nothing)
+            End If
+
+            Return
+        End If
+
+        Call files.SaveTo($"{workdir}/files.txt")
+        Call ionsLib.AsEnumerable.SaveTo($"{workdir}/ions.csv", silent:=True)
+
+        ' call background task to run the batch processing
 
     End Sub
 End Class
