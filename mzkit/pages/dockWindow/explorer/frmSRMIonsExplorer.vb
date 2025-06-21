@@ -70,12 +70,21 @@ Imports chromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupDa
 
 Public Class frmSRMIonsExplorer
 
+    ReadOnly filepath As New Dictionary(Of String, String)
+
     Private Sub ImportsFilesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsFilesToolStripMenuItem.Click, ToolStripButton1.Click
-        Using openfile As New OpenFileDialog With {.Filter = "LC-MSMS(*.mzML)|*.mzML|AB sciex wiff(*.wiff)|*.wiff", .Multiselect = True}
+        Using openfile As New OpenFileDialog With {
+            .Filter = "LC-MSMS(*.mzML)|*.mzML|AB sciex wiff(*.wiff)|*.wiff",
+            .Multiselect = True
+        }
             If openfile.ShowDialog = DialogResult.OK Then
                 Dim notMRM As New List(Of String)
 
+                Call filepath.Clear()
+
                 For Each file As String In openfile.FileNames
+                    filepath(file.BaseName) = file
+
                     If file.ExtensionSuffix("wiff") Then
                         Dim wiffRaw As New sciexWiffReader.WiffScanFileReader(file)
                         Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) wiffRaw.LoadFromWiffRaw(checkNoise:=True, println.Echo))
@@ -84,13 +93,16 @@ Public Class frmSRMIonsExplorer
                     ElseIf RawScanParser.IsMRMData(file) Then
                         Call LoadMRM(file)
                     Else
-                        Call MyApplication.LogText($"{file} is not a MRM raw data file!")
+                        Call Workbench.Warning($"{file} is not a MRM raw data file!")
                         Call notMRM.Add(file.FileName)
                     End If
                 Next
 
-                If notMRM.Count > 0 Then
-                    MessageBox.Show($"These files are not MRM data files, load of the files was ignored:" & vbCrLf & notMRM.JoinBy(vbCrLf), "mzkit", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                If notMRM.Any Then
+                    MessageBox.Show($"There are {notMRM.Count} data files are not MRM data files, load of the files was ignored:" & vbCrLf & notMRM.JoinBy(vbCrLf),
+                                    "MZKit MRM File Reader",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error)
                 End If
             End If
         End Using
@@ -162,11 +174,9 @@ Public Class frmSRMIonsExplorer
     Public Sub LoadMRM(file As String)
         Dim list = file.LoadChromatogramList.ToArray
         Dim TIC As BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram = list.GetIonsChromatogram
-
-        ' Call Win7StyleTreeView1.Nodes.Clear()
-
         Dim TICRoot As TreeNode = Win7StyleTreeView1.Nodes.Add(file.FileName)
 
+        TIC.name = file.BaseName
         TICRoot.Tag = TIC
         TICRoot.ImageIndex = 0
         TICRoot.ContextMenuStrip = ContextMenuStrip1
@@ -342,6 +352,29 @@ Public Class frmSRMIonsExplorer
     End Sub
 
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Dim chrs As New List(Of BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram)
+
+        For Each rawfile As TreeNode In Win7StyleTreeView1.Nodes
+            If rawfile.Checked Then
+                Call chrs.Add(rawfile.Tag)
+            End If
+        Next
+
+        If chrs.Count = 0 Then
+            If MessageBox.Show("No data files was selected in the MRM file explorer for run the batch ion targetted processing, select all files for run the batch processing?",
+                               "No Files For Processing",
+                               MessageBoxButtons.OKCancel,
+                               MessageBoxIcon.Exclamation) = DialogResult.OK Then
+                ' select all files
+                For Each rawfile As TreeNode In Win7StyleTreeView1.Nodes
+                    Call chrs.Add(rawfile.Tag)
+                Next
+            Else
+                Return
+            End If
+        End If
+
+        Dim files As String() = chrs.Select(Function(c) filepath(c.name)).ToArray
 
     End Sub
 End Class
