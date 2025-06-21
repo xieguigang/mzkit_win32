@@ -108,11 +108,17 @@ Public Class frmMRMLibrary
     End Sub
 
     Private Sub frmMRMLibrary_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim ions As IonPair() = Globals.LoadIonLibrary.AsEnumerable.ToArray
-
         FilePath = Globals.Settings.MRMLibfile
         TabText = "MRM ions Library"
         Icon = My.Resources.DBFile
+
+        Call LoadLibrary()
+    End Sub
+
+    Private Sub LoadLibrary()
+        Dim ions As IonPair() = Globals.LoadIonLibrary.AsEnumerable.ToArray
+
+        DataGridView1.Rows.Clear()
 
         For Each ion As IonPair In ions
             DataGridView1.Rows.Add(ion.accession, ion.name, ion.rt, ion.precursor, ion.product)
@@ -176,5 +182,27 @@ Public Class frmMRMLibrary
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Sub Add(id As String, name As String, q1 As Double, q2 As Double, rt As Double) Implements MRMLibraryPage.Add
         Call DataGridView1.Rows.Add(id, name, rt, q1, q2)
+    End Sub
+
+    Private Sub ImportsTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsTableToolStripMenuItem.Click
+        Using file As New OpenFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim ions As IonPair() = file.FileName.LoadCsv(Of IonPair)
+                Dim libs As IonPair() = Globals.LoadIonLibrary.AsEnumerable.ToArray
+
+                If libs.Any Then
+                    If MessageBox.Show($"Load {ions.Length} from the table file, analso current exists {libs.Length} ions in library," & vbCrLf & "Going to merge with current library data(Yes) or replace of the current library data(No)?",
+                                       "Imports Ions Table",
+                                       MessageBoxButtons.YesNo,
+                                       MessageBoxIcon.Information) = DialogResult.Yes Then
+
+                        ions = ions.JoinIterates(libs).GroupBy(Function(a) a.accession).Select(Function(a) a.First).ToArray
+                    End If
+                End If
+
+                Call ions.SaveTo(Globals.Settings.MRMLibfile)
+                Call LoadLibrary()
+            End If
+        End Using
     End Sub
 End Class
