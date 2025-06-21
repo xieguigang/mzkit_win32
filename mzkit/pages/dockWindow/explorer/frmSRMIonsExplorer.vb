@@ -252,7 +252,7 @@ Public Class frmSRMIonsExplorer
         TIC = ticks
         title = e.Node.Text
 
-        Call MyApplication.host.mzkitTool.ShowMRMTIC(e.Node.Text, ticks)
+        Call MyApplication.host.mzkitTool.ShowMRMTIC(e.Node.Text, ticks, maxrt)
     End Sub
 
     Private Sub TICToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TICToolStripMenuItem.Click
@@ -363,7 +363,7 @@ Public Class frmSRMIonsExplorer
 
     Private Sub PeakFindingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PeakFindingToolStripMenuItem.Click
         If Not TIC.IsNullOrEmpty Then
-            Call MyApplication.host.mzkitTool.ShowMRMTIC(title, TIC)
+            Call MyApplication.host.mzkitTool.ShowMRMTIC(title, TIC, maxrt)
             Call RibbonEvents.CreatePeakFinding()
         End If
     End Sub

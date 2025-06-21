@@ -164,7 +164,7 @@ Public Class frmGCMSPeaks
                     .ToArray
             }
 
-            Call MyApplication.host.mzkitTool.ShowMRMTIC(XIC.name, XIC.value)
+            Call MyApplication.host.mzkitTool.ShowMRMTIC(XIC.name, XIC.value, Nothing)
             Call VisualStudio.ShowProperties(New agilentGCMSMeta(DirectCast(e.Node.Parent.Tag, Raw).attributes))
         End If
     End Sub
@@ -176,7 +176,7 @@ Public Class frmGCMSPeaks
         gcmsRaw.Show(DockPanel)
         gcmsRaw.DockState = DockState.Document
 
-        Call MyApplication.host.mzkitTool.ShowMRMTIC(TIC.name, TIC.value)
+        Call MyApplication.host.mzkitTool.ShowMRMTIC(TIC.name, TIC.value, Nothing)
         Call VisualStudio.ShowProperties(New agilentGCMSMeta(gcmsRaw.gcms.attributes))
     End Sub
 
