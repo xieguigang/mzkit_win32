@@ -107,6 +107,7 @@ Partial Class frmSRMIonsExplorer
         Me.ShowTICOverlap3DToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
         Me.PeakFindingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ContextMenuStrip3.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -184,6 +185,7 @@ Partial Class frmSRMIonsExplorer
         Me.Win7StyleTreeView1.HotTracking = True
         Me.Win7StyleTreeView1.ImageIndex = 0
         Me.Win7StyleTreeView1.ImageList = Me.ImageList1
+        Me.Win7StyleTreeView1.ItemHeight = 14
         Me.Win7StyleTreeView1.Location = New System.Drawing.Point(0, 25)
         Me.Win7StyleTreeView1.Name = "Win7StyleTreeView1"
         Me.Win7StyleTreeView1.SelectedImageIndex = 0
@@ -242,7 +244,7 @@ Partial Class frmSRMIonsExplorer
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripButton1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(387, 25)
@@ -251,9 +253,10 @@ Partial Class frmSRMIonsExplorer
         '
         'ToolStripLabel1
         '
+        Me.ToolStripLabel1.IsLink = True
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(64, 22)
-        Me.ToolStripLabel1.Text = "MRM Ions:"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(144, 22)
+        Me.ToolStripLabel1.Text = "View MRM Targetted Ions:"
         '
         'ContextMenuStrip2
         '
@@ -283,6 +286,15 @@ Partial Class frmSRMIonsExplorer
         Me.PeakFindingToolStripMenuItem.Name = "PeakFindingToolStripMenuItem"
         Me.PeakFindingToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.PeakFindingToolStripMenuItem.Text = "Peak Finding"
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "Data Files Imports"
         '
         'frmSRMIonsExplorer
         '
@@ -328,4 +340,5 @@ Partial Class frmSRMIonsExplorer
     Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
     Friend WithEvents ToolStripMenuItem5 As ToolStripSeparator
     Friend WithEvents PeakFindingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripButton1 As ToolStripButton
 End Class

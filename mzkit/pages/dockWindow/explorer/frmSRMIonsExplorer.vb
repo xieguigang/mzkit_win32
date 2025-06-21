@@ -70,7 +70,7 @@ Imports chromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupDa
 
 Public Class frmSRMIonsExplorer
 
-    Private Sub ImportsFilesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsFilesToolStripMenuItem.Click
+    Private Sub ImportsFilesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsFilesToolStripMenuItem.Click, ToolStripButton1.Click
         Using openfile As New OpenFileDialog With {.Filter = "LC-MSMS(*.mzML)|*.mzML|AB sciex wiff(*.wiff)|*.wiff", .Multiselect = True}
             If openfile.ShowDialog = DialogResult.OK Then
                 Dim notMRM As New List(Of String)
