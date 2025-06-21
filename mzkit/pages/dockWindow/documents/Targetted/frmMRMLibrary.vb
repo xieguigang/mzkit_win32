@@ -198,8 +198,23 @@ Public Class frmMRMLibrary
                     Return
                 End If
 
+                Dim unit_minute As Boolean = False
+
+                If MessageBox.Show("Does the rt of the ion is in time data unit Seconds(Yes) or Minutes(No)?",
+                                   "Set Time Unit",
+                                   MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.No Then
+                    unit_minute = True
+                End If
+
                 Dim ions As IonPair() = file.FileName.LoadCsv(Of IonPair)
                 Dim libs As IonPair() = Globals.LoadIonLibrary.AsEnumerable.ToArray
+
+                If unit_minute Then
+                    ' convert the rt from minutes to seconds
+                    For Each ion As IonPair In ions
+                        ion.rt *= 60
+                    Next
+                End If
 
                 If libs.Any Then
                     If MessageBox.Show($"Load {ions.Length} from the table file, analso current exists {libs.Length} ions in library," & vbCrLf & "Going to merge with current library data(Yes) or replace of the current library data(No)?",
