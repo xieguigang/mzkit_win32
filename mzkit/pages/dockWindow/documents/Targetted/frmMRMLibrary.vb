@@ -187,6 +187,17 @@ Public Class frmMRMLibrary
     Private Sub ImportsTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsTableToolStripMenuItem.Click
         Using file As New OpenFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
+                Dim check As String() = MappingsHelper.CheckFieldMissing(Of IonPair)(file.FileName).ToArray
+
+                If check.Any Then
+                    MessageBox.Show($"The following fields are missing in the table file:{vbCrLf}{vbCrLf}" & check.JoinBy(vbCrLf) & vbCrLf & vbCrLf &
+                                       "Please edit your ion table file and then try again.",
+                                       "Imports Ions Table",
+                                       MessageBoxButtons.OK,
+                                       MessageBoxIcon.Error)
+                    Return
+                End If
+
                 Dim ions As IonPair() = file.FileName.LoadCsv(Of IonPair)
                 Dim libs As IonPair() = Globals.LoadIonLibrary.AsEnumerable.ToArray
 
