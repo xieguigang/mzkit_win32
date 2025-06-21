@@ -102,12 +102,13 @@ Partial Class frmSRMIonsExplorer
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ShowTICOverlapToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowTICOverlap3DToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
         Me.PeakFindingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ContextMenuStrip3.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -185,7 +186,7 @@ Partial Class frmSRMIonsExplorer
         Me.Win7StyleTreeView1.HotTracking = True
         Me.Win7StyleTreeView1.ImageIndex = 0
         Me.Win7StyleTreeView1.ImageList = Me.ImageList1
-        Me.Win7StyleTreeView1.ItemHeight = 14
+        Me.Win7StyleTreeView1.ItemHeight = 16
         Me.Win7StyleTreeView1.Location = New System.Drawing.Point(0, 25)
         Me.Win7StyleTreeView1.Name = "Win7StyleTreeView1"
         Me.Win7StyleTreeView1.SelectedImageIndex = 0
@@ -244,7 +245,7 @@ Partial Class frmSRMIonsExplorer
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripButton1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripButton1, Me.ToolStripButton2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(387, 25)
@@ -257,6 +258,15 @@ Partial Class frmSRMIonsExplorer
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
         Me.ToolStripLabel1.Size = New System.Drawing.Size(144, 22)
         Me.ToolStripLabel1.Text = "View MRM Targetted Ions:"
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "Data Files Imports"
         '
         'ContextMenuStrip2
         '
@@ -287,14 +297,14 @@ Partial Class frmSRMIonsExplorer
         Me.PeakFindingToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.PeakFindingToolStripMenuItem.Text = "Peak Finding"
         '
-        'ToolStripButton1
+        'ToolStripButton2
         '
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton1.Text = "Data Files Imports"
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton2.Text = "Batch Processing Ion Quantification"
         '
         'frmSRMIonsExplorer
         '
@@ -341,4 +351,5 @@ Partial Class frmSRMIonsExplorer
     Friend WithEvents ToolStripMenuItem5 As ToolStripSeparator
     Friend WithEvents PeakFindingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents ToolStripButton2 As ToolStripButton
 End Class

@@ -340,4 +340,8 @@ Public Class frmSRMIonsExplorer
             Call RibbonEvents.CreatePeakFinding()
         End If
     End Sub
+
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+
+    End Sub
 End Class
