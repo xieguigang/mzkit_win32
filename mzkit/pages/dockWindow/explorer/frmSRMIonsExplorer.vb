@@ -74,6 +74,8 @@ Public Class frmSRMIonsExplorer
 
     ReadOnly filepath As New Dictionary(Of String, String)
 
+    Dim maxrt As Double
+
     Private Sub ImportsFilesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsFilesToolStripMenuItem.Click, ToolStripButton1.Click
         Using openfile As New OpenFileDialog With {
             .Filter = "LC-MSMS(*.mzML)|*.mzML|AB sciex wiff(*.wiff)|*.wiff",
@@ -82,7 +84,8 @@ Public Class frmSRMIonsExplorer
             If openfile.ShowDialog = DialogResult.OK Then
                 Dim notMRM As New List(Of String)
 
-                Call filepath.Clear()
+                filepath.Clear()
+                maxrt = 0
 
                 For Each file As String In openfile.FileNames
                     filepath(file.BaseName) = file
@@ -133,6 +136,12 @@ Public Class frmSRMIonsExplorer
             TICRoot.ImageIndex = 0
             TICRoot.ContextMenuStrip = ContextMenuStrip1
 
+            Dim max As Double = tic.scan_time.Max
+
+            If max > maxrt Then
+                maxrt = max
+            End If
+
             For Each chr As String In ions
                 Dim t As Double() = chr.Replace("MRM:", "") _
                     .Trim _
@@ -182,6 +191,12 @@ Public Class frmSRMIonsExplorer
         TICRoot.Tag = TIC
         TICRoot.ImageIndex = 0
         TICRoot.ContextMenuStrip = ContextMenuStrip1
+
+        Dim max = TIC.scan_time.Max
+
+        If max > maxrt Then
+            maxrt = max
+        End If
 
         Dim ionsLib As IonLibrary = Globals.LoadIonLibrary
         Dim display As String

@@ -554,12 +554,16 @@ Public Class PageMzkitTools
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Sub ShowMRMTIC(name As String, ticks As ChromatogramTick())
+    Public Sub ShowMRMTIC(name As String, ticks As ChromatogramTick(), maxrt As Double?)
         Dim xlab As String = "Time (s)"
         Dim ylab As String = "Intensity"
 
         _matrix = New ChromatogramMatrix(name, ticks)
         _matrix.LoadMatrix(DataGridView1, BindingSource1)
+
+        If Not maxrt Is Nothing Then
+            Call DirectCast(_matrix, ChromatogramMatrix).SetAbsoluteTimeAxis(maxrt)
+        End If
 
         MyApplication.RegisterPlot(
             plot:=Sub(args)

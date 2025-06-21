@@ -73,7 +73,7 @@ Public MustInherit Class DataMatrix
     ''' <summary>
     ''' any matrix data for display on current page
     ''' </summary>
-    Protected ReadOnly matrix As Array
+    Protected matrix As Array
     ''' <summary>
     ''' the name or display title of the current matrix
     ''' </summary>

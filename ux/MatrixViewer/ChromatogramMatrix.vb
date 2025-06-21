@@ -1,62 +1,62 @@
 ﻿#Region "Microsoft.VisualBasic::e43df35b167006de5843266bc6e62f10, mzkit\ux\MatrixViewer\ChromatogramMatrix.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 50
-    '    Code Lines: 40 (80.00%)
-    ' Comment Lines: 0 (0.00%)
-    '    - Xml Docs: 0.00%
-    ' 
-    '   Blank Lines: 10 (20.00%)
-    '     File Size: 1.74 KB
+' Summaries:
 
 
-    ' Class ChromatogramMatrix
-    ' 
-    '     Properties: UnderlyingType
-    ' 
-    '     Constructor: (+1 Overloads) Sub New
-    ' 
-    '     Function: GetTitles, Plot, (+2 Overloads) SaveTo
-    ' 
-    '     Sub: CreateRows
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 50
+'    Code Lines: 40 (80.00%)
+' Comment Lines: 0 (0.00%)
+'    - Xml Docs: 0.00%
+' 
+'   Blank Lines: 10 (20.00%)
+'     File Size: 1.74 KB
+
+
+' Class ChromatogramMatrix
+' 
+'     Properties: UnderlyingType
+' 
+'     Constructor: (+1 Overloads) Sub New
+' 
+'     Function: GetTitles, Plot, (+2 Overloads) SaveTo
+' 
+'     Sub: CreateRows
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -64,8 +64,10 @@ Imports System.Drawing
 Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Imaging.Driver
+Imports Microsoft.VisualBasic.Linq
 Imports mzblender
 Imports MZKitWin32.Blender.CommonLibs
 
@@ -79,6 +81,29 @@ Public Class ChromatogramMatrix : Inherits DataMatrix
 
     Public Sub New(name As String, matrix As ChromatogramTick())
         MyBase.New(name, matrix)
+    End Sub
+
+    Public Sub SetAbsoluteTimeAxis(maxrt As Double)
+        Dim matrix As ChromatogramTick() = Me.matrix
+        Dim t As Double() = matrix.TimeArray
+
+        If t.Any Then
+            Dim range As New DoubleRange(t)
+
+            If range.Min > 0 Then
+                matrix = matrix.JoinIterates({New ChromatogramTick(0, 0), New ChromatogramTick(range.Min, 0)}).ToArray
+            End If
+            If range.Max < maxrt Then
+                matrix = matrix.JoinIterates({New ChromatogramTick(range.Max, 0), New ChromatogramTick(maxrt, 0)}).ToArray
+            End If
+
+            Me.matrix = matrix
+        Else
+            Me.matrix = New ChromatogramTick() {
+                New ChromatogramTick(0, 0),
+                New ChromatogramTick(maxrt, 0)
+            }
+        End If
     End Sub
 
     Protected Overrides Sub CreateRows(table As DataTable)
