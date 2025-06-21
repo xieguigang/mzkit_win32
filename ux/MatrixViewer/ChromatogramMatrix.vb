@@ -97,7 +97,7 @@ Public Class ChromatogramMatrix : Inherits DataMatrix
                 matrix = matrix.JoinIterates({New ChromatogramTick(range.Max, 0), New ChromatogramTick(maxrt, 0)}).ToArray
             End If
 
-            Me.matrix = matrix
+            Me.matrix = matrix.OrderBy(Function(a) a.Time).ToArray
         Else
             Me.matrix = New ChromatogramTick() {
                 New ChromatogramTick(0, 0),
