@@ -24,5 +24,5 @@ print(MRMfiles, max.print = 6);
 print("view your peaktable result:");
 print(peaktable);
 
-write.csv(MRMfiles, file = file.path(outputdir, "MRMIons.csv"));
-write.csv(peaktable, file = file.path(outputdir, "peaktable.csv"));
+write.csv(MRMfiles, file = file.path(outputdir, "MRMIons.csv"), row.names = FALSE);
+write.csv(t(peaktable), file = file.path(outputdir, "peaktable.csv"));
