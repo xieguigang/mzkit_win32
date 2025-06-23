@@ -416,7 +416,7 @@ Public Class frmSRMIonsExplorer
         End If
 
         Dim files As String() = chrs.Select(Function(c) filepath(c.name)).ToArray
-        Dim ionsLib As IonLibrary = Globals.LoadIonLibrary
+        Dim ionsLib As IonLibrary = IonLibrary.LoadFile(New Configuration.Settings().MRMLibfile.ParentPath & $"/MRM/{setLibName}.csv")
         Dim workdir As String = TempFileSystem.GetAppSysTempFile(".html", App.PID, "batch_MRM_workdir").ParentPath
 
         If ionsLib.IsEmpty Then
@@ -456,9 +456,13 @@ Public Class frmSRMIonsExplorer
         Call SelectSheetName.SelectName(names, AddressOf updateIonNameDisplay)
     End Sub
 
+    Dim setLibName As String
+
     Private Sub updateIonNameDisplay(libname As String)
-        Dim libfile As String = New Configuration.Settings().MRMLibfile.ParentPath & $"/{libname}.csv"
+        Dim libfile As String = New Configuration.Settings().MRMLibfile.ParentPath & $"/MRM/{libname}.csv"
         Dim ionsLib As IonLibrary = IonLibrary.LoadFile(libfile)
+
+        setLibName = libname
 
         For Each sample As TreeNode In Win7StyleTreeView1.Nodes
             For Each ionNode As TreeNode In sample.Nodes

@@ -137,6 +137,15 @@ Public Class IonLibrary : Implements Enumeration(Of IonPair)
     End Function
 
     Public Shared Function LoadFile(file As String) As IonLibrary
-        Return New IonLibrary(file.LoadCsv(Of IonPair))
+        Dim ions As IonPair()
+
+        Try
+            ions = file.LoadCsv(Of IonPair)
+        Catch ex As Exception
+            ions = {}
+            App.LogException(ex)
+        End Try
+
+        Return New IonLibrary(ions)
     End Function
 End Class
