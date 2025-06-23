@@ -7,12 +7,12 @@ let ions = ?"--ions" || stop("the MRM ions for extract peaks data must be provid
 let outputdir = ?"--outdir" || dirname(MRMfiles);
 let args = MRM.arguments(tolerance = "da:0.3",
                 timeWindowSize = 5,
-                angleThreshold = 5,
+                angleThreshold = 3,
                 baselineQuantile = 0.65,
                 integratorTicks = 5000,
                 peakAreaMethod = "NetPeakSum",
                 peakwidth = [3, 20],                
-                sn_threshold = 1);
+                sn_threshold = 0);
 
 MRMfiles = readLines(MRMfiles);
 MRMfiles = as.list(MRMfiles, names = basename(MRMfiles));

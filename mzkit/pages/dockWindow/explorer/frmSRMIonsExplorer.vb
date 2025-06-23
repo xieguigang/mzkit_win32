@@ -56,6 +56,7 @@
 
 #End Region
 
+Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
@@ -88,21 +89,42 @@ Public Class frmSRMIonsExplorer
                 filepath.Clear()
                 maxrt = 0
 
-                For Each file As String In openfile.FileNames
-                    filepath(file.BaseName) = file
+                Dim fileNames As String() = openfile.FileNames
+                Dim check_mzML As Boolean = fileNames.All(Function(path) path.ExtensionSuffix("mzml"))
+                Dim check_wiff As Boolean = fileNames.All(Function(path) path.ExtensionSuffix("wiff"))
 
-                    If file.ExtensionSuffix("wiff") Then
-                        Dim wiffRaw As New sciexWiffReader.WiffScanFileReader(file)
-                        Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) wiffRaw.LoadFromWiffRaw(checkNoise:=True, println.Echo))
+                If check_wiff Then
+                    Dim tempdir As String = $"{App.AppSystemTemp}/{App.PID}/{App.NextTempName}/"
+                    Dim tempfiles As New List(Of String)
 
-                        Call LoadMRM(mzPack)
-                    ElseIf RawScanParser.IsMRMData(file) Then
-                        Call LoadMRM(file)
-                    Else
-                        Call Workbench.Warning($"{file} is not a MRM raw data file!")
-                        Call notMRM.Add(file.FileName)
-                    End If
-                Next
+                    ' convert to mzml
+                    For Each file As String In fileNames
+                        Call proteowizardTask.ConvertWiffMRM(file, tempdir)
+                        Call tempfiles.AddRange(tempdir.EnumerateFiles("*.mzML"))
+                    Next
+
+                    check_mzML = True
+                    fileNames = tempfiles.ToArray
+                ElseIf Not check_mzML Then
+                    ' mzml + wiff?
+                    Throw New InvalidDataException
+                End If
+
+                If check_mzML Then
+                    Call ProgressSpinner.DoLoading(
+                        Sub()
+                            For Each file As String In fileNames
+                                filepath(file.BaseName) = file
+
+                                If RawScanParser.IsMRMData(file) Then
+                                    Call LoadMRM(file)
+                                Else
+                                    Call Workbench.Warning($"{file} is not a MRM raw data file!")
+                                    Call notMRM.Add(file.FileName)
+                                End If
+                            Next
+                        End Sub, host:=Me)
+                End If
 
                 If notMRM.Any Then
                     MessageBox.Show($"There are {notMRM.Count} data files are not MRM data files, load of the files was ignored:" & vbCrLf & notMRM.JoinBy(vbCrLf),
