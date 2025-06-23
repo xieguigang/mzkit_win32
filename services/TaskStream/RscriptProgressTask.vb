@@ -169,7 +169,7 @@ Public NotInheritable Class RscriptProgressTask
         Return export
     End Function
 
-    Public Shared Function ExportMRMPeaks(MRMfiles As String, ions As String, workdir As String) As String
+    Public Shared Function ExportMRMPeaks(MRMfiles As String, ions As String, workdir As String) As Boolean
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MRMPeaks.R")
         Dim cli As String = $"""{Rscript}"" 
 --files ""{MRMfiles}"" 
@@ -195,17 +195,18 @@ Public NotInheritable Class RscriptProgressTask
             title:="Export Report",
             info:="Do exports of the html report for the linear regression and targetted quantification...")
 
-        Dim check1 = $"{workdir}/peaks.csv"
+        Dim check1 = $"{workdir}/MRMIons.csv"
         Dim check2 = $"{workdir}/report.html"
+        Dim check3 = $"{workdir}/peaktable.csv"
 
-        If check1.FileExists AndAlso check2.FileExists Then
+        If check1.FileExists AndAlso check2.FileExists AndAlso check3.FileExists Then
             Call Workbench.SuccessMessage("Export MRM peaks report job done!")
-            Return check2
+            Return True
         Else
             Dim errMsg As String = "Export MRM peaks report task error!"
             Call Workbench.Warning(errMsg)
             Call MessageBox.Show(errMsg, "Task Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return Nothing
+            Return False
         End If
     End Function
 

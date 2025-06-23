@@ -412,6 +412,16 @@ Public Class frmSRMIonsExplorer
         Call ionsLib.AsEnumerable.SaveTo($"{workdir}/ions.csv", silent:=True)
 
         ' call background task to run the batch processing
-        Call RscriptProgressTask.ExportMRMPeaks($"{workdir}/files.txt", $"{workdir}/ions.csv", workdir)
+        If RscriptProgressTask.ExportMRMPeaks($"{workdir}/files.txt", $"{workdir}/ions.csv", workdir) Then
+            Dim check1 = $"{workdir}/MRMIons.csv"
+            Dim check2 = $"{workdir}/report.html"
+            Dim check3 = $"{workdir}/peaktable.csv"
+
+            Call RibbonEvents.OpenTable(check1)
+            Call RibbonEvents.OpenTable(check3)
+
+            ' show result html report
+            Call VisualStudio.ShowDocument(Of frmHtmlViewer)(title:="MRM Report").LoadHtml(check2)
+        End If
     End Sub
 End Class

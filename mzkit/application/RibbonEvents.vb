@@ -393,12 +393,7 @@ Module RibbonEvents
             .Filter = filetypes.JoinBy("|")
         }
             If file.ShowDialog = DialogResult.OK Then
-                Call SelectSheetName.OpenExcel(
-                    fileName:=file.FileName,
-                    showFile:=
-                        Sub(table, title)
-                            Call frmMetabonomicsAnalysis.LoadData(table, file.FileName, AddressOf New LoadMetabolismData With {.title = title}.load)
-                        End Sub)
+                Call OpenTable(file.FileName)
             End If
         End Using
     End Sub
@@ -412,6 +407,15 @@ Module RibbonEvents
         End Sub
 
     End Class
+
+    Public Sub OpenTable(filepath As String)
+        Call SelectSheetName.OpenExcel(
+                    fileName:=filepath,
+                    showFile:=
+                        Sub(table, title)
+                            Call frmMetabonomicsAnalysis.LoadData(table, filepath.FileName, AddressOf New LoadMetabolismData With {.title = title}.load)
+                        End Sub)
+    End Sub
 
     Private Sub openSlideFile()
         Dim filetypes As String() = {
