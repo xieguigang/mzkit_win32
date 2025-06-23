@@ -58,6 +58,7 @@
 
 Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
@@ -238,7 +239,7 @@ Public Class frmSRMIonsExplorer
             display = ionsLib.GetDisplay(ionRef)
 
             With TICRoot.Nodes.Add(display)
-                .Tag = chr
+                .Tag = New MRMHolder With {.ion = ionRef, .TIC = chr.Ticks}
                 .ImageIndex = 1
                 .SelectedImageIndex = 1
                 .ContextMenuStrip = ContextMenuStrip2
@@ -461,16 +462,49 @@ Public Class frmSRMIonsExplorer
     Private Sub updateIonNameDisplay(libname As String)
         Dim libfile As String = New Configuration.Settings().MRMLibfile.ParentPath & $"/MRM/{libname}.csv"
         Dim ionsLib As IonLibrary = IonLibrary.LoadFile(libfile)
+        Dim dataset As New List(Of SampleData)
 
         setLibName = libname
 
         For Each sample As TreeNode In Win7StyleTreeView1.Nodes
+            Dim data As New SampleData With {.Root = sample.Tag, .Name = sample.Text}
+            Dim ions As New List(Of MRMHolder)
+
             For Each ionNode As TreeNode In sample.Nodes
-                Dim ion As MRMHolder = DirectCast(ionNode.Tag, MRMHolder)
+                Call ions.Add(ionNode.Tag)
+            Next
+
+            data.Ions = ions.ToArray
+            dataset.Add(data)
+        Next
+
+        Call Win7StyleTreeView1.Nodes.Clear()
+
+        For Each sample As SampleData In dataset
+            Dim TICRoot As TreeNode = Win7StyleTreeView1.Nodes.Add(sample.Name)
+
+            TICRoot.Tag = sample.Root
+            TICRoot.ImageIndex = 0
+            TICRoot.ContextMenuStrip = ContextMenuStrip1
+
+            For Each ion As MRMHolder In sample.Ions
                 Dim display = ionsLib.GetDisplay(ion.ion)
 
-                ionNode.Text = display
+                With TICRoot.Nodes.Add(display)
+                    .Tag = ion
+                    .ImageIndex = 1
+                    .SelectedImageIndex = 1
+                    .ContextMenuStrip = ContextMenuStrip2
+                End With
             Next
         Next
     End Sub
+
+    Private Class SampleData
+
+        Public Name As String
+        Public Root As BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram
+        Public Ions As MRMHolder()
+
+    End Class
 End Class
