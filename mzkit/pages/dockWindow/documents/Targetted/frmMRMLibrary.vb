@@ -108,6 +108,8 @@ Public Class frmMRMLibrary
     End Sub
 
     Private Sub frmMRMLibrary_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Dim repo As String = New Configuration.Settings().MRMLibfile.ParentPath
+
         FilePath = Globals.Settings.MRMLibfile
         TabText = "MRM ions Library"
         Icon = My.Resources.DBFile
@@ -116,7 +118,7 @@ Public Class frmMRMLibrary
             FilePath = New Configuration.Settings().MRMLibfile
         End If
 
-        Dim libfiles As String() = FilePath.ParentPath.ListFiles("*.csv").ToArray
+        Dim libfiles As String() = repo.ListFiles("*.csv").ToArray
 
         ToolStripComboBox1.Items.Clear()
 
@@ -267,7 +269,7 @@ Public Class frmMRMLibrary
         End If
 
         Dim name As String = ToolStripComboBox1.SelectedItem.ToString
-        Dim libfile As String = Globals.Settings.MRMLibfile.ParentPath & $"/{name}.csv"
+        Dim libfile As String = Globals.Settings.MRMLibfile.ParentPath & $"/MRM/{name}.csv"
 
         FilePath = libfile
         Call LoadLibrary()

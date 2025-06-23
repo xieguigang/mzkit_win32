@@ -449,7 +449,8 @@ Public Class frmSRMIonsExplorer
     End Sub
 
     Private Sub ToolStripLabel1_Click(sender As Object, e As EventArgs) Handles ToolStripLabel1.Click
-        Dim libfiles = New Configuration.Settings().MRMLibfile.ParentPath.ListFiles("*.csv")
+        Dim repo As String = New Configuration.Settings().MRMLibfile.ParentPath
+        Dim libfiles = repo.ListFiles("*.csv")
         Dim names As String() = libfiles.Select(Function(a) a.BaseName).ToArray
 
         Call SelectSheetName.SelectName(names, AddressOf updateIonNameDisplay)
