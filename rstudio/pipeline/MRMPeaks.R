@@ -8,10 +8,13 @@ let outputdir = ?"--outdir" || dirname(MRMfiles);
 let args = MRM.arguments();
 
 MRMfiles = readLines(MRMfiles);
+MRMfiles = as.list(MRMfiles, names = basename(MRMfiles));
 ions = read.ion_pairs(ions) |> isomerism.ion_pairs(tolerance = "ppm:20");
 
 print("get MRM rawdata files:");
 print(MRMfiles);
+
+let xic = lapply(MRMfiles, path -> extract.ions(path, ionpairs = ions, tolerance = "da:0.01"));
 
 MRMfiles = lapply(MRMfiles, function(path) {
     let xic = extract.ions(path, ionpairs = ions, tolerance = "da:0.01");
@@ -24,6 +27,8 @@ MRMfiles = lapply(MRMfiles, function(path) {
 });
 
 MRMfiles = bind_rows(MRMfiles);
+
+let 
 
 print(MRMfiles);
 
