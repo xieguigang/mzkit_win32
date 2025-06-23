@@ -393,7 +393,7 @@ Module RibbonEvents
             .Filter = filetypes.JoinBy("|")
         }
             If file.ShowDialog = DialogResult.OK Then
-                Call OpenTable(file.FileName)
+                Call LoadMetabolismData.OpenTable(file.FileName)
             End If
         End Using
     End Sub
@@ -406,6 +406,14 @@ Module RibbonEvents
             VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)(title:=title).LoadData(sampleinfo, properties, df, workdir, title)
         End Sub
 
+        Friend Shared Sub OpenTable(filepath As String)
+            Call SelectSheetName.OpenExcel(
+                   fileName:=filepath,
+                   showFile:=
+                       Sub(table, title)
+                           Call frmMetabonomicsAnalysis.LoadData(table, filepath.FileName, AddressOf New LoadMetabolismData With {.title = title}.load)
+                       End Sub)
+        End Sub
     End Class
 
     Public Sub OpenTable(filepath As String)
