@@ -125,6 +125,7 @@ Public Class frmMRMLibrary
         Next
 
         Call LoadLibrary()
+        Call ApplyVsTheme(ToolStrip1)
     End Sub
 
     Private Sub LoadLibrary()
@@ -217,7 +218,7 @@ Public Class frmMRMLibrary
                 End If
 
                 Dim ions As IonPair() = file.FileName.LoadCsv(Of IonPair)
-                Dim libs As IonPair() = Globals.LoadIonLibrary.AsEnumerable.ToArray
+                Dim libs As IonPair() = FilePath.LoadCsv(Of IonPair).ToArray
 
                 If unit_minute Then
                     ' convert the rt from minutes to seconds
@@ -236,7 +237,7 @@ Public Class frmMRMLibrary
                     End If
                 End If
 
-                Call ions.SaveTo(Globals.Settings.MRMLibfile)
+                Call ions.SaveTo(FilePath)
                 Call LoadLibrary()
             End If
         End Using
@@ -255,6 +256,8 @@ Public Class frmMRMLibrary
             DataGridView1.Rows.Clear()
             ToolStripComboBox1.Items.Add(name)
             ToolStripComboBox1.SelectedItem = name
+
+            ToolStripComboBox1_SelectedIndexChanged(Nothing, Nothing)
         End If
     End Sub
 
