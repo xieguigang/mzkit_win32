@@ -5,7 +5,14 @@ imports "MRMLinear" from "mz_quantify";
 let MRMfiles = ?"--files" || stop("the input MRM mzXML files must be provided!");
 let ions = ?"--ions" || stop("the MRM ions for extract peaks data must be provided!");
 let outputdir = ?"--outdir" || dirname(MRMfiles);
-let args = MRM.arguments();
+let args = MRM.arguments(tolerance = "da:0.3",
+                timeWindowSize = 5,
+                angleThreshold = 5,
+                baselineQuantile = 0.65,
+                integratorTicks = 5000,
+                peakAreaMethod = "NetPeakSum",
+                peakwidth = [3, 20],                
+                sn_threshold = 1);
 
 MRMfiles = readLines(MRMfiles);
 MRMfiles = as.list(MRMfiles, names = basename(MRMfiles));
