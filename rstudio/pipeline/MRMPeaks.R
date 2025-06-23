@@ -17,6 +17,7 @@ str(MRMfiles);
 let xic = lapply(MRMfiles, path -> extract.ions(path, ionpairs = ions, tolerance = "da:0.01"));
 let peaks = lapply(xic, ion -> MRM.peakarea(ion, args));
 let peaktable = as.data.frame(unlist(peaks), peaktable = TRUE);
+let report = MRM_dataReport(xic, tpa = peaks);
 
 MRMfiles = bind_rows(peaks |> lapply(i -> as.data.frame(i)));
 
@@ -26,3 +27,5 @@ print(peaktable);
 
 write.csv(MRMfiles, file = file.path(outputdir, "MRMIons.csv"), row.names = FALSE);
 write.csv(t(peaktable), file = file.path(outputdir, "peaktable.csv"));
+
+writeLines(report, con = file.path(outputdir, "report.html"));
