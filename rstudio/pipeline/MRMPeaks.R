@@ -15,20 +15,9 @@ print("get MRM rawdata files:");
 print(MRMfiles);
 
 let xic = lapply(MRMfiles, path -> extract.ions(path, ionpairs = ions, tolerance = "da:0.01"));
+let peaks = lapply(xic, ion -> as.data.frame(MRM.peakarea(ion, args)));
 
-MRMfiles = lapply(MRMfiles, function(path) {
-    let xic = extract.ions(path, ionpairs = ions, tolerance = "da:0.01");
-    let peaks = xic |> MRM.peakarea(args);
-
-    peaks= as.data.frame(peaks);
-    peaks[,"name"] = rownames(peaks);
-    peaks[,"source"] = basename(path);
-    peaks;
-});
-
-MRMfiles = bind_rows(MRMfiles);
-
-let 
+MRMfiles = bind_rows(peaks);
 
 print(MRMfiles);
 
