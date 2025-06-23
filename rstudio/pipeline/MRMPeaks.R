@@ -12,13 +12,17 @@ MRMfiles = as.list(MRMfiles, names = basename(MRMfiles));
 ions = read.ion_pairs(ions) |> isomerism.ion_pairs(tolerance = "ppm:20");
 
 print("get MRM rawdata files:");
-print(MRMfiles);
+str(MRMfiles);
 
 let xic = lapply(MRMfiles, path -> extract.ions(path, ionpairs = ions, tolerance = "da:0.01"));
-let peaks = lapply(xic, ion -> as.data.frame(MRM.peakarea(ion, args)));
+let peaks = lapply(xic, ion -> MRM.peakarea(ion, args));
+let peaktable = as.data.frame(unlist(peaks), peaktable = TRUE);
 
-MRMfiles = bind_rows(peaks);
+MRMfiles = bind_rows(peaks |> lapply(i -> as.data.frame(i)));
 
-print(MRMfiles);
+print(MRMfiles, max.print = 6);
+print("view your peaktable result:");
+print(peaktable);
 
 write.csv(MRMfiles, file = file.path(outputdir, "MRMIons.csv"));
+write.csv(peaktable, file = file.path(outputdir, "peaktable.csv"));
