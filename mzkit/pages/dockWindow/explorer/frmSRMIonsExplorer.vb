@@ -68,6 +68,7 @@ Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports Task
+Imports TaskStream
 Imports chromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML.chromatogram
 
 Public Class frmSRMIonsExplorer
@@ -411,6 +412,6 @@ Public Class frmSRMIonsExplorer
         Call ionsLib.AsEnumerable.SaveTo($"{workdir}/ions.csv", silent:=True)
 
         ' call background task to run the batch processing
-
+        Call RscriptProgressTask.ExportMRMPeaks($"{workdir}/files.txt", $"{workdir}/ions.csv", workdir)
     End Sub
 End Class

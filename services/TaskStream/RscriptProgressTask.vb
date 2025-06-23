@@ -169,6 +169,46 @@ Public NotInheritable Class RscriptProgressTask
         Return export
     End Function
 
+    Public Shared Function ExportMRMPeaks(MRMfiles As String, ions As String, workdir As String) As String
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("MRMPeaks.R")
+        Dim cli As String = $"""{Rscript}"" 
+--files ""{MRMfiles}"" 
+--ions ""{ions}""
+--outdir ""{workdir}""
+/@set tqdm=false
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     p.SetProgressMode()
+
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                     Call pipeline.Run()
+                 End Sub,
+            title:="Export Report",
+            info:="Do exports of the html report for the linear regression and targetted quantification...")
+
+        Dim check1 = $"{workdir}/peaks.csv"
+        Dim check2 = $"{workdir}/report.html"
+
+        If check1.FileExists AndAlso check2.FileExists Then
+            Call Workbench.SuccessMessage("Export MRM peaks report job done!")
+            Return check2
+        Else
+            Dim errMsg As String = "Export MRM peaks report task error!"
+            Call Workbench.Warning(errMsg)
+            Call MessageBox.Show(errMsg, "Task Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return Nothing
+        End If
+    End Function
+
     ''' <summary>
     ''' convert imzML to mzpack
     ''' </summary>
