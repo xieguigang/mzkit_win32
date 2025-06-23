@@ -417,7 +417,7 @@ Public Class frmSRMIonsExplorer
         End If
 
         Dim files As String() = chrs.Select(Function(c) filepath(c.name)).ToArray
-        Dim ionsLib As IonLibrary = IonLibrary.LoadFile(New Configuration.Settings().MRMLibfile.ParentPath & $"/MRM/{setLibName}.csv")
+        Dim ionsLib As IonLibrary = IonLibrary.LoadFile(New Configuration.Settings().MRMLibfile.ParentPath & $"/{setLibName}.csv")
         Dim workdir As String = TempFileSystem.GetAppSysTempFile(".html", App.PID, "batch_MRM_workdir").ParentPath
 
         If ionsLib.IsEmpty Then
@@ -460,7 +460,7 @@ Public Class frmSRMIonsExplorer
     Dim setLibName As String
 
     Private Sub updateIonNameDisplay(libname As String)
-        Dim libfile As String = New Configuration.Settings().MRMLibfile.ParentPath & $"/MRM/{libname}.csv"
+        Dim libfile As String = New Configuration.Settings().MRMLibfile.ParentPath & $"/{libname}.csv"
         Dim ionsLib As IonLibrary = IonLibrary.LoadFile(libfile)
         Dim dataset As New List(Of SampleData)
 
