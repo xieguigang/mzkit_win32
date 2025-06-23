@@ -409,12 +409,28 @@ Module RibbonEvents
     End Class
 
     Public Sub OpenTable(filepath As String)
-        Call SelectSheetName.OpenExcel(
-                    fileName:=filepath,
-                    showFile:=
-                        Sub(table, title)
-                            Call frmMetabonomicsAnalysis.LoadData(table, filepath.FileName, AddressOf New LoadMetabolismData With {.title = title}.load)
-                        End Sub)
+        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:=filepath.FileName)
+        Dim loader As Action(Of DataTable) =
+            Sub(tbl)
+                Dim df As DataFrameResolver = DataFrameResolver.Load(filepath)
+                Dim cols = df.HeadTitles
+
+                For Each name As String In cols
+                    Call tbl.Columns.Add(name, GetType(String))
+                Next
+
+                For Each row As RowObject In df.Rows
+                    Dim rowData As Object() = New Object(cols.Length - 1) {}
+
+                    For i As Integer = 0 To cols.Length - 1
+                        rowData(i) = row(i)
+                    Next
+
+                    Call tbl.Rows.Add(rowData)
+                Next
+            End Sub
+
+        Call table.LoadTable(loader)
     End Sub
 
     Private Sub openSlideFile()
