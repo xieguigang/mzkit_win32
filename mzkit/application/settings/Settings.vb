@@ -94,7 +94,7 @@ Namespace Configuration
         Public Property msi_filters As Filters
         Public Property tissue_map As TissueMap
 
-        Public Property MRMLibfile As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "/mzkit/MRM_IonPairs.csv"
+        Public Property MRMLibfile As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "/mzkit/MRM/Default.csv"
         Public Property QuantifyIonLibfile As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "/mzkit/GCMS_QuantifyIons.ionPack"
         Public Property pubchemWebCache As String = App.AppSystemTemp & "/web/pubchem/"
         Public Shared ReadOnly Property configFile As String = App.LocalData & "/settings.json"

@@ -112,15 +112,25 @@ Public Class frmMRMLibrary
         TabText = "MRM ions Library"
         Icon = My.Resources.DBFile
 
+        If FilePath.StringEmpty(, True) Then
+            FilePath = New Configuration.Settings().MRMLibfile
+        End If
+
+        Dim libfiles As String() = FilePath.ParentPath.ListFiles("*.csv")
+
+        ToolStripComboBox1.Items.Clear()
+
+        For Each file As String In libfiles
+            Call ToolStripComboBox1.Items.Add(file.BaseName)
+        Next
+
         Call LoadLibrary()
     End Sub
 
     Private Sub LoadLibrary()
-        Dim ions As IonPair() = Globals.LoadIonLibrary.AsEnumerable.ToArray
-
         DataGridView1.Rows.Clear()
 
-        For Each ion As IonPair In ions
+        For Each ion As IonPair In FilePath.LoadCsv(Of IonPair)
             DataGridView1.Rows.Add(ion.accession, ion.name, ion.rt, ion.precursor, ion.product)
         Next
     End Sub
@@ -230,5 +240,33 @@ Public Class frmMRMLibrary
                 Call LoadLibrary()
             End If
         End Using
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Call ImportsTableToolStripMenuItem_Click(sender, e)
+    End Sub
+
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Dim name As String = InputBox("Please input the library name of the new MRM ion set:", "Add New MRM Library")
+
+        If name.StringEmpty(, True) Then
+            Return
+        Else
+            DataGridView1.Rows.Clear()
+            ToolStripComboBox1.Items.Add(name)
+            ToolStripComboBox1.SelectedItem = name
+        End If
+    End Sub
+
+    Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
+        If ToolStripComboBox1.SelectedIndex < 0 Then
+            Return
+        End If
+
+        Dim name As String = ToolStripComboBox1.SelectedItem.ToString
+        Dim libfile As String = Globals.Settings.MRMLibfile.ParentPath & $"{name}.csv"
+
+        FilePath = libfile
+        Call LoadLibrary()
     End Sub
 End Class
