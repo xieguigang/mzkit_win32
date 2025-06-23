@@ -264,7 +264,7 @@ Public Class frmMRMLibrary
         End If
 
         Dim name As String = ToolStripComboBox1.SelectedItem.ToString
-        Dim libfile As String = Globals.Settings.MRMLibfile.ParentPath & $"{name}.csv"
+        Dim libfile As String = Globals.Settings.MRMLibfile.ParentPath & $"/{name}.csv"
 
         FilePath = libfile
         Call LoadLibrary()
