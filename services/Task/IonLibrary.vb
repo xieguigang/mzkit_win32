@@ -56,6 +56,7 @@
 
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
 
 Public Class IonLibrary : Implements Enumeration(Of IonPair)
@@ -133,5 +134,9 @@ Public Class IonLibrary : Implements Enumeration(Of IonPair)
         For Each ion As IonPair In ions
             Yield ion
         Next
+    End Function
+
+    Public Shared Function LoadFile(file As String) As IonLibrary
+        Return New IonLibrary(file.LoadCsv(Of IonPair))
     End Function
 End Class

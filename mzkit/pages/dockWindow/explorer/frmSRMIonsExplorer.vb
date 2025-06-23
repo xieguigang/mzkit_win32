@@ -68,6 +68,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Task
 Imports TaskStream
 Imports chromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML.chromatogram
@@ -445,5 +446,26 @@ Public Class frmSRMIonsExplorer
             ' show result html report
             Call VisualStudio.ShowDocument(Of frmHtmlViewer)(title:="MRM Report").LoadHtml(check2)
         End If
+    End Sub
+
+    Private Sub ToolStripLabel1_Click(sender As Object, e As EventArgs) Handles ToolStripLabel1.Click
+        Dim libfiles = New Configuration.Settings().MRMLibfile.ParentPath.ListFiles("*.csv")
+        Dim names As String() = libfiles.Select(Function(a) a.BaseName).ToArray
+
+        Call SelectSheetName.SelectName(names, AddressOf updateIonNameDisplay)
+    End Sub
+
+    Private Sub updateIonNameDisplay(libname As String)
+        Dim libfile As String = New Configuration.Settings().MRMLibfile.ParentPath & $"/{libname}.csv"
+        Dim ionsLib As IonLibrary = IonLibrary.LoadFile(libfile)
+
+        For Each sample As TreeNode In Win7StyleTreeView1.Nodes
+            For Each ionNode As TreeNode In sample.Nodes
+                Dim ion As MRMHolder = DirectCast(ionNode.Tag, MRMHolder)
+                Dim display = ionsLib.GetDisplay(ion.ion)
+
+                ionNode.Text = display
+            Next
+        Next
     End Sub
 End Class
