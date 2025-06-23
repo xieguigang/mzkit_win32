@@ -116,7 +116,7 @@ Public Class frmMRMLibrary
             FilePath = New Configuration.Settings().MRMLibfile
         End If
 
-        Dim libfiles As String() = FilePath.ParentPath.ListFiles("*.csv")
+        Dim libfiles As String() = FilePath.ParentPath.ListFiles("*.csv").ToArray
 
         ToolStripComboBox1.Items.Clear()
 
