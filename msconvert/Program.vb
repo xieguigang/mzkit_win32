@@ -347,6 +347,9 @@ Imports MZWorkPack
         Dim centroid As String = args("/centroid") Or "da:0.01"
         Dim noiseless As Double = args("/noiseless") Or 0.001
 
+        Call VBDebugger.EchoLine($"centroid mzdiff: {centroid}")
+        Call VBDebugger.EchoLine($"noiseless cutoff: {noiseless}")
+
         If target.ExtensionSuffix("imzml") Then
             Dim ibd As String = target.ChangeSuffix("ibd")
 
