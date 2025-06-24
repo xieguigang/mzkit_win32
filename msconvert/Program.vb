@@ -328,7 +328,8 @@ Imports MZWorkPack
                                             /dims <w,h,default=NULL> 
                                             /default_ion <1/-1> 
                                             /fly_stream <auto/true/false, default=auto> 
-                                            /centroid <da:0.01,default=> 
+                                            /centroid <da/ppm:mzdiff,default=da:0.01>
+                                            /noiseless <percentage cutoff,default=0.001>
                                             /output <result.mzPack>]")>
     <Argument("/dims", True, CLITypes.Integer, PipelineTypes.undefined,
               AcceptTypes:={GetType(Integer())},
@@ -344,6 +345,7 @@ Imports MZWorkPack
         Dim mzPack As mzPack
         Dim fly As String = args("/fly_stream") Or "auto"
         Dim centroid As String = args("/centroid") Or "da:0.01"
+        Dim noiseless As Double = args("/noiseless") Or 0.001
 
         If target.ExtensionSuffix("imzml") Then
             Dim ibd As String = target.ChangeSuffix("ibd")
@@ -357,7 +359,7 @@ Imports MZWorkPack
                     make_centroid:=Tolerance.ParseScript(centroid)
                 ).CLICode
             Else
-                mzPack = Converter.LoadimzML(target, 0, defaultIon,
+                mzPack = Converter.LoadimzML(target, noiseless, defaultIon,
                                              make_centroid:=Tolerance.ParseScript(centroid),
                                              progress:=AddressOf RunSlavePipeline.SendProgress)
             End If
