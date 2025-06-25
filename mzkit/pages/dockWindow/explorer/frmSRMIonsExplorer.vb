@@ -57,6 +57,7 @@
 #End Region
 
 Imports System.IO
+Imports System.IO.Compression
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
@@ -65,6 +66,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
 Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
@@ -448,6 +450,15 @@ Public Class frmSRMIonsExplorer
 
             ' show result html report
             Call VisualStudio.ShowDocument(Of frmHtmlViewer)(title:="MRM Report").LoadHtml(check2)
+
+            Using save As New SaveFileDialog With {
+                .Filter = "MRM Report Archive(*.zip)|*.zip",
+                .Title = "Save the MRM report files(Excel tables, html report file) in a zip archive file?"
+            }
+                If save.ShowDialog = DialogResult.OK Then
+                    Call ZipLib.DirectoryArchive(workdir, save.FileName, ArchiveAction.Replace, Overwrite.Always, CompressionLevel.Fastest)
+                End If
+            End Using
         End If
     End Sub
 
