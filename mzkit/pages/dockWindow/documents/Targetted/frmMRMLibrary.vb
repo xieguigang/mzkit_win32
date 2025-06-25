@@ -70,6 +70,7 @@ Imports Microsoft.VisualBasic.Text
 Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports Mzkit_win32.BasicMDIForm
 Imports any = Microsoft.VisualBasic.Scripting
+Imports std = System.Math
 
 ''' <summary>
 ''' MRM
@@ -134,7 +135,14 @@ Public Class frmMRMLibrary
         DataGridView1.Rows.Clear()
 
         For Each ion As IonPair In FilePath.LoadCsv(Of IonPair)
-            DataGridView1.Rows.Add(ion.accession, ion.name, ion.rt, ion.precursor, ion.product)
+            DataGridView1.Rows.Add(
+                ion.accession,                            ' 0
+                ion.name,                                 ' 1
+                ion.rt,                                   ' 2  show rt in data unit seconds
+                std.Round(value:=ion.rt / 60, digits:=2), ' 3  show rt in data unit minutes
+                ion.precursor,                            ' 4
+                ion.product                               ' 5
+            )
         Next
     End Sub
 
@@ -153,8 +161,8 @@ Public Class frmMRMLibrary
                 .accession = any.ToString(row.Cells(0).Value),
                 .name = any.ToString(row.Cells(1).Value),
                 .rt = any.ToString(row.Cells(2).Value).ParseDouble,
-                .precursor = any.ToString(row.Cells(3).Value).ParseDouble,
-                .product = any.ToString(row.Cells(4).Value).ParseDouble
+                .precursor = any.ToString(row.Cells(4).Value).ParseDouble,
+                .product = any.ToString(row.Cells(5).Value).ParseDouble
             }
 
             If ion.accession.StringEmpty AndAlso ion.name.StringEmpty Then
@@ -194,7 +202,7 @@ Public Class frmMRMLibrary
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Sub Add(id As String, name As String, q1 As Double, q2 As Double, rt As Double) Implements MRMLibraryPage.Add
-        Call DataGridView1.Rows.Add(id, name, rt, q1, q2)
+        Call DataGridView1.Rows.Add(id, name, rt, std.Round(value:=rt / 60, digits:=2), q1, q2)
     End Sub
 
     Private Sub ImportsTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsTableToolStripMenuItem.Click
