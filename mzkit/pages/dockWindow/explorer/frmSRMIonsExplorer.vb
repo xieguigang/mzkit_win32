@@ -418,7 +418,7 @@ Public Class frmSRMIonsExplorer
 
         Dim files As String() = chrs.Select(Function(c) filepath(c.name)).ToArray
         Dim ionsLib As IonLibrary = IonLibrary.LoadFile(New Configuration.Settings().MRMLibfile.ParentPath & $"/{setLibName}.csv")
-        Dim workdir As String = TempFileSystem.GetAppSysTempFile(".html", App.PID, "batch_MRM_workdir").ParentPath
+        Dim workdir As String = TempFileSystem.GetAppSysTempFile(".html", App.PID, "batch_MRM_workdir").TrimSuffix
 
         If ionsLib.IsEmpty Then
             If MessageBox.Show("No ion pairs information was founded in the MRM ions library, please config the ions library at first!",
@@ -440,9 +440,11 @@ Public Class frmSRMIonsExplorer
             Dim check1 = $"{workdir}/MRMIons.csv"
             Dim check2 = $"{workdir}/report.html"
             Dim check3 = $"{workdir}/peaktable.csv"
+            Dim check4 = $"{workdir}/intensity_table.csv"
 
             Call RibbonEvents.OpenTable(check1)
             Call RibbonEvents.OpenTable(check3)
+            Call RibbonEvents.OpenTable(check4)
 
             ' show result html report
             Call VisualStudio.ShowDocument(Of frmHtmlViewer)(title:="MRM Report").LoadHtml(check2)
