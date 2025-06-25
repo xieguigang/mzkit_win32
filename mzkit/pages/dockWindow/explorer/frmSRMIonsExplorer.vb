@@ -70,8 +70,8 @@ Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Text.Patterns
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Task
 Imports TaskStream
 Imports chromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML.chromatogram
@@ -451,9 +451,12 @@ Public Class frmSRMIonsExplorer
             ' show result html report
             Call VisualStudio.ShowDocument(Of frmHtmlViewer)(title:="MRM Report").LoadHtml(check2)
 
+            Dim archiveName = New CommonTagParser(filepath.Keys).LabelPrefix & "_report.zip"
+
             Using save As New SaveFileDialog With {
                 .Filter = "MRM Report Archive(*.zip)|*.zip",
-                .Title = "Save the MRM report files(Excel tables, html report file) in a zip archive file?"
+                .Title = "Save the MRM report files(Excel tables, html report file) in a zip archive file?",
+                .FileName = archiveName
             }
                 If save.ShowDialog = DialogResult.OK Then
                     Call ZipLib.DirectoryArchive(workdir, save.FileName, ArchiveAction.Replace, Overwrite.Always, CompressionLevel.Fastest)
