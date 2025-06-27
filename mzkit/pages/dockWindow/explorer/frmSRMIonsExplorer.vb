@@ -519,7 +519,7 @@ Public Class frmSRMIonsExplorer
         Call args.GetMRMArguments.ToJSON.SaveTo($"{workdir}/args.json")
 
         ' call background task to run the batch processing
-        If RscriptProgressTask.ExportMRMPeaks($"{workdir}/files.txt", $"{workdir}/ions.csv", workdir) Then
+        If RscriptProgressTask.ExportMRMPeaks($"{workdir}/files.txt", $"{workdir}/ions.csv", $"{workdir}/args.json", workdir) Then
             Dim check1 = $"{workdir}/MRMIons.csv"
             Dim check2 = $"{workdir}/report.html"
             Dim check3 = $"{workdir}/peaktable.csv"

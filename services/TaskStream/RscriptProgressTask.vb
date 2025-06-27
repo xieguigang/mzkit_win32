@@ -169,11 +169,12 @@ Public NotInheritable Class RscriptProgressTask
         Return export
     End Function
 
-    Public Shared Function ExportMRMPeaks(MRMfiles As String, ions As String, workdir As String) As Boolean
+    Public Shared Function ExportMRMPeaks(MRMfiles As String, ions As String, args As String, workdir As String) As Boolean
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MRMPeaks.R")
         Dim cli As String = $"""{Rscript}"" 
 --files ""{MRMfiles}"" 
 --ions ""{ions}""
+--args ""{args}""
 --outdir ""{workdir}""
 /@set tqdm=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
