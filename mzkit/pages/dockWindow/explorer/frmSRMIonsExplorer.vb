@@ -584,7 +584,17 @@ Public Class frmSRMIonsExplorer
 
     End Class
 
+    Dim args As New PeakFindingParameters
+
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
+    End Sub
+
+    Private Sub applyNewParameters(args As PeakFindingParameters)
+        Me.args = args
+    End Sub
+
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
 
     End Sub
 End Class

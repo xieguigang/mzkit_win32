@@ -91,6 +91,16 @@ Public Class PeakFindingParameters
     <Category("Quantify Ion")>
     Public Property tolerance As Double = 0.3
 
+    Sub New()
+        Dim [default] = MRMArguments.GetDefaultArguments
+
+        peakMin = [default].peakwidth.Min
+        peakMax = [default].peakwidth.Max
+        angle_threshold = [default].angleThreshold
+        toleranceMethod = [default].tolerance.Type
+        tolerance = [default].tolerance.DeltaTolerance
+    End Sub
+
     Public Function GetTolerance() As Tolerance
         Select Case toleranceMethod
             Case MassToleranceType.Da
