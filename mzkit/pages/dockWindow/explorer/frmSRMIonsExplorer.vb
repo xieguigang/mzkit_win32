@@ -516,6 +516,7 @@ Public Class frmSRMIonsExplorer
 
         Call files.SaveTo($"{workdir}/files.txt")
         Call ionsLib.AsEnumerable.SaveTo($"{workdir}/ions.csv", silent:=True)
+        Call args.GetMRMArguments.ToJSON.SaveTo($"{workdir}/args.json")
 
         ' call background task to run the batch processing
         If RscriptProgressTask.ExportMRMPeaks($"{workdir}/files.txt", $"{workdir}/ions.csv", workdir) Then
