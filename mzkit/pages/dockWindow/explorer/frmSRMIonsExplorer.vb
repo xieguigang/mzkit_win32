@@ -271,8 +271,8 @@ Public Class frmSRMIonsExplorer
                     .First
             End If
 
-            If Not ion Is Nothing Then
-                checkPeaks.Add(ion.accession)
+            If Not ion.accession Is Nothing Then
+                Call checkPeaks.Add(ion.accession)
             End If
 
             With TICRoot.Nodes.Add(display)
