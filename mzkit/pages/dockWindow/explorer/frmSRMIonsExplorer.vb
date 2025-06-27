@@ -255,6 +255,13 @@ Public Class frmSRMIonsExplorer
 
             If ion Is Nothing OrElse Not peaks.Any Then
                 peak = Nothing
+
+                If peaks.Any Then
+                    ' pick max intensity peak
+                    peak = peaks _
+                        .OrderByDescending(Function(a) a.maxInto) _
+                        .First
+                End If
             ElseIf ion.rt IsNot Nothing Then
                 Dim ref_rt As Double = CDbl(ion.rt)
 
