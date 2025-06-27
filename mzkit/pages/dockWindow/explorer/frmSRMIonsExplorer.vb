@@ -247,6 +247,10 @@ Public Class frmSRMIonsExplorer
             Dim ion As IonPair = ionRef.ions.Where(Function(a) Not (a.accession Like checkPeaks)).FirstOrDefault
             Dim peak As PeakFeature = Nothing
 
+            If ion Is Nothing Then
+                ion = New IonPair(chr.precursor.MRMTargetMz, chr.product.MRMTargetMz)
+            End If
+
             display = ionsLib.GetDisplay(ion)
 
             If ion Is Nothing OrElse Not peaks.Any Then
@@ -265,6 +269,10 @@ Public Class frmSRMIonsExplorer
                 peak = peaks _
                     .OrderByDescending(Function(a) a.maxInto) _
                     .First
+            End If
+
+            If Not ion Is Nothing Then
+                checkPeaks.Add(ion.accession)
             End If
 
             With TICRoot.Nodes.Add(display)
