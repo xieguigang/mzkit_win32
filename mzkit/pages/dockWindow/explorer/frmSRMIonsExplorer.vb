@@ -260,7 +260,7 @@ Public Class frmSRMIonsExplorer
 
                 peak = peaks _
                     .Where(Function(i)
-                               Return std.Abs(i.rt - ref_rt) < 15
+                               Return std.Abs(i.rt - ref_rt) < 7.5
                            End Function) _
                     .OrderBy(Function(i) std.Abs(i.rt - ref_rt)) _
                     .FirstOrDefault
