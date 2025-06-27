@@ -618,7 +618,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                                     .Where(Function(p)
                                                Dim filterMass As Boolean
 
-                                               If method = ToleranceMethods.da Then
+                                               If method = MassToleranceType.Da Then
                                                    filterMass = p.da <= da
                                                Else
                                                    filterMass = p.ppm <= ppm

@@ -72,12 +72,12 @@ Public Class InputFeatureFilter
         End Get
     End Property
 
-    Public ReadOnly Property GetMethod As ToleranceMethods
+    Public ReadOnly Property GetMethod As MassToleranceType
         Get
             If RadioButton2.Checked Then
-                Return ToleranceMethods.da
+                Return MassToleranceType.Da
             Else
-                Return ToleranceMethods.ppm
+                Return MassToleranceType.Ppm
             End If
         End Get
     End Property
