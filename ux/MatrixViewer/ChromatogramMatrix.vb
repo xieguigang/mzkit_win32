@@ -83,6 +83,8 @@ Public Class ChromatogramMatrix : Inherits DataMatrix
         MyBase.New(name, matrix)
     End Sub
 
+    Public Property peaksOverlaps As NamedValue(Of DoubleRange)()
+
     Public Sub SetAbsoluteTimeAxis(maxrt As Double)
         Dim matrix As ChromatogramTick() = Me.matrix
         Dim t As Double() = matrix.TimeArray
@@ -115,7 +117,29 @@ Public Class ChromatogramMatrix : Inherits DataMatrix
     End Sub
 
     Public Overrides Function Plot(args As PlotProperty, picBox As Size) As GraphicsData
-        Dim blender As New ChromatogramBlender(name, GetMatrix(Of ChromatogramTick))
+        Dim blender As ChromatogramBlender
+
+        If peaksOverlaps.IsNullOrEmpty Then
+            blender = New ChromatogramBlender(name, GetMatrix(Of ChromatogramTick))
+        Else
+            Dim tic = GetMatrix(Of ChromatogramTick)()
+            Dim overlaps As New List(Of NamedCollection(Of ChromatogramTick)) From {
+                New NamedCollection(Of ChromatogramTick)(name, tic)
+            }
+
+            For Each peak As NamedValue(Of DoubleRange) In peaksOverlaps
+                Call overlaps.Add(New NamedCollection(Of ChromatogramTick)(
+                    peak.Name,
+                    From t As ChromatogramTick
+                    In tic
+                    Where peak.Value.IsInside(t.Time)
+                    Order By t.Time
+                ))
+            Next
+
+            blender = New ChromatogramBlender(overlaps)
+        End If
+
         Dim img = blender.Rendering(args, picBox)
         Dim raster As New ImageData(img)
 
