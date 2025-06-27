@@ -64,20 +64,30 @@ Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader.ChromatogramReader
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports rawChromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML.chromatogram
+Imports std = System.Math
 
 Public Class MRMROIProperty
 
-    <Category("MRM IonPair")> Public Property precursor As Double
-    <Category("MRM IonPair")> Public Property product As Double
-    <Category("MRM IonPair")> Public Property id As String
-    <Category("MRM IonPair")> Public Property name As String
+    <Category("MRM IonPair")> Public ReadOnly Property precursor As Double
+    <Category("MRM IonPair")> Public ReadOnly Property product As Double
+    <Category("MRM IonPair")> Public ReadOnly Property id As String
+    <Category("MRM IonPair")> Public ReadOnly Property name As String
 
-    <Category("ROI Feature")> Public Property rtmin As Double
-    <Category("ROI Feature")> Public Property rtmax As Double
-    <Category("ROI Feature")> Public Property rt As Double
-    <Category("ROI Feature")> Public Property peakArea As Double
-    <Category("ROI Feature")> Public Property baseline As Double
-    <Category("ROI Feature")> Public Property peakHeight As Double
+    <Category("ROI Feature")> Public ReadOnly Property rtmin As Double
+    <Category("ROI Feature")> Public ReadOnly Property rtmax As Double
+    <Category("ROI Feature")> Public ReadOnly Property rt As Double
+
+    <Category("ROI Feature")>
+    <DisplayName("rt(min)")>
+    Public ReadOnly Property rt_minute As Double
+        Get
+            Return std.Round(rt / 60, 2)
+        End Get
+    End Property
+
+    <Category("ROI Feature")> Public ReadOnly Property peakArea As Double
+    <Category("ROI Feature")> Public ReadOnly Property baseline As Double
+    <Category("ROI Feature")> Public ReadOnly Property peakHeight As Double
 
     Sub New(ion As IonPair, peak As PeakFeature, xic As ChromatogramTick())
         Call Me.New(xic)
