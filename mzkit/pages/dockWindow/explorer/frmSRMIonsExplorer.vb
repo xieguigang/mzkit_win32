@@ -312,6 +312,11 @@ Public Class frmSRMIonsExplorer
 
     Private Sub frmSRMIonsExplorer_Load(sender As Object, e As EventArgs) Handles Me.Load
         TabText = "MRM Ions"
+        args = Globals.Settings.peak_finding
+
+        If args Is Nothing Then
+            args = New PeakFindingParameters
+        End If
 
         Call ApplyVsTheme(ContextMenuStrip1, ToolStrip1, ContextMenuStrip2, ContextMenuStrip3)
     End Sub
@@ -584,7 +589,7 @@ Public Class frmSRMIonsExplorer
 
     End Class
 
-    Dim args As New PeakFindingParameters
+    Dim args As PeakFindingParameters
 
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
         Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
@@ -592,6 +597,9 @@ Public Class frmSRMIonsExplorer
 
     Private Sub applyNewParameters(args As PeakFindingParameters)
         Me.args = args
+
+        Globals.Settings.peak_finding = args
+        Globals.Settings.Save()
     End Sub
 
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
