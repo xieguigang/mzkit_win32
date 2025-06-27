@@ -78,6 +78,7 @@ Imports Microsoft.VisualBasic.Text.Patterns
 Imports Mzkit_win32.BasicMDIForm
 Imports Task
 Imports TaskStream
+Imports WeifenLuo.WinFormsUI.Docking
 Imports chromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML.chromatogram
 Imports std = System.Math
 
@@ -599,7 +600,7 @@ Public Class frmSRMIonsExplorer
     Dim args As PeakFindingParameters
 
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
-        Call VisualStudio.Dock(WindowModules.parametersTool, WeifenLuo.WinFormsUI.Docking.DockState.DockRight)
+        Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
         Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
     End Sub
 
