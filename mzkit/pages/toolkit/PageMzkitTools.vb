@@ -79,6 +79,7 @@ Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
@@ -554,7 +555,11 @@ Public Class PageMzkitTools
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Sub ShowMRMTIC(name As String, ticks As ChromatogramTick(), maxrt As Double?)
+    Public Sub ShowMRMTIC(name As String,
+                          ticks As ChromatogramTick(),
+                          maxrt As Double?,
+                          Optional overlaps As IEnumerable(Of NamedValue(Of DoubleRange)) = Nothing)
+
         Dim xlab As String = "Time (s)"
         Dim ylab As String = "Intensity"
 
@@ -563,6 +568,9 @@ Public Class PageMzkitTools
 
         If Not maxrt Is Nothing Then
             Call DirectCast(_matrix, ChromatogramMatrix).SetAbsoluteTimeAxis(maxrt)
+        End If
+        If Not overlaps Is Nothing Then
+            DirectCast(_matrix, ChromatogramMatrix).peaksOverlaps = overlaps.ToArray
         End If
 
         MyApplication.RegisterPlot(

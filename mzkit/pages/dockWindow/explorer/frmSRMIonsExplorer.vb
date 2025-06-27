@@ -321,12 +321,14 @@ Public Class frmSRMIonsExplorer
 
     Private Sub Win7StyleTreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles Win7StyleTreeView1.AfterSelect
         Dim ticks As ChromatogramTick()
+        Dim peak As PeakFeature = Nothing
 
         If TypeOf e.Node.Tag Is BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram Then
             ticks = DirectCast(e.Node.Tag, BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram).GetTicks.ToArray
         ElseIf TypeOf e.Node.Tag Is MRMHolder Then
             Dim holder As MRMHolder = e.Node.Tag
             ticks = holder.TIC
+            peak = holder.peak
             Dim props As New MRMROIProperty(holder.ion, holder.peak, holder.TIC)
             Call VisualStudio.ShowProperties(props)
         Else
@@ -340,7 +342,13 @@ Public Class frmSRMIonsExplorer
         TIC = ticks
         title = e.Node.Text
 
-        Call MyApplication.host.mzkitTool.ShowMRMTIC(e.Node.Text, ticks, maxrt)
+        If peak Is Nothing Then
+            Call MyApplication.host.mzkitTool.ShowMRMTIC(e.Node.Text, ticks, maxrt)
+        Else
+            Call MyApplication.host.mzkitTool.ShowMRMTIC("MRM XIC", ticks, maxrt, {
+                New NamedValue(Of DoubleRange)(e.Node.Text, New DoubleRange(peak.rtmin, peak.rtmax))
+            })
+        End If
     End Sub
 
     Private Sub TICToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TICToolStripMenuItem.Click
