@@ -599,6 +599,7 @@ Public Class frmSRMIonsExplorer
     Dim args As PeakFindingParameters
 
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        Call VisualStudio.Dock(WindowModules.parametersTool, WeifenLuo.WinFormsUI.Docking.DockState.DockRight)
         Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
     End Sub
 
