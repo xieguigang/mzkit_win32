@@ -915,10 +915,10 @@
     <Compile Include="pages\dockWindow\documents\frmCFMIDOutputViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmPeakFinding.Designer.vb">
+    <Compile Include="pages\dockWindow\documents\Targetted\frmPeakFinding.Designer.vb">
       <DependentUpon>frmPeakFinding.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmPeakFinding.vb">
+    <Compile Include="pages\dockWindow\documents\Targetted\frmPeakFinding.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\frmSMILESViewer.Designer.vb">
@@ -1502,7 +1502,7 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmOpenseadragonViewer.resx">
       <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmPeakFinding.resx">
+    <EmbeddedResource Include="pages\dockWindow\documents\Targetted\frmPeakFinding.resx">
       <DependentUpon>frmPeakFinding.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\systems\frmLogFile.resx">
