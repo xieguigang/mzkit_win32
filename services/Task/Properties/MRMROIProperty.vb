@@ -55,6 +55,7 @@
 
 #End Region
 
+Imports System.ComponentModel
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
@@ -66,16 +67,17 @@ Imports rawChromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.Marku
 
 Public Class MRMROIProperty
 
-    Public Property precursor As Double
-    Public Property product As Double
-    Public Property rtmin As Double
-    Public Property rtmax As Double
-    Public Property rt As Double
-    Public Property peakArea As Double
-    Public Property baseline As Double
-    Public Property peakHeight As Double
-    Public Property id As String
-    Public Property name As String
+    <Category("MRM IonPair")> Public Property precursor As Double
+    <Category("MRM IonPair")> Public Property product As Double
+    <Category("MRM IonPair")> Public Property id As String
+    <Category("MRM IonPair")> Public Property name As String
+
+    <Category("ROI Feature")> Public Property rtmin As Double
+    <Category("ROI Feature")> Public Property rtmax As Double
+    <Category("ROI Feature")> Public Property rt As Double
+    <Category("ROI Feature")> Public Property peakArea As Double
+    <Category("ROI Feature")> Public Property baseline As Double
+    <Category("ROI Feature")> Public Property peakHeight As Double
 
     Sub New(ion As IonPair, peak As PeakFeature, xic As ChromatogramTick())
         Call Me.New(xic)
