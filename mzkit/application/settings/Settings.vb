@@ -94,6 +94,8 @@ Namespace Configuration
         Public Property msi_filters As Filters
         Public Property tissue_map As TissueMap
 
+        Public Property peak_finding As PeakFindingParameters
+
         Public Property MRMLibfile As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "/mzkit/MRM/Default.csv"
         Public Property QuantifyIonLibfile As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "/mzkit/GCMS_QuantifyIons.ionPack"
         Public Property pubchemWebCache As String = App.AppSystemTemp & "/web/pubchem/"
@@ -125,6 +127,7 @@ Namespace Configuration
             tissue_map = TissueMap.GetDefault
             local_blender = True
             last_msi_folder = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
+            peak_finding = New PeakFindingParameters
 
             Return Me
         End Function
@@ -154,6 +157,9 @@ Namespace Configuration
             End If
             If config.precursor_search Is Nothing Then
                 config.precursor_search = PrecursorSearchSettings.GetDefault
+            End If
+            If config.peak_finding Is Nothing Then
+                config.peak_finding = New PeakFindingParameters
             End If
 
             Return config
