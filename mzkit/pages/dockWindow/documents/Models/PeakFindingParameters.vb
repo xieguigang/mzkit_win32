@@ -133,6 +133,7 @@ Public Class PeakFindingParameters
         args.tolerance = GetTolerance()
         args.sn_threshold = sn_threshold
         args.baselineQuantile = baseline_threshold
+        args.joint_peaks = joint_peaks
 
         Return args
     End Function
