@@ -232,23 +232,38 @@ Public Class frmSRMIonsExplorer
         End If
 
         Dim ionsLib As IonLibrary = Globals.LoadIonLibrary
-        Dim display As String
-        Dim checkPeaks As New Index(Of String)
-        Dim rt_win As New DoubleRange(2, 15)
+        Dim xicdata As New List(Of MRMHolder)
 
         For Each chr As chromatogram In list _
             .Where(Function(i)
                        Return Not (i.id.TextEquals("TIC") OrElse i.id.TextEquals("BPC"))
                    End Function)
 
-            Dim ionRef As IsomerismIonPairs = ionsLib.GetIsomerism(chr.precursor.MRMTargetMz, chr.product.MRMTargetMz)
-            Dim xic = chr.Ticks
+            Call xicdata.Add(New MRMHolder With {
+                .ion = New IonPair(chr.precursor.MRMTargetMz, chr.product.MRMTargetMz),
+                .TIC = chr.Ticks
+            })
+        Next
+
+        Call refreshUI(TICRoot, ionsLib, xicdata)
+    End Sub
+
+    Private Sub refreshUI(TICRoot As TreeNode, ionsLib As IonLibrary, xicdata As IEnumerable(Of MRMHolder))
+        Dim display As String
+        Dim checkPeaks As New Index(Of String)
+        Dim rt_win As New DoubleRange(2, 15)
+
+        For Each chr As MRMHolder In xicdata
+            Dim q1 = chr.ion.precursor
+            Dim q3 = chr.ion.product
+            Dim ionRef As IsomerismIonPairs = ionsLib.GetIsomerism(q1, q3)
+            Dim xic = chr.TIC
             Dim peaks = xic.DeconvPeakGroups(rt_win, sn_threshold:=0).ToArray
             Dim ion As IonPair = ionRef.ions.Where(Function(a) Not (a.accession Like checkPeaks)).FirstOrDefault
             Dim peak As PeakFeature = Nothing
 
             If ion Is Nothing Then
-                ion = New IonPair(chr.precursor.MRMTargetMz, chr.product.MRMTargetMz)
+                ion = New IonPair(q1, q3)
             End If
 
             display = ionsLib.GetDisplay(ion)
@@ -285,7 +300,7 @@ Public Class frmSRMIonsExplorer
             With TICRoot.Nodes.Add(display)
                 .Tag = New MRMHolder With {
                     .ion = ion,
-                    .TIC = chr.Ticks,
+                    .TIC = xic,
                     .peak = peak
                 }
                 .ImageIndex = 1
@@ -549,16 +564,7 @@ Public Class frmSRMIonsExplorer
             TICRoot.ImageIndex = 0
             TICRoot.ContextMenuStrip = ContextMenuStrip1
 
-            For Each ion As MRMHolder In sample.Ions
-                Dim display = ionsLib.GetDisplay(ion.ion)
-
-                With TICRoot.Nodes.Add(display)
-                    .Tag = ion
-                    .ImageIndex = 1
-                    .SelectedImageIndex = 1
-                    .ContextMenuStrip = ContextMenuStrip2
-                End With
-            Next
+            Call refreshUI(TICRoot, ionsLib, sample.Ions)
         Next
     End Sub
 
