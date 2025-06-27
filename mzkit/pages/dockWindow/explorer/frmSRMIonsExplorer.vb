@@ -61,6 +61,7 @@ Imports System.IO.Compression
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
@@ -68,7 +69,9 @@ Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Zip
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Text.Patterns
@@ -76,6 +79,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Task
 Imports TaskStream
 Imports chromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML.chromatogram
+Imports std = System.Math
 
 Public Class frmSRMIonsExplorer
 
@@ -208,6 +212,7 @@ Public Class frmSRMIonsExplorer
     Private Class MRMHolder
         Public ion As IonPair
         Public TIC As ChromatogramTick()
+        Public peak As PeakFeature
     End Class
 
     Public Sub LoadMRM(file As String)
@@ -228,21 +233,46 @@ Public Class frmSRMIonsExplorer
 
         Dim ionsLib As IonLibrary = Globals.LoadIonLibrary
         Dim display As String
+        Dim checkPeaks As New Index(Of String)
+        Dim rt_win As New DoubleRange(2, 15)
 
         For Each chr As chromatogram In list _
             .Where(Function(i)
                        Return Not (i.id.TextEquals("TIC") OrElse i.id.TextEquals("BPC"))
                    End Function)
 
-            Dim ionRef As New IonPair With {
-                .precursor = chr.precursor.MRMTargetMz,
-                .product = chr.product.MRMTargetMz
-            }
+            Dim ionRef As IsomerismIonPairs = ionsLib.GetIsomerism(chr.precursor.MRMTargetMz, chr.product.MRMTargetMz)
+            Dim xic = chr.Ticks
+            Dim peaks = xic.DeconvPeakGroups(rt_win, sn_threshold:=0).ToArray
+            Dim ion As IonPair = ionRef.ions.Where(Function(a) Not (a.accession Like checkPeaks)).FirstOrDefault
+            Dim peak As PeakFeature = Nothing
 
-            display = ionsLib.GetDisplay(ionRef)
+            display = ionsLib.GetDisplay(ion)
+
+            If ion Is Nothing OrElse Not peaks.Any Then
+                peak = Nothing
+            ElseIf ion.rt IsNot Nothing Then
+                Dim ref_rt As Double = CDbl(ion.rt)
+
+                peak = peaks _
+                    .Where(Function(i)
+                               Return std.Abs(i.rt - ref_rt) < 15
+                           End Function) _
+                    .OrderBy(Function(i) std.Abs(i.rt - ref_rt)) _
+                    .FirstOrDefault
+            Else
+                ' pick max intensity peak
+                peak = peaks _
+                    .OrderByDescending(Function(a) a.maxInto) _
+                    .First
+            End If
 
             With TICRoot.Nodes.Add(display)
-                .Tag = New MRMHolder With {.ion = ionRef, .TIC = chr.Ticks}
+                .Tag = New MRMHolder With {
+                    .ion = ion,
+                    .TIC = chr.Ticks,
+                    .peak = peak
+                }
                 .ImageIndex = 1
                 .SelectedImageIndex = 1
                 .ContextMenuStrip = ContextMenuStrip2
