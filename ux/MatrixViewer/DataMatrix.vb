@@ -67,6 +67,7 @@ Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports MZKitWin32.Blender.CommonLibs
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 
 Public MustInherit Class DataMatrix
 
@@ -127,7 +128,7 @@ Public MustInherit Class DataMatrix
 
         End Try
 
-        For Each title As NamedValue(Of Type) In GetTitles()
+        For Each title As NamedValue(Of Type) In GetTitles().UniqueNames
             Call table.Columns.Add(title.Name, title.Value)
         Next
 
