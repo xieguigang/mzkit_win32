@@ -576,17 +576,33 @@ Public Class frmSRMIonsExplorer
             dataset.Add(data)
         Next
 
+        Dim max As Integer = dataset.Count
+
         Call Win7StyleTreeView1.Nodes.Clear()
+        Call TaskProgress.RunAction(
+                Sub(proc)
+                    Dim i As Integer = 0
 
-        For Each sample As SampleData In dataset
-            Dim TICRoot As TreeNode = Win7StyleTreeView1.Nodes.Add(sample.Name)
+                    proc.SetProgressMode()
+                    proc.SetProgress(0, "Update Sample Files UI...")
 
-            TICRoot.Tag = sample.Root
-            TICRoot.ImageIndex = 0
-            TICRoot.ContextMenuStrip = ContextMenuStrip1
+                    For Each sample As SampleData In dataset
+                        Dim TICRoot As TreeNode = Win7StyleTreeView1.Nodes.Add(sample.Name)
 
-            Call refreshUI(TICRoot, ionsLib, sample.Ions)
-        Next
+                        TICRoot.Tag = sample.Root
+                        TICRoot.ImageIndex = 0
+                        TICRoot.ContextMenuStrip = ContextMenuStrip1
+
+                        i += 1
+
+                        Call refreshUI(TICRoot, ionsLib, sample.Ions)
+                        Call proc.SetProgress(100 * i / max, $"Update sample file {sample.Name}")
+                    Next
+                End Sub,
+            title:="Update Display Names",
+            info:="Update Sample Files UI...",
+            cancel:=AddressOf DoNothing,
+            host:=Me)
     End Sub
 
     Private Class SampleData
