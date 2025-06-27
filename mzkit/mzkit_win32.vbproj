@@ -951,7 +951,7 @@
     <Compile Include="pages\dockWindow\documents\LCMS\frmSeeMs.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\Models\QuantifyParameters.vb" />
+    <Compile Include="pages\dockWindow\documents\Models\PeakFindingParameters.vb" />
     <Compile Include="pages\dockWindow\systems\frmServicesManager.Designer.vb">
       <DependentUpon>frmServicesManager.vb</DependentUpon>
     </Compile>

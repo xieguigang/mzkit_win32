@@ -73,6 +73,10 @@ Public Class MRMROIProperty
     <Category("MRM IonPair")> Public ReadOnly Property id As String
     <Category("MRM IonPair")> Public ReadOnly Property name As String
 
+    <Category("MRM IonPair")>
+    <DisplayName("reference RT")>
+    Public ReadOnly Property referRT As Double
+
     <Category("ROI Feature")> Public ReadOnly Property rtmin As Double
     <Category("ROI Feature")> Public ReadOnly Property rtmax As Double
     <Category("ROI Feature")> Public ReadOnly Property rt As Double
@@ -96,6 +100,7 @@ Public Class MRMROIProperty
         product = ion.product
         id = If(ion.accession, "NA")
         name = If(ion.name, "No-Title")
+        referRT = ion.rt
 
         If Not peak Is Nothing Then
             rtmin = peak.rtmin

@@ -108,7 +108,7 @@ Imports std = System.Math
 
 Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
-    ReadOnly args As New QuantifyParameters
+    ReadOnly args As New PeakFindingParameters
 
     Private Sub frmTargetedQuantification_Load(sender As Object, e As EventArgs) Handles Me.Load
         WindowModules.ribbon.TargetedContex.ContextAvailable = ContextAvailability.Active
@@ -132,7 +132,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     ''' 调整参数后重新计算标准曲线
     ''' </summary>
     ''' <param name="args"></param>
-    Private Sub applyNewParameters(args As QuantifyParameters)
+    Private Sub applyNewParameters(args As PeakFindingParameters)
         If rowIndex >= 0 Then
             ' 这个可能是因为之前的一批标准曲线计算留下来的
             If DataGridView1.Rows.Count <= rowIndex Then
@@ -929,7 +929,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         End If
     End Sub
 
-    Private Sub showLinear(args As QuantifyParameters)
+    Private Sub showLinear(args As PeakFindingParameters)
         ' 计算出线性方程
         standardCurve = createLinear(DataGridView1.Rows(rowIndex), args)
 
@@ -1084,7 +1084,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     ''' <param name="refRow"></param>
     ''' <param name="refPoints"></param>
     ''' <returns></returns>
-    Private Function createLinear(refRow As DataGridViewRow, args As QuantifyParameters, Optional ByRef refPoints As TargetPeakPoint() = Nothing) As StandardCurve
+    Private Function createLinear(refRow As DataGridViewRow, args As PeakFindingParameters, Optional ByRef refPoints As TargetPeakPoint() = Nothing) As StandardCurve
         Dim id As String = any.ToString(refRow.Cells(0).Value)
         Dim isid As String = any.ToString(refRow.Cells(1).Value)
         Dim chr As New List(Of TargetPeakPoint)

@@ -66,7 +66,10 @@ Imports System.ComponentModel
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 
-Public Class QuantifyParameters
+''' <summary>
+''' peak finding arguments UI interop
+''' </summary>
+Public Class PeakFindingParameters
 
     <Category("Peak Width")>
     <DisplayName("min")>
@@ -78,17 +81,19 @@ Public Class QuantifyParameters
     Public Property peakMax As Double = 30
 
     <Category("Peak Finding")>
+    <DisplayName("angle threshold")>
     <Description("The threshold value of sin(alpha) angle value, value of this parameter should be in range of [0,90]")>
     Public Property angle_threshold As Double = 6
 
-    <Category("Peak Finding")>
-    Public Property toleranceMethod As ToleranceMethods = ToleranceMethods.da
-    <Category("Peak Finding")>
+    <Category("Quantify Ion")>
+    <DisplayName("error type")>
+    Public Property toleranceMethod As MassToleranceType = MassToleranceType.Da
+    <Category("Quantify Ion")>
     Public Property tolerance As Double = 0.3
 
     Public Function GetTolerance() As Tolerance
         Select Case toleranceMethod
-            Case ToleranceMethods.da
+            Case MassToleranceType.Da
                 Return New DAmethod(tolerance)
             Case Else
                 Return New PPMmethod(tolerance)
@@ -106,8 +111,3 @@ Public Class QuantifyParameters
     End Function
 
 End Class
-
-Public Enum ToleranceMethods
-    da
-    ppm
-End Enum
