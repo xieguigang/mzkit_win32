@@ -251,14 +251,19 @@ Public Class frmSRMIonsExplorer
     Private Sub refreshUI(TICRoot As TreeNode, ionsLib As IonLibrary, xicdata As IEnumerable(Of MRMHolder))
         Dim display As String
         Dim checkPeaks As New Index(Of String)
-        Dim rt_win As New DoubleRange(2, 15)
+        Dim rt_win As New DoubleRange(args.peakMin, args.peakMax)
+
+        Call ionsLib.SetError(args.GetTolerance)
 
         For Each chr As MRMHolder In xicdata
             Dim q1 = chr.ion.precursor
             Dim q3 = chr.ion.product
             Dim ionRef As IsomerismIonPairs = ionsLib.GetIsomerism(q1, q3)
             Dim xic = chr.TIC
-            Dim peaks = xic.DeconvPeakGroups(rt_win, sn_threshold:=0).ToArray
+            Dim peaks = xic.DeconvPeakGroups(rt_win,
+                                             quantile:=args.baseline_threshold,
+                                             sn_threshold:=args.sn_threshold,
+                                             joint:=args.joint_peaks).ToArray
             Dim ion As IonPair = ionRef.ions.Where(Function(a) Not (a.accession Like checkPeaks)).FirstOrDefault
             Dim peak As PeakFeature = Nothing
 
@@ -313,6 +318,7 @@ Public Class frmSRMIonsExplorer
     Private Sub frmSRMIonsExplorer_Load(sender As Object, e As EventArgs) Handles Me.Load
         TabText = "MRM Ions"
         args = Globals.Settings.peak_finding
+        setLibName = New Configuration.Settings().MRMLibfile.BaseName
 
         If args Is Nothing Then
             args = New PeakFindingParameters
@@ -603,6 +609,6 @@ Public Class frmSRMIonsExplorer
     End Sub
 
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
-
+        Call updateIonNameDisplay(setLibName)
     End Sub
 End Class

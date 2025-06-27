@@ -85,6 +85,18 @@ Public Class PeakFindingParameters
     <Description("The threshold value of sin(alpha) angle value, value of this parameter should be in range of [0,90]")>
     Public Property angle_threshold As Double = 6
 
+    <Category("Peak Finding")>
+    <DisplayName("S/N threshold")>
+    Public Property sn_threshold As Double = 0
+
+    <Category("Peak Finding")>
+    <DisplayName("baseline threshold")>
+    Public Property baseline_threshold As Double = 0.65
+
+    <Category("Peak Finding")>
+    <DisplayName("joint peaks")>
+    Public Property joint_peaks As Boolean = True
+
     <Category("Quantify Ion")>
     <DisplayName("error type")>
     Public Property toleranceMethod As MassToleranceType = MassToleranceType.Da
@@ -99,6 +111,9 @@ Public Class PeakFindingParameters
         angle_threshold = [default].angleThreshold
         toleranceMethod = [default].tolerance.Type
         tolerance = [default].tolerance.DeltaTolerance
+        sn_threshold = [default].sn_threshold
+        baseline_threshold = [default].baselineQuantile
+        joint_peaks = [default].strict
     End Sub
 
     Public Function GetTolerance() As Tolerance
@@ -116,6 +131,8 @@ Public Class PeakFindingParameters
         args.peakwidth = {peakMin, peakMax}
         args.angleThreshold = angle_threshold
         args.tolerance = GetTolerance()
+        args.sn_threshold = sn_threshold
+        args.baselineQuantile = baseline_threshold
 
         Return args
     End Function
