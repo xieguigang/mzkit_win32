@@ -56,6 +56,7 @@
 #End Region
 
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
 Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader.ChromatogramReader
@@ -72,12 +73,26 @@ Public Class MRMROIProperty
     Public Property rt As Double
     Public Property peakArea As Double
     Public Property baseline As Double
+    Public Property peakHeight As Double
+    Public Property id As String
+    Public Property name As String
 
-    Sub New(ion As IonPair, chr As ChromatogramTick())
-        Call Me.New(chr)
+    Sub New(ion As IonPair, peak As PeakFeature, xic As ChromatogramTick())
+        Call Me.New(xic)
 
         precursor = ion.precursor
         product = ion.product
+        id = If(ion.accession, "NA")
+        name = If(ion.name, "No-Title")
+
+        If Not peak Is Nothing Then
+            rtmin = peak.rtmin
+            rtmax = peak.rtmax
+            rt = peak.rt
+            peakArea = peak.area
+            baseline = peak.baseline
+            peakHeight = peak.maxInto
+        End If
     End Sub
 
     Sub New(TIC As ChromatogramTick())
@@ -97,6 +112,7 @@ Public Class MRMROIProperty
             rt = ROI.rt
             peakArea = ROI.integration
             baseline = ROI.baseline
+            peakHeight = ROI.maxInto
         End If
     End Sub
 

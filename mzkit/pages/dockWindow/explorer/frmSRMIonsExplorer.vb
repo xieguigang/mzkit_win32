@@ -327,7 +327,7 @@ Public Class frmSRMIonsExplorer
         ElseIf TypeOf e.Node.Tag Is MRMHolder Then
             Dim holder As MRMHolder = e.Node.Tag
             ticks = holder.TIC
-            Dim props As New MRMROIProperty(holder.ion, ticks)
+            Dim props As New MRMROIProperty(holder.ion, holder.peak, holder.TIC)
             Call VisualStudio.ShowProperties(props)
         Else
             Dim chr As chromatogram = e.Node.Tag
