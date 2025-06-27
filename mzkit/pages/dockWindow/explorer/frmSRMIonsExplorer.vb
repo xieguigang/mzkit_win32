@@ -76,6 +76,7 @@ Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Text.Patterns
 Imports Mzkit_win32.BasicMDIForm
+Imports SMRUCC.Rsharp.Runtime.Interop
 Imports Task
 Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
@@ -265,7 +266,15 @@ Public Class frmSRMIonsExplorer
                                              quantile:=args.baseline_threshold,
                                              sn_threshold:=args.sn_threshold,
                                              joint:=args.joint_peaks).ToArray
-            Dim ion As IonPair = ionRef.ions.Where(Function(a) Not (a.accession Like checkPeaks)).FirstOrDefault
+            Dim ion As IonPair = ionRef.ions _
+                .Where(Function(a)
+                           If a.accession Like checkPeaks Then
+                               Return False
+                           Else
+                               Return True
+                           End If
+                       End Function) _
+                .FirstOrDefault
             Dim peak As PeakFeature = Nothing
 
             If ion Is Nothing Then
