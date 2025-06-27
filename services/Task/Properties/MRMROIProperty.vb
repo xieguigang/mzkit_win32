@@ -100,7 +100,8 @@ Public Class MRMROIProperty
         product = ion.product
         id = If(ion.accession, "NA")
         name = If(ion.name, "No-Title")
-        referRT = ion.rt
+        ' nullable value must have value, default set to zero
+        referRT = If(ion.rt, 0)
 
         If Not peak Is Nothing Then
             rtmin = peak.rtmin
