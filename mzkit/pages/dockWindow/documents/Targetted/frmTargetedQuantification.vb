@@ -282,8 +282,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         DataGridView1.Columns.Add(New DataGridViewLinkColumn With {.HeaderText = "Features"})
         DataGridView1.Columns.Add(New DataGridViewComboBoxColumn With {.HeaderText = "IS"})
 
-        For Each level As NamedValue(Of String) In files
-            Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.HeaderText = level.Name})
+        For Each level As KeyValuePair(Of String, Double) In fakeLevels
+            Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.HeaderText = level.Key})
         Next
 
         Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
