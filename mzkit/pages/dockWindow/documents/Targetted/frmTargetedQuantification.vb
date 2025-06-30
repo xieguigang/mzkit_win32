@@ -1693,7 +1693,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Workbench.StatusMessage("Double click on the compound [features] name to view corresponding standard curve plot and data points.", My.Resources.preferences_system_notifications)
     End Sub
 
-    Public Sub SetCals(filenames() As String) Implements QuantificationLinearPage.SetCals
-        cals = ContentTable.StripMaxCommonNames(filenames)
+    Public Sub SetCals(filenames() As NamedValue(Of String)) Implements QuantificationLinearPage.SetCals
+        cals = filenames
     End Sub
 End Class

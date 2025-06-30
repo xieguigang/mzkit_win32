@@ -15,7 +15,7 @@ Public Interface QuantificationLinearPage
     ''' set the sample names of the cals points
     ''' </summary>
     ''' <param name="filenames"></param>
-    Sub SetCals(filenames As String())
+    Sub SetCals(filenames As NamedValue(Of String)())
 
     ''' <summary>
     ''' set linear reference in current profile table

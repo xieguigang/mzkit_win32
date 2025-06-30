@@ -2,8 +2,9 @@
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Text.Patterns
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 
 Public Class LinearRegressionAction : Inherits ActionBase
@@ -71,8 +72,14 @@ Public Class LinearRegressionAction : Inherits ActionBase
                                               MessageBoxIcon.Stop)
                           Else
                               Dim page As QuantificationLinearPage = DirectCast(VisualStudio.ShowSingleDocument(Of frmTargetedQuantification), QuantificationLinearPage)
+                              Dim calNames = New CommonTagParser(cals.JoinIterates(files.Keys)).GetTagNames.ToArray
+                              Dim nameMaps = calNames _
+                                  .Select(Function(name, i)
+                                              Return New NamedValue(Of String)(name, cals(i))
+                                          End Function) _
+                                  .ToArray
 
-                              Call page.SetCals(cals)
+                              Call page.SetCals(nameMaps)
                               Call page.RunLinearFileImports(files, type:=TargetTypes.MRM)
                           End If
                       End Sub)
