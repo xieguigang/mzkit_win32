@@ -115,7 +115,7 @@ Public Class PeakFindingParameters
     Public Property bspline_degree As Double = 2
     <Category("Pre-Processing")>
     <DisplayName("B-spline density")>
-    Public Property bspline_density As Integer = 10
+    Public Property bspline_density As Integer = 5
 
     ''' <summary>
     ''' Create with default values

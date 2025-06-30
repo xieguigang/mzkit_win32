@@ -6,8 +6,9 @@ let MRMfiles = ?"--files" || stop("the input MRM mzXML files must be provided!")
 let ions = ?"--ions" || stop("the MRM ions for extract peaks data must be provided!");
 let outputdir = ?"--outdir" || dirname(MRMfiles);
 let args = ?"--args" || stop("The peak finding arguments json must be provided!");
+let json_text = readText(args);
 
-args = MRMLinear::from_arguments_json(readText(args));
+args = MRMLinear::from_arguments_json(json_text);
 MRMfiles = readLines(MRMfiles);
 MRMfiles = as.list(MRMfiles, names = basename(MRMfiles));
 ions = read.ion_pairs(ions) |> isomerism.ion_pairs(tolerance = "ppm:20");
@@ -15,7 +16,7 @@ ions = read.ion_pairs(ions) |> isomerism.ion_pairs(tolerance = "ppm:20");
 print("get MRM rawdata files:");
 str(MRMfiles);
 print("view of the MRM arguments:");
-str(JSON::json_deocde(readText(args)));
+str(JSON::json_decode(json_text));
 
 let xic = lapply(MRMfiles, path -> extract.ions(path, ionpairs = ions, tolerance = "da:0.01"));
 let peaks = lapply(xic, ion -> MRM.peakarea(ion, args));
