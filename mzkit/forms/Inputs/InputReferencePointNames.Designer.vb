@@ -24,19 +24,18 @@ Partial Class InputReferencePointNames
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(InputReferencePointNames))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.CheckedListBox1)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(335, 326)
@@ -51,18 +50,11 @@ Partial Class InputReferencePointNames
         Me.Label1.ForeColor = System.Drawing.Color.ForestGreen
         Me.Label1.Location = New System.Drawing.Point(6, 17)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(319, 133)
+        Me.Label1.Size = New System.Drawing.Size(318, 95)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = resources.GetString("Label1.Text")
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(6, 153)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox1.Size = New System.Drawing.Size(323, 167)
-        Me.TextBox1.TabIndex = 0
+        Me.Label1.Text = "The input box listing all sample names that " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "extract from the raw data table, ch" &
+    "eck the " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "sample names from the input box for " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "marked it as the linear referenc" &
+    "e point sample" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "names. "
         '
         'Button1
         '
@@ -82,6 +74,14 @@ Partial Class InputReferencePointNames
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'CheckedListBox1
+        '
+        Me.CheckedListBox1.FormattingEnabled = True
+        Me.CheckedListBox1.Location = New System.Drawing.Point(10, 115)
+        Me.CheckedListBox1.Name = "CheckedListBox1"
+        Me.CheckedListBox1.Size = New System.Drawing.Size(314, 196)
+        Me.CheckedListBox1.TabIndex = 2
+        '
         'InputReferencePointNames
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -99,8 +99,8 @@ Partial Class InputReferencePointNames
     End Sub
 
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Label1 As Label
+    Friend WithEvents CheckedListBox1 As CheckedListBox
 End Class

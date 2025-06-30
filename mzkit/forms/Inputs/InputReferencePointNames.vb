@@ -4,9 +4,12 @@ Imports Microsoft.VisualBasic.Language
 Public Class InputReferencePointNames
 
     Public Iterator Function GetReferencePointNames(err As Value(Of String)) As IEnumerable(Of String)
-        For Each line As String In TextBox1.Text _
-            .LineTokens _
-            .Where(Function(a) Not a.StringEmpty(, True))
+        For i As Integer = 0 To CheckedListBox1.Items.Count - 1
+            Dim line As String = CheckedListBox1.Items(i)
+
+            If Not CheckedListBox1.GetItemChecked(i) Then
+                Continue For
+            End If
 
             If Not line Like inputNames Then
                 err.Value = line
@@ -21,7 +24,12 @@ Public Class InputReferencePointNames
 
     Public Sub SetNames(names As IEnumerable(Of String))
         inputNames = names.Distinct.Where(Function(s) Not s.StringEmpty(, True)).Indexing
-        TextBox1.Text = inputNames.Objects.JoinBy(vbCrLf)
+
+        CheckedListBox1.Items.Clear()
+
+        For Each name As String In inputNames.Objects
+            Call CheckedListBox1.Items.Add(name)
+        Next
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

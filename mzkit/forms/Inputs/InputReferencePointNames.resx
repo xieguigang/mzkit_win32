@@ -123,18 +123,6 @@
   <metadata name="Label1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="Label1.Text" xml:space="preserve">
-    <value>The input box listing all sample names that 
-extract from the raw data table, removes
-the sample names from the input box and
-just leaves the linear reference point sample
-names. 
-
-DO NOT MODIFY THE SAMPLE NAME AT HERE!</value>
-  </data>
-  <metadata name="TextBox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="Button1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
