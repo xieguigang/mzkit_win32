@@ -302,7 +302,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Me.linearFiles = files
         Me.linearPack = New LinearPack With {
             .reference = New Dictionary(Of String, SampleContentLevels) From {
-                {"n/a", New SampleContentLevels(fakeLevels, directMapName)}
+                {"n/a", New SampleContentLevels(fakeLevels, directMapName, resolve_duplication:=Not directMapName)}
             },
             .time = Now,
             .title = "standards linears data",
