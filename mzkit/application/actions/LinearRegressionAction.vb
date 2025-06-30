@@ -82,9 +82,10 @@ Public Class LinearRegressionAction : Inherits ActionBase
                                               Return New NamedValue(Of String)(name, cals(i))
                                           End Function) _
                                   .ToArray
+                              Dim filter_cals As Index(Of String) = cals.Indexing
 
                               Call page.SetCals(nameMaps)
-                              Call page.RunLinearFileImports(files, type:=TargetTypes.MRM)
+                              Call page.RunLinearFileImports(files.Where(Function(a) a.filename Like filter_cals).ToArray, type:=TargetTypes.MRM)
                           End If
                       End Sub)
     End Sub
