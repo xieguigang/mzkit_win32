@@ -729,7 +729,10 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Private Sub SaveAsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAsToolStripMenuItem.Click
-        Using savefile As New SaveFileDialog With {.Title = "Select location for save linear pack data.", .Filter = "Mzkit Linear Models(*.linearPack)|*.linearPack"}
+        Using savefile As New SaveFileDialog With {
+            .Title = "Select location for save linear pack data.",
+            .Filter = "Mzkit Linear Models(*.linearPack)|*.linearPack"
+        }
             If savefile.ShowDialog = DialogResult.OK Then
                 Call TaskProgress.RunAction(
                     Sub()
