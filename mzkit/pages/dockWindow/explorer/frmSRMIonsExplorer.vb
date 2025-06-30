@@ -639,4 +639,10 @@ Public Class frmSRMIonsExplorer
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
         Call updateIonNameDisplay(setLibName)
     End Sub
+
+    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
+        Call applyNewParameters(New PeakFindingParameters)
+        Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
+        Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
+    End Sub
 End Class

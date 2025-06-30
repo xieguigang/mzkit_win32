@@ -117,6 +117,9 @@ Public Class PeakFindingParameters
     <DisplayName("B-spline density")>
     Public Property bspline_density As Integer = 10
 
+    ''' <summary>
+    ''' Create with default values
+    ''' </summary>
     Sub New()
         Dim [default] = MRMArguments.GetDefaultArguments
 
