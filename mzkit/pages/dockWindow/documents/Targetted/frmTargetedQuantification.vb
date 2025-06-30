@@ -419,6 +419,11 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Return False
     End Function
 
+    ''' <summary>
+    ''' imports mzML raw data files
+    ''' </summary>
+    ''' <param name="fileNames"></param>
+    ''' <param name="type"></param>
     Private Sub importsRawLinearFiles(fileNames As String(), type As TargetTypes?)
         Dim files As NamedValue(Of String)() = ContentTable.StripMaxCommonNames(fileNames)
         Dim fakeLevels As Dictionary(Of String, Double) = Nothing

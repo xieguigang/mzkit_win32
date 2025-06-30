@@ -10,6 +10,11 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports any = Microsoft.VisualBasic.Scripting
 Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 
+' 20250630 dot not set the datagridview selection mode to
+' full row select, should be use the default selection mode
+' row header select, or the paste data function will not working 
+' well
+
 Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoader
 
     Dim is_list As String()
