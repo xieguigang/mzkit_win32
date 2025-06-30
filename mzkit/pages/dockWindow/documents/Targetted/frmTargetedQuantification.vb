@@ -1116,6 +1116,14 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         refPoints = chr.ToArray
 
+        If Not cals.IsNullOrEmpty Then
+            Dim calIndex = cals.Keys.Indexing
+
+            chr = chr _
+                .Where(Function(t) t.SampleName Like calIndex) _
+                .AsList
+        End If
+
         If chr = 0 OrElse chr.All(Function(p) p.Name <> id) Then
             Call Workbench.Warning($"No sample data was found of ion '{id}'!")
             Return Nothing

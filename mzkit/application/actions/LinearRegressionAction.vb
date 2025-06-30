@@ -57,6 +57,11 @@ Public Class LinearRegressionAction : Inherits ActionBase
                     End Function) _
             .ToArray
         Dim selCals As New InputReferencePointNames
+        Dim sampleNames = New CommonTagParser(files.Keys).GetTagNames.ToArray
+
+        For i As Integer = 0 To sampleNames.Length - 1
+            files(i).filename = sampleNames(i)
+        Next
 
         selCals.SetNames(files.Keys)
         selCals.Input(Sub(list)
@@ -72,8 +77,7 @@ Public Class LinearRegressionAction : Inherits ActionBase
                                               MessageBoxIcon.Stop)
                           Else
                               Dim page As QuantificationLinearPage = DirectCast(VisualStudio.ShowSingleDocument(Of frmTargetedQuantification), QuantificationLinearPage)
-                              Dim calNames = New CommonTagParser(cals.JoinIterates(files.Keys)).GetTagNames.ToArray
-                              Dim nameMaps = calNames _
+                              Dim nameMaps = cals _
                                   .Select(Function(name, i)
                                               Return New NamedValue(Of String)(name, cals(i))
                                           End Function) _
