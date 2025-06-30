@@ -14,6 +14,8 @@ ions = read.ion_pairs(ions) |> isomerism.ion_pairs(tolerance = "ppm:20");
 
 print("get MRM rawdata files:");
 str(MRMfiles);
+print("view of the MRM arguments:");
+str(JSON::json_deocde(readText(args)));
 
 let xic = lapply(MRMfiles, path -> extract.ions(path, ionpairs = ions, tolerance = "da:0.01"));
 let peaks = lapply(xic, ion -> MRM.peakarea(ion, args));
