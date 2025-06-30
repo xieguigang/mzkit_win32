@@ -1,5 +1,6 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.LinearQuantitative
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
@@ -51,6 +52,7 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
             End If
 
             Dim combo As DataGridViewComboBoxCell = row.Cells(1)
+            Dim id_row As String = any.ToString(row.Cells(0).Value)
 
             Call loadComboList(combo)
         Next
