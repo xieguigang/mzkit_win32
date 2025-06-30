@@ -212,9 +212,19 @@ Public Class frmSRMIonsExplorer
     End Sub
 
     Private Class MRMHolder
+
         Public ion As IonPair
         Public TIC As ChromatogramTick()
         Public peak As PeakFeature
+        Public bspline As ChromatogramTick()
+
+        Public Function GetXic() As ChromatogramTick()
+            If bspline.IsNullOrEmpty Then
+                Return TIC
+            Else
+                Return bspline
+            End If
+        End Function
     End Class
 
     Public Sub LoadMRM(file As String)
@@ -348,9 +358,9 @@ Public Class frmSRMIonsExplorer
             ticks = DirectCast(e.Node.Tag, BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram).GetTicks.ToArray
         ElseIf TypeOf e.Node.Tag Is MRMHolder Then
             Dim holder As MRMHolder = e.Node.Tag
-            ticks = holder.TIC
+            ticks = holder.GetXic
             peak = holder.peak
-            Dim props As New MRMROIProperty(holder.ion, holder.peak, holder.TIC)
+            Dim props As New MRMROIProperty(holder.ion, holder.peak, ticks)
             Call VisualStudio.ShowProperties(props)
         Else
             Dim chr As chromatogram = e.Node.Tag
