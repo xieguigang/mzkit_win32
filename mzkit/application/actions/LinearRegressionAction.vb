@@ -40,7 +40,7 @@ Public Class LinearRegressionAction : Inherits ActionBase
                             .TPA = area(i),
                             .base = baseline(i),
                             .maxinto = maxinto(i),
-                            .Name = name(i),
+                            .Name = names(i),
                             .ID = .Name,
                             .rtmin = rtmin(i),
                             .rtmax = rtmax(i),
