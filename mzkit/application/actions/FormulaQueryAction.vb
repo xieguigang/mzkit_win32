@@ -5,7 +5,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Public Class FormulaQueryAction : Inherits ActionBase
 
@@ -70,9 +70,9 @@ Public Class FormulaQueryAction : Inherits ActionBase
                          Dim values As New List(Of Object)
                          Dim subData = row.Item1
 
-                         values.Add(stdNum.Round(row.mztarget, 4))
+                         values.Add(std.Round(row.mztarget, 4))
                          values.Add(row.Item2.ToString)
-                         values.Add(stdNum.Round(row.ppm))
+                         values.Add(std.Round(row.ppm))
                          values.Add(name)
                          values.Add(formula.EmpiricalFormula)
                          values.AddRange(subData.ItemArray)

@@ -5,7 +5,6 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Mzkit_win32.BasicMDIForm
 Imports PipelineHost
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.BriteHEntry
-Imports SMRUCC.genomics.Assembly.KEGG.WebServices
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class KEGGStatsAction : Inherits ActionBase
