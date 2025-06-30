@@ -489,6 +489,12 @@
     <Compile Include="forms\frmTweaks\frmSingleCellsTweaks.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\InputReferencePointNames.Designer.vb">
+      <DependentUpon>InputReferencePointNames.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\InputReferencePointNames.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputURL.Designer.vb">
       <DependentUpon>InputURL.vb</DependentUpon>
     </Compile>
@@ -1268,6 +1274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmUserAgreement.resx">
       <DependentUpon>frmUserAgreement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputReferencePointNames.resx">
+      <DependentUpon>InputReferencePointNames.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\Input3DScatter.resx">
       <DependentUpon>Input3DScatter.vb</DependentUpon>

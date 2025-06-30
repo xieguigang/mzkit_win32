@@ -58,6 +58,11 @@ Namespace CommonDialogs
 
     Public Class InputDialog
 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Sub Input(setConfig As Action(Of InputDialog), Optional cancel As Action = Nothing)
+            Call Input(setConfig, cancel, config:=Me)
+        End Sub
+
         ''' <summary>
         ''' 
         ''' </summary>

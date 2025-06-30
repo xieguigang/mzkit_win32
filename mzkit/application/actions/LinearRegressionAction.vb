@@ -1,7 +1,9 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.LinearQuantitative
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Language
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 
 Public Class LinearRegressionAction : Inherits ActionBase
@@ -48,13 +50,31 @@ Public Class LinearRegressionAction : Inherits ActionBase
                         }
                     End Function) _
             .ToArray
-        Dim files = ions.GroupBy(Function(i) i.raw) _
+        Dim files As DataFile() = ions.GroupBy(Function(i) i.raw) _
             .Select(Function(i)
                         Return New DataFile With {.filename = i.Key, .ionPeaks = i.ToArray}
                     End Function) _
             .ToArray
-        Dim page As QuantificationLinearPage = DirectCast(VisualStudio.ShowSingleDocument(Of frmTargetedQuantification), QuantificationLinearPage)
+        Dim selCals As New InputReferencePointNames
 
-        Call page.RunLinearFileImports(files, type:=TargetTypes.MRM)
+        selCals.SetNames(files.Keys)
+        selCals.Input(Sub(list)
+                          Dim getErrName As Value(Of String) = ""
+                          Dim cals As String() = DirectCast(list, InputReferencePointNames) _
+                              .GetReferencePointNames(getErrName) _
+                              .ToArray
+
+                          If getErrName.Value <> "" Then
+                              MessageBox.Show($"One of the reference point sample name '{getErrName.Value}' is mis-matched with the original input sample names.",
+                                              "Mis-Matched Sample Name",
+                                              MessageBoxButtons.OK,
+                                              MessageBoxIcon.Stop)
+                          Else
+                              Dim page As QuantificationLinearPage = DirectCast(VisualStudio.ShowSingleDocument(Of frmTargetedQuantification), QuantificationLinearPage)
+
+                              Call page.SetCals(cals)
+                              Call page.RunLinearFileImports(files, type:=TargetTypes.MRM)
+                          End If
+                      End Sub)
     End Sub
 End Class

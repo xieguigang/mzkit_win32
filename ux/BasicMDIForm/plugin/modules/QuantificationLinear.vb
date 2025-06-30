@@ -12,6 +12,12 @@ Public Interface QuantificationLinearPage
     Sub RunLinearmzPackImports(cals As String(), mzpack As Object)
 
     ''' <summary>
+    ''' set the sample names of the cals points
+    ''' </summary>
+    ''' <param name="filenames"></param>
+    Sub SetCals(filenames As String())
+
+    ''' <summary>
     ''' set linear reference in current profile table
     ''' </summary>
     ''' <param name="key"></param>
