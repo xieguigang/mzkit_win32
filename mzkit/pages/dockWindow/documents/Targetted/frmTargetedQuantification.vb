@@ -175,6 +175,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     ''' value of this symbol could be MRM/GCMS_SIM
     ''' </summary>
     Dim targetType As TargetTypes
+    Dim cals As String()
 
     Sub saveLinearsTable(sender As Object, e As ExecuteEventArgs)
         If linearPack Is Nothing OrElse linearPack.linears.IsNullOrEmpty Then
@@ -409,11 +410,19 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             Return True
         Else
             ' needs get levels data from external file
-            fakeLevels = files _
-                .ToDictionary(Function(file) file.Name,
-                              Function()
-                                  Return 0.0
-                              End Function)
+            If cals.IsNullOrEmpty Then
+                fakeLevels = files _
+                    .ToDictionary(Function(file) file.Name,
+                                  Function()
+                                      Return 0.0
+                                  End Function)
+            Else
+                fakeLevels = cals _
+                    .ToDictionary(Function(file) file,
+                                  Function()
+                                      Return 0.0
+                                  End Function)
+            End If
         End If
 
         Return False
@@ -1679,5 +1688,9 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     Private Sub DataGridView1_MouseHover(sender As Object, e As EventArgs) Handles DataGridView1.MouseHover
         Workbench.StatusMessage("Double click on the compound [features] name to view corresponding standard curve plot and data points.", My.Resources.preferences_system_notifications)
+    End Sub
+
+    Public Sub SetCals(filenames() As String) Implements QuantificationLinearPage.SetCals
+        cals = filenames
     End Sub
 End Class
