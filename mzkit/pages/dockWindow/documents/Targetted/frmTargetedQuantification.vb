@@ -1635,7 +1635,16 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         If file.ExtensionSuffix("csv") Then
             Call LoadStandardsLinear(file)
         Else
-            linearPack = LinearPack.OpenFile(file)
+            Try
+                linearPack = LinearPack.OpenFile(file)
+            Catch ex As Exception
+                ' usually be the invalid cdf file format
+                Call Workbench.Warning("Load linear pack cdf file error: " & ex.Message)
+                Call App.LogException(ex)
+
+                Return
+            End Try
+
             Call unifyLoadLinears()
         End If
 
