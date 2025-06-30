@@ -74,6 +74,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Math.SignalProcessing
 Imports Microsoft.VisualBasic.Text.Patterns
 Imports Mzkit_win32.BasicMDIForm
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -272,6 +273,13 @@ Public Class frmSRMIonsExplorer
             Dim q3 = chr.ion.product
             Dim ionRef As IsomerismIonPairs = ionsLib.GetIsomerism(q1, q3)
             Dim xic = chr.TIC
+
+            If args.preprocessing AndAlso args.bspline_degree > 1 AndAlso args.bspline_density > 1 Then
+                xic = xic _
+                    .BSpline(Function(t, i) New ChromatogramTick(t, i), args.bspline_degree, args.bspline_density) _
+                    .ToArray
+            End If
+
             Dim peaks = xic.DeconvPeakGroups(rt_win,
                                              quantile:=args.baseline_threshold,
                                              sn_threshold:=args.sn_threshold,
@@ -325,8 +333,9 @@ Public Class frmSRMIonsExplorer
             With TICRoot.Nodes.Add(display)
                 .Tag = New MRMHolder With {
                     .ion = ion,
-                    .TIC = xic,
-                    .peak = peak
+                    .TIC = chr.TIC,
+                    .peak = peak,
+                    .bspline = xic
                 }
                 .ImageIndex = 1
                 .SelectedImageIndex = 1
