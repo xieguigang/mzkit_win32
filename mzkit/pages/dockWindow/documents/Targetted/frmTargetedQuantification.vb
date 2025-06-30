@@ -175,7 +175,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     ''' value of this symbol could be MRM/GCMS_SIM
     ''' </summary>
     Dim targetType As TargetTypes
-    Dim cals As String()
+    Dim cals As NamedValue(Of String)()
 
     Sub saveLinearsTable(sender As Object, e As ExecuteEventArgs)
         If linearPack Is Nothing OrElse linearPack.linears.IsNullOrEmpty Then
@@ -418,7 +418,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                                   End Function)
             Else
                 fakeLevels = cals _
-                    .ToDictionary(Function(file) file,
+                    .ToDictionary(Function(file) file.Name,
                                   Function()
                                       Return 0.0
                                   End Function)
@@ -1691,6 +1691,6 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Public Sub SetCals(filenames() As String) Implements QuantificationLinearPage.SetCals
-        cals = filenames
+        cals = ContentTable.StripMaxCommonNames(filenames)
     End Sub
 End Class
