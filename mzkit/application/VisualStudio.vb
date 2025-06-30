@@ -107,9 +107,9 @@ Public Class VisualStudio
     ''' </param>
     ''' 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Shared Sub ShowSingleDocument(Of T As {New, DockContent})(Optional showExplorer As Action = Nothing)
-        Call Workbench.ShowSingleDocument(Of T)(showExplorer)
-    End Sub
+    Public Shared Function ShowSingleDocument(Of T As {New, DockContent})(Optional showExplorer As Action = Nothing) As T
+        Return Workbench.ShowSingleDocument(Of T)(showExplorer)
+    End Function
 
     ''' <summary>
     ''' create a new document tab page
