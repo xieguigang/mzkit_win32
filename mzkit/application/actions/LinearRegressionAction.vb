@@ -14,7 +14,7 @@ Public Class LinearRegressionAction : Inherits ActionBase
 
     Public Overrides Sub RunAction(fieldName As String, data As Array, table As DataTable)
         Dim fieldNames As Index(Of String) = GetFieldNames(table).Indexing
-        Dim requires As String() = {"name", "rt", "rtmin", "rtmax", "area", "baseline", "sn", "maxinto", "source"}
+        Dim requires As String() = {"name", "rtmin", "rtmax", "area", "baseline", "maxinto", "source"}
 
         ' check of the required field names
         If Not fieldNames.ValidateSchemaNames(requires) Then
@@ -28,12 +28,10 @@ Public Class LinearRegressionAction : Inherits ActionBase
         End If
 
         Dim names As String() = CLRVector.asCharacter(table.getFieldVector("name"))
-        Dim rt As Double() = CLRVector.asNumeric(table.getFieldVector("rt"))
         Dim rtmin As Double() = CLRVector.asNumeric(table.getFieldVector("rtmin"))
         Dim rtmax As Double() = CLRVector.asNumeric(table.getFieldVector("rtmax"))
         Dim area As Double() = CLRVector.asNumeric(table.getFieldVector("area"))
         Dim baseline As Double() = CLRVector.asNumeric(table.getFieldVector("baseline"))
-        Dim sn As Double() = CLRVector.asNumeric(table.getFieldVector("sn"))
         Dim maxinto As Double() = CLRVector.asNumeric(table.getFieldVector("maxinto"))
         Dim source As String() = CLRVector.asCharacter(table.getFieldVector("source"))
         Dim ions As IonPeakTableRow() = names _
