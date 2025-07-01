@@ -11,9 +11,15 @@ let ncomp as integer = ?"--ncomp" || 3;
 let outputdir = ?"--outputdir" || dirname(mat);
 let show_labels as boolean = ?"--show_labels" || TRUE;
 
-let matrix = mat 
-|> load.expr0(
-    lazy = FALSE) 
+let matrix = {
+    if (file.ext(mat) == "csv") {
+        mat |> load.expr();
+    } else {
+        mat |> load.expr0(lazy = FALSE) 
+    }
+};
+
+matrix = matrix
 |> geneExpression::tr()
 |> as.data.frame()
 ;
