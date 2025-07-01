@@ -1398,9 +1398,21 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     Dim sampleData As DataFile()
 
     Private Sub loadSampleFiles(files As DataFile(), echo As Action(Of String))
+        Dim linears As New List(Of StandardCurve)
+        Dim standardCurve As StandardCurve
+
+        For rowIndex As Integer = 0 To DataGridView1.Rows.Count - 1
+            standardCurve = createLinear(DataGridView1.Rows(rowIndex), args)
+
+            If Not standardCurve Is Nothing Then
+                Call linears.Add(standardCurve)
+            End If
+        Next
+
         Call scans.Clear()
         Call report.Clear()
 
+        linearPack.linears = linears.ToArray
         sampleData = files
 
         For Each file As DataFile In files
