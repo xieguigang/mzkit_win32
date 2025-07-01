@@ -1432,7 +1432,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             End If
         Next
 
-        For Each line As StandardCurve In linearPack.linears
+        For Each line As StandardCurve In linearPack.linears.SafeQuery
             Dim sampledata As New Dictionary(Of String, Double)
 
             For Each file As QuantifyScan In scans
