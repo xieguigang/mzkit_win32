@@ -86,6 +86,7 @@ Public Class LinearRegressionAction : Inherits ActionBase
 
                               Call page.SetCals(nameMaps)
                               Call page.RunLinearFileImports(files.Where(Function(a) a.filename Like filter_cals).ToArray, type:=TargetTypes.MRM)
+                              Call page.LoadSampleFiles(files.Where(Function(a) Not a.filename Like filter_cals).ToArray, AddressOf Workbench.StatusMessage)
                           End If
                       End Sub)
     End Sub
