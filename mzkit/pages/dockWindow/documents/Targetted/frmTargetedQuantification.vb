@@ -1127,8 +1127,15 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         End If
 
         Dim algorithm As New InternalStandardMethod(GetContentTable(refRow), PeakAreaMethods.NetPeakSum)
+        Dim nameMapsReverse = cals.ToDictionary(Function(aa) aa.Value, Function(aa) aa.Name)
 
         refPoints = chr.ToArray
+
+        For Each p As TargetPeakPoint In chr
+            If nameMapsReverse.ContainsKey(p.SampleName) Then
+                p.SampleName = nameMapsReverse(p.SampleName)
+            End If
+        Next
 
         If Not cals.IsNullOrEmpty Then
             Dim calIndex = cals.Keys.Indexing
