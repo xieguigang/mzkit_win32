@@ -79,7 +79,7 @@ Public Class LinearRegressionAction : Inherits ActionBase
                               Dim page As QuantificationLinearPage = DirectCast(VisualStudio.ShowSingleDocument(Of frmTargetedQuantification), QuantificationLinearPage)
                               Dim nameMaps = cals _
                                   .Select(Function(name, i)
-                                              Return New NamedValue(Of String)(name, cals(i))
+                                              Return New NamedValue(Of String)(name.StringReplace("\(\d+\)", "").Trim, cals(i))
                                           End Function) _
                                   .ToArray
                               Dim filter_cals As Index(Of String) = cals.Indexing
