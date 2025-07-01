@@ -27,7 +27,7 @@ Public Class InputReferencePointNames
     Public Sub SetNames(names As IEnumerable(Of String))
         inputNames = names.Distinct.Where(Function(s) Not s.StringEmpty(, True)).Indexing
         groups = inputNames.Objects _
-            .GuessPossibleGroups _
+            .GuessPossibleGroups(maxDepth:=True) _
             .ToDictionary(Function(a) a.name,
                           Function(a)
                               Return a.ToArray
@@ -40,6 +40,7 @@ Public Class InputReferencePointNames
         Next
 
         Call ComboBox1.Items.Clear()
+        Call ComboBox1.Items.Add("*[Clear All]")
 
         For Each name As String In groups.Keys
             Call ComboBox1.Items.Add(name)
@@ -57,17 +58,21 @@ Public Class InputReferencePointNames
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
         If ComboBox1.SelectedIndex < 0 Then
             Return
-        End If
-
-        Dim name As String = ComboBox1.Items(ComboBox1.SelectedIndex).ToString
-        Dim group As Index(Of String) = groups(name).Indexing
-
-        For i As Integer = 0 To CheckedListBox1.Items.Count - 1
-            If CheckedListBox1.Items(i).ToString Like group Then
-                CheckedListBox1.SetItemChecked(i, True)
-            Else
+        ElseIf ComboBox1.SelectedIndex = 0 Then
+            For i As Integer = 0 To CheckedListBox1.Items.Count - 1
                 CheckedListBox1.SetItemChecked(i, False)
-            End If
-        Next
+            Next
+        Else
+            Dim name As String = ComboBox1.Items(ComboBox1.SelectedIndex).ToString
+            Dim group As Index(Of String) = groups(name).Indexing
+
+            For i As Integer = 0 To CheckedListBox1.Items.Count - 1
+                If CheckedListBox1.Items(i).ToString Like group Then
+                    CheckedListBox1.SetItemChecked(i, True)
+                Else
+                    CheckedListBox1.SetItemChecked(i, False)
+                End If
+            Next
+        End If
     End Sub
 End Class
