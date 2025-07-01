@@ -128,8 +128,10 @@ Partial Class frmTargetedQuantification
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripComboBox2 = New System.Windows.Forms.ToolStripComboBox()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.OpenInTableViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -496,22 +498,22 @@ Partial Class frmTargetedQuantification
         '
         'ContextMenuStrip3
         '
-        Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadSamplesToolStripMenuItem, Me.ExportTableToolStripMenuItem})
+        Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadSamplesToolStripMenuItem, Me.ToolStripMenuItem3, Me.ExportTableToolStripMenuItem, Me.OpenInTableViewerToolStripMenuItem})
         Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
-        Me.ContextMenuStrip3.Size = New System.Drawing.Size(148, 48)
+        Me.ContextMenuStrip3.Size = New System.Drawing.Size(184, 76)
         '
         'LoadSamplesToolStripMenuItem
         '
         Me.LoadSamplesToolStripMenuItem.Image = CType(resources.GetObject("LoadSamplesToolStripMenuItem.Image"), System.Drawing.Image)
         Me.LoadSamplesToolStripMenuItem.Name = "LoadSamplesToolStripMenuItem"
-        Me.LoadSamplesToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.LoadSamplesToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
         Me.LoadSamplesToolStripMenuItem.Text = "Load Samples"
         '
         'ExportTableToolStripMenuItem
         '
         Me.ExportTableToolStripMenuItem.Image = CType(resources.GetObject("ExportTableToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ExportTableToolStripMenuItem.Name = "ExportTableToolStripMenuItem"
-        Me.ExportTableToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.ExportTableToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
         Me.ExportTableToolStripMenuItem.Text = "Export Table"
         '
         'ToolStrip2
@@ -553,6 +555,18 @@ Partial Class frmTargetedQuantification
         Me.ToolStripButton5.Name = "ToolStripButton5"
         Me.ToolStripButton5.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton5.Text = "Run Sample Quantification Calculation"
+        '
+        'OpenInTableViewerToolStripMenuItem
+        '
+        Me.OpenInTableViewerToolStripMenuItem.Image = CType(resources.GetObject("OpenInTableViewerToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.OpenInTableViewerToolStripMenuItem.Name = "OpenInTableViewerToolStripMenuItem"
+        Me.OpenInTableViewerToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.OpenInTableViewerToolStripMenuItem.Text = "Send To Table Viewer"
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(180, 6)
         '
         'frmTargetedQuantification
         '
@@ -642,4 +656,6 @@ Partial Class frmTargetedQuantification
     Friend WithEvents ViewLinearReportToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents ToolStripButton5 As ToolStripButton
+    Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
+    Friend WithEvents OpenInTableViewerToolStripMenuItem As ToolStripMenuItem
 End Class

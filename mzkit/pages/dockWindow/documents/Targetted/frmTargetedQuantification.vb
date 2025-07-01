@@ -276,6 +276,13 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Dim fakeLevels As Dictionary(Of String, Double) = Nothing
         Dim directMapName As Boolean = ConstructFileLevels(files, fakeLevels)
 
+        ' fix of the file name mis-matched between the file model and the ion model
+        For Each file As DataFile In fileNames
+            file.ionPeaks = file.ionPeaks _
+                .Select(Function(a) New IonPeakTableRow(a) With {.raw = file.filename}) _
+                .ToArray
+        Next
+
         DataGridView1.Rows.Clear()
         DataGridView1.Columns.Clear()
 
@@ -1477,6 +1484,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Private Sub showQuanifyTable()
+        sampleTableName = "Quantify Table"
+
         DataGridView3.Rows.Clear()
         DataGridView3.Columns.Clear()
 
@@ -1499,6 +1508,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Private Sub showRawXTable()
+        sampleTableName = "Raw Peaks Area"
+
         DataGridView3.Rows.Clear()
         DataGridView3.Columns.Clear()
 
@@ -1521,6 +1532,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Private Sub showIonPeaksTable()
+        sampleTableName = "Ion PeakTable"
+
         DataGridView3.Rows.Clear()
         DataGridView3.Columns.Clear()
 
@@ -1565,6 +1578,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         Call reloadProfileNames()
     End Sub
+
+    Dim sampleTableName As String
 
     Private Sub ToolStripComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox2.SelectedIndexChanged
         Select Case ToolStripComboBox2.SelectedIndex
@@ -1742,5 +1757,35 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             Call loadSampleFiles(sampleData, AddressOf Workbench.StatusMessage)
             Call MessageBox.Show($"Make quantification of {sampleData.Length} samples data files success!", "Run Quantification Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
+    End Sub
+
+    Private Sub OpenInTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableViewerToolStripMenuItem.Click
+        Dim tbl = VisualStudio.ShowDocument(Of frmTableViewer)(title:=sampleTableName)
+        Dim names As New List(Of String)
+
+        For Each col As DataGridViewColumn In DataGridView3.Columns
+            Call names.Add(col.HeaderText)
+        Next
+
+        Call tbl.LoadTable(
+            Sub(grid)
+                Dim row_vals As Object() = New Object(names.Count - 1) {}
+
+                For Each name As String In names
+                    Call grid.Columns.Add(name, GetType(String))
+                Next
+
+                For Each row As DataGridViewRow In DataGridView3.Rows
+                    For i As Integer = 0 To names.Count - 1
+                        row_vals(i) = row.Cells(i).Value
+                    Next
+
+                    Call grid.Rows.Add(row_vals)
+                Next
+            End Sub)
+    End Sub
+
+    Private Sub ToolStripComboBox2_Click(sender As Object, e As EventArgs) Handles ToolStripComboBox2.Click
+
     End Sub
 End Class
