@@ -1640,6 +1640,11 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     Private Sub DataGridView1_DragDrop(sender As Object, e As DragEventArgs) Handles DataGridView1.DragDrop
         Dim path As String = CType(e.Data.GetData(DataFormats.FileDrop), String())(Scan0)
 
+        If path.ExtensionSuffix("csv") Then
+            Call LoadStandardsLinear(file:=path)
+            Return
+        End If
+
         If Not path.ExtensionSuffix("linearpack") Then
             MessageBox.Show($"[{path}] is not a mzkit linear model file...", "Not a linearPack file", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
@@ -1652,7 +1657,11 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Private Sub DataGridView1_DragEnter(sender As Object, e As DragEventArgs) Handles DataGridView1.DragEnter
-        e.Effect = DragDropEffects.Copy
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            e.Effect = DragDropEffects.Copy  ' 允许复制操作
+        Else
+            e.Effect = DragDropEffects.None  ' 非文件类型则拒绝
+        End If
     End Sub
 
     Private Sub DataGridView1_DragOver(sender As Object, e As DragEventArgs) Handles DataGridView1.DragOver
