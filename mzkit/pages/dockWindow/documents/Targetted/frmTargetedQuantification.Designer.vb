@@ -123,15 +123,15 @@ Partial Class frmTargetedQuantification
         Me.DataGridView3 = New System.Windows.Forms.DataGridView()
         Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.LoadSamplesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExportTableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenInTableViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripComboBox2 = New System.Windows.Forms.ToolStripComboBox()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.OpenInTableViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -509,12 +509,24 @@ Partial Class frmTargetedQuantification
         Me.LoadSamplesToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
         Me.LoadSamplesToolStripMenuItem.Text = "Load Samples"
         '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(180, 6)
+        '
         'ExportTableToolStripMenuItem
         '
         Me.ExportTableToolStripMenuItem.Image = CType(resources.GetObject("ExportTableToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ExportTableToolStripMenuItem.Name = "ExportTableToolStripMenuItem"
         Me.ExportTableToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
         Me.ExportTableToolStripMenuItem.Text = "Export Table"
+        '
+        'OpenInTableViewerToolStripMenuItem
+        '
+        Me.OpenInTableViewerToolStripMenuItem.Image = CType(resources.GetObject("OpenInTableViewerToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.OpenInTableViewerToolStripMenuItem.Name = "OpenInTableViewerToolStripMenuItem"
+        Me.OpenInTableViewerToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.OpenInTableViewerToolStripMenuItem.Text = "Send To Table Viewer"
         '
         'ToolStrip2
         '
@@ -534,7 +546,7 @@ Partial Class frmTargetedQuantification
         'ToolStripComboBox2
         '
         Me.ToolStripComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ToolStripComboBox2.Items.AddRange(New Object() {"Ion Peaks", "Quantify Result", "Raw X"})
+        Me.ToolStripComboBox2.Items.AddRange(New Object() {"Ion Peaks", "Quantify Result", "Raw X", "Report Table"})
         Me.ToolStripComboBox2.Name = "ToolStripComboBox2"
         Me.ToolStripComboBox2.Size = New System.Drawing.Size(300, 25)
         '
@@ -555,18 +567,6 @@ Partial Class frmTargetedQuantification
         Me.ToolStripButton5.Name = "ToolStripButton5"
         Me.ToolStripButton5.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton5.Text = "Run Sample Quantification Calculation"
-        '
-        'OpenInTableViewerToolStripMenuItem
-        '
-        Me.OpenInTableViewerToolStripMenuItem.Image = CType(resources.GetObject("OpenInTableViewerToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.OpenInTableViewerToolStripMenuItem.Name = "OpenInTableViewerToolStripMenuItem"
-        Me.OpenInTableViewerToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
-        Me.OpenInTableViewerToolStripMenuItem.Text = "Send To Table Viewer"
-        '
-        'ToolStripMenuItem3
-        '
-        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(180, 6)
         '
         'frmTargetedQuantification
         '

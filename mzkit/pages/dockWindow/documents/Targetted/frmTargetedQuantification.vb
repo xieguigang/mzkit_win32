@@ -1277,6 +1277,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     ''' the content data result of the imports sample data files
     ''' </summary>
     Dim scans As New List(Of QuantifyScan)
+    Dim report As New List(Of DataReport)
 
     Private Sub LoadSamplesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadSamplesToolStripMenuItem.Click
         Using importsFile As New OpenFileDialog With {
@@ -1398,11 +1399,12 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     Private Sub loadSampleFiles(files As DataFile(), echo As Action(Of String))
         Call scans.Clear()
+        Call report.Clear()
 
         sampleData = files
 
         For Each file As DataFile In files
-            Dim contents = file.CreateQuantifyData(linearPack.linears)
+            Dim contents As Dictionary(Of String, Double) = file.CreateQuantifyData(linearPack.linears)
             Dim fill As IonPeakTableRow() = file.ionPeaks _
                 .Select(Function(i)
                             Return New IonPeakTableRow(i) With {
@@ -1428,6 +1430,22 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             If Not quantify Is Nothing Then
                 Call scans.Add(quantify)
             End If
+        Next
+
+        For Each line As StandardCurve In linearPack.linears
+            Dim sampledata As New Dictionary(Of String, Double)
+
+            For Each file As QuantifyScan In scans
+                sampledata(file.filename) = file.quantify(line.name)
+            Next
+
+            Call report.Add(New DataReport With {
+                .ID = line.name,
+                .name = .ID,
+                .linear = line.linear.Polynomial.ToString,
+                .R2 = line.linear.R2,
+                .samples = sampledata
+            })
         Next
     End Sub
 
@@ -1501,6 +1519,31 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         For Each sample As DataSet In quantify
             Dim vec As Object() = New Object() {sample.ID} _
                 .JoinIterates(metaboliteNames.Select(Function(name) CObj(sample(name)))) _
+                .ToArray
+
+            DataGridView3.Rows.Add(vec)
+        Next
+    End Sub
+
+    Private Sub showReportTable()
+        Dim sampleNames = report.Select(Function(a) a.samples.Keys).IteratesALL.Distinct.ToArray
+
+        sampleTableName = "Report Table"
+        DataGridView3.Rows.Clear()
+        DataGridView3.Columns.Clear()
+
+        DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "Ion ID"})
+        DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "name"})
+        DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "linear"})
+        DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "R2"})
+
+        For Each col As String In sampleNames
+            DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = col})
+        Next
+
+        For Each iondata As DataReport In report
+            Dim vec As Object() = New Object() {iondata.ID, iondata.name, iondata.linear, iondata.R2} _
+                .JoinIterates(sampleNames.Select(Function(name) CObj(iondata(name)))) _
                 .ToArray
 
             DataGridView3.Rows.Add(vec)
@@ -1586,7 +1629,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             Case 0 : Call showIonPeaksTable()
             Case 1 : Call showQuanifyTable()
             Case 2 : Call showRawXTable()
-
+            Case 3 : Call showReportTable()
         End Select
     End Sub
 
