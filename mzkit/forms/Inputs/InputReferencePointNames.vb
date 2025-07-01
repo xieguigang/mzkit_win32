@@ -1,5 +1,7 @@
 ﻿Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
+Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.SampleNames
 
 Public Class InputReferencePointNames
 
@@ -21,11 +23,18 @@ Public Class InputReferencePointNames
     End Function
 
     Dim inputNames As Index(Of String)
+    Dim groups As Dictionary(Of String, String())
 
     Public Sub SetNames(names As IEnumerable(Of String))
         inputNames = names.Distinct.Where(Function(s) Not s.StringEmpty(, True)).Indexing
+        groups = inputNames.Objects _
+            .GuessPossibleGroups _
+            .ToDictionary(Function(a) a.name,
+                          Function(a)
+                              Return a.ToArray
+                          End Function)
 
-        CheckedListBox1.Items.Clear()
+        Call CheckedListBox1.Items.Clear()
 
         For Each name As String In inputNames.Objects
             Call CheckedListBox1.Items.Add(name)
