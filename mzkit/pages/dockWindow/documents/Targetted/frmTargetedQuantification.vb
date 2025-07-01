@@ -659,36 +659,36 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             Return Nothing
         End If
 
-        If targetType = TargetTypes.GCMS_SIM Then
-            Dim ion As QuantifyIon = GCMSIons.GetIon(rid)
+        'If targetType = TargetTypes.GCMS_SIM Then
+        '    Dim ion As QuantifyIon = GCMSIons.GetIon(rid)
 
-            If Not ion Is Nothing Then
-                rid = $"{ion.rt.Min}/{ion.rt.Max}"
-            End If
+        '    If Not ion Is Nothing Then
+        '        rid = $"{ion.rt.Min}/{ion.rt.Max}"
+        '    End If
 
-            ion = GCMSIons.GetIon(IS_id)
+        '    ion = GCMSIons.GetIon(IS_id)
 
-            If Not ion Is Nothing Then
-                IS_id = $"{ion.rt.Min}/{ion.rt.Max}"
-            End If
+        '    If Not ion Is Nothing Then
+        '        IS_id = $"{ion.rt.Min}/{ion.rt.Max}"
+        '    End If
 
-        Else
-            Dim ion As IonPair = ionLib.GetIonByKey(rid)
+        'Else
+        '    Dim ion As IonPair = ionLib.GetIonByKey(rid)
 
-            If Not ion Is Nothing Then
-                rid = $"{ion.precursor}/{ion.product}"
-            ElseIf rid.IsPattern("Ion \[.+?\]") Then
-                rid = rid.GetStackValue("[", "]")
-            End If
+        '    If Not ion Is Nothing Then
+        '        rid = $"{ion.precursor}/{ion.product}"
+        '    ElseIf rid.IsPattern("Ion \[.+?\]") Then
+        '        rid = rid.GetStackValue("[", "]")
+        '    End If
 
-            ion = ionLib.GetIonByKey(IS_id)
+        '    ion = ionLib.GetIonByKey(IS_id)
 
-            If Not ion Is Nothing Then
-                IS_id = $"{ion.precursor}/{ion.product}"
-            ElseIf IS_id.IsPattern("Ion \[.+?\]") Then
-                IS_id = IS_id.GetStackValue("[", "]")
-            End If
-        End If
+        '    If Not ion Is Nothing Then
+        '        IS_id = $"{ion.precursor}/{ion.product}"
+        '    ElseIf IS_id.IsPattern("Ion \[.+?\]") Then
+        '        IS_id = IS_id.GetStackValue("[", "]")
+        '    End If
+        'End If
 
         For i As Integer = 2 To DataGridView1.Columns.Count - 1
             levels(levelKeys(i - 2)) = any.ToString(row.Cells(i).Value).ParseDouble
