@@ -1728,4 +1728,11 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     Private Sub cbProfileNameSelector_Click(sender As Object, e As EventArgs) Handles cbProfileNameSelector.Click
 
     End Sub
+
+    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
+        If Not sampleData.IsNullOrEmpty Then
+            Call loadSampleFiles(sampleData, AddressOf Workbench.StatusMessage)
+            Call MessageBox.Show($"Make quantification of {sampleData.Length} samples data files success!", "Run Quantification Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+    End Sub
 End Class
