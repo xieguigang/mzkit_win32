@@ -1387,8 +1387,12 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         End With
     End Sub
 
+    Dim sampleData As DataFile()
+
     Private Sub loadSampleFiles(files As DataFile(), echo As Action(Of String))
         Call scans.Clear()
+
+        sampleData = files
 
         For Each file As DataFile In files
             Dim quantify As New QuantifyScan With {
