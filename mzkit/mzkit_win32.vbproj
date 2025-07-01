@@ -453,6 +453,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="application\actions\PCAAction.vb" />
     <Compile Include="application\actions\LinearRegressionAction.vb" />
     <Compile Include="application\actions\ViewLCMSScatter.vb" />
     <Compile Include="application\actions\MetabonomicsAnalysisTool.vb" />
