@@ -713,15 +713,18 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Dim profileName As String = cbProfileNameSelector.Text
 
         If profileName.StringEmpty Then
-            Call MessageBox.Show("Empty profile name!", "Targeted Quantification Linear", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Call MessageBox.Show("A linear reference profile name must be provided for save file!",
+                                 "Targeted Quantification Linear",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             Return
         End If
 
-        Dim file As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/{profileName}.linearPack"
+        Dim file As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/{profileName}.csv"
 
         Call TaskProgress.RunAction(
             Sub()
-                Call Me.Invoke(Sub() Call saveLinearPack(profileName, file))
+                Call Me.Invoke(Sub() Call SaveRefereneStandard(profileName, file))
                 Call Me.Invoke(Sub() Call reloadProfileNames())
             End Sub, "Save Linear Reference Models", "...")
 
@@ -970,6 +973,10 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         For Each point As ReferencePoint In standardCurve.points
             Call DataGridView2.Rows.Add(point.ID, point.Name, point.AIS, point.Ati, point.cIS, point.Cti, point.Px, point.yfit, point.error, point.variant, point.valid, point.level)
         Next
+    End Sub
+
+    Private Sub SaveRefereneStandard(title As String, file As String)
+        Call unifyGetStandards.SaveTo(file)
     End Sub
 
     ''' <summary>
@@ -1629,7 +1636,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         If profileName.FileExists Then
             file = profileName
         Else
-            file = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/{profileName}.linearPack"
+            file = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/{profileName}.csv"
         End If
 
         If file.ExtensionSuffix("csv") Then
@@ -1712,5 +1719,9 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     Public Sub SetCals(filenames() As NamedValue(Of String)) Implements QuantificationLinearPage.SetCals
         cals = filenames
+    End Sub
+
+    Private Sub cbProfileNameSelector_Click(sender As Object, e As EventArgs) Handles cbProfileNameSelector.Click
+
     End Sub
 End Class

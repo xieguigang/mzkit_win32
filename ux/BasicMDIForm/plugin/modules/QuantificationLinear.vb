@@ -64,7 +64,7 @@ Public Module QuantificationLinear
 
     Public Function LinearProfileNames() As String()
         Return (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/") _
-            .ListFiles("*.linearPack") _
+            .ListFiles("*.csv") _
             .Select(AddressOf BaseName) _
             .ToArray
     End Function
