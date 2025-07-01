@@ -1395,16 +1395,24 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         sampleData = files
 
         For Each file As DataFile In files
+            Dim contents = file.CreateQuantifyData(linearPack.linears)
+            Dim fill As IonPeakTableRow() = file.ionPeaks _
+                .Select(Function(i)
+                            Return New IonPeakTableRow(i) With {
+                                .content = contents.TryGetValue(i.ID)
+                            }
+                        End Function) _
+                .ToArray
             Dim quantify As New QuantifyScan With {
                 .filename = file.filename,
-                .ionPeaks = file.ionPeaks,
+                .ionPeaks = fill,
                 .rawX = New DataSet With {
                     .ID = file.filename,
                     .Properties = file.GetPeakData
                 },
                 .quantify = New DataSet With {
                     .ID = file.filename,
-                    .Properties = file.CreateQuantifyData(linearPack.linears)
+                    .Properties = contents
                 }
             }
 
