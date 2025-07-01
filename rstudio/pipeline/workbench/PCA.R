@@ -17,14 +17,6 @@ let matrix = mat
 |> geneExpression::tr()
 |> as.data.frame()
 ;
-let sample_info = read.csv(sampleinfo, row.names = 1, check.names = FALSE);
-let class_id = as.list(sample_info, byrow = TRUE) |> lapply(x -> x$sample_info);
-
-print(sample_info);
-str(class_id);
-
-# str(matrix);
-
 let pca = prcomp(matrix, pc = ncomp);
 
 print(pca);
@@ -33,31 +25,39 @@ write.csv(pca$score, file = `${outputdir}/pca/pca_score.csv`);
 write.csv(pca$loading, file = `${outputdir}/pca/pca_loading.csv`);
 writeLines(pca$contribution, con = `${outputdir}/pca/pca_contrib.txt`);
 
-let pca_score = pca$score;
+if (file.exists(sampleinfo)) {
+    let pca_score = pca$score;
+    let sample_info = read.csv(sampleinfo, row.names = 1, check.names = FALSE);
+    let class_id = as.list(sample_info, byrow = TRUE) |> lapply(x -> x$sample_info);
 
-pca_score[, "class_id"] = sapply(rownames(pca_score), x -> class_id[[x]]);
+    print(sample_info);
+    str(class_id);
 
-png(filename = `${outputdir}/pca/pca_score.png`, width = 1920, height = 1600) {
-    let score_figure = ggplot(pca_score, aes(x="PC1", y = "PC2", color = "class_id", label = rownames(pca_score)))
-    + stat_ellipse()
-    + geom_point(
-        size = 16
-    )    
-    ;
+    # str(matrix);
+    pca_score[, "class_id"] = sapply(rownames(pca_score), x -> class_id[[x]]);
 
-    if (show_labels) {
-        score_figure <- score_figure + geom_text(size = 6);
+    png(filename = `${outputdir}/pca/pca_score.png`, width = 1920, height = 1600) {
+        let score_figure = ggplot(pca_score, aes(x="PC1", y = "PC2", color = "class_id", label = rownames(pca_score)))
+        + stat_ellipse()
+        + geom_point(
+            size = 16
+        )    
+        ;
+
+        if (show_labels) {
+            score_figure <- score_figure + geom_text(size = 6);
+        }
+
+        score_figure;
     }
 
-    score_figure;
-}
-
-png(filename = `${outputdir}/pca/pca_loading.png`, width = 1920, height = 1600) {
-    ggplot(pca$loading, aes(x="PC1", y = "PC2", label = rownames(pca$loading)))
-    + geom_point(
-        size = 3, color = "skyblue"
-    )
-    # + geom_text(size = 6)
-    # + stat_ellipse()
-    ;
+    png(filename = `${outputdir}/pca/pca_loading.png`, width = 1920, height = 1600) {
+        ggplot(pca$loading, aes(x="PC1", y = "PC2", label = rownames(pca$loading)))
+        + geom_point(
+            size = 3, color = "skyblue"
+        )
+        # + geom_text(size = 6)
+        # + stat_ellipse()
+        ;
+    }
 }
