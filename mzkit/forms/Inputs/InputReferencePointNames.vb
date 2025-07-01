@@ -1,5 +1,4 @@
 ﻿Imports Microsoft.VisualBasic.ComponentModel.Collection
-Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.SampleNames
 
@@ -39,6 +38,12 @@ Public Class InputReferencePointNames
         For Each name As String In inputNames.Objects
             Call CheckedListBox1.Items.Add(name)
         Next
+
+        Call ComboBox1.Items.Clear()
+
+        For Each name As String In groups.Keys
+            Call ComboBox1.Items.Add(name)
+        Next
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -47,5 +52,22 @@ Public Class InputReferencePointNames
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.DialogResult = DialogResult.OK
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        If ComboBox1.SelectedIndex < 0 Then
+            Return
+        End If
+
+        Dim name As String = ComboBox1.Items(ComboBox1.SelectedIndex).ToString
+        Dim group As Index(Of String) = groups(name).Indexing
+
+        For i As Integer = 0 To CheckedListBox1.Items.Count - 1
+            If CheckedListBox1.Items(i).ToString Like group Then
+                CheckedListBox1.SetItemChecked(i, True)
+            Else
+                CheckedListBox1.SetItemChecked(i, False)
+            End If
+        Next
     End Sub
 End Class
