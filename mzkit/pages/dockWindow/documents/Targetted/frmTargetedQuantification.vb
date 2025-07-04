@@ -785,6 +785,10 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                         Dim ionpairtext = i.ID.Split("/"c).Select(AddressOf Val).ToArray
                         Dim name As String
 
+                        If ionpairtext.IsNullOrEmpty OrElse ionpairtext.All(Function(a) a = 0.00) Then
+                            Return i.ID
+                        End If
+
                         If targetType = TargetTypes.GCMS_SIM Then
                             name = quantifyIons.FindIon(ionpairtext.Min, ionpairtext.Max).name
                         Else
@@ -1858,5 +1862,43 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     Private Sub ToolStripComboBox2_Click(sender As Object, e As EventArgs) Handles ToolStripComboBox2.Click
 
+    End Sub
+
+    ''' <summary>
+    ''' set istd id list
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton6_Click(sender As Object, e As EventArgs) Handles ToolStripButton6.Click
+        If linearPack Is Nothing Then
+            Call Workbench.Warning("Please load the targetted linear regression data before paste the istd id list to the editor!")
+        Else
+            Dim editor As New InputIdList
+
+            If Not linearPack.IS.IsNullOrEmpty Then
+                editor.IdSet = linearPack.IS.Select(Function(i) i.ID).Distinct.ToArray
+            End If
+
+            Call editor.Input(Sub(config) Call setIS(editor.IdSet))
+        End If
+    End Sub
+
+    Private Sub setIS(idset As String())
+        linearPack.IS = idset _
+            .Select(Function(i) New [IS](i)) _
+            .ToArray
+
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            Dim IScandidate As DataGridViewComboBoxCell = DataGridView1.Rows(i).Cells(1)
+
+            IScandidate.Items.Clear()
+            IScandidate.Items.Add("")
+
+            For Each id As String In idset
+                IScandidate.Items.Add(id)
+            Next
+        Next
+
+        Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
     End Sub
 End Class

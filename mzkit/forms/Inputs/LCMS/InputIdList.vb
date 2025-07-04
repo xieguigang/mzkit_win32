@@ -1,8 +1,17 @@
 ﻿Public Class InputIdList
 
+    ''' <summary>
+    ''' get/set the id set to the editor
+    ''' </summary>
+    ''' <returns>
+    ''' this property will never returns the null value
+    ''' </returns>
     Public Property IdSet As String()
         Get
-            Return Strings.Trim(TextBox1.Text).LineTokens.Where(Function(s) s.Length > 0).ToArray
+            Return Strings.Trim(TextBox1.Text) _
+                .LineTokens _
+                .Where(Function(s) s.Length > 0) _
+                .ToArray
         End Get
         Set(value As String())
             TextBox1.Text = value.JoinBy(vbCrLf)
