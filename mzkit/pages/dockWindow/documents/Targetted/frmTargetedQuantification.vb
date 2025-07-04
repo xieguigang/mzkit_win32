@@ -1467,7 +1467,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 .name = .ID,
                 .linear = line.linear.Polynomial.ToString,
                 .R2 = line.linear.R2,
-                .samples = sampledata
+                .samples = sampledata,
+                .ISTD = line.IS?.ID
             })
         Next
     End Sub
