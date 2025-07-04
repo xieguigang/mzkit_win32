@@ -1893,6 +1893,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
             IScandidate.Items.Clear()
             IScandidate.Items.Add("")
+            IScandidate.Value = IScandidate.Items(0)
 
             For Each id As String In idset
                 IScandidate.Items.Add(id)
