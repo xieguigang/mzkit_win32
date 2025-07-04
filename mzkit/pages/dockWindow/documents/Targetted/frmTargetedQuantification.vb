@@ -890,9 +890,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Call loadLinears(Nothing, Nothing)
     End Sub
 
-    Private Function GetContentTable(row As DataGridViewRow) As ContentTable
-        Dim ionId As String = any.ToString(row.Cells(0).Value)
-        Dim isId As String = any.ToString(row.Cells(1).Value)
+    Private Function GetContentTable(ionId As String, isId As String, row As DataGridViewRow) As ContentTable
         Dim contentLevel As New Dictionary(Of String, Double)
 
         For Each id As SeqValue(Of String) In GetTableLevelKeys().SeqIterator
@@ -941,6 +939,13 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         End If
 
         Return New ContentTable(levels, refs, ISlist)
+    End Function
+
+    Private Function GetContentTable(row As DataGridViewRow) As ContentTable
+        Dim ionId As String = any.ToString(row.Cells(0).Value)
+        Dim isId As String = any.ToString(row.Cells(1).Value)
+
+        Return GetContentTable(ionId, isId, row)
     End Function
 
     Dim standardCurve As StandardCurve
@@ -1113,6 +1118,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Return New SIMIonExtract(ionLib, New Double() {5, 15}, Tolerance.DeltaMass(0.3), 20, 0.65)
     End Function
 
+
     ''' <summary>
     ''' unify create linear reference
     ''' </summary>
@@ -1122,6 +1128,17 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     Private Function createLinear(refRow As DataGridViewRow, args As PeakFindingParameters, Optional ByRef refPoints As TargetPeakPoint() = Nothing) As StandardCurve
         Dim id As String = any.ToString(refRow.Cells(0).Value)
         Dim isid As String = any.ToString(refRow.Cells(1).Value)
+
+        Return createLinear(id, isid, refRow, args, refPoints)
+    End Function
+
+    ''' <summary>
+    ''' unify create linear reference
+    ''' </summary>
+    ''' <param name="refRow"></param>
+    ''' <param name="refPoints"></param>
+    ''' <returns></returns>
+    Private Function createLinear(id As String, isid As String, refRow As DataGridViewRow, args As PeakFindingParameters, Optional ByRef refPoints As TargetPeakPoint() = Nothing) As StandardCurve
         Dim chr As New List(Of TargetPeakPoint)
 
         If targetType = TargetTypes.GCMS_SIM Then
@@ -1130,7 +1147,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             chr.AddRange(createMRMLinears(id, isid))
         End If
 
-        Dim algorithm As New InternalStandardMethod(GetContentTable(refRow), PeakAreaMethods.NetPeakSum)
+        Dim algorithm As New InternalStandardMethod(GetContentTable(id, isid, refRow), PeakAreaMethods.NetPeakSum)
         Dim nameMapsReverse = cals.ToDictionary(Function(aa) aa.Value, Function(aa) aa.Name)
 
         refPoints = chr.ToArray
@@ -1408,12 +1425,26 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     Dim sampleData As DataFile()
 
-    Private Sub loadSampleFiles(files As DataFile(), echo As Action(Of String))
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="files"></param>
+    ''' <param name="echo"></param>
+    ''' <param name="istd">
+    ''' make istd id reference overrides!
+    ''' </param>
+    Private Sub loadSampleFiles(files As DataFile(), echo As Action(Of String), Optional istd As String = Nothing)
         Dim linears As New List(Of StandardCurve)
         Dim standardCurve As StandardCurve
 
         For rowIndex As Integer = 0 To DataGridView1.Rows.Count - 1
-            standardCurve = createLinear(DataGridView1.Rows(rowIndex), args)
+            Dim refRow As DataGridViewRow = DataGridView1.Rows(rowIndex)
+
+            If istd Is Nothing Then
+                standardCurve = createLinear(refRow, args)
+            Else
+                standardCurve = createLinear(any.ToString(refRow.Cells(0).Value), istd, refRow, args)
+            End If
 
             If Not standardCurve Is Nothing Then
                 Call linears.Add(standardCurve)
@@ -1468,7 +1499,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 .linear = line.linear.Polynomial.ToString,
                 .R2 = line.linear.R2,
                 .samples = sampledata,
-                .ISTD = line.IS?.ID
+                .ISTD = If(istd, line.IS?.ID)
             })
         Next
     End Sub
@@ -1915,14 +1946,30 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         Dim reportTable As New List(Of DataReport)
 
-        For Each istd As [IS] In linearPack.IS
-            For Each line As StandardCurve In linearPack.linears
-                line.IS = New [IS](istd.ID)
-            Next
+        Call TaskProgress.RunAction(Sub(echo As ITaskProgress)
+                                        Dim n As Integer = linearPack.IS.Length
+                                        Dim p As Integer = 0
 
-            Call loadSampleFiles(sampleData, AddressOf Workbench.StatusMessage)
-            Call reportTable.AddRange(report)
-        Next
+                                        Call echo.SetProgressMode()
+
+                                        For Each istd As [IS] In linearPack.IS
+                                            For Each line As StandardCurve In linearPack.linears
+                                                line.IS = New [IS](istd.ID)
+                                            Next
+
+                                            Call echo.SetProgress(p / n * 100, $"Processing of the istd({istd.ID}) data option...")
+
+                                            ' set istd id overrides for current option
+                                            Call loadSampleFiles(sampleData, AddressOf Workbench.StatusMessage, istd:=istd.ID)
+                                            Call reportTable.AddRange(report)
+
+                                            p += 1
+                                        Next
+                                    End Sub,
+             title:="Try All ISTD Options For Linears",
+             info:="Processing of the data combination...",
+             cancel:=AddressOf App.DoNothing
+        )
 
         Dim tbl = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Linear ISTD Evaluations")
         Dim names As String() = reportTable _
