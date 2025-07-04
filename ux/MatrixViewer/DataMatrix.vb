@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::c68f0dea1eb67e2d2a619ebda537a8c6, mzkit\ux\MatrixViewer\DataMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::f4984e7459a6bbe27826a58b26a10dd4, mzkit\ux\MatrixViewer\DataMatrix.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 108
-    '    Code Lines: 65 (60.19%)
-    ' Comment Lines: 22 (20.37%)
+    '   Total Lines: 109
+    '    Code Lines: 66 (60.55%)
+    ' Comment Lines: 22 (20.18%)
     '    - Xml Docs: 100.00%
     ' 
-    '   Blank Lines: 21 (19.44%)
-    '     File Size: 3.36 KB
+    '   Blank Lines: 21 (19.27%)
+    '     File Size: 3.43 KB
 
 
     ' Class DataMatrix
