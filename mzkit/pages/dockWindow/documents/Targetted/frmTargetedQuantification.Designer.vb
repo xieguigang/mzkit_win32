@@ -133,6 +133,9 @@ Partial Class frmTargetedQuantification
         Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SendToTableViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -229,15 +232,15 @@ Partial Class frmTargetedQuantification
         '
         'ContextMenuStrip2
         '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportImageToolStripMenuItem, Me.ExportLinearTableToolStripMenuItem})
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportImageToolStripMenuItem, Me.ToolStripMenuItem4, Me.SendToTableViewerToolStripMenuItem, Me.ExportLinearTableToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(174, 48)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(184, 98)
         '
         'ExportImageToolStripMenuItem
         '
         Me.ExportImageToolStripMenuItem.Image = CType(resources.GetObject("ExportImageToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ExportImageToolStripMenuItem.Name = "ExportImageToolStripMenuItem"
-        Me.ExportImageToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.ExportImageToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
         Me.ExportImageToolStripMenuItem.Text = "Export Image"
         '
         'ExportLinearTableToolStripMenuItem
@@ -425,7 +428,7 @@ Partial Class frmTargetedQuantification
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.cbProfileNameSelector, Me.ToolStripButton1, Me.ToolStripButton3, Me.ToolStripButton6, Me.ToolStripSeparator1, Me.ToolStripButton2})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.cbProfileNameSelector, Me.ToolStripButton1, Me.ToolStripButton3, Me.ToolStripButton6, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripButton7})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1192, 25)
@@ -578,6 +581,27 @@ Partial Class frmTargetedQuantification
         Me.ToolStripButton6.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton6.Text = "Set ISTD id list to the editor"
         '
+        'ToolStripButton7
+        '
+        Me.ToolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), System.Drawing.Image)
+        Me.ToolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton7.Name = "ToolStripButton7"
+        Me.ToolStripButton7.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton7.Text = "Evaluate linear regression with all ISTD options"
+        '
+        'ToolStripMenuItem4
+        '
+        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(180, 6)
+        '
+        'SendToTableViewerToolStripMenuItem
+        '
+        Me.SendToTableViewerToolStripMenuItem.Image = CType(resources.GetObject("SendToTableViewerToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.SendToTableViewerToolStripMenuItem.Name = "SendToTableViewerToolStripMenuItem"
+        Me.SendToTableViewerToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.SendToTableViewerToolStripMenuItem.Text = "Send To Table Viewer"
+        '
         'frmTargetedQuantification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -669,4 +693,7 @@ Partial Class frmTargetedQuantification
     Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
     Friend WithEvents OpenInTableViewerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripButton6 As ToolStripButton
+    Friend WithEvents ToolStripButton7 As ToolStripButton
+    Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
+    Friend WithEvents SendToTableViewerToolStripMenuItem As ToolStripMenuItem
 End Class

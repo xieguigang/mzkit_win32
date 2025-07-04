@@ -1903,4 +1903,97 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
     End Sub
+
+    Private Sub ToolStripButton7_Click(sender As Object, e As EventArgs) Handles ToolStripButton7.Click
+        If linearPack.IS.IsNullOrEmpty Then
+            Call ToolStripButton6_Click(sender, e)
+        End If
+        If linearPack.IS.IsNullOrEmpty Then
+            Call Workbench.Warning("NO istd data for the linear evaluation!")
+            Return
+        End If
+
+        Dim reportTable As New List(Of DataReport)
+
+        For Each istd As [IS] In linearPack.IS
+            For Each line As StandardCurve In linearPack.linears
+                line.IS = New [IS](istd.ID)
+            Next
+
+            Call loadSampleFiles(sampleData, AddressOf Workbench.StatusMessage)
+            Call reportTable.AddRange(report)
+        Next
+
+        Dim tbl = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Linear ISTD Evaluations")
+        Dim names As String() = reportTable _
+            .Select(Function(a) a.samples.Keys) _
+            .IteratesALL _
+            .Distinct _
+            .ToArray
+
+        '{
+        '    NameOf(DataReport.ID),
+        '    NameOf(DataReport.name),
+        '    NameOf(DataReport.ISTD),
+        '    NameOf(DataReport.linear),
+        '    NameOf(DataReport.R2)
+        '}
+
+        Call tbl.LoadTable(
+            Sub(grid)
+                Dim row_vals As Object() = New Object((5 + names.Length) - 1) {}
+
+                Call grid.Columns.Add(NameOf(DataReport.ID), GetType(String))
+                Call grid.Columns.Add(NameOf(DataReport.name), GetType(String))
+                Call grid.Columns.Add(NameOf(DataReport.ISTD), GetType(String))
+                Call grid.Columns.Add(NameOf(DataReport.linear), GetType(String))
+                Call grid.Columns.Add(NameOf(DataReport.R2), GetType(Double))
+
+                For Each name As String In names
+                    Call grid.Columns.Add(name, GetType(Double))
+                Next
+
+                For Each opt As DataReport In reportTable
+                    row_vals(0) = opt.ID
+                    row_vals(1) = opt.name
+                    row_vals(2) = opt.ISTD
+                    row_vals(3) = opt.linear
+                    row_vals(4) = opt.R2
+
+                    Dim offset = 5
+
+                    For Each name As String In names
+                        row_vals(offset) = opt.samples(name)
+                        offset += 1
+                    Next
+
+                    Call grid.Rows.Add(row_vals)
+                Next
+            End Sub)
+    End Sub
+
+    Private Sub SendToTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToTableViewerToolStripMenuItem.Click
+        Dim tbl_data As ReferencePoint() = standardCurve.points
+        Dim tbl = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"[{standardCurve.name}]Linear Reference Points")
+
+        Call tbl.LoadTable(
+            Sub(grid)
+                Call grid.Columns.Add(NameOf(ReferencePoint.ID), GetType(String))
+                Call grid.Columns.Add(NameOf(ReferencePoint.Name), GetType(String))
+                Call grid.Columns.Add(NameOf(ReferencePoint.AIS), GetType(Double))
+                Call grid.Columns.Add(NameOf(ReferencePoint.Ati), GetType(Double))
+                Call grid.Columns.Add(NameOf(ReferencePoint.cIS), GetType(Double))
+                Call grid.Columns.Add(NameOf(ReferencePoint.Cti), GetType(Double))
+                Call grid.Columns.Add(NameOf(ReferencePoint.Px), GetType(Double))
+                Call grid.Columns.Add(NameOf(ReferencePoint.yfit), GetType(Double))
+                Call grid.Columns.Add(NameOf(ReferencePoint.error), GetType(Double))
+                Call grid.Columns.Add(NameOf(ReferencePoint.variant), GetType(Double))
+                Call grid.Columns.Add(NameOf(ReferencePoint.valid), GetType(String))
+                Call grid.Columns.Add(NameOf(ReferencePoint.level), GetType(String))
+
+                For Each pt As ReferencePoint In tbl_data
+                    Call grid.Rows.Add(pt.ID, pt.Name, pt.AIS, pt.Ati, pt.cIS, pt.Cti, pt.Px, pt.yfit, pt.error, pt.variant, pt.valid.ToString, pt.level)
+                Next
+            End Sub)
+    End Sub
 End Class
