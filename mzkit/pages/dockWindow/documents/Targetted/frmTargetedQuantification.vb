@@ -108,7 +108,7 @@ Imports std = System.Math
 
 Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
-    ReadOnly args As New PeakFindingParameters
+    Dim args As PeakFindingParameters
 
     Private Sub frmTargetedQuantification_Load(sender As Object, e As EventArgs) Handles Me.Load
         WindowModules.ribbon.TargetedContex.ContextAvailable = ContextAvailability.Active
@@ -117,7 +117,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         AddHandler WindowModules.ribbon.SaveLinears.ExecuteEvent, AddressOf saveLinearsTable
 
         TabText = "Targeted Quantification"
-
+        args = If(Globals.Settings.peak_finding, New PeakFindingParameters)
         CopyFullPathToolStripMenuItem.Enabled = False
         OpenContainingFolderToolStripMenuItem.Enabled = False
 

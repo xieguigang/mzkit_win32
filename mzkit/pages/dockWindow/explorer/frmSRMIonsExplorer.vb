@@ -659,7 +659,7 @@ Public Class frmSRMIonsExplorer
     End Sub
 
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
-        Call applyNewParameters(New PeakFindingParameters)
+        Call applyNewParameters(If(Globals.Settings.peak_finding, New PeakFindingParameters))
         Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
         Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
     End Sub

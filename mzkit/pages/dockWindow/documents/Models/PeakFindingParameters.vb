@@ -98,6 +98,15 @@ Public Class PeakFindingParameters
     <DisplayName("joint peaks")>
     Public Property joint_peaks As Boolean = True
 
+    <Category("ROI Matches")>
+    <DisplayName("time window size")>
+    <Description("the time window size for matches the ROI with the reference RT if this data is existed for the quantify ion.")>
+    Public Property time_window_size As Double = 5
+
+    <Category("ROI Matches")>
+    <DisplayName("time shift method")>
+    Public Property time_shift_method As Boolean = False
+
     <Category("Quantify Ion")>
     <DisplayName("error type")>
     <Description("The mass error calculation method for matches Q1/Q3 ion")>
@@ -134,6 +143,8 @@ Public Class PeakFindingParameters
         preprocessing = False
         bspline_degree = [default].bspline_degree
         bspline_density = [default].bspline_density
+        time_window_size = [default].timeWindowSize
+        time_shift_method = [default].time_shift_method
     End Sub
 
     Public Function GetTolerance() As Tolerance
@@ -157,6 +168,8 @@ Public Class PeakFindingParameters
         args.bspline = preprocessing
         args.bspline_degree = bspline_degree
         args.bspline_density = bspline_density
+        args.time_shift_method = time_shift_method
+        args.timeWindowSize = time_window_size
 
         Return args
     End Function
