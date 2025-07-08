@@ -44,31 +44,44 @@
 
             <ul>
                 <li><img class="icon" src="./assets/images/tracker.png" />
-                    <a href="#" onclick="app.desktop.mzkit.ViewRawDataFile();">View Raw Data
+                    <a href="#" onclick="app.desktop.mzkit.ViewRawDataFile();"
+                        title="View the LC-MS raw data files in mzkit.">View Metabonomics Raw Data
                         File</a>
                 </li>
                 <li><img class="icon" src="./assets/images/icons8-dashboard-layout-96.png" />
-                    <a href="#" onclick="app.desktop.mzkit.OpenLCMSWorkbench();">Metabonomics Workbench</a>
+                    <a href="#" onclick="app.desktop.mzkit.OpenLCMSWorkbench();"
+                        title="Open metabonomics workbench for run metabonomics data analysis and data visualization.">Metabonomics
+                        Workbench</a>
                 </li>
-                <li><img class="icon" src="./favicon.png" /><a href="http://v2.biodeep.cn/home">Visit BioDeep</a>
+                <li><img class="icon" src="./assets/images/icons8-email-96.png" /><a
+                        href="mailto://xieguigang@metabolomics.ac.cn"
+                        title="Contacts the author via this e-mail address if you have any questions.">xieguigang@metabolomics.ac.cn</a>
+                </li>
+                <li><img class="icon" src="./favicon.png" /><a href="http://v2.biodeep.cn/home"
+                        title="Visit the PANOMIX BioDeep.">Visit BioDeep</a>
                 </li>
             </ul>
         </div>
-        <div class="main-right" style="max-width: 650px;">
+        <div class="main-right" style="max-width: 650px; z-index: 999999;">
             <ul id="newsList"></ul>
         </div>
     </div>
 
-    <div style="width:100%;text-align: right; position: absolute; bottom: 80px; right: 20px;">
+    <div style="width:100%;text-align: right; position: absolute; bottom: 80px; right: 20px; z-index: -9999999;">
 
         <!-- <script type="text/javascript"
             src="//rf.revolvermaps.com/0/0/8.js?i=5vdm1y3dswl&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=georgia&amp;l=0&amp;s=175&amp;hi=70"
             async="async"></script> -->
-        <div style="padding-left: 70%;padding-top: 20px;">
+        <div style="padding-left: 70%;padding-top: 20px; z-index: -9999999;">
             <script type='text/javascript' id='clustrmaps'
                 src='//cdn.clustrmaps.com/map_v2.js?cl=080808&w=300&t=tt&d=3_C51iZSI0IgVEWjFQVnYDECJqMn-sUnXAJKTgdQBDM&co=ffffff&ct=808080&cmo=3acc3a&cmn=ff5353'>
                 </script>
         </div>
+    </div>
+
+    <div style="padding-right: 50%; bottom: 0px; float: right; z-index: -999999; display: none;" >
+        <img src="./assets/images/PANOMIX.png" style="max-height:80px; width:160px;" /><br />
+        <a href="https://www.panomix.com/"> <span style="color:darkblue; font-size: 0.8rem;"> An Metabolomics Open Source Software From PANOMIX.</span></a>
     </div>
 
     <div class="foot">
