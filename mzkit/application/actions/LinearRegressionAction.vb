@@ -85,8 +85,16 @@ Public Class LinearRegressionAction : Inherits ActionBase
                               Dim filter_cals As Index(Of String) = cals.Indexing
 
                               Call page.SetCals(nameMaps)
-                              Call page.RunLinearFileImports(files.Where(Function(a) a.filename Like filter_cals).ToArray, type:=TargetTypes.MRM)
-                              Call page.LoadSampleFiles(files, AddressOf Workbench.StatusMessage)
+
+                              Try
+                                  Call page.RunLinearFileImports(files.Where(Function(a) a.filename Like filter_cals).ToArray, type:=TargetTypes.MRM)
+                                  Call page.LoadSampleFiles(files, AddressOf Workbench.StatusMessage)
+                              Catch ex As Exception
+                                  Call App.LogException(ex)
+                                  Call Workbench.Warning(ex.Message)
+                                  Call DirectCast(CObj(page), Form).Close()
+                                  Call MessageBox.Show(ex.ToString, "Load Linear Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                              End Try
                           End If
                       End Sub)
     End Sub
