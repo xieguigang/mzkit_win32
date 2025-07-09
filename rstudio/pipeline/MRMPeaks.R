@@ -8,7 +8,7 @@ let outputdir = ?"--outdir" || dirname(MRMfiles);
 let args = ?"--args" || stop("The peak finding arguments json must be provided!");
 let json_text = readText(args);
 
-args = MRMLinear::from_arguments_json(json_text);
+args = MRMLinear::from_arguments_json(json_text,parse_single = FALSE);
 MRMfiles = readLines(MRMfiles);
 MRMfiles = as.list(MRMfiles, names = basename(MRMfiles));
 ions = read.ion_pairs(ions) |> isomerism.ion_pairs(tolerance = "ppm:20");
@@ -18,7 +18,7 @@ str(MRMfiles);
 print("view of the MRM arguments:");
 str(JSON::json_decode(json_text));
 
-let xic = lapply(MRMfiles, path -> extract.ions(path, ionpairs = ions, tolerance = "da:0.01"));
+let xic = lapply(MRMfiles, path -> extract.ions(path, ionpairs = ions, tolerance = args));
 let peaks = lapply(xic, ion -> MRM.peakarea(ion, args));
 let peaktable = as.data.frame(unlist(peaks), peaktable = TRUE);
 let peaktable_maxinto = as.data.frame(unlist(peaks), peaktable = TRUE, value = "maxinto");
