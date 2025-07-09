@@ -65,6 +65,10 @@ Public Class LinearRegressionAction : Inherits ActionBase
 
             If Not (name_str.IsPattern("\d+") OrElse name_str.IsPattern("\d+[\Wa-zA-Z]+")) Then
                 name_str = CommonTagParser.RemoveLeadingNumbersAndSymbols(name_str)
+
+                If name_str = "" Then
+                    name_str = sampleNames(i)
+                End If
             End If
 
             files(i).filename = name_str
