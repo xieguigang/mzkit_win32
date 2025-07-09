@@ -125,6 +125,10 @@ Public Class PeakFindingParameters
     <DisplayName("baseline threshold")>
     <Description("The quantile threshold for detects of the peak baseline(noise height).")>
     Public Property baseline_threshold As Double = 0.65
+    <Category("Peak Finding")>
+    <DisplayName("baseline method")>
+    <Description("Select the baseline measurement threshold method, default false use the quantile threshold, tweaks this parameter value to true for use the percentage threshold method.")>
+    Public Property baseline_percentage As Boolean = False
 
     <Category("Peak Finding")>
     <DisplayName("joint peaks")>
@@ -177,6 +181,7 @@ Public Class PeakFindingParameters
         bspline_density = [default].bspline_density
         time_window_size = [default].timeWindowSize
         time_shift_method = [default].time_shift_method
+        baseline_percentage = [default].percentage_threshold
     End Sub
 
     Public Function GetTolerance() As Tolerance
@@ -202,6 +207,7 @@ Public Class PeakFindingParameters
         args.bspline_density = bspline_density
         args.time_shift_method = time_shift_method
         args.timeWindowSize = time_window_size
+        args.percentage_threshold = baseline_percentage
 
         Return args
     End Function
