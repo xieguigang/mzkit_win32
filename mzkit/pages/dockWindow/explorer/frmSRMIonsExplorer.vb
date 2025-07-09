@@ -703,6 +703,8 @@ Public Class frmSRMIonsExplorer
                 Globals.Settings.peak_arguments.Add(selcNode.ion.accession, New IonPeakFindingParameters(selcNode.ion.accession, args))
             End If
 
+            Globals.Settings.peak_arguments(selcNode.ion.accession).accession = selcNode.ion.accession
+
             Call applyNewIonParameters(Globals.Settings.peak_arguments(selcNode.ion.accession))
             Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
             Call WindowModules.parametersTool.SetParameterObject(Globals.Settings.peak_arguments(selcNode.ion.accession), AddressOf applyNewIonParameters)
