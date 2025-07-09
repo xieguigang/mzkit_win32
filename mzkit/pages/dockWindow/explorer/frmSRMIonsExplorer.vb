@@ -676,8 +676,14 @@ Public Class frmSRMIonsExplorer
         Call updateIonNameDisplay(setLibName)
     End Sub
 
+    ''' <summary>
+    ''' reset to default
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
-        Call applyNewParameters(If(Globals.Settings.peak_finding, New PeakFindingParameters))
+        ' create default and save to profiles
+        Call applyNewParameters(New PeakFindingParameters)
         Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
         Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
     End Sub
@@ -695,6 +701,7 @@ Public Class frmSRMIonsExplorer
         If selcNode Is Nothing OrElse selcNode.ion.accession.StringEmpty(, True) Then
             SetIndividualPeakFindingArgumentsToolStripMenuItem.Checked = False
             Call Workbench.Warning("No ion selected or target ion has no id tagged!")
+            Call ToolStripButton3_Click(Nothing, Nothing)
             Return
         End If
 
@@ -709,7 +716,8 @@ Public Class frmSRMIonsExplorer
             Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
             Call WindowModules.parametersTool.SetParameterObject(Globals.Settings.peak_arguments(selcNode.ion.accession), AddressOf applyNewIonParameters)
         Else
-            Globals.Settings.peak_arguments.Remove(selcNode.ion.accession)
+            Call Globals.Settings.peak_arguments.Remove(selcNode.ion.accession)
+            Call ToolStripButton3_Click(Nothing, Nothing)
         End If
     End Sub
 End Class
