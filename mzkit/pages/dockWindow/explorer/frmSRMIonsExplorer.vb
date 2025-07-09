@@ -565,9 +565,18 @@ Public Class frmSRMIonsExplorer
             Return
         End If
 
+        Dim argumentSet As New MRMArgumentSet With {
+            .globals = args.GetMRMArguments,
+            .args = New Dictionary(Of String, MRMArguments)
+        }
+
+        For Each arg In Globals.Settings.peak_arguments.SafeQuery
+            Call argumentSet.args.Add(arg.Key, arg.Value.GetMRMArguments)
+        Next
+
         Call files.SaveTo($"{workdir}/files.txt")
         Call ionsLib.AsEnumerable.SaveTo($"{workdir}/ions.csv", silent:=True)
-        Call args.GetMRMArguments.ToJSON.SaveTo($"{workdir}/args.json")
+        Call argumentSet.ToJSON.SaveTo($"{workdir}/args.json")
 
         ' call background task to run the batch processing
         If RscriptProgressTask.ExportMRMPeaks($"{workdir}/files.txt", $"{workdir}/ions.csv", $"{workdir}/args.json", workdir) Then
