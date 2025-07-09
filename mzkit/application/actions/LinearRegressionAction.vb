@@ -58,9 +58,16 @@ Public Class LinearRegressionAction : Inherits ActionBase
             .ToArray
         Dim selCals As New InputReferencePointNames
         Dim sampleNames = New CommonTagParser(files.Keys).GetTagNames.ToArray
+        Dim name_str As String
 
         For i As Integer = 0 To sampleNames.Length - 1
-            files(i).filename = sampleNames(i)
+            name_str = sampleNames(i)
+
+            If Not (name_str.IsPattern("\d+") OrElse name_str.IsPattern("\d+[\Wa-zA-Z]+")) Then
+                name_str = CommonTagParser.RemoveLeadingNumbersAndSymbols(name_str)
+            End If
+
+            files(i).filename = name_str
         Next
 
         selCals.SetNames(files.Keys)
