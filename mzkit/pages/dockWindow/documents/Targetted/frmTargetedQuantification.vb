@@ -1499,7 +1499,9 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 .linear = line.linear.Polynomial.ToString,
                 .R2 = line.linear.R2,
                 .samples = sampledata,
-                .ISTD = If(istd, line.IS?.ID)
+                .ISTD = If(istd, line.IS?.ID),
+                .invalids = line.points.Where(Function(p) Not p.valid).Select(Function(p) p.level).ToArray,
+                .[variant] = line.points.Average(Function(p) p.variant)
             })
         Next
     End Sub
@@ -1988,13 +1990,17 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         Call tbl.LoadTable(
             Sub(grid)
-                Dim row_vals As Object() = New Object((5 + names.Length) - 1) {}
+                Dim fixed As Integer = 8
+                Dim row_vals As Object() = New Object((fixed + names.Length) - 1) {}
 
                 Call grid.Columns.Add(NameOf(DataReport.ID), GetType(String))
                 Call grid.Columns.Add(NameOf(DataReport.name), GetType(String))
                 Call grid.Columns.Add(NameOf(DataReport.ISTD), GetType(String))
                 Call grid.Columns.Add(NameOf(DataReport.linear), GetType(String))
                 Call grid.Columns.Add(NameOf(DataReport.R2), GetType(Double))
+                Call grid.Columns.Add(NameOf(DataReport.R), GetType(Double))
+                Call grid.Columns.Add(NameOf(DataReport.variant), GetType(Double))
+                Call grid.Columns.Add(NameOf(DataReport.invalids), GetType(Double))
 
                 For Each name As String In names
                     Call grid.Columns.Add(name, GetType(Double))
@@ -2006,8 +2012,11 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                     row_vals(2) = opt.ISTD
                     row_vals(3) = opt.linear
                     row_vals(4) = opt.R2
+                    row_vals(5) = opt.R
+                    row_vals(6) = opt.variant
+                    row_vals(7) = opt.invalids.JoinBy(", ")
 
-                    Dim offset = 5
+                    Dim offset = fixed
 
                     For Each name As String In names
                         row_vals(offset) = opt.samples(name)
