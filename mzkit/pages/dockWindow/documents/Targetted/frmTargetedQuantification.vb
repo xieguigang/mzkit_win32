@@ -2000,7 +2000,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 Call grid.Columns.Add(NameOf(DataReport.R2), GetType(Double))
                 Call grid.Columns.Add(NameOf(DataReport.R), GetType(Double))
                 Call grid.Columns.Add(NameOf(DataReport.variant), GetType(Double))
-                Call grid.Columns.Add(NameOf(DataReport.invalids), GetType(Double))
+                Call grid.Columns.Add(NameOf(DataReport.invalids), GetType(String))
 
                 For Each name As String In names
                     Call grid.Columns.Add(name, GetType(Double))
