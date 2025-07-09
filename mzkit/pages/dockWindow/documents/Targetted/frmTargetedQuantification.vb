@@ -1493,6 +1493,10 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 sampledata(file.filename) = file.quantify(line.name)
             Next
 
+            Dim var = line.points _
+                .Where(Function(p) Not p.variant.IsNaNImaginary) _
+                .ToArray
+
             Call report.Add(New DataReport With {
                 .ID = line.name,
                 .name = .ID,
@@ -1500,8 +1504,11 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 .R2 = line.linear.R2,
                 .samples = sampledata,
                 .ISTD = If(istd, line.IS?.ID),
-                .invalids = line.points.Where(Function(p) Not p.valid).Select(Function(p) p.level).ToArray,
-                .[variant] = line.points.Average(Function(p) p.variant)
+                .invalids = line.points _
+                    .Where(Function(p) Not p.valid) _
+                    .Select(Function(p) p.level) _
+                    .ToArray,
+                .[variant] = If(var.Length = 0, 0, var.Average(Function(p) p.variant))
             })
         Next
     End Sub
