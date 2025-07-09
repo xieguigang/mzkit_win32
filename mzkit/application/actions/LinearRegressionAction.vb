@@ -59,6 +59,10 @@ Public Class LinearRegressionAction : Inherits ActionBase
         Dim selCals As New InputReferencePointNames
         Dim sampleNames = New CommonTagParser(files.Keys).GetTagNames.ToArray
 
+        For i As Integer = 0 To sampleNames.Length - 1
+            files(i).filename = sampleNames(i)
+        Next
+
         selCals.SetNames(files.Keys)
         selCals.Input(Sub(list)
                           Dim getErrName As Value(Of String) = ""
