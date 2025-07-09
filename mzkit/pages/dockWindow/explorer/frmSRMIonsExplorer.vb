@@ -693,6 +693,7 @@ Public Class frmSRMIonsExplorer
 
     Private Sub SetIndividualPeakFindingArgumentsToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles SetIndividualPeakFindingArgumentsToolStripMenuItem.CheckedChanged
         If selcNode Is Nothing OrElse selcNode.ion.accession.StringEmpty(, True) Then
+            SetIndividualPeakFindingArgumentsToolStripMenuItem.Checked = False
             Call Workbench.Warning("No ion selected or target ion has no id tagged!")
             Return
         End If
