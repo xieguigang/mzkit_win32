@@ -63,6 +63,7 @@
 #End Region
 
 Imports System.ComponentModel
+Imports System.Reflection
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 
@@ -71,6 +72,22 @@ Public Class IonPeakFindingParameters : Inherits PeakFindingParameters
     <Category("Ion Target")>
     <Description("Set individual arguments for this ion target")>
     Public Property ion As String
+
+    Sub New()
+    End Sub
+
+    Sub New(id As String, args As PeakFindingParameters)
+        ion = id
+        cloneValues(args)
+    End Sub
+
+    Private Sub cloneValues(args As PeakFindingParameters)
+        Static props As PropertyInfo() = GetType(PeakFindingParameters).GetReadWriteProperties
+
+        For Each p As PropertyInfo In props
+            Call p.SetValue(Me, p.GetValue(args))
+        Next
+    End Sub
 
 End Class
 

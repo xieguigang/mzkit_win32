@@ -56,6 +56,7 @@
 
 #End Region
 
+Imports System.ComponentModel
 Imports System.IO
 Imports System.IO.Compression
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
@@ -357,10 +358,13 @@ Public Class frmSRMIonsExplorer
 
     Dim TIC As ChromatogramTick()
     Dim title As String
+    Dim selcNode As MRMHolder
 
     Private Sub Win7StyleTreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles Win7StyleTreeView1.AfterSelect
         Dim ticks As ChromatogramTick()
         Dim peak As PeakFeature = Nothing
+
+        selcNode = Nothing
 
         If TypeOf e.Node.Tag Is BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram Then
             ticks = DirectCast(e.Node.Tag, BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram).GetTicks.ToArray
@@ -368,8 +372,17 @@ Public Class frmSRMIonsExplorer
             Dim holder As MRMHolder = e.Node.Tag
             ticks = holder.GetXic
             peak = holder.peak
+            selcNode = holder
             Dim props As New MRMROIProperty(holder.ion, holder.peak, ticks)
             Call VisualStudio.ShowProperties(props)
+
+            If Not holder.ion.accession.StringEmpty(, True) Then
+                If Globals.Settings.peak_arguments.ContainsKey(holder.ion.accession) Then
+                    SetIndividualPeakFindingArgumentsToolStripMenuItem.Checked = True
+                Else
+                    SetIndividualPeakFindingArgumentsToolStripMenuItem.Checked = False
+                End If
+            End If
         Else
             Dim chr As chromatogram = e.Node.Tag
             ticks = chr.Ticks
@@ -654,6 +667,11 @@ Public Class frmSRMIonsExplorer
         Globals.Settings.Save()
     End Sub
 
+    Private Sub applyNewIonParameters(args As IonPeakFindingParameters)
+        Globals.Settings.peak_arguments(args.ion) = args
+        Globals.Settings.Save()
+    End Sub
+
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
         Call updateIonNameDisplay(setLibName)
     End Sub
@@ -662,5 +680,33 @@ Public Class frmSRMIonsExplorer
         Call applyNewParameters(If(Globals.Settings.peak_finding, New PeakFindingParameters))
         Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
         Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
+    End Sub
+
+    Private Sub SetIndividualPeakFindingArgumentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetIndividualPeakFindingArgumentsToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub ContextMenuStrip2_Opening(sender As Object, e As CancelEventArgs) Handles ContextMenuStrip2.Opening
+        ' get selected node
+
+    End Sub
+
+    Private Sub SetIndividualPeakFindingArgumentsToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles SetIndividualPeakFindingArgumentsToolStripMenuItem.CheckedChanged
+        If selcNode Is Nothing OrElse selcNode.ion.accession.StringEmpty(, True) Then
+            Call Workbench.Warning("No ion selected or target ion has no id tagged!")
+            Return
+        End If
+
+        If SetIndividualPeakFindingArgumentsToolStripMenuItem.Checked Then
+            If Not Globals.Settings.peak_arguments.ContainsKey(selcNode.ion.accession) Then
+                Globals.Settings.peak_arguments.Add(selcNode.ion.accession, New IonPeakFindingParameters(selcNode.ion.accession, args))
+            End If
+
+            Call applyNewIonParameters(Globals.Settings.peak_arguments(selcNode.ion.accession))
+            Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
+            Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewIonParameters)
+        Else
+            Globals.Settings.peak_arguments.Remove(selcNode.ion.accession)
+        End If
     End Sub
 End Class

@@ -124,7 +124,7 @@ Partial Class frmSRMIonsExplorer
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowTICOverlapToolStripMenuItem, Me.ShowTICOverlap3DToolStripMenuItem, Me.ToolStripMenuItem1, Me.SelectAllIonsToolStripMenuItem, Me.ClearIonSelectionsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ClearFilesToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 148)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(178, 126)
         '
         'ShowTICOverlapToolStripMenuItem
         '
@@ -320,7 +320,7 @@ Partial Class frmSRMIonsExplorer
         '
         Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowTICOverlapToolStripMenuItem1, Me.ShowTICOverlap3DToolStripMenuItem1, Me.ToolStripMenuItem5, Me.PeakFindingToolStripMenuItem, Me.SetIndividualPeakFindingArgumentsToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(279, 98)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(279, 120)
         '
         'ShowTICOverlapToolStripMenuItem1
         '
@@ -349,6 +349,7 @@ Partial Class frmSRMIonsExplorer
         '
         'SetIndividualPeakFindingArgumentsToolStripMenuItem
         '
+        Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.CheckOnClick = True
         Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.Image = CType(resources.GetObject("SetIndividualPeakFindingArgumentsToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.Name = "SetIndividualPeakFindingArgumentsToolStripMenuItem"
         Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.Size = New System.Drawing.Size(278, 22)
