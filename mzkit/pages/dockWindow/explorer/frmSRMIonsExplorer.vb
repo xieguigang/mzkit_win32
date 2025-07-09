@@ -704,7 +704,7 @@ Public Class frmSRMIonsExplorer
 
             Call applyNewIonParameters(Globals.Settings.peak_arguments(selcNode.ion.accession))
             Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
-            Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewIonParameters)
+            Call WindowModules.parametersTool.SetParameterObject(Globals.Settings.peak_arguments(selcNode.ion.accession), AddressOf applyNewIonParameters)
         Else
             Globals.Settings.peak_arguments.Remove(selcNode.ion.accession)
         End If

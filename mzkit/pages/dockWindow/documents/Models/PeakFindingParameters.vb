@@ -71,13 +71,20 @@ Public Class IonPeakFindingParameters : Inherits PeakFindingParameters
 
     <Category("Ion Target")>
     <Description("Set individual arguments for this ion target")>
-    Public Property ion As String
+    Public ReadOnly Property ion As String
+        Get
+            Return accession
+        End Get
+    End Property
+
+    <Browsable(False)>
+    Public Property accession As String
 
     Sub New()
     End Sub
 
     Sub New(id As String, args As PeakFindingParameters)
-        ion = id
+        accession = id
         cloneValues(args)
     End Sub
 
