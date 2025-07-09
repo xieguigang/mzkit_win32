@@ -95,6 +95,7 @@ Namespace Configuration
         Public Property tissue_map As TissueMap
 
         Public Property peak_finding As PeakFindingParameters
+        Public Property peak_arguments As New Dictionary(Of String, IonPeakFindingParameters)
 
         Public Property MRMLibfile As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "/mzkit/MRM/Default.csv"
         Public Property QuantifyIonLibfile As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "/mzkit/GCMS_QuantifyIons.ionPack"
@@ -128,6 +129,7 @@ Namespace Configuration
             local_blender = True
             last_msi_folder = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
             peak_finding = New PeakFindingParameters
+            peak_arguments = New Dictionary(Of String, IonPeakFindingParameters)
 
             Return Me
         End Function
@@ -160,6 +162,9 @@ Namespace Configuration
             End If
             If config.peak_finding Is Nothing Then
                 config.peak_finding = New PeakFindingParameters
+            End If
+            If config.peak_arguments Is Nothing Then
+                config.peak_arguments = New Dictionary(Of String, IonPeakFindingParameters)
             End If
 
             Return config

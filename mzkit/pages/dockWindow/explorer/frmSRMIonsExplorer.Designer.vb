@@ -107,12 +107,13 @@ Partial Class frmSRMIonsExplorer
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ShowTICOverlapToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowTICOverlap3DToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
         Me.PeakFindingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
+        Me.SetIndividualPeakFindingArgumentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ContextMenuStrip3.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -123,61 +124,63 @@ Partial Class frmSRMIonsExplorer
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowTICOverlapToolStripMenuItem, Me.ShowTICOverlap3DToolStripMenuItem, Me.ToolStripMenuItem1, Me.SelectAllIonsToolStripMenuItem, Me.ClearIonSelectionsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ClearFilesToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(178, 126)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 148)
         '
         'ShowTICOverlapToolStripMenuItem
         '
         Me.ShowTICOverlapToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TICToolStripMenuItem, Me.BPCToolStripMenuItem})
         Me.ShowTICOverlapToolStripMenuItem.Image = CType(resources.GetObject("ShowTICOverlapToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ShowTICOverlapToolStripMenuItem.Name = "ShowTICOverlapToolStripMenuItem"
-        Me.ShowTICOverlapToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.ShowTICOverlapToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ShowTICOverlapToolStripMenuItem.Text = "Show Overlaps"
         '
         'TICToolStripMenuItem
         '
+        Me.TICToolStripMenuItem.Image = CType(resources.GetObject("TICToolStripMenuItem.Image"), System.Drawing.Image)
         Me.TICToolStripMenuItem.Name = "TICToolStripMenuItem"
-        Me.TICToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
+        Me.TICToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.TICToolStripMenuItem.Text = "TIC"
         '
         'BPCToolStripMenuItem
         '
+        Me.BPCToolStripMenuItem.Image = CType(resources.GetObject("BPCToolStripMenuItem.Image"), System.Drawing.Image)
         Me.BPCToolStripMenuItem.Name = "BPCToolStripMenuItem"
-        Me.BPCToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
+        Me.BPCToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.BPCToolStripMenuItem.Text = "BPC"
         '
         'ShowTICOverlap3DToolStripMenuItem
         '
         Me.ShowTICOverlap3DToolStripMenuItem.Name = "ShowTICOverlap3DToolStripMenuItem"
-        Me.ShowTICOverlap3DToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.ShowTICOverlap3DToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ShowTICOverlap3DToolStripMenuItem.Text = "Overlap In 3D"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(174, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(177, 6)
         '
         'SelectAllIonsToolStripMenuItem
         '
         Me.SelectAllIonsToolStripMenuItem.Name = "SelectAllIonsToolStripMenuItem"
-        Me.SelectAllIonsToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.SelectAllIonsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SelectAllIonsToolStripMenuItem.Text = "Select All Ions"
         '
         'ClearIonSelectionsToolStripMenuItem
         '
         Me.ClearIonSelectionsToolStripMenuItem.Name = "ClearIonSelectionsToolStripMenuItem"
-        Me.ClearIonSelectionsToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.ClearIonSelectionsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ClearIonSelectionsToolStripMenuItem.Text = "Clear Ion Selections"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(174, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(177, 6)
         '
         'ClearFilesToolStripMenuItem
         '
         Me.ClearFilesToolStripMenuItem.Image = CType(resources.GetObject("ClearFilesToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ClearFilesToolStripMenuItem.Name = "ClearFilesToolStripMenuItem"
-        Me.ClearFilesToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.ClearFilesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ClearFilesToolStripMenuItem.Text = "Clear Files"
         '
         'Win7StyleTreeView1
@@ -304,35 +307,6 @@ Partial Class frmSRMIonsExplorer
         Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton4.Text = "Apply the modified parameters and refresh peaks finding result"
         '
-        'ContextMenuStrip2
-        '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowTICOverlapToolStripMenuItem1, Me.ShowTICOverlap3DToolStripMenuItem1, Me.ToolStripMenuItem5, Me.PeakFindingToolStripMenuItem})
-        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(185, 76)
-        '
-        'ShowTICOverlapToolStripMenuItem1
-        '
-        Me.ShowTICOverlapToolStripMenuItem1.Name = "ShowTICOverlapToolStripMenuItem1"
-        Me.ShowTICOverlapToolStripMenuItem1.Size = New System.Drawing.Size(184, 22)
-        Me.ShowTICOverlapToolStripMenuItem1.Text = "Show TIC Overlap"
-        '
-        'ShowTICOverlap3DToolStripMenuItem1
-        '
-        Me.ShowTICOverlap3DToolStripMenuItem1.Name = "ShowTICOverlap3DToolStripMenuItem1"
-        Me.ShowTICOverlap3DToolStripMenuItem1.Size = New System.Drawing.Size(184, 22)
-        Me.ShowTICOverlap3DToolStripMenuItem1.Text = "Show TIC Overlap 3D"
-        '
-        'ToolStripMenuItem5
-        '
-        Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
-        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(181, 6)
-        '
-        'PeakFindingToolStripMenuItem
-        '
-        Me.PeakFindingToolStripMenuItem.Name = "PeakFindingToolStripMenuItem"
-        Me.PeakFindingToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
-        Me.PeakFindingToolStripMenuItem.Text = "Peak Finding"
-        '
         'ToolStripButton5
         '
         Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -341,6 +315,44 @@ Partial Class frmSRMIonsExplorer
         Me.ToolStripButton5.Name = "ToolStripButton5"
         Me.ToolStripButton5.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton5.Text = "Reset all parameters to default"
+        '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowTICOverlapToolStripMenuItem1, Me.ShowTICOverlap3DToolStripMenuItem1, Me.ToolStripMenuItem5, Me.PeakFindingToolStripMenuItem, Me.SetIndividualPeakFindingArgumentsToolStripMenuItem})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(279, 98)
+        '
+        'ShowTICOverlapToolStripMenuItem1
+        '
+        Me.ShowTICOverlapToolStripMenuItem1.Image = CType(resources.GetObject("ShowTICOverlapToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.ShowTICOverlapToolStripMenuItem1.Name = "ShowTICOverlapToolStripMenuItem1"
+        Me.ShowTICOverlapToolStripMenuItem1.Size = New System.Drawing.Size(278, 22)
+        Me.ShowTICOverlapToolStripMenuItem1.Text = "Show TIC Overlap"
+        '
+        'ShowTICOverlap3DToolStripMenuItem1
+        '
+        Me.ShowTICOverlap3DToolStripMenuItem1.Name = "ShowTICOverlap3DToolStripMenuItem1"
+        Me.ShowTICOverlap3DToolStripMenuItem1.Size = New System.Drawing.Size(278, 22)
+        Me.ShowTICOverlap3DToolStripMenuItem1.Text = "Show TIC Overlap 3D"
+        '
+        'ToolStripMenuItem5
+        '
+        Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
+        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(275, 6)
+        '
+        'PeakFindingToolStripMenuItem
+        '
+        Me.PeakFindingToolStripMenuItem.Image = CType(resources.GetObject("PeakFindingToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.PeakFindingToolStripMenuItem.Name = "PeakFindingToolStripMenuItem"
+        Me.PeakFindingToolStripMenuItem.Size = New System.Drawing.Size(278, 22)
+        Me.PeakFindingToolStripMenuItem.Text = "Peak Finding"
+        '
+        'SetIndividualPeakFindingArgumentsToolStripMenuItem
+        '
+        Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.Image = CType(resources.GetObject("SetIndividualPeakFindingArgumentsToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.Name = "SetIndividualPeakFindingArgumentsToolStripMenuItem"
+        Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.Size = New System.Drawing.Size(278, 22)
+        Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.Text = "Set Individual Peak Finding Arguments"
         '
         'frmSRMIonsExplorer
         '
@@ -392,4 +404,5 @@ Partial Class frmSRMIonsExplorer
     Friend WithEvents ToolStripButton3 As ToolStripButton
     Friend WithEvents ToolStripButton4 As ToolStripButton
     Friend WithEvents ToolStripButton5 As ToolStripButton
+    Friend WithEvents SetIndividualPeakFindingArgumentsToolStripMenuItem As ToolStripMenuItem
 End Class

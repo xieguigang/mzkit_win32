@@ -66,6 +66,14 @@ Imports System.ComponentModel
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 
+Public Class IonPeakFindingParameters : Inherits PeakFindingParameters
+
+    <Category("Ion Target")>
+    <Description("Set individual arguments for this ion target")>
+    Public Property ion As String
+
+End Class
+
 ''' <summary>
 ''' peak finding arguments UI interop
 ''' </summary>
