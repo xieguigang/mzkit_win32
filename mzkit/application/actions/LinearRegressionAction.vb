@@ -58,21 +58,6 @@ Public Class LinearRegressionAction : Inherits ActionBase
             .ToArray
         Dim selCals As New InputReferencePointNames
         Dim sampleNames = New CommonTagParser(files.Keys).GetTagNames.ToArray
-        Dim name_str As String
-
-        For i As Integer = 0 To sampleNames.Length - 1
-            name_str = sampleNames(i)
-
-            If Not (name_str.IsPattern("\d+") OrElse name_str.IsPattern("\d+[\Wa-zA-Z]+")) Then
-                name_str = CommonTagParser.RemoveLeadingNumbersAndSymbols(name_str)
-
-                If name_str = "" Then
-                    name_str = sampleNames(i)
-                End If
-            End If
-
-            files(i).filename = name_str
-        Next
 
         selCals.SetNames(files.Keys)
         selCals.Input(Sub(list)
@@ -90,7 +75,17 @@ Public Class LinearRegressionAction : Inherits ActionBase
                               Dim page As QuantificationLinearPage = DirectCast(VisualStudio.ShowSingleDocument(Of frmTargetedQuantification), QuantificationLinearPage)
                               Dim nameMaps = cals _
                                   .Select(Function(name, i)
-                                              Return New NamedValue(Of String)(name.StringReplace("\(\d+\)", "").Trim, cals(i))
+                                              Dim name_str As String = name.StringReplace("\(\d+\)", "").Trim
+
+                                              If Not (name_str.IsPattern("\d+") OrElse name_str.IsPattern("\d+[\Wa-zA-Z]+")) Then
+                                                  name_str = CommonTagParser.RemoveLeadingNumbersAndSymbols(name_str)
+
+                                                  If name_str = "" Then
+                                                      name_str = sampleNames(i)
+                                                  End If
+                                              End If
+
+                                              Return New NamedValue(Of String)(name_str, cals(i))
                                           End Function) _
                                   .ToArray
                               Dim filter_cals As Index(Of String) = cals.Indexing
