@@ -705,6 +705,8 @@ Public Class frmSRMIonsExplorer
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
         ' create default and save to profiles
         Call applyNewParameters(New PeakFindingParameters)
+        ' clear the custom parameters for the ions
+        Call Globals.Settings.peak_arguments.Clear()
         Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
         Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
     End Sub
