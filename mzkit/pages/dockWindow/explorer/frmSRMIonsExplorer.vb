@@ -262,13 +262,23 @@ Public Class frmSRMIonsExplorer
     End Sub
 
     Private Sub refreshUI(TICRoot As TreeNode, ionsLib As IonLibrary, xicdata As IEnumerable(Of MRMHolder))
+        Dim globalArgs = Globals.Settings.peak_finding
+        Dim argList = Globals.Settings.peak_arguments
         Dim display As String
         Dim checkPeaks As New Index(Of String)
-        Dim rt_win As New DoubleRange(args.peakMin, args.peakMax)
 
         Call ionsLib.SetError(args.GetTolerance)
 
         For Each chr As MRMHolder In xicdata
+            Dim args As PeakFindingParameters = globalArgs
+
+            If Not chr.ion.accession.StringEmpty(, True) Then
+                If argList.ContainsKey(chr.ion.accession) Then
+                    args = argList(chr.ion.accession)
+                End If
+            End If
+
+            Dim rt_win As New DoubleRange(args.peakMin, args.peakMax)
             Dim q1 = chr.ion.precursor
             Dim q3 = chr.ion.product
             Dim ionRef As IsomerismIonPairs = ionsLib.GetIsomerism(q1, q3)
@@ -604,6 +614,7 @@ Public Class frmSRMIonsExplorer
 
         setLibName = libname
 
+        ' load data from ui tree
         For Each sample As TreeNode In Win7StyleTreeView1.Nodes
             Dim data As New SampleData With {.Root = sample.Tag, .Name = sample.Text}
             Dim ions As New List(Of MRMHolder)
@@ -626,6 +637,7 @@ Public Class frmSRMIonsExplorer
                     proc.SetProgressMode()
                     proc.SetProgress(0, "Update Sample Files UI...")
 
+                    ' run data ui updates at here
                     For Each sample As SampleData In dataset
                         Dim TICRoot As TreeNode = Win7StyleTreeView1.Nodes.Add(sample.Name)
 
