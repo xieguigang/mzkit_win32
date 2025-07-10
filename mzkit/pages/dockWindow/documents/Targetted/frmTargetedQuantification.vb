@@ -1508,7 +1508,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                     .Where(Function(p) Not p.valid) _
                     .Select(Function(p) p.level) _
                     .ToArray,
-                .[variant] = If(var.Length = 0, 0, var.Average(Function(p) p.variant))
+                .[variant] = If(var.Length = 0, 0, var.Average(Function(p) p.variant)),
+                .weight = If(line.isWeighted, line.weight, "n/a")
             })
         Next
     End Sub
