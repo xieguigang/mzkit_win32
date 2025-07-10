@@ -1998,13 +1998,14 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         Call tbl.LoadTable(
             Sub(grid)
-                Dim fixed As Integer = 8
+                Dim fixed As Integer = 9
                 Dim row_vals As Object() = New Object((fixed + names.Length) - 1) {}
 
                 Call grid.Columns.Add(NameOf(DataReport.ID), GetType(String))
                 Call grid.Columns.Add(NameOf(DataReport.name), GetType(String))
                 Call grid.Columns.Add(NameOf(DataReport.ISTD), GetType(String))
                 Call grid.Columns.Add(NameOf(DataReport.linear), GetType(String))
+                Call grid.Columns.Add(NameOf(DataReport.weight), GetType(String))
                 Call grid.Columns.Add(NameOf(DataReport.R2), GetType(Double))
                 Call grid.Columns.Add(NameOf(DataReport.R), GetType(Double))
                 Call grid.Columns.Add(NameOf(DataReport.variant), GetType(Double))
@@ -2019,10 +2020,11 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                     row_vals(1) = opt.name
                     row_vals(2) = opt.ISTD
                     row_vals(3) = opt.linear
-                    row_vals(4) = opt.R2
-                    row_vals(5) = opt.R
-                    row_vals(6) = opt.variant
-                    row_vals(7) = opt.invalids.JoinBy(", ")
+                    row_vals(4) = opt.weight
+                    row_vals(5) = opt.R2
+                    row_vals(6) = opt.R
+                    row_vals(7) = opt.variant
+                    row_vals(8) = opt.invalids.JoinBy(", ")
 
                     Dim offset = fixed
 
