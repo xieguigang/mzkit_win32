@@ -1152,6 +1152,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             ' Return algorithm.ToLinears(chr).FirstOrDefault
             Dim keys As Index(Of String) = {id, isid}.Where(Function(s) Not s.StringEmpty(, True)).Indexing
             Dim samples As TargetPeakPoint() = sampleData _
+                .SafeQuery _
                 .Where(Function(f) f.filename Like sampleNames) _
                 .Select(Function(f)
                             Return f.ionPeaks _
