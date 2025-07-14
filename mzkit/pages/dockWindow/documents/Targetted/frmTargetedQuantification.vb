@@ -1510,7 +1510,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             Next
 
             Dim var = line.points _
-                .Where(Function(p) Not p.variant.IsNaNImaginary) _
+                .Where(Function(p) p.valid AndAlso Not p.variant.IsNaNImaginary) _
                 .ToArray
 
             Call report.Add(New DataReport With {
