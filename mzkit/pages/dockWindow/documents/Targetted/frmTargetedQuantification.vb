@@ -1972,6 +1972,22 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         End If
 
         Dim reportTable As New List(Of DataReport)
+        Dim sampleData = Me.sampleData
+        Dim rawdata = Me.sampleData
+
+        If MessageBox.Show($"Select samples for make content range reference?{vbCrLf}{vbCrLf}Select [NO] means use all sample files for make content range reference.",
+                           "Config Options",
+                           MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Information) = DialogResult.Yes Then
+
+            Call New InputReferencePointNames().SetNames(sampleData.Select(Function(f) f.filename)).Input(
+                Sub(config)
+                    Dim selNames = DirectCast(config, InputReferencePointNames).GetReferencePointNames(Nothing).ToArray
+                    Dim selIndex = selNames.Indexing
+
+                    sampleData = sampleData.Where(Function(s) s.filename Like selIndex).ToArray
+                End Sub)
+        End If
 
         Call TaskProgress.RunAction(Sub(echo As ITaskProgress)
                                         Dim n As Integer = linearPack.IS.Length
@@ -1998,6 +2014,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
              info:="Processing of the data combination...",
              cancel:=AddressOf App.DoNothing
         )
+
+        Me.sampleData = rawdata
 
         Dim tbl = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Linear ISTD Evaluations")
         Dim names As String() = reportTable _

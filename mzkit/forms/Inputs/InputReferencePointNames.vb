@@ -4,7 +4,9 @@ Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.SampleNames
 
 Public Class InputReferencePointNames
 
-    Public Iterator Function GetReferencePointNames(err As Value(Of String)) As IEnumerable(Of String)
+    Public Iterator Function GetReferencePointNames(Optional err As Value(Of String) = Nothing) As IEnumerable(Of String)
+        If err Is Nothing Then err = ""
+
         For i As Integer = 0 To CheckedListBox1.Items.Count - 1
             Dim line As String = CheckedListBox1.Items(i)
 
@@ -24,7 +26,7 @@ Public Class InputReferencePointNames
     Dim inputNames As Index(Of String)
     Dim groups As Dictionary(Of String, String())
 
-    Public Sub SetNames(names As IEnumerable(Of String))
+    Public Function SetNames(names As IEnumerable(Of String)) As InputReferencePointNames
         inputNames = names.Distinct.Where(Function(s) Not s.StringEmpty(, True)).Indexing
         groups = inputNames.Objects _
             .GuessPossibleGroups(maxDepth:=True) _
@@ -45,7 +47,9 @@ Public Class InputReferencePointNames
         For Each name As String In groups.Keys
             Call ComboBox1.Items.Add(name)
         Next
-    End Sub
+
+        Return Me
+    End Function
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.DialogResult = DialogResult.Cancel
