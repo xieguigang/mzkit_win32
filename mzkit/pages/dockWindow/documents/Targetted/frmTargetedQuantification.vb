@@ -2016,7 +2016,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         Call tbl.LoadTable(
             Sub(grid)
-                Dim fixed As Integer = 10
+                Dim fixed As Integer = 11
                 Dim row_vals As Object() = New Object((fixed + names.Length) - 1) {}
 
                 Call grid.Columns.Add(NameOf(DataReport.ID), GetType(String))
@@ -2027,6 +2027,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 Call grid.Columns.Add(NameOf(DataReport.R2), GetType(Double))
                 Call grid.Columns.Add(NameOf(DataReport.R), GetType(Double))
                 Call grid.Columns.Add(NameOf(DataReport.variant), GetType(Double))
+                Call grid.Columns.Add("delete points", GetType(Integer))
                 Call grid.Columns.Add(NameOf(DataReport.invalids), GetType(String))
                 Call grid.Columns.Add(NameOf(DataReport.range), GetType(String))
 
@@ -2043,8 +2044,9 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                     row_vals(5) = std.Round(opt.R2, 4)
                     row_vals(6) = std.Round(opt.R, 4)
                     row_vals(7) = std.Round(opt.variant, 2)
-                    row_vals(8) = opt.invalids.JoinBy(", ")
-                    row_vals(9) = $"{opt.range.Min.ToString("F2")} ~ {opt.range.Max.ToString("F2")}"
+                    row_vals(8) = opt.invalids.TryCount
+                    row_vals(9) = opt.invalids.JoinBy(", ")
+                    row_vals(10) = $"{opt.range.Min.ToString("F2")} ~ {opt.range.Max.ToString("F2")}"
 
                     Dim offset = fixed
 
