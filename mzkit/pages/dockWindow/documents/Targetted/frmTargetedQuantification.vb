@@ -318,31 +318,10 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             .[IS] = Istd.Select(Function(id) New [IS](id)).ToArray,
             .peakSamples = DirectCast(fileNames, DataFile()) _
                 .Select(Iterator Function(file) As IEnumerable(Of TargetPeakPoint)
-                            For Each peak In file.ionPeaks
-                                Yield New TargetPeakPoint() With {
-                                    .Name = peak.ID,
-                                    .SampleName = file.filename,
-                                    .Peak = New ROIPeak() With {
-                                        .base = peak.base,
-                                        .ticks = {New ChromatogramTick((peak.rtmax + peak.rtmin) / 2, peak.TPA)},
-                                        .peakHeight = peak.maxinto,
-                                        .window = New DoubleRange(peak.rtmin, peak.rtmax)
-                                    },
-                                    .ChromatogramSummary = {}
-                                }
-                                If Strings.Len(peak.IS) > 0 Then
-                                    Yield New TargetPeakPoint() With {
-                                        .Name = peak.IS,
-                                        .SampleName = file.filename,
-                                        .Peak = New ROIPeak() With {
-                                            .base = peak.base,
-                                            .ticks = {New ChromatogramTick((peak.rtmax + peak.rtmin) / 2, peak.TPA_IS)},
-                                            .peakHeight = peak.maxinto_IS,
-                                            .window = New DoubleRange(peak.rtmin, peak.rtmax)
-                                        },
-                                        .ChromatogramSummary = {}
-                                    }
-                                End If
+                            For Each peak As IonPeakTableRow In file.ionPeaks
+                                For Each pt As TargetPeakPoint In IonPeakTableRow.CastPoints(peak, file.filename)
+                                    Yield pt
+                                Next
                             Next
                         End Function) _
                 .IteratesALL _
@@ -1170,7 +1149,22 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             Call Workbench.Warning($"No sample data was found of ion '{id}'!")
             Return Nothing
         Else
-            Return algorithm.ToLinears(chr).FirstOrDefault
+            ' Return algorithm.ToLinears(chr).FirstOrDefault
+            Dim keys As Index(Of String) = {id, isid}.Where(Function(s) Not s.StringEmpty(, True)).Indexing
+            Dim samples As TargetPeakPoint() = sampleData _
+                .Where(Function(f) f.filename Like sampleNames) _
+                .Select(Function(f)
+                            Return f.ionPeaks _
+                                .Where(Function(i) i.ID Like keys) _
+                                .Select(Function(i) IonPeakTableRow.CastPoints(i, f.filename)) _
+                                .IteratesALL
+                        End Function) _
+                .IteratesALL _
+                .ToArray
+            Dim targets = chr.Where(Function(i) i.Name = id).ToArray
+            Dim istd = chr.Where(Function(i) i.Name <> id).ToArray
+
+            Return algorithm.ToLinear(targets, istd, id, samples)
         End If
     End Function
 
@@ -1259,7 +1253,13 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         ElseIf mzpackRaw IsNot Nothing Then
             Dim arguments As MRMArguments = args.GetMRMArguments
             Dim cals As Index(Of String) = linearFiles.Select(Function(f) f.Value).Indexing
-            Dim raw = mzpackRaw.MS.GroupBy(Function(si) si.meta(mzStreamWriter.SampleMetaName)).Where(Function(g) g.Key Like cals).ToDictionary(Function(a) a.Key, Function(a) a.ToArray)
+            Dim raw As Dictionary(Of String, ScanMS1()) = mzpackRaw.MS _
+                .GroupBy(Function(si) si.meta(mzStreamWriter.SampleMetaName)) _
+                .Where(Function(g) g.Key Like cals) _
+                .ToDictionary(Function(a) a.Key,
+                              Function(a)
+                                  Return a.ToArray
+                              End Function)
 
             arguments.sn_threshold = -1
 
@@ -2077,5 +2077,11 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                     Call grid.Rows.Add(pt.ID, pt.Name, pt.AIS, pt.Ati, pt.cIS, pt.Cti, pt.Px, pt.yfit, pt.error, pt.variant, pt.valid.ToString, pt.level)
                 Next
             End Sub)
+    End Sub
+
+    Dim sampleNames As Index(Of String)
+
+    Public Sub SetSampleNames(names As IEnumerable(Of String)) Implements QuantificationLinearPage.SetSampleNames
+        sampleNames = names.Indexing
     End Sub
 End Class
