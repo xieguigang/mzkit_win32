@@ -1973,7 +1973,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         Dim reportTable As New List(Of DataReport)
         Dim sampleData = Me.sampleData
-        Dim rawdata = Me.sampleData
+        Dim rawNames = Me.sampleNames
 
         If MessageBox.Show($"Select samples for make content range reference?{vbCrLf}{vbCrLf}Select [NO] means use all sample files for make content range reference.",
                            "Config Options",
@@ -1985,7 +1985,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                     Dim selNames = DirectCast(config, InputReferencePointNames).GetReferencePointNames(Nothing).ToArray
                     Dim selIndex = selNames.Indexing
 
-                    sampleData = sampleData.Where(Function(s) s.filename Like selIndex).ToArray
+                    ' sampleData = sampleData.Where(Function(s) s.filename Like selIndex).ToArray
+                    sampleNames = selIndex
                 End Sub)
         End If
 
@@ -2015,7 +2016,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
              cancel:=AddressOf App.DoNothing
         )
 
-        Me.sampleData = rawdata
+        Me.sampleNames = rawNames
 
         Dim tbl = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Linear ISTD Evaluations")
         Dim names As String() = reportTable _
