@@ -98,6 +98,7 @@ Public Class LinearRegressionAction : Inherits ActionBase
 
                               Try
                                   Call page.RunLinearFileImports(files.Where(Function(a) a.filename Like filter_cals).ToArray, type:=TargetTypes.MRM)
+                                  Call page.SetSampleNames(From file As DataFile In files Where Not file.filename Like filter_cals Select file.filename)
                                   Call page.LoadSampleFiles(files, AddressOf Workbench.StatusMessage)
                               Catch ex As Exception
                                   Call App.LogException(ex)
