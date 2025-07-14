@@ -2040,16 +2040,16 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                     row_vals(2) = opt.ISTD
                     row_vals(3) = opt.linear
                     row_vals(4) = opt.weight
-                    row_vals(5) = opt.R2
-                    row_vals(6) = opt.R
-                    row_vals(7) = opt.variant
+                    row_vals(5) = std.Round(opt.R2, 4)
+                    row_vals(6) = std.Round(opt.R, 4)
+                    row_vals(7) = std.Round(opt.variant, 2)
                     row_vals(8) = opt.invalids.JoinBy(", ")
-                    row_vals(9) = $"{opt.range.Min} ~ {opt.range.Max}"
+                    row_vals(9) = $"{opt.range.Min.ToString("F2")} ~ {opt.range.Max.ToString("F2")}"
 
                     Dim offset = fixed
 
                     For Each name As String In names
-                        row_vals(offset) = opt.samples(name)
+                        row_vals(offset) = std.Round(opt.samples(name), 2)
                         offset += 1
                     Next
 
