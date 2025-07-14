@@ -1525,7 +1525,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                     .Select(Function(p) p.level) _
                     .ToArray,
                 .[variant] = If(var.Length = 0, 0, var.Average(Function(p) p.variant)),
-                .weight = If(line.isWeighted, line.weight, "n/a")
+                .weight = If(line.isWeighted, line.weight, "n/a"),
+                .range = line.range.MinMax
             })
         Next
     End Sub
@@ -2015,7 +2016,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         Call tbl.LoadTable(
             Sub(grid)
-                Dim fixed As Integer = 9
+                Dim fixed As Integer = 10
                 Dim row_vals As Object() = New Object((fixed + names.Length) - 1) {}
 
                 Call grid.Columns.Add(NameOf(DataReport.ID), GetType(String))
@@ -2027,6 +2028,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 Call grid.Columns.Add(NameOf(DataReport.R), GetType(Double))
                 Call grid.Columns.Add(NameOf(DataReport.variant), GetType(Double))
                 Call grid.Columns.Add(NameOf(DataReport.invalids), GetType(String))
+                Call grid.Columns.Add(NameOf(DataReport.range), GetType(String))
 
                 For Each name As String In names
                     Call grid.Columns.Add(name, GetType(Double))
@@ -2042,6 +2044,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                     row_vals(6) = opt.R
                     row_vals(7) = opt.variant
                     row_vals(8) = opt.invalids.JoinBy(", ")
+                    row_vals(9) = $"{opt.range.Min} ~ {opt.range.Max}"
 
                     Dim offset = fixed
 
