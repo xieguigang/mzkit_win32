@@ -1217,6 +1217,12 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Return chr
     End Function
 
+    ''' <summary>
+    ''' select the raw peak area data points jsut for linear information
+    ''' </summary>
+    ''' <param name="id"></param>
+    ''' <param name="isid"></param>
+    ''' <returns></returns>
     Private Function createMRMLinears(id As String, isid As String) As IEnumerable(Of TargetPeakPoint)
         Dim ionLib As IonLibrary = Globals.LoadIonLibrary
         Dim quantifyIon = ionLib.GetIonByKey(id)
@@ -1264,15 +1270,24 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             End If
         ElseIf Not linearFileDatas.IsNullOrEmpty AndAlso Not linearPack.peakSamples.IsNullOrEmpty Then
             ' target and IS points
-            Return linearPack.peakSamples.AsParallel.Where(Function(i) i.Name = id OrElse i.Name = isid).AsList
+            Return linearPack.peakSamples _
+                .AsParallel _
+                .Where(Function(i)
+                           Return i.Name = id OrElse i.Name = isid
+                       End Function) _
+                .AsList
         Else
             Dim arguments As MRMArguments = args.GetMRMArguments
 
             ' load from raw data files
-            Call MRMIonExtract.LoadSamples(linearFiles, quantifyIon, arguments).DoCall(AddressOf chr.AddRange)
+            Call MRMIonExtract _
+                .LoadSamples(linearFiles, quantifyIon, arguments) _
+                .DoCall(AddressOf chr.AddRange)
 
             If Not isid.StringEmpty Then
-                Call MRMIonExtract.LoadSamples(linearFiles, quantifyIS, arguments).DoCall(AddressOf chr.AddRange)
+                Call MRMIonExtract _
+                    .LoadSamples(linearFiles, quantifyIS, arguments) _
+                    .DoCall(AddressOf chr.AddRange)
             End If
         End If
 
@@ -1962,6 +1977,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
                                         Call echo.SetProgressMode()
 
+                                        ' loop throught all internal standards
                                         For Each istd As [IS] In linearPack.IS
                                             For Each line As StandardCurve In linearPack.linears
                                                 line.IS = New [IS](istd.ID)
