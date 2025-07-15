@@ -7,6 +7,7 @@ imports "app" from "ServiceHub";
 imports "MSI" from "mzkit";
 imports "MsImaging" from "mzplot";
 imports "mzDeco" from "mz_quantify";
+imports "xcms" from "mz_quantify";
 imports "geneExpression" from "phenotype_kit";
 imports "sampleInfo" from "phenotype_kit";
 
@@ -86,6 +87,26 @@ for(let ion in [peak_ions]::peaks) {
          y = yoffset + dim_y * 2 - 50, 
          labels = `m/z ${round(mz,4)}`,
          col = "white");
+
+    let stat = ggplot(expression_df(ion, groups), aes(x = "group", y = "expr"), padding = [yoffset, msi_xoffset - 10, Rplot_y - yoffset, 30 ])
+	# Add horizontal line at base mean 
+	# + geom_hline(yintercept = mean(myeloma$expr), linetype="dash", line.width = 2, color = "red")
+	+ geom_violin(width = 0.65, alpha = 0.85)
+	+ geom_jitter(width = 0.3, alpha = 1)	
+	+ ggtitle("")
+	+ ylab("intensity")
+	+ xlab("")
+	+ scale_y_continuous(labels = "F0")
+	# + stat_compare_means(method = "anova", label.y = 1600) # Add global annova p-value 
+    # + stat_compare_means(label = "p.signif", method = "t.test", ref.group = ".all.", hide.ns = TRUE)# Pairwise comparison against all
+	+ theme(
+		axis.text.x = element_text(angle = 45), 
+		plot.title = element_text(family = "Cambria Math", size = 16),
+		panel.border = element_rect(size = 10, linetype = "Solid")
+	)
+	;
+
+    plot(stat);
 
     yoffset= yoffset + dim_y * 2 + 10;
 }
