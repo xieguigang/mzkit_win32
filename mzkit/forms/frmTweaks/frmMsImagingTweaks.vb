@@ -1247,24 +1247,32 @@ UseCheckedList:
             .IteratesALL _
             .ToArray
 
-        Dim workdir As String = App.CurrentProcessTemp & "_" & App.NextTempName
+        Using dir As New FolderBrowserDialog With {.ShowNewFolderButton = True}
+            If dir.ShowDialog = DialogResult.OK Then
+                Dim workdir As String = dir.SelectedPath
 
-        Call TaskProgress.RunAction(AddressOf task.getPeaks, host:=Me)
-        Call sampleinfo.SaveTo($"{workdir}/sampleinfo.csv")
-        Call regions.GetJson.SaveTo($"{workdir}/geometry.json")
+                Call TaskProgress.RunAction(AddressOf task.getPeaks, host:=Me)
+                Call sampleinfo.SaveTo($"{workdir}/sampleinfo.csv")
+                Call regions.GetJson.SaveTo($"{workdir}/geometry.json")
 
-        Dim peaks = New PeakSet With {.peaks = task.peaks.uniqueNames.ToArray}
+                Dim peaks = New PeakSet With {.peaks = task.peaks.uniqueNames.ToArray}
 
-        Using f As Stream = $"{workdir}/peakset.xcms".Open(FileMode.OpenOrCreate, doClear:=True)
-            Call SaveXcms.DumpSample(peaks, f)
-            Call f.Flush()
+                Using f As Stream = $"{workdir}/peakset.xcms".Open(FileMode.OpenOrCreate, doClear:=True)
+                    Call SaveXcms.DumpSample(peaks, f)
+                    Call f.Flush()
+                End Using
+
+                Using f As Stream = $"{workdir}/mat.dat".Open(FileMode.OpenOrCreate, doClear:=True)
+                    Call frmMetabonomicsAnalysis.CastMatrix(peaks, sampleinfo).Save(f)
+                End Using
+
+                Call Workbench.StatusMessage($"workfiles has been export to workspace: {workdir}")
+
+                If RscriptProgressTask.PlotMultipleSamples(Workbench.MSIServiceAppPort, workdir) Then
+                    Call Process.Start("explorer.exe", "/select," & $"{workdir}/Rplot.png")
+                    Call Process.Start($"{workdir}/Rplot.pdf")
+                End If
+            End If
         End Using
-
-        Using f As Stream = $"{workdir}/mat.dat".Open(FileMode.OpenOrCreate, doClear:=True)
-            Call frmMetabonomicsAnalysis.CastMatrix(peaks, sampleinfo).Save(f)
-        End Using
-
-        Call Workbench.StatusMessage($"workfiles has been export to temp workspace: {workdir}")
-
     End Sub
 End Class

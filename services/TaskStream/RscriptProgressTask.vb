@@ -101,6 +101,36 @@ Public NotInheritable Class RscriptProgressTask
         Return save
     End Function
 
+    Public Shared Function PlotMultipleSamples(app As Integer, workdir As String) As Boolean
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/MultipleSamplePlot.R")
+        Dim cli As String = $"""{Rscript}"" 
+--app {app}
+--tmpdir {workdir.CLIPath}
+/@set tqdm=false
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+
+        Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         p.SetProgressMode()
+
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Make plot of the multple samples data",
+                info:="Make plot of the multiple sample expression visual and ms-imaging plot...")
+
+        Return $"{workdir}/Rplot.svg".FileExists(True) AndAlso
+            $"{workdir}/Rplot.png".FileExists(True) AndAlso
+            $"{workdir}/Rplot.pdf".FileExists(True)
+    End Function
+
     Public Shared Function ConvertSTData(spot As String, matrix As String, tag As String, targets As String(), save As String) As String
         Dim Rscript As String = RscriptPipelineTask.GetRScript("10x_genomics/convert_h5ad_st_to_mzpack.R")
         Dim targetfile As String = TempFileSystem.GetAppSysTempFile(".txt")
