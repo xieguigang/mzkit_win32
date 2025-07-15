@@ -28,20 +28,33 @@ str(offsets);
 print("msimaging dimension [x,y]:");
 print([dim_x, dim_y]);
 
-bitmap(file = file.path(workdir,"Rplot.png"), size = [dim_x * 5, dim_y * (length([peak_ions]::peaks) + 1)]);
+let Rplot_w = dim_x * 6;
+let Rplot_y = dim_y * 2 * (length([peak_ions]::peaks) + 1);
+
+bitmap(file = file.path(workdir,"Rplot.png"), 
+       size = [Rplot_w, Rplot_y], 
+       fill = "white");
 
 colorSet |> colorMap.legend(
     [0, 100],
-    titleFont = "font-style: strong; font-size: 16; font-family: Cambria;", 
-    tickFont  = "font-style: normal; font-size: 16; font-family: Cambria;", 
+    titleFont = "font-style: strong; font-size: 24; font-family: Cambria;", 
+    tickFont  = "font-style: normal; font-size: 24; font-family: Cambria;", 
     title     = "", 
     format    = "F0", 
-    foreColor = "white"
+    foreColor = "black"
 )
 |> plot()
 ;   
 
-let yoffset = 20;
+let yoffset = 0.1 * Rplot_y;
+let msi_xoffset = Rplot_w - dim_x * 4;
+
+for(let tag in names(offsets)) {
+    let x_pos = offsets[[tag]];
+    x_pos = msi_xoffset + x_pos * 3;
+
+    text(x = x_pos, y = yoffset - 50, labels = tag, col = "black");
+}
 
 for(let ion in [peak_ions]::peaks) {
     let name = [ion]::ID;
@@ -54,8 +67,10 @@ for(let ion in [peak_ions]::peaks) {
     |> as.layer(context = mz, strict = FALSE)
     ;
 
+    print(name);
+
     [layer]::MSILayer |> rasterHeatmap(
-        region       = rect(x = 200, y = yoffset, w = dim_x * 3, h = dim_y, float = FALSE), 
+        region       = rect(x = msi_xoffset, y = yoffset, w = dim_x * 3, h = dim_y * 2 , float = FALSE), 
         gauss        = 0, 
         colorName    = colorSet, 
         rasterBitmap = TRUE,
@@ -63,7 +78,12 @@ for(let ion in [peak_ions]::peaks) {
         dimSize      = [dim_x, dim_y]
     );
 
-    yoffset= yoffset + dim_y + 10;
+    text(x = msi_xoffset + dim_x * 3 - 120, 
+         y = yoffset + dim_y * 2 - 50, 
+         labels = `MZ: ${round(mz,4)}`,
+         col = "white");
+
+    yoffset= yoffset + dim_y * 2 + 10;
 }
 
 dev.off();
