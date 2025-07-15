@@ -14,6 +14,9 @@ mzkit source code: https://github.com/xieguigang/mzkit
 mzkit downloads: http://www.biodeep.cn/downloads?lang=en-US
 mzkit on SciCrunch: RRID:SCR_023936
 
+Contact The Author: gg.xie@bionovogene, 
+                    xieguigang@metabolomics.ac.cn
+
 ------====== Runtime & System Requirements ======--------
 
 mzkit_win32 application required of .NET Framework 4.8 runtime:

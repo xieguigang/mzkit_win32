@@ -66,7 +66,9 @@
 Imports System.Drawing
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Math2D
+Imports Microsoft.VisualBasic.Linq
 
 ''' <summary>
 ''' A helper data model for the single region polygons data
@@ -157,6 +159,18 @@ Public Class RegionLoader
 
     Public Function ContainsPixel(x As Integer, y As Integer) As Boolean
         Return regions.Any(Function(r) r.inside(x, y))
+    End Function
+
+    Public Iterator Function PopulateRegions() As IEnumerable(Of TissueRegion)
+        Dim colors As Color() = Designer.GetColors("paper")
+
+        For i As Integer = 0 To sample_tags.Length - 1
+            Yield New TissueRegion With {
+                .label = sample_tags(i),
+                .points = regions(i).AsEnumerable.ToPoints,
+                .color = colors(i)
+            }
+        Next
     End Function
 End Class
 

@@ -112,7 +112,7 @@ Partial Class frmMsImagingTweaks
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripSpringTextBox1 = New ToolStripSpringTextBox()
+        Me.ToolStripSpringTextBox1 = New mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
         Me.ViewLayerButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
@@ -120,6 +120,7 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
+        Me.MultipleSamplesComparisonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -146,7 +147,7 @@ Partial Class frmMsImagingTweaks
         '
         'ShowPlotToolStripMenuItem
         '
-        Me.ShowPlotToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BoxPlotToolStripMenuItem, Me.BarPlotToolStripMenuItem, Me.ViolinPlotToolStripMenuItem, Me.ToolStripMenuItem3, Me.IntensityHistogramToolStripMenuItem, Me.ToolStripMenuItem4, Me.AppendMSImagingToolStripMenuItem})
+        Me.ShowPlotToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BoxPlotToolStripMenuItem, Me.BarPlotToolStripMenuItem, Me.ViolinPlotToolStripMenuItem, Me.AppendMSImagingToolStripMenuItem, Me.ToolStripMenuItem3, Me.IntensityHistogramToolStripMenuItem, Me.ToolStripMenuItem4, Me.MultipleSamplesComparisonToolStripMenuItem})
         Me.ShowPlotToolStripMenuItem.Image = CType(resources.GetObject("ShowPlotToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ShowPlotToolStripMenuItem.Name = "ShowPlotToolStripMenuItem"
         Me.ShowPlotToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
@@ -156,37 +157,37 @@ Partial Class frmMsImagingTweaks
         'BoxPlotToolStripMenuItem
         '
         Me.BoxPlotToolStripMenuItem.Name = "BoxPlotToolStripMenuItem"
-        Me.BoxPlotToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.BoxPlotToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
         Me.BoxPlotToolStripMenuItem.Text = "Box Plot"
         '
         'BarPlotToolStripMenuItem
         '
         Me.BarPlotToolStripMenuItem.Name = "BarPlotToolStripMenuItem"
-        Me.BarPlotToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.BarPlotToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
         Me.BarPlotToolStripMenuItem.Text = "Bar Plot"
         '
         'ViolinPlotToolStripMenuItem
         '
         Me.ViolinPlotToolStripMenuItem.Name = "ViolinPlotToolStripMenuItem"
-        Me.ViolinPlotToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.ViolinPlotToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
         Me.ViolinPlotToolStripMenuItem.Text = "Violin Plot"
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(182, 6)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(230, 6)
         '
         'IntensityHistogramToolStripMenuItem
         '
         Me.IntensityHistogramToolStripMenuItem.Image = CType(resources.GetObject("IntensityHistogramToolStripMenuItem.Image"), System.Drawing.Image)
         Me.IntensityHistogramToolStripMenuItem.Name = "IntensityHistogramToolStripMenuItem"
-        Me.IntensityHistogramToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.IntensityHistogramToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
         Me.IntensityHistogramToolStripMenuItem.Text = "Intensity Histogram"
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(182, 6)
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(230, 6)
         '
         'AppendMSImagingToolStripMenuItem
         '
@@ -195,7 +196,7 @@ Partial Class frmMsImagingTweaks
         Me.AppendMSImagingToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
         Me.AppendMSImagingToolStripMenuItem.Image = CType(resources.GetObject("AppendMSImagingToolStripMenuItem.Image"), System.Drawing.Image)
         Me.AppendMSImagingToolStripMenuItem.Name = "AppendMSImagingToolStripMenuItem"
-        Me.AppendMSImagingToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.AppendMSImagingToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
         Me.AppendMSImagingToolStripMenuItem.Text = "Append MS-Imaging"
         Me.AppendMSImagingToolStripMenuItem.ToolTipText = "Combine the ms-imaging heatmap with the expression chart plot"
         '
@@ -405,6 +406,12 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton4.Text = "Analysis Selected Ions In Metabonomics Workbench"
         '
+        'MultipleSamplesComparisonToolStripMenuItem
+        '
+        Me.MultipleSamplesComparisonToolStripMenuItem.Name = "MultipleSamplesComparisonToolStripMenuItem"
+        Me.MultipleSamplesComparisonToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.MultipleSamplesComparisonToolStripMenuItem.Text = "Multiple Samples Comparison"
+        '
         'frmMsImagingTweaks
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -464,4 +471,5 @@ Partial Class frmMsImagingTweaks
     Friend WithEvents CombineViolinPlotToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem5 As ToolStripSeparator
     Friend WithEvents NoStatisticalChartToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MultipleSamplesComparisonToolStripMenuItem As ToolStripMenuItem
 End Class

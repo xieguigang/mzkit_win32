@@ -93,6 +93,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports MZKitWin32.Blender.CommonLibs
 Imports RibbonLib.Interop
+Imports ServiceHub
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
@@ -1193,5 +1194,74 @@ UseCheckedList:
         CombineBarPlotToolStripMenuItem.Checked = False
         CombineViolinPlotToolStripMenuItem.Checked = False
         NoStatisticalChartToolStripMenuItem.Checked = True
+    End Sub
+
+    Private Sub MultipleSamplesComparisonToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MultipleSamplesComparisonToolStripMenuItem.Click
+        ' get ions list
+        Dim ions = getCheckedIons.ToArray
+
+        If ions.IsNullOrEmpty Then
+            Call Workbench.Warning("No ions was selected for make the visual for multiple samples comparision!")
+            Return
+        End If
+
+        ' get sample list, should be more that one sample
+        Dim regions As RegionLoader = viewer.ExtractMultipleSampleRegions()
+        ' create sample data bootstrapping for each ion
+        If regions Is Nothing OrElse regions.regions.IsNullOrEmpty Then
+            Call Workbench.Warning("no sample regions data for make analysis!")
+            Return
+        End If
+
+        Dim pars = Globals.MSIBootstrapping
+        Dim nsamples As Integer = pars.nsamples
+        Dim cov As Double = pars.coverage
+        Dim task As New peakTask With {
+            .cov = cov,
+            .nsamples = nsamples,
+            .host = Me,
+            .ions = ions,
+            .regions = regions.PopulateRegions.ToArray
+        }
+        Dim sampleinfo As SampleInfo() = task.regions _
+            .Select(Iterator Function(t, batch) As IEnumerable(Of SampleInfo)
+                        Dim color_str As String = t.color.ToHtmlColor
+                        Dim region_label As String = t.label
+
+                        If region_label.IsPattern("\d+") Then
+                            region_label = $"region_{region_label}"
+                        End If
+
+                        For i As Integer = 1 To nsamples
+                            Yield New SampleInfo With {
+                                .ID = $"{region_label}.{i}",
+                                .color = color_str,
+                                .batch = batch + 1,
+                                .injectionOrder = i,
+                                .sample_info = region_label,
+                                .sample_name = .ID,
+                                .shape = "circle"
+                            }
+                        Next
+                    End Function) _
+            .IteratesALL _
+            .ToArray
+
+        Dim workdir As String = App.CurrentProcessTemp & "_" & App.NextTempName
+
+        Call TaskProgress.RunAction(AddressOf task.getPeaks, host:=Me)
+        Call sampleinfo.SaveTo($"{workdir}/sampleinfo.csv")
+
+        Dim peaks = New PeakSet With {.peaks = task.peaks.uniqueNames.ToArray}
+
+        Using f As Stream = $"{workdir}/peakset.xcms".Open(FileMode.OpenOrCreate, doClear:=True)
+            Call SaveXcms.DumpSample(peaks, f)
+            Call f.Flush()
+        End Using
+
+        Using f As Stream = $"{workdir}/mat.dat".Open(FileMode.OpenOrCreate, doClear:=True)
+            Call frmMetabonomicsAnalysis.CastMatrix(peaks, sampleinfo).Save(f)
+        End Using
+
     End Sub
 End Class
