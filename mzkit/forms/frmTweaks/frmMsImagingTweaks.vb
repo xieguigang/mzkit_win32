@@ -1251,6 +1251,7 @@ UseCheckedList:
 
         Call TaskProgress.RunAction(AddressOf task.getPeaks, host:=Me)
         Call sampleinfo.SaveTo($"{workdir}/sampleinfo.csv")
+        Call regions.GetJson.SaveTo($"{workdir}/geometry.json")
 
         Dim peaks = New PeakSet With {.peaks = task.peaks.uniqueNames.ToArray}
 
@@ -1262,6 +1263,8 @@ UseCheckedList:
         Using f As Stream = $"{workdir}/mat.dat".Open(FileMode.OpenOrCreate, doClear:=True)
             Call frmMetabonomicsAnalysis.CastMatrix(peaks, sampleinfo).Save(f)
         End Using
+
+        Call Workbench.StatusMessage($"workfiles has been export to temp workspace: {workdir}")
 
     End Sub
 End Class
