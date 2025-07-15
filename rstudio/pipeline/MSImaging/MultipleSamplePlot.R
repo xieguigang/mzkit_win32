@@ -41,6 +41,8 @@ colorSet |> colorMap.legend(
 |> plot()
 ;   
 
+let yoffset = 20;
+
 for(let ion in [peak_ions]::peaks) {
     let name = [ion]::ID;
     let mz   = [ion]::mz;
@@ -53,13 +55,15 @@ for(let ion in [peak_ions]::peaks) {
     ;
 
     [layer]::MSILayer |> rasterHeatmap(
-        region       = rect(x = 200, y = 0, w = dim_x * 3, h = dim_y, float = FALSE), 
+        region       = rect(x = 200, y = yoffset, w = dim_x * 3, h = dim_y, float = FALSE), 
         gauss        = 0, 
         colorName    = colorSet, 
         rasterBitmap = TRUE,
         strict       = FALSE,
         dimSize      = [dim_x, dim_y]
     );
+
+    yoffset= yoffset + dim_y + 10;
 }
 
 dev.off();
