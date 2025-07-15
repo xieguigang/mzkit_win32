@@ -32,7 +32,13 @@ str(offsets);
 print("msimaging dimension [x,y]:");
 print([dim_x, dim_y]);
 
-let Rplot_w = dim_x * 6;
+let mz_label_style = rasterFont(name = "Cambria Math",
+                                size = 27,
+                                style = "Regular");
+let group_label_style = rasterFont(name = "Cambria Math",
+                                   size = 36,
+                                   style = "Regular");
+let Rplot_w = dim_x * 5;
 let Rplot_y = dim_y * 2 * (length([peak_ions]::peaks) + 1);
 let Rplot = function() {
     # plot the color scaler legend object
@@ -52,10 +58,12 @@ let Rplot = function() {
 
     for(let tag in names(offsets)) {
         let x_pos = offsets[[tag]];
+        let size = measureString(tag, font = group_label_style); 
         x_pos = msi_xoffset + x_pos * 3;
-        x_pos = x_pos - 50;
+        # x_pos = x_pos - 50;
+        x_pos = x_pos - .Internal::first(size) / 2;
 
-        text(x = x_pos, y = yoffset - 50, labels = tag, col = "black");
+        text(x = x_pos, y = yoffset - (10 + size[2]), labels = tag, col = "black", font = group_label_style);
     }
 
     for(let ion in [peak_ions]::peaks) {
@@ -72,7 +80,7 @@ let Rplot = function() {
         print(name);
 
         [layer]::MSILayer |> rasterHeatmap(
-            region       = rect(x = msi_xoffset, y = yoffset, w = dim_x * 3, h = dim_y * 2 , float = FALSE), 
+            region       = rect(x = msi_xoffset + 50, y = yoffset, w = dim_x * 3, h = dim_y * 2 , float = FALSE), 
             gauss        = 0, 
             colorName    = colorSet, 
             rasterBitmap = TRUE,
@@ -80,15 +88,19 @@ let Rplot = function() {
             dimSize      = [dim_x, dim_y]
         );
 
-        text(x = msi_xoffset + dim_x * 3 - 120, 
-            y = yoffset + dim_y * 2 - 50, 
-            labels = `m/z ${round(mz,4)}`,
-            col = "white");
+        let mz_label = str_pad(`m/z ${round(mz,4)}`,12,"right","0");
+        let mz_label_size = measureString(mz_label, font = mz_label_style);
 
-        let stat = ggplot(expression_df(ion, groups), aes(x = "group", y = "expr"), padding = [yoffset, msi_xoffset + dim_x + 50, Rplot_y - yoffset - dim_y * 2, 150 ])
+        text(x = msi_xoffset + dim_x * 3 - mz_label_size[1] - 50, 
+            y = yoffset + dim_y * 2 - 50, 
+            labels = mz_label,
+            col = "white",
+            font = mz_label_style);
+
+        let stat = ggplot(expression_df(ion, groups), aes(x = "group", y = "expr"), padding = [yoffset, msi_xoffset + dim_x * 2 + 50, Rplot_y - yoffset - dim_y * 2, 150 ])
         # Add horizontal line at base mean 
         # + geom_hline(yintercept = mean(myeloma$expr), linetype="dash", line.width = 2, color = "red")
-        + geom_barplot(width = 0.65, alpha = 0.9)
+        + geom_barplot(width = 0.65, alpha = 0.8)
         + geom_jitter(width = 0.3, alpha = 1)	
         + ggtitle("")
         + ylab(name)
@@ -97,8 +109,8 @@ let Rplot = function() {
         # + stat_compare_means(method = "anova", label.y = 1600) # Add global annova p-value 
         # + stat_compare_means(label = "p.signif", method = "t.test", ref.group = ".all.", hide.ns = TRUE)# Pairwise comparison against all
         + theme(
-            axis.text.x = element_text(angle = 45), 
-            axis.text.y = element_text(family = "Cambria Math", size = 36),
+            axis.text.x = element_text(angle = 0, family = "Cambria Math", size = 24), 
+            axis.title = element_text(family = "Cambria Math", size = 24),
             plot.title = element_text(family = "Cambria Math", size = 16),
             panel.border = NULL,
             panel.grid.major = NULL,
