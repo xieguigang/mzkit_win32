@@ -7,13 +7,15 @@ imports "app" from "ServiceHub";
 imports "MSI" from "mzkit";
 imports "MsImaging" from "mzplot";
 imports "mzDeco" from "mz_quantify";
+imports "geneExpression" from "phenotype_kit";
+imports "sampleInfo" from "phenotype_kit";
 
 options(memory.load = "max");
 
 const appPort as integer  = ?"--app"    || stop("A MSimaging services hub app handle must be provided!");
 const workdir as string   = ?"--tmpdir" || stop("A workdir for run data visual must be provided!");
 const colorSet as string  = ?"--colors" || "jet"; 
-const groups = file.path(workdir,"sampleinfo.csv");
+const groups = read.sampleinfo(file.path(workdir,"sampleinfo.csv"));
 const regions = file.path(workdir, "geometry.json") 
                 |> readText() 
                 |> JSON::json_decode()
