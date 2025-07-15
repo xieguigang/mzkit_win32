@@ -88,7 +88,7 @@ let Rplot = function() {
         let stat = ggplot(expression_df(ion, groups), aes(x = "group", y = "expr"), padding = [yoffset, msi_xoffset + dim_x + 50, Rplot_y - yoffset - dim_y * 2, 150 ])
         # Add horizontal line at base mean 
         # + geom_hline(yintercept = mean(myeloma$expr), linetype="dash", line.width = 2, color = "red")
-        + geom_violin(width = 0.65, alpha = 0.85)
+        + geom_barplot(width = 0.65, alpha = 0.9)
         + geom_jitter(width = 0.3, alpha = 1)	
         + ggtitle("")
         + ylab(name)
