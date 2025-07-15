@@ -13,6 +13,7 @@ options(memory.load = "max");
 const appPort as integer  = ?"--app"    || stop("A MSimaging services hub app handle must be provided!");
 const workdir as string   = ?"--tmpdir" || stop("A workdir for run data visual must be provided!");
 const colorSet as string  = ?"--colors" || "jet"; 
+const groups = file.path(workdir,"sampleinfo.csv");
 const regions = file.path(workdir, "geometry.json") 
                 |> readText() 
                 |> JSON::json_decode()
@@ -31,7 +32,7 @@ print([dim_x, dim_y]);
 let Rplot_w = dim_x * 6;
 let Rplot_y = dim_y * 2 * (length([peak_ions]::peaks) + 1);
 
-bitmap(file = file.path(workdir,"Rplot.png"), 
+svg(file = file.path(workdir,"Rplot.svg"), 
        size = [Rplot_w, Rplot_y], 
        fill = "white");
 
@@ -47,11 +48,12 @@ colorSet |> colorMap.legend(
 ;   
 
 let yoffset = 0.1 * Rplot_y;
-let msi_xoffset = Rplot_w - dim_x * 4;
+let msi_xoffset = Rplot_w - dim_x * 3.5;
 
 for(let tag in names(offsets)) {
     let x_pos = offsets[[tag]];
     x_pos = msi_xoffset + x_pos * 3;
+    x_pos = x_pos - 50;
 
     text(x = x_pos, y = yoffset - 50, labels = tag, col = "black");
 }
@@ -80,7 +82,7 @@ for(let ion in [peak_ions]::peaks) {
 
     text(x = msi_xoffset + dim_x * 3 - 120, 
          y = yoffset + dim_y * 2 - 50, 
-         labels = `MZ: ${round(mz,4)}`,
+         labels = `m/z ${round(mz,4)}`,
          col = "white");
 
     yoffset= yoffset + dim_y * 2 + 10;
