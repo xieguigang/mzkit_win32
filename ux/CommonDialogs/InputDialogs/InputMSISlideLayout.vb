@@ -21,6 +21,15 @@ Public Class InputMSISlideLayout
         End Set
     End Property
 
+    Public Property normalizattion As Boolean
+        Get
+            Return CheckBox2.Checked
+        End Get
+        Set(value As Boolean)
+            CheckBox2.Checked = value
+        End Set
+    End Property
+
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.DialogResult = DialogResult.Cancel
     End Sub

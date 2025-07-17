@@ -963,7 +963,8 @@ Public Class frmMsImagingViewer
                                 layoutData:=config.layoutData,
                                 savefile:=savefile,
                                 fileName_tag:=config.useFileNameAsSourceTag,
-                                echo:=AddressOf echo.SetInfo
+                                echo:=AddressOf echo.SetInfo,
+                                normalize:=config.normalizattion
                             )
 
                             Return True
@@ -988,7 +989,8 @@ Public Class frmMsImagingViewer
     Sub MergeSlides()
         Using file As New OpenFileDialog With {
             .Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack",
-            .Multiselect = True
+            .Multiselect = True,
+            .Title = "Select samples data files for do slide merge operation."
         }
             If file.ShowDialog = DialogResult.OK Then
                 Dim files As String() = file.FileNames
@@ -1005,7 +1007,8 @@ Public Class frmMsImagingViewer
                     If savefile.ShowDialog = DialogResult.OK Then
                         Dim input As New InputMSISlideLayout With {
                             .layoutData = files.Select(Function(path) path.BaseName).JoinBy(","),
-                            .useFileNameAsSourceTag = True
+                            .useFileNameAsSourceTag = True,
+                            .normalizattion = True
                         }
 
                         Call InputDialog.Input(Sub(config) Call MergeWidthLayout(config, files, savefile.FileName),, config:=input)

@@ -222,7 +222,7 @@ Imports MZWorkPack
 
     <ExportAPI("/join_slides")>
     <Description("Join multiple slides into one slide mzpack raw data file")>
-    <Usage("/join_slides --files <filelist.txt> --layout <layout.txt> [--save <union.mzPack> --filename-as-source-tag]")>
+    <Usage("/join_slides --files <filelist.txt> --layout <layout.txt> [--save <union.mzPack> --filename-as-source-tag --normalize]")>
     Public Function JoinSlides(args As CommandLine) As Integer
         Dim files As String = args <= "--files"
         Dim layout As String = args <= "--layout"

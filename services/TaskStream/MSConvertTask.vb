@@ -21,6 +21,7 @@ Public NotInheritable Class MSConvertTask
                                           layoutData As String,
                                           savefile As String,
                                           fileName_tag As Boolean,
+                                          normalize As Boolean,
                                           echo As Action(Of String))
 
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="merge_slides_")
