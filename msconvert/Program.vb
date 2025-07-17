@@ -228,11 +228,16 @@ Imports MZWorkPack
         Dim layout As String = args <= "--layout"
         Dim save As String = args("--save") Or files.ChangeSuffix(".mzPack")
         Dim tagfileName As Boolean = args("--filename-as-source-tag")
+        Dim normalize As Boolean = args("--normalize")
         Dim offset_json As String = save.ChangeSuffix("json")
         Dim offsets As Dictionary(Of String, Integer()) = Nothing
-        Dim union As mzPack = MergeSlides.JoinDataSet(files.IterateAllLines, layout.ReadAllText,
+        Dim union As mzPack = MergeSlides.JoinDataSet(
+            files.IterateAllLines,
+            layout.ReadAllText,
             fileNameAsSourceTag:=tagfileName,
-            offsets:=offsets)
+            offsets:=offsets,
+            normalize:=normalize
+        )
 
         Using buf As Stream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
             Call union.Write(buf, headerSize:=128 * ByteSize.MB, progress:=AddressOf RunSlavePipeline.SendMessage)

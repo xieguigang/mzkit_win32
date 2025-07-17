@@ -9,6 +9,12 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 
 Public Module MergeSlides
 
+    ''' <summary>
+    ''' read the sample file  data into memory
+    ''' </summary>
+    ''' <param name="path"></param>
+    ''' <param name="fileNameAsSourceTag"></param>
+    ''' <returns></returns>
     Private Function LoadRaw(path As String, fileNameAsSourceTag As Boolean) As NamedValue(Of mzPack)
         Call RunSlavePipeline.SendMessage($"read {path}...")
 
@@ -35,7 +41,8 @@ Public Module MergeSlides
     ''' 
     ''' </remarks>
     Public Function JoinDataSet(file As IEnumerable(Of String), layout As String, fileNameAsSourceTag As Boolean,
-                                Optional ByRef offsets As Dictionary(Of String, Integer()) = Nothing) As mzPack
+                                Optional ByRef offsets As Dictionary(Of String, Integer()) = Nothing,
+                                Optional normalize As Boolean = True) As mzPack
 
         Call VBDebugger.EchoLine("load all ms-imaging rawdata file into memory.")
 
@@ -45,7 +52,9 @@ Public Module MergeSlides
                           Function(path)
                               Return path.Value
                           End Function)
-        Dim total As Long = Aggregate raw As mzPack In rawfiles.Values Into Sum(CLng(raw.MS.TryCount))
+        Dim total As Long = Aggregate raw As mzPack
+                            In rawfiles.Values
+                            Into Sum(CLng(raw.MS.TryCount))
 
         Call VBDebugger.EchoLine("load rawdata job done!")
         Call VBDebugger.EchoLine("view rawdata scan information:")
@@ -60,7 +69,10 @@ Public Module MergeSlides
                 Return MergeFakeSTImagingSliders.JoinSTImagingSamples(rawfiles.Values, println:=AddressOf RunSlavePipeline.SendMessage)
             Else
                 ' merge data in linear
-                Return rawfiles.Values.JoinMSISamples(println:=AddressOf RunSlavePipeline.SendMessage)
+                Return rawfiles.Values.JoinMSISamples(
+                    println:=AddressOf RunSlavePipeline.SendMessage,
+                    norm:=normalize
+                )
             End If
         Else
             Dim layoutData As String()() = layout _
@@ -78,7 +90,7 @@ Public Module MergeSlides
             If rawfiles.Values.Any(Function(m) m.Application = FileApplicationClass.STImaging) Then
                 Return MergeFakeSTImagingSliders.MergeDataWithLayout(rawfiles, layoutData)
             Else
-                Return rawfiles.MergeDataWithLayout(layoutData, offsets:=offsets)
+                Return rawfiles.MergeDataWithLayout(layoutData, offsets:=offsets, normalize:=normalize)
             End If
         End If
     End Function

@@ -26,8 +26,9 @@ Public NotInheritable Class MSConvertTask
 
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="merge_slides_")
         Dim layoutfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="slide_layout_")
-        Dim cli As String = PipelineTask.Task.GetJoinSlidesCommandLine(tempfile, layoutfile, savefile, fileName_tag)
-
+        Dim cli As String = PipelineTask.Task.GetJoinSlidesCommandLine(tempfile, layoutfile, savefile,
+                                                                       filename_as_source_tag:=fileName_tag,
+                                                                       normalize:=normalize)
         Call msData.SaveTo(tempfile)
         Call layoutData.SaveTo(layoutfile)
 
