@@ -423,6 +423,10 @@ Public Class frmSRMIonsExplorer
 
         selcNode = Nothing
 
+        If e.Node.Tag Is Nothing Then
+            Return
+        End If
+
         If TypeOf e.Node.Tag Is BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram Then
             ticks = DirectCast(e.Node.Tag, BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram).GetTicks.ToArray
         ElseIf TypeOf e.Node.Tag Is MRMHolder Then
