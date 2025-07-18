@@ -147,7 +147,8 @@ Public Class frmSRMIonsExplorer
                                 Next
                             End Sub,
                         title:="Loading Files",
-                        info:="Loading MRM rawdata files into data explorer...")
+                        info:="Loading MRM rawdata files into data explorer...",
+                        host:=Me)
                 End If
 
                 If notMRM.Any Then
