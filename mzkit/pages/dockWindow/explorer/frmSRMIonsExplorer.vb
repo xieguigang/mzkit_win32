@@ -123,19 +123,28 @@ Public Class frmSRMIonsExplorer
                 End If
 
                 If check_mzML Then
-                    Call ProgressSpinner.DoLoading(
-                        Sub()
-                            For Each file As String In fileNames
-                                filepath(file.BaseName) = file
+                    Call TaskProgress.RunAction(
+                            Sub(bar As ITaskProgress)
+                                Dim i As Integer = 0
 
-                                If RawScanParser.IsMRMData(file) Then
-                                    Call LoadMRM(file)
-                                Else
-                                    Call Workbench.Warning($"{file} is not a MRM raw data file!")
-                                    Call notMRM.Add(file.FileName)
-                                End If
-                            Next
-                        End Sub, host:=Me)
+                                Call bar.SetProgressMode()
+
+                                For Each file As String In fileNames
+                                    filepath(file.BaseName) = file
+                                    bar.SetProgress(i / fileNames.Length * 100, $"Processing rawdata file {file.BaseName}")
+
+                                    If RawScanParser.IsMRMData(file) Then
+                                        Call LoadMRM(file)
+                                    Else
+                                        Call Workbench.Warning($"{file} is not a MRM raw data file!")
+                                        Call notMRM.Add(file.FileName)
+                                    End If
+
+                                    i += 1
+                                Next
+                            End Sub,
+                        title:="Loading Files",
+                        info:="Loading MRM rawdata files into data explorer...")
                 End If
 
                 If notMRM.Any Then
@@ -742,5 +751,9 @@ Public Class frmSRMIonsExplorer
             Call Globals.Settings.peak_arguments.Remove(selcNode.ion.accession)
             Call ToolStripButton3_Click(Nothing, Nothing)
         End If
+    End Sub
+
+    Private Sub SwitchIonsDataViewToolStripMenuItem_CheckStateChanged(sender As Object, e As EventArgs) Handles SwitchIonsDataViewToolStripMenuItem.CheckStateChanged
+
     End Sub
 End Class
