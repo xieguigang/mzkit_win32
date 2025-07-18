@@ -88,6 +88,7 @@ Partial Class frmSRMIonsExplorer
         Me.BPCToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowTICOverlap3DToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SwitchIonsDataViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SelectAllIonsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearIonSelectionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
@@ -115,7 +116,6 @@ Partial Class frmSRMIonsExplorer
         Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
         Me.PeakFindingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetIndividualPeakFindingArgumentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SwitchIonsDataViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ContextMenuStrip3.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -153,6 +153,12 @@ Partial Class frmSRMIonsExplorer
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
+        '
+        'SwitchIonsDataViewToolStripMenuItem
+        '
+        Me.SwitchIonsDataViewToolStripMenuItem.CheckOnClick = True
+        resources.ApplyResources(Me.SwitchIonsDataViewToolStripMenuItem, "SwitchIonsDataViewToolStripMenuItem")
+        Me.SwitchIonsDataViewToolStripMenuItem.Name = "SwitchIonsDataViewToolStripMenuItem"
         '
         'SelectAllIonsToolStripMenuItem
         '
@@ -308,12 +314,6 @@ Partial Class frmSRMIonsExplorer
         Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.CheckOnClick = True
         resources.ApplyResources(Me.SetIndividualPeakFindingArgumentsToolStripMenuItem, "SetIndividualPeakFindingArgumentsToolStripMenuItem")
         Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.Name = "SetIndividualPeakFindingArgumentsToolStripMenuItem"
-        '
-        'SwitchIonsDataViewToolStripMenuItem
-        '
-        Me.SwitchIonsDataViewToolStripMenuItem.CheckOnClick = True
-        resources.ApplyResources(Me.SwitchIonsDataViewToolStripMenuItem, "SwitchIonsDataViewToolStripMenuItem")
-        Me.SwitchIonsDataViewToolStripMenuItem.Name = "SwitchIonsDataViewToolStripMenuItem"
         '
         'frmSRMIonsExplorer
         '

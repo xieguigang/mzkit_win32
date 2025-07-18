@@ -87,6 +87,7 @@ Imports std = System.Math
 Public Class frmSRMIonsExplorer
 
     ReadOnly filepath As New Dictionary(Of String, String)
+    ReadOnly dataset As New List(Of SampleData)
 
     Dim maxrt As Double
 
@@ -100,6 +101,8 @@ Public Class frmSRMIonsExplorer
 
                 filepath.Clear()
                 maxrt = 0
+                SwitchIonsDataViewToolStripMenuItem.Checked = False
+                dataset.Clear()
 
                 Dim fileNames As String() = openfile.FileNames
                 Dim check_mzML As Boolean = fileNames.All(Function(path) path.ExtensionSuffix("mzml"))
@@ -227,6 +230,7 @@ Public Class frmSRMIonsExplorer
         Public TIC As ChromatogramTick()
         Public peak As PeakFeature
         Public bspline As ChromatogramTick()
+        Public filename As String
 
         Public Function GetXic() As ChromatogramTick()
             If bspline.IsNullOrEmpty Then
@@ -263,105 +267,138 @@ Public Class frmSRMIonsExplorer
 
             Call xicdata.Add(New MRMHolder With {
                 .ion = New IonPair(chr.precursor.MRMTargetMz, chr.product.MRMTargetMz),
-                .TIC = chr.Ticks
+                .TIC = chr.Ticks,
+                .filename = TIC.name
             })
         Next
 
-        Call refreshUI(TICRoot, ionsLib, xicdata)
+        ' load and procrssing of the rawdata
+        Call dataset.Add(New SampleData With {
+            .Ions = refreshUI(TICRoot, ionsLib, xicdata, True, True).ToArray,
+            .Name = file.BaseName,
+            .Root = TIC
+        })
     End Sub
 
-    Private Sub refreshUI(TICRoot As TreeNode, ionsLib As IonLibrary, xicdata As IEnumerable(Of MRMHolder))
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="TICRoot"></param>
+    ''' <param name="ionsLib"></param>
+    ''' <param name="xicdata"></param>
+    ''' <param name="fileMode">
+    ''' UI display the ion label if in file mode,
+    ''' or display the file name if in ion mode
+    ''' </param>
+    Private Iterator Function refreshUI(TICRoot As TreeNode, ionsLib As IonLibrary, xicdata As IEnumerable(Of MRMHolder), fileMode As Boolean, updatePeak As Boolean) As IEnumerable(Of MRMHolder)
         Dim globalArgs = Globals.Settings.peak_finding
         Dim argList = Globals.Settings.peak_arguments
-        Dim display As String
         Dim checkPeaks As New Index(Of String)
 
         Call ionsLib.SetError(args.GetTolerance)
 
         For Each chr As MRMHolder In xicdata
-            Dim args As PeakFindingParameters = globalArgs
-
-            If Not chr.ion.accession.StringEmpty(, True) Then
-                If argList.ContainsKey(chr.ion.accession) Then
-                    args = argList(chr.ion.accession)
-                End If
-            End If
-
-            Dim rt_win As New DoubleRange(args.peakMin, args.peakMax)
+            Dim peak As PeakFeature = Nothing
+            ' the ui display string
+            Dim display As String
             Dim q1 = chr.ion.precursor
             Dim q3 = chr.ion.product
             Dim ionRef As IsomerismIonPairs = ionsLib.GetIsomerism(q1, q3)
-            Dim xic = chr.TIC
-
-            If args.preprocessing AndAlso args.bspline_degree > 1 AndAlso args.bspline_density > 1 Then
-                xic = xic _
-                    .BSpline(Function(t, i) New ChromatogramTick(t, i), args.bspline_degree, args.bspline_density) _
-                    .ToArray
-            End If
-
-            Dim peaks = xic.DeconvPeakGroups(rt_win,
-                                             quantile:=args.baseline_threshold,
-                                             sn_threshold:=args.sn_threshold,
-                                             joint:=args.joint_peaks).ToArray
             Dim ion As IonPair = ionRef.ions _
-                .Where(Function(a)
-                           If a.accession Like checkPeaks Then
-                               Return False
-                           Else
-                               Return True
-                           End If
-                       End Function) _
-                .FirstOrDefault
-            Dim peak As PeakFeature = Nothing
+                    .Where(Function(a)
+                               If a.accession Like checkPeaks Then
+                                   Return False
+                               Else
+                                   Return True
+                               End If
+                           End Function) _
+                    .FirstOrDefault
+            Dim xic As ChromatogramTick()
 
             If ion Is Nothing Then
                 ion = New IonPair(q1, q3)
             End If
 
-            display = ionsLib.GetDisplay(ion)
+            If fileMode Then
+                display = ionsLib.GetDisplay(ion)
+            Else
+                display = chr.filename
+            End If
 
-            If ion Is Nothing OrElse Not peaks.Any Then
-                peak = Nothing
+            If updatePeak Then
+                Dim args As PeakFindingParameters = globalArgs
 
-                If peaks.Any Then
+                If Not chr.ion.accession.StringEmpty(, True) Then
+                    If argList.ContainsKey(chr.ion.accession) Then
+                        args = argList(chr.ion.accession)
+                    End If
+                End If
+
+                Dim rt_win As New DoubleRange(args.peakMin, args.peakMax)
+                xic = chr.TIC
+
+                If args.preprocessing AndAlso args.bspline_degree > 1 AndAlso args.bspline_density > 1 Then
+                    xic = xic _
+                        .BSpline(Function(t, i) New ChromatogramTick(t, i), args.bspline_degree, args.bspline_density) _
+                        .ToArray
+                End If
+
+                Dim peaks = xic.DeconvPeakGroups(rt_win,
+                                                 quantile:=args.baseline_threshold,
+                                                 sn_threshold:=args.sn_threshold,
+                                                 joint:=args.joint_peaks).ToArray
+
+                If ion Is Nothing OrElse Not peaks.Any Then
+                    peak = Nothing
+
+                    If peaks.Any Then
+                        ' pick max intensity peak
+                        peak = peaks _
+                            .OrderByDescending(Function(a) a.maxInto) _
+                            .First
+                    End If
+                ElseIf ion.rt IsNot Nothing Then
+                    Dim ref_rt As Double = CDbl(ion.rt)
+
+                    peak = peaks _
+                        .Where(Function(i)
+                                   Return std.Abs(i.rt - ref_rt) < 7.5
+                               End Function) _
+                        .OrderBy(Function(i) std.Abs(i.rt - ref_rt)) _
+                        .FirstOrDefault
+                Else
                     ' pick max intensity peak
                     peak = peaks _
                         .OrderByDescending(Function(a) a.maxInto) _
                         .First
                 End If
-            ElseIf ion.rt IsNot Nothing Then
-                Dim ref_rt As Double = CDbl(ion.rt)
 
-                peak = peaks _
-                    .Where(Function(i)
-                               Return std.Abs(i.rt - ref_rt) < 7.5
-                           End Function) _
-                    .OrderBy(Function(i) std.Abs(i.rt - ref_rt)) _
-                    .FirstOrDefault
+                If Not ion.accession Is Nothing Then
+                    Call checkPeaks.Add(ion.accession)
+                End If
             Else
-                ' pick max intensity peak
-                peak = peaks _
-                    .OrderByDescending(Function(a) a.maxInto) _
-                    .First
+                peak = chr.peak
+                xic = chr.bspline
             End If
 
-            If Not ion.accession Is Nothing Then
-                Call checkPeaks.Add(ion.accession)
-            End If
+            chr = New MRMHolder With {
+                .ion = ion,
+                .TIC = chr.TIC,
+                .peak = peak,
+                .bspline = xic,
+                .filename = chr.filename
+            }
 
             With TICRoot.Nodes.Add(display)
-                .Tag = New MRMHolder With {
-                    .ion = ion,
-                    .TIC = chr.TIC,
-                    .peak = peak,
-                    .bspline = xic
-                }
+                .Tag = chr
                 .ImageIndex = 1
                 .SelectedImageIndex = 1
                 .ContextMenuStrip = ContextMenuStrip2
             End With
+
+            Yield chr
         Next
-    End Sub
+    End Function
 
     Private Sub frmSRMIonsExplorer_Load(sender As Object, e As EventArgs) Handles Me.Load
         TabText = Me.Text
@@ -626,26 +663,33 @@ Public Class frmSRMIonsExplorer
     Dim setLibName As String
 
     Private Sub updateIonNameDisplay(libname As String)
+        setLibName = libname
+        updateUIRender(False, libname)
+    End Sub
+
+    Private Sub updateUIRender(updatePeaks As Boolean, libname As String)
         Dim libfile As String = New Configuration.Settings().MRMLibfile.ParentPath & $"/{libname}.csv"
         Dim ionsLib As IonLibrary = IonLibrary.LoadFile(libfile)
-        Dim dataset As New List(Of SampleData)
+        Dim rawdata = dataset.ToArray
+        Dim max As Integer = rawdata.Length
+        Dim ionMode As Boolean = SwitchIonsDataViewToolStripMenuItem.Checked
 
-        setLibName = libname
+        If ionMode Then
+            rawdata = rawdata _
+                .Select(Function(s) s.Ions) _
+                .IteratesALL _
+                .GroupBy(Function(i) i.ion.ToString) _
+                .Select(Function(i)
+                            Return New SampleData With {
+                                .Name = i.Key,
+                                .Ions = i.ToArray,
+                                .Root = Nothing
+                            }
+                        End Function) _
+                .ToArray
+        End If
 
-        ' load data from ui tree
-        For Each sample As TreeNode In Win7StyleTreeView1.Nodes
-            Dim data As New SampleData With {.Root = sample.Tag, .Name = sample.Text}
-            Dim ions As New List(Of MRMHolder)
-
-            For Each ionNode As TreeNode In sample.Nodes
-                Call ions.Add(ionNode.Tag)
-            Next
-
-            data.Ions = ions.ToArray
-            dataset.Add(data)
-        Next
-
-        Dim max As Integer = dataset.Count
+        Dim all_ions As New List(Of MRMHolder)
 
         Call Win7StyleTreeView1.Nodes.Clear()
         Call TaskProgress.RunAction(
@@ -656,7 +700,7 @@ Public Class frmSRMIonsExplorer
                     proc.SetProgress(0, "Update Sample Files UI...")
 
                     ' run data ui updates at here
-                    For Each sample As SampleData In dataset
+                    For Each sample As SampleData In rawdata
                         Dim TICRoot As TreeNode = Win7StyleTreeView1.Nodes.Add(sample.Name)
 
                         TICRoot.Tag = sample.Root
@@ -665,14 +709,24 @@ Public Class frmSRMIonsExplorer
 
                         i += 1
 
-                        Call refreshUI(TICRoot, ionsLib, sample.Ions)
+                        Call all_ions.AddRange(refreshUI(TICRoot, ionsLib, sample.Ions, Not ionMode, updatePeak:=updatePeaks))
                         Call proc.SetProgress(100 * i / max, $"Update sample file {sample.Name}")
                     Next
                 End Sub,
-            title:="Update Display Names",
-            info:="Update Sample Files UI...",
+            title:="Update Data Explorer",
+            info:=If(updatePeaks, "Apply of the new peak finding parameters...", "Update of the MRM ion display name...."),
             cancel:=AddressOf DoNothing,
             host:=Me)
+
+        If updatePeaks Then
+            Dim files As Dictionary(Of String, SampleData) = dataset.ToDictionary(Function(a) a.Name)
+
+            ' make in-mekory dataset updates
+            For Each file In all_ions.GroupBy(Function(a) a.filename)
+                Dim filedata = files(file.Key)
+                filedata.Ions = file.ToArray
+            Next
+        End If
     End Sub
 
     Private Class SampleData
@@ -703,7 +757,7 @@ Public Class frmSRMIonsExplorer
     End Sub
 
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
-        Call updateIonNameDisplay(setLibName)
+        Call updateUIRender(True, setLibName)
     End Sub
 
     ''' <summary>
@@ -754,6 +808,6 @@ Public Class frmSRMIonsExplorer
     End Sub
 
     Private Sub SwitchIonsDataViewToolStripMenuItem_CheckStateChanged(sender As Object, e As EventArgs) Handles SwitchIonsDataViewToolStripMenuItem.CheckStateChanged
-
+        Call updateUIRender(False, setLibName)
     End Sub
 End Class
