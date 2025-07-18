@@ -58,6 +58,7 @@ Imports Mzkit_win32.BasicMDIForm
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmSRMIonsExplorer
     Inherits ToolWindow
+    ' Inherits Form
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
@@ -124,124 +125,102 @@ Partial Class frmSRMIonsExplorer
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowTICOverlapToolStripMenuItem, Me.ShowTICOverlap3DToolStripMenuItem, Me.ToolStripMenuItem1, Me.SelectAllIonsToolStripMenuItem, Me.ClearIonSelectionsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ClearFilesToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(178, 126)
+        resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
         '
         'ShowTICOverlapToolStripMenuItem
         '
         Me.ShowTICOverlapToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TICToolStripMenuItem, Me.BPCToolStripMenuItem})
-        Me.ShowTICOverlapToolStripMenuItem.Image = CType(resources.GetObject("ShowTICOverlapToolStripMenuItem.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.ShowTICOverlapToolStripMenuItem, "ShowTICOverlapToolStripMenuItem")
         Me.ShowTICOverlapToolStripMenuItem.Name = "ShowTICOverlapToolStripMenuItem"
-        Me.ShowTICOverlapToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ShowTICOverlapToolStripMenuItem.Text = "Show Overlaps"
         '
         'TICToolStripMenuItem
         '
-        Me.TICToolStripMenuItem.Image = CType(resources.GetObject("TICToolStripMenuItem.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.TICToolStripMenuItem, "TICToolStripMenuItem")
         Me.TICToolStripMenuItem.Name = "TICToolStripMenuItem"
-        Me.TICToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.TICToolStripMenuItem.Text = "TIC"
         '
         'BPCToolStripMenuItem
         '
-        Me.BPCToolStripMenuItem.Image = CType(resources.GetObject("BPCToolStripMenuItem.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.BPCToolStripMenuItem, "BPCToolStripMenuItem")
         Me.BPCToolStripMenuItem.Name = "BPCToolStripMenuItem"
-        Me.BPCToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.BPCToolStripMenuItem.Text = "BPC"
         '
         'ShowTICOverlap3DToolStripMenuItem
         '
         Me.ShowTICOverlap3DToolStripMenuItem.Name = "ShowTICOverlap3DToolStripMenuItem"
-        Me.ShowTICOverlap3DToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ShowTICOverlap3DToolStripMenuItem.Text = "Overlap In 3D"
+        resources.ApplyResources(Me.ShowTICOverlap3DToolStripMenuItem, "ShowTICOverlap3DToolStripMenuItem")
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(177, 6)
+        resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
         '
         'SelectAllIonsToolStripMenuItem
         '
         Me.SelectAllIonsToolStripMenuItem.Name = "SelectAllIonsToolStripMenuItem"
-        Me.SelectAllIonsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.SelectAllIonsToolStripMenuItem.Text = "Select All Ions"
+        resources.ApplyResources(Me.SelectAllIonsToolStripMenuItem, "SelectAllIonsToolStripMenuItem")
         '
         'ClearIonSelectionsToolStripMenuItem
         '
         Me.ClearIonSelectionsToolStripMenuItem.Name = "ClearIonSelectionsToolStripMenuItem"
-        Me.ClearIonSelectionsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ClearIonSelectionsToolStripMenuItem.Text = "Clear Ion Selections"
+        resources.ApplyResources(Me.ClearIonSelectionsToolStripMenuItem, "ClearIonSelectionsToolStripMenuItem")
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(177, 6)
+        resources.ApplyResources(Me.ToolStripMenuItem2, "ToolStripMenuItem2")
         '
         'ClearFilesToolStripMenuItem
         '
-        Me.ClearFilesToolStripMenuItem.Image = CType(resources.GetObject("ClearFilesToolStripMenuItem.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.ClearFilesToolStripMenuItem, "ClearFilesToolStripMenuItem")
         Me.ClearFilesToolStripMenuItem.Name = "ClearFilesToolStripMenuItem"
-        Me.ClearFilesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ClearFilesToolStripMenuItem.Text = "Clear Files"
         '
         'Win7StyleTreeView1
         '
         Me.Win7StyleTreeView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Win7StyleTreeView1.CheckBoxes = True
         Me.Win7StyleTreeView1.ContextMenuStrip = Me.ContextMenuStrip3
-        Me.Win7StyleTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
+        resources.ApplyResources(Me.Win7StyleTreeView1, "Win7StyleTreeView1")
         Me.Win7StyleTreeView1.FullRowSelect = True
         Me.Win7StyleTreeView1.HotTracking = True
-        Me.Win7StyleTreeView1.ImageIndex = 0
         Me.Win7StyleTreeView1.ImageList = Me.ImageList1
         Me.Win7StyleTreeView1.ItemHeight = 16
-        Me.Win7StyleTreeView1.Location = New System.Drawing.Point(0, 25)
         Me.Win7StyleTreeView1.Name = "Win7StyleTreeView1"
-        Me.Win7StyleTreeView1.SelectedImageIndex = 0
         Me.Win7StyleTreeView1.ShowLines = False
-        Me.Win7StyleTreeView1.Size = New System.Drawing.Size(394, 531)
-        Me.Win7StyleTreeView1.TabIndex = 1
         '
         'ContextMenuStrip3
         '
         Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportsFilesToolStripMenuItem, Me.ToolStripMenuItem3, Me.SelectAllFilesToolStripMenuItem, Me.ClearFileSelectionsToolStripMenuItem, Me.ToolStripMenuItem4, Me.ClearFilesToolStripMenuItem1})
         Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
-        Me.ContextMenuStrip3.Size = New System.Drawing.Size(179, 104)
+        resources.ApplyResources(Me.ContextMenuStrip3, "ContextMenuStrip3")
         '
         'ImportsFilesToolStripMenuItem
         '
-        Me.ImportsFilesToolStripMenuItem.Image = CType(resources.GetObject("ImportsFilesToolStripMenuItem.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.ImportsFilesToolStripMenuItem, "ImportsFilesToolStripMenuItem")
         Me.ImportsFilesToolStripMenuItem.Name = "ImportsFilesToolStripMenuItem"
-        Me.ImportsFilesToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
-        Me.ImportsFilesToolStripMenuItem.Text = "Imports Files"
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(175, 6)
+        resources.ApplyResources(Me.ToolStripMenuItem3, "ToolStripMenuItem3")
         '
         'SelectAllFilesToolStripMenuItem
         '
         Me.SelectAllFilesToolStripMenuItem.Name = "SelectAllFilesToolStripMenuItem"
-        Me.SelectAllFilesToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
-        Me.SelectAllFilesToolStripMenuItem.Text = "Select All Files"
+        resources.ApplyResources(Me.SelectAllFilesToolStripMenuItem, "SelectAllFilesToolStripMenuItem")
         '
         'ClearFileSelectionsToolStripMenuItem
         '
         Me.ClearFileSelectionsToolStripMenuItem.Name = "ClearFileSelectionsToolStripMenuItem"
-        Me.ClearFileSelectionsToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
-        Me.ClearFileSelectionsToolStripMenuItem.Text = "Clear File Selections"
+        resources.ApplyResources(Me.ClearFileSelectionsToolStripMenuItem, "ClearFileSelectionsToolStripMenuItem")
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(175, 6)
+        resources.ApplyResources(Me.ToolStripMenuItem4, "ToolStripMenuItem4")
         '
         'ClearFilesToolStripMenuItem1
         '
-        Me.ClearFilesToolStripMenuItem1.Image = CType(resources.GetObject("ClearFilesToolStripMenuItem1.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.ClearFilesToolStripMenuItem1, "ClearFilesToolStripMenuItem1")
         Me.ClearFilesToolStripMenuItem1.Name = "ClearFilesToolStripMenuItem1"
-        Me.ClearFilesToolStripMenuItem1.Size = New System.Drawing.Size(178, 22)
-        Me.ClearFilesToolStripMenuItem1.Text = "Clear Files"
         '
         'ImageList1
         '
@@ -253,113 +232,86 @@ Partial Class frmSRMIonsExplorer
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripButton5})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        resources.ApplyResources(Me.ToolStrip1, "ToolStrip1")
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(394, 25)
-        Me.ToolStrip1.TabIndex = 2
-        Me.ToolStrip1.Text = "ToolStrip1"
         '
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.IsLink = True
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(144, 22)
-        Me.ToolStripLabel1.Text = "View MRM Targetted Ions:"
+        resources.ApplyResources(Me.ToolStripLabel1, "ToolStripLabel1")
         '
         'ToolStripButton1
         '
         Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        resources.ApplyResources(Me.ToolStripButton1, "ToolStripButton1")
         Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton1.Text = "Data Files Imports"
         '
         'ToolStripButton2
         '
         Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        resources.ApplyResources(Me.ToolStripButton2, "ToolStripButton2")
         Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton2.Text = "Batch Processing Ion Quantification"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        resources.ApplyResources(Me.ToolStripSeparator1, "ToolStripSeparator1")
         '
         'ToolStripButton3
         '
         Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
-        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
+        resources.ApplyResources(Me.ToolStripButton3, "ToolStripButton3")
         Me.ToolStripButton3.Name = "ToolStripButton3"
-        Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton3.Text = "Open Peak Finding Parameter Window"
         '
         'ToolStripButton4
         '
         Me.ToolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), System.Drawing.Image)
-        Me.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta
+        resources.ApplyResources(Me.ToolStripButton4, "ToolStripButton4")
         Me.ToolStripButton4.Name = "ToolStripButton4"
-        Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton4.Text = "Apply the modified parameters and refresh peaks finding result"
         '
         'ToolStripButton5
         '
         Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
-        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
+        resources.ApplyResources(Me.ToolStripButton5, "ToolStripButton5")
         Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.ToolStripButton5.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton5.Text = "Reset all parameters to default"
         '
         'ContextMenuStrip2
         '
         Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowTICOverlapToolStripMenuItem1, Me.ShowTICOverlap3DToolStripMenuItem1, Me.ToolStripMenuItem5, Me.PeakFindingToolStripMenuItem, Me.SetIndividualPeakFindingArgumentsToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(279, 120)
+        resources.ApplyResources(Me.ContextMenuStrip2, "ContextMenuStrip2")
         '
         'ShowTICOverlapToolStripMenuItem1
         '
-        Me.ShowTICOverlapToolStripMenuItem1.Image = CType(resources.GetObject("ShowTICOverlapToolStripMenuItem1.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.ShowTICOverlapToolStripMenuItem1, "ShowTICOverlapToolStripMenuItem1")
         Me.ShowTICOverlapToolStripMenuItem1.Name = "ShowTICOverlapToolStripMenuItem1"
-        Me.ShowTICOverlapToolStripMenuItem1.Size = New System.Drawing.Size(278, 22)
-        Me.ShowTICOverlapToolStripMenuItem1.Text = "Show TIC Overlap"
         '
         'ShowTICOverlap3DToolStripMenuItem1
         '
         Me.ShowTICOverlap3DToolStripMenuItem1.Name = "ShowTICOverlap3DToolStripMenuItem1"
-        Me.ShowTICOverlap3DToolStripMenuItem1.Size = New System.Drawing.Size(278, 22)
-        Me.ShowTICOverlap3DToolStripMenuItem1.Text = "Show TIC Overlap 3D"
+        resources.ApplyResources(Me.ShowTICOverlap3DToolStripMenuItem1, "ShowTICOverlap3DToolStripMenuItem1")
         '
         'ToolStripMenuItem5
         '
         Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
-        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(275, 6)
+        resources.ApplyResources(Me.ToolStripMenuItem5, "ToolStripMenuItem5")
         '
         'PeakFindingToolStripMenuItem
         '
-        Me.PeakFindingToolStripMenuItem.Image = CType(resources.GetObject("PeakFindingToolStripMenuItem.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.PeakFindingToolStripMenuItem, "PeakFindingToolStripMenuItem")
         Me.PeakFindingToolStripMenuItem.Name = "PeakFindingToolStripMenuItem"
-        Me.PeakFindingToolStripMenuItem.Size = New System.Drawing.Size(278, 22)
-        Me.PeakFindingToolStripMenuItem.Text = "Peak Finding"
         '
         'SetIndividualPeakFindingArgumentsToolStripMenuItem
         '
         Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.CheckOnClick = True
-        Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.Image = CType(resources.GetObject("SetIndividualPeakFindingArgumentsToolStripMenuItem.Image"), System.Drawing.Image)
+        resources.ApplyResources(Me.SetIndividualPeakFindingArgumentsToolStripMenuItem, "SetIndividualPeakFindingArgumentsToolStripMenuItem")
         Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.Name = "SetIndividualPeakFindingArgumentsToolStripMenuItem"
-        Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.Size = New System.Drawing.Size(278, 22)
-        Me.SetIndividualPeakFindingArgumentsToolStripMenuItem.Text = "Set Individual Peak Finding Arguments"
         '
         'frmSRMIonsExplorer
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(394, 556)
         Me.Controls.Add(Me.Win7StyleTreeView1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.DoubleBuffered = True

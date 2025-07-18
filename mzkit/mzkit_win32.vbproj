@@ -1492,6 +1492,9 @@
     <EmbeddedResource Include="pages\dockWindow\documents\Targetted\frmTargetedQuantification.resx">
       <DependentUpon>frmTargetedQuantification.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\explorer\frmSRMIonsExplorer.zh-CN.resx">
+      <DependentUpon>frmSRMIonsExplorer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\properties\SingleCellsClusterToolWindow.resx">
       <DependentUpon>SingleCellsClusterToolWindow.vb</DependentUpon>
     </EmbeddedResource>

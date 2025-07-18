@@ -355,7 +355,7 @@ Public Class frmSRMIonsExplorer
     End Sub
 
     Private Sub frmSRMIonsExplorer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        TabText = "MRM Ions"
+        TabText = Me.Text
         args = Globals.Settings.peak_finding
         setLibName = New Configuration.Settings().MRMLibfile.BaseName
 
