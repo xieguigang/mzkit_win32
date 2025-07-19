@@ -1,12 +1,15 @@
-﻿Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Content
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.Data.Framework
+Imports Microsoft.VisualBasic.Scripting.Expressions
 Imports Mzkit_win32.BasicMDIForm.Container
 
 Public Class frmChemicalSolutionMassTool
 
     Dim chemicals As Dictionary(Of String, ChemicalInformation)
+    Dim calc As SolutionMassCalculator
 
     ReadOnly dbfile As String = App.ProductProgramData & "/solution_chemicals.csv"
 
@@ -47,6 +50,8 @@ Public Class frmChemicalSolutionMassTool
             Call DataGridView1.Rows.Add(item.chemicals, item.formula, FormulaScanner.EvaluateExactMass(item.formula), FormulaScanner.EvaluateAverageMolecularMass(item.formula))
         Next
 
+        Me.calc = New SolutionMassCalculator(chemicals.ToDictionary(Function(a) a.Key, Function(a) a.Value.formula), useExactMass:=CheckBox1.Checked)
+
         Call DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
     End Sub
 
@@ -80,6 +85,21 @@ Public Class frmChemicalSolutionMassTool
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim listSet As New List(Of SolutionChemical)
 
+        ListBox1.Items.Add(New SolutionChemical With {
+            .name = Label8.Text,
+            .content = Val(TextBox2.Text),
+            .mass = 0,
+            .type = SolutionMassCalculator.ParseConcentrationType(ComboBox1.Items(ComboBox1.SelectedIndex).ToString)
+        })
+
+        For i As Integer = 0 To ListBox1.Items.Count - 1
+            Call listSet.Add(ListBox1.Items(i))
+        Next
+
+        For Each item In calc.CalculateSolutionMasses(listSet, Val(TextBox1.Text))
+
+        Next
     End Sub
 End Class
