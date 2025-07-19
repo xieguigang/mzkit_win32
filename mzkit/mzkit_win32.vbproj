@@ -802,6 +802,12 @@
     <Compile Include="MSdata\ggplotVisual.vb" />
     <Compile Include="pages\ConnectToBioDeep.vb" />
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\frmChemicalSolutionMassTool.Designer.vb">
+      <DependentUpon>frmChemicalSolutionMassTool.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frmChemicalSolutionMassTool.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmMRIViewer.Designer.vb">
       <DependentUpon>frmMRIViewer.vb</DependentUpon>
     </Compile>
@@ -1437,6 +1443,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MSdata\frmMSIHistoryList.resx">
       <DependentUpon>frmMSIHistoryList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmChemicalSolutionMassTool.resx">
+      <DependentUpon>frmChemicalSolutionMassTool.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmMolmilViewer.resx">
       <DependentUpon>frmMolmilViewer.vb</DependentUpon>
