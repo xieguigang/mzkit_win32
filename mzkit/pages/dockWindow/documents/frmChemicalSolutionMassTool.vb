@@ -85,14 +85,18 @@ Public Class frmChemicalSolutionMassTool
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim listSet As New List(Of SolutionChemical)
-
         ListBox1.Items.Add(New SolutionChemical With {
             .name = Label8.Text,
             .content = Val(TextBox2.Text),
             .mass = 0,
             .type = SolutionMassCalculator.ParseConcentrationType(ComboBox1.Items(ComboBox1.SelectedIndex).ToString)
         })
+
+        Call calList()
+    End Sub
+
+    Private Sub calList()
+        Dim listSet As New List(Of SolutionChemical)
 
         For i As Integer = 0 To ListBox1.Items.Count - 1
             Call listSet.Add(ListBox1.Items(i))
@@ -101,5 +105,13 @@ Public Class frmChemicalSolutionMassTool
         For Each item In calc.CalculateSolutionMasses(listSet, Val(TextBox1.Text))
 
         Next
+    End Sub
+
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+        Call calList()
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        Call calList()
     End Sub
 End Class
