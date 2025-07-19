@@ -220,7 +220,7 @@ Partial Class frmChemicalSolutionMassTool
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(81, 23)
         Me.Button1.TabIndex = 9
-        Me.Button1.Text = "Add"
+        Me.Button1.Text = "Modify"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'TextBox2
@@ -241,11 +241,12 @@ Partial Class frmChemicalSolutionMassTool
         '
         'ListBox1
         '
+        Me.ListBox1.Font = New System.Drawing.Font("Microsoft YaHei", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.ItemHeight = 12
-        Me.ListBox1.Location = New System.Drawing.Point(479, 362)
+        Me.ListBox1.ItemHeight = 21
+        Me.ListBox1.Location = New System.Drawing.Point(479, 350)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(376, 352)
+        Me.ListBox1.Size = New System.Drawing.Size(376, 361)
         Me.ListBox1.TabIndex = 9
         '
         'Label5

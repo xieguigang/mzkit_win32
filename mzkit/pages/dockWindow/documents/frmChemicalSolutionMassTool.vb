@@ -4,6 +4,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Mzkit_win32.BasicMDIForm.Container
+Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
 
 Public Class frmChemicalSolutionMassTool
 
@@ -46,7 +47,9 @@ Public Class frmChemicalSolutionMassTool
         Call DataGridView1.Rows.Clear()
 
         For Each item In chemicals.Values
-            Call DataGridView1.Rows.Add(item.chemicals, item.formula, FormulaScanner.EvaluateExactMass(item.formula), FormulaScanner.EvaluateAverageMolecularMass(item.formula))
+            Call DataGridView1.Rows.Add(item.chemicals, item.formula,
+                                        FormulaScanner.EvaluateExactMass(item.formula).ToString("F4"),
+                                        FormulaScanner.EvaluateAverageMolecularMass(item.formula).ToString("F4"))
         Next
 
         Me.calc = New SolutionMassCalculator(chemicals.ToDictionary(Function(a) a.Key, Function(a) a.Value.formula), useExactMass:=CheckBox1.Checked)
@@ -84,26 +87,35 @@ Public Class frmChemicalSolutionMassTool
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim type_str = ComboBox1.Items(ComboBox1.SelectedIndex).ToString
+        Dim type As ConcentrationType = SolutionMassCalculator.ParseConcentrationType(type_str)
+
         ListBox1.Items.Add(New SolutionChemical With {
             .name = Label8.Text,
             .content = Val(TextBox2.Text),
             .mass = 0,
-            .type = SolutionMassCalculator.ParseConcentrationType(ComboBox1.Items(ComboBox1.SelectedIndex).ToString)
+            .type = type
         })
 
         Call calList()
     End Sub
 
     Private Sub calList()
-        Dim listSet As New List(Of SolutionChemical)
+        If Not calc Is Nothing Then
+            Dim listSet As New List(Of SolutionChemical)
 
-        For i As Integer = 0 To ListBox1.Items.Count - 1
-            Call listSet.Add(ListBox1.Items(i))
-        Next
+            For i As Integer = 0 To ListBox1.Items.Count - 1
+                Call listSet.Add(ListBox1.Items(i))
+            Next
 
-        For Each item In calc.CalculateSolutionMasses(listSet, Val(TextBox1.Text))
+            Call ListBox1.Items.Clear()
 
-        Next
+            For Each item In calc.CalculateSolutionMasses(listSet, Val(TextBox1.Text))
+                Call ListBox1.Items.Add(item)
+            Next
+
+            Call ListBox1.Refresh()
+        End If
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
@@ -116,5 +128,27 @@ Public Class frmChemicalSolutionMassTool
 
     Private Sub DataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
 
+    End Sub
+
+    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        Dim templatefile As String
+
+        If AppEnvironment.IsDevelopmentMode Then
+            templatefile = $"{App.HOME}/../../src\mzkit\extdata\templates\ReagentFormulation\index.html"
+        Else
+            templatefile = $"{App.HOME}/templates/ReagentFormulation\index.html"
+        End If
+
+        Using file As New SaveFileDialog With {.Filter = "Report File(*.pdf)|*.pdf"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim html As New TemplateHandler(templatefile)
+                Dim temp As String = App.AppSystemTemp & "/" & App.GetNextUniqueName("template_") & "/index.html"
+
+                html!vl = TextBox1.Text
+                html.Flush(False, temp)
+
+                Call Helper.PDF(file.FileName, temp)
+            End If
+        End Using
     End Sub
 End Class

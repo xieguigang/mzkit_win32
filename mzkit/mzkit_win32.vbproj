@@ -1753,6 +1753,10 @@
       <Project>{5b55ea8f-18af-4cf5-9a46-a2473dfe1b17}</Project>
       <Name>WkHtmlToPdf.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj">
+      <Project>{83067044-aa5c-014f-5f28-b40f579e0826}</Project>
+      <Name>reportBuilder-netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\BinaryData\binarydata-netcore5.vbproj">
       <Project>{9efd79a7-b385-4d67-9d23-8940453e5d03}</Project>
       <Name>binarydata-netcore5</Name>
