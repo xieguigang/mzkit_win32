@@ -3,7 +3,6 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.Data.Framework
-Imports Microsoft.VisualBasic.Scripting.Expressions
 Imports Mzkit_win32.BasicMDIForm.Container
 
 Public Class frmChemicalSolutionMassTool
