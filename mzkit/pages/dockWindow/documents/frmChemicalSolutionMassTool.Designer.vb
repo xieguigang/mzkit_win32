@@ -26,11 +26,11 @@ Partial Class frmChemicalSolutionMassTool
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmChemicalSolutionMassTool))
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Chemical = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -38,8 +38,9 @@ Partial Class frmChemicalSolutionMassTool
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -47,7 +48,10 @@ Partial Class frmChemicalSolutionMassTool
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -67,16 +71,6 @@ Partial Class frmChemicalSolutionMassTool
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(451, 715)
         Me.DataGridView1.TabIndex = 0
-        '
-        'LinkLabel1
-        '
-        Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(12, 39)
-        Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(113, 12)
-        Me.LinkLabel1.TabIndex = 1
-        Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "Chemical Reagents:"
         '
         'Chemical
         '
@@ -98,10 +92,20 @@ Partial Class frmChemicalSolutionMassTool
         Me.Column3.HeaderText = "Average Molecular Weight"
         Me.Column3.Name = "Column3"
         '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.AutoSize = True
+        Me.LinkLabel1.Location = New System.Drawing.Point(12, 39)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(113, 12)
+        Me.LinkLabel1.TabIndex = 1
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "Chemical Reagents:"
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(26, 34)
+        Me.Label1.Location = New System.Drawing.Point(18, 32)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(107, 12)
         Me.Label1.TabIndex = 2
@@ -109,15 +113,16 @@ Partial Class frmChemicalSolutionMassTool
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(139, 31)
+        Me.TextBox1.Location = New System.Drawing.Point(131, 29)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(100, 21)
         Me.TextBox1.TabIndex = 3
+        Me.TextBox1.Text = "500"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(245, 34)
+        Me.Label2.Location = New System.Drawing.Point(245, 32)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(17, 12)
         Me.Label2.TabIndex = 4
@@ -126,7 +131,7 @@ Partial Class frmChemicalSolutionMassTool
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(18, 62)
+        Me.Label3.Location = New System.Drawing.Point(15, 99)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(125, 12)
         Me.Label3.TabIndex = 5
@@ -137,66 +142,79 @@ Partial Class frmChemicalSolutionMassTool
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"mol/L", "g/L"})
-        Me.ComboBox1.Location = New System.Drawing.Point(155, 59)
+        Me.ComboBox1.Location = New System.Drawing.Point(152, 96)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(91, 20)
+        Me.ComboBox1.Size = New System.Drawing.Size(100, 20)
         Me.ComboBox1.TabIndex = 6
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.CheckBox1)
+        Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Location = New System.Drawing.Point(479, 61)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(376, 75)
+        Me.GroupBox1.Size = New System.Drawing.Size(376, 95)
         Me.GroupBox1.TabIndex = 7
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Solution Configuration"
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.Label8)
+        Me.GroupBox2.Controls.Add(Me.Label7)
         Me.GroupBox2.Controls.Add(Me.Button1)
         Me.GroupBox2.Controls.Add(Me.TextBox2)
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.ComboBox1)
         Me.GroupBox2.Controls.Add(Me.Label3)
-        Me.GroupBox2.Location = New System.Drawing.Point(479, 153)
+        Me.GroupBox2.Location = New System.Drawing.Point(479, 176)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(376, 100)
+        Me.GroupBox2.Size = New System.Drawing.Size(376, 133)
         Me.GroupBox2.TabIndex = 8
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Chemical Configuration"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(268, 62)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(81, 23)
+        Me.Button1.TabIndex = 9
+        Me.Button1.Text = "Add"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(152, 62)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox2.TabIndex = 8
+        '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(18, 26)
+        Me.Label4.Location = New System.Drawing.Point(15, 63)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(131, 12)
         Me.Label4.TabIndex = 7
         Me.Label4.Text = "Target Concentration:"
         '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(155, 25)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(91, 21)
-        Me.TextBox2.TabIndex = 8
-        '
         'ListBox1
         '
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 12
-        Me.ListBox1.Location = New System.Drawing.Point(479, 303)
+        Me.ListBox1.Location = New System.Drawing.Point(479, 362)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(376, 388)
+        Me.ListBox1.Size = New System.Drawing.Size(376, 352)
         Me.ListBox1.TabIndex = 9
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(477, 272)
+        Me.Label5.Location = New System.Drawing.Point(479, 332)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(125, 12)
         Me.Label5.TabIndex = 10
@@ -243,14 +261,42 @@ Partial Class frmChemicalSolutionMassTool
         Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton3.Text = "Export As PDF"
         '
-        'Button1
+        'Label6
         '
-        Me.Button1.Location = New System.Drawing.Point(271, 25)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(81, 23)
-        Me.Button1.TabIndex = 9
-        Me.Button1.Text = "Add"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(24, 62)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(95, 12)
+        Me.Label6.TabIndex = 5
+        Me.Label6.Text = "Use Exact Mass:"
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(130, 61)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(222, 16)
+        Me.CheckBox1.TabIndex = 6
+        Me.CheckBox1.Text = "Config For Mass Spectrum Analysis"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(15, 31)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(107, 12)
+        Me.Label7.TabIndex = 10
+        Me.Label7.Text = "Chemical Reagent:"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(150, 31)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(95, 12)
+        Me.Label8.TabIndex = 11
+        Me.Label8.Text = "<Chemical Name>"
         '
         'frmChemicalSolutionMassTool
         '
@@ -264,7 +310,9 @@ Partial Class frmChemicalSolutionMassTool
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.DataGridView1)
+        Me.DoubleBuffered = True
         Me.Name = "frmChemicalSolutionMassTool"
+        Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         Me.Text = "Chemical Solution Mass Tool"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
@@ -301,4 +349,8 @@ Partial Class frmChemicalSolutionMassTool
     Friend WithEvents ToolStripButton2 As ToolStripButton
     Friend WithEvents ToolStripButton3 As ToolStripButton
     Friend WithEvents Button1 As Button
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label7 As Label
 End Class
