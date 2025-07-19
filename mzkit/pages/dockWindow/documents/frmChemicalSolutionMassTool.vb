@@ -143,7 +143,25 @@ Public Class frmChemicalSolutionMassTool
             If file.ShowDialog = DialogResult.OK Then
                 Dim html As New TemplateHandler(templatefile)
                 Dim temp As String = App.AppSystemTemp & "/" & App.GetNextUniqueName("template_") & "/index.html"
+                Dim listSet As New List(Of String)
+                Dim mw As Func(Of String, Double) = If(CheckBox1.Checked,
+                    New Func(Of String, Double)(AddressOf FormulaScanner.EvaluateExactMass),
+                    New Func(Of String, Double)(AddressOf FormulaScanner.EvaluateAverageMolecularMass)
+                )
 
+                For i As Integer = 0 To ListBox1.Items.Count - 1
+                    Dim chemical As SolutionChemical = DirectCast(ListBox1.Items(i), SolutionChemical)
+                    Dim row = $"<tr>
+<td>{chemical.name}</td>
+<td>{chemicals(chemical.name).formula}</td>
+<td>{mw(chemicals(chemical.name).formula).ToString("F4")}</td>
+<td>{chemical.content} {chemical.type.Description}</td>
+<td>{chemical.mass.ToString("F4")} g</td>
+</tr>"
+                    Call listSet.Add(row)
+                Next
+
+                html!chemicals = listSet.JoinBy("")
                 html!vl = TextBox1.Text
                 html.Flush(False, temp)
 
