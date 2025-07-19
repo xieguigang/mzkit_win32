@@ -252,6 +252,8 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.ButtonOpenAppData, Sub() Call openAppData())
         Call HookRibbon(ribbonItems.ButtonMolmilToolkit, Sub() Call openMolmil())
 
+        Call HookRibbon(ribbonItems.ButtonLabSolutionTool, Sub() Call openSolutionToolkit())
+
         LCMSViewerModule.lcmsViewerhHandle = AddressOf openLcmsScatter
     End Sub
 
@@ -266,6 +268,10 @@ Module RibbonEvents
                         Call apply(Designer.GetColors(config.GetColorMap.Description, n:=100).Select(Function(c) c.ToHtmlColor).ToArray)
                     End Sub)
             End Sub
+    End Sub
+
+    Private Sub openSolutionToolkit()
+        Call VisualStudio.ShowDocument(Of frmChemicalSolutionMassTool)(DockState.Document)
     End Sub
 
     Private Sub openMolmil()
