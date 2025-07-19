@@ -1,22 +1,40 @@
 <html>
-    <body>
-        <p>
-            Solution Volume: {$vl} mL
-        </p>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Chemicals</th>
-                    <th>Formula</th>
-                    <th>Molecule Weight</th>
-                    <th>Concentration</th>
-                    <th>Mass</th>
-                </tr>
-            </thead>
-            <tbody>
-                {$chemicals}
-            </tbody>
-        </table>
-    </body>
+<head>
+    <script type="text/javascript"
+        src="https://query.biodeep.cn/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link href="https://query.biodeep.cn/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Solution Chemicals Mass</h1>
+
+                <p>
+                    Solution Volume: {$vl} mL
+                </p>
+
+                <hr />
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Chemicals</th>
+                            <th>Formula</th>
+                            <th>Molecule Weight</th>
+                            <th>Concentration</th>
+                            <th>Mass</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {$chemicals}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
