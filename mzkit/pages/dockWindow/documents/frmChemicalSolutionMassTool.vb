@@ -114,4 +114,8 @@ Public Class frmChemicalSolutionMassTool
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
         Call calList()
     End Sub
+
+    Private Sub DataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
+
+    End Sub
 End Class
