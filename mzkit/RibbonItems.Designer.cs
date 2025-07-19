@@ -332,9 +332,11 @@ namespace RibbonLib.Controls
             public const uint cmdButtonShowSpectrumSearchPage = 1102;
             public const uint cmdButtonCFMIDTool = 212;
             public const uint cmdMsconvertGUI = 210;
-            public const uint cmdButtonViewSMILES = 178;
             public const uint cmdTargeted = 99;
             public const uint cmdButtonLinearFitting = 182;
+            public const uint cmdPanelChemistryTool = 357;
+            public const uint cmdButtonViewSMILES = 178;
+            public const uint cmdButtonLabSolutionTool = 356;
             public const uint cmdTabAbout = 1020;
             public const uint cmdGroupAboutActions = 1047;
             public const uint cmdTutorials = 115;
@@ -776,9 +778,11 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonShowSpectrumSearchPage { get; private set; }
         public RibbonButton ButtonCFMIDTool { get; private set; }
         public RibbonButton MsconvertGUI { get; private set; }
-        public RibbonButton ButtonViewSMILES { get; private set; }
         public RibbonButton Targeted { get; private set; }
         public RibbonButton ButtonLinearFitting { get; private set; }
+        public RibbonGroup PanelChemistryTool { get; private set; }
+        public RibbonButton ButtonViewSMILES { get; private set; }
+        public RibbonButton ButtonLabSolutionTool { get; private set; }
         public RibbonTab TabAbout { get; private set; }
         /// <summary>
         /// About MZKit workbench
@@ -1122,9 +1126,11 @@ namespace RibbonLib.Controls
             ButtonShowSpectrumSearchPage = new RibbonButton(ribbon, Cmd.cmdButtonShowSpectrumSearchPage);
             ButtonCFMIDTool = new RibbonButton(ribbon, Cmd.cmdButtonCFMIDTool);
             MsconvertGUI = new RibbonButton(ribbon, Cmd.cmdMsconvertGUI);
-            ButtonViewSMILES = new RibbonButton(ribbon, Cmd.cmdButtonViewSMILES);
             Targeted = new RibbonButton(ribbon, Cmd.cmdTargeted);
             ButtonLinearFitting = new RibbonButton(ribbon, Cmd.cmdButtonLinearFitting);
+            PanelChemistryTool = new RibbonGroup(ribbon, Cmd.cmdPanelChemistryTool);
+            ButtonViewSMILES = new RibbonButton(ribbon, Cmd.cmdButtonViewSMILES);
+            ButtonLabSolutionTool = new RibbonButton(ribbon, Cmd.cmdButtonLabSolutionTool);
             TabAbout = new RibbonTab(ribbon, Cmd.cmdTabAbout);
             GroupAboutActions = new RibbonGroup(ribbon, Cmd.cmdGroupAboutActions);
             Tutorials = new RibbonButton(ribbon, Cmd.cmdTutorials);

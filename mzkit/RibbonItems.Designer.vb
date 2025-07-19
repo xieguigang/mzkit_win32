@@ -329,9 +329,11 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonShowSpectrumSearchPage As UInteger = 1102
             Public Const cmdButtonCFMIDTool As UInteger = 212
             Public Const cmdMsconvertGUI As UInteger = 210
-            Public Const cmdButtonViewSMILES As UInteger = 178
             Public Const cmdTargeted As UInteger = 99
             Public Const cmdButtonLinearFitting As UInteger = 182
+            Public Const cmdPanelChemistryTool As UInteger = 357
+            Public Const cmdButtonViewSMILES As UInteger = 178
+            Public Const cmdButtonLabSolutionTool As UInteger = 356
             Public Const cmdTabAbout As UInteger = 1020
             Public Const cmdGroupAboutActions As UInteger = 1047
             Public Const cmdTutorials As UInteger = 115
@@ -2348,12 +2350,6 @@ Namespace RibbonLib.Controls
                 Return _MsconvertGUI
             End Get
         End Property
-        Private _ButtonViewSMILES As RibbonButton
-        Public ReadOnly Property ButtonViewSMILES As RibbonButton
-            Get
-                Return _ButtonViewSMILES
-            End Get
-        End Property
         Private _Targeted As RibbonButton
         Public ReadOnly Property Targeted As RibbonButton
             Get
@@ -2364,6 +2360,24 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonLinearFitting As RibbonButton
             Get
                 Return _ButtonLinearFitting
+            End Get
+        End Property
+        Private _PanelChemistryTool As RibbonGroup
+        Public ReadOnly Property PanelChemistryTool As RibbonGroup
+            Get
+                Return _PanelChemistryTool
+            End Get
+        End Property
+        Private _ButtonViewSMILES As RibbonButton
+        Public ReadOnly Property ButtonViewSMILES As RibbonButton
+            Get
+                Return _ButtonViewSMILES
+            End Get
+        End Property
+        Private _ButtonLabSolutionTool As RibbonButton
+        Public ReadOnly Property ButtonLabSolutionTool As RibbonButton
+            Get
+                Return _ButtonLabSolutionTool
             End Get
         End Property
         Private _TabAbout As RibbonTab
@@ -2794,9 +2808,11 @@ Namespace RibbonLib.Controls
             _ButtonShowSpectrumSearchPage = New RibbonButton(_ribbon, Cmd.cmdButtonShowSpectrumSearchPage)
             _ButtonCFMIDTool = New RibbonButton(_ribbon, Cmd.cmdButtonCFMIDTool)
             _MsconvertGUI = New RibbonButton(_ribbon, Cmd.cmdMsconvertGUI)
-            _ButtonViewSMILES = New RibbonButton(_ribbon, Cmd.cmdButtonViewSMILES)
             _Targeted = New RibbonButton(_ribbon, Cmd.cmdTargeted)
             _ButtonLinearFitting = New RibbonButton(_ribbon, Cmd.cmdButtonLinearFitting)
+            _PanelChemistryTool = New RibbonGroup(_ribbon, Cmd.cmdPanelChemistryTool)
+            _ButtonViewSMILES = New RibbonButton(_ribbon, Cmd.cmdButtonViewSMILES)
+            _ButtonLabSolutionTool = New RibbonButton(_ribbon, Cmd.cmdButtonLabSolutionTool)
             _TabAbout = New RibbonTab(_ribbon, Cmd.cmdTabAbout)
             _GroupAboutActions = New RibbonGroup(_ribbon, Cmd.cmdGroupAboutActions)
             _Tutorials = New RibbonButton(_ribbon, Cmd.cmdTutorials)
