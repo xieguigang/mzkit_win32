@@ -215,7 +215,12 @@ Public Class frmChemicalSolutionMassTool
                 For i As Integer = 0 To ListBox1.Items.Count - 1
                     Call listSet.Add(ListBox1.Items(i))
                 Next
-                Call listSet.SaveToExcel(file.FileName, "Solution Chemicals")
+                Call listSet.SaveToExcel(file.FileName, "Solution Chemicals", New String()() {
+                    New String() {"Solution Volume:", TextBox1.Text, "mL"},
+                    New String() {"Use Exact Mass:", CheckBox1.Checked.ToString, If(CheckBox1.Checked, "Config For Mass Spectrum Analysis", "")},
+                    New String() {},
+                    New String() {"Chemical Reagent Formulation"}
+                })
 
                 If MessageBox.Show("Export the chemical reagent formulation data success, open and view in excel?", "Export Success", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.OK Then
                     Call Process.Start(file.FileName)
