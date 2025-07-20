@@ -3,6 +3,7 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.Data.Framework
+Imports Microsoft.VisualBasic.MIME.Office.Excel.XLSX
 Imports Mzkit_win32.BasicMDIForm.Container
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
 
@@ -15,6 +16,8 @@ Public Class frmChemicalSolutionMassTool
 
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
         Call ListBox1.Items.Clear()
+        Label8.Text = "<Chemical Name>"
+        TextBox2.Text = "0"
     End Sub
 
     Private Sub frmChemicalSolutionMassTool_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -136,6 +139,7 @@ Public Class frmChemicalSolutionMassTool
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        Me.calc = New SolutionMassCalculator(chemicals.ToDictionary(Function(a) a.Key, Function(a) a.Value.formula), useExactMass:=CheckBox1.Checked)
         Call calList()
     End Sub
 
@@ -193,5 +197,30 @@ Public Class frmChemicalSolutionMassTool
         Label8.Text = item.name
         TextBox2.Text = item.content
         ComboBox1.SelectedIndex = ComboBox1.FindString(item.type.Description)
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Using file As New OpenFileDialog With {.Filter = "Chemicals List(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Me.chemicals = file.FileName.LoadCsv(Of ChemicalInformation).MakeUniqueNames.ToDictionary(Function(a) a.chemicals)
+                Me.updateChemicalsUI()
+            End If
+        End Using
+    End Sub
+
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        Using file As New SaveFileDialog With {.Filter = "Excel Table(*.xlsx)|*.xlsx"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim listSet As New List(Of SolutionChemical)
+                For i As Integer = 0 To ListBox1.Items.Count - 1
+                    Call listSet.Add(ListBox1.Items(i))
+                Next
+                Call listSet.SaveToExcel(file.FileName, "Solution Chemicals")
+
+                If MessageBox.Show("Export the chemical reagent formulation data success, open and view in excel?", "Export Success", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.OK Then
+                    Call Process.Start(file.FileName)
+                End If
+            End If
+        End Using
     End Sub
 End Class
