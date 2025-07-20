@@ -180,6 +180,7 @@ Public Class frmChemicalSolutionMassTool
 
                 html!chemicals = listSet.JoinBy("")
                 html!vl = TextBox1.Text
+                html!note = TextBox3.Text
                 html.Flush(False, temp)
 
                 Call Helper.PDF(file.FileName, temp)

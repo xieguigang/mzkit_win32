@@ -53,6 +53,8 @@ Partial Class frmChemicalSolutionMassTool
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -70,7 +72,7 @@ Partial Class frmChemicalSolutionMassTool
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 23
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(451, 715)
+        Me.DataGridView1.Size = New System.Drawing.Size(451, 742)
         Me.DataGridView1.TabIndex = 0
         '
         'Chemical
@@ -264,7 +266,7 @@ Partial Class frmChemicalSolutionMassTool
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripSeparator1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripButton4})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1023, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1356, 25)
         Me.ToolStrip1.TabIndex = 11
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -309,11 +311,34 @@ Partial Class frmChemicalSolutionMassTool
         Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton4.Text = "ToolStripButton4"
         '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(879, 39)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(35, 12)
+        Me.Label9.TabIndex = 12
+        Me.Label9.Text = "NOTE:"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox3.Location = New System.Drawing.Point(881, 70)
+        Me.TextBox3.Multiline = True
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox3.Size = New System.Drawing.Size(463, 733)
+        Me.TextBox3.TabIndex = 13
+        '
         'frmChemicalSolutionMassTool
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1023, 788)
+        Me.ClientSize = New System.Drawing.Size(1356, 815)
+        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.ListBox1)
@@ -365,4 +390,6 @@ Partial Class frmChemicalSolutionMassTool
     Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents ToolStripButton4 As ToolStripButton
+    Friend WithEvents Label9 As Label
+    Friend WithEvents TextBox3 As TextBox
 End Class

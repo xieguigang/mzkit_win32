@@ -1,22 +1,77 @@
 <html>
 
 <head>
-    <script type="text/javascript"
-        src="https://query.biodeep.cn/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link href="https://query.biodeep.cn/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        /* 基础表格设置 */
+        table {
+            width: 100%;
+            /* 撑满页面宽度 [2,5](@ref) */
+            border-collapse: collapse;
+            /* 合并边框实现三线表关键 [1,4](@ref) */
+            max-width: 100vw;
+            /* 防止超出视口宽度 */
+            font-family: sans-serif;
+            /* 无衬线字体增强可读性 */
+        }
+
+        /* 三线表核心样式 */
+        thead>tr {
+            border-top: 2px solid #000;
+            /* 顶部粗线 (第一条线) */
+            border-bottom: 1px solid #000;
+            /* 表头下方线 (第二条线) [1,6](@ref) */
+        }
+
+        tbody>tr:last-child {
+            border-bottom: 2px solid #000;
+            /* 底部粗线 (第三条线) [6](@ref) */
+        }
+
+        /* 单元格通用样式 */
+        th,
+        td {
+            padding: 12px 15px;
+            /* 舒适的内边距 [4,5](@ref) */
+            text-align: left;
+            /* 左对齐文本 */
+        }
+
+        th {
+            background-color: #f8f8f8;
+            /* 表头浅灰背景 [3,5](@ref) */
+            font-weight: 600;
+            /* 加粗表头文字 */
+        }
+
+        /* 增强可读性 (可选) */
+        tr:nth-child(odd) {
+            background-color: #fafafa;
+            /* 奇数行浅色背景 [1,4](@ref) */
+        }
+
+        tr:hover {
+            background-color: #f0f9ff;
+            /* 悬停高亮 [4](@ref) */
+        }
+
+        blockquote {
+            background-color: #eeeeee;
+            border-left: 5px darkgray;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Solution Chemicals Mass</h1>
+                <h1>Chemicals Reagents Formulation</h1>
 
                 <p>
                     Solution Volume: {$vl} mL
                 </p>
 
-                <hr />
+                <br />
 
                 <table class="table">
                     <thead>
@@ -25,13 +80,15 @@
                             <th>Formula</th>
                             <th>Molecule Weight</th>
                             <th>Concentration</th>
-                            <th>Mass</th>
+                            <th>Mass Weighing</th>
                         </tr>
                     </thead>
                     <tbody>
                         {$chemicals}
                     </tbody>
                 </table>
+
+                <blockquote>{$note}</blockquote>
             </div>
         </div>
     </div>
