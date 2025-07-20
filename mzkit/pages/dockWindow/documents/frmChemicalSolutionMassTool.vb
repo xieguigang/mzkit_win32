@@ -89,13 +89,26 @@ Public Class frmChemicalSolutionMassTool
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim type_str = ComboBox1.Items(ComboBox1.SelectedIndex).ToString
         Dim type As ConcentrationType = SolutionMassCalculator.ParseConcentrationType(type_str)
+        Dim update As Boolean = False
 
-        ListBox1.Items.Add(New SolutionChemical With {
-            .name = Label8.Text,
-            .content = Val(TextBox2.Text),
-            .mass = 0,
-            .type = type
-        })
+        For i As Integer = 0 To ListBox1.Items.Count - 1
+            Dim item As SolutionChemical = DirectCast(ListBox1.Items(i), SolutionChemical)
+            If item.name = Label8.Text Then
+                item.content = Val(TextBox2.Text)
+                item.type = type
+                update = True
+                Exit For
+            End If
+        Next
+
+        If Not update Then
+            ListBox1.Items.Add(New SolutionChemical With {
+                .name = Label8.Text,
+                .content = Val(TextBox2.Text),
+                .mass = 0,
+                .type = type
+            })
+        End If
 
         Call calList()
     End Sub
@@ -166,7 +179,19 @@ Public Class frmChemicalSolutionMassTool
                 html.Flush(False, temp)
 
                 Call Helper.PDF(file.FileName, temp)
+                Call Process.Start(file.FileName)
             End If
         End Using
+    End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        If ListBox1.SelectedIndex < 0 Then
+            Return
+        End If
+
+        Dim item As SolutionChemical = DirectCast(ListBox1.SelectedItem, SolutionChemical)
+        Label8.Text = item.name
+        TextBox2.Text = item.content
+        ComboBox1.SelectedIndex = ComboBox1.FindString(item.type.Description)
     End Sub
 End Class
