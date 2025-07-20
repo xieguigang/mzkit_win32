@@ -141,7 +141,7 @@ Partial Class frmChemicalSolutionMassTool
         '
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"mol/L", "g/L"})
+        Me.ComboBox1.Items.AddRange(New Object() {"mol/L", "g/L", "%"})
         Me.ComboBox1.Location = New System.Drawing.Point(152, 96)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(100, 20)
