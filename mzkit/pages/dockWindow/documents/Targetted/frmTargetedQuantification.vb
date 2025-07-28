@@ -2098,6 +2098,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                           Function(a)
                               Return a.ToArray
                           End Function)
+        Dim totalPoints = linearPack.GetLevelKeys.Length
 
         For i As Integer = 0 To DataGridView1.Rows.Count - 1
             Dim row = DataGridView1.Rows(i)
@@ -2115,7 +2116,18 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                                        If c.R2 <= 0.6 Then
                                            Return -1
                                        End If
-                                       Return (c.R2 / (c.invalids.TryCount + 1)) / (0.01 + c.variant)
+
+                                       Dim w1 = c.R2
+                                       Dim w2 As Double = (totalPoints - c.invalids.Count) / totalPoints
+                                       Dim w3 As Double = c.variant
+
+                                       If w3 >= 1 Then
+                                           w3 = 0
+                                       Else
+                                           w3 = 1 - w3
+                                       End If
+
+                                       Return {w1, w2, w3}.WeighedAverage(0.6, 0.2, 0.2)
                                    End Function) _
                 .First _
                 .ISTD
