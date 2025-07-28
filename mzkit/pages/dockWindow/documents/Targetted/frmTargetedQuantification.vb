@@ -952,15 +952,23 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             Return
         End If
 
-        ' 进行线性方程的可视化
-        PictureBox1.BackgroundImage = standardCurve _
-            .StandardCurves(
-                size:="1920,1200",
-                name:=$"Linear of {standardCurve.name}",
-                margin:="padding: 100px 100px 200px 200px;",
-                gridFill:="white"
-            ) _
-            .AsGDIImage
+        Try
+            ' 进行线性方程的可视化
+            PictureBox1.BackgroundImage = standardCurve _
+                .StandardCurves(
+                    size:="1920,1200",
+                    name:=$"Linear of {standardCurve.name}",
+                    margin:="padding: 100px 100px 200px 200px;",
+                    gridFill:="white"
+                ) _
+                .AsGDIImage
+        Catch ex As Exception
+            Call App.LogException(ex)
+            Call Workbench.Warning(ex.Message)
+            Call Workbench.LogText(ex.ToString)
+
+            PictureBox1.BackgroundImage = Nothing
+        End Try
 
         Call DataGridView2.Rows.Clear()
 
