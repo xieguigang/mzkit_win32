@@ -2099,7 +2099,15 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 Continue For
             End If
 
+            Dim selIs As DataGridViewComboBoxCell = row.Cells(1)
 
+            ' evaluate and select the best istd id
+            selIs.Value = ionsTable(ionID) _
+                .OrderByDescending(Function(c)
+                                       Return (c.R2 / (c.invalids.TryCount + 1)) / (0.01 + c.variant)
+                                   End Function) _
+                .First _
+                .ISTD
         Next
     End Sub
 
