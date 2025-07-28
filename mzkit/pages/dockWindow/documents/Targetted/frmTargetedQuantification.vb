@@ -84,6 +84,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
@@ -96,6 +97,8 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
+Imports Microsoft.VisualBasic.MIME.Office.Excel.XLSX
+Imports Microsoft.VisualBasic.MIME.Office.Excel.XLSX.Writer
 Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Controls.Events
@@ -1626,9 +1629,11 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "name"})
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "IS"})
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "linear"})
+        DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "weight"})
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "R2"})
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "R"})
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "variant"})
+        DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "delete points"})
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "invalids"})
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "range"})
 
@@ -1637,20 +1642,57 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Next
 
         For Each iondata As DataReport In report
-            Dim vec As Object() = New Object() {iondata.ID, iondata.name, iondata.ISTD, iondata.linear, iondata.R2, iondata.R, iondata.variant, iondata.invalids.JoinBy(", "), iondata.range.JoinBy(" ~ ")} _
+            Dim vec As Object() = New Object() {
+                iondata.ID, iondata.name, iondata.ISTD, iondata.linear, iondata.weight, iondata.R2.ToString("F4"), iondata.R.ToString("F4"), iondata.variant.ToString("F2"),
+                iondata.invalids.Length,
+                iondata.invalids.JoinBy(", "),
+                iondata.range.JoinBy(" ~ ")
+            } _
                 .JoinIterates(sampleNames.Select(Function(name) As Object
                                                      Dim val = iondata(name)
 
                                                      If val.IsNaNImaginary OrElse val <= 0.0 Then
                                                          Return "N/A"
                                                      Else
-                                                         Return val
+                                                         Return val.ToString("F4")
                                                      End If
                                                  End Function)) _
                 .ToArray
 
             DataGridView3.Rows.Add(vec)
         Next
+    End Sub
+
+    Private Sub ToolStripButton8_Click(sender As Object, e As EventArgs) Handles ToolStripButton8.Click
+        Using file As New SaveFileDialog With {.Filter = "Result Archive File(*.zip)"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim sampleNames = report.Select(Function(a) a.samples.Keys).IteratesALL.Distinct.ToArray
+
+                Using zip As New ZipStream(file.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+                    Call report.SaveToExcel(zip.OpenFile("/report.xlsx", FileMode.OpenOrCreate, access:=FileAccess.Write), "Result")
+
+                    For Each name As String In sampleNames
+                        Dim book As New Workbook("Result")
+                        Dim sheet As Worksheet = book.CurrentWorksheet
+                        Dim val As Double
+                        Dim val_str As String
+
+                        Call sheet.AddNextCell("管码").AddNextCell(name)
+                        Call sheet.GoToNextRow()
+                        Call sheet.GoToNextRow()
+                        Call sheet.AddNextCell("MT编号").AddNextCell("检测结果")
+
+                        For Each ion As DataReport In report
+                            val = ion(name)
+                            val_str = If(val.IsNaNImaginary OrElse val <= 0.0, "N/A", val.ToString("F3"))
+                            sheet.AddNextCell(ion.ID).AddNextCell(val_str)
+                        Next
+
+                        Call book.SaveAsStream(zip.OpenFile($"/samples/{name}.xlsx", FileMode.OpenOrCreate, FileAccess.Write))
+                    Next
+                End Using
+            End If
+        End Using
     End Sub
 
     Private Sub showRawXTable()
@@ -2177,4 +2219,6 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     Public Sub SetSampleNames(names As IEnumerable(Of String)) Implements QuantificationLinearPage.SetSampleNames
         sampleNames = names.Indexing
     End Sub
+
+
 End Class
