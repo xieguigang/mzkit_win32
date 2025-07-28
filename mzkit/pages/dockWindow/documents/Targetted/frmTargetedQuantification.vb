@@ -2051,7 +2051,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 Call grid.Columns.Add(NameOf(DataReport.range), GetType(String))
 
                 For Each name As String In names
-                    Call grid.Columns.Add(name, GetType(Double))
+                    Call grid.Columns.Add(name, GetType(String))
                 Next
 
                 For Each opt As DataReport In reportTable
@@ -2070,7 +2070,12 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                     Dim offset = fixed
 
                     For Each name As String In names
-                        row_vals(offset) = std.Round(opt.samples(name), 2)
+                        If opt.samples(name).IsNaNImaginary OrElse opt.samples(name) <= 0.0 Then
+                            row_vals(offset) = "N/A"
+                        Else
+                            row_vals(offset) = std.Round(opt.samples(name), 2)
+                        End If
+
                         offset += 1
                     Next
 
@@ -2087,6 +2092,13 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                           End Function)
 
         For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            Dim row = DataGridView1.Rows(i)
+            Dim ionID As String = any.ToString(row.Cells(0).Value)
+
+            If Not ionsTable.ContainsKey(ionID) Then
+                Continue For
+            End If
+
 
         Next
     End Sub
