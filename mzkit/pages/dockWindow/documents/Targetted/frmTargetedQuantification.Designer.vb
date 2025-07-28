@@ -87,6 +87,8 @@ Partial Class frmTargetedQuantification
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ExportImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SendToTableViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportLinearTableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -117,8 +119,10 @@ Partial Class frmTargetedQuantification
         Me.cbProfileNameSelector = New System.Windows.Forms.ToolStripComboBox()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.DataGridView3 = New System.Windows.Forms.DataGridView()
         Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -132,10 +136,8 @@ Partial Class frmTargetedQuantification
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
-        Me.SendToTableViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton8 = New System.Windows.Forms.ToolStripButton()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -234,7 +236,7 @@ Partial Class frmTargetedQuantification
         '
         Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportImageToolStripMenuItem, Me.ToolStripMenuItem4, Me.SendToTableViewerToolStripMenuItem, Me.ExportLinearTableToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(184, 98)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(184, 76)
         '
         'ExportImageToolStripMenuItem
         '
@@ -243,11 +245,23 @@ Partial Class frmTargetedQuantification
         Me.ExportImageToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
         Me.ExportImageToolStripMenuItem.Text = "Export Image"
         '
+        'ToolStripMenuItem4
+        '
+        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(180, 6)
+        '
+        'SendToTableViewerToolStripMenuItem
+        '
+        Me.SendToTableViewerToolStripMenuItem.Image = CType(resources.GetObject("SendToTableViewerToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.SendToTableViewerToolStripMenuItem.Name = "SendToTableViewerToolStripMenuItem"
+        Me.SendToTableViewerToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.SendToTableViewerToolStripMenuItem.Text = "Send To Table Viewer"
+        '
         'ExportLinearTableToolStripMenuItem
         '
         Me.ExportLinearTableToolStripMenuItem.Image = CType(resources.GetObject("ExportLinearTableToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ExportLinearTableToolStripMenuItem.Name = "ExportLinearTableToolStripMenuItem"
-        Me.ExportLinearTableToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.ExportLinearTableToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
         Me.ExportLinearTableToolStripMenuItem.Text = "Export Linear Table"
         '
         'DataGridView2
@@ -464,10 +478,14 @@ Partial Class frmTargetedQuantification
         Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton3.Text = "Reload"
         '
-        'ToolStripSeparator1
+        'ToolStripButton6
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), System.Drawing.Image)
+        Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton6.Name = "ToolStripButton6"
+        Me.ToolStripButton6.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton6.Text = "Set ISTD id list to the editor"
         '
         'ToolStripButton2
         '
@@ -477,6 +495,20 @@ Partial Class frmTargetedQuantification
         Me.ToolStripButton2.Name = "ToolStripButton2"
         Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton2.Text = "Delete Profile"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripButton7
+        '
+        Me.ToolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), System.Drawing.Image)
+        Me.ToolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton7.Name = "ToolStripButton7"
+        Me.ToolStripButton7.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton7.Text = "Evaluate linear regression with all ISTD options"
         '
         'TabPage2
         '
@@ -534,7 +566,7 @@ Partial Class frmTargetedQuantification
         '
         'ToolStrip2
         '
-        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel2, Me.ToolStripComboBox2, Me.ToolStripButton4, Me.ToolStripButton5})
+        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel2, Me.ToolStripComboBox2, Me.ToolStripButton4, Me.ToolStripSeparator2, Me.ToolStripButton5, Me.ToolStripButton8})
         Me.ToolStrip2.Location = New System.Drawing.Point(3, 3)
         Me.ToolStrip2.Name = "ToolStrip2"
         Me.ToolStrip2.Size = New System.Drawing.Size(1194, 25)
@@ -572,35 +604,19 @@ Partial Class frmTargetedQuantification
         Me.ToolStripButton5.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton5.Text = "Run Sample Quantification Calculation"
         '
-        'ToolStripButton6
+        'ToolStripSeparator2
         '
-        Me.ToolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), System.Drawing.Image)
-        Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton6.Name = "ToolStripButton6"
-        Me.ToolStripButton6.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton6.Text = "Set ISTD id list to the editor"
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
         '
-        'ToolStripButton7
+        'ToolStripButton8
         '
-        Me.ToolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), System.Drawing.Image)
-        Me.ToolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton7.Name = "ToolStripButton7"
-        Me.ToolStripButton7.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton7.Text = "Evaluate linear regression with all ISTD options"
-        '
-        'ToolStripMenuItem4
-        '
-        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(180, 6)
-        '
-        'SendToTableViewerToolStripMenuItem
-        '
-        Me.SendToTableViewerToolStripMenuItem.Image = CType(resources.GetObject("SendToTableViewerToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.SendToTableViewerToolStripMenuItem.Name = "SendToTableViewerToolStripMenuItem"
-        Me.SendToTableViewerToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
-        Me.SendToTableViewerToolStripMenuItem.Text = "Send To Table Viewer"
+        Me.ToolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton8.Image = CType(resources.GetObject("ToolStripButton8.Image"), System.Drawing.Image)
+        Me.ToolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton8.Name = "ToolStripButton8"
+        Me.ToolStripButton8.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton8.Text = "Export Sample Archive"
         '
         'frmTargetedQuantification
         '
@@ -696,4 +712,6 @@ Partial Class frmTargetedQuantification
     Friend WithEvents ToolStripButton7 As ToolStripButton
     Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
     Friend WithEvents SendToTableViewerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents ToolStripButton8 As ToolStripButton
 End Class

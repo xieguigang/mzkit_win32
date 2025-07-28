@@ -2077,6 +2077,18 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                     Call grid.Rows.Add(row_vals)
                 Next
             End Sub)
+
+        ' set best is selection
+        Dim ionsTable As Dictionary(Of String, DataReport()) = reportTable _
+            .GroupBy(Function(a) a.ID) _
+            .ToDictionary(Function(a) a.Key,
+                          Function(a)
+                              Return a.ToArray
+                          End Function)
+
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+
+        Next
     End Sub
 
     Private Sub SendToTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToTableViewerToolStripMenuItem.Click
