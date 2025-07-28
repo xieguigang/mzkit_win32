@@ -1624,16 +1624,29 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "Ion ID"})
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "name"})
+        DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "IS"})
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "linear"})
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "R2"})
+        DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "R"})
+        DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "variant"})
+        DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "invalids"})
+        DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "range"})
 
         For Each col As String In sampleNames
             DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = col})
         Next
 
         For Each iondata As DataReport In report
-            Dim vec As Object() = New Object() {iondata.ID, iondata.name, iondata.linear, iondata.R2} _
-                .JoinIterates(sampleNames.Select(Function(name) CObj(iondata(name)))) _
+            Dim vec As Object() = New Object() {iondata.ID, iondata.name, iondata.ISTD, iondata.linear, iondata.R2, iondata.R, iondata.variant, iondata.invalids.JoinBy(", "), iondata.range.JoinBy(" ~ ")} _
+                .JoinIterates(sampleNames.Select(Function(name) As Object
+                                                     Dim val = iondata(name)
+
+                                                     If val.IsNaNImaginary OrElse val <= 0.0 Then
+                                                         Return "N/A"
+                                                     Else
+                                                         Return val
+                                                     End If
+                                                 End Function)) _
                 .ToArray
 
             DataGridView3.Rows.Add(vec)
