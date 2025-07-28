@@ -1664,7 +1664,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Private Sub ToolStripButton8_Click(sender As Object, e As EventArgs) Handles ToolStripButton8.Click
-        Using file As New SaveFileDialog With {.Filter = "Result Archive File(*.zip)"}
+        Using file As New SaveFileDialog With {.Filter = "Result Archive File(*.zip)|*.zip"}
             If file.ShowDialog = DialogResult.OK Then
                 Dim sampleNames = report.Select(Function(a) a.samples.Keys).IteratesALL.Distinct.ToArray
 
