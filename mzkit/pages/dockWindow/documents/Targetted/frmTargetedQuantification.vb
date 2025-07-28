@@ -2104,6 +2104,9 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             ' evaluate and select the best istd id
             selIs.Value = ionsTable(ionID) _
                 .OrderByDescending(Function(c)
+                                       If c.R2 <= 0.6 Then
+                                           Return -1
+                                       End If
                                        Return (c.R2 / (c.invalids.TryCount + 1)) / (0.01 + c.variant)
                                    End Function) _
                 .First _
