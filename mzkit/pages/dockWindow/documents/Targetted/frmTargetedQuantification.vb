@@ -1681,11 +1681,13 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                         Call sheet.GoToNextRow()
                         Call sheet.GoToNextRow()
                         Call sheet.AddNextCell("MT编号").AddNextCell("检测结果")
+                        Call sheet.GoToNextRow()
 
                         For Each ion As DataReport In report
                             val = ion(name)
                             val_str = If(val.IsNaNImaginary OrElse val <= 0.0, "N/A", val.ToString("F3"))
                             sheet.AddNextCell(ion.ID).AddNextCell(val_str)
+                            sheet.GoToNextRow()
                         Next
 
                         Call book.SaveAsStream(zip.OpenFile($"/samples/{name}.xlsx", FileMode.OpenOrCreate, FileAccess.Write))
