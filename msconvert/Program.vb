@@ -329,13 +329,13 @@ Imports MZWorkPack
     ''' <returns></returns>
     <ExportAPI("/msi_pack")>
     <Description("Pack the imzML file as the mzkit MS-Imaging mzpack rawdata file")>
-    <Usage("/msi_pack /target <file.imzML> [
+    <Usage("/msi_pack /target <file.imzML/files.txt> [
                                             /dims <w,h,default=NULL> 
                                             /default_ion <1/-1> 
                                             /fly_stream <auto/true/false, default=auto> 
                                             /centroid <da/ppm:mzdiff,default=da:0.01>
                                             /noiseless <percentage cutoff,default=0.001>
-                                            /output <result.mzPack>]")>
+                                            /output <result.mzPack/directory_path>]")>
     <Argument("/dims", True, CLITypes.Integer, PipelineTypes.undefined,
               AcceptTypes:={GetType(Integer())},
               Description:="Set the image dimension size for the ms-imaging data pack output, this options apply for the rawdata which is not a imzML file.")>
@@ -345,59 +345,78 @@ Imports MZWorkPack
               the ibd rawdata file size is greater than 4GB. Some metadata will be lost in fly stream mode.")>
     Public Function MSIPack(args As CommandLine) As Integer
         Dim target As String = args <= "/target"
-        Dim output As String = args("/output") Or target.ChangeSuffix("mzPack")
         Dim defaultIon As IonModes = CInt(args("/default_ion") Or 1)
-        Dim mzPack As mzPack
         Dim fly As String = args("/fly_stream") Or "auto"
         Dim centroid As String = args("/centroid") Or "da:0.01"
         Dim noiseless As Double = args("/noiseless") Or 0.001
+        Dim dims As String = args("/dims")
 
         Call VBDebugger.EchoLine($"centroid mzdiff: {centroid}")
         Call VBDebugger.EchoLine($"noiseless cutoff: {noiseless}")
 
-        If target.ExtensionSuffix("imzml") Then
-            Dim ibd As String = target.ChangeSuffix("ibd")
+        Dim convertFile = Function(target_file As String, output As String) As Integer
+                              Dim mzPack As mzPack
 
-            If (ibd.FileLength > 4 * ByteSize.GB AndAlso Strings.LCase(fly) = "auto") OrElse Strings.LCase(fly) = "true" Then
-                Return imzMLConvertor.ConvertImzMLOntheFly(
-                    target:=target,
-                    output:=output,
-                    defaultIon:=defaultIon,
-                    progress:=AddressOf RunSlavePipeline.SendProgress,
-                    make_centroid:=Tolerance.ParseScript(centroid)
-                ).CLICode
-            Else
-                mzPack = Converter.LoadimzML(target, noiseless, defaultIon,
-                                             make_centroid:=Tolerance.ParseScript(centroid),
-                                             progress:=AddressOf RunSlavePipeline.SendProgress)
-            End If
+                              If target_file.ExtensionSuffix("imzml") Then
+                                  Dim ibd As String = target_file.ChangeSuffix("ibd")
+
+                                  If (ibd.FileLength > 4 * ByteSize.GB AndAlso Strings.LCase(fly) = "auto") OrElse Strings.LCase(fly) = "true" Then
+                                      Return imzMLConvertor.ConvertImzMLOntheFly(
+                                            target:=target_file,
+                                            output:=output,
+                                            defaultIon:=defaultIon,
+                                            progress:=AddressOf RunSlavePipeline.SendProgress,
+                                            make_centroid:=Tolerance.ParseScript(centroid)
+                                      ).CLICode
+                                  Else
+                                      mzPack = Converter.LoadimzML(target_file, noiseless, defaultIon,
+                                                     make_centroid:=Tolerance.ParseScript(centroid),
+                                                     progress:=AddressOf RunSlavePipeline.SendProgress)
+                                  End If
+                              Else
+                                  If dims.StringEmpty(, True) Then
+                                      Call "Missing `/dims` parameter value for non-imzml raw data file input!".PrintException
+                                      Return 500
+                                  End If
+
+                                  Dim dim_size As Size = dims.SizeParser
+
+                                  If target_file.ExtensionSuffix("mzML", "mzXML") Then
+                                      ' load ms-imaging data via LC-MS mode
+                                      mzPack = Converter.LoadRawFileAuto(xml:=target_file)
+                                  ElseIf target_file.ExtensionSuffix("mzPack") Then
+                                      ' the mzpack is not row scans result
+                                      Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
+                                      mzPack = MSImagingReader.UnifyReadAsMzPack(target_file).TryCast(Of mzPack)
+                                  Else
+                                      Call $"Unsupported file type: {target_file.ExtensionSuffix}!".PrintException
+                                      Return 450
+                                  End If
+
+                                  mzPack = mzPack.ConvertToMSI(dim_size)
+                              End If
+
+                              mzPack.source = target_file.BaseName
+                              mzPack.WriteV2(output)
+
+                              Return 0
+                          End Function
+
+        If target.ExtensionSuffix("txt") Then
+            Dim files = target.ReadAllLines
+            Dim outdir As String = args("/output")
+
+            For Each file As String In files
+                If outdir.StringEmpty(, True) Then
+                    Call convertFile(file, file.ChangeSuffix("mzPack"))
+                Else
+                    Call convertFile(file, $"{outdir}/{file.BaseName}.mzPack")
+                End If
+            Next
         Else
-            Dim dims As String = args("/dims")
-
-            If dims.StringEmpty(, True) Then
-                Call "Missing `/dims` parameter value for non-imzml raw data file input!".PrintException
-                Return 500
-            End If
-
-            Dim dim_size As Size = dims.SizeParser
-
-            If target.ExtensionSuffix("mzML", "mzXML") Then
-                ' load ms-imaging data via LC-MS mode
-                mzPack = Converter.LoadRawFileAuto(xml:=target)
-            ElseIf target.ExtensionSuffix("mzPack") Then
-                ' the mzpack is not row scans result
-                Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
-                mzPack = MSImagingReader.UnifyReadAsMzPack(target).TryCast(Of mzPack)
-            Else
-                Call $"Unsupported file type: {target.ExtensionSuffix}!".PrintException
-                Return 450
-            End If
-
-            mzPack = mzPack.ConvertToMSI(dim_size)
+            Return convertFile(target, args("/output") Or target.ChangeSuffix("mzPack"))
         End If
 
-        mzPack.source = target.BaseName
-        mzPack.WriteV2(output)
         Return 0
     End Function
 
