@@ -406,7 +406,12 @@ Imports MZWorkPack
             Dim files = target.ReadAllLines
             Dim outdir As String = args("/output")
 
-            For Each file As String In files
+            For Each file As String In files.Select(Function(path) Strings.Trim(path).Trim(""""c, " "c))
+                ' skip of the empty line
+                If file.StringEmpty(, True) Then
+                    Continue For
+                End If
+
                 If outdir.StringEmpty(, True) Then
                     Call convertFile(file, file.ChangeSuffix("mzPack"))
                 Else
