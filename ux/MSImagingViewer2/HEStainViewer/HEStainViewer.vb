@@ -29,6 +29,8 @@ Public Class HEStainViewer
     Dim HE_move_x As Single = 0
     Dim HE_move_y As Single = 0
 
+    Public Property ViewMargin As Integer = 25
+
     Public Function GetMenu() As ToolStrip()
         Return {}
     End Function
@@ -65,28 +67,46 @@ Public Class HEStainViewer
     End Sub
 
     Private Sub RefreshUI()
-        Dim size As Size = Me.Size.Scale(5)
-        Dim bg As New Bitmap(size.Width, size.Height)
+        ' 获取逻辑尺寸（控件实际大小）
+        Dim logicalSize As Size = Me.ClientSize
+        ' size = (width * scale,
+        '         height* scale)
+        Dim physicalSize As Size = logicalSize.Scale(5)
+        Dim bg As New Bitmap(physicalSize.Width, physicalSize.Height)
 
         Using gfx As IGraphics = Graphics2D.Open(bg)
+            Call gfx.Clear(Color.Black)
+
             ' draw hemap
 
             ' draw msi
             ' msi always keeps in center
-            ' 计算缩放比例（限制最小值为 0.1）
-            Dim scaleX As Single = std.Max(CSng(size.Width) / MSIDims.Width, 0.1F)
-            Dim scaleY As Single = std.Max(CSng(size.Height) / MSIDims.Height, 0.1F)
-            Dim scale As Single = std.Min(scaleX, scaleY) ' 取较小值保证内容完整显示
+            ' 计算逻辑可用区域（考虑边距）
+            Dim logicalAvailableWidth As Integer = std.Max(logicalSize.Width - 2 * ViewMargin, 1)
+            Dim logicalAvailableHeight As Integer = std.Max(logicalSize.Height - 2 * ViewMargin, 1)
 
-            ' 应用缩放后的尺寸
-            Dim newWidth As Integer = CInt(MSIDims.Width * scale)
-            Dim newHeight As Integer = CInt(MSIDims.Height * scale)
+            ' 计算缩放比例（取宽高比例的最小值）
+            Dim scaleX As Single = CSng(logicalAvailableWidth) / MSIDims.Width
+            Dim scaleY As Single = CSng(logicalAvailableHeight) / MSIDims.Height
+            Dim scale As Single = std.Min(scaleX, scaleY)
+            scale = std.Max(scale, 0.1F)  ' 设置最小缩放限制
 
-            ' 计算居中位置
-            Dim centerX As Integer = (size.Width - newWidth) \ 2
-            Dim centerY As Integer = (size.Height - newHeight) \ 2
+            ' 计算缩放后的逻辑尺寸
+            Dim logicalNewWidth As Integer = CInt(MSIDims.Width * scale)
+            Dim logicalNewHeight As Integer = CInt(MSIDims.Height * scale)
 
-            Call gfx.DrawImage(MSIBitmap, centerX, centerY, newWidth, newHeight)
+            ' 计算居中位置（使用浮点计算避免取整误差）
+            Dim logicalCenterX As Single = ViewMargin + (logicalAvailableWidth - logicalNewWidth) / 2.0F
+            Dim logicalCenterY As Single = ViewMargin + (logicalAvailableHeight - logicalNewHeight) / 2.0F
+
+            ' 转换为物理坐标（放大5倍）
+            Dim physicalCenterX As Integer = CInt(logicalCenterX * 5)
+            Dim physicalCenterY As Integer = CInt(logicalCenterY * 5)
+            Dim physicalNewWidth As Integer = CInt(logicalNewWidth * 5)
+            Dim physicalNewHeight As Integer = CInt(logicalNewHeight * 5)
+
+            ' 绘制图像（使用高质量插值保持清晰度）
+            gfx.DrawImage(MSIBitmap, physicalCenterX, physicalCenterY, physicalNewWidth, physicalNewHeight)
         End Using
 
         BackgroundImage = bg
