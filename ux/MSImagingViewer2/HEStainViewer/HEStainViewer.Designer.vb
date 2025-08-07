@@ -30,7 +30,7 @@ Partial Class HEStainViewer
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Name = "HEStainViewer"
-        Me.Size = New System.Drawing.Size(783, 555)
+        Me.Size = New System.Drawing.Size(961, 466)
         Me.ResumeLayout(False)
 
     End Sub
