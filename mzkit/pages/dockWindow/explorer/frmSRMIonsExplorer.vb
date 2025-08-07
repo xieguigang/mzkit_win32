@@ -376,6 +376,9 @@ Public Class frmSRMIonsExplorer
 
                 If Not ion.accession Is Nothing Then
                     Call checkPeaks.Add(ion.accession)
+                Else
+                    ion.accession = $"{ion.precursor.ToString("F2")}/{ion.product.ToString("F2")}"
+                    ion.name = ion.accession
                 End If
             Else
                 peak = chr.peak
