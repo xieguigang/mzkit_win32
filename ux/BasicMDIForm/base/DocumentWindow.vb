@@ -75,6 +75,10 @@ Public Class DocumentWindow
 
     Protected Sub ApplyVsTheme(ParamArray items As ToolStrip())
         For Each item In items
+            If item Is Nothing Then
+                Continue For
+            End If
+
             Call VisualStudioToolStripExtender1.SetStyle(item, VisualStudioToolStripExtender.VsVersion.Vs2015, VS2015LightTheme1)
         Next
     End Sub

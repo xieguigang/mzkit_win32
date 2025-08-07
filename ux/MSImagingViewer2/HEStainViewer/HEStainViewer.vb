@@ -2,15 +2,13 @@
 Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
+Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
-Imports SMRUCC.genomics.Analysis.Spatial.Imaging
 Imports std = System.Math
 
 Public Class HEStainViewer
@@ -25,6 +23,16 @@ Public Class HEStainViewer
     Dim HEBitmap As Bitmap
     Dim MSIBitmap As Bitmap
 
+    Dim HE_ratio_w As Single = 1
+    Dim HE_ratio_h As Single = 1
+    Dim HE_rotate As Single = 0
+    Dim HE_move_x As Single = 0
+    Dim HE_move_y As Single = 0
+
+    Public Function GetMenu() As ToolStrip()
+        Return {}
+    End Function
+
     Private Sub HEStainViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.DoubleBuffered = True
     End Sub
@@ -35,9 +43,18 @@ Public Class HEStainViewer
         Me.HEImageSize = HEstain.Size
         Me.HEBitmap = New Bitmap(HEstain)
 
+        Call ResetRegister()
         Call RenderMSI()
         Call RefreshUI()
     End Function
+
+    Private Sub ResetRegister()
+        HE_move_x = 0
+        HE_move_y = 0
+        HE_ratio_h = 1
+        HE_ratio_w = 1
+        HE_rotate = 0
+    End Sub
 
     Private Sub RenderMSI()
         Dim heatmap As New Blender.PixelRender(False)
@@ -48,7 +65,31 @@ Public Class HEStainViewer
     End Sub
 
     Private Sub RefreshUI()
+        Dim size As Size = Me.Size.Scale(5)
+        Dim bg As New Bitmap(size.Width, size.Height)
 
+        Using gfx As IGraphics = Graphics2D.Open(bg)
+            ' draw hemap
+
+            ' draw msi
+            ' msi always keeps in center
+            ' 计算缩放比例（限制最小值为 0.1）
+            Dim scaleX As Single = std.Max(CSng(size.Width) / MSIDims.Width, 0.1F)
+            Dim scaleY As Single = std.Max(CSng(size.Height) / MSIDims.Height, 0.1F)
+            Dim scale As Single = std.Min(scaleX, scaleY) ' 取较小值保证内容完整显示
+
+            ' 应用缩放后的尺寸
+            Dim newWidth As Integer = CInt(MSIDims.Width * scale)
+            Dim newHeight As Integer = CInt(MSIDims.Height * scale)
+
+            ' 计算居中位置
+            Dim centerX As Integer = (size.Width - newWidth) \ 2
+            Dim centerY As Integer = (size.Height - newHeight) \ 2
+
+            Call gfx.DrawImage(MSIBitmap, centerX, centerY, newWidth, newHeight)
+        End Using
+
+        BackgroundImage = bg
     End Sub
 
     Public Sub SaveExport()

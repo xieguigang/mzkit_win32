@@ -22,15 +22,15 @@ Public Class frmHEStainAnalysisTool
     End Sub
 
     Private Sub frmHEStainAnalysisTool_Load(sender As Object, e As EventArgs) Handles Me.Load
-        AddHandler ribbonItems.ButtonHEstainEditLabel.ExecuteEvent, Sub() Call HeStainViewer1.EditLabel()
-        AddHandler ribbonItems.ButtonHEstainRotate.ExecuteEvent, Sub() Call HeStainViewer1.Rotate()
-        AddHandler ribbonItems.ButtonHEstainSave.ExecuteEvent, Sub() Call HeStainViewer1.SaveExport()
-        AddHandler ribbonItems.ButtonHEstainSetSpotColor.ExecuteEvent, Sub() Call HeStainViewer1.SetSpotColor()
-        AddHandler ribbonItems.ButtonSpatialTileUI.ExecuteEvent, Sub() Call HeStainViewer1.UpdateSpatialTileUI()
-        AddHandler ribbonItems.CheckboxHEstainKeepsAspectRatio.ExecuteEvent,
-            Sub()
-                HeStainViewer1.KeepAspectRatio = ribbonItems.CheckboxHEstainKeepsAspectRatio.BooleanValue
-            End Sub
+        'AddHandler ribbonItems.ButtonHEstainEditLabel.ExecuteEvent, Sub() Call HeStainViewer1.EditLabel()
+        'AddHandler ribbonItems.ButtonHEstainRotate.ExecuteEvent, Sub() Call HeStainViewer1.Rotate()
+        'AddHandler ribbonItems.ButtonHEstainSave.ExecuteEvent, Sub() Call HeStainViewer1.SaveExport()
+        'AddHandler ribbonItems.ButtonHEstainSetSpotColor.ExecuteEvent, Sub() Call HeStainViewer1.SetSpotColor()
+        'AddHandler ribbonItems.ButtonSpatialTileUI.ExecuteEvent, Sub() Call HeStainViewer1.UpdateSpatialTileUI()
+        'AddHandler ribbonItems.CheckboxHEstainKeepsAspectRatio.ExecuteEvent,
+        '    Sub()
+        '        HeStainViewer1.KeepAspectRatio = ribbonItems.CheckboxHEstainKeepsAspectRatio.BooleanValue
+        '    End Sub
     End Sub
 
     ''' <summary>
@@ -45,7 +45,7 @@ Public Class frmHEStainAnalysisTool
         If Not firstFile Is Nothing Then
             If firstFile.ExtensionSuffix("cdf") Then
 
-                Call HeStainViewer1.Clear()
+                '  Call HeStainViewer1.Clear()
 
                 Dim register As SpatialRegister = SpatialRegister.ParseFile(firstFile.OpenReadonly)
                 Dim pixels As PixelData() = register.mappings _
