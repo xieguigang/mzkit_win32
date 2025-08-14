@@ -376,6 +376,9 @@ Public Class frmSRMIonsExplorer
 
                 If Not ion.accession Is Nothing Then
                     Call checkPeaks.Add(ion.accession)
+                Else
+                    ion.accession = $"{ion.precursor.ToString("F2")}/{ion.product.ToString("F2")}"
+                    ion.name = ion.accession
                 End If
             Else
                 peak = chr.peak
@@ -579,10 +582,15 @@ Public Class frmSRMIonsExplorer
 
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
         Dim chrs As New List(Of BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram)
+        Dim ionList As New List(Of MRMHolder)
 
         For Each rawfile As TreeNode In Win7StyleTreeView1.Nodes
             If rawfile.Checked Then
                 Call chrs.Add(rawfile.Tag)
+
+                For i As Integer = 0 To rawfile.Nodes.Count - 1
+                    Call ionList.Add(rawfile.Nodes(i).Tag)
+                Next
             End If
         Next
 
@@ -594,6 +602,10 @@ Public Class frmSRMIonsExplorer
                 ' select all files
                 For Each rawfile As TreeNode In Win7StyleTreeView1.Nodes
                     Call chrs.Add(rawfile.Tag)
+
+                    For i As Integer = 0 To rawfile.Nodes.Count - 1
+                        Call ionList.Add(rawfile.Nodes(i).Tag)
+                    Next
                 Next
             Else
                 Return
@@ -605,15 +617,25 @@ Public Class frmSRMIonsExplorer
         Dim workdir As String = TempFileSystem.GetAppSysTempFile(".html", App.PID, "batch_MRM_workdir").TrimSuffix
 
         If ionsLib.IsEmpty Then
-            If MessageBox.Show("No ion pairs information was founded in the MRM ions library, please config the ions library at first!",
-                            "No Ions Library",
-                            MessageBoxButtons.OKCancel,
-                            MessageBoxIcon.Exclamation) Then
+            Dim opt = MessageBox.Show("No ion pairs information was founded in the MRM ions library, " & vbCrLf &
+                               "going to config the ions library[Yes] or just ignore this settings[NO]?",
+                               "No Ions Library",
+                               MessageBoxButtons.YesNoCancel,
+                               MessageBoxIcon.Exclamation)
 
+            If opt = DialogResult.Yes Then
                 Call VisualStudio.ShowSingleDocument(Of frmMRMLibrary)(Nothing)
+                Return
+            ElseIf opt = DialogResult.Cancel Then
+                Return
+            Else
+                ionsLib = New IonLibrary(ionList _
+                    .Select(Function(a) a.ion) _
+                    .GroupBy(Function(a) a.accession) _
+                    .Select(Function(a)
+                                Return a.First
+                            End Function))
             End If
-
-            Return
         End If
 
         Dim argumentSet As New MRMArgumentSet With {
