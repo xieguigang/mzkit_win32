@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.Drawing.Drawing2D
 Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
@@ -69,18 +70,13 @@ Public Class HEStainViewer
     Private Sub RefreshUI()
         ' 获取逻辑尺寸（控件实际大小）
         Dim logicalSize As Size = Me.ClientSize
-        ' size = (width * scale,
-        '         height* scale)
+
+        ' 创建物理尺寸的Bitmap（用于高质量绘制）
         Dim physicalSize As Size = logicalSize.Scale(5)
         Dim bg As New Bitmap(physicalSize.Width, physicalSize.Height)
 
         Using gfx As IGraphics = Graphics2D.Open(bg)
-            Call gfx.Clear(Color.Black)
-
-            ' draw hemap
-
-            ' draw msi
-            ' msi always keeps in center
+            gfx.Clear(Color.Black)
             ' 计算逻辑可用区域（考虑边距）
             Dim logicalAvailableWidth As Integer = std.Max(logicalSize.Width - 2 * ViewMargin, 1)
             Dim logicalAvailableHeight As Integer = std.Max(logicalSize.Height - 2 * ViewMargin, 1)
@@ -105,7 +101,11 @@ Public Class HEStainViewer
             Dim physicalNewWidth As Integer = CInt(logicalNewWidth * 5)
             Dim physicalNewHeight As Integer = CInt(logicalNewHeight * 5)
 
-            ' 绘制图像（使用高质量插值保持清晰度）
+            ' 创建源矩形和目标矩形
+            Dim srcRect As New Rectangle(0, 0, MSIBitmap.Width, MSIBitmap.Height)
+            Dim destRect As New Rectangle(physicalCenterX, physicalCenterY, physicalNewWidth, physicalNewHeight)
+
+            ' 绘制图像（使用源矩形和目标矩形确保保持宽高比）
             gfx.DrawImage(MSIBitmap, physicalCenterX, physicalCenterY, physicalNewWidth, physicalNewHeight)
         End Using
 
