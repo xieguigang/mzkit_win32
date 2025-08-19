@@ -185,7 +185,18 @@ namespace OpenSlideCs
                     OpenSlide.TraceMsg("resize " + level + "/" + col + "_" + row);
                     var oldbmp = bmp;
                     bmp = new SKBitmap((int)z_size.Width, (int)z_size.Height);
-                    oldbmp.Resize(bmp, SKBitmapResizeMethod.Box);
+
+                    // oldbmp.Resize(bmp, SKBitmapResizeMethod.Box);
+                    using (SKCanvas canvas = new SKCanvas(bmp))
+                    using (SKPaint paint = new SKPaint())
+                    {
+                        paint.FilterQuality = SKFilterQuality.High;
+                        canvas.DrawBitmap(
+                            oldbmp,
+                            new SKRect(0, 0, (int)z_size.Width, (int)z_size.Height),
+                            paint
+                        );
+                    }
                 }
                 OpenSlide.TraceMsg("new bmp " + level + "/" + col + "_" + row);
                 var stream = new MemoryStream();
@@ -267,7 +278,7 @@ namespace OpenSlideCs
                 OpenSlide.TraceMsg("start ReadRegion " + level + "/" + location.Height + "_" + location.Width + ": " + GetBytesReadable(size.Width * size.Height * 3));
                 SKBitmap bmp = new SKBitmap((int)size.Width, (int)size.Height);
                 bmp.SetPixel(0, 0, SKColors.AliceBlue);
-               // bmp.LockPixels();
+                // bmp.LockPixels();
                 var bmpdata = bmp.GetPixels();
                 OpenSlide.TraceMsg("bmp locked " + level + "/" + location.Height + "_" + location.Width);
                 unsafe
@@ -276,7 +287,7 @@ namespace OpenSlideCs
                     Import.openslide_read_region(handle, p, location.Width, location.Height, level, size.Width, size.Height);
                 }
                 OpenSlide.TraceMsg("read finished " + level + "/" + location.Height + "_" + location.Width + ": " + GetBytesReadable(size.Width * size.Height * 3 / Math.Max(sw.ElapsedMilliseconds, 1)) + "/ms");
-               // bmp.UnlockPixels();
+                // bmp.UnlockPixels();
                 OpenSlide.TraceMsg("unlock bits " + level + "/" + location.Height + "_" + location.Width);
                 if (bmp.GetPixel(0, 0) == SKColors.Black)
                 {
