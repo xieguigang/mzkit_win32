@@ -40,6 +40,7 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripButton8 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -58,7 +59,7 @@ Partial Class MSIRegionSampleWindow
         'ToolStrip1
         '
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton2, Me.ToolStripButton6, Me.ToolStripButton5, Me.ToolStripButton4, Me.ToolStripButton7, Me.ToolStripSeparator1, Me.ToolStripButton1, Me.ToolStripButton3})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton2, Me.ToolStripButton6, Me.ToolStripButton5, Me.ToolStripButton4, Me.ToolStripButton7, Me.ToolStripSeparator1, Me.ToolStripButton8, Me.ToolStripButton1, Me.ToolStripButton3})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(443, 27)
@@ -165,6 +166,15 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
         '
+        'ToolStripButton8
+        '
+        Me.ToolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton8.Image = CType(resources.GetObject("ToolStripButton8.Image"), System.Drawing.Image)
+        Me.ToolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton8.Name = "ToolStripButton8"
+        Me.ToolStripButton8.Size = New System.Drawing.Size(24, 24)
+        Me.ToolStripButton8.Text = "Open Tissue Data"
+        '
         'MSIRegionSampleWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -199,4 +209,5 @@ Partial Class MSIRegionSampleWindow
     Friend WithEvents GroupUntaggedSpotToNearestRegonToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripButton2 As ToolStripSplitButton
     Friend WithEvents ResetColorsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripButton8 As ToolStripButton
 End Class

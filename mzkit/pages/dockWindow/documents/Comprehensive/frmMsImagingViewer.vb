@@ -1278,13 +1278,6 @@ Public Class frmMsImagingViewer
     ''' imports tissue morphology cdf matrix or the phenograph spot dot plot
     ''' </summary>
     Sub ImportsTissueMorphology()
-        If Not checkService() Then
-            Return
-        ElseIf PixelSelector1.MSICanvas.dimension_size.IsEmpty Then
-            Call Workbench.Warning("No ms-imaging rendering output!")
-            Return
-        End If
-
         Using file As New OpenFileDialog With {
             .Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf|Phenograph Spot Plot; UMAP scatter Plot(*.csv)|*.csv"
         }
@@ -1309,6 +1302,13 @@ Public Class frmMsImagingViewer
 
     Private Sub ImportsPhenographSpotPlot(filepath As String)
         Dim spots As PhenographSpot() = filepath.LoadCsv(Of PhenographSpot).ToArray
+
+        If (Not checkService()) OrElse PixelSelector1.MSICanvas.dimension_size.IsEmpty Then
+            With New Polygon2D(spots.Select(Function(p) New PointF(p.x, p.y)).ToArray).GetSize
+                PixelSelector1.MSICanvas.SetMsImagingOutput(New Bitmap(.Width, .Height), .ByRef)
+            End With
+        End If
+
         Dim canvas As Size = PixelSelector1.MSICanvas.dimension_size
         Dim spot_pixels = spots.Select(Function(p) p.GetPixel).ToArray
         Dim spot_dims As New Size(
@@ -1403,40 +1403,44 @@ Public Class frmMsImagingViewer
             dimension = cdffile.GetDimension
         End Using
 
-        Dim MSIDims = PixelSelector1.MSICanvas.dimension_size
+        If (Not checkService()) OrElse PixelSelector1.MSICanvas.dimension_size.IsEmpty Then
+            ' no msi data is loaded
+        Else
+            Dim MSIDims = PixelSelector1.MSICanvas.dimension_size
 
-        If std.Abs(MSIDims.Width - dimension.Width) > 5 Then
-            checkSize = False
-        ElseIf std.Abs(MSIDims.Height - dimension.Height) > 5 Then
-            checkSize = False
-        End If
-
-        If Not checkSize Then
-            ' check for multiple sample data imports?
-            Dim data As RegionLoader = ExtractMultipleSampleRegions()
-            Dim isSmaller = dimension.Width <= MSIDims.Width OrElse dimension.Height <= MSIDims.Height
-
-            If Not data Is Nothing AndAlso data.sample_tags.TryCount > 1 Then
-                Call putSampleTissueCdf(data, dimension, tissues)
-                Return
+            If std.Abs(MSIDims.Width - dimension.Width) > 5 Then
+                checkSize = False
+            ElseIf std.Abs(MSIDims.Height - dimension.Height) > 5 Then
+                checkSize = False
             End If
 
-            If (Not isSmaller) AndAlso MessageBox.Show(text:=$"The dimension size of the tissue morphology map({dimension.Width},{dimension.Height}) is very different {vbCrLf}with the MS-imaging dimension size({MSIDims.Width},{MSIDims.Height }), auto scale of your tissue morphology map raster data?",
-                               caption:="Import Tissue Morphology",
-                               buttons:=MessageBoxButtons.YesNo,
-                               icon:=MessageBoxIcon.Warning) = DialogResult.No Then
-                umap3D = Nothing
-                Return
-            Else
-                dimension = MSIDims
-            End If
+            If Not checkSize Then
+                ' check for multiple sample data imports?
+                Dim data As RegionLoader = ExtractMultipleSampleRegions()
+                Dim isSmaller = dimension.Width <= MSIDims.Width OrElse dimension.Height <= MSIDims.Height
 
-            'tissues = tissues _
-            '    .ScalePixels(
-            '        newDims:=PixelSelector1.MSICanvas.dimension_size,
-            '        currentDims:=dimension
-            '    ) _
-            '    .ToArray
+                If Not data Is Nothing AndAlso data.sample_tags.TryCount > 1 Then
+                    Call putSampleTissueCdf(data, dimension, tissues)
+                    Return
+                End If
+
+                If (Not isSmaller) AndAlso MessageBox.Show(text:=$"The dimension size of the tissue morphology map({dimension.Width},{dimension.Height}) is very different {vbCrLf}with the MS-imaging dimension size({MSIDims.Width},{MSIDims.Height }), auto scale of your tissue morphology map raster data?",
+                                   caption:="Import Tissue Morphology",
+                                   buttons:=MessageBoxButtons.YesNo,
+                                   icon:=MessageBoxIcon.Warning) = DialogResult.No Then
+                    umap3D = Nothing
+                    Return
+                Else
+                    dimension = MSIDims
+                End If
+
+                'tissues = tissues _
+                '    .ScalePixels(
+                '        newDims:=PixelSelector1.MSICanvas.dimension_size,
+                '        currentDims:=dimension
+                '    ) _
+                '    .ToArray
+            End If
         End If
 
         sampleRegions.ShowMessage($"Tissue map {filepath.FileName} has been imported.")
@@ -1446,6 +1450,14 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub ImportsTissueMorphology(tissues As TissueRegion(), Optional append As Boolean = False)
+        If (Not checkService()) OrElse PixelSelector1.MSICanvas.dimension_size.IsEmpty Then
+            Dim points = tissues.Select(Function(t) t.points).IteratesALL.ToArray
+
+            With New Polygon2D(points).GetSize
+                PixelSelector1.MSICanvas.SetMsImagingOutput(New Bitmap(.Width, .Height), .ByRef)
+            End With
+        End If
+
         sampleRegions.LoadTissueMaps(tissues, append)
         sampleRegions.RenderLayer()
 
