@@ -666,4 +666,7 @@ still happends for large slide image.",
         End If
     End Sub
 
+    Private Sub ToolStripButton8_Click(sender As Object, e As EventArgs) Handles ToolStripButton8.Click
+        Call viewer.ImportsTissueMorphology()
+    End Sub
 End Class
