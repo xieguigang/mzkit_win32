@@ -153,7 +153,7 @@ It is very likely that your Display Adapter Driver needs updating.")
             Program.message($"Processing... ({tasksCompleted + 1}/{imagePaths.Count})")
 
             Dim progress = New Progress(Of Integer)(Sub(progressValue)
-                                                        Debug.Write(progressValue)
+                                                        System.Diagnostics.Debug.Write(progressValue)
                                                         Program.message($"Processing... ({Math.Min(Threading.Interlocked.Increment(progressValue), progressValue - 1)}/{imagePaths.Count})")
                                                     End Sub)
 
