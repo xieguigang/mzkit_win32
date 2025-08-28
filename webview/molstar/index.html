@@ -23,12 +23,12 @@
 
         #viewer {
             position: relative;
-            left: 10px;
-            top: 10px;
-            right: 10px;
-            width: 85%;
-            max-width: 1440px;
-            height: 800px;
+            left: 0px;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            width: 100%;
+            height: 100%;
         }
 
         .msp-layout-expanded {
@@ -37,7 +37,7 @@
     </style>
 </head>
 
-<body style="width: 1440px; height: 850px;">
+<body style="width: 100%;height: 100%;">
     <div id="viewer">
 
     </div>
@@ -61,7 +61,7 @@
     window.chrome.webview.addEventListener('message', (event) => {
         try {
             const pdbVariable = JSON.parse(event.data); // 自动解析转义字符
-            
+
             load_pdb(pdbVariable);
             console.log("Received PDB data:", pdbVariable);
         } catch (e) {
