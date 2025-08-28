@@ -93,7 +93,7 @@ Public Module MetaDNASearch
         AddHandler pipeline.SetMessage, AddressOf println.Invoke
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
-        Call cli.__DEBUG_ECHO
+        Call cli.debug
         Call pipeline.Run()
 
         Dim infer_json As String = $"{outputdir}/infer_network.json".ReadAllText
@@ -121,7 +121,7 @@ Public Module MetaDNASearch
 
         Call JsonContract.GetJson(args).SaveTo(argv)
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
-        Call cli.__DEBUG_ECHO
+        Call cli.debug
         Call pipeline.Run()
 
         output = $"{outputdir}/Mummichog.json".LoadJsonFile(Of ActivityEnrichment())
@@ -151,7 +151,7 @@ Public Module MetaDNASearch
         Call println("Run mummichog DIA:")
         Call println(JsonContract.GetJson(mz))
         Call println(JsonContract.GetJson(args))
-        Call cli.__DEBUG_ECHO
+        Call cli.debug
         Call pipeline.Run()
 
         output = $"{outputdir}/Mummichog.json".LoadJsonFile(Of ActivityEnrichment())

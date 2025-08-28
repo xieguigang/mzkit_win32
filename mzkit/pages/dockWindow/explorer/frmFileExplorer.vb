@@ -804,7 +804,7 @@ Public Class frmFileExplorer
                     AddHandler pipeline.SetMessage, AddressOf taskUI.ProgressMessage
 
                     Call taskUI.Running()
-                    Call cli.__DEBUG_ECHO
+                    Call cli.debug
                     Call pipeline.Run()
 
                     Call taskUI.ProgressMessage("Background task finished, loading data...")
@@ -869,7 +869,7 @@ Public Class frmFileExplorer
 
                             AddHandler pipeline.SetMessage, AddressOf println.SetInfo
 
-                            Call cli.__DEBUG_ECHO
+                            Call cli.debug
                             Call pipeline.Run()
 
                             Try

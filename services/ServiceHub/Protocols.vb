@@ -113,14 +113,14 @@ Public Module Protocols
             Dim pipeline As New RunSlavePipeline(Protocols.Rscript, cli, workdir:=workdir)
             Dim tcpPort As Integer = -1
 
-            Call pipeline.CommandLine.__DEBUG_ECHO
+            Call pipeline.CommandLine.debug
 
             AddHandler pipeline.SetMessage,
                 Sub(msg)
                     If msg.StartsWith("socket=") Then
                         tcpPort = msg.Match("\d+").DoCall(AddressOf Integer.Parse)
                     Else
-                        Call msg.__DEBUG_ECHO
+                        Call msg.debug
                     End If
                 End Sub
 
