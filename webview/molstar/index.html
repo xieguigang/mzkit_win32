@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="view molecule structure" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="xieguigang, 'gg.xie@bionovogene.com', 'xieguigang@metabolomics.ac.cn'" />
+    <meta name="github" content="https://github.com/xieguigang" />
+    <meta name="theme-color" content="#712cf9" />
+
+    <title>molstar Molecule Viewer</title>
+
+    <link rel="stylesheet" type="text/css" href="rcsb-molstar.css">
+    <script type="text/javascript" src="rcsb-molstar.js"></script>
+
+    <style>
+        #molstar-ui {
+            position: relative;
+            left: -10px;
+        }
+
+        #viewer {
+            position: relative;
+            left: 10px;
+            top: 10px;
+            right: 10px;
+            width: 85%;
+            max-width: 1440px;
+            height: 800px;
+        }
+
+        .msp-layout-expanded {
+            z-index: 3000;
+        }
+    </style>
+</head>
+
+<body style="width: 1440px; height: 850px;">
+    <div id="viewer">
+
+    </div>
+</body>
+
+<script>
+    var props = {
+        showImportControls: false,
+        showSessionControls: false,
+        layoutShowLog: false,
+        layoutShowControls: false,
+        showMembraneOrientationPreset: true,
+        showNakbColorTheme: false,
+        detachedFromSierra: false
+    };
+    var viewer = new rcsbMolstar.Viewer('viewer', props);
+    var load_pdb = function (pdb_txt) {
+        viewer.loadStructureFromData(pdb_txt, "pdb", false);
+    }
+</script>
+
+</html>

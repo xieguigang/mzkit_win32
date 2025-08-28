@@ -1,7 +1,7 @@
 ﻿Imports Mzkit_win32.BasicMDIForm
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmMolmilViewer
+Partial Class frmMolstarViewer
     Inherits DocumentWindow
 
     'Form 重写 Dispose，以清理组件列表。

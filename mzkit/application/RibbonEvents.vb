@@ -275,7 +275,7 @@ Module RibbonEvents
     End Sub
 
     Private Sub openMolmil()
-        Call VisualStudio.ShowDocument(Of frmMolmilViewer)(DockState.Document, "Molmil Molecular Viewer")
+        Call VisualStudio.ShowDocument(Of frmMolstarViewer)(DockState.Document, "Mol* Molecular Viewer")
     End Sub
 
     Public Sub openAppData()

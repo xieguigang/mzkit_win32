@@ -1,21 +1,21 @@
-﻿Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
+﻿Imports System.ComponentModel
+Imports System.Runtime.InteropServices
+Imports System.Threading
+Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.Container
 Imports RibbonLib.Interop
-Imports System.ComponentModel
-Imports System.Runtime.InteropServices
-Imports System.Threading
 Imports TaskStream
 
-Public Class frmMolmilViewer
+Public Class frmMolstarViewer
 
     Dim localfs As Process
     Dim webPort As Integer = -1
 
     Public ReadOnly Property sourceURL As String
         Get
-            Return $"http://127.0.0.1:{webPort}/molmil/index.html"
+            Return $"http://127.0.0.1:{webPort}/molstar/index.html"
         End Get
     End Property
 
@@ -52,8 +52,8 @@ Public Class frmMolmilViewer
         Call App.AddExitCleanHook(Sub() Call localfs.Kill())
         Call Hub.Register(New Service With {
             .CPU = 0,
-            .Name = "Molmil molecule viewer",
-            .Description = "Host the Molmil molecular viewer model data(pdb files) read/loading from the local filesystem, and then rendering on the 3d model viewer.",
+            .Name = "molstar molecule viewer",
+            .Description = "Host the molstar molecular viewer model data(pdb files) read/loading from the local filesystem, and then rendering on the 3d model viewer.",
             .isAlive = True,
             .Memory = 0,
             .PID = localfs.Id,

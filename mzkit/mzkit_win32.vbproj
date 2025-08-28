@@ -814,10 +814,10 @@
     <Compile Include="pages\dockWindow\documents\frmMRIViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\htmlPages\frmMolmilViewer.Designer.vb">
-      <DependentUpon>frmMolmilViewer.vb</DependentUpon>
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmMolstarViewer.Designer.vb">
+      <DependentUpon>frmMolstarViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\htmlPages\frmMolmilViewer.vb">
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmMolstarViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\LCMS\frmLCMSLibrary.Designer.vb">
@@ -1447,8 +1447,8 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmChemicalSolutionMassTool.resx">
       <DependentUpon>frmChemicalSolutionMassTool.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmMolmilViewer.resx">
-      <DependentUpon>frmMolmilViewer.vb</DependentUpon>
+    <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmMolstarViewer.resx">
+      <DependentUpon>frmMolstarViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\LCMS\frmLCMSLibrary.resx">
       <DependentUpon>frmLCMSLibrary.vb</DependentUpon>
