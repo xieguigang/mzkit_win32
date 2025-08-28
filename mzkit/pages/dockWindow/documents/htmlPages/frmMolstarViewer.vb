@@ -2,6 +2,7 @@
 Imports System.Runtime.InteropServices
 Imports System.Threading
 Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.Container
@@ -83,7 +84,10 @@ Public Class frmMolstarViewer
         Using file As New OpenFileDialog With {.Filter = "Protein Structure Data(*.pdb)|*.pdb"}
             If file.ShowDialog = DialogResult.OK Then
                 Dim pdb_txt As String = file.FileName.ReadAllText
+                ' 发送消息到 JavaScript
+                Dim jsonString = pdb_txt.GetJson  ' 自动处理特殊字符
 
+                WebView21.CoreWebView2.PostWebMessageAsString(jsonString)
             End If
         End Using
     End Sub

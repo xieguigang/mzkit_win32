@@ -57,6 +57,17 @@
     var load_pdb = function (pdb_txt) {
         viewer.loadStructureFromData(pdb_txt, "pdb", false);
     }
+
+    window.chrome.webview.addEventListener('message', (event) => {
+        try {
+            const pdbVariable = JSON.parse(event.data); // 自动解析转义字符
+            
+            load_pdb(pdbVariable);
+            console.log("Received PDB data:", pdbVariable);
+        } catch (e) {
+            console.error("Parsing error:", e);
+        }
+    });
 </script>
 
 </html>
