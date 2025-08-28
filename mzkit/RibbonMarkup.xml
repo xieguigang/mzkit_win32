@@ -4582,6 +4582,31 @@
         <Image MinDPI="192">Res/applications-system.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonMolstarResetCamera" Comment="Reset Camera" Id="358" LabelTitle="Reset Camera" LabelDescription="Reset Camera" TooltipTitle="Reset Camera" TooltipDescription="Reset Camera" Keytip="Reset Camera">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdGroupMolstarOperations" Comment="Molstar Operations" Id="359" LabelTitle="Operations" LabelDescription="Molstar Operations" TooltipTitle="Molstar Operations" TooltipDescription="Molstar Operations" Keytip="Molstar Operations" />
+    <Command Name="cmdButtonMolstarClearCanvas" Comment="Clear Canvas" Id="360" LabelTitle="Clear Canvas" LabelDescription="Clear Canvas" TooltipTitle="Clear Canvas" TooltipDescription="Clear Canvas" Keytip="Clear Canvas">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-clear-100.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-clear-100.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMolstarMakeSnapshot" Comment="Make Snapshot" Id="361" LabelTitle="Make Snapshot" LabelDescription="Make Snapshot" TooltipTitle="Make Snapshot" TooltipDescription="Make Snapshot" Keytip="Make Snapshot">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -5075,8 +5100,13 @@
         </TabGroup>
         <TabGroup CommandName="cmdMenuMolmil">
           <Tab CommandName="cmdPanelMolmilFile">
-            <Group CommandName="cmdGroupMolmilFile">
+            <Group CommandName="cmdGroupMolmilFile" SizeDefinition="OneButton">
               <Button CommandName="cmdButtonMolmilOpenFile" />
+            </Group>
+            <Group CommandName="cmdGroupMolstarOperations">
+              <Button CommandName="cmdButtonMolstarResetCamera" />
+              <Button CommandName="cmdButtonMolstarClearCanvas" />
+              <Button CommandName="cmdButtonMolstarMakeSnapshot" />
             </Group>
           </Tab>
         </TabGroup>

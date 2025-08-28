@@ -16,6 +16,20 @@
     <script type="text/javascript" src="rcsb-molstar.js"></script>
 
     <style>
+        /* 关键：清除默认边距，初始化高度 */
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            overflow: hidden;
+            /* 禁止滚动 */
+        }
+
         #molstar-ui {
             position: relative;
             left: -10px;
@@ -68,6 +82,50 @@
             console.error("Parsing error:", e);
         }
     });
+
+    function setBodyFullscreen() {
+        document.body.style.width = window.innerWidth + 'px';
+        document.body.style.height = window.innerHeight + 'px';
+    }
+
+    // 页面加载时执行
+    window.addEventListener('load', setBodyFullscreen);
+    // 窗口大小变化时重新执行
+    window.addEventListener('resize', setBodyFullscreen);
+
+    function requestSnapshotImage() {
+        const pixelData = viewer._plugin.canvas3d.webgl.getDrawingBufferPixelData(); // 获取像素数据
+        const { array, width, height } = pixelData;
+
+        // 创建Canvas
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+
+        // 写入像素数据
+        const imageData = ctx.createImageData(width, height);
+        imageData.data.set(array);
+        ctx.putImageData(imageData, 0, 0);
+
+        // 转换为Blob并下载
+        canvas.toBlob((blob) => {
+            if (!blob) {
+                console.error("Blob creation failed");
+                return;
+            }
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'rendered-image.png';
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 500);
+        }, 'image/png');
+    }
 </script>
 
 </html>

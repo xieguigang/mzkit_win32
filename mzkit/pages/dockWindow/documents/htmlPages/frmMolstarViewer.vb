@@ -67,17 +67,21 @@ Public Class frmMolstarViewer
         Call WorkStudio.LogCommandLine(localfs)
     End Sub
 
+    Shared ReadOnly openButton As New RibbonEventBinding(ribbonItems.ButtonMolmilOpenFile)
+    Shared ReadOnly resetCameraButton As New RibbonEventBinding(ribbonItems.ButtonMolstarResetCamera)
+    Shared ReadOnly clearCanvasButton As New RibbonEventBinding(ribbonItems.ButtonMolstarClearCanvas)
+    Shared ReadOnly snapshotButton As New RibbonEventBinding(ribbonItems.ButtonMolstarMakeSnapshot)
+
     Private Sub frm3DMALDIViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         Call localfs.Kill()
+
+        ribbonItems.MenuMolmil.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
 
     Private Sub frm3DMALDIViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call startHttp()
         Call WebKit.Init(Me.WebView21)
-
-        ribbonItems.MenuMolmil.ContextAvailable = ContextAvailability.Active
-
-        AddHandler ribbonItems.ButtonMolmilOpenFile.ExecuteEvent, Sub() OpenPdb()
+        Call GetActivated()
     End Sub
 
     Private Sub OpenPdb()
@@ -101,5 +105,39 @@ Public Class frmMolstarViewer
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New DataSource)
         Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call WebKit.DeveloperOptions(WebView21, enable:=True, TabText:=TabText)
+    End Sub
+
+    Private Sub resetCamera()
+        Call WebView21.CoreWebView2.ExecuteScriptAsync("viewer.resetCamera();")
+    End Sub
+
+    Private Sub clearCanvas()
+        Call WebView21.CoreWebView2.ExecuteScriptAsync("viewer.clear();")
+    End Sub
+
+    Private Sub takeSnapshot()
+        Call WebView21.CoreWebView2.ExecuteScriptAsync("requestSnapshotImage();")
+    End Sub
+
+    Private Sub frmMolstarViewer_Deactivate(sender As Object, e As EventArgs) Handles Me.Deactivate
+        openButton.evt = Nothing
+        resetCameraButton.evt = Nothing
+        clearCanvasButton.evt = Nothing
+        snapshotButton.evt = Nothing
+
+        ribbonItems.MenuMolmil.ContextAvailable = ContextAvailability.NotAvailable
+    End Sub
+
+    Private Sub GetActivated() Handles Me.Activated
+        ribbonItems.MenuMolmil.ContextAvailable = ContextAvailability.Active
+
+        snapshotButton.evt = AddressOf takeSnapshot
+        openButton.evt = AddressOf OpenPdb
+        resetCameraButton.evt = AddressOf resetCamera
+        clearCanvasButton.evt = AddressOf clearCanvas
+    End Sub
+
+    Private Sub frmMolstarViewer_GotFocus(sender As Object, e As EventArgs) Handles Me.GotFocus
+        Call GetActivated()
     End Sub
 End Class

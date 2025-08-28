@@ -313,6 +313,10 @@ namespace RibbonLib.Controls
             public const uint cmdPanelMolmilFile = 348;
             public const uint cmdGroupMolmilFile = 349;
             public const uint cmdButtonMolmilOpenFile = 350;
+            public const uint cmdGroupMolstarOperations = 359;
+            public const uint cmdButtonMolstarResetCamera = 358;
+            public const uint cmdButtonMolstarClearCanvas = 360;
+            public const uint cmdButtonMolstarMakeSnapshot = 361;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -759,6 +763,22 @@ namespace RibbonLib.Controls
         public RibbonTab PanelMolmilFile { get; private set; }
         public RibbonGroup GroupMolmilFile { get; private set; }
         public RibbonButton ButtonMolmilOpenFile { get; private set; }
+        /// <summary>
+        /// Molstar Operations
+        /// </summary>
+        public RibbonGroup GroupMolstarOperations { get; private set; }
+        /// <summary>
+        /// Reset Camera
+        /// </summary>
+        public RibbonButton ButtonMolstarResetCamera { get; private set; }
+        /// <summary>
+        /// Clear Canvas
+        /// </summary>
+        public RibbonButton ButtonMolstarClearCanvas { get; private set; }
+        /// <summary>
+        /// Make Snapshot
+        /// </summary>
+        public RibbonButton ButtonMolstarMakeSnapshot { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -1107,6 +1127,10 @@ namespace RibbonLib.Controls
             PanelMolmilFile = new RibbonTab(ribbon, Cmd.cmdPanelMolmilFile);
             GroupMolmilFile = new RibbonGroup(ribbon, Cmd.cmdGroupMolmilFile);
             ButtonMolmilOpenFile = new RibbonButton(ribbon, Cmd.cmdButtonMolmilOpenFile);
+            GroupMolstarOperations = new RibbonGroup(ribbon, Cmd.cmdGroupMolstarOperations);
+            ButtonMolstarResetCamera = new RibbonButton(ribbon, Cmd.cmdButtonMolstarResetCamera);
+            ButtonMolstarClearCanvas = new RibbonButton(ribbon, Cmd.cmdButtonMolstarClearCanvas);
+            ButtonMolstarMakeSnapshot = new RibbonButton(ribbon, Cmd.cmdButtonMolstarMakeSnapshot);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);

@@ -2126,8 +2126,8 @@
       </Command.LabelTitle>
     </Command>
     <Command Name="cmdMenuMolmil" Id="347" LabelTitle="Molecule Viewer" LabelDescription="Molecule Viewer" TooltipTitle="Molecule Viewer" TooltipDescription="Molecule Viewer" Keytip="Molecule Viewer" />
-    <Command Name="cmdPanelMolmilFile" Id="348" LabelTitle="Molmil File" LabelDescription="Molmil File" TooltipTitle="Molmil File" TooltipDescription="Molmil File" Keytip="Molmil File" />
-    <Command Name="cmdButtonMolmilToolkit" Comment="Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB." Id="351" LabelTitle="Molmil Toolkit" LabelDescription="Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB." TooltipTitle="Molmil Toolkit" TooltipDescription="Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB." Keytip="Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB.">
+    <Command Name="cmdPanelMolmilFile" Id="348" LabelTitle="Molecule Viewer File" LabelDescription="Molecule Viewer File" TooltipTitle="Molecule Viewer File" TooltipDescription="Molecule Viewer File" Keytip="Molecule Viewer File" />
+    <Command Name="cmdButtonMolmilToolkit" Comment="Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data" Id="351" LabelTitle="Molecule Docking Toolkit" LabelDescription="Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data" TooltipTitle="Molecule Docking Toolkit" TooltipDescription="Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data" Keytip="Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data">
       <Command.SmallImages>
         <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
       </Command.SmallImages>
@@ -4582,6 +4582,31 @@
         <Image MinDPI="192">Res/applications-system.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonMolstarResetCamera" Comment="Reset Camera" Id="358" LabelTitle="Reset Camera" LabelDescription="Reset Camera" TooltipTitle="Reset Camera" TooltipDescription="Reset Camera" Keytip="Reset Camera">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdGroupMolstarOperations" Comment="Molstar Operations" Id="359" LabelTitle="Operations" LabelDescription="Molstar Operations" TooltipTitle="Molstar Operations" TooltipDescription="Molstar Operations" Keytip="Molstar Operations" />
+    <Command Name="cmdButtonMolstarClearCanvas" Comment="Clear Canvas" Id="360" LabelTitle="Clear Canvas" LabelDescription="Clear Canvas" TooltipTitle="Clear Canvas" TooltipDescription="Clear Canvas" Keytip="Clear Canvas">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-clear-100.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-clear-100.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMolstarMakeSnapshot" Comment="Make Snapshot" Id="361" LabelTitle="Make Snapshot" LabelDescription="Make Snapshot" TooltipTitle="Make Snapshot" TooltipDescription="Make Snapshot" Keytip="Make Snapshot">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -5075,8 +5100,12 @@
         </TabGroup>
         <TabGroup CommandName="cmdMenuMolmil">
           <Tab CommandName="cmdPanelMolmilFile">
-            <Group CommandName="cmdGroupMolmilFile">
+            <Group CommandName="cmdGroupMolmilFile" SizeDefinition="OneButton">
               <Button CommandName="cmdButtonMolmilOpenFile" />
+            </Group>
+            <Group CommandName="cmdGroupMolstarOperations">
+              <Button CommandName="cmdButtonMolstarResetCamera" />
+              <Button CommandName="cmdButtonMolstarClearCanvas" />
             </Group>
           </Tab>
         </TabGroup>

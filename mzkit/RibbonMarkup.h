@@ -2002,8 +2002,38 @@
 #define cmdButtonLabIASettings_LabelTitle_RESID 60468
 #define cmdButtonLabIASettings_SmallImages_192__RESID 60469
 #define cmdButtonLabIASettings_LargeImages_192__RESID 60470
-#define InternalCmd2_LabelTitle_RESID 60471
-#define InternalCmd4_LabelTitle_RESID 60472
-#define InternalCmd6_LabelTitle_RESID 60473
-#define InternalCmd8_LabelTitle_RESID 60474
-#define InternalCmd10_LabelTitle_RESID 60475
+#define cmdButtonMolstarResetCamera 358  /* Reset Camera */ 
+#define cmdButtonMolstarResetCamera_LabelTitle_RESID 60471
+#define cmdButtonMolstarResetCamera_LabelDescription_RESID 60472
+#define cmdButtonMolstarResetCamera_Keytip_RESID 60473
+#define cmdButtonMolstarResetCamera_TooltipTitle_RESID 60474
+#define cmdButtonMolstarResetCamera_TooltipDescription_RESID 60475
+#define cmdButtonMolstarResetCamera_SmallImages_192__RESID 60476
+#define cmdButtonMolstarResetCamera_LargeImages_192__RESID 60477
+#define cmdGroupMolstarOperations 359  /* Molstar Operations */ 
+#define cmdGroupMolstarOperations_LabelTitle_RESID 60478
+#define cmdGroupMolstarOperations_LabelDescription_RESID 60479
+#define cmdGroupMolstarOperations_Keytip_RESID 60480
+#define cmdGroupMolstarOperations_TooltipTitle_RESID 60481
+#define cmdGroupMolstarOperations_TooltipDescription_RESID 60482
+#define cmdButtonMolstarClearCanvas 360  /* Clear Canvas */ 
+#define cmdButtonMolstarClearCanvas_LabelTitle_RESID 60483
+#define cmdButtonMolstarClearCanvas_LabelDescription_RESID 60484
+#define cmdButtonMolstarClearCanvas_Keytip_RESID 60485
+#define cmdButtonMolstarClearCanvas_TooltipTitle_RESID 60486
+#define cmdButtonMolstarClearCanvas_TooltipDescription_RESID 60487
+#define cmdButtonMolstarClearCanvas_SmallImages_192__RESID 60488
+#define cmdButtonMolstarClearCanvas_LargeImages_192__RESID 60489
+#define cmdButtonMolstarMakeSnapshot 361  /* Make Snapshot */ 
+#define cmdButtonMolstarMakeSnapshot_LabelTitle_RESID 60490
+#define cmdButtonMolstarMakeSnapshot_LabelDescription_RESID 60491
+#define cmdButtonMolstarMakeSnapshot_Keytip_RESID 60492
+#define cmdButtonMolstarMakeSnapshot_TooltipTitle_RESID 60493
+#define cmdButtonMolstarMakeSnapshot_TooltipDescription_RESID 60494
+#define cmdButtonMolstarMakeSnapshot_SmallImages_192__RESID 60495
+#define cmdButtonMolstarMakeSnapshot_LargeImages_192__RESID 60496
+#define InternalCmd2_LabelTitle_RESID 60497
+#define InternalCmd4_LabelTitle_RESID 60498
+#define InternalCmd6_LabelTitle_RESID 60499
+#define InternalCmd8_LabelTitle_RESID 60500
+#define InternalCmd10_LabelTitle_RESID 60501

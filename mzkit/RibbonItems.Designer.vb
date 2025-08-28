@@ -310,6 +310,10 @@ Namespace RibbonLib.Controls
             Public Const cmdPanelMolmilFile As UInteger = 348
             Public Const cmdGroupMolmilFile As UInteger = 349
             Public Const cmdButtonMolmilOpenFile As UInteger = 350
+            Public Const cmdGroupMolstarOperations As UInteger = 359
+            Public Const cmdButtonMolstarResetCamera As UInteger = 358
+            Public Const cmdButtonMolstarClearCanvas As UInteger = 360
+            Public Const cmdButtonMolstarMakeSnapshot As UInteger = 361
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -2236,6 +2240,42 @@ Namespace RibbonLib.Controls
                 Return _ButtonMolmilOpenFile
             End Get
         End Property
+        Private _GroupMolstarOperations As RibbonGroup
+        ''' <summary>
+        ''' Molstar Operations
+        ''' </summary>
+        Public ReadOnly Property GroupMolstarOperations As RibbonGroup
+            Get
+                Return _GroupMolstarOperations
+            End Get
+        End Property
+        Private _ButtonMolstarResetCamera As RibbonButton
+        ''' <summary>
+        ''' Reset Camera
+        ''' </summary>
+        Public ReadOnly Property ButtonMolstarResetCamera As RibbonButton
+            Get
+                Return _ButtonMolstarResetCamera
+            End Get
+        End Property
+        Private _ButtonMolstarClearCanvas As RibbonButton
+        ''' <summary>
+        ''' Clear Canvas
+        ''' </summary>
+        Public ReadOnly Property ButtonMolstarClearCanvas As RibbonButton
+            Get
+                Return _ButtonMolstarClearCanvas
+            End Get
+        End Property
+        Private _ButtonMolstarMakeSnapshot As RibbonButton
+        ''' <summary>
+        ''' Make Snapshot
+        ''' </summary>
+        Public ReadOnly Property ButtonMolstarMakeSnapshot As RibbonButton
+            Get
+                Return _ButtonMolstarMakeSnapshot
+            End Get
+        End Property
         Private _TabMain As RibbonTab
         Public ReadOnly Property TabMain As RibbonTab
             Get
@@ -2789,6 +2829,10 @@ Namespace RibbonLib.Controls
             _PanelMolmilFile = New RibbonTab(_ribbon, Cmd.cmdPanelMolmilFile)
             _GroupMolmilFile = New RibbonGroup(_ribbon, Cmd.cmdGroupMolmilFile)
             _ButtonMolmilOpenFile = New RibbonButton(_ribbon, Cmd.cmdButtonMolmilOpenFile)
+            _GroupMolstarOperations = New RibbonGroup(_ribbon, Cmd.cmdGroupMolstarOperations)
+            _ButtonMolstarResetCamera = New RibbonButton(_ribbon, Cmd.cmdButtonMolstarResetCamera)
+            _ButtonMolstarClearCanvas = New RibbonButton(_ribbon, Cmd.cmdButtonMolstarClearCanvas)
+            _ButtonMolstarMakeSnapshot = New RibbonButton(_ribbon, Cmd.cmdButtonMolstarMakeSnapshot)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)
