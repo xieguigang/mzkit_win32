@@ -385,7 +385,7 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonMenuGroup AppMenuViewers { get; private set; }
         /// <summary>
-        /// Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB.
+        /// Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data
         /// </summary>
         public RibbonButton ButtonMolmilToolkit { get; private set; }
         public RibbonMenuGroup MenuOpticalMicroscopyTools { get; private set; }
