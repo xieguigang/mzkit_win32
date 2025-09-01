@@ -272,24 +272,52 @@ Public Class FormMain
 
         Dim data As StreamObject = node.Tag
 
-        If data Is Nothing OrElse TypeOf data Is StreamGroup Then
+        If data Is Nothing Then
             Return
         End If
 
-        Using file As New SaveFileDialog With {.FileName = data.referencePath.ToString.FileName}
-            If file.ShowDialog = DialogResult.OK Then
-                Dim buf = mzpack.OpenBlock(data)
+        If TypeOf data Is StreamGroup Then
+            ' export dir
+            Using dir As New FolderBrowserDialog With {.ShowNewFolderButton = True}
+                If dir.ShowDialog = DialogResult.OK Then
+                    Dim folder As StreamGroup = DirectCast(data, StreamGroup)
+                    Dim rootDir As String = dir.SelectedPath
 
-                Call buf.Seek(Scan0, SeekOrigin.Begin)
+                    For Each file As StreamBlock In folder.ListFiles.OfType(Of StreamBlock)
+                        Dim buf = mzpack.OpenBlock(file)
 
-                Using output As Stream = file.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
-                    Call buf.CopyTo(output)
-                    Call output.Flush()
-                End Using
+                        Call buf.Seek(Scan0, SeekOrigin.Begin)
 
-                MessageBox.Show($"Export file success!", "Export As File", buttons:=MessageBoxButtons.OK, icon:=MessageBoxIcon.Information)
-            End If
-        End Using
+                        Using output As Stream = $"{rootDir}/{file.fullName}".Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+                            Call buf.CopyTo(output)
+                            Call output.Flush()
+                        End Using
+                    Next
+
+                    MessageBox.Show($"Export directory data success!", "Export As Folder",
+                        buttons:=MessageBoxButtons.OK,
+                        icon:=MessageBoxIcon.Information)
+                End If
+            End Using
+        Else
+            ' save file
+            Using file As New SaveFileDialog With {.FileName = data.referencePath.ToString.FileName}
+                If file.ShowDialog = DialogResult.OK Then
+                    Dim buf = mzpack.OpenBlock(data)
+
+                    Call buf.Seek(Scan0, SeekOrigin.Begin)
+
+                    Using output As Stream = file.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+                        Call buf.CopyTo(output)
+                        Call output.Flush()
+                    End Using
+
+                    MessageBox.Show($"Export file success!", "Export As File",
+                                    buttons:=MessageBoxButtons.OK,
+                                    icon:=MessageBoxIcon.Information)
+                End If
+            End Using
+        End If
     End Sub
 
     Private Sub ShowSummaryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowSummaryToolStripMenuItem.Click
