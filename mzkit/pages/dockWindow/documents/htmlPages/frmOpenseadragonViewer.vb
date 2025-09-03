@@ -27,28 +27,6 @@ Public Class frmOpenseadragonViewer
         End Get
     End Property
 
-    Shared exportImage As Action
-    Shared fullScreen As Action
-    Shared exportPack As Action
-
-    Private Shared Sub DoExportSlidePack()
-        If Not exportPack Is Nothing Then
-            Call exportPack()
-        End If
-    End Sub
-
-    Private Shared Sub DoWebCapture()
-        If Not exportImage Is Nothing Then
-            Call exportImage()
-        End If
-    End Sub
-
-    Private Shared Sub DoFullScreen()
-        If Not fullScreen Is Nothing Then
-            Call fullScreen()
-        End If
-    End Sub
-
     Public Sub WebInvokeExportImage()
         WebView21.ExecuteScriptAsync("apps.viewer.OpenseadragonSlideViewer.ExportViewImage()")
     End Sub
@@ -85,10 +63,17 @@ Public Class frmOpenseadragonViewer
                         Call pack.Dispose()
                 End Select
 
-                Call MessageBox.Show($"The slide file pack save to {file.FileName} success!", "Export Slide Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Call MessageBox.Show($"The slide file pack save to {file.FileName} success!",
+                                     "Export Slide Success",
+                                     MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End Using
     End Sub
+
+    Shared ReadOnly exportImage As New RibbonEventBinding(ribbonItems.ButtonOpenseadragonWebCapture)
+    Shared ReadOnly fullScreen As New RibbonEventBinding(ribbonItems.ButtonViewerFullScreen)
+    Shared ReadOnly exportPack As New RibbonEventBinding(ribbonItems.ButtonExportSlidePack)
+    Shared ReadOnly scanCells As New RibbonEventBinding(ribbonItems.ButtonScanSingleCells)
 
     Sub New()
 
@@ -97,11 +82,6 @@ Public Class frmOpenseadragonViewer
 
         ' Add any initialization after the InitializeComponent() call.
         AutoScaleMode = AutoScaleMode.Dpi
-
-        AddHandler ribbonItems.ButtonOpenseadragonWebCapture.ExecuteEvent, Sub() Call DoWebCapture()
-        AddHandler ribbonItems.ButtonViewerFullScreen.ExecuteEvent, Sub() Call DoFullScreen()
-        AddHandler ribbonItems.ButtonExportSlidePack.ExecuteEvent, Sub() Call DoExportSlidePack()
-
         ribbonItems.ButtonViewerFullScreen.Enabled = False
     End Sub
 
@@ -188,18 +168,26 @@ Public Class frmOpenseadragonViewer
         WebKit.Init(Me.WebView21)
     End Sub
 
+    Private Sub scanCellTask()
+
+    End Sub
+
     Public Sub DoActivated()
-        exportImage = AddressOf WebInvokeExportImage
-        fullScreen = AddressOf SwitchToFullScreen
-        exportPack = AddressOf ExportSlidePackFile
+        exportImage.evt = AddressOf WebInvokeExportImage
+        fullScreen.evt = AddressOf SwitchToFullScreen
+        exportPack.evt = AddressOf ExportSlidePackFile
+        scanCells.evt = AddressOf scanCellTask
+
         ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.Available
         ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.Active
     End Sub
 
     Public Sub DoLostFocus()
-        exportImage = Nothing
-        fullScreen = Nothing
-        exportPack = Nothing
+        exportImage.evt = Nothing
+        fullScreen.evt = Nothing
+        exportPack.evt = Nothing
+        scanCells.evt = Nothing
+
         ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
 End Class

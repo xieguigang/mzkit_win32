@@ -4607,6 +4607,15 @@
         <Image MinDPI="192">Res/applets-screenshooter.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonScanSingleCells" Comment="Scan Cells" Id="362" LabelTitle="Scan Cells" LabelDescription="Scan Cells" TooltipTitle="Scan Cells" TooltipDescription="Scan Cells" Keytip="Scan Cells">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdGroupHEAnalysis" Comment="HE Analysis" Id="363" LabelTitle="HE Analysis" LabelDescription="HE Analysis" TooltipTitle="HE Analysis" TooltipDescription="HE Analysis" Keytip="HE Analysis" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4990,6 +4999,9 @@
             <Group CommandName="cmdPanelSlideViewer" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonOpenseadragonWebCapture" />
               <Button CommandName="cmdButtonViewerFullScreen" />
+            </Group>
+            <Group CommandName="cmdGroupHEAnalysis" SizeDefinition="OneButton">
+              <Button CommandName="cmdButtonScanSingleCells" />
             </Group>
           </Tab>
         </TabGroup>

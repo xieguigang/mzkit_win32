@@ -240,6 +240,8 @@ namespace RibbonLib.Controls
             public const uint cmdPanelSlideViewer = 256;
             public const uint cmdButtonOpenseadragonWebCapture = 251;
             public const uint cmdButtonViewerFullScreen = 255;
+            public const uint cmdGroupHEAnalysis = 363;
+            public const uint cmdButtonScanSingleCells = 362;
             public const uint cmdMetaboAnalysis = 269;
             public const uint cmdDataSummaryPanel = 270;
             public const uint cmdWorkbenchFile = 275;
@@ -630,6 +632,14 @@ namespace RibbonLib.Controls
         public RibbonGroup PanelSlideViewer { get; private set; }
         public RibbonButton ButtonOpenseadragonWebCapture { get; private set; }
         public RibbonButton ButtonViewerFullScreen { get; private set; }
+        /// <summary>
+        /// HE Analysis
+        /// </summary>
+        public RibbonGroup GroupHEAnalysis { get; private set; }
+        /// <summary>
+        /// Scan Cells
+        /// </summary>
+        public RibbonButton ButtonScanSingleCells { get; private set; }
         public RibbonTabGroup MetaboAnalysis { get; private set; }
         public RibbonTab DataSummaryPanel { get; private set; }
         public RibbonGroup WorkbenchFile { get; private set; }
@@ -1054,6 +1064,8 @@ namespace RibbonLib.Controls
             PanelSlideViewer = new RibbonGroup(ribbon, Cmd.cmdPanelSlideViewer);
             ButtonOpenseadragonWebCapture = new RibbonButton(ribbon, Cmd.cmdButtonOpenseadragonWebCapture);
             ButtonViewerFullScreen = new RibbonButton(ribbon, Cmd.cmdButtonViewerFullScreen);
+            GroupHEAnalysis = new RibbonGroup(ribbon, Cmd.cmdGroupHEAnalysis);
+            ButtonScanSingleCells = new RibbonButton(ribbon, Cmd.cmdButtonScanSingleCells);
             MetaboAnalysis = new RibbonTabGroup(ribbon, Cmd.cmdMetaboAnalysis);
             DataSummaryPanel = new RibbonTab(ribbon, Cmd.cmdDataSummaryPanel);
             WorkbenchFile = new RibbonGroup(ribbon, Cmd.cmdWorkbenchFile);

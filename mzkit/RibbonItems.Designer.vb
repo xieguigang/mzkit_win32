@@ -237,6 +237,8 @@ Namespace RibbonLib.Controls
             Public Const cmdPanelSlideViewer As UInteger = 256
             Public Const cmdButtonOpenseadragonWebCapture As UInteger = 251
             Public Const cmdButtonViewerFullScreen As UInteger = 255
+            Public Const cmdGroupHEAnalysis As UInteger = 363
+            Public Const cmdButtonScanSingleCells As UInteger = 362
             Public Const cmdMetaboAnalysis As UInteger = 269
             Public Const cmdDataSummaryPanel As UInteger = 270
             Public Const cmdWorkbenchFile As UInteger = 275
@@ -1742,6 +1744,24 @@ Namespace RibbonLib.Controls
                 Return _ButtonViewerFullScreen
             End Get
         End Property
+        Private _GroupHEAnalysis As RibbonGroup
+        ''' <summary>
+        ''' HE Analysis
+        ''' </summary>
+        Public ReadOnly Property GroupHEAnalysis As RibbonGroup
+            Get
+                Return _GroupHEAnalysis
+            End Get
+        End Property
+        Private _ButtonScanSingleCells As RibbonButton
+        ''' <summary>
+        ''' Scan Cells
+        ''' </summary>
+        Public ReadOnly Property ButtonScanSingleCells As RibbonButton
+            Get
+                Return _ButtonScanSingleCells
+            End Get
+        End Property
         Private _MetaboAnalysis As RibbonTabGroup
         Public ReadOnly Property MetaboAnalysis As RibbonTabGroup
             Get
@@ -2756,6 +2776,8 @@ Namespace RibbonLib.Controls
             _PanelSlideViewer = New RibbonGroup(_ribbon, Cmd.cmdPanelSlideViewer)
             _ButtonOpenseadragonWebCapture = New RibbonButton(_ribbon, Cmd.cmdButtonOpenseadragonWebCapture)
             _ButtonViewerFullScreen = New RibbonButton(_ribbon, Cmd.cmdButtonViewerFullScreen)
+            _GroupHEAnalysis = New RibbonGroup(_ribbon, Cmd.cmdGroupHEAnalysis)
+            _ButtonScanSingleCells = New RibbonButton(_ribbon, Cmd.cmdButtonScanSingleCells)
             _MetaboAnalysis = New RibbonTabGroup(_ribbon, Cmd.cmdMetaboAnalysis)
             _DataSummaryPanel = New RibbonTab(_ribbon, Cmd.cmdDataSummaryPanel)
             _WorkbenchFile = New RibbonGroup(_ribbon, Cmd.cmdWorkbenchFile)

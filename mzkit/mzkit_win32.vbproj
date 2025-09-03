@@ -917,10 +917,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\Models\TissueSlideHandler.vb" />
-    <Compile Include="pages\dockWindow\documents\frmOpenseadragonViewer.Designer.vb">
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmOpenseadragonViewer.Designer.vb">
       <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmOpenseadragonViewer.vb">
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmOpenseadragonViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\frmCFMIDOutputViewer.Designer.vb">
@@ -1522,7 +1522,7 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmNetworkViewer.resx">
       <DependentUpon>frmNetworkViewer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmOpenseadragonViewer.resx">
+    <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmOpenseadragonViewer.resx">
       <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\Targetted\frmPeakFinding.resx">
