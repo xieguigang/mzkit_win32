@@ -164,7 +164,7 @@ Public Class frmOpenseadragonViewer
         Loop
 
         Call WebView21.CoreWebView2.AddHostObjectToScript("dzi", $"http://127.0.0.1:{webPort}/{dziIndex}.dzi")
-        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New WebRunner)
+        ' Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New WebRunner)
         Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call WebKit.DeveloperOptions(WebView21, enable:=True, TabText)
     End Sub
@@ -175,7 +175,10 @@ Public Class frmOpenseadragonViewer
     End Sub
 
     Private Sub scanCellTask()
-        WebView21.ExecuteScriptAsync("apps.viewer.OpenseadragonSlideViewer.CaptureSlideImage()")
+        Dim getImage As Task(Of String) = WebView21.ExecuteScriptAsync("apps.viewer.OpenseadragonSlideViewer.CaptureSlideImage()")
+
+        Call getImage.Wait()
+        Call WebRunner.ProcessImage(getImage.Result)
     End Sub
 
     Public Sub DoActivated()
@@ -201,7 +204,7 @@ Public Class frmOpenseadragonViewer
     <ComVisible(True)>
     Public Class WebRunner
 
-        Public Sub ProcessImage(imgUri As String)
+        Public Shared Sub ProcessImage(imgUri As String)
             Dim data As New DataURI(imgUri)
             Dim img As String = TempFileSystem.GetAppSysTempFile("*.jpg", sessionID:=App.PID, prefix:="capture_")
 
