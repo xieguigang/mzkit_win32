@@ -52,4 +52,30 @@ Friend Class ActionRunner : Implements ITaskDriver
 
         Return 0
     End Function
+
+    Public Async Function AsyncTask() As Task
+        Do While Not progress.webkitLoaded
+            Call Thread.Sleep(30)
+        Loop
+
+        Call progress.ShowProgressTitle(title)
+        Call progress.ShowProgressDetails(info)
+
+        If AppEnvironment.IsDevelopmentMode Then
+            Await Task.Run(Sub() RunImpl())
+        Else
+            Try
+                Await Task.Run(Sub() RunImpl())
+            Catch ex As Exception
+                Call App.LogException(ex)
+                Call progress.ShowProgressTitle("Task Error!")
+                Call progress.ShowProgressDetails(ex.Message)
+                Call Thread.Sleep(3 * 1000)
+            Finally
+
+            End Try
+        End If
+
+        Call progress.CloseWindow()
+    End Function
 End Class

@@ -194,14 +194,40 @@ Public Class frmOpenseadragonViewer
 
     Public Class WebRunner
 
-        Public Async Sub ProcessImage(imgUri As String)
+        Public Sub ProcessImage(imgUri As String)
             Dim data As New DataURI(imgUri)
             Dim img As String = TempFileSystem.GetAppSysTempFile("*.jpg", sessionID:=App.PID, prefix:="capture_")
 
             Call data.ToStream.FlushStream(img)
 
+            Dim output = RscriptProgressTask.ScanHESingleCells(img)
+            Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Cell Scan Result")
+
+            table.AppSource = GetType(WebRunner)
+            table.InstanceGuid = Guid.NewGuid.ToString
+            table.SourceName = "Cell Scan Result"
+            table.ViewRow = Sub(row)
+                            End Sub
+            table.LoadTable(
+                Sub(grid)
+                    Dim v As Object()
+
+                    Call grid.Columns.Add("mz", GetType(Double))
+                    Call grid.Columns.Add("pattern", GetType(String))
+
+                    For Each name As String In blockNames
+                        Call grid.Columns.Add(name, GetType(Double))
+                    Next
+
+                    For Each ion As EntityClusterModel In ions
+                        v = New Object() {ion.ID, ion.Cluster} _
+                            .JoinIterates(blockNames.Select(Function(name) CObj(ion(name)))) _
+                            .ToArray
+
+                        Call grid.Rows.Add(v)
+                        Call System.Windows.Forms.Application.DoEvents()
+                    Next
+                End Sub)
         End Sub
-
-
     End Class
 End Class
