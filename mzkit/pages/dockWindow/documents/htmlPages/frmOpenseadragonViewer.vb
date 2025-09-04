@@ -238,7 +238,7 @@ Public Class frmOpenseadragonViewer
 
                     For Each cell As CellScan In cells
                         v = New Object() {
-                            cell.physical.X, cell.physical.Y,
+                            cell.physical_x, cell.physical_y,
                             cell.area,
                             cell.ratio,
                             cell.points,
@@ -258,8 +258,9 @@ Public Class frmOpenseadragonViewer
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If scanImageUri IsNot Nothing Then
-            WebRunner.ProcessImage(scanImageUri)
+            Dim cache = scanImageUri
             scanImageUri = Nothing
+            WebRunner.ProcessImage(cache)
         End If
     End Sub
 End Class
