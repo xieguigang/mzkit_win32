@@ -164,6 +164,7 @@ Public Class frmOpenseadragonViewer
         Loop
 
         Call WebView21.CoreWebView2.AddHostObjectToScript("dzi", $"http://127.0.0.1:{webPort}/{dziIndex}.dzi")
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New WebRunner)
         Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call WebKit.DeveloperOptions(WebView21, enable:=True, TabText)
     End Sub
