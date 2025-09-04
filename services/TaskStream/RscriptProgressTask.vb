@@ -74,7 +74,7 @@ Public NotInheritable Class RscriptProgressTask
     End Sub
 
     Public Shared Function ScanHESingleCells(img As String) As String
-        Dim out As String = img.ChangeSuffix("csv")
+        Dim out As String = img.ChangeSuffix("bson")
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ScanHECells.R")
         Dim cli As String = $"""{Rscript}"" --img ""{img}"" --out ""{out}"" /@set tqdm=false --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)

@@ -1,10 +1,14 @@
 ﻿Imports System.ComponentModel
+Imports System.Runtime.InteropServices
 Imports System.Threading
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports HEView
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MIME.application.json
+Imports Microsoft.VisualBasic.MIME.application.json.BSON
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
@@ -192,6 +196,8 @@ Public Class frmOpenseadragonViewer
         ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
 
+    <ClassInterface(ClassInterfaceType.AutoDual)>
+    <ComVisible(True)>
     Public Class WebRunner
 
         Public Sub ProcessImage(imgUri As String)
@@ -202,6 +208,9 @@ Public Class frmOpenseadragonViewer
 
             Dim output = RscriptProgressTask.ScanHESingleCells(img)
             Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Cell Scan Result")
+            Dim cells As CellScan() = BSONFormat.Load(output.ReadBinary) _
+                .ToJsonArray _
+                .CreateObject(Of CellScan())(False)
 
             table.AppSource = GetType(WebRunner)
             table.InstanceGuid = Guid.NewGuid.ToString
@@ -212,17 +221,29 @@ Public Class frmOpenseadragonViewer
                 Sub(grid)
                     Dim v As Object()
 
-                    Call grid.Columns.Add("mz", GetType(Double))
-                    Call grid.Columns.Add("pattern", GetType(String))
+                    Call grid.Columns.Add("x", GetType(Single))
+                    Call grid.Columns.Add("y", GetType(Single))
+                    Call grid.Columns.Add("area", GetType(Double))
+                    Call grid.Columns.Add("ratio", GetType(Double))
+                    Call grid.Columns.Add("points", GetType(Integer))
+                    Call grid.Columns.Add("width", GetType(Double))
+                    Call grid.Columns.Add("height", GetType(Double))
+                    Call grid.Columns.Add("density", GetType(Double))
+                    Call grid.Columns.Add("moran-I", GetType(Double))
+                    Call grid.Columns.Add("pvalue", GetType(Double))
 
-                    For Each name As String In blockNames
-                        Call grid.Columns.Add(name, GetType(Double))
-                    Next
-
-                    For Each ion As EntityClusterModel In ions
-                        v = New Object() {ion.ID, ion.Cluster} _
-                            .JoinIterates(blockNames.Select(Function(name) CObj(ion(name)))) _
-                            .ToArray
+                    For Each cell As CellScan In cells
+                        v = New Object() {
+                            cell.physical.X, cell.physical.Y,
+                            cell.area,
+                            cell.ratio,
+                            cell.points,
+                            cell.width,
+                            cell.height,
+                            cell.density,
+                            cell.moranI,
+                            cell.pvalue
+                        }
 
                         Call grid.Rows.Add(v)
                         Call System.Windows.Forms.Application.DoEvents()

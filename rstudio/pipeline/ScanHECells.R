@@ -4,7 +4,7 @@ imports "singleCell" from "Erica";
 imports "machineVision" from "signalKit";
 
 let imagefile = ?"--img" || stop("A HE image file for make scan must be provided!");
-let outfile = ?"--out" || file.path(dirname(imagefile), "cells.csv");
+let outfile = ?"--out" || file.path(dirname(imagefile), "cells.bson");
 let snapshot = readImage(imagefile);
 let bin = machineVision::ostu(snapshot, flip = FALSE,
                             factor = 1.125);
@@ -19,4 +19,4 @@ let cells = bin |> singleCell::HE_cells(is.binarized = TRUE,
 
 print(as.data.frame(cells));
 
-write.csv(as.data.frame(cells), file = outfile);
+write.cells_bson(cells, file = outfile);
