@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Runtime.InteropServices
 Imports System.Threading
+Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports HEView
 Imports Microsoft.VisualBasic.ApplicationServices
@@ -174,10 +175,10 @@ Public Class frmOpenseadragonViewer
         WebKit.Init(Me.WebView21)
     End Sub
 
-    Private Async Sub scanCellTask()
-        Dim datauri As String = Await WebView21.ExecuteScriptAsync("apps.viewer.OpenseadragonSlideViewer.CaptureSlideImage()")
+    Dim scanImageUri As String
 
-        Call Me.Invoke(Sub() WebRunner.ProcessImage(datauri))
+    Private Async Sub scanCellTask()
+        scanImageUri = Await WebView21.ExecuteScriptAsync("apps.viewer.OpenseadragonSlideViewer.CaptureSlideImage()")
     End Sub
 
     Public Sub DoActivated()
@@ -254,4 +255,11 @@ Public Class frmOpenseadragonViewer
                 End Sub)
         End Sub
     End Class
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        If scanImageUri IsNot Nothing Then
+            WebRunner.ProcessImage(scanImageUri)
+            scanImageUri = Nothing
+        End If
+    End Sub
 End Class

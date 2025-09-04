@@ -24,7 +24,9 @@ Partial Class frmOpenseadragonViewer
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -40,18 +42,25 @@ Partial Class frmOpenseadragonViewer
         Me.WebView21.TabIndex = 0
         Me.WebView21.ZoomFactor = 1.0R
         '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 300
+        '
         'frmOpenseadragonViewer
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.WebView21)
+        Me.DoubleBuffered = True
         Me.Name = "frmOpenseadragonViewer"
-        Me.Text = "Form1"
+        Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
+    Friend WithEvents Timer1 As Timer
 End Class
