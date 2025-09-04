@@ -174,11 +174,10 @@ Public Class frmOpenseadragonViewer
         WebKit.Init(Me.WebView21)
     End Sub
 
-    Private Sub scanCellTask()
-        Dim getImage As Task(Of String) = WebView21.ExecuteScriptAsync("apps.viewer.OpenseadragonSlideViewer.CaptureSlideImage()")
+    Private Async Sub scanCellTask()
+        Dim datauri As String = Await WebView21.ExecuteScriptAsync("apps.viewer.OpenseadragonSlideViewer.CaptureSlideImage()")
 
-        Call getImage.Wait()
-        Call WebRunner.ProcessImage(getImage.Result)
+        Call WebRunner.ProcessImage(datauri)
     End Sub
 
     Public Sub DoActivated()
@@ -205,8 +204,8 @@ Public Class frmOpenseadragonViewer
     Public Class WebRunner
 
         Public Shared Sub ProcessImage(imgUri As String)
-            Dim data As New DataURI(imgUri)
-            Dim img As String = TempFileSystem.GetAppSysTempFile("*.jpg", sessionID:=App.PID, prefix:="capture_")
+            Dim data As DataURI = DataURI.URIParser(imgUri)
+            Dim img As String = TempFileSystem.GetAppSysTempFile(".jpg", sessionID:=App.PID, prefix:="capture_")
 
             Call data.ToStream.FlushStream(img)
 
