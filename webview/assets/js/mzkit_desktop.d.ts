@@ -1,5 +1,3 @@
-/// <reference path="../../../ux/mzkit_desktop/d/three/index.d.ts" />
-/// <reference path="../../../ux/mzkit_desktop/d/linq.d.ts" />
 declare namespace apps.viewer {
     const Empty: readonly any[];
     interface OrbitControls {
@@ -98,6 +96,7 @@ declare namespace app.desktop {
          * actions for create new library file
         */
         NewLibrary(): Promise<boolean>;
+        ProcessImage(dataUri: string): any;
         /**
          * a general method(across multiple host pages) for save general page data
         */
@@ -612,6 +611,7 @@ declare namespace apps.viewer {
         private static viewer;
         protected init(): Promise<void>;
         static ExportViewImage(): void;
+        static CaptureSlideImage(): void;
     }
 }
 declare namespace apps.viewer {
