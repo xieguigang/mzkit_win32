@@ -177,7 +177,7 @@ Public Class frmOpenseadragonViewer
     Private Async Sub scanCellTask()
         Dim datauri As String = Await WebView21.ExecuteScriptAsync("apps.viewer.OpenseadragonSlideViewer.CaptureSlideImage()")
 
-        Call WebRunner.ProcessImage(datauri)
+        Call Me.Invoke(Sub() WebRunner.ProcessImage(datauri))
     End Sub
 
     Public Sub DoActivated()
