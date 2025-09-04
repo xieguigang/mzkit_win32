@@ -50,11 +50,14 @@ namespace apps.viewer {
             DOM.download("capture.png", img, true);
         }
 
-        public static CaptureSlideImage() {
+        public static CaptureSlideImage(): string {
             let viewer = OpenseadragonSlideViewer.viewer.drawer;
             let img: string = viewer.canvas.toDataURL("image/png");
 
-            app.desktop.mzkit.ProcessImage(img);
+            console.log("get web capture image exports:");
+            console.log(img);
+
+            return img;
         }
     }
 }

@@ -611,7 +611,7 @@ declare namespace apps.viewer {
         private static viewer;
         protected init(): Promise<void>;
         static ExportViewImage(): void;
-        static CaptureSlideImage(): void;
+        static CaptureSlideImage(): string;
     }
 }
 declare namespace apps.viewer {

@@ -2591,7 +2591,9 @@ var apps;
             OpenseadragonSlideViewer.CaptureSlideImage = function () {
                 var viewer = OpenseadragonSlideViewer.viewer.drawer;
                 var img = viewer.canvas.toDataURL("image/png");
-                app.desktop.mzkit.ProcessImage(img);
+                console.log("get web capture image exports:");
+                console.log(img);
+                return img;
             };
             return OpenseadragonSlideViewer;
         }(Bootstrap));
