@@ -5,6 +5,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
@@ -169,7 +170,7 @@ Public Class frmOpenseadragonViewer
     End Sub
 
     Private Sub scanCellTask()
-
+        WebView21.ExecuteScriptAsync("apps.viewer.OpenseadragonSlideViewer.CaptureSlideImage()")
     End Sub
 
     Public Sub DoActivated()
@@ -190,4 +191,17 @@ Public Class frmOpenseadragonViewer
 
         ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
+
+    Public Class WebRunner
+
+        Public Async Sub ProcessImage(imgUri As String)
+            Dim data As New DataURI(imgUri)
+            Dim img As String = TempFileSystem.GetAppSysTempFile("*.jpg", sessionID:=App.PID, prefix:="capture_")
+
+            Call data.ToStream.FlushStream(img)
+
+        End Sub
+
+
+    End Class
 End Class

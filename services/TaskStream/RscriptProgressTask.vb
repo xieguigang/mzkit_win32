@@ -73,6 +73,30 @@ Public NotInheritable Class RscriptProgressTask
     Private Sub New()
     End Sub
 
+    Public Shared Function ScanHESingleCells(img As String) As String
+        Dim out As String = img.ChangeSuffix("csv")
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("ScanHECells.R")
+        Dim cli As String = $"""{Rscript}"" --img ""{img}"" --out ""{out}"" /@set tqdm=false --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+
+        Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         p.SetProgressMode()
+
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Run processing of HE image",
+                info:="Make single cell scanning from the image raster data...")
+
+        Return out
+    End Function
+
     Public Shared Function Convert10XRawdata(h5ad As String, save As String) As String
         Dim Rscript As String = RscriptPipelineTask.GetRScript("10x_genomics/extract_h5ad.R")
         Dim cli As String = $"""{Rscript}"" 
