@@ -44,11 +44,14 @@ Public Class MSImagingRowBinds
     End Function
 
     Private Iterator Function loadXmlRaw(files As IEnumerable(Of String)) As IEnumerable(Of mzPack)
-        For Each path As String In files
+        Dim allfiles = files.ToArray
+        Dim offset As i32 = 0
+
+        For Each path As String In allfiles
             If path.FileExists Then
                 Yield Converter.LoadRawFileAuto(path)
 
-                Call RunSlavePipeline.SendMessage($"Measuring MSI Information... {path.BaseName}")
+                Call RunSlavePipeline.SendProgress(++offset / allfiles.Length * 100, $"Measuring MSI Information... {path.BaseName}")
             Else
                 Call RunSlavePipeline.SendMessage($"Missing file in path: '{path}'!")
             End If
