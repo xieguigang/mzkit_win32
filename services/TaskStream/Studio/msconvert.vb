@@ -95,7 +95,7 @@ Public Function Getconvert3DMsImagingCommandLine(raw As String, Optional cache A
     If Not cache.StringEmpty Then
             Call CLI.Append("--cache " & """" & cache & """ ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -154,7 +154,7 @@ Public Function GetconvertGCMSCDFCommandLine(raw As String,
     If no_thumbnail Then
         Call CLI.Append("/no-thumbnail ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -177,7 +177,7 @@ Public Function GetcheckIonModeCommandLine(raw As String, Optional internal_pipe
     Dim CLI As New StringBuilder("/check-ion-mode")
     Call CLI.Append(" ")
     Call CLI.Append("--raw " & """" & raw & """ ")
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -204,7 +204,7 @@ Public Function GetImportsSCiLSLabCommandLine(files As String, save As String, O
     Call CLI.Append(" ")
     Call CLI.Append("--files " & """" & files & """ ")
     Call CLI.Append("--save " & """" & save & """ ")
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -266,7 +266,7 @@ Public Function GetMSIToimzMLCommandLine(file As String,
     If tic_norm Then
         Call CLI.Append("/tic_norm ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -311,7 +311,7 @@ Public Function GetJoinSlidesCommandLine(files As String,
     If normalize Then
         Call CLI.Append("--normalize ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -341,7 +341,7 @@ Public Function GetMRM_MSImagingCommandLine(raw As String, dims As String, Optio
     If Not out.StringEmpty Then
             Call CLI.Append("/out " & """" & out & """ ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -349,7 +349,7 @@ End Function
 
 ''' <summary>
 ''' ```bash
-''' /msi_pack /target &lt;file.imzML&gt; [ /dims &lt;w,h,default=NULL&gt; /default_ion &lt;1/-1&gt; /fly_stream &lt;auto/true/false, default=auto&gt; /centroid &lt;da/ppm:mzdiff,default=da:0.01&gt; /noiseless &lt;percentage cutoff,default=0.001&gt; /output &lt;result.mzPack&gt;]
+''' /msi_pack /target &lt;file.imzML/files.txt&gt; [ /dims &lt;w,h,default=NULL&gt; /default_ion &lt;1/-1&gt; /fly_stream &lt;auto/true/false, default=auto&gt; /centroid &lt;da/ppm:mzdiff,default=da:0.01&gt; /noiseless &lt;percentage cutoff,default=0.001&gt; /output &lt;result.mzPack/directory_path&gt;]
 ''' ```
 ''' Pack the imzML file as the mzkit MS-Imaging mzpack rawdata file
 ''' </summary>
@@ -404,7 +404,7 @@ Public Function GetMSIPackCommandLine(target As String,
     If Not output.StringEmpty Then
             Call CLI.Append("/output " & """" & output & """ ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -482,7 +482,7 @@ Public Function GetconvertAnyRawCommandLine(raw As String,
     If debug Then
         Call CLI.Append("--debug ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -509,7 +509,7 @@ Public Function GetPackSingleCellsCommandLine(rawdata As String, tissue As Strin
     If Not save.StringEmpty Then
             Call CLI.Append("/save " & """" & save & """ ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -575,7 +575,7 @@ Public Function GetMSIRowCombineCommandLine(files As String,
     If tic_norm Then
         Call CLI.Append("/tic_norm ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
