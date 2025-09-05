@@ -5,7 +5,7 @@ imports "machineVision" from "signalKit";
 
 let dzi = ?"--dzi" || stop("the dzi image metadata file is required!");
 let dzi_data = read.dziImage(dzi);
-let level = ?"--lv";
+let level = ?"--lv" || stop("the deep zoom level for make cell shape scanning must be provided!");
 let dir = ?"--dir" || file.path(dirname(dzi), `${basename(dzi)}_files/${level}/`);
 let outfile = ?"--out" || file.path(dirname(dzi), "cells.bson");
 
