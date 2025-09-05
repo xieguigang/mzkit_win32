@@ -242,6 +242,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonViewerFullScreen = 255;
             public const uint cmdGroupHEAnalysis = 363;
             public const uint cmdButtonScanSingleCells = 362;
+            public const uint cmdButtonScanSlide = 364;
             public const uint cmdMetaboAnalysis = 269;
             public const uint cmdDataSummaryPanel = 270;
             public const uint cmdWorkbenchFile = 275;
@@ -637,9 +638,13 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonGroup GroupHEAnalysis { get; private set; }
         /// <summary>
-        /// Scan Cells
+        /// Scan single cells shape in current image capture region 
         /// </summary>
         public RibbonButton ButtonScanSingleCells { get; private set; }
+        /// <summary>
+        /// Scan the entire slide image for the single cells shapes
+        /// </summary>
+        public RibbonButton ButtonScanSlide { get; private set; }
         public RibbonTabGroup MetaboAnalysis { get; private set; }
         public RibbonTab DataSummaryPanel { get; private set; }
         public RibbonGroup WorkbenchFile { get; private set; }
@@ -1066,6 +1071,7 @@ namespace RibbonLib.Controls
             ButtonViewerFullScreen = new RibbonButton(ribbon, Cmd.cmdButtonViewerFullScreen);
             GroupHEAnalysis = new RibbonGroup(ribbon, Cmd.cmdGroupHEAnalysis);
             ButtonScanSingleCells = new RibbonButton(ribbon, Cmd.cmdButtonScanSingleCells);
+            ButtonScanSlide = new RibbonButton(ribbon, Cmd.cmdButtonScanSlide);
             MetaboAnalysis = new RibbonTabGroup(ribbon, Cmd.cmdMetaboAnalysis);
             DataSummaryPanel = new RibbonTab(ribbon, Cmd.cmdDataSummaryPanel);
             WorkbenchFile = new RibbonGroup(ribbon, Cmd.cmdWorkbenchFile);

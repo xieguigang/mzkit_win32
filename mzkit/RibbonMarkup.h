@@ -2032,7 +2032,7 @@
 #define cmdButtonMolstarMakeSnapshot_TooltipDescription_RESID 60494
 #define cmdButtonMolstarMakeSnapshot_SmallImages_192__RESID 60495
 #define cmdButtonMolstarMakeSnapshot_LargeImages_192__RESID 60496
-#define cmdButtonScanSingleCells 362  /* Scan Cells */ 
+#define cmdButtonScanSingleCells 362  /* Scan single cells shape in current image capture region  */ 
 #define cmdButtonScanSingleCells_LabelTitle_RESID 60497
 #define cmdButtonScanSingleCells_LabelDescription_RESID 60498
 #define cmdButtonScanSingleCells_Keytip_RESID 60499
@@ -2046,8 +2046,16 @@
 #define cmdGroupHEAnalysis_Keytip_RESID 60506
 #define cmdGroupHEAnalysis_TooltipTitle_RESID 60507
 #define cmdGroupHEAnalysis_TooltipDescription_RESID 60508
-#define InternalCmd2_LabelTitle_RESID 60509
-#define InternalCmd4_LabelTitle_RESID 60510
-#define InternalCmd6_LabelTitle_RESID 60511
-#define InternalCmd8_LabelTitle_RESID 60512
-#define InternalCmd10_LabelTitle_RESID 60513
+#define cmdButtonScanSlide 364  /* Scan the entire slide image for the single cells shapes */ 
+#define cmdButtonScanSlide_LabelTitle_RESID 60509
+#define cmdButtonScanSlide_LabelDescription_RESID 60510
+#define cmdButtonScanSlide_Keytip_RESID 60511
+#define cmdButtonScanSlide_TooltipTitle_RESID 60512
+#define cmdButtonScanSlide_TooltipDescription_RESID 60513
+#define cmdButtonScanSlide_SmallImages_192__RESID 60514
+#define cmdButtonScanSlide_LargeImages_192__RESID 60515
+#define InternalCmd2_LabelTitle_RESID 60516
+#define InternalCmd4_LabelTitle_RESID 60517
+#define InternalCmd6_LabelTitle_RESID 60518
+#define InternalCmd8_LabelTitle_RESID 60519
+#define InternalCmd10_LabelTitle_RESID 60520

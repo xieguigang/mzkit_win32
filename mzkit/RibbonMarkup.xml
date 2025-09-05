@@ -4607,7 +4607,7 @@
         <Image MinDPI="192">Res/applets-screenshooter.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonScanSingleCells" Comment="Scan Cells" Id="362" LabelTitle="Scan Cells" LabelDescription="Scan Cells" TooltipTitle="Scan Cells" TooltipDescription="Scan Cells" Keytip="Scan Cells">
+    <Command Name="cmdButtonScanSingleCells" Comment="Scan single cells shape in current image capture region " Id="362" LabelTitle="Scan Region" LabelDescription="Scan single cells shape in current image capture region " TooltipTitle="Scan Single Cells" TooltipDescription="Scan single cells shape in current image capture region " Keytip="Scan Cells">
       <Command.SmallImages>
         <Image MinDPI="192">Res/edit-find.png</Image>
       </Command.SmallImages>
@@ -4616,6 +4616,14 @@
       </Command.LargeImages>
     </Command>
     <Command Name="cmdGroupHEAnalysis" Comment="HE Analysis" Id="363" LabelTitle="HE Analysis" LabelDescription="HE Analysis" TooltipTitle="HE Analysis" TooltipDescription="HE Analysis" Keytip="HE Analysis" />
+    <Command Name="cmdButtonScanSlide" Comment="Scan the entire slide image for the single cells shapes" Id="364" LabelTitle="Scan Slide" LabelDescription="Scan the entire slide image for the single cells shapes" TooltipTitle="Scan the entire slide image for the single cells shapes" TooltipDescription="Scan the entire slide image for the single cells shapes" Keytip="Scan the entire slide image for the single cells shapes">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -5000,8 +5008,9 @@
               <Button CommandName="cmdButtonOpenseadragonWebCapture" />
               <Button CommandName="cmdButtonViewerFullScreen" />
             </Group>
-            <Group CommandName="cmdGroupHEAnalysis" SizeDefinition="OneButton">
+            <Group CommandName="cmdGroupHEAnalysis" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonScanSingleCells" />
+              <Button CommandName="cmdButtonScanSlide" />
             </Group>
           </Tab>
         </TabGroup>

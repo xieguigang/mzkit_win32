@@ -239,6 +239,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonViewerFullScreen As UInteger = 255
             Public Const cmdGroupHEAnalysis As UInteger = 363
             Public Const cmdButtonScanSingleCells As UInteger = 362
+            Public Const cmdButtonScanSlide As UInteger = 364
             Public Const cmdMetaboAnalysis As UInteger = 269
             Public Const cmdDataSummaryPanel As UInteger = 270
             Public Const cmdWorkbenchFile As UInteger = 275
@@ -1755,11 +1756,20 @@ Namespace RibbonLib.Controls
         End Property
         Private _ButtonScanSingleCells As RibbonButton
         ''' <summary>
-        ''' Scan Cells
+        ''' Scan single cells shape in current image capture region 
         ''' </summary>
         Public ReadOnly Property ButtonScanSingleCells As RibbonButton
             Get
                 Return _ButtonScanSingleCells
+            End Get
+        End Property
+        Private _ButtonScanSlide As RibbonButton
+        ''' <summary>
+        ''' Scan the entire slide image for the single cells shapes
+        ''' </summary>
+        Public ReadOnly Property ButtonScanSlide As RibbonButton
+            Get
+                Return _ButtonScanSlide
             End Get
         End Property
         Private _MetaboAnalysis As RibbonTabGroup
@@ -2778,6 +2788,7 @@ Namespace RibbonLib.Controls
             _ButtonViewerFullScreen = New RibbonButton(_ribbon, Cmd.cmdButtonViewerFullScreen)
             _GroupHEAnalysis = New RibbonGroup(_ribbon, Cmd.cmdGroupHEAnalysis)
             _ButtonScanSingleCells = New RibbonButton(_ribbon, Cmd.cmdButtonScanSingleCells)
+            _ButtonScanSlide = New RibbonButton(_ribbon, Cmd.cmdButtonScanSlide)
             _MetaboAnalysis = New RibbonTabGroup(_ribbon, Cmd.cmdMetaboAnalysis)
             _DataSummaryPanel = New RibbonTab(_ribbon, Cmd.cmdDataSummaryPanel)
             _WorkbenchFile = New RibbonGroup(_ribbon, Cmd.cmdWorkbenchFile)

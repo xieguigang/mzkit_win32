@@ -47,28 +47,7 @@ Public Class frmOpenseadragonViewer
     Public Sub ExportSlidePackFile()
         Using file As New SaveFileDialog With {.Filter = "MZKit Slide StreamPack File(*.hds)|*.hds"}
             If file.ShowDialog = DialogResult.OK Then
-                Select Case dzi.ExtensionSuffix
-                    Case "hds"
-                        Call dzi.FileCopy(file.FileName)
-                    Case Else
-                        ' dzi file
-                        Dim dir As Directory = Directory.FromLocalFileSystem(dzi.ParentPath)
-                        Dim pack As New StreamPack(file.OpenFile,, meta_size:=8 * 1024 * 1024)
-
-                        For Each path As String In dir.GetFiles
-                            Dim rel As String = "/" & dir.GetRelativePath(path)
-                            Dim open As Byte() = path.ReadBinary
-                            Dim s = pack.OpenFile(rel, IO.FileMode.OpenOrCreate, IO.FileAccess.Write)
-
-                            Call s.Write(open, Scan0, open.Length)
-                            Call s.Flush()
-                            Call s.Dispose()
-                        Next
-
-                        Call DirectCast(pack, IFileSystemEnvironment).WriteText(dzi.FileName, "/index.txt")
-                        Call pack.Dispose()
-                End Select
-
+                Call ExportSlidePackFile(file.FileName)
                 Call MessageBox.Show($"The slide file pack save to {file.FileName} success!",
                                      "Export Slide Success",
                                      MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -76,10 +55,38 @@ Public Class frmOpenseadragonViewer
         End Using
     End Sub
 
+    Public Sub ExportSlidePackFile(filepath As String)
+        Select Case dzi.ExtensionSuffix
+            Case "hds"
+                Call dzi.FileCopy(filepath)
+            Case Else
+                ' dzi file
+                Dim dir As Directory = Directory.FromLocalFileSystem(dzi.ParentPath)
+                Dim pack As New StreamPack(
+                    buffer:=filepath.Open(IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False),,
+                    meta_size:=8 * 1024 * 1024
+                )
+
+                For Each path As String In dir.GetFiles
+                    Dim rel As String = "/" & dir.GetRelativePath(path)
+                    Dim open As Byte() = path.ReadBinary
+                    Dim s = pack.OpenFile(rel, IO.FileMode.OpenOrCreate, IO.FileAccess.Write)
+
+                    Call s.Write(open, Scan0, open.Length)
+                    Call s.Flush()
+                    Call s.Dispose()
+                Next
+
+                Call DirectCast(pack, IFileSystemEnvironment).WriteText(dzi.FileName, "/index.txt")
+                Call pack.Dispose()
+        End Select
+    End Sub
+
     Shared ReadOnly exportImage As New RibbonEventBinding(ribbonItems.ButtonOpenseadragonWebCapture)
     Shared ReadOnly fullScreen As New RibbonEventBinding(ribbonItems.ButtonViewerFullScreen)
     Shared ReadOnly exportPack As New RibbonEventBinding(ribbonItems.ButtonExportSlidePack)
     Shared ReadOnly scanCells As New RibbonEventBinding(ribbonItems.ButtonScanSingleCells)
+    Shared ReadOnly scanSlide As New RibbonEventBinding(ribbonItems.ButtonScanSlide)
 
     Sub New()
 
@@ -186,6 +193,7 @@ Public Class frmOpenseadragonViewer
         fullScreen.evt = AddressOf SwitchToFullScreen
         exportPack.evt = AddressOf ExportSlidePackFile
         scanCells.evt = AddressOf scanCellTask
+        scanSlide.evt = AddressOf scanSlideCells
 
         ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.Available
         ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.Active
@@ -196,8 +204,15 @@ Public Class frmOpenseadragonViewer
         fullScreen.evt = Nothing
         exportPack.evt = Nothing
         scanCells.evt = Nothing
+        scanSlide.evt = Nothing
 
         ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.NotAvailable
+    End Sub
+
+    Sub scanSlideCells()
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".hds", App.PID, "slidedata_")
+        Call ExportSlidePackFile(tempfile)
+
     End Sub
 
     <ClassInterface(ClassInterfaceType.AutoDual)>
