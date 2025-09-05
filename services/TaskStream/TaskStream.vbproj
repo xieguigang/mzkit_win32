@@ -127,11 +127,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="RscriptProgressTask.vb" />
+    <Compile Include="Studio\BlenderHost.vb" />
     <Compile Include="Studio\msconvert.vb" />
-    <Compile Include="Studio\mzblender.vb" />
     <Compile Include="Studio\PipelineTask.vb" />
     <Compile Include="Studio\Rscript.vb" />
     <Compile Include="Studio\RscriptPipelineTask.vb" />
+    <Compile Include="Studio\Rserve.vb" />
     <Compile Include="Studio\WorkStudio.vb" />
   </ItemGroup>
   <ItemGroup>
