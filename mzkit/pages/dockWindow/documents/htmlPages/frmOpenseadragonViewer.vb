@@ -5,6 +5,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports HEView
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.DataStorage.HDSPack
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.Linq
@@ -212,20 +213,44 @@ Public Class frmOpenseadragonViewer
     Sub scanSlideCells()
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".hds", App.PID, "slidedata_")
         Call ExportSlidePackFile(tempfile)
+        Dim level As Integer
+        Dim dzi As String = TempFileSystem.GetAppSysTempFile(".dzi", App.PID, "dzimetadata_")
+        Dim dir As String = dzi.ParentPath & "/images/"
 
+        Using s As New StreamPack(tempfile.Open(IO.FileMode.Open, doClear:=False, [readOnly]:=True))
+            Dim index = s.ReadText("/index.txt").TrimNewLine.Trim
+            Call s.ReadText("/" & index).SaveTo(dzi)
+            Dim metadata As DziImage = dzi.LoadXml(Of DziImage)
+
+            level = metadata.MaxZoomLevels.Max
+
+            Dim maxdir = $"/{index.BaseName}_files/{level}/"
+
+            If s.OpenFolder(maxdir) Is Nothing Then
+                level -= 1
+                maxdir = $"/{index.BaseName}_files/{level}/"
+            End If
+
+            If s.OpenFolder(maxdir) Is Nothing Then
+                Call Workbench.Warning($"Invalid deep zoom image data, missing data directory '{maxdir}'!")
+                Return
+            End If
+
+            For Each file As StreamBlock In s.OpenFolder(maxdir).ListFiles.OfType(Of StreamBlock)
+                Call s.OpenBlock(file, True).FlushStream($"{dir}/{file.fullName}")
+            Next
+        End Using
+
+        Dim output = RscriptProgressTask.ScanHEDziSingleCells(dzi, level, dir)
+
+        Call WebRunner.LoadCells(output)
     End Sub
 
     <ClassInterface(ClassInterfaceType.AutoDual)>
     <ComVisible(True)>
     Public Class WebRunner
 
-        Public Shared Sub ProcessImage(imgUri As String)
-            Dim data As DataURI = DataURI.URIParser(imgUri)
-            Dim img As String = TempFileSystem.GetAppSysTempFile(".jpg", sessionID:=App.PID, prefix:="capture_")
-
-            Call data.ToStream.FlushStream(img)
-
-            Dim output = RscriptProgressTask.ScanHESingleCells(img)
+        Public Shared Sub LoadCells(output As String)
             Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Cell Scan Result")
             Dim cells As CellScan() = BSONFormat.Load(output.ReadBinary) _
                 .ToJsonArray _
@@ -268,6 +293,17 @@ Public Class frmOpenseadragonViewer
                         Call System.Windows.Forms.Application.DoEvents()
                     Next
                 End Sub)
+        End Sub
+
+        Public Shared Sub ProcessImage(imgUri As String)
+            Dim data As DataURI = DataURI.URIParser(imgUri)
+            Dim img As String = TempFileSystem.GetAppSysTempFile(".jpg", sessionID:=App.PID, prefix:="capture_")
+
+            Call data.ToStream.FlushStream(img)
+
+            Dim output = RscriptProgressTask.ScanHESingleCells(img)
+
+            Call LoadCells(output)
         End Sub
     End Class
 

@@ -73,6 +73,30 @@ Public NotInheritable Class RscriptProgressTask
     Private Sub New()
     End Sub
 
+    Public Shared Function ScanHEDziSingleCells(dzi As String, level As Integer, dir As String) As String
+        Dim out As String = dzi.ChangeSuffix("bson")
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("ScanHEDzi.R")
+        Dim cli As String = $"""{Rscript}"" --dzi ""{dzi}"" --out ""{out}"" --lv {level} --dir ""{dir}"" /@set tqdm=false;ansi_color=false --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+
+        Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         p.SetProgressMode()
+
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Run processing of HE image",
+                info:="Make single cell scanning from the input dzi image raster data...")
+
+        Return out
+    End Function
+
     Public Shared Function ScanHESingleCells(img As String) As String
         Dim out As String = img.ChangeSuffix("bson")
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ScanHECells.R")
