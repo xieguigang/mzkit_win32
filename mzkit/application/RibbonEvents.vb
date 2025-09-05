@@ -723,7 +723,7 @@ Module RibbonEvents
 
     Public Sub CombineRowScanTask()
         Using file As New OpenFileDialog With {
-            .Filter = "Thermo Raw(*.raw)|*.raw|sciex Wiff Raw(*.wiff)|*.wiff|BioNovoGene mzPack(*.mzPack)|*.mzPack",
+            .Filter = "Thermo Raw(*.raw)|*.raw|sciex Wiff Raw(*.wiff)|*.wiff|mzML row scans(*.mzML)|*.mzML|mzXML row scans(*.mzXML)|*.mzXML|BioNovoGene mzPack(*.mzPack)|*.mzPack",
             .Title = "Open MSI row scan raw data files",
             .Multiselect = True
         }

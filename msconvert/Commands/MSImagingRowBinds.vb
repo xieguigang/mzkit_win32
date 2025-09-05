@@ -43,6 +43,26 @@ Public Class MSImagingRowBinds
         Next
     End Function
 
+    Private Iterator Function loadXmlRaw(files As IEnumerable(Of String)) As IEnumerable(Of mzPack)
+        For Each path As String In files
+            If path.FileExists Then
+                Yield Converter.LoadRawFileAuto(path)
+
+                Call RunSlavePipeline.SendMessage($"Measuring MSI Information... {path.BaseName}")
+            Else
+                Call RunSlavePipeline.SendMessage($"Missing file in path: '{path}'!")
+            End If
+        Next
+    End Function
+
+    Private Function combineXMLRaw(files As String()) As mzPack
+        Dim rawdata = loadXmlRaw(files)
+        Dim correction As Correction = MSIMeasurement.Measure(rawdata).GetCorrection
+        Dim mzpack As mzPack = combineMzPack(rawdata, correction)
+
+        Return mzpack
+    End Function
+
     Private Function combineRaw(files As String()) As mzPack
         Dim correction As Correction = MSIMeasurement.Measure(loadXRaw(files)).GetCorrection
         Dim mzpack As mzPack = combineMzPack(LoadThermoRaw(files), correction)
@@ -163,6 +183,7 @@ Public Class MSImagingRowBinds
             Case "raw" : Return union.combineRaw(files)
             Case "mzpack" : Return union.combineMzPack(files)
             Case "wiff" : Return union.combineWiffRaw(files)
+            Case "mzml", "mzxml" : Return union.combineXMLRaw(files)
 
             Case Else
                 Call RunSlavePipeline.SendMessage($"Unsupported file type: {exttype(Scan0)}!")
