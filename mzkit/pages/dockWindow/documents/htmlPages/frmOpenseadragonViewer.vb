@@ -237,7 +237,7 @@ Public Class frmOpenseadragonViewer
             End If
 
             For Each file As StreamBlock In s.OpenFolder(maxdir).ListFiles.OfType(Of StreamBlock)
-                Call s.OpenBlock(file, True).FlushStream($"{dir}/{file.fullName.BaseName }")
+                Call s.OpenBlock(file, True).FlushStream($"{dir}/{file.fullName.FileName}")
             Next
         End Using
 
