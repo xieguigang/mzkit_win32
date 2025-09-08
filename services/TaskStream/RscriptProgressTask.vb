@@ -84,7 +84,7 @@ Public NotInheritable Class RscriptProgressTask
 
         Call TaskProgress.RunAction(
                 run:=Sub(p)
-                         p.SetProgressMode()
+                         Call p.SetProgressMode()
 
                          AddHandler pipeline.SetProgress, AddressOf p.SetProgress
                          AddHandler pipeline.Finish, AddressOf p.TaskFinish

@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.DataStorage.HDSPack
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports Microsoft.VisualBasic.FileIO
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.BSON
@@ -259,44 +260,60 @@ Public Class frmOpenseadragonViewer
             End If
 
             Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Cell Scan Result")
+            Dim d As Integer = cells.Length / 30
 
-            table.AppSource = GetType(WebRunner)
-            table.InstanceGuid = Guid.NewGuid.ToString
-            table.SourceName = "Cell Scan Result"
-            table.ViewRow = Sub(row)
-                            End Sub
-            table.LoadTable(
-                Sub(grid)
-                    Dim v As Object()
+            If d < 1 Then
+                d = 1
+            End If
 
-                    Call grid.Columns.Add("x", GetType(Single))
-                    Call grid.Columns.Add("y", GetType(Single))
-                    Call grid.Columns.Add("area", GetType(Double))
-                    Call grid.Columns.Add("ratio", GetType(Double))
-                    Call grid.Columns.Add("points", GetType(Integer))
-                    Call grid.Columns.Add("width", GetType(Double))
-                    Call grid.Columns.Add("height", GetType(Double))
-                    Call grid.Columns.Add("density", GetType(Double))
-                    Call grid.Columns.Add("moran-I", GetType(Double))
-                    Call grid.Columns.Add("pvalue", GetType(Double))
+            Call TaskProgress.RunAction(
+                Sub(p As ITaskProgress)
+                    p.SetProgressMode()
 
-                    For Each cell As CellScan In cells
-                        v = New Object() {
-                            cell.physical_x, cell.physical_y,
-                            cell.area,
-                            cell.ratio,
-                            cell.points,
-                            cell.width,
-                            cell.height,
-                            cell.density,
-                            cell.moranI,
-                            cell.pvalue
-                        }
+                    table.AppSource = GetType(WebRunner)
+                    table.InstanceGuid = Guid.NewGuid.ToString
+                    table.SourceName = "Cell Scan Result"
+                    table.ViewRow = Sub(row)
+                                    End Sub
+                    table.LoadTable(
+                        Sub(grid)
+                            Dim v As Object()
+                            Dim i As i32 = 0
 
-                        Call grid.Rows.Add(v)
-                        Call System.Windows.Forms.Application.DoEvents()
-                    Next
-                End Sub)
+                            Call grid.Columns.Add("x", GetType(Single))
+                            Call grid.Columns.Add("y", GetType(Single))
+                            Call grid.Columns.Add("area", GetType(Double))
+                            Call grid.Columns.Add("ratio", GetType(Double))
+                            Call grid.Columns.Add("points", GetType(Integer))
+                            Call grid.Columns.Add("width", GetType(Double))
+                            Call grid.Columns.Add("height", GetType(Double))
+                            Call grid.Columns.Add("density", GetType(Double))
+                            Call grid.Columns.Add("moran-I", GetType(Double))
+                            Call grid.Columns.Add("pvalue", GetType(Double))
+
+                            For Each cell As CellScan In cells
+                                v = New Object() {
+                                    cell.physical_x, cell.physical_y,
+                                    cell.area,
+                                    cell.ratio,
+                                    cell.points,
+                                    cell.width,
+                                    cell.height,
+                                    cell.density,
+                                    cell.moranI,
+                                    cell.pvalue
+                                }
+
+                                Call grid.Rows.Add(v)
+
+                                If ++i Mod d = 0 Then
+                                    Call p.SetProgress(CInt(i) / cells.Length * 100)
+                                End If
+                            Next
+                        End Sub)
+                End Sub, title:="Loading Cells Table",
+                         info:="Loading cells scan result table data...",
+                         host:=table)
         End Sub
 
         Public Shared Sub ProcessImage(imgUri As String)
