@@ -252,7 +252,7 @@ Public Class frmOpenseadragonViewer
     Public Class WebRunner
 
         Public Shared Sub LoadCells(output As String)
-            Dim cells As CellScan() = BSONFormat.SafeLoadArrayList(output.ReadBinary).CreateObject(Of CellScan())(False)
+            Dim cells As CellScan() = TaskProgress.LoadData(Function(p As ITaskProgress) BSONFormat.SafeLoadArrayList(output.ReadBinary).CreateObject(Of CellScan())(False), title:="Load cells data", info:="Loading single cells data from temp file...")
 
             If cells.IsNullOrEmpty Then
                 Call MessageBox.Show("Scan single cells on the slide image failure, please check run log!", "Scan Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
