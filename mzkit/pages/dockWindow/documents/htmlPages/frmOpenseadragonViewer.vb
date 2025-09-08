@@ -237,7 +237,7 @@ Public Class frmOpenseadragonViewer
             End If
 
             For Each file As StreamBlock In s.OpenFolder(maxdir).ListFiles.OfType(Of StreamBlock)
-                Call s.OpenBlock(file, True).FlushStream($"{dir}/{file.fullName}")
+                Call s.OpenBlock(file, True).FlushStream($"{dir}/{file.fullName.BaseName }")
             Next
         End Using
 
@@ -251,10 +251,14 @@ Public Class frmOpenseadragonViewer
     Public Class WebRunner
 
         Public Shared Sub LoadCells(output As String)
+            Dim cells As CellScan() = BSONFormat.SafeLoadArrayList(output.ReadBinary).CreateObject(Of CellScan())(False)
+
+            If cells.IsNullOrEmpty Then
+                Call MessageBox.Show("Scan single cells on the slide image failure, please check run log!", "Scan Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+
             Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Cell Scan Result")
-            Dim cells As CellScan() = BSONFormat.Load(output.ReadBinary) _
-                .ToJsonArray _
-                .CreateObject(Of CellScan())(False)
 
             table.AppSource = GetType(WebRunner)
             table.InstanceGuid = Guid.NewGuid.ToString
