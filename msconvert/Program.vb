@@ -439,15 +439,15 @@ Imports MZWorkPack
         Dim basePeak As Double = args("/matrix_basePeak") Or 0.0
         Dim norm As Boolean = args("/TIC_norm")
         Dim mzpack As mzPack
-        Dim source As String
+        Dim source As String()
         Dim polarity As String = args("/ionMode") Or "?"
 
         If file_handle.ExtensionSuffix("mzPack") Then
-            source = file_handle
+            source = {file_handle}
             mzpack = mzPack.ReadAll(file_handle.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
         Else
             files = file_handle.ReadAllLines
-            source = files(Scan0)
+            source = files
             mzpack = MSImagingRowBinds.MSI_rowbind(files, cutoff, basePeak, norm)
         End If
 
