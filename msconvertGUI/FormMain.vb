@@ -126,6 +126,8 @@ Public Class FormMain : Implements AppHost
 
             If cancel Then
                 Return
+            Else
+                Call FlowLayoutPanel1.Controls.Clear()
             End If
         End If
 
@@ -278,5 +280,9 @@ Public Class FormMain : Implements AppHost
 
     Private Sub FormMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         RaiseEvent CloseWorkbench(e)
+    End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        Call New AboutBox1().ShowDialog()
     End Sub
 End Class

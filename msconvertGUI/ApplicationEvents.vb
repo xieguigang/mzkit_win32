@@ -148,7 +148,10 @@ Namespace My
 
             Dim progress As Action(Of String) = AddressOf display.ShowMessage
             Dim success As Action = Sub() display.ShowMessage("Done!")
-            Dim task As New ImportsRawData(source, progress, success, cachePath:=outputfile) With {
+            Dim setProgress As Action(Of Integer) = AddressOf display.SetProgress
+            Dim task As New ImportsRawData(source, progress, success,
+                                           cachePath:=outputfile,
+                                           writeProgress:=setProgress) With {
                 .protocol = FileApplicationClass.MSImaging,
                 .arguments = main.arguments
             }
