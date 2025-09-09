@@ -135,7 +135,7 @@ Public Class ImportsRawData
                     ' do row combines and then convert to imzml
                     Return PipelineTask.Task.GetMSIToimzMLCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak, resolution, tic_norm:=norm)
                 Else
-                    Return PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak, resolution, tic_norm:=norm)
+                    Return PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, raw.cache, scan:="raw", cutoff, matrix_basepeak, resolution, tic_norm:=norm)
                 End If
             Case Else
                 Throw New NotImplementedException(protocol.Description)
