@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net48</TargetFramework>
-    <StartupObject>Sub Main</StartupObject>
+    <StartupObject>msconvertGUI.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
     <OutputPath>../../../dist\bin</OutputPath>
@@ -11,6 +11,11 @@
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;mzkit_win32</Configurations>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Product>BioDeep</Product>
+    <Company>PANOMIX</Company>
+    <Authors>xieguigang@metabolomics.ac.cn</Authors>
+    <Title>Convert Mass Spectrum Raw Data Files</Title>
+    <Description>Convert Mass Spectrum Raw Data Files Into MZKit Format</Description>
   </PropertyGroup>
 
   <ItemGroup>
