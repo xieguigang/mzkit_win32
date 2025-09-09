@@ -212,7 +212,7 @@ End Function
 
 ''' <summary>
 ''' ```bash
-''' /imzml --file &lt;source.data&gt; --save &lt;file.imzML&gt; [/TIC_norm /ionMode &lt;1/-1, default=1&gt; /cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt; /resolution &lt;default=17&gt;]
+''' /imzml --file &lt;source.data&gt; --save &lt;file.imzML&gt; [/TIC_norm /cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt; /resolution &lt;default=17&gt; /ionMode &lt;1/-1, default=?&gt;]
 ''' ```
 ''' Convert raw data file to imzML file.
 ''' </summary>
@@ -225,35 +225,32 @@ End Function
 ''' </param>
 Public Function MSIToimzML(file As String, 
                               save As String, 
-                              Optional ionmode As String = "1", 
                               Optional cutoff As String = "0", 
                               Optional matrix_basepeak As String = "0", 
                               Optional resolution As String = "17", 
+                              Optional ionmode As String = "?", 
                               Optional tic_norm As Boolean = False) As Integer
 Dim cli = GetMSIToimzMLCommandLine(file:=file, 
                               save:=save, 
-                              ionmode:=ionmode, 
                               cutoff:=cutoff, 
                               matrix_basepeak:=matrix_basepeak, 
                               resolution:=resolution, 
+                              ionmode:=ionmode, 
                               tic_norm:=tic_norm, internal_pipelineMode:=True)
     Dim proc As IIORedirectAbstract = RunDotNetApp(cli)
     Return proc.Run()
 End Function
 Public Function GetMSIToimzMLCommandLine(file As String, 
                               save As String, 
-                              Optional ionmode As String = "1", 
                               Optional cutoff As String = "0", 
                               Optional matrix_basepeak As String = "0", 
                               Optional resolution As String = "17", 
+                              Optional ionmode As String = "?", 
                               Optional tic_norm As Boolean = False, Optional internal_pipelineMode As Boolean = True) As String
     Dim CLI As New StringBuilder("/imzml")
     Call CLI.Append(" ")
     Call CLI.Append("--file " & """" & file & """ ")
     Call CLI.Append("--save " & """" & save & """ ")
-    If Not ionmode.StringEmpty Then
-            Call CLI.Append("/ionmode " & """" & ionmode & """ ")
-    End If
     If Not cutoff.StringEmpty Then
             Call CLI.Append("/cutoff " & """" & cutoff & """ ")
     End If
@@ -262,6 +259,9 @@ Public Function GetMSIToimzMLCommandLine(file As String,
     End If
     If Not resolution.StringEmpty Then
             Call CLI.Append("/resolution " & """" & resolution & """ ")
+    End If
+    If Not ionmode.StringEmpty Then
+            Call CLI.Append("/ionmode " & """" & ionmode & """ ")
     End If
     If tic_norm Then
         Call CLI.Append("/tic_norm ")

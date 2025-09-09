@@ -427,7 +427,7 @@ Imports MZWorkPack
 
     <ExportAPI("/imzml")>
     <Description("Convert raw data file to imzML file.")>
-    <Usage("/imzml --file <source.data> --save <file.imzML> [/TIC_norm /ionMode <1/-1, default=1> /cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
+    <Usage("/imzml --file <source.data> --save <file.imzML> [/TIC_norm /cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17> /ionMode <1/-1, default=?>]")>
     <Argument("--file", Description:="the source data file inputs, could be a MZKit mzpack rawdata file or a text file contains the vendor raw data file to combine.")>
     <Argument("--save", Description:="the file location path of the imzML and ibd rawdata file to export.")>
     <Argument("/ionMode", True, Description:="the polarity mode of the ms data. value could be 1 for positive and -1 for negative")>
@@ -440,7 +440,7 @@ Imports MZWorkPack
         Dim norm As Boolean = args("/TIC_norm")
         Dim mzpack As mzPack
         Dim source As String
-        Dim polarity As Integer = args("/ionMode") Or 1
+        Dim polarity As String = args("/ionMode") Or "?"
 
         If file_handle.ExtensionSuffix("mzPack") Then
             source = file_handle
