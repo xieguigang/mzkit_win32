@@ -70,6 +70,7 @@ Public Class ImportsRawData
     ReadOnly source As String
     ReadOnly cache As String
     ReadOnly showProgress As Action(Of String)
+    ReadOnly setProgress As Action(Of Integer)
     ReadOnly success As Action
     ReadOnly snapshot As Boolean
 
@@ -80,11 +81,13 @@ Public Class ImportsRawData
 
     Sub New(file As String, progress As Action(Of String), finished As Action,
             Optional cachePath As String = Nothing,
-            Optional create_snapshot As Boolean = True)
+            Optional create_snapshot As Boolean = True,
+            Optional writeProgress As Action(Of Integer) = Nothing)
 
         source = file
         cache = If(cachePath, GetCachePath(file))
         showProgress = progress
+        setProgress = writeProgress
         success = finished
         raw = New MZWork.Raw With {
             .cache = cache.GetFullPath,
@@ -151,6 +154,10 @@ Public Class ImportsRawData
 
         AddHandler pipeline.Finish, AddressOf success.Invoke
         AddHandler pipeline.SetMessage, AddressOf showProgress.Invoke
+
+        If setProgress IsNot Nothing Then
+            AddHandler pipeline.SetProgress, Sub(p, txt) setProgress(p)
+        End If
 
         Call WorkStudio.LogCommandLine(PipelineTask.Host, cli, App.CurrentDirectory)
 

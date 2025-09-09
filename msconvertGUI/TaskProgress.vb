@@ -64,6 +64,16 @@ Public Class TaskProgress
 
     End Sub
 
+    Public Sub SetProgress(p As Integer)
+        Call Me.Invoke(
+            Sub()
+                Try
+                    ProgressBar1.Value = p
+                Catch ex As Exception
+                End Try
+            End Sub)
+    End Sub
+
     Public Sub ShowMessage(msg As String)
         Call Me.Invoke(Sub() Label2.Text = msg)
     End Sub
