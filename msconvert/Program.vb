@@ -466,11 +466,20 @@ Imports MZWorkPack
             )
         End If
 
+        Dim ionMode As IonModes = Provider.ParseIonMode(polarity, allowsUnknown:=True)
+
+        If ionMode = IonModes.Unknown Then
+            ionMode = Provider.ParseIonMode(mzpack.GetMetadata("polarity"), allowsUnknown:=True)
+        End If
+        If ionMode = IonModes.Unknown Then
+            ionMode = IonModes.Positive
+        End If
+
         Using writer As imzML.mzPackWriter = imzML.mzPackWriter _
             .OpenOutput(save) _
             .SetMSImagingParameters(dimsize, res) _
             .SetSourceLocation(source) _
-            .SetSpectrumParameters(polarity)
+            .SetSpectrumParameters(ionMode)
 
             For Each scan As ScanMS1 In mzpack.MS
                 Call writer.WriteScan(scan)
