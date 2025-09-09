@@ -15,6 +15,7 @@ Imports Microsoft.VisualBasic.Math.LinearAlgebra
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports SMRUCC.genomics.Analysis.Spatial.Imaging
+Imports Transform = BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.Transform
 
 Public Class SpatialTile
 

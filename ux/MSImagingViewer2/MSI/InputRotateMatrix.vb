@@ -1,8 +1,8 @@
 ﻿Imports System.Drawing
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Math
+Imports Transform = BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.Transform
 
 Public Class InputRotateMatrix
 
