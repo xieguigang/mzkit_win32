@@ -90,7 +90,7 @@ Public Class FormMain : Implements AppHost
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Async Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         If TextBox1.Text.StringEmpty OrElse Not TextBox1.Text.DirectoryExists Then
             MessageBox.Show("Invalid source folder path!", "Source Error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
             Return
@@ -129,7 +129,25 @@ Public Class FormMain : Implements AppHost
             End If
         End If
 
-        Call MyApplication.SubmitTask(source, output, Me).Start()
+        enableUI(False)
+        TabControl1.SelectedTab = TabPage2
+
+        Await MyApplication.SubmitTask(source, output, Me)
+
+        enableUI(True)
+
+        MessageBox.Show("Make Mass Spectrum Raw Data File Conversion Finished!", "Task Finished",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub enableUI(enable As Boolean)
+        TextBox1.Enabled = enable
+        TextBox2.Enabled = enable
+        Button1.Enabled = enable
+        DropDownButton1.Enabled = enable
+        ToolStripMenuItem1.Enabled = enable
+        Button3.Enabled = enable
     End Sub
 
     Public Sub AddTask(task As TaskProgress)
@@ -216,6 +234,7 @@ Public Class FormMain : Implements AppHost
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         Workbench.Hook(Me)
+        ShowMSIRowScanSummary.HookIonReader(AddressOf BioNovoGene.Analytical.MassSpectrometry.Assembly.CheckMatrixBaseIon)
     End Sub
 
     Public Event ResizeForm As AppHost.ResizeFormEventHandler Implements AppHost.ResizeForm

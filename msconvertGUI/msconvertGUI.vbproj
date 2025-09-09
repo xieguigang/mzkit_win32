@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+    <ProjectReference Include="..\..\assembly\mzPackExtensions\mzPackExtensions.NET5.vbproj" />
     <ProjectReference Include="..\..\assembly\ThermoRawFileReader\MSFileReader.NET5.vbproj" />
     <ProjectReference Include="..\services\Task\Task.vbproj" />
     <ProjectReference Include="..\ux\BasicMDIForm\BasicMDIForm.vbproj" />
