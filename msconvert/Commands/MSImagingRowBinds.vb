@@ -100,6 +100,9 @@ Public Class MSImagingRowBinds
             Dim raw As New MSFileReader(path)
             Dim cache As mzPack = raw.LoadFromXRaw
 
+            cache.note = raw.ThermoReader.FileInfo.ToString
+            cache.metadata("polarity") = raw.ThermoReader.Polarity.ToString.ToLower
+
             Yield CutBasePeak(cache)
 
             Try
