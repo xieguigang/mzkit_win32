@@ -137,6 +137,7 @@ namespace RibbonLib.Controls
             public const uint cmdTabFormulaSearch = 1092;
             public const uint cmdGroupFormulaSearch = 1093;
             public const uint cmdButtonFormulaSearchExport = 1094;
+            public const uint cmdButtonEditCustomFormulaLibrary = 365;
             public const uint cmdTargetedContex = 101;
             public const uint cmdTabTargeted = 102;
             public const uint cmdTabGroupTargeted = 98;
@@ -510,8 +511,15 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonRefreshNetwork { get; private set; }
         public RibbonTabGroup TabGroupFormulaSearchTools { get; private set; }
         public RibbonTab TabFormulaSearch { get; private set; }
+        /// <summary>
+        /// Search Result Data and Library Data Files
+        /// </summary>
         public RibbonGroup GroupFormulaSearch { get; private set; }
         public RibbonButton ButtonFormulaSearchExport { get; private set; }
+        /// <summary>
+        /// Open a page for edit your custom metabolite library.
+        /// </summary>
+        public RibbonButton ButtonEditCustomFormulaLibrary { get; private set; }
         public RibbonTabGroup TargetedContex { get; private set; }
         public RibbonTab TabTargeted { get; private set; }
         public RibbonGroup TabGroupTargeted { get; private set; }
@@ -966,6 +974,7 @@ namespace RibbonLib.Controls
             TabFormulaSearch = new RibbonTab(ribbon, Cmd.cmdTabFormulaSearch);
             GroupFormulaSearch = new RibbonGroup(ribbon, Cmd.cmdGroupFormulaSearch);
             ButtonFormulaSearchExport = new RibbonButton(ribbon, Cmd.cmdButtonFormulaSearchExport);
+            ButtonEditCustomFormulaLibrary = new RibbonButton(ribbon, Cmd.cmdButtonEditCustomFormulaLibrary);
             TargetedContex = new RibbonTabGroup(ribbon, Cmd.cmdTargetedContex);
             TabTargeted = new RibbonTab(ribbon, Cmd.cmdTabTargeted);
             TabGroupTargeted = new RibbonGroup(ribbon, Cmd.cmdTabGroupTargeted);

@@ -134,6 +134,7 @@ Namespace RibbonLib.Controls
             Public Const cmdTabFormulaSearch As UInteger = 1092
             Public Const cmdGroupFormulaSearch As UInteger = 1093
             Public Const cmdButtonFormulaSearchExport As UInteger = 1094
+            Public Const cmdButtonEditCustomFormulaLibrary As UInteger = 365
             Public Const cmdTargetedContex As UInteger = 101
             Public Const cmdTabTargeted As UInteger = 102
             Public Const cmdTabGroupTargeted As UInteger = 98
@@ -1098,6 +1099,9 @@ Namespace RibbonLib.Controls
             End Get
         End Property
         Private _GroupFormulaSearch As RibbonGroup
+        ''' <summary>
+        ''' Search Result Data and Library Data Files
+        ''' </summary>
         Public ReadOnly Property GroupFormulaSearch As RibbonGroup
             Get
                 Return _GroupFormulaSearch
@@ -1107,6 +1111,15 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonFormulaSearchExport As RibbonButton
             Get
                 Return _ButtonFormulaSearchExport
+            End Get
+        End Property
+        Private _ButtonEditCustomFormulaLibrary As RibbonButton
+        ''' <summary>
+        ''' Open a page for edit your custom metabolite library.
+        ''' </summary>
+        Public ReadOnly Property ButtonEditCustomFormulaLibrary As RibbonButton
+            Get
+                Return _ButtonEditCustomFormulaLibrary
             End Get
         End Property
         Private _TargetedContex As RibbonTabGroup
@@ -2683,6 +2696,7 @@ Namespace RibbonLib.Controls
             _TabFormulaSearch = New RibbonTab(_ribbon, Cmd.cmdTabFormulaSearch)
             _GroupFormulaSearch = New RibbonGroup(_ribbon, Cmd.cmdGroupFormulaSearch)
             _ButtonFormulaSearchExport = New RibbonButton(_ribbon, Cmd.cmdButtonFormulaSearchExport)
+            _ButtonEditCustomFormulaLibrary = New RibbonButton(_ribbon, Cmd.cmdButtonEditCustomFormulaLibrary)
             _TargetedContex = New RibbonTabGroup(_ribbon, Cmd.cmdTargetedContex)
             _TabTargeted = New RibbonTab(_ribbon, Cmd.cmdTabTargeted)
             _TabGroupTargeted = New RibbonGroup(_ribbon, Cmd.cmdTabGroupTargeted)

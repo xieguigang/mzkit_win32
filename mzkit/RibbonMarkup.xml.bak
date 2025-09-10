@@ -514,6 +514,14 @@
         <Image Id="147" MinDPI="144">Res/edit-cut.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonMolstarClearCanvas" Comment="Clear Canvas" Id="360" LabelTitle="Clear Canvas" LabelDescription="Clear Canvas" TooltipTitle="Clear Canvas" TooltipDescription="Clear Canvas" Keytip="Clear Canvas">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-clear-100.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-clear-100.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonClickScatter" Comment="Click Through Scatter" Id="326" LabelTitle="Click Through Scatter" LabelDescription="This toggle will affects of the behaviours when click on the scatter. Single spectrum alignment result will be shown if set this checked." TooltipTitle="Click Through Scatter" TooltipDescription="Click Through Scatter">
       <Command.SmallImages>
         <Image MinDPI="192">Res/icons8-12-cluster-58.png</Image>
@@ -710,7 +718,7 @@
         <Image Id="203" MinDPI="144">Res/edit-paste.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdGroupFormulaSearch" Id="1093">
+    <Command Name="cmdGroupFormulaSearch" Comment="Search Result Data and Library Data Files" Id="1093" LabelDescription="Search Result Data and Library Data Files" TooltipTitle="Search Result Data and Library Data Files" TooltipDescription="Search Result Data and Library Data Files">
       <Command.LabelTitle>
         <String Id="204">Data</String>
       </Command.LabelTitle>
@@ -846,6 +854,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="237" MinDPI="192">Res/icons8-license-96.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonEditCustomFormulaLibrary" Comment="Open a page for edit your custom metabolite library." Id="365" LabelTitle="Edit Custom Library" LabelDescription="Open a page for edit your custom metabolite library." TooltipTitle="Open a page for edit your custom metabolite library." TooltipDescription="Open a page for edit your custom metabolite library.">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/libreoffice-base.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/libreoffice-base.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonHEstainEditLabel" Id="240">
@@ -1300,7 +1316,7 @@
     </Command>
     <Command Name="cmdTabFormulaSearch" Id="1092">
       <Command.LabelTitle>
-        <String Id="359">Formula Result</String>
+        <String Id="359">Formula Search Data</String>
       </Command.LabelTitle>
     </Command>
     <Command Name="cmdGroupFormulaSearchConfig2" Id="1095">
@@ -1421,6 +1437,7 @@
         <String Id="1172">Create tissue segmentation via the spatial gibbs sampling method</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdGroupHEAnalysis" Comment="HE Analysis" Id="363" LabelTitle="HE Analysis" LabelDescription="HE Analysis" TooltipTitle="HE Analysis" TooltipDescription="HE Analysis" Keytip="HE Analysis" />
     <Command Name="cmdGroupHEstainTools" Id="238">
       <Command.LabelTitle>
         <String Id="389">HE stain tools</String>
@@ -1981,6 +1998,14 @@
         <String Id="532">Main</String>
       </Command.LabelTitle>
     </Command>
+    <Command Name="cmdButtonMolstarMakeSnapshot" Comment="Make Snapshot" Id="361" LabelTitle="Make Snapshot" LabelDescription="Make Snapshot" TooltipTitle="Make Snapshot" TooltipDescription="Make Snapshot" Keytip="Make Snapshot">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdMALDIViewer" Id="215">
       <Command.LabelTitle>
         <String Id="533">MALDI Viewer</String>
@@ -2109,6 +2134,14 @@
     </Command>
     <Command Name="cmdDataSummaryPanel" Id="270" LabelTitle="Metabonomics Workbench" LabelDescription="Metabonomics Workbench" TooltipTitle="Metabonomics Workbench" TooltipDescription="Metabonomics Workbench" />
     <Command Name="cmdMetaboAnalysis" Id="269" LabelTitle="Metabonomics Workbench" LabelDescription="Metabonomics Workbench" TooltipTitle="Metabonomics Workbench" TooltipDescription="Metabonomics Workbench" />
+    <Command Name="cmdButtonMolmilToolkit" Comment="Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data" Id="351" LabelTitle="Molecule Docking Toolkit" LabelDescription="Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data" TooltipTitle="Molecule Docking Toolkit" TooltipDescription="Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data" Keytip="Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonDropD" Id="5010">
       <Command.LabelTitle>
         <String Id="562">Molecule Networking</String>
@@ -2127,14 +2160,6 @@
     </Command>
     <Command Name="cmdMenuMolmil" Id="347" LabelTitle="Molecule Viewer" LabelDescription="Molecule Viewer" TooltipTitle="Molecule Viewer" TooltipDescription="Molecule Viewer" Keytip="Molecule Viewer" />
     <Command Name="cmdPanelMolmilFile" Id="348" LabelTitle="Molecule Viewer File" LabelDescription="Molecule Viewer File" TooltipTitle="Molecule Viewer File" TooltipDescription="Molecule Viewer File" Keytip="Molecule Viewer File" />
-    <Command Name="cmdButtonMolmilToolkit" Comment="Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data" Id="351" LabelTitle="Molecule Docking Toolkit" LabelDescription="Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data" TooltipTitle="Molecule Docking Toolkit" TooltipDescription="Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data" Keytip="Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
-      </Command.LargeImages>
-    </Command>
     <Command Name="cmdButtonMovePolygon" Id="147">
       <Command.LabelTitle>
         <String Id="566">Move Polygon</String>
@@ -2659,6 +2684,7 @@
         <String Id="692">Operations</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdGroupMolstarOperations" Comment="Molstar Operations" Id="359" LabelTitle="Operations" LabelDescription="Molstar Operations" TooltipTitle="Molstar Operations" TooltipDescription="Molstar Operations" Keytip="Molstar Operations" />
     <Command Name="cmdButtonOPLSDA" Id="274" LabelTitle="OPLS-DA">
       <Command.SmallImages>
         <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
@@ -3161,6 +3187,14 @@
         <Image Id="826">Res/gnome-window-manager.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonMolstarResetCamera" Comment="Reset Camera" Id="358" LabelTitle="Reset Camera" LabelDescription="Reset Camera" TooltipTitle="Reset Camera" TooltipDescription="Reset Camera" Keytip="Reset Camera">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonResetFeatureFilter" Id="165">
       <Command.LabelTitle>
         <String Id="827">Reset Filter</String>
@@ -3395,6 +3429,22 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="893" MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonScanSingleCells" Comment="Scan single cells shape in current image capture region " Id="362" LabelTitle="Scan Region" LabelDescription="Scan single cells shape in current image capture region " TooltipTitle="Scan Single Cells" TooltipDescription="Scan single cells shape in current image capture region " Keytip="Scan Cells">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonScanSlide" Comment="Scan the entire slide image for the single cells shapes" Id="364" LabelTitle="Scan Slide" LabelDescription="Scan the entire slide image for the single cells shapes" TooltipTitle="Scan the entire slide image for the single cells shapes" TooltipDescription="Scan the entire slide image for the single cells shapes" Keytip="Scan the entire slide image for the single cells shapes">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdGroupRscript" Id="1132">
@@ -4582,48 +4632,6 @@
         <Image MinDPI="192">Res/applications-system.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonMolstarResetCamera" Comment="Reset Camera" Id="358" LabelTitle="Reset Camera" LabelDescription="Reset Camera" TooltipTitle="Reset Camera" TooltipDescription="Reset Camera" Keytip="Reset Camera">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdGroupMolstarOperations" Comment="Molstar Operations" Id="359" LabelTitle="Operations" LabelDescription="Molstar Operations" TooltipTitle="Molstar Operations" TooltipDescription="Molstar Operations" Keytip="Molstar Operations" />
-    <Command Name="cmdButtonMolstarClearCanvas" Comment="Clear Canvas" Id="360" LabelTitle="Clear Canvas" LabelDescription="Clear Canvas" TooltipTitle="Clear Canvas" TooltipDescription="Clear Canvas" Keytip="Clear Canvas">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-clear-100.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-clear-100.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonMolstarMakeSnapshot" Comment="Make Snapshot" Id="361" LabelTitle="Make Snapshot" LabelDescription="Make Snapshot" TooltipTitle="Make Snapshot" TooltipDescription="Make Snapshot" Keytip="Make Snapshot">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonScanSingleCells" Comment="Scan single cells shape in current image capture region " Id="362" LabelTitle="Scan Region" LabelDescription="Scan single cells shape in current image capture region " TooltipTitle="Scan Single Cells" TooltipDescription="Scan single cells shape in current image capture region " Keytip="Scan Cells">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/edit-find.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/edit-find.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdGroupHEAnalysis" Comment="HE Analysis" Id="363" LabelTitle="HE Analysis" LabelDescription="HE Analysis" TooltipTitle="HE Analysis" TooltipDescription="HE Analysis" Keytip="HE Analysis" />
-    <Command Name="cmdButtonScanSlide" Comment="Scan the entire slide image for the single cells shapes" Id="364" LabelTitle="Scan Slide" LabelDescription="Scan the entire slide image for the single cells shapes" TooltipTitle="Scan the entire slide image for the single cells shapes" TooltipDescription="Scan the entire slide image for the single cells shapes" Keytip="Scan the entire slide image for the single cells shapes">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/edit-find.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/edit-find.png</Image>
-      </Command.LargeImages>
-    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4854,8 +4862,9 @@
         </TabGroup>
         <TabGroup CommandName="cmdTabGroupFormulaSearchTools">
           <Tab CommandName="cmdTabFormulaSearch" ApplicationModes="0,1">
-            <Group CommandName="cmdGroupFormulaSearch" ApplicationModes="0,1" SizeDefinition="OneButton">
+            <Group CommandName="cmdGroupFormulaSearch" ApplicationModes="0,1" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonFormulaSearchExport" />
+              <Button CommandName="cmdButtonEditCustomFormulaLibrary" />
             </Group>
           </Tab>
         </TabGroup>

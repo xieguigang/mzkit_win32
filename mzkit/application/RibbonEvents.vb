@@ -254,6 +254,8 @@ Module RibbonEvents
 
         Call HookRibbon(ribbonItems.ButtonLabSolutionTool, Sub() Call openSolutionToolkit())
 
+        Call HookRibbon(ribbonItems.ButtonEditCustomFormulaLibrary, Sub() Call openMetaboliteLibraryPage())
+
         LCMSViewerModule.lcmsViewerhHandle = AddressOf openLcmsScatter
     End Sub
 
@@ -268,6 +270,10 @@ Module RibbonEvents
                         Call apply(Designer.GetColors(config.GetColorMap.Description, n:=100).Select(Function(c) c.ToHtmlColor).ToArray)
                     End Sub)
             End Sub
+    End Sub
+
+    Public Sub openMetaboliteLibraryPage()
+        Call VisualStudio.ShowSingleDocument(Of frmMoleculeLibrary)()
     End Sub
 
     Private Sub openSolutionToolkit()
