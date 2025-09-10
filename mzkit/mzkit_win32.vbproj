@@ -490,6 +490,12 @@
     <Compile Include="forms\frmTweaks\frmSingleCellsTweaks.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\InputImportsMetaboliteLibrary.Designer.vb">
+      <DependentUpon>InputImportsMetaboliteLibrary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\InputImportsMetaboliteLibrary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputReferencePointNames.Designer.vb">
       <DependentUpon>InputReferencePointNames.vb</DependentUpon>
     </Compile>
@@ -1287,6 +1293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmUserAgreement.resx">
       <DependentUpon>frmUserAgreement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputImportsMetaboliteLibrary.resx">
+      <DependentUpon>InputImportsMetaboliteLibrary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputReferencePointNames.resx">
       <DependentUpon>InputReferencePointNames.vb</DependentUpon>

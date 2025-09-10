@@ -4,6 +4,7 @@ Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle
 
@@ -11,7 +12,9 @@ Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
-            Return {}
+            Return {
+                New ContentType With {.Details = "Metabolite Library", .FileExt = ".csv", .MIMEType = "application/csv", .Name = "Metabolite Library"}
+            }
         End Get
     End Property
 
@@ -44,7 +47,10 @@ Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        InputDialog.Input(Of InputImportsMetaboliteLibrary)(
+            Sub(args)
 
+            End Sub)
     End Sub
 
     ''' <summary>
@@ -65,7 +71,9 @@ Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle
     End Sub
 
     Protected Overrides Sub OpenContainingFolder()
-        Call Process.Start(libcsvfile.ParentPath)
+        If Not libcsvfile.StringEmpty Then
+            Call Process.Start(libcsvfile.ParentPath)
+        End If
     End Sub
 
     Protected Overrides Sub CopyFullPath()
