@@ -116,7 +116,18 @@ Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle
     Sub LoadLibrary(metabolites As MetaInfoTable())
         Call loader.LoadTable(
             Sub(tbl)
+                Call tbl.Columns.Add(NameOf(MetaInfoTable.Id), GetType(String))
+                Call tbl.Columns.Add(NameOf(MetaInfoTable.CommonName), GetType(String))
+                Call tbl.Columns.Add(NameOf(MetaInfoTable.Formula), GetType(String))
+                Call tbl.Columns.Add(NameOf(MetaInfoTable.ExactMass), GetType(Double))
 
+                Call tbl.Columns.Add(NameOf(MetaInfoTable.cas), GetType(String))
+                Call tbl.Columns.Add(NameOf(MetaInfoTable.kegg), GetType(String))
+                Call tbl.Columns.Add(NameOf(MetaInfoTable.hmdb), GetType(String))
+
+                For Each row As MetaInfoTable In metabolites
+                    Call tbl.Rows.Add(row.Id, row.CommonName, row.Formula, FormulaScanner.EvaluateExactMass(row.Formula), row.cas, row.kegg, row.hmdb)
+                Next
             End Sub)
     End Sub
 
