@@ -1,8 +1,8 @@
 ﻿Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.MIME.Office
 Imports Microsoft.VisualBasic.Text
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class InputImportsMetaboliteLibrary
 
@@ -58,7 +58,17 @@ This structured format ensures seamless integration into the database while acco
         End If
 
         Do While source.Read
-
+            Yield New MetaInfo With {
+                .ID = source.GetString(id),
+                .name = source.GetString(name),
+                .formula = source.GetString(formula),
+                .exact_mass = FormulaScanner.EvaluateExactMass(.formula),
+                .xref = New BioDeep.Chemistry.MetaLib.CrossReference.xref With {
+                    .CAS = If(cas < 0, {}, {source.GetString(cas)}),
+                    .KEGG = If(kegg < 0, Nothing, source.GetString(kegg)),
+                    .HMDB = If(hmdb < 0, Nothing, source.GetString(hmdb))
+                }
+            }
         Loop
     End Function
 
