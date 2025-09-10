@@ -9,3 +9,11 @@ install all required runtime files inside the microsoft folder at first:
 ## 2. install mzkit
 
 then run the installer of mzkit workbench: mzkit_setups.exe
+
+## 3. repaires Rstudio
+
+If the software consistently encounters errors during use and becomes inoperable, please follow the steps below to repair it:  
+
+1. Open the Start Menu of your Windows system.  
+2. Locate the 【BioNovogene】 folder in the Start Menu.  
+3. Run the command 【Repair RStudio】 within the folder, and wait for the software to complete reinitialization.
