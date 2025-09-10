@@ -38,7 +38,7 @@ Public Class GridLoaderHandler
             '        ' do nothing 
             'End Select
 
-            AdvancedDataGridView1.ShowMenuStrip(column)
+            ' AdvancedDataGridView1.ShowMenuStrip(column)
         Next
 
         BindingSource1.DataSource = memoryData

@@ -22,6 +22,12 @@ Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle
     End Property
 
     Private Sub frmMoleculeLibrary_Load(sender As Object, e As EventArgs) Handles Me.Load
+        search = New GridSearchHandler(AdvancedDataGridView1)
+        loader = New GridLoaderHandler(AdvancedDataGridView1, AdvancedDataGridViewSearchToolBar1, BindingSource1)
+
+        AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
+
+        ' Call AdvancedDataGridView1.SetAutoSelectRow
         Call ApplyVsTheme(ToolStrip1, AdvancedDataGridViewSearchToolBar1)
 
         If ToolStripComboBox1.Items.Count > 0 Then
@@ -56,11 +62,7 @@ Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
-        InputDialog.Input(Of InputImportsMetaboliteLibrary)(
-            Sub(args)
-                Dim data As MetaInfoTable() = args.GetSource.ToArray
-
-            End Sub)
+        InputDialog.Input(Of InputImportsMetaboliteLibrary)(Sub(args) LoadLibrary(metabolites:=args.GetSource.ToArray))
     End Sub
 
     ''' <summary>
@@ -108,7 +110,14 @@ Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle
     Dim search As GridSearchHandler
 
     Sub LoadLibrary()
+        Call LoadLibrary(metabolites:=libcsvfile.LoadCsv(Of MetaInfoTable))
+    End Sub
 
+    Sub LoadLibrary(metabolites As MetaInfoTable())
+        Call loader.LoadTable(
+            Sub(tbl)
+
+            End Sub)
     End Sub
 
     Public Function Save(path As String, encoding As Encoding) As Boolean Implements ISaveHandle.Save
@@ -143,7 +152,7 @@ Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle
             Dim rowObj As DataRow = table.Rows(j)
 
             Try
-                Dim vec = rowObj.ItemArray
+                Dim vec As Object() = rowObj.ItemArray
 
                 If Not vec.IsNullOrEmpty Then
                     Call rows.Add(New MetaInfoTable With {
