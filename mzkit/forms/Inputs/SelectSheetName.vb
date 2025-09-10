@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.mzkit_win32.My
+﻿Imports System.Runtime.CompilerServices
+Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
@@ -35,6 +36,11 @@ Public Class SelectSheetName
                            Call show(name.ComboBox1.Text)
                        End Sub,
             config:=getter)
+    End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Shared Sub SelectSheetTableName(xlsx As String, show As Action(Of String))
+        Call SelectName(Excel.GetSheetNames(xlsx), show)
     End Sub
 
     Public Shared Sub OpenExcel(fileName As String, Optional showFile As Action(Of File, String) = Nothing)

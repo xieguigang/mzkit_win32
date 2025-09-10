@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.Text
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class InputImportsMetaboliteLibrary
 
@@ -34,5 +35,23 @@ This structured format ensures seamless integration into the database while acco
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.DialogResult = DialogResult.Cancel
+    End Sub
+
+    Dim sheetName As String
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Using file As New OpenFileDialog With {.Filter = "Excel Table(*.csv;*.xlsx)|*.csv;*.xlsx"}
+            If file.ShowDialog = DialogResult.OK Then
+                If file.FileName.ExtensionSuffix("xlsx") Then
+                    Call SelectSheetName.SelectSheetTableName(
+                        file.FileName, Sub(sheet)
+                                           sheetName = sheet
+                                           TextBox1.Text = file.FileName
+                                       End Sub)
+                Else
+                    TextBox1.Text = file.FileName
+                End If
+            End If
+        End Using
     End Sub
 End Class
