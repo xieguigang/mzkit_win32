@@ -740,8 +740,8 @@ UseCheckedList:
                                          table = DataFrameResolver.CreateObject(Xlsx.Open(file.FileName).GetTable(0))
                                      End If
 
-                                     mz = table(table.GetOrdinal("mz")).AsDouble
-                                     name = table(table.GetOrdinal("name")).ToArray
+                                     mz = table(table.GetOrdinal("mz", "m/z", "MZ", "M/Z")).AsDouble
+                                     name = table(table.GetOrdinal("name", "Name")).ToArray
                                  End Sub,
                         ex:=ex)
 
@@ -758,6 +758,7 @@ UseCheckedList:
 
     Public Sub ImportsIons(labels As String(), mz As Double())
         Dim folder = Win7StyleTreeView1.Nodes(0)
+        Dim n As Integer = 0
 
         Call folder.Nodes.Clear()
         Call TaskProgress.RunAction(
@@ -765,6 +766,8 @@ UseCheckedList:
                     For i As Integer = 0 To mz.Length - 1
                         If mz(i) <= 0.0 Then
                             Continue For
+                        Else
+                            n += 1
                         End If
 
                         Dim label As String = $"{labels(i)} [m/z {mz(i).ToString("F4")}]"
@@ -782,7 +785,11 @@ UseCheckedList:
            cancel:=AddressOf DoNothing,
            host:=Me)
 
-        Call Workbench.StatusMessage($"Load {mz.Length} ions for run data visualization.")
+        If n = 0 Then
+            Call Workbench.Warning("None of the ions was loaded into workspace, please check your input table file format!")
+        Else
+            Call Workbench.StatusMessage($"Load {n} ions for run data visualization.")
+        End If
     End Sub
 
     Private Sub ExportEachSelectedLayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportEachSelectedLayersToolStripMenuItem.Click
