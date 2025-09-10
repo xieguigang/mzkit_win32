@@ -1,4 +1,4 @@
-﻿Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+﻿Imports BioNovoGene.BioDeep.Chemoinformatics
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.MIME.Office
@@ -28,7 +28,7 @@ This structured format ensures seamless integration into the database while acco
 } 
         </rtf>
 
-    Public Iterator Function GetSource() As IEnumerable(Of MetaInfo)
+    Public Iterator Function GetSource() As IEnumerable(Of MetaInfoTable)
         Dim source As DataFrameResolver
 
         If TextBox1.Text.ExtensionSuffix("csv") Then
@@ -38,7 +38,7 @@ This structured format ensures seamless integration into the database while acco
         End If
 
         Dim id As Integer = source.GetOrdinal("id", "ID", "Id")
-        Dim name As Integer = source.GetOrdinal("name", "Name", "NAME")
+        Dim name As Integer = source.GetOrdinal("name", "Name", "NAME", "CommonName", "Common Name", "commonName")
         Dim formula As Integer = source.GetOrdinal("formula", "Formula", "FORMULA")
         Dim kegg As Integer = source.GetOrdinal("kegg", "KEGG")
         Dim hmdb As Integer = source.GetOrdinal("hmdb", "HMDB")
@@ -58,16 +58,14 @@ This structured format ensures seamless integration into the database while acco
         End If
 
         Do While source.Read
-            Yield New MetaInfo With {
-                .ID = source.GetString(id),
-                .name = source.GetString(name),
-                .formula = source.GetString(formula),
-                .exact_mass = FormulaScanner.EvaluateExactMass(.formula),
-                .xref = New BioDeep.Chemistry.MetaLib.CrossReference.xref With {
-                    .CAS = If(cas < 0, {}, {source.GetString(cas)}),
-                    .KEGG = If(kegg < 0, Nothing, source.GetString(kegg)),
-                    .HMDB = If(hmdb < 0, Nothing, source.GetString(hmdb))
-                }
+            Yield New MetaInfoTable With {
+                .Id = source.GetString(id),
+                .CommonName = source.GetString(name),
+                .Formula = source.GetString(formula),
+                .ExactMass = FormulaScanner.EvaluateExactMass(.Formula),
+                .cas = If(cas < 0, Nothing, source.GetString(cas)),
+                .kegg = If(kegg < 0, Nothing, source.GetString(kegg)),
+                .hmdb = If(hmdb < 0, Nothing, source.GetString(hmdb))
             }
         Loop
     End Function
@@ -108,4 +106,12 @@ This structured format ensures seamless integration into the database while acco
             End If
         End Using
     End Sub
+End Class
+
+Public Class MetaInfoTable : Inherits MetaboliteAnnotation
+
+    Public Property cas As String
+    Public Property kegg As String
+    Public Property hmdb As String
+
 End Class
