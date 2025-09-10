@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.Text
+﻿Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class InputImportsMetaboliteLibrary
@@ -25,11 +26,20 @@ This structured format ensures seamless integration into the database while acco
 } 
         </rtf>
 
+    Public Iterator Function GetSource() As IEnumerable(Of MetaInfo)
+
+    End Function
+
     Private Sub InputImportsMetaboliteLibrary_Load(sender As Object, e As EventArgs) Handles Me.Load
         RichTextBox1.Rtf = rtf.Trim(" "c, ASCII.CR, ASCII.LF, ASCII.TAB)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If Not TextBox1.Text.FileExists(True) Then
+            Call MessageBox.Show("", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         Me.DialogResult = DialogResult.OK
     End Sub
 
