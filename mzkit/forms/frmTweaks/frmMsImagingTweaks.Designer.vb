@@ -97,6 +97,8 @@ Partial Class frmMsImagingTweaks
         Me.RenderLayerCompositionModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RenderingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportEachSelectedLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BatchExportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripSeparator()
         Me.CombineBoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CombineBarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CombineViolinPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -121,8 +123,7 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
-        Me.BatchExportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MakeBatchPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -223,10 +224,22 @@ Partial Class frmMsImagingTweaks
         '
         'ExportEachSelectedLayersToolStripMenuItem
         '
-        Me.ExportEachSelectedLayersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BatchExportsToolStripMenuItem, Me.ToolStripMenuItem6, Me.CombineBoxPlotToolStripMenuItem, Me.CombineBarPlotToolStripMenuItem, Me.CombineViolinPlotToolStripMenuItem, Me.ToolStripMenuItem5, Me.NoStatisticalChartToolStripMenuItem})
+        Me.ExportEachSelectedLayersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BatchExportsToolStripMenuItem, Me.MakeBatchPlotToolStripMenuItem, Me.ToolStripMenuItem6, Me.CombineBoxPlotToolStripMenuItem, Me.CombineBarPlotToolStripMenuItem, Me.CombineViolinPlotToolStripMenuItem, Me.ToolStripMenuItem5, Me.NoStatisticalChartToolStripMenuItem})
         Me.ExportEachSelectedLayersToolStripMenuItem.Name = "ExportEachSelectedLayersToolStripMenuItem"
         Me.ExportEachSelectedLayersToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.ExportEachSelectedLayersToolStripMenuItem.Text = "Export Each Selected Layers"
+        '
+        'BatchExportsToolStripMenuItem
+        '
+        Me.BatchExportsToolStripMenuItem.Image = CType(resources.GetObject("BatchExportsToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.BatchExportsToolStripMenuItem.Name = "BatchExportsToolStripMenuItem"
+        Me.BatchExportsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BatchExportsToolStripMenuItem.Text = "Make Batch Exports"
+        '
+        'ToolStripMenuItem6
+        '
+        Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
+        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(177, 6)
         '
         'CombineBoxPlotToolStripMenuItem
         '
@@ -416,17 +429,12 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton4.Text = "Analysis Selected Ions In Metabonomics Workbench"
         '
-        'BatchExportsToolStripMenuItem
+        'MakeBatchPlotToolStripMenuItem
         '
-        Me.BatchExportsToolStripMenuItem.Image = CType(resources.GetObject("BatchExportsToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.BatchExportsToolStripMenuItem.Name = "BatchExportsToolStripMenuItem"
-        Me.BatchExportsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.BatchExportsToolStripMenuItem.Text = "Make Batch Exports"
-        '
-        'ToolStripMenuItem6
-        '
-        Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
-        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(177, 6)
+        Me.MakeBatchPlotToolStripMenuItem.Image = CType(resources.GetObject("MakeBatchPlotToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.MakeBatchPlotToolStripMenuItem.Name = "MakeBatchPlotToolStripMenuItem"
+        Me.MakeBatchPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MakeBatchPlotToolStripMenuItem.Text = "Make Batch Plot"
         '
         'frmMsImagingTweaks
         '
@@ -490,4 +498,5 @@ Partial Class frmMsImagingTweaks
     Friend WithEvents MultipleSamplesComparisonToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BatchExportsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem6 As ToolStripSeparator
+    Friend WithEvents MakeBatchPlotToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -122,7 +122,17 @@ Public Class SetMSIPlotParameters
         Return Me
     End Function
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Public Function SetBatchPlotMode(toggle As Boolean) As SetMSIPlotParameters
+        If toggle Then
+            DropDownButton1.DropDownMenu = DropDownMenu1
+        Else
+            DropDownButton1.DropDownMenu = Nothing
+        End If
+
+        Return Me
+    End Function
+
+    Private Sub Button1_Click() Handles DropDownButton1.Click
         If SetDir Then
             ' select folder mode
             ' used for batch export of the ms-imaging
@@ -198,5 +208,32 @@ Public Class SetMSIPlotParameters
     Private Sub ChkIntensityClamp_CheckedChanged(sender As Object, e As EventArgs) Handles ChkIntensityClamp.CheckedChanged
         TextBox2.Enabled = ChkIntensityClamp.Checked
         TextBox3.Enabled = ChkIntensityClamp.Checked
+    End Sub
+
+    Private Sub SetMSIPlotParameters_Load(sender As Object, e As EventArgs) Handles Me.Load
+        DropDownButton1.DropDownMenu = Nothing
+    End Sub
+
+    Public ReadOnly Property ext As String = "png"
+
+    Private Sub PNGToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PNGToolStripMenuItem.Click
+        If PNGToolStripMenuItem.Checked Then
+            _ext = "png"
+            Label11.Text = "(*.png)"
+        End If
+    End Sub
+
+    Private Sub SVGToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SVGToolStripMenuItem.Click
+        If SVGToolStripMenuItem.Checked Then
+            _ext = "svg"
+            Label11.Text = "(*.svg)"
+        End If
+    End Sub
+
+    Private Sub PDFToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PDFToolStripMenuItem.Click
+        If PDFToolStripMenuItem.Checked Then
+            _ext = "pdf"
+            Label11.Text = "(*.pdf)"
+        End If
     End Sub
 End Class

@@ -813,6 +813,32 @@ UseCheckedList:
             config:=folder)
     End Sub
 
+    Private Sub MakeBatchPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MakeBatchPlotToolStripMenuItem.Click
+        Dim folder As New SetMSIPlotParameters With {.SetDir = True}
+
+        If viewer Is Nothing OrElse viewer.params Is Nothing Then
+            Call Workbench.Warning("Please load ms-imaging rawdata into this workspace at first!")
+            Return
+        End If
+
+        Call folder _
+            .SetDimensionSize(viewer.params.GetMSIDimension) _
+            .SetFolder(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)) _
+            .SetIntensityRange(viewer.PixelSelector1.CustomIntensityRange) _
+            .SetUnifyPadding(10) _
+            .SetBatchPlotMode(toggle:=True)
+
+        Call InputDialog.Input(
+            setConfig:=Sub(config)
+                           Call MakeBatchPlotCalls(config)
+                       End Sub,
+            config:=folder)
+    End Sub
+
+    Private Sub MakeBatchPlotCalls(folder As SetMSIPlotParameters)
+
+    End Sub
+
     Private Sub MakeExport(folder As SetMSIPlotParameters)
         Dim params = WindowModules.viewer.params
         Dim size As String = $"{params.scan_x},{params.scan_y}"
