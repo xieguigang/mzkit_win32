@@ -792,7 +792,7 @@ UseCheckedList:
         End If
     End Sub
 
-    Private Sub ExportEachSelectedLayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportEachSelectedLayersToolStripMenuItem.Click
+    Private Sub ExportEachSelectedLayersToolStripMenuItem_Click(sender As Object, e As EventArgs)
         Dim list = Win7StyleTreeView1.Nodes(0)
         Dim folder As New SetMSIPlotParameters With {.SetDir = True}
 
@@ -1281,5 +1281,9 @@ UseCheckedList:
                 End If
             End If
         End Using
+    End Sub
+
+    Private Sub BatchExportsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BatchExportsToolStripMenuItem.Click
+        ExportEachSelectedLayersToolStripMenuItem_Click(sender, e)
     End Sub
 End Class

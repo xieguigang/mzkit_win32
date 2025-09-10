@@ -89,10 +89,11 @@ Partial Class frmMsImagingTweaks
         Me.BoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViolinPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AppendMSImagingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.IntensityHistogramToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
-        Me.AppendMSImagingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MultipleSamplesComparisonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RenderLayerCompositionModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RenderingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportEachSelectedLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -112,7 +113,7 @@ Partial Class frmMsImagingTweaks
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripSpringTextBox1 = New Global.Mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
+        Me.ToolStripSpringTextBox1 = New ToolStripSpringTextBox()
         Me.ViewLayerButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
@@ -120,7 +121,8 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
-        Me.MultipleSamplesComparisonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BatchExportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripSeparator()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -172,6 +174,17 @@ Partial Class frmMsImagingTweaks
         Me.ViolinPlotToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
         Me.ViolinPlotToolStripMenuItem.Text = "Violin Plot"
         '
+        'AppendMSImagingToolStripMenuItem
+        '
+        Me.AppendMSImagingToolStripMenuItem.Checked = True
+        Me.AppendMSImagingToolStripMenuItem.CheckOnClick = True
+        Me.AppendMSImagingToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.AppendMSImagingToolStripMenuItem.Image = CType(resources.GetObject("AppendMSImagingToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.AppendMSImagingToolStripMenuItem.Name = "AppendMSImagingToolStripMenuItem"
+        Me.AppendMSImagingToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.AppendMSImagingToolStripMenuItem.Text = "Append MS-Imaging"
+        Me.AppendMSImagingToolStripMenuItem.ToolTipText = "Combine the ms-imaging heatmap with the expression chart plot"
+        '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
@@ -189,16 +202,11 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
         Me.ToolStripMenuItem4.Size = New System.Drawing.Size(230, 6)
         '
-        'AppendMSImagingToolStripMenuItem
+        'MultipleSamplesComparisonToolStripMenuItem
         '
-        Me.AppendMSImagingToolStripMenuItem.Checked = True
-        Me.AppendMSImagingToolStripMenuItem.CheckOnClick = True
-        Me.AppendMSImagingToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.AppendMSImagingToolStripMenuItem.Image = CType(resources.GetObject("AppendMSImagingToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.AppendMSImagingToolStripMenuItem.Name = "AppendMSImagingToolStripMenuItem"
-        Me.AppendMSImagingToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
-        Me.AppendMSImagingToolStripMenuItem.Text = "Append MS-Imaging"
-        Me.AppendMSImagingToolStripMenuItem.ToolTipText = "Combine the ms-imaging heatmap with the expression chart plot"
+        Me.MultipleSamplesComparisonToolStripMenuItem.Name = "MultipleSamplesComparisonToolStripMenuItem"
+        Me.MultipleSamplesComparisonToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.MultipleSamplesComparisonToolStripMenuItem.Text = "Multiple Samples Comparison"
         '
         'RenderLayerCompositionModeToolStripMenuItem
         '
@@ -215,7 +223,7 @@ Partial Class frmMsImagingTweaks
         '
         'ExportEachSelectedLayersToolStripMenuItem
         '
-        Me.ExportEachSelectedLayersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CombineBoxPlotToolStripMenuItem, Me.CombineBarPlotToolStripMenuItem, Me.CombineViolinPlotToolStripMenuItem, Me.ToolStripMenuItem5, Me.NoStatisticalChartToolStripMenuItem})
+        Me.ExportEachSelectedLayersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BatchExportsToolStripMenuItem, Me.ToolStripMenuItem6, Me.CombineBoxPlotToolStripMenuItem, Me.CombineBarPlotToolStripMenuItem, Me.CombineViolinPlotToolStripMenuItem, Me.ToolStripMenuItem5, Me.NoStatisticalChartToolStripMenuItem})
         Me.ExportEachSelectedLayersToolStripMenuItem.Name = "ExportEachSelectedLayersToolStripMenuItem"
         Me.ExportEachSelectedLayersToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.ExportEachSelectedLayersToolStripMenuItem.Text = "Export Each Selected Layers"
@@ -251,6 +259,7 @@ Partial Class frmMsImagingTweaks
         Me.NoStatisticalChartToolStripMenuItem.Checked = True
         Me.NoStatisticalChartToolStripMenuItem.CheckOnClick = True
         Me.NoStatisticalChartToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.NoStatisticalChartToolStripMenuItem.Image = CType(resources.GetObject("NoStatisticalChartToolStripMenuItem.Image"), System.Drawing.Image)
         Me.NoStatisticalChartToolStripMenuItem.Name = "NoStatisticalChartToolStripMenuItem"
         Me.NoStatisticalChartToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.NoStatisticalChartToolStripMenuItem.Text = "No Statistical Chart"
@@ -268,6 +277,7 @@ Partial Class frmMsImagingTweaks
         '
         'LoadBasePeakIonsToolStripMenuItem
         '
+        Me.LoadBasePeakIonsToolStripMenuItem.Image = CType(resources.GetObject("LoadBasePeakIonsToolStripMenuItem.Image"), System.Drawing.Image)
         Me.LoadBasePeakIonsToolStripMenuItem.Name = "LoadBasePeakIonsToolStripMenuItem"
         Me.LoadBasePeakIonsToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.LoadBasePeakIonsToolStripMenuItem.Text = "Load BasePeak Ions"
@@ -406,11 +416,17 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton4.Text = "Analysis Selected Ions In Metabonomics Workbench"
         '
-        'MultipleSamplesComparisonToolStripMenuItem
+        'BatchExportsToolStripMenuItem
         '
-        Me.MultipleSamplesComparisonToolStripMenuItem.Name = "MultipleSamplesComparisonToolStripMenuItem"
-        Me.MultipleSamplesComparisonToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
-        Me.MultipleSamplesComparisonToolStripMenuItem.Text = "Multiple Samples Comparison"
+        Me.BatchExportsToolStripMenuItem.Image = CType(resources.GetObject("BatchExportsToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.BatchExportsToolStripMenuItem.Name = "BatchExportsToolStripMenuItem"
+        Me.BatchExportsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BatchExportsToolStripMenuItem.Text = "Make Batch Exports"
+        '
+        'ToolStripMenuItem6
+        '
+        Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
+        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(177, 6)
         '
         'frmMsImagingTweaks
         '
@@ -472,4 +488,6 @@ Partial Class frmMsImagingTweaks
     Friend WithEvents ToolStripMenuItem5 As ToolStripSeparator
     Friend WithEvents NoStatisticalChartToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MultipleSamplesComparisonToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BatchExportsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem6 As ToolStripSeparator
 End Class
