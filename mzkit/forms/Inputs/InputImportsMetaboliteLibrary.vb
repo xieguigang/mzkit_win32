@@ -1,4 +1,6 @@
 ﻿Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports Microsoft.VisualBasic.Data.Framework.IO
+Imports Microsoft.VisualBasic.MIME.Office
 Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
@@ -27,7 +29,37 @@ This structured format ensures seamless integration into the database while acco
         </rtf>
 
     Public Iterator Function GetSource() As IEnumerable(Of MetaInfo)
+        Dim source As DataFrameResolver
 
+        If TextBox1.Text.ExtensionSuffix("csv") Then
+            source = DataFrameResolver.Load(TextBox1.Text)
+        Else
+            source = DataFrameResolver.CreateObject(Excel.XLSX.ReadTableAuto(TextBox1.Text, sheetName))
+        End If
+
+        Dim id As Integer = source.GetOrdinal("id", "ID", "Id")
+        Dim name As Integer = source.GetOrdinal("name", "Name", "NAME")
+        Dim formula As Integer = source.GetOrdinal("formula", "Formula", "FORMULA")
+        Dim kegg As Integer = source.GetOrdinal("kegg", "KEGG")
+        Dim hmdb As Integer = source.GetOrdinal("hmdb", "HMDB")
+        Dim cas As Integer = source.GetOrdinal("cas", "CAS", "cas_id")
+
+        If id < 0 Then
+            MessageBox.Show("Missing the required metabolite unique id!", "Invalid table", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+        If name < 0 Then
+            MessageBox.Show("Missing the required metabolite name!", "Invalid table", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+        If formula < 0 Then
+            MessageBox.Show("Missing the required metabolite formula data!", "Invalid table", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Do While source.Read
+
+        Loop
     End Function
 
     Private Sub InputImportsMetaboliteLibrary_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -36,7 +68,7 @@ This structured format ensures seamless integration into the database while acco
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If Not TextBox1.Text.FileExists(True) Then
-            Call MessageBox.Show("", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Call MessageBox.Show("Data source is not defined or file not found. Please select a valid table source at first!", "No data source", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
