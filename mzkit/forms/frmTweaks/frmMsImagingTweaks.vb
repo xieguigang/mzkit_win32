@@ -877,7 +877,8 @@ UseCheckedList:
                                overlapTotalIons:=params.showTotalIonOverlap,
                                intensityRange:=folder.IntensityRange,
                                size:=folder.GetPlotSize, dpi:=folder.GetPlotDpi, padding:=folder.GetPlotPadding,
-                               colorLevels:=params.mapLevels
+                               colorLevels:=params.mapLevels,
+                               echo:=echo
                         )
                     Next
                 Next

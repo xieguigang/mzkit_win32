@@ -393,7 +393,8 @@ Public NotInheritable Class RscriptProgressTask
                                           overlapTotalIons As Boolean,
                                           intensityRange As DoubleRange,
                                           size As Size, dpi As Integer, padding As String,
-                                          Optional title As String = "")
+                                          Optional title As String = "",
+                                          Optional echo As ITaskProgress = Nothing)
 
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
         Dim overlapFlag As String = If(overlapTotalIons, "--overlap-tic", "")
@@ -420,30 +421,46 @@ Public NotInheritable Class RscriptProgressTask
         Call filters.SaveTo(filterfile)
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call Workbench.LogText(pipeline.CommandLine)
-        Call TaskProgress.RunAction(
-            run:=Sub(p)
-                     p.SetProgressMode()
 
-                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
-                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
-                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
+        If echo Is Nothing Then
+            Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         p.SetProgressMode()
 
-                     Call pipeline.Run()
+                         AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-                 End Sub,
-            title:="Single Ion MSImaging",
-            info:="Do plot of target ion m/z...")
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Single Ion MSImaging",
+                info:="Do plot of target ion m/z...")
 
-        If saveAs.FileExists Then
-            If MessageBox.Show("Single Ion MSImaging Job Done!" & vbCrLf & "Open MSImaging result plot file?",
-                               "Open Image",
-                               MessageBoxButtons.YesNo,
-                               MessageBoxIcon.Information) = DialogResult.Yes Then
+            If saveAs.FileExists Then
+                If MessageBox.Show("Single Ion MSImaging Job Done!" & vbCrLf & "Open MSImaging result plot file?",
+                                   "Open Image",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Information) = DialogResult.Yes Then
 
-                Call Process.Start(saveAs.GetFullPath)
+                    Call Process.Start(saveAs.GetFullPath)
+                End If
+            Else
+                Call MessageBox.Show("Single Ion MSImaging Task Error!", "Task Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Else
-            Call MessageBox.Show("Single Ion MSImaging Task Error!", "Task Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Call echo.SetProgressMode()
+
+            AddHandler pipeline.SetMessage, AddressOf echo.SetInfo
+            AddHandler pipeline.SetProgress, AddressOf echo.SetProgress
+            AddHandler pipeline.Finish, AddressOf echo.TaskFinish
+
+            Call pipeline.Run()
+
+            If saveAs.FileExists Then
+                Call echo.SetInfo("Single Ion MSImaging Job Done!")
+            Else
+                Call echo.SetInfo("Single Ion MSImaging Task Error!")
+            End If
         End If
     End Sub
 
