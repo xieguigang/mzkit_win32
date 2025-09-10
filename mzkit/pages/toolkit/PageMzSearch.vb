@@ -459,7 +459,7 @@ Public Class PageMzSearch
         Next
     End Function
 
-    Public Sub ReloadMetaDatabase()
+    Public Sub ReloadMetaDatabase() Handles LinkLabel2.LinkClicked
         cboxDatabaseList.Items.Clear()
 
         cboxDatabaseList.Items.Add("kegg")
