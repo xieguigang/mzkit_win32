@@ -793,7 +793,6 @@ UseCheckedList:
     End Sub
 
     Private Sub ExportEachSelectedLayersToolStripMenuItem_Click(sender As Object, e As EventArgs)
-        Dim list = Win7StyleTreeView1.Nodes(0)
         Dim folder As New SetMSIPlotParameters With {.SetDir = True}
 
         If viewer Is Nothing OrElse viewer.params Is Nothing Then
@@ -809,12 +808,12 @@ UseCheckedList:
 
         Call InputDialog.Input(
             setConfig:=Sub(config)
-                           Call MakeExport(config, list)
+                           Call MakeExport(config)
                        End Sub,
             config:=folder)
     End Sub
 
-    Private Sub MakeExport(folder As SetMSIPlotParameters, list As TreeNode)
+    Private Sub MakeExport(folder As SetMSIPlotParameters)
         Dim params = WindowModules.viewer.params
         Dim size As String = $"{params.scan_x},{params.scan_y}"
         Dim MSIservice = WindowModules.viewer.MSIservice
@@ -842,7 +841,11 @@ UseCheckedList:
 
         Call TaskProgress.LoadData(
             streamLoad:=Function(proc As ITaskProgress)
-                            Return ExportLayers(proc, list, TIC, folder)
+                            For i As Integer = 0 To Win7StyleTreeView1.Nodes.Count - 1
+                                Call ExportLayers(proc, Win7StyleTreeView1.Nodes(i), TIC, folder)
+                            Next
+
+                            Return Nothing
                         End Function,
             title:="Plot selected image layers...",
             info:="Export image rendering...",
@@ -860,6 +863,14 @@ UseCheckedList:
         End If
     End Sub
 
+    ''' <summary>
+    ''' export all checked ions
+    ''' </summary>
+    ''' <param name="proc"></param>
+    ''' <param name="list"></param>
+    ''' <param name="TIC"></param>
+    ''' <param name="config"></param>
+    ''' <returns></returns>
     Private Function ExportLayers(proc As ITaskProgress, list As TreeNode, TIC As Image, config As SetMSIPlotParameters) As Boolean
         Dim params = WindowModules.viewer.params
         Dim mzdiff = params.GetTolerance
