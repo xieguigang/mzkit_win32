@@ -802,6 +802,12 @@
     <Compile Include="MSdata\ggplotVisual.vb" />
     <Compile Include="pages\ConnectToBioDeep.vb" />
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\frmMoleculeLibrary.Designer.vb">
+      <DependentUpon>frmMoleculeLibrary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frmMoleculeLibrary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmChemicalSolutionMassTool.Designer.vb">
       <DependentUpon>frmChemicalSolutionMassTool.vb</DependentUpon>
     </Compile>
@@ -1446,6 +1452,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmChemicalSolutionMassTool.resx">
       <DependentUpon>frmChemicalSolutionMassTool.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmMoleculeLibrary.resx">
+      <DependentUpon>frmMoleculeLibrary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmMoleculeLibrary.zh-CN.resx">
+      <DependentUpon>frmMoleculeLibrary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmMolstarViewer.resx">
       <DependentUpon>frmMolstarViewer.vb</DependentUpon>

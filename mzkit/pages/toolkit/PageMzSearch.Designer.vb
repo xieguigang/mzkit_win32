@@ -125,6 +125,7 @@ Partial Class PageMzSearch
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -363,6 +364,7 @@ Partial Class PageMzSearch
         '
         'TabSimpleMs1Search
         '
+        Me.TabSimpleMs1Search.Controls.Add(Me.LinkLabel1)
         Me.TabSimpleMs1Search.Controls.Add(Me.chkUniqueMetabolites)
         Me.TabSimpleMs1Search.Controls.Add(Me.Label9)
         Me.TabSimpleMs1Search.Controls.Add(Me.cboxDatabaseList)
@@ -461,6 +463,12 @@ Partial Class PageMzSearch
         resources.ApplyResources(Me.Label6, "Label6")
         Me.Label6.Name = "Label6"
         '
+        'LinkLabel1
+        '
+        resources.ApplyResources(Me.LinkLabel1, "LinkLabel1")
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.TabStop = True
+        '
         'PageMzSearch
         '
         resources.ApplyResources(Me, "$this")
@@ -541,4 +549,5 @@ Partial Class PageMzSearch
     Friend WithEvents AdductsPresetsLabel As Label
     Friend WithEvents AdductsPresets As ComboBox
     Friend WithEvents chkUniqueMetabolites As CheckBox
+    Friend WithEvents LinkLabel1 As LinkLabel
 End Class
