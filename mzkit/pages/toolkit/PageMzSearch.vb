@@ -472,6 +472,10 @@ Public Class PageMzSearch
         cboxDatabaseList.SetItemChecked(1, True)
         cboxDatabaseList.SetItemChecked(2, True)
         cboxDatabaseList.SetItemChecked(3, True)
+
+        For Each path As String In frmMoleculeLibrary.GetLibsFiles
+            cboxDatabaseList.Items.Add(path.BaseName)
+        Next
     End Sub
 
     Private Function getDatabase(name As String, ionMode As String(), tolerance As Tolerance) As IMzQuery
@@ -487,7 +491,9 @@ Public Class PageMzSearch
             Case "metabolights"
                 Return Globals.LoadMetabolights(AddressOf MyApplication.LogText, ionMode, tolerance)
             Case Else
-                Return Nothing
+                Dim meta = frmMoleculeLibrary.ReadLibrary(name).ToArray
+                Dim adducts = ionMode.Select(Function(type) Provider.ParseAdductModel(type)).ToArray
+                Return MSSearch(Of MetaInfoTable).CreateIndex(meta, adducts, tolerance)
         End Select
     End Function
 

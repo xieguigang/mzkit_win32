@@ -39,14 +39,20 @@ Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle
     End Sub
 
     Private Sub RefreshLibs()
-        Dim listfiles = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/metabolites/").EnumerateFiles("*.csv")
-
         Call ToolStripComboBox1.Items.Clear()
 
-        For Each path As String In listfiles
+        For Each path As String In GetLibsFiles()
             Call ToolStripComboBox1.Items.Add(path.BaseName)
         Next
     End Sub
+
+    Public Shared Function GetLibsFiles() As IEnumerable(Of String)
+        Return (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/metabolites/").EnumerateFiles("*.csv")
+    End Function
+
+    Public Shared Function ReadLibrary(name As String) As IEnumerable(Of MetaInfoTable)
+        Return (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/metabolites/{name}.csv").LoadCsv(Of MetaInfoTable)
+    End Function
 
     ''' <summary>
     ''' add new
