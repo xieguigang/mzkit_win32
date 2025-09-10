@@ -47,9 +47,11 @@ This structured format ensures seamless integration into the database while acco
                         file.FileName, Sub(sheet)
                                            sheetName = sheet
                                            TextBox1.Text = file.FileName
+                                           Label2.Text = $"({sheetName})"
                                        End Sub)
                 Else
                     TextBox1.Text = file.FileName
+                    Label2.Text = ""
                 End If
             End If
         End Using
