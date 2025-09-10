@@ -452,7 +452,7 @@ Public NotInheritable Class RscriptProgressTask
 
             AddHandler pipeline.SetMessage, AddressOf echo.SetInfo
             AddHandler pipeline.SetProgress, AddressOf echo.SetProgress
-            AddHandler pipeline.Finish, AddressOf echo.TaskFinish
+            '  AddHandler pipeline.Finish, AddressOf echo.TaskFinish
 
             Call pipeline.Run()
 

@@ -826,7 +826,6 @@ UseCheckedList:
             .SetDimensionSize(viewer.params.GetMSIDimension) _
             .SetFolder(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)) _
             .SetIntensityRange(viewer.PixelSelector1.CustomIntensityRange) _
-            .SetUnifyPadding(10) _
             .SetBatchPlotMode(toggle:=True)
 
         Call InputDialog.Input(
