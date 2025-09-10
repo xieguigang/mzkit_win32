@@ -729,7 +729,7 @@ Public Class frmMsImagingViewer
             Dim name = df.GetColumnValues({"name", "Name"})
             Dim formula = df.GetColumnValues({"formula", "Formula"})
             Dim adducts = df.GetColumnValues({"precursor_type", "precursor", "adducts"})
-            Dim mz = df.GetColumnValues({"m/z", "mz", "mass to charge"})
+            Dim mz = df.GetColumnValues({"m/z", "mz", "mass to charge", "MZ"})
 
             If name Is Nothing Then
                 Return missingField("name")
