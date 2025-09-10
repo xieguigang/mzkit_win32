@@ -92,6 +92,7 @@ Partial Class MSIPixelPropertyWindow
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
         Me.SplitContainer1.Name = "SplitContainer1"
         Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
@@ -104,7 +105,7 @@ Partial Class MSIPixelPropertyWindow
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.PropertyGrid1)
         Me.SplitContainer1.Size = New System.Drawing.Size(329, 664)
-        Me.SplitContainer1.SplitterDistance = 196
+        Me.SplitContainer1.SplitterDistance = 164
         Me.SplitContainer1.TabIndex = 0
         '
         'PictureBox1
@@ -112,7 +113,7 @@ Partial Class MSIPixelPropertyWindow
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(329, 196)
+        Me.PictureBox1.Size = New System.Drawing.Size(329, 164)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
@@ -122,12 +123,12 @@ Partial Class MSIPixelPropertyWindow
         Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PropertyGrid1.Location = New System.Drawing.Point(0, 0)
         Me.PropertyGrid1.Name = "PropertyGrid1"
-        Me.PropertyGrid1.Size = New System.Drawing.Size(329, 464)
+        Me.PropertyGrid1.Size = New System.Drawing.Size(329, 496)
         Me.PropertyGrid1.TabIndex = 0
         '
         'MSIPixelPropertyWindow
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(329, 664)
         Me.Controls.Add(Me.SplitContainer1)
