@@ -636,7 +636,7 @@ Public Class PageMzSearch
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
-
+        Call VisualStudio.ShowSingleDocument(Of frmMoleculeLibrary)()
     End Sub
 End Class
 
