@@ -222,6 +222,9 @@ Public Class SetMSIPlotParameters
         If PNGToolStripMenuItem.Checked Then
             _ext = "png"
             Label11.Text = "(*.png)"
+
+            SVGToolStripMenuItem.Checked = False
+            PDFToolStripMenuItem.Checked = False
         End If
     End Sub
 
@@ -229,6 +232,9 @@ Public Class SetMSIPlotParameters
         If SVGToolStripMenuItem.Checked Then
             _ext = "svg"
             Label11.Text = "(*.svg)"
+
+            PNGToolStripMenuItem.Checked = False
+            PDFToolStripMenuItem.Checked = False
         End If
     End Sub
 
@@ -236,6 +242,9 @@ Public Class SetMSIPlotParameters
         If PDFToolStripMenuItem.Checked Then
             _ext = "pdf"
             Label11.Text = "(*.pdf)"
+
+            SVGToolStripMenuItem.Checked = False
+            PNGToolStripMenuItem.Checked = False
         End If
     End Sub
 End Class

@@ -1912,7 +1912,7 @@ Public Class frmMsImagingViewer
                     sampleRegions.DockState = DockState.DockRight
                 End If
             Else
-                Call MyApplication.host.showStatusMessage("Select region to analysis by draw a polygon!")
+                Call Workbench.StatusMessage("Select region to analysis by draw a polygon!")
             End If
 
             PixelSelector1.Cursor = Cursors.Default

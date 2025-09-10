@@ -837,7 +837,51 @@ UseCheckedList:
     End Sub
 
     Private Sub MakeBatchPlotCalls(folder As SetMSIPlotParameters)
+        Dim msi_filters As String() = frmMsImagingViewer.loadFilters.Select(Function(f) f.ToScript).ToArray
 
+        ' the ms-imaging filter has been turn off
+        If Not viewer.params.enableFilter Then
+            msi_filters = {}
+        End If
+
+        Dim mzdiff = viewer.params.GetTolerance
+        Dim ext As String = folder.ext
+        Dim dir As String = folder.SelectedPath
+        Dim params = viewer.params
+
+        Call TaskProgress.RunAction(
+            Sub(echo As ITaskProgress)
+                For offset As Integer = 0 To Win7StyleTreeView1.Nodes.Count - 1
+                    Dim list = Win7StyleTreeView1.Nodes(offset)
+
+                    For i As Integer = 0 To list.Nodes.Count - 1
+                        Dim n = list.Nodes(i)
+
+                        If Not n.Checked Then
+                            Continue For
+                        End If
+
+                        Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
+                        Dim fileName As String = n.Text.NormalizePathString(False, ".")
+                        Dim path As String = $"{dir}/{If(fileName.Length > 128, fileName.Substring(0, 127) & "...", fileName)}.{ext}"
+                        Dim mz As Double() = {Conversion.Val(val)}
+
+                        Call RscriptProgressTask.ExportSingleIonPlot(
+                               mz:=mz,
+                               tolerance:=mzdiff.GetScript,
+                               saveAs:=path,
+                               title:=n.Text,
+                               filters:=msi_filters,
+                               background:=params.background.ToHtmlColor(allowTransparent:=True),
+                               colorSet:=params.colors.Description,
+                               overlapTotalIons:=params.showTotalIonOverlap,
+                               intensityRange:=folder.IntensityRange,
+                               size:=folder.GetPlotSize, dpi:=folder.GetPlotDpi, padding:=folder.GetPlotPadding,
+                               colorLevels:=params.mapLevels
+                        )
+                    Next
+                Next
+            End Sub, title:="Make Batch Exports", info:="Make single ion ms-imaging batch exports...")
     End Sub
 
     Private Sub MakeExport(folder As SetMSIPlotParameters)
