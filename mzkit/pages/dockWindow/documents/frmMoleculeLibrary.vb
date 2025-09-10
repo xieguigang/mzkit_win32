@@ -29,12 +29,23 @@ Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle
 
         ' Call AdvancedDataGridView1.SetAutoSelectRow
         Call ApplyVsTheme(ToolStrip1, AdvancedDataGridViewSearchToolBar1)
+        Call RefreshLibs()
 
         If ToolStripComboBox1.Items.Count > 0 Then
             ToolStripComboBox1.SelectedIndex = 0
         End If
 
         ToolStripComboBox1_SelectedIndexChanged(Nothing, Nothing)
+    End Sub
+
+    Private Sub RefreshLibs()
+        Dim listfiles = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/metabolites/").EnumerateFiles("*.csv")
+
+        Call ToolStripComboBox1.Items.Clear()
+
+        For Each path As String In listfiles
+            Call ToolStripComboBox1.Items.Add(path.BaseName)
+        Next
     End Sub
 
     ''' <summary>
