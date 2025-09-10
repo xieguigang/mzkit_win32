@@ -125,8 +125,10 @@ Public Class SetMSIPlotParameters
     Public Function SetBatchPlotMode(toggle As Boolean) As SetMSIPlotParameters
         If toggle Then
             DropDownButton1.DropDownMenu = DropDownMenu1
+            DropDownMenu1.DropDownButton = DropDownButton1
         Else
             DropDownButton1.DropDownMenu = Nothing
+            DropDownMenu1.DropDownButton = Nothing
         End If
 
         Return Me
@@ -211,7 +213,7 @@ Public Class SetMSIPlotParameters
     End Sub
 
     Private Sub SetMSIPlotParameters_Load(sender As Object, e As EventArgs) Handles Me.Load
-        DropDownButton1.DropDownMenu = Nothing
+        ' DropDownButton1.DropDownMenu = Nothing
     End Sub
 
     Public ReadOnly Property ext As String = "png"

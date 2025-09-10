@@ -293,7 +293,7 @@ Public Class InputMatrixIons
         Dim folder As New SetMSIPlotParameters With {.SetDir = True}
         Dim mzdiff As String = $"da:{txtMzdiff.Text}"
 
-        Call folder.SetFolder(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory))
+        Call folder.SetFolder(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)).SetBatchPlotMode(toggle:=False)
         Call InputDialog.Input(Sub(cfg) Call ExportIons(mzdiff, folder), config:=folder)
     End Sub
 

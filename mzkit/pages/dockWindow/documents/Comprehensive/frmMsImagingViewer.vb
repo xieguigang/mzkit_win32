@@ -3076,7 +3076,8 @@ Public Class frmMsImagingViewer
         Call save.SetFileName(filename) _
             .SetRGBMode(loadRgb) _
             .SetIntensityRange(PixelSelector1.CustomIntensityRange) _
-            .SetDimensionSize(dims:=params.GetMSIDimension)
+            .SetDimensionSize(dims:=params.GetMSIDimension) _
+            .SetBatchPlotMode(toggle:=False)
 
         Call InputDialog.Input(
             setConfig:=Sub(cfg)
