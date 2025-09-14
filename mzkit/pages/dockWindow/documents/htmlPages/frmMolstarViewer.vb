@@ -2,12 +2,17 @@
 Imports System.Runtime.InteropServices
 Imports System.Threading
 Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.Container
+Imports PDB_canvas
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Data.RCSB.PDB
+Imports SMRUCC.genomics.Data.RCSB.PDB.Keywords
 Imports TaskStream
 
 Public Class frmMolstarViewer
@@ -73,6 +78,7 @@ Public Class frmMolstarViewer
     Shared ReadOnly resetCameraButton As New RibbonEventBinding(ribbonItems.ButtonMolstarResetCamera)
     Shared ReadOnly clearCanvasButton As New RibbonEventBinding(ribbonItems.ButtonMolstarClearCanvas)
     Shared ReadOnly snapshotButton As New RibbonEventBinding(ribbonItems.ButtonMolstarMakeSnapshot)
+    Shared ReadOnly show2Dplot As New RibbonEventBinding(ribbonItems.ButtonLigand2DPlot)
 
     Private Sub frm3DMALDIViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         Call localfs.Kill()
@@ -91,7 +97,7 @@ Public Class frmMolstarViewer
             If file.ShowDialog = DialogResult.OK Then
                 Dim pdb_txt As String = file.FileName.ReadAllText
                 ' 发送消息到 JavaScript
-                Dim jsonString As String
+                Dim jsonString As String = "null"
 
                 Call ProgressSpinner.DoLoading(
                     Sub()
@@ -99,13 +105,36 @@ Public Class frmMolstarViewer
                         jsonString = pdb_txt.GetJson
 
                         Me.Invoke(Sub()
-                                      Me.pdb = PDB.Load(file.FileName)
+                                      Me.pdb = PDB.Parse(pdb_txt, verbose:=False)
                                   End Sub)
                     End Sub)
 
                 WebView21.CoreWebView2.PostWebMessageAsString(jsonString)
             End If
         End Using
+    End Sub
+
+    Private Sub View2DPlot()
+        If pdb Is Nothing Then
+            Call Workbench.Warning("no pdb data to view...")
+        End If
+
+        Dim ligands = pdb.ListLigands.ToArray
+        Dim list As String() = ligands _
+            .Select(Function(l) $"{l.Name}: {l.Description}") _
+            .ToArray
+        Dim keyList = list.Zip(ligands).ToDictionary(Function(a) a.First, Function(a) a.Second)
+
+        Call SelectSheetName.SelectName(list,
+            show:=Sub(name)
+                      Dim keyVal = name.GetTagValue(": ")
+                      Dim theme As New Theme
+                      Dim ligand As NamedValue(Of Het.HETRecord) = keyList(name)
+                      Dim render As New Ligand2DPlot(pdb, ligand, theme)
+                      Dim image = render.Plot("3600,2400").AsGDIImage
+
+                      Call VisualStudio.ShowDocument(Of frmPlotViewer)(, name).showImage(image)
+                  End Sub)
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
@@ -136,6 +165,7 @@ Public Class frmMolstarViewer
         resetCameraButton.evt = Nothing
         clearCanvasButton.evt = Nothing
         snapshotButton.evt = Nothing
+        show2Dplot.evt = Nothing
 
         ribbonItems.MenuMolmil.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
@@ -147,6 +177,7 @@ Public Class frmMolstarViewer
         openButton.evt = AddressOf OpenPdb
         resetCameraButton.evt = AddressOf resetCamera
         clearCanvasButton.evt = AddressOf clearCanvas
+        show2Dplot.evt = AddressOf View2DPlot
     End Sub
 
     Private Sub frmMolstarViewer_GotFocus(sender As Object, e As EventArgs) Handles Me.GotFocus
