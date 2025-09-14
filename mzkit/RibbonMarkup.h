@@ -2064,8 +2064,15 @@
 #define cmdXIC_DaSpinner_LabelDescription_RESID 1167
 #define cmdXIC_DaSpinner_TooltipTitle_RESID 60524
 #define cmdXIC_DaSpinner_TooltipDescription_RESID 1168
-#define InternalCmd2_LabelTitle_RESID 60525
-#define InternalCmd4_LabelTitle_RESID 60526
-#define InternalCmd6_LabelTitle_RESID 60527
-#define InternalCmd8_LabelTitle_RESID 60528
-#define InternalCmd10_LabelTitle_RESID 60529
+#define cmdButtonLigand2DPlot 366  /* Show molecular docking result visual in 2D plot */ 
+#define cmdButtonLigand2DPlot_LabelTitle_RESID 60525
+#define cmdButtonLigand2DPlot_LabelDescription_RESID 60526
+#define cmdButtonLigand2DPlot_TooltipTitle_RESID 60527
+#define cmdButtonLigand2DPlot_TooltipDescription_RESID 60528
+#define cmdButtonLigand2DPlot_SmallImages_192__RESID 60529
+#define cmdButtonLigand2DPlot_LargeImages_192__RESID 60530
+#define InternalCmd2_LabelTitle_RESID 60531
+#define InternalCmd4_LabelTitle_RESID 60532
+#define InternalCmd6_LabelTitle_RESID 60533
+#define InternalCmd8_LabelTitle_RESID 60534
+#define InternalCmd10_LabelTitle_RESID 60535

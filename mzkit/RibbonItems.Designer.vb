@@ -318,6 +318,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonMolstarResetCamera As UInteger = 358
             Public Const cmdButtonMolstarClearCanvas As UInteger = 360
             Public Const cmdButtonMolstarMakeSnapshot As UInteger = 361
+            Public Const cmdButtonLigand2DPlot As UInteger = 366
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -2319,6 +2320,15 @@ Namespace RibbonLib.Controls
                 Return _ButtonMolstarMakeSnapshot
             End Get
         End Property
+        Private _ButtonLigand2DPlot As RibbonButton
+        ''' <summary>
+        ''' Show molecular docking result visual in 2D plot
+        ''' </summary>
+        Public ReadOnly Property ButtonLigand2DPlot As RibbonButton
+            Get
+                Return _ButtonLigand2DPlot
+            End Get
+        End Property
         Private _TabMain As RibbonTab
         Public ReadOnly Property TabMain As RibbonTab
             Get
@@ -2880,6 +2890,7 @@ Namespace RibbonLib.Controls
             _ButtonMolstarResetCamera = New RibbonButton(_ribbon, Cmd.cmdButtonMolstarResetCamera)
             _ButtonMolstarClearCanvas = New RibbonButton(_ribbon, Cmd.cmdButtonMolstarClearCanvas)
             _ButtonMolstarMakeSnapshot = New RibbonButton(_ribbon, Cmd.cmdButtonMolstarMakeSnapshot)
+            _ButtonLigand2DPlot = New RibbonButton(_ribbon, Cmd.cmdButtonLigand2DPlot)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)

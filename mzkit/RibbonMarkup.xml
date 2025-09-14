@@ -4632,6 +4632,14 @@
         <String Id="1168">Ion mz mass tolerance error for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdButtonLigand2DPlot" Comment="Show molecular docking result visual in 2D plot" Id="366" LabelTitle="Ligand 2D Plot" LabelDescription="Show molecular docking result visual in 2D plot" TooltipTitle="Show molecular docking result visual in 2D plot" TooltipDescription="Show molecular docking result visual in 2D plot">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-12-cluster-58.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-12-cluster-58.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -5133,10 +5141,11 @@
             <Group CommandName="cmdGroupMolmilFile" SizeDefinition="OneButton">
               <Button CommandName="cmdButtonMolmilOpenFile" />
             </Group>
-            <Group CommandName="cmdGroupMolstarOperations">
+            <Group CommandName="cmdGroupMolstarOperations" SizeDefinition="FourButtons">
               <Button CommandName="cmdButtonMolstarResetCamera" />
               <Button CommandName="cmdButtonMolstarClearCanvas" />
               <Button CommandName="cmdButtonMolstarMakeSnapshot" />
+              <Button CommandName="cmdButtonLigand2DPlot" />
             </Group>
           </Tab>
         </TabGroup>

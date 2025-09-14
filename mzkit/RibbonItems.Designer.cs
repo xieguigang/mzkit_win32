@@ -321,6 +321,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonMolstarResetCamera = 358;
             public const uint cmdButtonMolstarClearCanvas = 360;
             public const uint cmdButtonMolstarMakeSnapshot = 361;
+            public const uint cmdButtonLigand2DPlot = 366;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -802,6 +803,10 @@ namespace RibbonLib.Controls
         /// Make Snapshot
         /// </summary>
         public RibbonButton ButtonMolstarMakeSnapshot { get; private set; }
+        /// <summary>
+        /// Show molecular docking result visual in 2D plot
+        /// </summary>
+        public RibbonButton ButtonLigand2DPlot { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -1158,6 +1163,7 @@ namespace RibbonLib.Controls
             ButtonMolstarResetCamera = new RibbonButton(ribbon, Cmd.cmdButtonMolstarResetCamera);
             ButtonMolstarClearCanvas = new RibbonButton(ribbon, Cmd.cmdButtonMolstarClearCanvas);
             ButtonMolstarMakeSnapshot = new RibbonButton(ribbon, Cmd.cmdButtonMolstarMakeSnapshot);
+            ButtonLigand2DPlot = new RibbonButton(ribbon, Cmd.cmdButtonLigand2DPlot);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);
