@@ -1694,6 +1694,10 @@
     <EmbeddedResource Include="RibbonMarkup.ribbon" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\emily\src\PDB_canvas\PDB_canvas.vbproj">
+      <Project>{9d7e5c7d-fe7c-2255-8d00-43ae0d3afffa}</Project>
+      <Name>PDB_canvas</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Erica\src\HEView\HEView.vbproj">
       <Project>{39c1f418-acc4-3eb1-2e28-29f955bb7f0f}</Project>
       <Name>HEView</Name>
@@ -1729,6 +1733,10 @@
     <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\core\Bio.InteractionModel\InteractionModel.NET5.vbproj">
       <Project>{ea88476c-7342-41b6-9a7a-bf1f3cea6b08}</Project>
       <Name>InteractionModel.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\data\RCSB PDB\RCSB PDB.vbproj">
+      <Project>{8f630468-5911-8045-4dd4-9cfa365ab00a}</Project>
+      <Name>RCSB PDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\foundation\OBO_Foundry\obo_foundry-netcore5.vbproj">
       <Project>{82c8e262-4e52-4c09-8865-ddbb5462fd66}</Project>

@@ -7,12 +7,14 @@ Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.Container
 Imports RibbonLib.Interop
+Imports SMRUCC.genomics.Data.RCSB.PDB
 Imports TaskStream
 
 Public Class frmMolstarViewer
 
     Dim localfs As Process
     Dim webPort As Integer = -1
+    Dim pdb As PDB
 
     Public ReadOnly Property sourceURL As String
         Get
@@ -89,7 +91,17 @@ Public Class frmMolstarViewer
             If file.ShowDialog = DialogResult.OK Then
                 Dim pdb_txt As String = file.FileName.ReadAllText
                 ' 发送消息到 JavaScript
-                Dim jsonString = pdb_txt.GetJson  ' 自动处理特殊字符
+                Dim jsonString As String
+
+                Call ProgressSpinner.DoLoading(
+                    Sub()
+                        ' 自动处理特殊字符
+                        jsonString = pdb_txt.GetJson
+
+                        Me.Invoke(Sub()
+                                      Me.pdb = PDB.Load(file.FileName)
+                                  End Sub)
+                    End Sub)
 
                 WebView21.CoreWebView2.PostWebMessageAsString(jsonString)
             End If
