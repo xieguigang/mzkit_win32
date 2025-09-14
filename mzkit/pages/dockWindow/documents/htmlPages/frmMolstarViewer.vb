@@ -126,6 +126,11 @@ Public Class frmMolstarViewer
             .ToArray
         Dim keyList = list.Zip(ligands).ToDictionary(Function(a) a.First, Function(a) a.Second)
 
+        If ligands.IsNullOrEmpty Then
+            MessageBox.Show("Current protein molecule docking data contains no ligand model.", "No data", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         Call SelectSheetName.SelectName(list,
             show:=Sub(name)
                       Dim theme As New Theme
