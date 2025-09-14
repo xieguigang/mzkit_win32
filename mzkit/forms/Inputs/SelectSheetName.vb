@@ -24,12 +24,22 @@ Public Class SelectSheetName
         DialogResult = DialogResult.Cancel
     End Sub
 
-    Public Shared Sub SelectName(names As IEnumerable(Of String), show As Action(Of String))
+    Public Shared Sub SelectName(names As IEnumerable(Of String), show As Action(Of String),
+                                 Optional title As String = Nothing,
+                                 Optional labeltext As String = Nothing)
+
         Dim getter As New SelectSheetName
 
         For Each name As String In names
             Call getter.ComboBox1.Items.Add(name)
         Next
+
+        If Not title.StringEmpty(, True) Then
+            getter.Text = title
+        End If
+        If Not labeltext.StringEmpty(, True) Then
+            getter.GroupBox1.Text = labeltext
+        End If
 
         Call InputDialog.Input(
             setConfig:=Sub(name)

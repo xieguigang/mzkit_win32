@@ -117,24 +117,26 @@ Public Class frmMolstarViewer
     Private Sub View2DPlot()
         If pdb Is Nothing Then
             Call Workbench.Warning("no pdb data to view...")
+            Return
         End If
 
         Dim ligands = pdb.ListLigands.ToArray
         Dim list As String() = ligands _
-            .Select(Function(l) $"{l.Name}: {l.Description}") _
+            .Select(Function(l) $"[{l.Value.SequenceNumber}] {l.Name}: {l.Description}") _
             .ToArray
         Dim keyList = list.Zip(ligands).ToDictionary(Function(a) a.First, Function(a) a.Second)
 
         Call SelectSheetName.SelectName(list,
             show:=Sub(name)
-                      Dim keyVal = name.GetTagValue(": ")
                       Dim theme As New Theme
                       Dim ligand As NamedValue(Of Het.HETRecord) = keyList(name)
                       Dim render As New Ligand2DPlot(pdb, ligand, theme)
                       Dim image = render.Plot("3600,2400").AsGDIImage
 
                       Call VisualStudio.ShowDocument(Of frmPlotViewer)(, name).showImage(image)
-                  End Sub)
+                  End Sub,
+            title:="View Liagnd Plot",
+            labeltext:="Select a ligand and view 2d docking plot")
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
