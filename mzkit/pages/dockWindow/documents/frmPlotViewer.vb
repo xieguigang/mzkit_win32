@@ -78,6 +78,16 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
     ''' <returns></returns>
     Private Property FilePath As String Implements IFileReference.FilePath
 
+    Public MustInherit Class Arguments
+
+        Public Property width As Integer = 3600
+        Public Property height As Integer = 2400
+        Public Property ppi As Integer = 120
+
+        Public MustOverride Sub Update(render As Plot)
+
+    End Class
+
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
             Return {New ContentType With {.Details = "plot image", .FileExt = ".png", .MIMEType = "plot image", .Name = "plot image"}}
@@ -97,15 +107,22 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
     End Sub
 
     Dim plot As Plot
+    Dim args As Arguments
 
-    Public Sub showImage(img As Plot)
-        plot = img
+    Public Sub showImage(img As Plot, args As Arguments)
+        Me.plot = img
+        Me.args = args
+
         RefreshPlot()
     End Sub
 
     Private Sub RefreshPlot()
+        If plot Is Nothing OrElse args Is Nothing Then
+            Return
+        End If
+
         Dim img As Image = plot _
-            .Plot("3600,2400", driver:=Drivers.GDI) _
+            .Plot($"{args.width},{args.height}", ppi:=args.ppi, driver:=Drivers.GDI) _
             .AsGDIImage
 
         Call Invoke(Sub() PictureBox1.BackgroundImage = img)
@@ -126,5 +143,18 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
 
     Private Sub frmPlotViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         PictureBox1.BackgroundImageLayout = ImageLayout.Zoom
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        If plot Is Nothing OrElse args Is Nothing Then
+            Return
+        End If
+
+        Call WindowModules.parametersTool.SetParameterObject(
+            args, Sub(a)
+                      Call a.Update(plot)
+                      Call RefreshPlot()
+                  End Sub)
+        Call VisualStudio.Dock(WindowModules.parametersTool, prefer:=DockState.DockRight)
     End Sub
 End Class
