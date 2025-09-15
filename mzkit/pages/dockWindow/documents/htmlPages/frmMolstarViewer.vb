@@ -107,7 +107,7 @@ Public Class frmMolstarViewer
                 Call ProgressSpinner.DoLoading(
                     Sub()
                         ' 自动处理特殊字符
-                        jsonString = pdb_txt.GetJson
+                        jsonString = pdb_txt.GetJson(simpleDict:=True)
 
                         Me.Invoke(Sub()
                                       Me.pdb = PDB.Parse(pdb_txt, verbose:=False)
