@@ -155,6 +155,11 @@ Public Class frmMolstarViewer
         Public Property viewY As Double
         Public Property viewZ As Double
 
+        Public Property DistanceCutoff As Double = 3.5
+        Public Property TopRank As Integer = 1
+        Public Property AtomSize As Single = 95
+        Public Property AminoAcidSize As Single = 150
+
         Sub New(theme As Theme, view As Drawing3D.Point3D)
             Me.theme = theme
             Me.viewX = view.X
@@ -166,6 +171,10 @@ Public Class frmMolstarViewer
             Dim render As Ligand2DPlot = DirectCast(plot, Ligand2DPlot)
 
             render.ViewPoint = New Drawing3D.Point3D(viewX, viewY, viewZ)
+            render.DistanceCutoff = DistanceCutoff
+            render.TopRank = TopRank
+            render.AtomSize = AtomSize
+            render.AminoAcidSize = AminoAcidSize
         End Sub
     End Class
 
