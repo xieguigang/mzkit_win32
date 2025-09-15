@@ -11,6 +11,7 @@ SET Rstudio=../../../dist\bin\Rstudio
 SET GCModeller_src=%drive%\GCModeller\src
 SET mzkit_src=%drive%\mzkit\Rscript\Library
 SET erica_src=%drive%\Erica
+SET emily_src=%drive%\emily
 SET js_url_mzkit="https://mzkit.org/assets/js/R_syntax.js"
 SET js_url_gcmodeller="https://gcmodeller.org/lib/R_syntax.js"
 SET js_url_rsharp="https://rdocumentation.rsharp.net/assets/R_syntax.js"
@@ -64,6 +65,10 @@ SET jump=renv
 CALL :exec_msbuild "%GCModeller_src%/R-sharp" "./R_system.NET5.sln"
 :renv
 
+SET jump=emily
+CALL :exec_msbuild "%emily_src%" "./emily.sln"
+:emily
+
 SET jump=erica
 CALL :exec_msbuild "%erica_src%/src" "./Erica.sln"
 :erica
@@ -93,6 +98,11 @@ REM -------- end of run msbuild -----------
 :jump_to_build_Rpackages
 
 cd %msbuild_logger%
+
+SET pkg=%pkg_repo%/emily.zip
+
+%Rscript% --build /src %emily_src% /save %pkg% --skip-src-build --github-page %js_url_gcmodeller%
+%REnv% --install.packages %pkg%
 
 SET pkg=%pkg_repo%/Erica.zip
 
