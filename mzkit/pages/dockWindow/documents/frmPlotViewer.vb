@@ -65,6 +65,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
+Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
 
 ''' <summary>
@@ -152,8 +153,10 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
 
         Call WindowModules.parametersTool.SetParameterObject(
             args, Sub(a)
-                      Call a.Update(plot)
-                      Call RefreshPlot()
+                      Call ProgressSpinner.DoLoading(Sub()
+                                                         Call a.Update(plot)
+                                                         Call RefreshPlot()
+                                                     End Sub)
                   End Sub)
         Call VisualStudio.Dock(WindowModules.parametersTool, prefer:=DockState.DockRight)
     End Sub

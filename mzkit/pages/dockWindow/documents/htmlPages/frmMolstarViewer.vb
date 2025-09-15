@@ -2,6 +2,7 @@
 Imports System.Runtime.InteropServices
 Imports System.Threading
 Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
+Imports Emily.PDB_Canvas
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
@@ -10,7 +11,6 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.Container
-Imports PDB_canvas
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Data.RCSB.PDB
 Imports SMRUCC.genomics.Data.RCSB.PDB.Keywords
@@ -175,6 +175,7 @@ Public Class frmMolstarViewer
             render.TopRank = TopRank
             render.AtomSize = AtomSize
             render.AminoAcidSize = AminoAcidSize
+            render.Build3DModel()
         End Sub
     End Class
 
