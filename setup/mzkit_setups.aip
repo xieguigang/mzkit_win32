@@ -767,6 +767,7 @@
     <ROW Component="DevTools" ComponentId="{3BCB9EDB-4D19-44D2-9583-3E021560CCBC}" Directory_="DevTools_Dir" Attributes="0"/>
     <ROW Component="DigitalRune.Windows.Docking.dll" ComponentId="{80004863-D76A-46A1-A050-154EE507420A}" Directory_="proteowizard_Dir" Attributes="0" KeyPath="DigitalRune.Windows.Docking.dll"/>
     <ROW Component="DualProbeInterfaceParametersCS.dll" ComponentId="{F98E7014-311B-4737-83E9-77F7A2852F2A}" Directory_="proteowizard_Dir" Attributes="0" KeyPath="DualProbeInterfaceParametersCS.dll"/>
+    <ROW Component="Emily.PDB_canvas.dll" ComponentId="{F006ADA3-3223-4650-9A78-30E6A532D74C}" Directory_="APPDIR" Attributes="256" KeyPath="Emily.PDB_canvas.dll"/>
     <ROW Component="FFTW3Config.cmake" ComponentId="{2CF0C7B8-FC37-437E-9921-6F06113C17A2}" Directory_="fftw3_Dir" Attributes="0" KeyPath="FFTW3Config.cmake" Type="0"/>
     <ROW Component="FULLMS_centriod_CHCA_20210819CleanSample616x404.cdf" ComponentId="{9E6541B7-77B9-404C-BC00-F40ACC3A70CF}" Directory_="PANOMIX_Dir" Attributes="0" KeyPath="FULLMS_centriod_CHCA_20210819CleanSample616x404.cdf" Type="0"/>
     <ROW Component="Flute.Http.dll" ComponentId="{1A9D1085-A042-4FB2-B9F6-267C14D598BD}" Directory_="APPDIR" Attributes="256" KeyPath="Flute.Http.dll"/>
@@ -1339,6 +1340,7 @@
     <ROW Component="SMRUCC.genomics.Data.GO_OWL.dll" ComponentId="{CAD09D36-EB84-41AE-8E81-CF3ADDD55C72}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Data.GO_OWL.dll"/>
     <ROW Component="SMRUCC.genomics.Data.GO_OWL.dll_1" ComponentId="{FF51D29F-4F0D-47A3-8BFF-2B8EFBC00797}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Data.GO_OWL.dll_1"/>
     <ROW Component="SMRUCC.genomics.Data.GO_OWL.pdb" ComponentId="{CD682070-C597-4AC6-9171-0E94BB09BC0B}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.Data.GO_OWL.pdb" Type="4"/>
+    <ROW Component="SMRUCC.genomics.Data.RCSB.PDB.dll" ComponentId="{2B8A7C0F-5F59-4B78-8C9B-5ECB944EF83F}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Data.RCSB.PDB.dll"/>
     <ROW Component="SMRUCC.genomics.Data.Repository.dll" ComponentId="{38781C8B-FD30-4959-91C7-ED3ECEE1547C}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Data.Repository.dll"/>
     <ROW Component="SMRUCC.genomics.Data.Repository.dll_1" ComponentId="{8C8E37EB-0C1D-4EE2-90F8-261211A20832}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Data.Repository.dll_1"/>
     <ROW Component="SMRUCC.genomics.Data.Repository.pdb" ComponentId="{62D17356-4FE7-49EC-8848-65209E4C6A24}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.Data.Repository.pdb" Type="4"/>
@@ -19074,6 +19076,12 @@
     <ROW File="msconvertGUI.resources.dll_3" Component_="msconvertGUI.resources.dll_3" FileName="MSCONV~1.DLL|msconvertGUI.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ru-RU\msconvertGUI.resources.dll" SelfReg="false"/>
     <ROW File="emily.zip" Component_="GCModeller.zip" FileName="emily.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\emily.zip" SelfReg="false"/>
     <ROW File="PlotLigand2D.R" Component_="buildMSIIndex.R" FileName="PLOTLI~1.R|PlotLigand2D.R" Attributes="0" SourcePath="..\rstudio\pipeline\PlotLigand2D.R" SelfReg="false"/>
+    <ROW File="Emily.PDB_canvas.dll" Component_="Emily.PDB_canvas.dll" FileName="EMILYP~1.DLL|Emily.PDB_canvas.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Emily.PDB_canvas.dll" SelfReg="false"/>
+    <ROW File="Emily.PDB_canvas.pdb" Component_="Emily.PDB_canvas.dll" FileName="EMILYP~1.PDB|Emily.PDB_canvas.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Emily.PDB_canvas.pdb" SelfReg="false"/>
+    <ROW File="Emily.PDB_canvas.xml" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="EMILYP~1.XML|Emily.PDB_canvas.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Emily.PDB_canvas.xml" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Data.RCSB.PDB.dll" Component_="SMRUCC.genomics.Data.RCSB.PDB.dll" FileName="SMRUC~23.DLL|SMRUCC.genomics.Data.RCSB.PDB.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.RCSB.PDB.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Data.RCSB.PDB.pdb" Component_="SMRUCC.genomics.Data.RCSB.PDB.dll" FileName="SMRUC~23.PDB|SMRUCC.genomics.Data.RCSB.PDB.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.RCSB.PDB.pdb" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Data.RCSB.PDB.xml" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="SMRUC~18.XML|SMRUCC.genomics.Data.RCSB.PDB.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.RCSB.PDB.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -20869,6 +20877,8 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Machine_3_Vision.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="HEView.pdb"/>
     <ROW Feature_="MainFeature" Component_="msconvertGUI.resources.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="Emily.PDB_canvas.dll"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Data.RCSB.PDB.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
