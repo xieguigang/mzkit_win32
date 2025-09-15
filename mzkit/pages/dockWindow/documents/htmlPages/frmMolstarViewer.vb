@@ -151,6 +151,7 @@ Public Class frmMolstarViewer
                       Call render.CalculateMaxPlainView()
 
                       page.showImage(render, New Ligand2DPlotArguments(theme, render.ViewPoint))
+                      page.Filter = "plot image(*.png)|*.png|plot image(*.svg)|*.svg|plot image(*.pdf)|*.pdf"
                       page.FileSave =
                           Sub(outfile As String, args As frmPlotViewer.Arguments)
                               Dim args_json As String = DirectCast(args, Ligand2DPlotArguments).GetJson(simpleDict:=True)
