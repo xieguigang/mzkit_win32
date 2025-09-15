@@ -59,7 +59,10 @@
 Imports System.Drawing.Imaging
 Imports System.Text
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic
 Imports Microsoft.VisualBasic.Drawing
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
 Imports WeifenLuo.WinFormsUI.Docking
@@ -93,7 +96,18 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
         End Using
     End Sub
 
-    Public Sub showImage(img As Image)
+    Dim plot As Plot
+
+    Public Sub showImage(img As Plot)
+        plot = img
+        RefreshPlot()
+    End Sub
+
+    Private Sub RefreshPlot()
+        Dim img As Image = plot _
+            .Plot("3600,2400", driver:=Drivers.GDI) _
+            .AsGDIImage
+
         Call Invoke(Sub() PictureBox1.BackgroundImage = img)
     End Sub
 
@@ -112,9 +126,5 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
 
     Private Sub frmPlotViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         PictureBox1.BackgroundImageLayout = ImageLayout.Zoom
-    End Sub
-
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        VisualStudio.Dock(WindowModules.plotParams, DockState.DockRight)
     End Sub
 End Class

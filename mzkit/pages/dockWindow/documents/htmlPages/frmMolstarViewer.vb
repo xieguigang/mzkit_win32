@@ -133,12 +133,12 @@ Public Class frmMolstarViewer
 
         Call SelectSheetName.SelectName(list,
             show:=Sub(name)
-                      Dim theme As New Theme
+                      Dim theme As New Theme With {.padding = "padding: 10% 10% 10% 10%;"}
                       Dim ligand As NamedValue(Of Het.HETRecord) = keyList(name)
                       Dim render As New Ligand2DPlot(pdb, ligand, theme)
-                      Dim image = render.Plot("3600,2400").AsGDIImage
 
-                      Call VisualStudio.ShowDocument(Of frmPlotViewer)(, name).showImage(image)
+                      Call render.CalculateMaxPlainView()
+                      Call VisualStudio.ShowDocument(Of frmPlotViewer)(, name).showImage(render)
                   End Sub,
             title:="View Liagnd Plot",
             labeltext:="Select a ligand and view 2d docking plot")
