@@ -80,6 +80,8 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
     ''' <returns></returns>
     Private Property FilePath As String Implements IFileReference.FilePath
 
+    Public FileSave As Action(Of String, frmPlotViewer.Arguments)
+
     Public MustInherit Class Arguments
 
         <Category("General")>
@@ -110,7 +112,12 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
         Using file As New SaveFileDialog With {.Filter = "plot image(*.png)|*.png"}
             If file.ShowDialog = DialogResult.OK Then
                 FilePath = file.FileName
-                Save(FilePath)
+
+                If FileSave Is Nothing Then
+                    Call Save(FilePath)
+                Else
+                    Call FileSave(FilePath, args)
+                End If
             End If
         End Using
     End Sub

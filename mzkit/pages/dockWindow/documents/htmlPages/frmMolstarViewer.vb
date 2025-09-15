@@ -7,6 +7,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
@@ -21,6 +22,7 @@ Public Class frmMolstarViewer
     Dim localfs As Process
     Dim webPort As Integer = -1
     Dim pdb As PDB
+    Dim pdbfile As String
 
     Public ReadOnly Property sourceURL As String
         Get
@@ -100,6 +102,8 @@ Public Class frmMolstarViewer
                 ' 发送消息到 JavaScript
                 Dim jsonString As String = "null"
 
+                pdbfile = file.FileName
+
                 Call ProgressSpinner.DoLoading(
                     Sub()
                         ' 自动处理特殊字符
@@ -139,9 +143,22 @@ Public Class frmMolstarViewer
                       }
                       Dim ligand As NamedValue(Of Het.HETRecord) = keyList(name)
                       Dim render As New Ligand2DPlot(pdb, ligand, theme)
+                      Dim page = VisualStudio.ShowDocument(Of frmPlotViewer)(, name)
+                      Dim key As String = ligand.Value.ResidueType
+                      Dim number As Integer = ligand.Value.SequenceNumber
+                      Dim ref As New NamedValue(Of Integer)(key, number)
 
                       Call render.CalculateMaxPlainView()
-                      Call VisualStudio.ShowDocument(Of frmPlotViewer)(, name).showImage(render, New Ligand2DPlotArguments(theme, render.ViewPoint))
+
+                      page.showImage(render, New Ligand2DPlotArguments(theme, render.ViewPoint))
+                      page.FileSave =
+                          Sub(outfile As String, args As frmPlotViewer.Arguments)
+                              Dim args_json As String = DirectCast(args, Ligand2DPlotArguments).GetJson(simpleDict:=True)
+
+                              If RscriptProgressTask.PlotLigand2DPlot(pdbfile, ref, outfile, args_json, args.ppi, $"{args.width},{args.height}") Then
+                                  Call MessageBox.Show("Export Plot success!", "Job Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                              End If
+                          End Sub
                   End Sub,
             title:="View Liagnd Plot",
             labeltext:="Select a ligand and view 2d docking plot")
