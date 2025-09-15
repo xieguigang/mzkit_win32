@@ -56,6 +56,7 @@
 
 #End Region
 
+Imports System.ComponentModel
 Imports System.Drawing.Imaging
 Imports System.Text
 Imports Microsoft.VisualBasic.ComponentModel
@@ -81,8 +82,14 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
 
     Public MustInherit Class Arguments
 
+        <Category("General")>
+        <Description("Plot canvas width in pixels.")>
         Public Property width As Integer = 3600
+        <Category("General")>
+        <Description("Plot canvas height in pixels.")>
         Public Property height As Integer = 2400
+        <Category("General")>
+        <Description("Plot canvas ppi(or dpi) scale for pixels, may effect the line stroke width or font size.")>
         Public Property ppi As Integer = 120
 
         Public MustOverride Sub Update(render As Plot)
