@@ -61,6 +61,7 @@ Imports System.Text
 Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
@@ -72,6 +73,32 @@ Public NotInheritable Class RscriptProgressTask
 
     Private Sub New()
     End Sub
+
+    Public Shared Function PlotLigand2DPlot(pdb As String, ligand As NamedValue(Of Integer), save As String, args_json As String, dpi As Integer, size As String) As Boolean
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("PlotLigand2D.R")
+        Dim style As String = TempFileSystem.GetAppSysTempFile(".json", App.PID, prefix:="ligand_2dplot")
+        Dim cli As String = $"""{Rscript}"" --pdb {pdb.CLIPath} --out {save.CLIPath} --style {style.CLIPath} --ppi {dpi} --size ""{size}"" --ligand ""{ligand.Name}"" --num {ligand.Value} /@set tqdm=false;ansi_color=false --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call args_json.SaveTo(style)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+
+        Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         Call p.SetProgressMode()
+
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Run processing plot",
+                info:="make 2d ligand plot of the molecule docking result...")
+
+        Return save.FileExists
+    End Function
 
     Public Shared Function ScanHEDziSingleCells(dzi As String, level As Integer, dir As String) As String
         Dim out As String = dzi.ChangeSuffix("bson")
