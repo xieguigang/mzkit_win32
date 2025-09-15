@@ -3,6 +3,7 @@ Imports System.Runtime.InteropServices
 Imports System.Threading
 Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -133,16 +134,40 @@ Public Class frmMolstarViewer
 
         Call SelectSheetName.SelectName(list,
             show:=Sub(name)
-                      Dim theme As New Theme With {.padding = "padding: 10% 10% 10% 10%;"}
+                      Dim theme As New Theme With {
+                          .padding = "padding: 10% 10% 10% 10%;"
+                      }
                       Dim ligand As NamedValue(Of Het.HETRecord) = keyList(name)
                       Dim render As New Ligand2DPlot(pdb, ligand, theme)
 
                       Call render.CalculateMaxPlainView()
-                      Call VisualStudio.ShowDocument(Of frmPlotViewer)(, name).showImage(render)
+                      Call VisualStudio.ShowDocument(Of frmPlotViewer)(, name).showImage(render, New Ligand2DPlotArguments(theme, render.ViewPoint))
                   End Sub,
             title:="View Liagnd Plot",
             labeltext:="Select a ligand and view 2d docking plot")
     End Sub
+
+    Private Class Ligand2DPlotArguments : Inherits frmPlotViewer.Arguments
+
+        ReadOnly theme As Theme
+
+        Public Property viewX As Double
+        Public Property viewY As Double
+        Public Property viewZ As Double
+
+        Sub New(theme As Theme, view As Drawing3D.Point3D)
+            Me.theme = theme
+            Me.viewX = view.X
+            Me.viewY = view.Y
+            Me.viewZ = view.Z
+        End Sub
+
+        Public Overrides Sub Update(plot As Plot)
+            Dim render As Ligand2DPlot = DirectCast(plot, Ligand2DPlot)
+
+            render.ViewPoint = New Drawing3D.Point3D(viewX, viewY, viewZ)
+        End Sub
+    End Class
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         Do While webPort <= 0
