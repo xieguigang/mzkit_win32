@@ -19072,6 +19072,8 @@
     <ROW File="settings.json_2" Component_="settings.json_2" FileName="SETTIN~1.JSO|settings.json" Attributes="0" SourcePath="..\webview\.vscode\settings.json" SelfReg="false"/>
     <ROW File="xvba_debug.log" Component_="xvba_debug.log" FileName="XVBA_D~1.LOG|xvba_debug.log" Attributes="0" SourcePath="..\webview\logs\xvba_debug.log" SelfReg="false"/>
     <ROW File="msconvertGUI.resources.dll_3" Component_="msconvertGUI.resources.dll_3" FileName="MSCONV~1.DLL|msconvertGUI.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ru-RU\msconvertGUI.resources.dll" SelfReg="false"/>
+    <ROW File="emily.zip" Component_="GCModeller.zip" FileName="emily.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\emily.zip" SelfReg="false"/>
+    <ROW File="PlotLigand2D.R" Component_="buildMSIIndex.R" FileName="PLOTLI~1.R|PlotLigand2D.R" Attributes="0" SourcePath="..\rstudio\pipeline\PlotLigand2D.R" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
