@@ -147,7 +147,7 @@ Public Class frmMolstarViewer
             labeltext:="Select a ligand and view 2d docking plot")
     End Sub
 
-    Private Class Ligand2DPlotArguments : Inherits frmPlotViewer.Arguments
+    Public Class Ligand2DPlotArguments : Inherits frmPlotViewer.Arguments
 
         ReadOnly theme As Theme
 
@@ -181,11 +181,27 @@ Public Class frmMolstarViewer
         <Description("The shape size of the amino acid residue.")>
         Public Property AminoAcidSize As Single = 150
 
+        <Category("Ligand Render")>
+        <DisplayName("Show Liagnd Atom Label")>
+        <Description("Show or hide the ligand molecule atom label on the graphics plot?")>
+        Public Property ShowLigandAtomLabel As Boolean = True
+        <Category("Ligand Render")>
+        <DisplayName("Amino Acid Min Font Size")>
+        <Description("The min size of the font label for show the amino acid residue label")>
+        Public Property AminoAcidFontSizeMin As Double = 12
+        <Category("Ligand Render")>
+        <DisplayName("Amino Acid Max Font Size")>
+        <Description("The max size of the font label for show the amino acid residue label")>
+        Public Property AminoAcidFontSizeMax As Double = 40
+
         Sub New(theme As Theme, view As Drawing3D.Point3D)
             Me.theme = theme
             Me.viewX = view.X
             Me.viewY = view.Y
             Me.viewZ = view.Z
+        End Sub
+
+        Sub New()
         End Sub
 
         Public Overrides Sub Update(plot As Plot)
@@ -196,6 +212,9 @@ Public Class frmMolstarViewer
             render.TopRank = TopRank
             render.AtomSize = AtomSize
             render.AminoAcidSize = AminoAcidSize
+            render.ShowAtomLabel = ShowLigandAtomLabel
+            render.FontSizeMin = AminoAcidFontSizeMin
+            render.FontSizeMax = AminoAcidFontSizeMax
             render.Build3DModel()
         End Sub
     End Class

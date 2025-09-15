@@ -109,7 +109,8 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
 
         Using file As New SaveFileDialog With {.Filter = "plot image(*.png)|*.png"}
             If file.ShowDialog = DialogResult.OK Then
-                Call PictureBox1.BackgroundImage.SaveAs(file.FileName)
+                FilePath = file.FileName
+                Save(FilePath)
             End If
         End Using
     End Sub
@@ -134,6 +135,14 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
             .AsGDIImage
 
         Call Invoke(Sub() PictureBox1.BackgroundImage = img)
+    End Sub
+
+    Protected Overrides Sub SaveDocument()
+        If FilePath.StringEmpty(, True) Then
+            Call SaveImageToolStripMenuItem_Click(Nothing, Nothing)
+        Else
+            Call Save(FilePath)
+        End If
     End Sub
 
     Public Function Save(path As String, encoding As Encoding) As Boolean Implements ISaveHandle.Save
