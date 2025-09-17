@@ -290,8 +290,7 @@ Namespace RibbonLib.Controls
             Public Const cmdPanelReport As UInteger = 312
             Public Const cmdMenuReport As UInteger = 313
             Public Const cmdButtonReportOpenWorkspace As UInteger = 314
-            Public Const cmdButtonReportSelect As UInteger = 315
-            Public Const cmdButtonAddLCMSComparision As UInteger = 327
+            Public Const cmdButtonImportsWorkspace As UInteger = 367
             Public Const cmdPanelReportSettings As UInteger = 318
             Public Const cmdButtonReportTableView As UInteger = 325
             Public Const cmdToggleShowRT As UInteger = 317
@@ -299,6 +298,9 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonReportHeatMapColors As UInteger = 319
             Public Const cmdButtonSortByMz As UInteger = 354
             Public Const cmdButtonReportSampleInfo As UInteger = 328
+            Public Const cmdGroupReportOperation As UInteger = 368
+            Public Const cmdButtonReportSelect As UInteger = 315
+            Public Const cmdButtonAddLCMSComparision As UInteger = 327
             Public Const cmdMenuLabIA As UInteger = 336
             Public Const cmdPageLabIA As UInteger = 337
             Public Const cmdGroupLabIA As UInteger = 338
@@ -2122,22 +2124,13 @@ Namespace RibbonLib.Controls
                 Return _ButtonReportOpenWorkspace
             End Get
         End Property
-        Private _ButtonReportSelect As RibbonButton
+        Private _ButtonImportsWorkspace As RibbonButton
         ''' <summary>
-        ''' Select metabolites for make html report view
+        ''' Imports Workspace
         ''' </summary>
-        Public ReadOnly Property ButtonReportSelect As RibbonButton
+        Public ReadOnly Property ButtonImportsWorkspace As RibbonButton
             Get
-                Return _ButtonReportSelect
-            End Get
-        End Property
-        Private _ButtonAddLCMSComparision As RibbonButton
-        ''' <summary>
-        ''' Add Comparision
-        ''' </summary>
-        Public ReadOnly Property ButtonAddLCMSComparision As RibbonButton
-            Get
-                Return _ButtonAddLCMSComparision
+                Return _ButtonImportsWorkspace
             End Get
         End Property
         Private _PanelReportSettings As RibbonGroup
@@ -2192,6 +2185,33 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonReportSampleInfo As RibbonButton
             Get
                 Return _ButtonReportSampleInfo
+            End Get
+        End Property
+        Private _GroupReportOperation As RibbonGroup
+        ''' <summary>
+        ''' Report Operation
+        ''' </summary>
+        Public ReadOnly Property GroupReportOperation As RibbonGroup
+            Get
+                Return _GroupReportOperation
+            End Get
+        End Property
+        Private _ButtonReportSelect As RibbonButton
+        ''' <summary>
+        ''' Select metabolites for make html report view
+        ''' </summary>
+        Public ReadOnly Property ButtonReportSelect As RibbonButton
+            Get
+                Return _ButtonReportSelect
+            End Get
+        End Property
+        Private _ButtonAddLCMSComparision As RibbonButton
+        ''' <summary>
+        ''' Add Comparision
+        ''' </summary>
+        Public ReadOnly Property ButtonAddLCMSComparision As RibbonButton
+            Get
+                Return _ButtonAddLCMSComparision
             End Get
         End Property
         Private _MenuLabIA As RibbonTabGroup
@@ -2862,8 +2882,7 @@ Namespace RibbonLib.Controls
             _PanelReport = New RibbonTab(_ribbon, Cmd.cmdPanelReport)
             _MenuReport = New RibbonGroup(_ribbon, Cmd.cmdMenuReport)
             _ButtonReportOpenWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonReportOpenWorkspace)
-            _ButtonReportSelect = New RibbonButton(_ribbon, Cmd.cmdButtonReportSelect)
-            _ButtonAddLCMSComparision = New RibbonButton(_ribbon, Cmd.cmdButtonAddLCMSComparision)
+            _ButtonImportsWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonImportsWorkspace)
             _PanelReportSettings = New RibbonGroup(_ribbon, Cmd.cmdPanelReportSettings)
             _ButtonReportTableView = New RibbonToggleButton(_ribbon, Cmd.cmdButtonReportTableView)
             _ToggleShowRT = New RibbonToggleButton(_ribbon, Cmd.cmdToggleShowRT)
@@ -2871,6 +2890,9 @@ Namespace RibbonLib.Controls
             _ButtonReportHeatMapColors = New RibbonButton(_ribbon, Cmd.cmdButtonReportHeatMapColors)
             _ButtonSortByMz = New RibbonToggleButton(_ribbon, Cmd.cmdButtonSortByMz)
             _ButtonReportSampleInfo = New RibbonButton(_ribbon, Cmd.cmdButtonReportSampleInfo)
+            _GroupReportOperation = New RibbonGroup(_ribbon, Cmd.cmdGroupReportOperation)
+            _ButtonReportSelect = New RibbonButton(_ribbon, Cmd.cmdButtonReportSelect)
+            _ButtonAddLCMSComparision = New RibbonButton(_ribbon, Cmd.cmdButtonAddLCMSComparision)
             _MenuLabIA = New RibbonTabGroup(_ribbon, Cmd.cmdMenuLabIA)
             _PageLabIA = New RibbonTab(_ribbon, Cmd.cmdPageLabIA)
             _GroupLabIA = New RibbonGroup(_ribbon, Cmd.cmdGroupLabIA)

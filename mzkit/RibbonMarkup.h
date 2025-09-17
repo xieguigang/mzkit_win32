@@ -2071,8 +2071,20 @@
 #define cmdButtonLigand2DPlot_TooltipDescription_RESID 60528
 #define cmdButtonLigand2DPlot_SmallImages_192__RESID 60529
 #define cmdButtonLigand2DPlot_LargeImages_192__RESID 60530
-#define InternalCmd2_LabelTitle_RESID 60531
-#define InternalCmd4_LabelTitle_RESID 60532
-#define InternalCmd6_LabelTitle_RESID 60533
-#define InternalCmd8_LabelTitle_RESID 60534
-#define InternalCmd10_LabelTitle_RESID 60535
+#define cmdButtonImportsWorkspace 367  /* Imports Workspace */ 
+#define cmdButtonImportsWorkspace_LabelTitle_RESID 60531
+#define cmdButtonImportsWorkspace_LabelDescription_RESID 60532
+#define cmdButtonImportsWorkspace_TooltipTitle_RESID 60533
+#define cmdButtonImportsWorkspace_TooltipDescription_RESID 60534
+#define cmdButtonImportsWorkspace_SmallImages_192__RESID 60535
+#define cmdButtonImportsWorkspace_LargeImages_192__RESID 60536
+#define cmdGroupReportOperation 368  /* Report Operation */ 
+#define cmdGroupReportOperation_LabelTitle_RESID 60537
+#define cmdGroupReportOperation_LabelDescription_RESID 60538
+#define cmdGroupReportOperation_TooltipTitle_RESID 60539
+#define cmdGroupReportOperation_TooltipDescription_RESID 60540
+#define InternalCmd2_LabelTitle_RESID 60541
+#define InternalCmd4_LabelTitle_RESID 60542
+#define InternalCmd6_LabelTitle_RESID 60543
+#define InternalCmd8_LabelTitle_RESID 60544
+#define InternalCmd10_LabelTitle_RESID 60545

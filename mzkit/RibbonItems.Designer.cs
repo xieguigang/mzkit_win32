@@ -293,8 +293,7 @@ namespace RibbonLib.Controls
             public const uint cmdPanelReport = 312;
             public const uint cmdMenuReport = 313;
             public const uint cmdButtonReportOpenWorkspace = 314;
-            public const uint cmdButtonReportSelect = 315;
-            public const uint cmdButtonAddLCMSComparision = 327;
+            public const uint cmdButtonImportsWorkspace = 367;
             public const uint cmdPanelReportSettings = 318;
             public const uint cmdButtonReportTableView = 325;
             public const uint cmdToggleShowRT = 317;
@@ -302,6 +301,9 @@ namespace RibbonLib.Controls
             public const uint cmdButtonReportHeatMapColors = 319;
             public const uint cmdButtonSortByMz = 354;
             public const uint cmdButtonReportSampleInfo = 328;
+            public const uint cmdGroupReportOperation = 368;
+            public const uint cmdButtonReportSelect = 315;
+            public const uint cmdButtonAddLCMSComparision = 327;
             public const uint cmdMenuLabIA = 336;
             public const uint cmdPageLabIA = 337;
             public const uint cmdGroupLabIA = 338;
@@ -746,13 +748,9 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonButton ButtonReportOpenWorkspace { get; private set; }
         /// <summary>
-        /// Select metabolites for make html report view
+        /// Imports Workspace
         /// </summary>
-        public RibbonButton ButtonReportSelect { get; private set; }
-        /// <summary>
-        /// Add Comparision
-        /// </summary>
-        public RibbonButton ButtonAddLCMSComparision { get; private set; }
+        public RibbonButton ButtonImportsWorkspace { get; private set; }
         public RibbonGroup PanelReportSettings { get; private set; }
         /// <summary>
         /// View of the biodeep annotation result in heatmap table view
@@ -772,6 +770,18 @@ namespace RibbonLib.Controls
         /// Sample Information
         /// </summary>
         public RibbonButton ButtonReportSampleInfo { get; private set; }
+        /// <summary>
+        /// Report Operation
+        /// </summary>
+        public RibbonGroup GroupReportOperation { get; private set; }
+        /// <summary>
+        /// Select metabolites for make html report view
+        /// </summary>
+        public RibbonButton ButtonReportSelect { get; private set; }
+        /// <summary>
+        /// Add Comparision
+        /// </summary>
+        public RibbonButton ButtonAddLCMSComparision { get; private set; }
         public RibbonTabGroup MenuLabIA { get; private set; }
         public RibbonTab PageLabIA { get; private set; }
         public RibbonGroup GroupLabIA { get; private set; }
@@ -1135,8 +1145,7 @@ namespace RibbonLib.Controls
             PanelReport = new RibbonTab(ribbon, Cmd.cmdPanelReport);
             MenuReport = new RibbonGroup(ribbon, Cmd.cmdMenuReport);
             ButtonReportOpenWorkspace = new RibbonButton(ribbon, Cmd.cmdButtonReportOpenWorkspace);
-            ButtonReportSelect = new RibbonButton(ribbon, Cmd.cmdButtonReportSelect);
-            ButtonAddLCMSComparision = new RibbonButton(ribbon, Cmd.cmdButtonAddLCMSComparision);
+            ButtonImportsWorkspace = new RibbonButton(ribbon, Cmd.cmdButtonImportsWorkspace);
             PanelReportSettings = new RibbonGroup(ribbon, Cmd.cmdPanelReportSettings);
             ButtonReportTableView = new RibbonToggleButton(ribbon, Cmd.cmdButtonReportTableView);
             ToggleShowRT = new RibbonToggleButton(ribbon, Cmd.cmdToggleShowRT);
@@ -1144,6 +1153,9 @@ namespace RibbonLib.Controls
             ButtonReportHeatMapColors = new RibbonButton(ribbon, Cmd.cmdButtonReportHeatMapColors);
             ButtonSortByMz = new RibbonToggleButton(ribbon, Cmd.cmdButtonSortByMz);
             ButtonReportSampleInfo = new RibbonButton(ribbon, Cmd.cmdButtonReportSampleInfo);
+            GroupReportOperation = new RibbonGroup(ribbon, Cmd.cmdGroupReportOperation);
+            ButtonReportSelect = new RibbonButton(ribbon, Cmd.cmdButtonReportSelect);
+            ButtonAddLCMSComparision = new RibbonButton(ribbon, Cmd.cmdButtonAddLCMSComparision);
             MenuLabIA = new RibbonTabGroup(ribbon, Cmd.cmdMenuLabIA);
             PageLabIA = new RibbonTab(ribbon, Cmd.cmdPageLabIA);
             GroupLabIA = new RibbonGroup(ribbon, Cmd.cmdGroupLabIA);

@@ -4640,6 +4640,15 @@
         <Image MinDPI="192">Res/icons8-12-cluster-58.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonImportsWorkspace" Comment="Imports Workspace" Id="367" LabelTitle="Imports" LabelDescription="Imports" TooltipTitle="Imports" TooltipDescription="Imports">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-documents.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-documents.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdGroupReportOperation" Comment="Report Operation" Id="368" LabelTitle="Report Operation" LabelDescription="Report Operation" TooltipTitle="Report Operation" TooltipDescription="Report Operation" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -5108,8 +5117,7 @@
           <Tab CommandName="cmdPanelReport">
             <Group CommandName="cmdMenuReport">
               <Button CommandName="cmdButtonReportOpenWorkspace" />
-              <Button CommandName="cmdButtonReportSelect" />
-              <Button CommandName="cmdButtonAddLCMSComparision" />
+              <Button CommandName="cmdButtonImportsWorkspace" />
             </Group>
             <Group CommandName="cmdPanelReportSettings" SizeDefinition="FiveOrSixButtons">
               <ToggleButton CommandName="cmdButtonReportTableView" />
@@ -5118,6 +5126,10 @@
               <Button CommandName="cmdButtonReportHeatMapColors" />
               <ToggleButton CommandName="cmdButtonSortByMz" />
               <Button CommandName="cmdButtonReportSampleInfo" />
+            </Group>
+            <Group CommandName="cmdGroupReportOperation" SizeDefinition="TwoButtons">
+              <Button CommandName="cmdButtonReportSelect" />
+              <Button CommandName="cmdButtonAddLCMSComparision" />
             </Group>
           </Tab>
         </TabGroup>
