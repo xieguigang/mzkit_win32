@@ -48,7 +48,7 @@ Module ConvertToMzPack
 
         If raw.ExtensionSuffix("raw") Then
             Using msraw As New MSFileReader(raw)
-                mzpack = msraw.LoadFromXRaw(println)
+                mzpack = msraw.LoadFromXcaliburRaw(println)
             End Using
         ElseIf raw.ExtensionSuffix("msp") Then
             mzpack = Converter.LoadMsp(raw)

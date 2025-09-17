@@ -98,7 +98,7 @@ Public Class MSImagingRowBinds
 
         For Each path As String In files
             Dim raw As New MSFileReader(path)
-            Dim cache As mzPack = raw.LoadFromXRaw
+            Dim cache As mzPack = raw.LoadFromXcaliburRaw
 
             cache.note = raw.ThermoReader.FileInfo.ToString
             cache.metadata("polarity") = raw.ThermoReader.Polarity.ToString.ToLower

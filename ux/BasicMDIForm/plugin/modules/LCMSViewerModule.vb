@@ -10,6 +10,7 @@ Public Module LCMSViewerModule
     Public setWorkFile As Action(Of Object)
     Public addWorkFile As Action(Of Object, Boolean)
     Public clearWorkspace As Action
+    Public convert As Func(Of String, Object)
 
     Public Sub ClearFileTree()
         If Not clearWorkspace Is Nothing Then
@@ -54,5 +55,18 @@ Public Module LCMSViewerModule
             Call setWorkFile(file)
         End If
     End Sub
+
+    ''' <summary>
+    ''' Convert any raw MS data file as the mzkit mzPack object
+    ''' </summary>
+    ''' <param name="file"></param>
+    ''' <returns></returns>
+    Public Function MSRawConversion(file As String) As Object
+        If convert IsNot Nothing Then
+            Return convert(file)
+        Else
+            Return Nothing
+        End If
+    End Function
 
 End Module

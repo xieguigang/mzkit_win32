@@ -271,7 +271,7 @@ Public Class frmMain : Implements AppHost
             End If
         ElseIf fileName.ExtensionSuffix("raw") Then
             Dim Xraw As New MSFileReader(fileName)
-            Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) Xraw.LoadFromXRaw(println.Echo))
+            Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) Xraw.LoadFromXcaliburRaw(println.Echo))
             Dim cacheFile As String = TempFileSystem.GetAppSysTempFile(".mzPack", App.PID.ToHexString, "MSRawFile_")
             Dim raw As New Raw With {
                .cache = cacheFile,

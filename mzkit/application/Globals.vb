@@ -196,7 +196,21 @@ Module Globals
 
         BaseHook.HookPlotColorSet(AddressOf Globals.GetColors)
         BaseHook.HookShowProperties(AddressOf VisualStudio.ShowProperties)
+
+        LCMSViewerModule.convert = AddressOf convertMzPack
     End Sub
+
+    Private Function convertMzPack(file As String) As Object
+        If file.ExtensionSuffix("raw") Then
+            Return RawStream.LoadFromXcaliburRaw(file, println:=AddressOf Workbench.AppHost.StatusMessage)
+        ElseIf file.ExtensionSuffix("mzpack") Then
+            Using s As Stream = file.OpenReadonly
+                Return mzPack.ReadAll(s)
+            End Using
+        Else
+            Return Converter.LoadRawFileAuto(file)
+        End If
+    End Function
 
     Public Sub RegisterActions(println As Action(Of String))
         Call Actions.Register("KEGG Enrichment", New KEGGEnrichmentAction, println)
