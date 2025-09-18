@@ -1325,6 +1325,7 @@
     <ROW Component="SMRUCC.genomics.Analysis.SingleCel_2_l.Expression.dll" ComponentId="{0173766C-92ED-4D23-A355-3557E079D2BB}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.SingleCel_2_l.Expression.dll"/>
     <ROW Component="SMRUCC.genomics.Analysis.SingleCel_3_l.Expression.pdb" ComponentId="{B06BCD9E-6982-4772-9C1F-51286847D745}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.Analysis.SingleCel_1_l.Expression.pdb" Type="4"/>
     <ROW Component="SMRUCC.genomics.Analysis.SingleCel_4_l.Expression.pdb" ComponentId="{E48D8E14-50C8-4F52-9AB2-04571F8F11D6}" Directory_="blender_Dir" Attributes="0" KeyPath="SMRUCC.genomics.Analysis.SingleCell.Expression.pdb" Type="4"/>
+    <ROW Component="SMRUCC.genomics.Analysis.SingleCel_5_l.Expression.xml" ComponentId="{BA4043D0-745E-44A0-9212-86B765E6C501}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.Analysis.SingleCel_2_l.Expression.xml"/>
     <ROW Component="SMRUCC.genomics.Analysis.SingleCell.Expression.dll" ComponentId="{50F933A1-C82C-4874-94DD-64DF64288940}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.SingleCell.Expression.dll"/>
     <ROW Component="SMRUCC.genomics.Analysis.Spatial.I_1_maging.dll" ComponentId="{5D0C8B92-8CBD-4CEB-B054-05F7CED6AD90}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.Spatial.I_1_maging.dll"/>
     <ROW Component="SMRUCC.genomics.Analysis.Spatial.I_2_maging.pdb" ComponentId="{5BD1431C-5A0C-4FFE-8170-93E1A7D86EC5}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.Analysis.Spatial.Imaging.pdb" Type="4"/>
@@ -19088,6 +19089,7 @@
     <ROW File="SMRUCC.genomics.Data.RCSB.PDB.xml" Component_="SMRUCC.genomics.Data.RCSB.PDB.xml" FileName="SMRUC~18.XML|SMRUCC.genomics.Data.RCSB.PDB.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.RCSB.PDB.xml" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Analysis.SingleCell.Expression.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="SMRUC~14.XML|SMRUCC.genomics.Analysis.SingleCell.Expression.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\SMRUCC.genomics.Analysis.SingleCell.Expression.xml" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Analysis.SingleCel_1_l.Expression.xml" Component_="BioDeep.dll.config" FileName="SMRUCC~1.XML|SMRUCC.genomics.Analysis.SingleCell.Expression.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.Analysis.SingleCell.Expression.xml" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Analysis.SingleCel_2_l.Expression.xml" Component_="SMRUCC.genomics.Analysis.SingleCel_5_l.Expression.xml" FileName="SMRUC~20.XML|SMRUCC.genomics.Analysis.SingleCell.Expression.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.SingleCell.Expression.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -20889,6 +20891,7 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.Data.RCSB.PDB.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Emily.PDB_canvas.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.Data.RCSB.PDB.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.Analysis.SingleCel_5_l.Expression.xml"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
