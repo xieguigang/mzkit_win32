@@ -23,6 +23,7 @@ Public Class frmMolstarViewer
     Dim webPort As Integer = -1
     Dim pdb As PDB
     Dim pdbfile As String
+    Dim docking_pdbqt As Boolean = False
 
     Public ReadOnly Property sourceURL As String
         Get
@@ -96,13 +97,14 @@ Public Class frmMolstarViewer
     End Sub
 
     Private Sub OpenPdb()
-        Using file As New OpenFileDialog With {.Filter = "Protein Structure Data(*.pdb)|*.pdb"}
+        Using file As New OpenFileDialog With {.Filter = "Protein Structure Data(*.pdb)|*.pdb|Vina Docking Result(*.pdbqt)|*.pdbqt"}
             If file.ShowDialog = DialogResult.OK Then
                 Dim pdb_txt As String = file.FileName.ReadAllText
                 ' 发送消息到 JavaScript
                 Dim jsonString As String = "null"
 
                 pdbfile = file.FileName
+                docking_pdbqt = pdbfile.ExtensionSuffix("pdbqt")
 
                 Call ProgressSpinner.DoLoading(
                     Sub()
@@ -125,44 +127,61 @@ Public Class frmMolstarViewer
             Return
         End If
 
-        Dim ligands = pdb.ListLigands.ToArray
+        Dim ligands As NamedValue(Of Het.HETRecord)() = pdb.ListLigands.ToArray
         Dim list As String() = ligands _
             .Select(Function(l) $"[{l.Value.SequenceNumber}] {l.Name}: {l.Description}") _
             .ToArray
-        Dim keyList = list.Zip(ligands).ToDictionary(Function(a) a.First, Function(a) a.Second)
+        Dim keyList = list.Zip(ligands) _
+            .ToDictionary(Function(a) a.First,
+                          Function(a)
+                              Return a.Second
+                          End Function)
 
-        If ligands.IsNullOrEmpty Then
-            MessageBox.Show("Current protein molecule docking data contains no ligand model.", "No data", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
+        If docking_pdbqt Then
+            Dim name As String = ""
+            Dim ref As Het.HETRecord
+
+            Call draw2DLigands(New NamedValue(Of Het.HETRecord)(name, ref))
+        Else
+            If ligands.IsNullOrEmpty Then
+                MessageBox.Show("Current protein molecule docking data contains no ligand model.",
+                                "No data",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning)
+                Return
+            Else
+                Call SelectSheetName.SelectName(list,
+                    show:=Sub(name)
+                              draw2DLigands(keyList(name))
+                          End Sub,
+                    title:="View Liagnd Plot",
+                    labeltext:="Select a ligand and view 2d docking plot")
+            End If
         End If
+    End Sub
 
-        Call SelectSheetName.SelectName(list,
-            show:=Sub(name)
-                      Dim theme As New Theme With {
-                          .padding = "padding: 10% 10% 10% 10%;"
-                      }
-                      Dim ligand As NamedValue(Of Het.HETRecord) = keyList(name)
-                      Dim render As New Ligand2DPlot(pdb, ligand, theme)
-                      Dim page = VisualStudio.ShowDocument(Of frmPlotViewer)(, name)
-                      Dim key As String = ligand.Value.ResidueType
-                      Dim number As Integer = ligand.Value.SequenceNumber
-                      Dim ref As New NamedValue(Of Integer)(key, number)
+    Private Sub draw2DLigands(ligand As NamedValue(Of Het.HETRecord))
+        Dim theme As New Theme With {
+            .padding = "padding: 10% 10% 10% 10%;"
+        }
+        Dim render As New Ligand2DPlot(pdb, ligand, theme)
+        Dim page = VisualStudio.ShowDocument(Of frmPlotViewer)(, Name)
+        Dim key As String = ligand.Value.ResidueType
+        Dim number As Integer = ligand.Value.SequenceNumber
+        Dim ref As New NamedValue(Of Integer)(key, number)
 
-                      Call render.CalculateMaxPlainView()
+        Call render.CalculateMaxPlainView()
 
-                      page.showImage(render, New Ligand2DPlotArguments(theme, render.ViewPoint))
-                      page.Filter = "plot image(*.png)|*.png|plot image(*.svg)|*.svg|plot image(*.pdf)|*.pdf"
-                      page.FileSave =
-                          Sub(outfile As String, args As frmPlotViewer.Arguments)
-                              Dim args_json As String = DirectCast(args, Ligand2DPlotArguments).GetJson(simpleDict:=True)
+        page.showImage(render, New Ligand2DPlotArguments(theme, render.ViewPoint))
+        page.Filter = "plot image(*.png)|*.png|plot image(*.svg)|*.svg|plot image(*.pdf)|*.pdf"
+        page.FileSave =
+            Sub(outfile As String, args As frmPlotViewer.Arguments)
+                Dim args_json As String = DirectCast(args, Ligand2DPlotArguments).GetJson(simpleDict:=True)
 
-                              If RscriptProgressTask.PlotLigand2DPlot(pdbfile, ref, outfile, args_json, args.ppi, $"{args.width},{args.height}") Then
-                                  Call MessageBox.Show("Export Plot success!", "Job Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                              End If
-                          End Sub
-                  End Sub,
-            title:="View Liagnd Plot",
-            labeltext:="Select a ligand and view 2d docking plot")
+                If RscriptProgressTask.PlotLigand2DPlot(pdbfile, ref, outfile, args_json, args.ppi, $"{args.width},{args.height}") Then
+                    Call MessageBox.Show("Export Plot success!", "Job Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+            End Sub
     End Sub
 
     Public Class Ligand2DPlotArguments : Inherits frmPlotViewer.Arguments
