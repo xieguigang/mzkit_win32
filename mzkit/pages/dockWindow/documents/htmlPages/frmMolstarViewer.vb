@@ -138,8 +138,22 @@ Public Class frmMolstarViewer
                           End Function)
 
         If docking_pdbqt Then
-            Dim name As String = ""
-            Dim ref As Het.HETRecord
+            Dim model = pdb.AtomStructures.FirstOrDefault
+
+            If model Is Nothing Then
+                Call Workbench.Warning("No structure model for make plot!")
+                Return
+            End If
+
+            Dim hetatoms = model.HetAtoms
+            Dim name As String = hetatoms.Keys.First
+            Dim atoms = hetatoms(name)
+            Dim ref As New Het.HETRecord With {
+                .AtomCount = atoms.Length,
+                .ChainID = atoms.First.ChainID,
+                .ResidueType = atoms.First.ResidueName,
+                .SequenceNumber = atoms.First.ResidueSequenceNumber
+            }
 
             Call draw2DLigands(New NamedValue(Of Het.HETRecord)(name, ref))
         Else
