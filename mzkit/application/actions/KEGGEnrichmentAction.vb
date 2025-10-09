@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ApplicationServices
+﻿Imports Galaxy.Workbench
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
@@ -36,7 +37,7 @@ Public Class KEGGEnrichmentAction : Inherits ActionBase
                       .ToArray
                    Dim image As String = ReportRender.Render(map, geneIds)
                    Dim temp As String = TempFileSystem.GetAppSysTempFile(".html", sessionID:=App.PID, prefix:="kegg_pathway")
-                   Dim browser = VisualStudio.ShowDocument(Of frmHtmlViewer)(title:=map.Name)
+                   Dim browser = VisualStudio.ShowDocument(Of frmHtmlViewer)(title:=map.name)
 
                    Call image.SaveTo(temp)
                    Call browser.LoadHtml(temp)

@@ -1,8 +1,8 @@
 ﻿Imports System.ComponentModel
 Imports System.Runtime.InteropServices
 Imports System.Threading
-Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Galaxy.Workbench
 Imports HEView
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.DataStorage.HDSPack
@@ -176,12 +176,12 @@ Public Class frmOpenseadragonViewer
         Call WebView21.CoreWebView2.AddHostObjectToScript("dzi", $"http://127.0.0.1:{webPort}/{dziIndex}.dzi")
         ' Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New WebRunner)
         Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call WebKit.DeveloperOptions(WebView21, enable:=True, TabText)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True, TabText)
     End Sub
 
     Private Sub frmOpenseadragonViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         DoActivated()
-        WebKit.Init(Me.WebView21)
+        WebViewLoader.Init(Me.WebView21)
     End Sub
 
     Dim scanImageUri As String

@@ -72,6 +72,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.Framework
@@ -81,7 +83,6 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
-Imports Galaxy.Workbench.CommonDialogs
 Imports Mzkit_win32.BasicMDIForm.RibbonLib.Controls
 Imports Mzkit_win32.MatrixViewer
 Imports RibbonLib
@@ -148,7 +149,7 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.ButtonDropB, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitCalculator))
         Call HookRibbon(ribbonItems.ButtonFormulaSearch, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitSearch))
         Call HookRibbon(ribbonItems.ButtonDropD, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitMNtools))
-        Call HookRibbon(ribbonItems.ButtonShowSpectrumSearchPage, Sub(sender, e) Call New frmSpectrumSearch().Show(MyApplication.host.DockPanel))
+        Call HookRibbon(ribbonItems.ButtonShowSpectrumSearchPage, Sub(sender, e) Call New frmSpectrumSearch().Show(MyApplication.host.GetDockPanel))
 
         Call HookRibbon(ribbonItems.ButtonCalculatorExport, Sub(sender, e) Call MyApplication.host.mzkitCalculator.ExportToolStripMenuItem_Click())
         Call HookRibbon(ribbonItems.ButtonExactMassSearchExport, Sub(sender, e) Call MyApplication.host.mzkitTool.ExportExactMassSearchTable())
@@ -357,7 +358,7 @@ Module RibbonEvents
     End Sub
 
     Public Sub openLCMSWorkbench()
-        Dim page = Workbench.AppHost.DockPanel.ActiveDocument
+        Dim page = Workbench.AppHost.ActiveDocument
 
         If TypeOf page Is frmTableViewer Then
             Dim tablePage As frmTableViewer = page

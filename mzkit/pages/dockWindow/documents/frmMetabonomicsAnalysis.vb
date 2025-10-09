@@ -12,6 +12,8 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.MS
 Imports BioNovoGene.BioDeep.MSFinder
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
@@ -21,7 +23,6 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
-Imports Galaxy.Workbench.CommonDialogs
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
@@ -573,7 +574,7 @@ Public Class frmMetabonomicsAnalysis
     Shared ReadOnly volcanoPlot As New RibbonEventBinding(ribbonItems.ButtonViewVolcano)
 
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Call WebKit.Init(Me.WebView21)
+        Call WebViewLoader.Init(Me.WebView21)
         Call ApplyVsTheme(ContextMenuStrip1)
         Call EventActivated()
     End Sub
@@ -664,14 +665,14 @@ Public Class frmMetabonomicsAnalysis
     Private Sub view3DScatter()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", source)
         Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/3d-scatter.html")
-        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 
     Private Sub viewScatterSVG() Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", url)
         Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/svgViewer.html")
-        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 
     Private Sub EventActivated() Handles Me.Activated
@@ -733,7 +734,7 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Private Sub importsMetaboliteTable()
-        Dim tables = Workbench.AppHost.DockPanel.Documents.Where(Function(doc) TypeOf doc Is frmTableViewer).ToArray
+        Dim tables = Workbench.AppHost.GetDocuments.Where(Function(doc) TypeOf doc Is frmTableViewer).ToArray
         Dim names = tables.Select(Function(tab) DirectCast(tab, frmTableViewer).TabText).Indexing
 
         Call SelectSheetName.SelectName(names.Objects,

@@ -1,7 +1,7 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.nmrML
 Imports BioNovoGene.mzkit_win32.My
-Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.Workbench
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmNmrSpectrumExplorer

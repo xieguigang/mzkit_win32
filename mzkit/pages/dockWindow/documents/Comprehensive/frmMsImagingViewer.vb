@@ -88,6 +88,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
@@ -114,7 +116,6 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
 Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
-Imports Galaxy.Workbench.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports MZKitWin32.Blender.CommonLibs
 Imports ServiceHub
@@ -863,7 +864,7 @@ Public Class frmMsImagingViewer
         table.DockState = DockState.Document
 
         Me.DockState = DockState.Document
-        Me.Show(Workbench.AppHost.DockPanel)
+        Me.Show(Workbench.AppHost.GetDockPanel)
 
         Call Workbench.SuccessMessage($"Imports {ions.Length} ms-imaging ions target for {name.Length} metabolite annotations!")
     End Sub
