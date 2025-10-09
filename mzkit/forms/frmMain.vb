@@ -81,6 +81,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Development
 Imports Microsoft.VisualBasic.CommandLine
@@ -822,17 +823,13 @@ Are you want to make your data to be pre-processing before load it into computer
     Private vsToolStripExtender1 As New VisualStudioToolStripExtender
     Private ReadOnly _toolStripProfessionalRenderer As New ToolStripProfessionalRenderer()
 
-    Public ReadOnly Property DockPanel As DockPanel Implements AppHost.DockPanel
-        Get
-            Return m_dockPanel
-        End Get
-    End Property
-
     Private ReadOnly Property AppHost_ClientRectangle As Rectangle Implements AppHost.ClientRectangle
         Get
             Return New Rectangle(Location, Size)
         End Get
     End Property
+
+    Public ReadOnly Property ActiveDocument As Form Implements AppHost.ActiveDocument
 
     Public Sub ShowPropertyWindow()
         VisualStudio.Dock(WindowModules.propertyWin, DockState.DockRight)
@@ -1036,4 +1033,12 @@ Are you want to make your data to be pre-processing before load it into computer
             Me.Hide()
         End If
     End Sub
+
+    Public Function GetDocuments() As IEnumerable(Of Form) Implements AppHost.GetDocuments
+        Return m_dockPanel.Documents
+    End Function
+
+    Public Function GetDockPanel() As Control Implements AppHost.GetDockPanel
+        Return m_dockPanel
+    End Function
 End Class

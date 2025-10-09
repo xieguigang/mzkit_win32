@@ -1,15 +1,14 @@
 ﻿Imports System.Drawing
-Imports System.Drawing.Drawing2D
 Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Math2D
-Imports Mzkit_win32.BasicMDIForm
 Imports std = System.Math
 
 Public Class HEStainViewer

@@ -3,6 +3,7 @@ Imports System.Text.RegularExpressions
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
@@ -24,7 +25,7 @@ Public Class FormViewer
             .host = Me
         }
 
-        Me.cloud.Show(Workbench.AppHost.DockPanel)
+        Me.cloud.Show(Workbench.AppHost.GetDockPanel)
         Me.cloud.DockState = DockState.DockLeft
 
         AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search

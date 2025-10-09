@@ -1,6 +1,6 @@
-﻿Imports Microsoft.VisualBasic.Net.Http
+﻿Imports Galaxy.Workbench
+Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
-Imports Mzkit_win32.BasicMDIForm
 
 Public Class HtmlViewer
 
@@ -18,7 +18,7 @@ Public Class HtmlViewer
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call LoadPage(sourceURL)
-        Call WebKit.DeveloperOptions(WebView21, enable:=True)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True)
     End Sub
 
     Public Sub LoadPage(url As String)
@@ -30,7 +30,7 @@ Public Class HtmlViewer
     End Sub
 
     Private Sub frmHtmlViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        WebKit.Init(WebView21)
+        WebViewLoader.Init(WebView21)
     End Sub
 
     ''' <summary>

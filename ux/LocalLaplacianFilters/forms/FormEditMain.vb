@@ -1,8 +1,8 @@
 ﻿Imports System.Globalization
 Imports System.IO
+Imports Galaxy.Workbench.CommonDialogs
 Imports LaplacianHDR.Filters
 Imports LaplacianHDR.Helpers
-Imports Galaxy.Workbench.CommonDialogs
 Imports UMapx.Imaging
 Imports WeifenLuo.WinFormsUI.Docking
 

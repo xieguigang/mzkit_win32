@@ -9,11 +9,12 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib
 Imports BioNovoGene.BioDeep.Chemistry
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
-Imports Galaxy.Workbench.CommonDialogs
 Imports Task
 
 Public Class frmLCMSLibrary
@@ -33,7 +34,7 @@ Public Class frmLCMSLibrary
         AutoScaleMode = AutoScaleMode.Dpi
         root = Win7StyleTreeView1.Nodes(0)
 
-        Call WebKit.Init(Me.WebView21)
+        Call WebViewLoader.Init(Me.WebView21)
         Call LoadLibs()
         Call ApplyVsTheme(ToolStrip1, ContextMenuStrip1)
     End Sub
@@ -53,7 +54,7 @@ Public Class frmLCMSLibrary
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", [lib])
         Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call WebKit.DeveloperOptions(WebView21, enable:=True, TabText)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True, TabText)
     End Sub
 
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
@@ -292,7 +293,7 @@ Public Class LibraryApp
     End Function
 
     Public Async Function FindExactMass(mass As Double) As Task(Of Boolean)
-        Dim findMSI As frmMsImagingViewer = MyApplication.host.DockPanel.Documents _
+        Dim findMSI As frmMsImagingViewer = MyApplication.host.GetDocuments _
             .Where(Function(p) TypeOf p Is frmMsImagingViewer) _
             .FirstOrDefault
 
