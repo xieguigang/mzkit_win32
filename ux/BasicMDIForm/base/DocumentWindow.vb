@@ -1,55 +1,55 @@
 ﻿#Region "Microsoft.VisualBasic::264e2a9432db60ddc3ecc73521757822, mzkit\src\mzkit\mzkit\pages\dockWindow\base\DocumentWindow.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 87
-    '    Code Lines: 61
-    ' Comment Lines: 3
-    '   Blank Lines: 23
-    '     File Size: 3.26 KB
+' Summaries:
 
 
-    ' Class DocumentWindow
-    ' 
-    '     Sub: ApplyVsTheme, CloseAllButThisToolStripMenuItem_Click, CloseAllDocumentsToolStripMenuItem_Click, CloseToolStripMenuItem_Click, CopyFullPath
-    '          FloatToolStripMenuItem_Click, HandleTaskbar, OpenContainingFolder, SaveDocument, ToolWindow_Load
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 87
+'    Code Lines: 61
+' Comment Lines: 3
+'   Blank Lines: 23
+'     File Size: 3.26 KB
+
+
+' Class DocumentWindow
+' 
+'     Sub: ApplyVsTheme, CloseAllButThisToolStripMenuItem_Click, CloseAllDocumentsToolStripMenuItem_Click, CloseToolStripMenuItem_Click, CopyFullPath
+'          FloatToolStripMenuItem_Click, HandleTaskbar, OpenContainingFolder, SaveDocument, ToolWindow_Load
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -105,12 +105,12 @@ Public Class DocumentWindow
         TaskbarManager.Instance.TabbedThumbnail.AddThumbnailPreview(preview)
 
         ' Event handlers for this preview
-        AddHandler preview.TabbedThumbnailActivated, AddressOf preview_TabbedThumbnailActivated
-        AddHandler preview.TabbedThumbnailClosed, AddressOf preview_TabbedThumbnailClosed
-        AddHandler preview.TabbedThumbnailMaximized, AddressOf preview_TabbedThumbnailMaximized
-        AddHandler preview.TabbedThumbnailMinimized, AddressOf preview_TabbedThumbnailMinimized
+        AddHandler preview.TabbedThumbnailActivated, AddressOf Galaxy.Workbench.TaskBarWindow.Preview_TabbedThumbnailActivated
+        AddHandler preview.TabbedThumbnailClosed, AddressOf Galaxy.Workbench.TaskBarWindow.Preview_TabbedThumbnailClosed
+        AddHandler preview.TabbedThumbnailMaximized, AddressOf Galaxy.Workbench.TaskBarWindow.Preview_TabbedThumbnailMaximized
+        AddHandler preview.TabbedThumbnailMinimized, AddressOf Galaxy.Workbench.TaskBarWindow.Preview_TabbedThumbnailMinimized
 
-        TaskBarWindow.UpdatePreviewBitmap(Me)
+        Galaxy.Workbench.TaskBarWindow.UpdatePreviewBitmap(Me)
     End Sub
 
     Private Sub FloatToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FloatToolStripMenuItem.Click
@@ -124,7 +124,7 @@ Public Class DocumentWindow
     End Sub
 
     Private Sub CloseAllButThisToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseAllButThisToolStripMenuItem.Click
-        For Each tab As IDockContent In Workbench.AppHost.DockPanel.Documents.ToArray
+        For Each tab As Form In Workbench.AppHost.GetDocuments
             If Not TypeOf tab Is ToolWindow Then
                 If Not tab Is Me Then
                     Call DirectCast(tab, Form).Close()
@@ -134,7 +134,7 @@ Public Class DocumentWindow
     End Sub
 
     Private Sub CloseAllDocumentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseAllDocumentsToolStripMenuItem.Click
-        For Each tab As IDockContent In Workbench.AppHost.DockPanel.Documents.ToArray
+        For Each tab As Form In Workbench.AppHost.GetDocuments
             If Not TypeOf tab Is ToolWindow Then
                 Call DirectCast(tab, Form).Close()
             End If

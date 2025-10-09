@@ -1,4 +1,5 @@
 Imports System.Runtime.CompilerServices
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Mzkit_win32.BasicMDIForm.RibbonLib.Controls
 Imports RibbonLib
@@ -137,7 +138,7 @@ Public NotInheritable Class Workbench
     ''' do specific callback from this parameter delegate if the pointer value is nothing nothing
     ''' </param>
     Public Shared Function ShowSingleDocument(Of T As {New, DockContent})(Optional showExplorer As Action = Nothing) As T
-        Dim DockPanel As DockPanel = AppHost.DockPanel
+        Dim DockPanel As DockPanel = DirectCast(AppHost.GetDockPanel, DockPanel)
         Dim targeted As T = DockPanel.Documents _
             .Where(Function(doc) TypeOf doc Is T) _
             .FirstOrDefault
@@ -196,7 +197,7 @@ Public NotInheritable Class Workbench
 
         Dim newDoc As DocumentWindow = Activator.CreateInstance(docType)
 
-        newDoc.Show(AppHost.DockPanel)
+        newDoc.Show(AppHost.GetDockPanel)
         newDoc.DockState = status
 
         If Not title.StringEmpty Then
@@ -207,7 +208,7 @@ Public NotInheritable Class Workbench
     End Function
 
     Public Shared Function ShowDocument(page As DocumentWindow, Optional status As DockState = DockState.Document) As DocumentWindow
-        page.Show(AppHost.DockPanel)
+        page.Show(AppHost.GetDockPanel)
         page.DockState = status
         Return page
     End Function

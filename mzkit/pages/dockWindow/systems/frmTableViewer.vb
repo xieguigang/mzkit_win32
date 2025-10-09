@@ -414,7 +414,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub MSImagingIonListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MSImagingIonListToolStripMenuItem.Click
-        Dim msi As frmMsImagingViewer = Workbench.AppHost.DockPanel.Documents.Where(Function(f) TypeOf f Is frmMsImagingViewer).FirstOrDefault
+        Dim msi As frmMsImagingViewer = Workbench.AppHost.GetDocuments.Where(Function(f) TypeOf f Is frmMsImagingViewer).FirstOrDefault
 
         If msi Is Nothing Then
             Call Workbench.Warning("You must open a ms-imaging data viewer at first!")
