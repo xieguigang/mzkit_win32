@@ -361,7 +361,7 @@ Type 'q()' to quit R.
 
         Public Shared Sub CloseMSIEngine()
             If Not MyApplication.host Is Nothing Then
-                For Each doc In MyApplication.host.DockPanel.Documents
+                For Each doc In MyApplication.host.GetDocuments
                     If TypeOf doc Is frmMsImagingViewer Then
                         If Not DirectCast(doc, frmMsImagingViewer).MSIservice Is Nothing Then
                             Call DirectCast(doc, frmMsImagingViewer).MSIservice.CloseMSIEngine()

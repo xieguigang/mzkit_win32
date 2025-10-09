@@ -130,7 +130,7 @@ Public Class VisualStudio
                                    Optional status As DockState = DockState.Document,
                                    Optional title As String = Nothing)
 
-        doc.Show(Workbench.AppHost.DockPanel)
+        doc.Show(Workbench.AppHost.GetDockPanel)
         doc.DockState = status
 
         Call Workbench.LogText($"open new document page: {If(title, "<No Name>")}")

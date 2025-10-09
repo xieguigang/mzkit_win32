@@ -2,9 +2,9 @@
 Imports System.Runtime.InteropServices
 Imports System.Threading
 Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.Web.WebView2.Core
-Imports Mzkit_win32.BasicMDIForm
 Imports SMRUCC.DICOM.LASer
 Imports SMRUCC.DICOM.LASer.Model
 Imports SMRUCC.DICOM.NRRD
@@ -125,14 +125,14 @@ Public Class frm3DMALDIViewer
 
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", sourceMALDI)
         Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call WebKit.DeveloperOptions(WebView21, enable:=True, TabText:=TabText)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True, TabText:=TabText)
     End Sub
 
     Private Sub frm3DMALDIViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.TabText = Me.Text
 
         Call startHttp()
-        Call WebKit.Init(Me.WebView21)
+        Call WebViewLoader.Init(Me.WebView21)
     End Sub
 
     Private Sub OpenDeveloperToolToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenDeveloperToolToolStripMenuItem.Click

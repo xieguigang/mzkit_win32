@@ -54,9 +54,9 @@
 #End Region
 
 Imports System.ComponentModel
-Imports Microsoft.Web.WebView2.Core
-Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
+Imports Microsoft.Web.WebView2.Core
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmHtmlViewer
@@ -80,7 +80,7 @@ Public Class frmHtmlViewer
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call WebKit.DeveloperOptions(WebView21, enable:=True)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True)
     End Sub
 
     Public Sub LoadHtml(url As String)
@@ -119,7 +119,7 @@ Public Class frmHtmlViewer
         TabText = "Document Viewer"
         ' Icon = My.Resources.IE
 
-        WebKit.Init(WebView21)
+        WebViewLoader.Init(WebView21)
     End Sub
 
     Private Sub WebBrowser1_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs)

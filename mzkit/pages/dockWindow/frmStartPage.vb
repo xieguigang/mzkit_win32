@@ -56,6 +56,7 @@ Imports System.ComponentModel
 Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
@@ -123,14 +124,14 @@ Public Class frmStartPage
 
         hideNewsFeeds()
         ' BackgroundWorker.RunWorkerAsync()
-        WebKit.Init(WebView21)
+        WebViewLoader.Init(WebView21)
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New LinkActions With {.host = Me})
         Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 
     Public Shared Sub ViewRawDataFile()

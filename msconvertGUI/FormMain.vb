@@ -1,72 +1,73 @@
 ﻿#Region "Microsoft.VisualBasic::49c37a59d098ab3a9c68062460b57109, mzkit\msconvertGUI\FormMain.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 200
-    '    Code Lines: 142 (71.00%)
-    ' Comment Lines: 16 (8.00%)
-    '    - Xml Docs: 93.75%
-    ' 
-    '   Blank Lines: 42 (21.00%)
-    '     File Size: 7.14 KB
+' Summaries:
 
 
-    ' Class FormMain
-    ' 
-    '     Properties: AppHost_ClientRectangle, arguments, CurrentTask, DockPanel
-    ' 
-    '     Function: GetClientSize, GetDesktopLocation, getSourceDir, GetWindowState
-    ' 
-    '     Sub: AddTask, Button1_Click, Button2_Click, Button3_Click, ExitToolStripMenuItem_Click
-    '          ExportMSImagingFileToolStripMenuItem_Click, FormMain_Closing, FormMain_Load, FormMain_Resize, ListBox1_SelectedIndexChanged
-    '          LogText, SetTitle, SetWindowState, SetWorkbenchVisible, ShowProperties
-    '          StatusMessage, TextBox1_TextChanged, Warning
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 200
+'    Code Lines: 142 (71.00%)
+' Comment Lines: 16 (8.00%)
+'    - Xml Docs: 93.75%
+' 
+'   Blank Lines: 42 (21.00%)
+'     File Size: 7.14 KB
+
+
+' Class FormMain
+' 
+'     Properties: AppHost_ClientRectangle, arguments, CurrentTask, DockPanel
+' 
+'     Function: GetClientSize, GetDesktopLocation, getSourceDir, GetWindowState
+' 
+'     Sub: AddTask, Button1_Click, Button2_Click, Button3_Click, ExitToolStripMenuItem_Click
+'          ExportMSImagingFileToolStripMenuItem_Click, FormMain_Closing, FormMain_Load, FormMain_Resize, ListBox1_SelectedIndexChanged
+'          LogText, SetTitle, SetWindowState, SetWorkbenchVisible, ShowProperties
+'          StatusMessage, TextBox1_TextChanged, Warning
+' 
+' /********************************************************************************/
 
 #End Region
 
 Imports System.ComponentModel
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports CommonDialogs
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
 Imports msconvertGUI.My
 Imports Mzkit_win32.BasicMDIForm
-Imports Galaxy.Workbench.CommonDialogs
 Imports Task
 
 Public Class FormMain : Implements AppHost
@@ -74,10 +75,16 @@ Public Class FormMain : Implements AppHost
     Public Property CurrentTask As FileApplicationClass = FileApplicationClass.LCMS
     Public Property arguments As New Dictionary(Of String, String)
 
-    Public ReadOnly Property DockPanel As Global.WeifenLuo.WinFormsUI.Docking.DockPanel Implements AppHost.DockPanel
+    Public ReadOnly Property DockPanel As Global.WeifenLuo.WinFormsUI.Docking.DockPanel
     Private ReadOnly Property AppHost_ClientRectangle As Rectangle Implements AppHost.ClientRectangle
         Get
             Return New Rectangle(Location, Size)
+        End Get
+    End Property
+
+    Public ReadOnly Property ActiveDocument As Form Implements AppHost.ActiveDocument
+        Get
+            Return DockPanel.ActiveDocument
         End Get
     End Property
 
@@ -285,4 +292,12 @@ Public Class FormMain : Implements AppHost
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         Call New AboutBox1().ShowDialog()
     End Sub
+
+    Public Function GetDocuments() As IEnumerable(Of Form) Implements AppHost.GetDocuments
+        Return DockPanel.Documents
+    End Function
+
+    Public Function GetDockPanel() As Control Implements AppHost.GetDockPanel
+        Return DockPanel
+    End Function
 End Class

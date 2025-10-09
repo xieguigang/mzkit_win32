@@ -59,6 +59,7 @@ Imports BioNovoGene.BioDeep.Chemistry.Model.Drawing
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.SDF
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net.Http
@@ -131,8 +132,8 @@ Public Class frmSMILESViewer
     End Sub
 
     Private Sub frmSMILESViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Call WebKit.Init(WebView21)
-        Call WebKit.Init(WebView22)
+        Call WebViewLoader.Init(WebView21)
+        Call WebViewLoader.Init(WebView22)
         Call Wait()
 
         Text = "Molecule Drawer"

@@ -24,11 +24,11 @@ Namespace Debugger
 
         Private Sub Run2()
             Dim viewer As frmMsImagingViewer = WindowModules.viewer
-            Dim dockPanel = MyApplication.host.DockPanel
+            Dim dockPanel = MyApplication.host.GetDockPanel
 
             WindowModules.msImageParameters.Show(dockPanel)
 
-            viewer.Show(MyApplication.host.DockPanel)
+            viewer.Show(MyApplication.host.GetDockPanel)
 
             If Not viewer.MSIservice Is Nothing Then
                 viewer.MSIservice.CloseMSIEngine()

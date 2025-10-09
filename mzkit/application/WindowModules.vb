@@ -174,7 +174,7 @@ Friend MustInherit Class WindowModules
     End Sub
 
     Public Shared Sub OpenFile()
-        Dim doc As IDockContent = MyApplication.host.DockPanel.ActiveDocument
+        Dim doc As IDockContent = MyApplication.host.ActiveDocument
 
         If TypeOf doc Is DocumentWindow AndAlso DirectCast(doc, DocumentWindow).HookOpen IsNot Nothing Then
             Call DirectCast(doc, DocumentWindow).HookOpen()

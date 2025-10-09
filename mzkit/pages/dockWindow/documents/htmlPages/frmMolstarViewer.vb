@@ -3,6 +3,7 @@ Imports System.Runtime.InteropServices
 Imports System.Threading
 Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
 Imports Emily.PDB_Canvas
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
@@ -92,7 +93,7 @@ Public Class frmMolstarViewer
 
     Private Sub frm3DMALDIViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call startHttp()
-        Call WebKit.Init(Me.WebView21)
+        Call WebViewLoader.Init(Me.WebView21)
         Call GetActivated()
     End Sub
 
@@ -261,7 +262,7 @@ Public Class frmMolstarViewer
 
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New DataSource)
         Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call WebKit.DeveloperOptions(WebView21, enable:=True, TabText:=TabText)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True, TabText:=TabText)
     End Sub
 
     Private Sub resetCamera()

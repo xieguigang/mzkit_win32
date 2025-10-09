@@ -78,9 +78,9 @@ Public Class frmRsharp
 
         console1.Font = New Font("Consolas", 10.0!)
         console1.Dock = DockStyle.Fill
-        console1.Ps1Pattern = "[>]\s"
+        ' console1.Ps1Pattern = "[>]\s"
 
-        console = console1.Console
+        console = DirectCast(console1.GetInterface, Console)
 
         console.ForegroundColor = ConsoleColor.Black
         console.BackgroundColor = ConsoleColor.White

@@ -1,5 +1,6 @@
 ﻿Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
@@ -39,14 +40,14 @@ Public Class frm3DScatterPlotView
 
     Private Sub frm3DScatterPlotView_Load(sender As Object, e As EventArgs) Handles Me.Load
         TabText = "View Scatter Plot"
-        WebKit.Init(WebView21)
+        WebViewLoader.Init(WebView21)
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", Me.source)
         Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call WebKit.DeveloperOptions(WebView21, enable:=True)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True)
     End Sub
 
     ' 所有需要在JavaScript环境中暴露的对象

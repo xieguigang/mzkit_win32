@@ -6,6 +6,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
@@ -41,7 +42,7 @@ Public Class frmSingleCellViewer
         Text = "Single Cells Tool"
         TabText = Text
 
-        WebKit.Init(WebView21)
+        WebViewLoader.Init(WebView21)
 
         AddHandler ribbonItems.ButtonViewSingleCellsEmbedding.ExecuteEvent, Sub() Call ViewEmbeddingTable()
     End Sub
@@ -131,7 +132,7 @@ Public Class frmSingleCellViewer
     Private Sub WebView21_CoreWebView2InitializationCompleted()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", Me.source)
         Call WebView21.CoreWebView2.Navigate(SourceUrl)
-        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 
     ''' <summary>

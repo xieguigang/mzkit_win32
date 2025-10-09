@@ -4,8 +4,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Linq
-Imports Mzkit_win32.BasicMDIForm
 
 Public Class InputPubChemProxy
 
