@@ -207,22 +207,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\..\mzkit\RibbonItems.Designer.vb" />
-    <Compile Include="buzyIndicator\ActionRunner.vb" />
-    <Compile Include="buzyIndicator\LoadDataTask.vb" />
-    <Compile Include="buzyIndicator\ITaskProgress.vb" />
-    <Compile Include="buzyIndicator\Extensions.vb" />
-    <Compile Include="buzyIndicator\ProgressSpinner.Designer.vb">
-      <DependentUpon>ProgressSpinner.vb</DependentUpon>
-    </Compile>
-    <Compile Include="buzyIndicator\ProgressSpinner.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="buzyIndicator\TaskProgress.Designer.vb">
-      <DependentUpon>TaskProgress.vb</DependentUpon>
-    </Compile>
-    <Compile Include="buzyIndicator\TaskProgress.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="RibbonExport.vb" />
     <Compile Include="DataGrid\GridLoaderHandler.vb" />
     <Compile Include="plugin\modules\DataTableViewer.vb" />
@@ -277,12 +261,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="base\ToolWindow.resx">
       <DependentUpon>ToolWindow.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="buzyIndicator\ProgressSpinner.resx">
-      <DependentUpon>ProgressSpinner.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="buzyIndicator\TaskProgress.resx">
-      <DependentUpon>TaskProgress.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
