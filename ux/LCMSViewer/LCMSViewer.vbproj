@@ -313,10 +313,6 @@
       <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
       <Name>ControlLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\winux\DataValidation\DataValidation.vbproj">
-      <Project>{be119982-49e0-45e8-b26a-3efc1bd32610}</Project>
-      <Name>DataValidation</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\..\packages\Microsoft.Web.WebView2.1.0.2849.39\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\..\packages\Microsoft.Web.WebView2.1.0.2849.39\build\Microsoft.Web.WebView2.targets')" />

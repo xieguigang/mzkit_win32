@@ -358,10 +358,6 @@
       <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\winux\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
-      <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
-      <Name>Microsoft.Windows.FeatureAPI</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="..\..\services\mzkit_win32.envir\mzkit_win32.envir.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
