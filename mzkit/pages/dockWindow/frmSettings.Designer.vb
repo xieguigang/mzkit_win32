@@ -52,7 +52,6 @@
 
 #End Region
 
-Imports ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView
 Imports Mzkit_win32.BasicMDIForm
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>

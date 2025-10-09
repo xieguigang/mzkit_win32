@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports Galaxy.CommonControls
+Imports Mzkit_win32.BasicMDIForm
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmNmrSpectrumExplorer
@@ -25,7 +26,7 @@ Partial Class frmNmrSpectrumExplorer
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
+        Me.Win7StyleTreeView1 = New Win7StyleTreeView(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStrip1.SuspendLayout()
@@ -76,7 +77,7 @@ Partial Class frmNmrSpectrumExplorer
 
     End Sub
 
-    Friend WithEvents Win7StyleTreeView1 As ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView
+    Friend WithEvents Win7StyleTreeView1 As Win7StyleTreeView
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
 End Class

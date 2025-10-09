@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports Galaxy.CommonControls
+Imports Mzkit_win32.BasicMDIForm
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmLCMSLibrary
@@ -29,7 +30,7 @@ Partial Class frmLCMSLibrary
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmLCMSLibrary))
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
+        Me.Win7StyleTreeView1 = New Win7StyleTreeView(Me.components)
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -196,7 +197,7 @@ Partial Class frmLCMSLibrary
 
     Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
     Friend WithEvents SplitContainer1 As SplitContainer
-    Friend WithEvents Win7StyleTreeView1 As ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView
+    Friend WithEvents Win7StyleTreeView1 As Win7StyleTreeView
     Friend WithEvents ImageList1 As ImageList
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents OpenToolStripMenuItem As ToolStripMenuItem

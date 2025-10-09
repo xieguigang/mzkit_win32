@@ -1,4 +1,5 @@
-﻿Imports Galaxy.Workbench.CommonDialogs
+﻿Imports Galaxy.CommonControls
+Imports Galaxy.Workbench.CommonDialogs
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class SampleRegionMergeTool
@@ -26,7 +27,7 @@ Partial Class SampleRegionMergeTool
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.ColorComboBox1 = New ControlLibrary.ColorComboBox()
+        Me.ColorComboBox1 = New ColorComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -258,7 +259,7 @@ Partial Class SampleRegionMergeTool
     Friend WithEvents LinkLabel3 As LinkLabel
     Friend WithEvents LinkLabel2 As LinkLabel
     Friend WithEvents Label3 As Label
-    Friend WithEvents ColorComboBox1 As ControlLibrary.ColorComboBox
+    Friend WithEvents ColorComboBox1 As ColorComboBox
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents AddSubRegionToolStripMenuItem As ToolStripMenuItem
 End Class

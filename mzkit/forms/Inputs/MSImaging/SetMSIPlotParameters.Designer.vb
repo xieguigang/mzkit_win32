@@ -1,4 +1,5 @@
-﻿Imports Galaxy.Workbench.CommonDialogs
+﻿Imports Galaxy.CommonControls
+Imports Galaxy.Workbench.CommonDialogs
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class SetMSIPlotParameters
@@ -27,8 +28,8 @@ Partial Class SetMSIPlotParameters
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SetMSIPlotParameters))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.DropDownButton1 = New ControlLibrary.DropDownButton()
-        Me.DropDownMenu1 = New ControlLibrary.DropDownMenu()
+        Me.DropDownButton1 = New DropDownButton()
+        Me.DropDownMenu1 = New DropDownMenu()
         Me.PNGToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SVGToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PDFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -356,8 +357,8 @@ Partial Class SetMSIPlotParameters
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents ChkIntensityClamp As CheckBox
-    Friend WithEvents DropDownButton1 As ControlLibrary.DropDownButton
-    Friend WithEvents DropDownMenu1 As ControlLibrary.DropDownMenu
+    Friend WithEvents DropDownButton1 As DropDownButton
+    Friend WithEvents DropDownMenu1 As DropDownMenu
     Friend WithEvents PNGToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SVGToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PDFToolStripMenuItem As ToolStripMenuItem
