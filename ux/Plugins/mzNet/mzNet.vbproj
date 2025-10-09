@@ -233,6 +233,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj">
+      <Project>{ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452}</Project>
+      <Name>GalaxyWorkbench</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj">
       <Project>{5b55ea8f-18af-4cf5-9a46-a2473dfe1b17}</Project>
       <Name>WkHtmlToPdf.NET5</Name>
