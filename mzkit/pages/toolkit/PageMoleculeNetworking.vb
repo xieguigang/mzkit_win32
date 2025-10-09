@@ -84,7 +84,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports RibbonLib.Interop
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting

@@ -72,7 +72,7 @@ Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
 Imports Microsoft.VisualBasic.Windows.Forms.DataValidation
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports Zuby.ADGV

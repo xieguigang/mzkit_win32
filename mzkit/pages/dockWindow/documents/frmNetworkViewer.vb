@@ -65,7 +65,7 @@ Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
 Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce
 Imports Microsoft.VisualBasic.Drawing
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Serialization
 Imports SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML
 Imports SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File

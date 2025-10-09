@@ -493,15 +493,21 @@
     <Compile Include="forms\Inputs\InputImportsMetaboliteLibrary.Designer.vb">
       <DependentUpon>InputImportsMetaboliteLibrary.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputImportsMetaboliteLibrary.vb" />
+    <Compile Include="forms\Inputs\InputImportsMetaboliteLibrary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputReferencePointNames.Designer.vb">
       <DependentUpon>InputReferencePointNames.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputReferencePointNames.vb" />
+    <Compile Include="forms\Inputs\InputReferencePointNames.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputURL.Designer.vb">
       <DependentUpon>InputURL.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputURL.vb" />
+    <Compile Include="forms\Inputs\InputURL.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputIdList.Designer.vb">
       <DependentUpon>InputIdList.vb</DependentUpon>
     </Compile>
@@ -511,43 +517,63 @@
     <Compile Include="forms\Inputs\LCMS\InputVolcanoSettings.Designer.vb">
       <DependentUpon>InputVolcanoSettings.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\LCMS\InputVolcanoSettings.vb" />
+    <Compile Include="forms\Inputs\LCMS\InputVolcanoSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputSetGroupVisual.Designer.vb">
       <DependentUpon>InputSetGroupVisual.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\LCMS\InputSetGroupVisual.vb" />
+    <Compile Include="forms\Inputs\LCMS\InputSetGroupVisual.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputLCMSDeconvolution.Designer.vb">
       <DependentUpon>InputLCMSDeconvolution.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\LCMS\InputLCMSDeconvolution.vb" />
+    <Compile Include="forms\Inputs\LCMS\InputLCMSDeconvolution.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputLoadLCMSScatter.Designer.vb">
       <DependentUpon>InputLoadLCMSScatter.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\LCMS\InputLoadLCMSScatter.vb" />
+    <Compile Include="forms\Inputs\LCMS\InputLoadLCMSScatter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputSampleProcessing.Designer.vb">
       <DependentUpon>InputSampleProcessing.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\LCMS\InputSampleProcessing.vb" />
+    <Compile Include="forms\Inputs\LCMS\InputSampleProcessing.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputSelectMassWindow.Designer.vb">
       <DependentUpon>InputSelectMassWindow.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\LCMS\InputSelectMassWindow.vb" />
+    <Compile Include="forms\Inputs\LCMS\InputSelectMassWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputLCMSScatter.Designer.vb">
       <DependentUpon>InputLCMSScatter.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\LCMS\InputLCMSScatter.vb" />
+    <Compile Include="forms\Inputs\LCMS\InputLCMSScatter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputImportsPeaktableDialog.Designer.vb">
       <DependentUpon>InputImportsPeaktableDialog.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\LCMS\InputImportsPeaktableDialog.vb" />
+    <Compile Include="forms\Inputs\LCMS\InputImportsPeaktableDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputCreateLCMSLibrary.Designer.vb">
       <DependentUpon>InputCreateLCMSLibrary.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\LCMS\InputCreateLCMSLibrary.vb" />
+    <Compile Include="forms\Inputs\LCMS\InputCreateLCMSLibrary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputMNSimilarityScore.Designer.vb">
       <DependentUpon>InputMNSimilarityScore.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\LCMS\InputMNSimilarityScore.vb" />
+    <Compile Include="forms\Inputs\LCMS\InputMNSimilarityScore.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\SetTableMzSource.Designer.vb">
       <DependentUpon>SetTableMzSource.vb</DependentUpon>
     </Compile>
@@ -557,67 +583,99 @@
     <Compile Include="forms\Inputs\MSImaging\SetMSIPlotParameters.Designer.vb">
       <DependentUpon>SetMSIPlotParameters.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\MSImaging\SetMSIPlotParameters.vb" />
+    <Compile Include="forms\Inputs\MSImaging\SetMSIPlotParameters.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\InputConfigFilterPipeline.Designer.vb">
       <DependentUpon>InputConfigFilterPipeline.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\MSImaging\InputConfigFilterPipeline.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputConfigFilterPipeline.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\InputMSIRotation.Designer.vb">
       <DependentUpon>InputMSIRotation.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\MSImaging\InputMSIRotation.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputMSIRotation.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\ShowMzBins.Designer.vb">
       <DependentUpon>ShowMzBins.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\MSImaging\ShowMzBins.vb" />
+    <Compile Include="forms\Inputs\MSImaging\ShowMzBins.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\InputHTMLColorCode.Designer.vb">
       <DependentUpon>InputHTMLColorCode.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\MSImaging\InputHTMLColorCode.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputHTMLColorCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.Designer.vb">
       <DependentUpon>InputMSIPeakTableParameters.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\InputConvert10x.Designer.vb">
       <DependentUpon>InputConvert10x.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\MSImaging\InputConvert10x.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputConvert10x.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\ShowTissueData.Designer.vb">
       <DependentUpon>ShowTissueData.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\MSImaging\ShowTissueData.vb" />
+    <Compile Include="forms\Inputs\MSImaging\ShowTissueData.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\Input3DScatter.Designer.vb">
       <DependentUpon>Input3DScatter.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\Input3DScatter.vb" />
+    <Compile Include="forms\Inputs\Input3DScatter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputDataFieldName.Designer.vb">
       <DependentUpon>InputDataFieldName.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputDataFieldName.vb" />
+    <Compile Include="forms\Inputs\InputDataFieldName.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputCFMIDTool.Designer.vb">
       <DependentUpon>InputCFMIDTool.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputCFMIDTool.vb" />
+    <Compile Include="forms\Inputs\InputCFMIDTool.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputMoNAHits.Designer.vb">
       <DependentUpon>InputMoNAHits.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputMoNAHits.vb" />
+    <Compile Include="forms\Inputs\InputMoNAHits.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputMoNA.Designer.vb">
       <DependentUpon>InputMoNA.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputMoNA.vb" />
+    <Compile Include="forms\Inputs\InputMoNA.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputBasePeakIon.Designer.vb">
       <DependentUpon>InputBasePeakIon.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputBasePeakIon.vb" />
+    <Compile Include="forms\Inputs\InputBasePeakIon.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\InputConfigTissueMap.Designer.vb">
       <DependentUpon>InputConfigTissueMap.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\MSImaging\InputConfigTissueMap.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputConfigTissueMap.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputPubChemProxy.Designer.vb">
       <DependentUpon>InputPubChemProxy.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputPubChemProxy.vb" />
+    <Compile Include="forms\Inputs\InputPubChemProxy.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmDOI.Designer.vb">
       <DependentUpon>frmDOI.vb</DependentUpon>
     </Compile>
@@ -651,23 +709,33 @@
     <Compile Include="forms\Inputs\MSImaging\InputIonRGB.Designer.vb">
       <DependentUpon>InputIonRGB.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\MSImaging\InputIonRGB.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputIonRGB.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\InputMatrixIons.Designer.vb">
       <DependentUpon>InputMatrixIons.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\MSImaging\InputMatrixIons.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputMatrixIons.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputPeakTime.Designer.vb">
       <DependentUpon>InputPeakTime.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputPeakTime.vb" />
+    <Compile Include="forms\Inputs\InputPeakTime.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputFormula.Designer.vb">
       <DependentUpon>InputFormula.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\LCMS\InputFormula.vb" />
+    <Compile Include="forms\Inputs\LCMS\InputFormula.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\SelectSheetName.Designer.vb">
       <DependentUpon>SelectSheetName.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\SelectSheetName.vb" />
+    <Compile Include="forms\Inputs\SelectSheetName.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\ShowColumnStat.Designer.vb">
       <DependentUpon>ShowColumnStat.vb</DependentUpon>
     </Compile>
@@ -695,11 +763,15 @@
     <Compile Include="forms\Inputs\InputNetworkLayout.Designer.vb">
       <DependentUpon>InputNetworkLayout.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputNetworkLayout.vb" />
+    <Compile Include="forms\Inputs\InputNetworkLayout.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputXICTarget.Designer.vb">
       <DependentUpon>InputXICTarget.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\LCMS\InputXICTarget.vb" />
+    <Compile Include="forms\Inputs\LCMS\InputXICTarget.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputFeatureFilter.Designer.vb">
       <DependentUpon>InputFeatureFilter.vb</DependentUpon>
     </Compile>
@@ -715,11 +787,15 @@
     <Compile Include="forms\Inputs\Workbench\InputConfigEnrichmentGraph.Designer.vb">
       <DependentUpon>InputConfigEnrichmentGraph.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\Workbench\InputConfigEnrichmentGraph.vb" />
+    <Compile Include="forms\Inputs\Workbench\InputConfigEnrichmentGraph.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\Workbench\InputPCADialog.Designer.vb">
       <DependentUpon>InputPCADialog.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\Workbench\InputPCADialog.vb" />
+    <Compile Include="forms\Inputs\Workbench\InputPCADialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\ISplashScreenUpdater.vb" />
     <Compile Include="MSdata\frmMSIHistoryList.Designer.vb">
       <DependentUpon>frmMSIHistoryList.vb</DependentUpon>
@@ -996,7 +1072,9 @@
     <Compile Include="pages\dockWindow\properties\SampleRegionMergeTool.Designer.vb">
       <DependentUpon>SampleRegionMergeTool.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\properties\SampleRegionMergeTool.vb" />
+    <Compile Include="pages\dockWindow\properties\SampleRegionMergeTool.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\properties\HEMapTools.Designer.vb">
       <DependentUpon>HEMapTools.vb</DependentUpon>
     </Compile>

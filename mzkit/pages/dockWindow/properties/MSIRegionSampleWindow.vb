@@ -10,7 +10,7 @@ Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
 Imports SMRUCC.genomics.Analysis.Spatial.RAID

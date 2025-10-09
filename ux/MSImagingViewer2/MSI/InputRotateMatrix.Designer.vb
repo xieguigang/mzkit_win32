@@ -1,5 +1,4 @@
-﻿Imports CommonDialogs
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+﻿Imports Galaxy.Workbench.CommonDialogs
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class InputRotateMatrix

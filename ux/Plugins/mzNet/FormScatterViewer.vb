@@ -20,7 +20,7 @@ Imports Microsoft.VisualBasic.MIME.Office.Excel.XLS.MsHtml
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Microsoft.VisualBasic.Net.Http
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports Mzkit_win32.LCMSViewer
 
 Public Class FormScatterViewer

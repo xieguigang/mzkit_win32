@@ -2,7 +2,7 @@
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports Mzkit_win32.LCMSViewer
 Imports SMRUCC.DICOM.NRRD
 

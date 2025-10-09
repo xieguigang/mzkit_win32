@@ -1,6 +1,6 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 
 Public Class ViewLCMSScatter : Inherits ActionBase

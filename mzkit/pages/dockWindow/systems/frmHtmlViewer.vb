@@ -56,7 +56,7 @@
 Imports System.ComponentModel
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmHtmlViewer

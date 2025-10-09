@@ -4,7 +4,7 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports std = System.Math
 
 Public Class FormulaQueryAction : Inherits ActionBase

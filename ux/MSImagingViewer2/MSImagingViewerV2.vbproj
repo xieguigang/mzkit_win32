@@ -344,6 +344,10 @@
       <Project>{5f242bb6-da7d-4e08-b4a9-3405f361a35b}</Project>
       <Name>STImaging</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj">
+      <Project>{ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452}</Project>
+      <Name>GalaxyWorkbench</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Graph\graph-netcore5.vbproj">
       <Project>{c7f74294-cccb-4b65-809d-523074dfaf4d}</Project>
       <Name>graph-netcore5</Name>

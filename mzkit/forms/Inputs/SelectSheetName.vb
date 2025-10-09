@@ -3,7 +3,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports Excel = Microsoft.VisualBasic.MIME.Office.Excel.XLSX
 
 Public Class SelectSheetName

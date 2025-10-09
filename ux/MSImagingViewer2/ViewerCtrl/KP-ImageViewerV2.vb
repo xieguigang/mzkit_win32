@@ -5,7 +5,7 @@ Imports System.Runtime.InteropServices
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 
 Partial Public Class KpImageViewer : Inherits UserControl
 

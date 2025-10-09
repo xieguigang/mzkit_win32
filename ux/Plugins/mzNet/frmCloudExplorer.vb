@@ -8,7 +8,7 @@ Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.PoolData
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmCloudExplorer

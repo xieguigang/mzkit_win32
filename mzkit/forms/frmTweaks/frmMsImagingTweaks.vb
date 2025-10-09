@@ -90,7 +90,7 @@ Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports MZKitWin32.Blender.CommonLibs
 Imports RibbonLib.Interop
 Imports ServiceHub

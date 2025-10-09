@@ -2,7 +2,7 @@
 Imports System.IO
 Imports LaplacianHDR.Filters
 Imports LaplacianHDR.Helpers
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports UMapx.Imaging
 Imports WeifenLuo.WinFormsUI.Docking
 

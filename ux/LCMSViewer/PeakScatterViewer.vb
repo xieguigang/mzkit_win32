@@ -1,6 +1,8 @@
 ﻿Imports System.Drawing.Drawing2D
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports CommonDialogs
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots
@@ -13,10 +15,8 @@ Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.Html.CSS
-Imports Microsoft.VisualBasic.MIME.Html.Render
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports std = System.Math
 
 ''' <summary>
@@ -153,7 +153,7 @@ Public Class PeakScatterViewer
     End Function
 
     Private Sub PeakScatterViewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        WebKit.Init(WebView21)
+        WebViewLoader.Init(WebView21)
         HtmlView = False
     End Sub
 
@@ -524,7 +524,7 @@ Public Class PeakScatterViewer
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", lcms_scatter)
         Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/LCMS-scatter.html")
-        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 
     Private Sub DViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DViewerToolStripMenuItem.Click

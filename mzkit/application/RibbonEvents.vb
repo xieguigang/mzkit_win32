@@ -81,7 +81,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 Imports Mzkit_win32.BasicMDIForm.RibbonLib.Controls
 Imports Mzkit_win32.MatrixViewer
 Imports RibbonLib
