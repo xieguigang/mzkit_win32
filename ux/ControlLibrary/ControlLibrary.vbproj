@@ -194,13 +194,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="buttons\DropDownButton.vb">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="buttons\NativeToolStripRenderer.vb" />
-    <Compile Include="ColorComboBox.vb">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ColorScaler.Designer.vb">
       <DependentUpon>ColorScaler.vb</DependentUpon>
     </Compile>
@@ -225,31 +218,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ToggleSlider.Designer.vb">
-      <DependentUpon>ToggleSlider.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ToggleSlider.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="ToolTipWithPictureOrGif.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Win7StyleTreeView.Designer.vb">
-      <DependentUpon>Win7StyleTreeView.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Win7StyleTreeView.vb">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="WinForms\CommandLinkButton.Designer.vb">
-      <DependentUpon>CommandLinkButton.vb</DependentUpon>
-    </Compile>
-    <Compile Include="WinForms\CommandLinkButton.vb">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="WinForms\DropDownButton.vb">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="WinForms\NativeToolStripRenderer.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ColorScaler.resx">
@@ -263,9 +234,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToggleSlider.resx">
-      <DependentUpon>ToggleSlider.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
