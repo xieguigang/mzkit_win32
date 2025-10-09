@@ -55,7 +55,7 @@
 
 Imports System.Runtime.CompilerServices
 Imports System.Threading
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
 
 Public Class ProgressSpinner
 

@@ -207,7 +207,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\..\mzkit\RibbonItems.Designer.vb" />
-    <Compile Include="AppHost.vb" />
     <Compile Include="buzyIndicator\ActionRunner.vb" />
     <Compile Include="buzyIndicator\LoadDataTask.vb" />
     <Compile Include="buzyIndicator\ITaskProgress.vb" />
@@ -232,18 +231,6 @@
     <Compile Include="RibbonEventBinding.vb" />
     <Compile Include="TableHelper.vb" />
     <Compile Include="plugin\base\MSIServicePlugin.vb" />
-    <Compile Include="dialogs\InputDialog.Designer.vb">
-      <DependentUpon>InputDialog.vb</DependentUpon>
-    </Compile>
-    <Compile Include="dialogs\InputDialog.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="dialogs\MaskForm.Designer.vb">
-      <DependentUpon>MaskForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="dialogs\MaskForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="DataGrid\GridSearchHandler.vb" />
     <Compile Include="plugin\modules\Actions\ActionBase.vb" />
     <Compile Include="plugin\modules\Actions\Actions.vb" />
@@ -256,7 +243,6 @@
     <Compile Include="plugin\Repository\RegistryFile.vb" />
     <Compile Include="plugin\Repository\PluginMetadata.vb" />
     <Compile Include="plugin\PluginMgr.vb" />
-    <Compile Include="WebKit.vb" />
     <Compile Include="plugin\ExportApis.vb" />
     <Compile Include="plugin\MZKitPlugin.vb" />
     <Compile Include="plugin\PlugIn.vb" />
@@ -278,7 +264,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TaskbarWindow.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="auth2.0\frmBioDeepAuth.resx">
@@ -298,21 +283,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="buzyIndicator\TaskProgress.resx">
       <DependentUpon>TaskProgress.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\InputDialog.resx">
-      <DependentUpon>InputDialog.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\InputDialog.zh-Hans.resx">
-      <DependentUpon>InputDialog.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\MaskForm.en-US.resx">
-      <DependentUpon>MaskForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\MaskForm.resx">
-      <DependentUpon>MaskForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\MaskForm.zh-Hans.resx">
-      <DependentUpon>MaskForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -350,6 +320,18 @@
     <None Include="Resources\Home_Logo_Link.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj">
+      <Project>{87d65add-fe86-4239-af7e-a37410354a0c}</Project>
+      <Name>GalaxyData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj">
+      <Project>{ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452}</Project>
+      <Name>GalaxyWorkbench</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
+      <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
+      <Name>Microsoft.Windows.FeatureAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj">
       <Project>{02e9ba6a-35e1-431f-bb47-0553757af6b9}</Project>
       <Name>dataframework-netcore5</Name>

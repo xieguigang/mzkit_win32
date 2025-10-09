@@ -1714,6 +1714,18 @@
       <Project>{8e390f57-3714-47c2-bd1a-b97671a9321a}</Project>
       <Name>STRaid</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj">
+      <Project>{87d65add-fe86-4239-af7e-a37410354a0c}</Project>
+      <Name>GalaxyData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj">
+      <Project>{ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452}</Project>
+      <Name>GalaxyWorkbench</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
+      <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
+      <Name>Microsoft.Windows.FeatureAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\analysis\HTS_matrix\HTS_matrix-netcore5.vbproj">
       <Project>{866d1fc8-67ab-4edc-a2ed-4a7fc467605e}</Project>
       <Name>HTS_matrix-netcore5</Name>

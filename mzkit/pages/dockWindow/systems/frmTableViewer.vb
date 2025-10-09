@@ -63,6 +63,7 @@
 Imports System.IO
 Imports System.Text
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
@@ -134,8 +135,6 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
         search = New GridSearchHandler(AdvancedDataGridView1)
         loader = New GridLoaderHandler(AdvancedDataGridView1, AdvancedDataGridViewSearchToolBar1, BindingSource1)
         TabText = "Table View"
-
-        Call AdvancedDataGridView1.SetAutoSelectRow
 
         AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
         AddHandler ribbonItems.ButtonColumnStats.ExecuteEvent,

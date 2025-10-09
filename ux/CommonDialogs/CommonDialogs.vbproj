@@ -218,6 +218,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj">
+      <Project>{87d65add-fe86-4239-af7e-a37410354a0c}</Project>
+      <Name>GalaxyData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Drawing-net4.8\Drawing-net4.8.vbproj">
       <Project>{c9d8e14f-d303-400f-9c03-0163d567f135}</Project>
       <Name>Drawing-net4.8</Name>

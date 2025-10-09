@@ -1,8 +1,7 @@
-﻿Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+﻿Imports Galaxy.Workbench.CommonDialogs
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmBioDeepAuth
-    Inherits InputDialog
+Partial Class frmBioDeepAuth : Inherits InputDialog
 
     'Form 重写 Dispose，以清理组件列表。
     <System.Diagnostics.DebuggerNonUserCode()> _

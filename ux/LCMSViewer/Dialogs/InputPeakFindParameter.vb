@@ -1,5 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm.CommonDialogs
-Imports Microsoft.VisualBasic.Windows.Forms.DataValidation
+﻿Imports Galaxy.Data.TextValidates
+Imports Galaxy.Workbench.CommonDialogs
 
 Public Class InputPeakFindParameter : Inherits InputDialog
 
