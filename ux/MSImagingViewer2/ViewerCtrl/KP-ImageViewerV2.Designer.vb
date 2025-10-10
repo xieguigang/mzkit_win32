@@ -1,4 +1,6 @@
-﻿Partial Class KpImageViewer
+﻿Imports Galaxy.Data.Visualization
+
+Partial Class KpImageViewer
     ''' <summary>
     ''' Required designer variable.
     ''' </summary>
@@ -43,7 +45,7 @@
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.MSICanvas = New Mzkit_win32.MSImagingViewerV2.PixelSelector()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.ColorScaler1 = New ControlLibrary.ColorScaler()
+        Me.ColorScaler1 = New ColorScaler()
         CType(Me.pbPanelAirscape, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbFull, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pbFull.SuspendLayout()
@@ -288,5 +290,5 @@
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
     Friend WithEvents MSICanvas As PixelSelector
     Friend WithEvents SplitContainer1 As SplitContainer
-    Friend WithEvents ColorScaler1 As ControlLibrary.ColorScaler
+    Friend WithEvents ColorScaler1 As ColorScaler
 End Class

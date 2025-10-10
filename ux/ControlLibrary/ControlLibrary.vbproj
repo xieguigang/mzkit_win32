@@ -194,12 +194,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorScaler.Designer.vb">
-      <DependentUpon>ColorScaler.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ColorScaler.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="ToolStripTraceBarItem.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -223,12 +217,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ColorScaler.resx">
-      <DependentUpon>ColorScaler.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ColorScaler.zh-CN.resx">
-      <DependentUpon>ColorScaler.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>

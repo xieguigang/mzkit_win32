@@ -344,6 +344,10 @@
       <Project>{5f242bb6-da7d-4e08-b4a9-3405f361a35b}</Project>
       <Name>STImaging</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyChartLibs\GalaxyChartLibs.vbproj">
+      <Project>{e7535428-57d4-4e45-8c54-1900c279c353}</Project>
+      <Name>GalaxyChartLibs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj">
       <Project>{ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452}</Project>
       <Name>GalaxyWorkbench</Name>
@@ -399,10 +403,6 @@
     <ProjectReference Include="..\CommonDialogs\CommonDialogs.vbproj">
       <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>
       <Name>CommonDialogs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ControlLibrary\ControlLibrary.vbproj">
-      <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
-      <Name>ControlLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

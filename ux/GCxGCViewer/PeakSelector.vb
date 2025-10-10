@@ -63,8 +63,8 @@ Imports System.Drawing.Drawing2D
 Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.GCxGC
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
-Imports CommonDialogs
-Imports ControlLibrary
+Imports Galaxy.Data.Visualization
+Imports Galaxy.Data.Visualization.CommonDialogs
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
