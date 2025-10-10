@@ -179,9 +179,9 @@ Public Class frmOpenseadragonViewer
         Call WebViewLoader.DeveloperOptions(WebView21, enable:=True, TabText)
     End Sub
 
-    Private Sub frmOpenseadragonViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Async Sub frmOpenseadragonViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         DoActivated()
-        WebViewLoader.Init(Me.WebView21)
+        Await WebViewLoader.Init(Me.WebView21)
     End Sub
 
     Dim scanImageUri As String
