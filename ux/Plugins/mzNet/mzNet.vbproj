@@ -345,10 +345,6 @@
       <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
       <Name>ControlLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\LCMSViewer\LCMSViewer.vbproj">
-      <Project>{72e288a5-18c4-43ec-95bf-d0f57f93ca92}</Project>
-      <Name>LCMSViewer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="..\..\..\services\PDF\PDF.projitems" Label="Shared" />
   <Import Project="..\..\..\services\mzkit_win32.envir\mzkit_win32.envir.projitems" Label="Shared" />

@@ -2246,6 +2246,14 @@
       <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
       <Name>BasicMDIForm</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ux\Canvas\src\LCMSViewer\LCMSViewer.vbproj">
+      <Project>{72e288a5-18c4-43ec-95bf-d0f57f93ca92}</Project>
+      <Name>LCMSViewer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ux\Canvas\src\MatrixViewer\MatrixViewer.vbproj">
+      <Project>{313034b9-493c-20f7-495a-d4446eb5d5d8}</Project>
+      <Name>MatrixViewer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj">
       <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>
       <Name>CommonDialogs</Name>
@@ -2258,17 +2266,9 @@
       <Project>{4f39a3ea-c7fe-4ce8-a83c-4fc762beab84}</Project>
       <Name>GCxGCViewer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ux\LCMSViewer\LCMSViewer.vbproj">
-      <Project>{72e288a5-18c4-43ec-95bf-d0f57f93ca92}</Project>
-      <Name>LCMSViewer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ux\LocalLaplacianFilters\LocalLaplacianFilters.vbproj">
       <Project>{1440c713-78b7-4d26-978c-d2789dda67ff}</Project>
       <Name>LocalLaplacianFilters</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ux\MatrixViewer\MatrixViewer.vbproj">
-      <Project>{1c685387-d678-40f1-86ef-387f2bb85cb9}</Project>
-      <Name>MatrixViewer</Name>
     </ProjectReference>
     <ProjectReference Include="..\ux\MSImagingViewer2\MSImagingViewerV2.vbproj">
       <Project>{daf59cb6-ccd9-0fc6-1b8c-a3cdcd5ce92d}</Project>
