@@ -1,6 +1,4 @@
-﻿Imports System.IO
-Imports System.Runtime.CompilerServices
-Imports Microsoft.VisualBasic.Text
+﻿Imports System.Runtime.CompilerServices
 
 Public Module DataTableViewer
 
@@ -15,28 +13,6 @@ Public Module DataTableViewer
     <Extension>
     Public Sub OpenInTableViewer(matrix As DataGridView)
         Call openTable().LoadTable(AddressOf New GridLoader(matrix).LoadTable)
-    End Sub
-
-    ''' <summary>
-    ''' save data grid as excel table file
-    ''' </summary>
-    ''' <param name="table"></param>
-    ''' <param name="title">
-    ''' ``%s`` is the place holder for file name
-    ''' </param>
-    <Extension>
-    Public Sub SaveDataGrid(table As DataGridView, title$)
-        Using file As New SaveFileDialog With {
-            .Filter = "Excel Table(*.xls)|*.xls|Comma data sheet(*.csv)|*.csv",
-            .Title = $"Save Table File({title})"
-        }
-            If file.ShowDialog = DialogResult.OK Then
-                Using writeTsv As StreamWriter = file.FileName.OpenWriter(encoding:=Encodings.GB2312)
-                    Call table.WriteTableToFile(writeTsv, sep:=If(file.FileName.ExtensionSuffix("csv"), ","c, ASCII.TAB))
-                    Call MessageBox.Show(title.Replace("%s", file.FileName), "Export Table", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                End Using
-            End If
-        End Using
     End Sub
 End Module
 
