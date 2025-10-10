@@ -2206,17 +2206,9 @@
       <Project>{560a9982-7d34-44c8-a0de-6b86e119247e}</Project>
       <Name>TissueMorphology</Name>
     </ProjectReference>
-    <ProjectReference Include="..\mzblender\mzblender.vbproj">
-      <Project>{4de64f86-852f-4852-97d2-46c69faa8921}</Project>
-      <Name>mzblender</Name>
-    </ProjectReference>
     <ProjectReference Include="..\services\BioDeep\BioDeep.vbproj">
       <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
       <Name>BioDeep</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\services\BlenderCommonLibs\BlenderCommonLibs.vbproj">
-      <Project>{8bd765e0-79ca-42c9-b919-4388760fcb2f}</Project>
-      <Name>BlenderCommonLibs</Name>
     </ProjectReference>
     <ProjectReference Include="..\services\CFM-ID\CFM-ID.vbproj">
       <Project>{aa94821a-2199-48b9-81d3-8ca0a7a575ec}</Project>
@@ -2253,6 +2245,14 @@
     <ProjectReference Include="..\ux\Canvas\src\MatrixViewer\MatrixViewer.vbproj">
       <Project>{313034b9-493c-20f7-495a-d4446eb5d5d8}</Project>
       <Name>MatrixViewer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ux\Canvas\src\MzBlender\BlenderCommonLibs\BlenderCommonLibs.vbproj">
+      <Project>{3516cce9-77c6-8167-b245-5261d930bdee}</Project>
+      <Name>BlenderCommonLibs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ux\Canvas\src\MzBlender\mzblender\mzblender.vbproj">
+      <Project>{b5bf9f49-7a13-1921-e8d8-8e5908c0abec}</Project>
+      <Name>mzblender</Name>
     </ProjectReference>
     <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj">
       <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>
