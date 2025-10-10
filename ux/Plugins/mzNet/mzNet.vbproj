@@ -109,10 +109,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Forms.DataGridView, Version=1.2.26609.5, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dist\System.Windows.Forms.DataGridView.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -233,6 +229,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj">
+      <Project>{87d65add-fe86-4239-af7e-a37410354a0c}</Project>
+      <Name>GalaxyData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj">
       <Project>{ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452}</Project>
       <Name>GalaxyWorkbench</Name>

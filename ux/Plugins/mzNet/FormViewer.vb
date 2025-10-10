@@ -3,6 +3,7 @@ Imports System.Text.RegularExpressions
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking
+Imports Galaxy.Data.TableSheet
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON

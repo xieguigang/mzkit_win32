@@ -66,6 +66,7 @@ Imports System.Runtime.CompilerServices
 Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.LinearQuantitative.Data
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
@@ -109,7 +110,6 @@ Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports list = SMRUCC.Rsharp.Runtime.Internal.Object.list
-Imports spatialMath = BioNovoGene.Analytical.MassSpectrometry.SingleCells.Deconvolute.Math
 Imports std = System.Math
 
 <Package("BackgroundTask")>

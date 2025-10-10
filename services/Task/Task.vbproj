@@ -409,6 +409,10 @@
       <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
       <Name>BasicMDIForm</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ux\Canvas\src\MzBlender\BlenderCommonLibs\BlenderCommonLibs.vbproj">
+      <Project>{3516cce9-77c6-8167-b245-5261d930bdee}</Project>
+      <Name>BlenderCommonLibs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BioDeep\BioDeep.vbproj">
       <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
       <Name>BioDeep</Name>
