@@ -52,6 +52,7 @@
 
 #End Region
 
+Imports Galaxy.CommonControls
 Imports Mzkit_win32.BasicMDIForm
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
@@ -95,7 +96,7 @@ Partial Class frmNetworkViewer
         Me.SnapshotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyNetworkVisualizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportCytoscapeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolTipWithPictureOrGif1 = New ControlLibrary.Ligy.ToolTipWithPictureOrGif()
+        Me.ToolTipWithPictureOrGif1 = New ToolTipWithPictureOrGif()
         Me.Canvas1 = New Microsoft.VisualBasic.Data.visualize.Network.Canvas.Canvas
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
@@ -267,7 +268,7 @@ Partial Class frmNetworkViewer
     Friend WithEvents PinToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents DToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ToolTipWithPictureOrGif1 As ControlLibrary.Ligy.ToolTipWithPictureOrGif
+    Friend WithEvents ToolTipWithPictureOrGif1 As ToolTipWithPictureOrGif
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel

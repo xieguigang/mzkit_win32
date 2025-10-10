@@ -83,6 +83,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Data
 Imports Galaxy.Data.UIInteractive
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices

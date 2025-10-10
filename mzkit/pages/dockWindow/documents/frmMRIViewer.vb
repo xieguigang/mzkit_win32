@@ -1,9 +1,9 @@
-﻿Imports Microsoft.VisualBasic.ComponentModel
+﻿Imports Galaxy.Data.Visualization.CommonDialogs
+Imports Galaxy.Workbench.CommonDialogs
+Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
-Imports Galaxy.Workbench.CommonDialogs
-Imports Mzkit_win32.LCMSViewer
 Imports SMRUCC.DICOM.NRRD
 
 Public Class frmMRIViewer : Implements IFileReference

@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports Galaxy.Data.TableSheet
+Imports Mzkit_win32.BasicMDIForm
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMoleculeLibrary
@@ -34,8 +35,8 @@ Partial Class frmMoleculeLibrary
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
-        Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
+        Me.AdvancedDataGridView1 = New AdvancedDataGridView()
+        Me.AdvancedDataGridViewSearchToolBar1 = New AdvancedDataGridViewSearchToolBar()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,6 +127,6 @@ Partial Class frmMoleculeLibrary
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ToolStripButton3 As ToolStripButton
     Friend WithEvents BindingSource1 As BindingSource
-    Friend WithEvents AdvancedDataGridView1 As Zuby.ADGV.AdvancedDataGridView
-    Friend WithEvents AdvancedDataGridViewSearchToolBar1 As Zuby.ADGV.AdvancedDataGridViewSearchToolBar
+    Friend WithEvents AdvancedDataGridView1 As AdvancedDataGridView
+    Friend WithEvents AdvancedDataGridViewSearchToolBar1 As AdvancedDataGridViewSearchToolBar
 End Class

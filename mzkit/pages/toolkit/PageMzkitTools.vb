@@ -77,6 +77,7 @@ Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Data
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -157,11 +158,11 @@ Public Class PageMzkitTools
             height = 2700
             padding = "padding:100px 750px 100px 100px;"
 
-            Call ProgressSpinner.DoLoading(Sub() Me.Invoke(Sub() _matrix = New CounterMatrix(matrixName, raw)))
+            Call ProgressSpinner.DoLoading(Sub() Me.Invoke(Sub() _matrix = New CounterMatrix(matrixName, raw.GetContourData)))
         Else
             colorSet = "darkblue,blue,skyblue,green,orange,red,darkred"
 
-            Call ProgressSpinner.DoLoading(Sub() Me.Invoke(Sub() _matrix = New Ms1ScatterMatrix(matrixName, raw)))
+            Call ProgressSpinner.DoLoading(Sub() Me.Invoke(Sub() _matrix = New Ms1ScatterMatrix(matrixName, raw.GetLoadedMzpack())))
         End If
 
         Call _matrix.LoadMatrix(DataGridView1, BindingSource1)

@@ -1,12 +1,13 @@
 ﻿Imports System.IO
 Imports System.Text
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports Galaxy.Data.TableSheet
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
-Imports Galaxy.Workbench.CommonDialogs
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle

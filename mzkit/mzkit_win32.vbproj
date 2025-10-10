@@ -396,9 +396,6 @@
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Forms.DataGridView">
-      <HintPath>..\dist\System.Windows.Forms.DataGridView.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Windows.Forms.TabControl">
       <HintPath>..\dist\System.Windows.Forms.TabControl.dll</HintPath>
@@ -1713,6 +1710,10 @@
     <ProjectReference Include="..\..\..\..\Erica\src\STRaid\STRaid.vbproj">
       <Project>{8e390f57-3714-47c2-bd1a-b97671a9321a}</Project>
       <Name>STRaid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyChartLibs\GalaxyChartLibs.vbproj">
+      <Project>{e7535428-57d4-4e45-8c54-1900c279c353}</Project>
+      <Name>GalaxyChartLibs</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj">
       <Project>{87d65add-fe86-4239-af7e-a37410354a0c}</Project>
