@@ -213,7 +213,6 @@
     <Compile Include="plugin\modules\LCMSViewerModule.vb" />
     <Compile Include="plugin\modules\SpectrumLibraryModule.vb" />
     <Compile Include="RibbonEventBinding.vb" />
-    <Compile Include="TableHelper.vb" />
     <Compile Include="plugin\base\MSIServicePlugin.vb" />
     <Compile Include="DataGrid\GridSearchHandler.vb" />
     <Compile Include="plugin\modules\Actions\ActionBase.vb" />
@@ -230,7 +229,6 @@
     <Compile Include="plugin\ExportApis.vb" />
     <Compile Include="plugin\MZKitPlugin.vb" />
     <Compile Include="plugin\PlugIn.vb" />
-    <Compile Include="TaskbarStatus.vb" />
     <Compile Include="Workbench.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
