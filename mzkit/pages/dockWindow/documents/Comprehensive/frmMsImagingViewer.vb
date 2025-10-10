@@ -124,7 +124,6 @@ Imports SMRUCC.genomics.Analysis.Spatial.Imaging
 Imports SMRUCC.genomics.Analysis.Spatial.RAID
 Imports Task
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 Imports Bitmap = System.Drawing.Bitmap
 Imports File = Microsoft.VisualBasic.Data.Framework.IO.File
 Imports std = System.Math

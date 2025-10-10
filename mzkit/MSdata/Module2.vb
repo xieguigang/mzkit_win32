@@ -17,8 +17,8 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Text.Xml.Models
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
-Imports WeifenLuo.WinFormsUI.Docking
 Imports std = System.Math
 
 Namespace MSdata

@@ -62,9 +62,9 @@ Imports BioNovoGene.BioDeep.MSFinder
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
-Imports WeifenLuo.WinFormsUI.Docking
 
 Module FeatureSearchHandler
 

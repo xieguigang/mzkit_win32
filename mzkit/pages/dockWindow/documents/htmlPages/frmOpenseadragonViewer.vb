@@ -19,7 +19,6 @@ Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
 Imports RibbonLib.Interop
 Imports Task.Container
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmOpenseadragonViewer
 

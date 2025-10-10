@@ -72,6 +72,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Vectorization
@@ -464,7 +465,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
         End If
 
         Call WindowModules.msImageParameters.ImportsIons(labels, mz)
-        Call VisualStudio.Dock(WindowModules.msImageParameters, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft)
+        Call VisualStudio.Dock(WindowModules.msImageParameters, DockState.DockLeft)
         Call VisualStudio.ShowSingleDocument(Of frmMsImagingViewer)()
     End Sub
 End Class

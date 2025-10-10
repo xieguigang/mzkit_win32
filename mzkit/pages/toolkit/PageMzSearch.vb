@@ -83,9 +83,9 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Text.Xml.Models
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
-Imports WeifenLuo.WinFormsUI.Docking
 Imports std = System.Math
 
 Public Class PageMzSearch

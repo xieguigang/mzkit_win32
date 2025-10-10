@@ -1,4 +1,7 @@
 ﻿
+Imports Microsoft.VisualStudio.WinForms.Docking
+Imports ThemeVS2015
+
 Partial Class FormEditMain
     ''' <summary>
     ''' Требуется переменная конструктора.
@@ -42,12 +45,12 @@ Partial Class FormEditMain
         Me.temperatureToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.programToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.aboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.dockPanel = New WeifenLuo.WinFormsUI.Docking.DockPanel()
+        Me.dockPanel = New DockPanel()
         Me.comboBox1 = New System.Windows.Forms.ComboBox()
         Me.label1 = New System.Windows.Forms.Label()
-        Me.VisualStudioToolStripExtender1 = New WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender(Me.components)
-        Me.VS2015BlueTheme1 = New WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme()
-        Me.VS2015LightTheme1 = New WeifenLuo.WinFormsUI.Docking.VS2015LightTheme()
+        Me.VisualStudioToolStripExtender1 = New VisualStudioToolStripExtender(Me.components)
+        Me.VS2015BlueTheme1 = New VS2015BlueTheme()
+        Me.VS2015LightTheme1 = New VS2015LightTheme()
         Me.menuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -259,10 +262,10 @@ Partial Class FormEditMain
     Private WithEvents redoToolStripMenuItem As Windows.Forms.ToolStripMenuItem
     Private WithEvents flipVerticalToolStripMenuItem As Windows.Forms.ToolStripMenuItem
     Private WithEvents flipHorizontalToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Friend WithEvents VisualStudioToolStripExtender1 As WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender
-    Friend WithEvents VS2015BlueTheme1 As WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme
+    Friend WithEvents VisualStudioToolStripExtender1 As VisualStudioToolStripExtender
+    Friend WithEvents VS2015BlueTheme1 As VS2015BlueTheme
 
-    Private WithEvents dockPanel As WeifenLuo.WinFormsUI.Docking.DockPanel
-    Friend WithEvents VS2015LightTheme1 As WeifenLuo.WinFormsUI.Docking.VS2015LightTheme
+    Private WithEvents dockPanel As DockPanel
+    Friend WithEvents VS2015LightTheme1 As VS2015LightTheme
 End Class
 

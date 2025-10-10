@@ -1,6 +1,7 @@
 Imports System.Runtime.CompilerServices
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Net.Tcp
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm.RibbonLib.Controls
 Imports RibbonLib
 Imports WeifenLuo.WinFormsUI.Docking

@@ -93,6 +93,7 @@ Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Microsoft.VisualBasic.ValueTypes
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports MZWorkPack
 Imports PipelineHost
@@ -100,7 +101,6 @@ Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports Task
 Imports Task.Container
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 
 Module Globals
 

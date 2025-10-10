@@ -2,7 +2,7 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.nmrML
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Workbench
-Imports WeifenLuo.WinFormsUI.Docking
+Imports Microsoft.VisualStudio.WinForms.Docking
 
 Public Class frmNmrSpectrumExplorer
 

@@ -60,7 +60,7 @@ Namespace DockSample
         ''' <summary>
         ''' Required designer variable.
         ''' </summary>
-        Private components As ComponentModel.IContainer = Nothing
+        Private components As System.ComponentModel.IContainer = Nothing
 
         ''' <summary>
         ''' Clean up any resources being used.
@@ -102,7 +102,7 @@ Namespace DockSample
 
             Me.Name = "DummyPropertyWindow"
             Me.Padding = New System.Windows.Forms.Padding(0, 3, 0, 3)
-            Me.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockRight
+            Me.ShowHint = Microsoft.VisualStudio.WinForms.Docking.DockState.DockRight
             Me.TabText = "Properties"
             Me.Text = "Properties"
             Me.ResumeLayout(False)
@@ -110,6 +110,6 @@ Namespace DockSample
         End Sub
 #End Region
 
-        Friend propertyGrid As Windows.Forms.PropertyGrid
+        Friend propertyGrid As System.Windows.Forms.PropertyGrid
     End Class
 End Namespace

@@ -7,7 +7,6 @@ Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class HEMapTools
 

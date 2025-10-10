@@ -64,7 +64,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging
-Imports WeifenLuo.WinFormsUI.Docking
+Imports Microsoft.VisualStudio.WinForms.Docking
 
 Public Class frmGCMS_CDFExplorer
 

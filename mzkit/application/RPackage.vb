@@ -61,12 +61,12 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Parallel
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Internal.Invokes
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
-Imports WeifenLuo.WinFormsUI.Docking
 Imports REnv = SMRUCC.Rsharp.Runtime.Internal
 Imports std = System.Math
 

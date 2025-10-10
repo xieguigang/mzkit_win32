@@ -68,7 +68,6 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
-Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmUntargettedViewer
 

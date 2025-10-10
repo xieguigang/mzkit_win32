@@ -59,10 +59,11 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
+Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
-Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class VisualStudio
 
@@ -94,7 +95,7 @@ Public Class VisualStudio
     ''' </remarks>
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub ShowProperties(item As Object)
-        Dim form = WindowModules.propertyWin
+        Dim form As PropertyWindow = WindowModules.propertyWin
         Call form.Invoke(Sub() form.SetObject(item))
     End Sub
 

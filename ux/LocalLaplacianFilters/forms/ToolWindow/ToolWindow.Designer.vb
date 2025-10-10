@@ -1,4 +1,6 @@
 ﻿
+Imports Microsoft.VisualStudio.WinForms.Docking
+
 Partial Class ToolWindow
     ''' <summary>
     ''' Required designer variable.
@@ -59,10 +61,10 @@ Partial Class ToolWindow
         'ToolWindow
         '
         Me.ClientSize = New System.Drawing.Size(269, 400)
-        Me.DockAreas = CType(((((WeifenLuo.WinFormsUI.Docking.DockAreas.Float Or WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft) _
-            Or WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) _
-            Or WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) _
-            Or WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom), WeifenLuo.WinFormsUI.Docking.DockAreas)
+        Me.DockAreas = CType(((((DockAreas.Float Or DockAreas.DockLeft) _
+            Or DockAreas.DockRight) _
+            Or DockAreas.DockTop) _
+            Or DockAreas.DockBottom), DockAreas)
         Me.Name = "ToolWindow"
         Me.TabPageContextMenuStrip = Me.contextMenuStrip1
         Me.TabText = "ToolWindow"

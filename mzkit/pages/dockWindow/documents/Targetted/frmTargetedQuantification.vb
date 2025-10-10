@@ -101,12 +101,12 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.Office.Excel.XLSX
 Imports Microsoft.VisualBasic.MIME.Office.Excel.XLSX.Writer
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
 Imports Task
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
 Imports std = System.Math
 

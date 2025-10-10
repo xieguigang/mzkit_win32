@@ -1,4 +1,5 @@
-﻿
+﻿Imports Microsoft.VisualStudio.WinForms.Docking
+
 Partial Class PropertyWindow
     ''' <summary>
     ''' Required designer variable.
@@ -524,7 +525,7 @@ Partial Class PropertyWindow
         Me.MainMenuStrip = Me.mainMenu1
         Me.Name = "PropertyWindow"
         Me.Padding = New System.Windows.Forms.Padding(0, 3, 0, 3)
-        Me.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockRight
+        Me.ShowHint = DockState.DockRight
         Me.TabText = "Properties"
         Me.Text = "Properties"
         Me.mainMenu1.ResumeLayout(False)

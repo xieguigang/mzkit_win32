@@ -67,7 +67,7 @@ Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Microsoft.Web.WebView2.WinForms
 Imports Mzkit_win32.BasicMDIForm
-Imports WeifenLuo.WinFormsUI.Docking
+Imports Microsoft.VisualStudio.WinForms.Docking
 
 Public Class frmSMILESViewer
 

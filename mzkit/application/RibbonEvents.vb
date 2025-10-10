@@ -84,6 +84,7 @@ Imports Microsoft.VisualBasic.Emit.Delegates
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.RibbonLib.Controls
 Imports Mzkit_win32.MatrixViewer
@@ -94,7 +95,6 @@ Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports Task
 Imports Task.Container
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 
 Module RibbonEvents
 

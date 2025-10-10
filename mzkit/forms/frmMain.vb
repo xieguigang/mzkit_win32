@@ -93,12 +93,13 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.Container
 Imports RibbonLib
 Imports RibbonLib.Interop
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
+Imports ThemeVS2015
 
 Public Class frmMain : Implements AppHost
 

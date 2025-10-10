@@ -83,11 +83,11 @@ Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.C
 Imports Microsoft.VisualBasic.Text
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
 Imports Task
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 Imports std = System.Math
 
 ''' <summary>

@@ -64,8 +64,8 @@ Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.Interpolation
 Imports Microsoft.VisualBasic.Math.Quantile
 Imports Microsoft.VisualBasic.MIME.Html.CSS
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Task
-Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class MSIPixelPropertyWindow
 

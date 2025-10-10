@@ -58,13 +58,13 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.GCMS
+Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
-Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Task
-Imports WeifenLuo.WinFormsUI.Docking
 Imports Raw = BioNovoGene.Analytical.MassSpectrometry.Math.GCMS.Raw
 
 Public Class frmGCMSPeaks

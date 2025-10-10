@@ -96,7 +96,6 @@ Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
-Imports WeifenLuo.WinFormsUI.Docking
 Imports std = System.Math
 Imports Table = Microsoft.VisualBasic.Data.Framework.IO.File
 

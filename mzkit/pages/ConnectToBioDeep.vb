@@ -62,13 +62,13 @@ Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.My
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
-Imports Galaxy.Workbench.CommonDialogs
 Imports Task
-Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class ConnectToBioDeep

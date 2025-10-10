@@ -78,10 +78,10 @@ Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.SignalProcessing
 Imports Microsoft.VisualBasic.Text.Patterns
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports Task
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 Imports chromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML.chromatogram
 Imports std = System.Math
 

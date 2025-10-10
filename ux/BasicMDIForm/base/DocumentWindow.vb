@@ -53,8 +53,9 @@
 
 #End Region
 
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Microsoft.Windows.Taskbar
-Imports WeifenLuo.WinFormsUI.Docking
+Imports ThemeVS2015
 
 Public Class DocumentWindow
 

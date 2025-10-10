@@ -89,6 +89,7 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D.MarchingSquares
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.SignalProcessing
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.MatrixViewer
 Imports MZKitWin32.Blender.CommonLibs
@@ -96,7 +97,6 @@ Imports RibbonLib
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports Task
-Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class PageMzkitTools

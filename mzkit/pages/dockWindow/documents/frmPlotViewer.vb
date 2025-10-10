@@ -67,7 +67,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
-Imports WeifenLuo.WinFormsUI.Docking
+Imports Microsoft.VisualStudio.WinForms.Docking
 
 ''' <summary>
 ''' form for view Rscript plot result
