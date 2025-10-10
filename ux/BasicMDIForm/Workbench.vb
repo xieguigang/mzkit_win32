@@ -4,7 +4,6 @@ Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm.RibbonLib.Controls
 Imports RibbonLib
-Imports WeifenLuo.WinFormsUI.Docking
 
 ''' <summary>
 ''' The winform framework for the workbench UI

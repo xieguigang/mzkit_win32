@@ -9,8 +9,8 @@ Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.My.JavaScript
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
-Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmCloudExplorer
 

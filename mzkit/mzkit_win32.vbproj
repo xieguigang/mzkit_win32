@@ -1455,6 +1455,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmMoleculeLibrary.resx">
       <DependentUpon>frmMoleculeLibrary.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmMoleculeLibrary.zh-CN.resx">
       <DependentUpon>frmMoleculeLibrary.vb</DependentUpon>
@@ -1524,6 +1525,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\Comprehensive\frmMsImagingViewer.resx">
       <DependentUpon>frmMsImagingViewer.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\Comprehensive\frmMsImagingViewer.zh-CN.resx">
       <DependentUpon>frmMsImagingViewer.vb</DependentUpon>

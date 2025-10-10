@@ -7,8 +7,8 @@ Imports Galaxy.Data.TableSheet
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
-Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class FormViewer
