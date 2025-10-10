@@ -56,6 +56,7 @@
 Imports System.ComponentModel
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Microsoft.Web.WebView2.Core
 
 Public Class frmHtmlViewer

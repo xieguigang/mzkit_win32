@@ -66,6 +66,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports CommonDialogs
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports msconvertGUI.My
 Imports Mzkit_win32.BasicMDIForm
 Imports Task
@@ -75,7 +76,7 @@ Public Class FormMain : Implements AppHost
     Public Property CurrentTask As FileApplicationClass = FileApplicationClass.LCMS
     Public Property arguments As New Dictionary(Of String, String)
 
-    Public ReadOnly Property DockPanel As Global.WeifenLuo.WinFormsUI.Docking.DockPanel
+    Public ReadOnly Property DockPanel As DockPanel
     Private ReadOnly Property AppHost_ClientRectangle As Rectangle Implements AppHost.ClientRectangle
         Get
             Return New Rectangle(Location, Size)
