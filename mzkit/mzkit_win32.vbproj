@@ -331,9 +331,6 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.Windows.Form">
-      <HintPath>..\dist\Microsoft.VisualStudio.Windows.Form.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.3537.50, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.WebView2.1.0.3537.50\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
     </Reference>
@@ -414,9 +411,6 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="ThemeVS2015">
-      <HintPath>..\dist\ThemeVS2015.dll</HintPath>
-    </Reference>
     <Reference Include="ThermoFisher.CommonCore.BackgroundSubtraction">
       <HintPath>..\..\..\ThermoFisher\ThermoFisher.CommonCore.BackgroundSubtraction.dll</HintPath>
     </Reference>
@@ -1710,6 +1704,14 @@
     <ProjectReference Include="..\..\..\..\Erica\src\STRaid\STRaid.vbproj">
       <Project>{8e390f57-3714-47c2-bd1a-b97671a9321a}</Project>
       <Name>STRaid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\dockpanelsuite\Themes\ThemeVS2015.vbproj">
+      <Project>{900306bb-63ba-4f02-a09a-b8d5929255e0}</Project>
+      <Name>ThemeVS2015</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\dockpanelsuite\VSDockPanel\VSDockPanel.vbproj">
+      <Project>{c40da38b-73e2-0329-9196-3218aa065a26}</Project>
+      <Name>VSDockPanel</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyChartLibs\GalaxyChartLibs.vbproj">
       <Project>{e7535428-57d4-4e45-8c54-1900c279c353}</Project>

@@ -124,9 +124,6 @@
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.Windows.Form">
-      <HintPath>..\..\..\dist\Microsoft.VisualStudio.Windows.Form.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.3537.50, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Web.WebView2.1.0.3537.50\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
     </Reference>
@@ -150,9 +147,6 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="ThemeVS2015">
-      <HintPath>..\..\..\dist\ThemeVS2015.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -219,6 +213,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\galaxy\src\dockpanelsuite\Themes\ThemeVS2015.vbproj">
+      <Project>{900306bb-63ba-4f02-a09a-b8d5929255e0}</Project>
+      <Name>ThemeVS2015</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\galaxy\src\dockpanelsuite\VSDockPanel\VSDockPanel.vbproj">
+      <Project>{c40da38b-73e2-0329-9196-3218aa065a26}</Project>
+      <Name>VSDockPanel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj">
       <Project>{ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452}</Project>
       <Name>GalaxyWorkbench</Name>
