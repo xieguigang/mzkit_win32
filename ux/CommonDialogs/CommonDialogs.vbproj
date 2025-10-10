@@ -116,12 +116,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InputDialogs\InputSelectColorMap.Designer.vb">
-      <DependentUpon>InputSelectColorMap.vb</DependentUpon>
-    </Compile>
-    <Compile Include="InputDialogs\InputSelectColorMap.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="InputDialogs\InputSingleIonMSIExport.Designer.vb">
       <DependentUpon>InputSingleIonMSIExport.vb</DependentUpon>
     </Compile>
@@ -178,9 +172,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputDialogs\InputMSISlideLayout.zh-CN.resx">
       <DependentUpon>InputMSISlideLayout.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InputDialogs\InputSelectColorMap.resx">
-      <DependentUpon>InputSelectColorMap.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputDialogs\InputSingleIonMSIExport.resx">
       <DependentUpon>InputSingleIonMSIExport.vb</DependentUpon>
