@@ -1037,7 +1037,7 @@ Are you want to make your data to be pre-processing before load it into computer
     End Sub
 
     Public Function GetDocuments() As IEnumerable(Of Form) Implements AppHost.GetDocuments
-        Return m_dockPanel.Documents
+        Return m_dockPanel.Documents.Select(Function(d) DirectCast(d, Form))
     End Function
 
     Public Function GetDockPanel() As Control Implements AppHost.GetDockPanel
