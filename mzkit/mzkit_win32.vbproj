@@ -2258,10 +2258,6 @@
       <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>
       <Name>CommonDialogs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ux\ControlLibrary\ControlLibrary.vbproj">
-      <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
-      <Name>ControlLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ux\GCxGCViewer\GCxGCViewer.vbproj">
       <Project>{4f39a3ea-c7fe-4ce8-a83c-4fc762beab84}</Project>
       <Name>GCxGCViewer</Name>

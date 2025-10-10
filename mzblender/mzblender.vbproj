@@ -103,7 +103,6 @@
     <ProjectReference Include="..\..\visualize\plot\MsPlot.NET5.vbproj" />
     <ProjectReference Include="..\services\BlenderCommonLibs\BlenderCommonLibs.vbproj" />
     <ProjectReference Include="..\services\MZWorkRedis\MZWorkRedis.vbproj" />
-    <ProjectReference Include="..\ux\ControlLibrary\ControlLibrary.vbproj" />
   </ItemGroup>
 
   <ItemGroup>
