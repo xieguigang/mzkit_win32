@@ -151,9 +151,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Forms.DataGridView">
-      <HintPath>..\..\dist\System.Windows.Forms.DataGridView.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -208,13 +205,11 @@
     </Compile>
     <Compile Include="..\..\mzkit\RibbonItems.Designer.vb" />
     <Compile Include="RibbonExport.vb" />
-    <Compile Include="DataGrid\GridLoaderHandler.vb" />
     <Compile Include="plugin\modules\DataTableViewer.vb" />
     <Compile Include="plugin\modules\LCMSViewerModule.vb" />
     <Compile Include="plugin\modules\SpectrumLibraryModule.vb" />
     <Compile Include="RibbonEventBinding.vb" />
     <Compile Include="plugin\base\MSIServicePlugin.vb" />
-    <Compile Include="DataGrid\GridSearchHandler.vb" />
     <Compile Include="plugin\modules\Actions\ActionBase.vb" />
     <Compile Include="plugin\modules\Actions\Actions.vb" />
     <Compile Include="plugin\modules\Pages.vb" />
