@@ -424,19 +424,21 @@ Are you want to make your data to be pre-processing before load it into computer
 
     Friend Sub showMzPackMSI(mzpack As String, debug As Boolean)
         Call TaskProgress.RunAction(
-            run:=Sub(p)
-                     If Not debug Then
-                         Call WindowModules.viewer.StartMSIService()
-                         Call Thread.Sleep(100)
-                     End If
-
-                     Dim dataPack = WindowModules.viewer.MSIservice.LoadMSI(mzpack, AddressOf p.SetInfo)
-
-                     Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, mzpack))
-                     Call Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {mzpack.FileName}")
-                 End Sub,
+            run:=Sub(p) Call RunLoadMzPackTask(p, mzpack, debug),
             title:="Open mzPack for MSI...",
             info:="Loading MSI raw data file into viewer workspace...")
+    End Sub
+
+    Private Sub RunLoadMzPackTask(p As ITaskProgress, mzpack As String, debug As Boolean)
+        If Not debug Then
+            Call WindowModules.viewer.StartMSIService()
+            Call Thread.Sleep(100)
+        End If
+
+        Dim dataPack = WindowModules.viewer.MSIservice.LoadMSI(mzpack, AddressOf p.SetInfo)
+
+        Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, mzpack))
+        Call Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {mzpack.FileName}")
     End Sub
 
     Friend Sub saveCurrentScript()

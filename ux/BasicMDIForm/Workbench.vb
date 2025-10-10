@@ -11,6 +11,10 @@ Imports WeifenLuo.WinFormsUI.Docking
 Public NotInheritable Class Workbench
 
     Public Shared ReadOnly Property AppHost As AppHost
+        Get
+            Return CommonRuntime.AppHost
+        End Get
+    End Property
 
     Public Shared ReadOnly Property AppHostForm As Form
         Get
@@ -53,7 +57,7 @@ Public NotInheritable Class Workbench
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub Hook(host As AppHost)
-        _AppHost = host
+        Call CommonRuntime.Hook(host)
     End Sub
 
     ''' <summary>
@@ -80,7 +84,7 @@ Public NotInheritable Class Workbench
         If AppHost Is Nothing Then
             Call ExportApis.MZKitWorkbenchIsNotRunning()
         Else
-            Call _AppHost.Warning(msg)
+            Call AppHost.Warning(msg)
         End If
     End Sub
 
@@ -93,7 +97,7 @@ Public NotInheritable Class Workbench
         If AppHost Is Nothing Then
             Call ExportApis.MZKitWorkbenchIsNotRunning()
         Else
-            Call _AppHost.StatusMessage(msg, My.Resources._1200px_Checked_svg)
+            Call AppHost.StatusMessage(msg, My.Resources._1200px_Checked_svg)
         End If
     End Sub
 
@@ -108,7 +112,7 @@ Public NotInheritable Class Workbench
         If AppHost Is Nothing Then
             Call ExportApis.MZKitWorkbenchIsNotRunning()
         Else
-            Call _AppHost.StatusMessage(msg, icon)
+            Call AppHost.StatusMessage(msg, icon)
         End If
     End Sub
 
