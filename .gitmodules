@@ -4,3 +4,6 @@
 [submodule "ux/Canvas"]
 	path = ux/Canvas
 	url = https://github.com/xieguigang/mzkit_canvas.git
+[submodule "mzblender"]
+	path = mzblender
+	url = https://github.com/xieguigang/mzblender.git
