@@ -65,6 +65,7 @@ Imports System.Text
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Data
 Imports Galaxy.Data.TableSheet
+Imports Galaxy.Workbench.Actions
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -271,7 +272,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
                     TableGuid(table) = InstanceGuid
                 End SyncLock
 
-                Actions.RunAction(action, name, data, table)
+                ActionRegistry.RunAction(action, name, data, table)
             End Sub, config:=takeActions)
     End Sub
 

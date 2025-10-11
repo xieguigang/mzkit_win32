@@ -183,8 +183,6 @@
     <Compile Include="plugin\modules\SpectrumLibraryModule.vb" />
     <Compile Include="RibbonEventBinding.vb" />
     <Compile Include="plugin\base\MSIServicePlugin.vb" />
-    <Compile Include="plugin\modules\Actions\ActionBase.vb" />
-    <Compile Include="plugin\modules\Actions\Actions.vb" />
     <Compile Include="plugin\modules\QuantificationLinear.vb" />
     <Compile Include="plugin\modules\SpectralViewerModule.vb" />
     <Compile Include="plugin\modules\SpectrumSearchModule.vb" />

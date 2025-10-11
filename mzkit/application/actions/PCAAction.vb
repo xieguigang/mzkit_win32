@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.Data.Framework
+﻿Imports Galaxy.Workbench.Actions
+Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA
 Imports Mzkit_win32.BasicMDIForm

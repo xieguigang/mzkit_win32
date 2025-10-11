@@ -83,6 +83,7 @@ Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Galaxy.Workbench
+Imports Galaxy.Workbench.Actions
 Imports Galaxy.Workbench.DockDocument
 Imports Microsoft.VisualBasic.ApplicationServices.Development
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
@@ -215,16 +216,16 @@ Module Globals
     End Function
 
     Public Sub RegisterActions(println As Action(Of String))
-        Call Actions.Register("KEGG Enrichment", New KEGGEnrichmentAction, println)
-        Call Actions.Register("Formula Query", New FormulaQueryAction, println)
-        Call Actions.Register("Peak Finding", New PeakFindingAction, println)
-        Call Actions.Register("Peak List Annotation", New PeakAnnotationAction, println)
-        Call Actions.Register("KEGG Stats", New KEGGStatsAction, println)
-        Call Actions.Register("View 3D Scatter", New ViewScatter3DAction, println)
-        Call Actions.Register("LCMS Scatter", New ViewLCMSScatter, println)
-        Call Actions.Register("Metabonomics Analysis", New MetabonomicsAnalysisTool, println)
-        Call Actions.Register("Linear Regression", New LinearRegressionAction, println)
-        Call Actions.Register("PCA Analysis", New PCAAction, println)
+        Call ActionRegistry.Register("KEGG Enrichment", New KEGGEnrichmentAction, println)
+        Call ActionRegistry.Register("Formula Query", New FormulaQueryAction, println)
+        Call ActionRegistry.Register("Peak Finding", New PeakFindingAction, println)
+        Call ActionRegistry.Register("Peak List Annotation", New PeakAnnotationAction, println)
+        Call ActionRegistry.Register("KEGG Stats", New KEGGStatsAction, println)
+        Call ActionRegistry.Register("View 3D Scatter", New ViewScatter3DAction, println)
+        Call ActionRegistry.Register("LCMS Scatter", New ViewLCMSScatter, println)
+        Call ActionRegistry.Register("Metabonomics Analysis", New MetabonomicsAnalysisTool, println)
+        Call ActionRegistry.Register("Linear Regression", New LinearRegressionAction, println)
+        Call ActionRegistry.Register("PCA Analysis", New PCAAction, println)
     End Sub
 
     Private Sub shutdownHttpWeb()

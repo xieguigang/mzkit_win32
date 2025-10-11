@@ -1,6 +1,6 @@
 ﻿Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench.Actions
 Imports Microsoft.VisualBasic.Linq
-Imports Mzkit_win32.BasicMDIForm
 
 Public Class PeakAnnotationAction : Inherits ActionBase
 

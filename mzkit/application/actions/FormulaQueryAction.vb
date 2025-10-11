@@ -2,9 +2,9 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
-Imports Microsoft.VisualBasic.Linq
-Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.Workbench.Actions
 Imports Galaxy.Workbench.CommonDialogs
+Imports Microsoft.VisualBasic.Linq
 Imports std = System.Math
 
 Public Class FormulaQueryAction : Inherits ActionBase

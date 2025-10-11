@@ -1,6 +1,7 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
-Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.Workbench.Actions
 Imports Galaxy.Workbench.CommonDialogs
+Imports Mzkit_win32.BasicMDIForm
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 
 Public Class ViewScatter3DAction : Inherits ActionBase

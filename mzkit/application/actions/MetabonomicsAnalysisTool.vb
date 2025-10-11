@@ -1,4 +1,4 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports Galaxy.Workbench.Actions
 
 Public Class MetabonomicsAnalysisTool : Inherits ActionBase
 

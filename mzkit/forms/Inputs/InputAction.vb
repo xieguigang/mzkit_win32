@@ -54,8 +54,8 @@
 
 #End Region
 
+Imports Galaxy.Workbench.Actions
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
-Imports Mzkit_win32.BasicMDIForm
 
 Public Class InputAction
 
@@ -66,7 +66,7 @@ Public Class InputAction
             Call ComboBox1.Items.Add(name)
         Next
 
-        For Each act As NamedValue(Of String) In Actions.allActions
+        For Each act As NamedValue(Of String) In ActionRegistry.allActions
             Call info.Add(act.Name, act.Value)
             Call ComboBox2.Items.Add(act.Name)
         Next
