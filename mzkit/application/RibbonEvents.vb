@@ -76,6 +76,7 @@ Imports Galaxy.Data
 Imports Galaxy.Data.Visualization.CommonDialogs
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
+Imports Galaxy.Workbench.DockDocument
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.Framework

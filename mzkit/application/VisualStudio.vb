@@ -61,6 +61,8 @@
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.DockDocument
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
@@ -78,7 +80,7 @@ Public Class VisualStudio
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub Dock(win As ToolWindow, prefer As DockState)
-        Call Workbench.Dock(win, prefer)
+        Call CommonRuntime.Dock(win, prefer)
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
@@ -109,7 +111,7 @@ Public Class VisualStudio
     ''' 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Function ShowSingleDocument(Of T As {New, DockContent})(Optional showExplorer As Action = Nothing) As T
-        Return Workbench.ShowSingleDocument(Of T)(showExplorer)
+        Return CommonRuntime.ShowSingleDocument(Of T)(showExplorer)
     End Function
 
     ''' <summary>
@@ -124,7 +126,7 @@ Public Class VisualStudio
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Function ShowDocument(Of T As {New, DocumentWindow})(Optional status As DockState = DockState.Document,
                                                                        Optional title As String = Nothing) As T
-        Return Workbench.ShowDocument(Of T)(status, title)
+        Return CommonRuntime.ShowDocument(Of T)(status, title)
     End Function
 
     Public Shared Sub ShowDocument(doc As DocumentWindow,

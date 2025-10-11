@@ -1,5 +1,5 @@
 ﻿Imports Galaxy.CommonControls
-Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.Workbench.DockDocument
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormMain : Inherits DocumentWindow

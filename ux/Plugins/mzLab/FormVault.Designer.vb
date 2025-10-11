@@ -1,5 +1,5 @@
 ﻿Imports Galaxy.CommonControls
-Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.Workbench.DockDocument
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormVault : Inherits DocumentWindow
@@ -37,7 +37,7 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripSpringTextBox1 = New Mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
+        Me.ToolStripSpringTextBox1 = New ToolStripSpringTextBox()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()

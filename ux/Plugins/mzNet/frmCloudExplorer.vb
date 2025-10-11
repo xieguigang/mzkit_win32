@@ -279,7 +279,7 @@ Public Class frmCloudExplorer
     End Sub
 
     Private Sub ViewClusterScattersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewClusterScattersToolStripMenuItem.Click
-        Dim viewer = Workbench.ShowSingleDocument(Of FormScatterViewer)()
+        Dim viewer = CommonRuntime.ShowSingleDocument(Of FormScatterViewer)()
 
         viewer.host = host
 

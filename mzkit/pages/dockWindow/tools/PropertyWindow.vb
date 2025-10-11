@@ -60,7 +60,7 @@
 Imports System.ComponentModel
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
-Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.Workbench.DockDocument
 Imports Task
 
 Namespace DockSample

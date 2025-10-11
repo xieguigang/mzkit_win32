@@ -53,7 +53,7 @@
 #End Region
 
 Imports Galaxy.CommonControls
-Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.Workbench.DockDocument
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmFileExplorer
@@ -95,7 +95,7 @@ Partial Class frmFileExplorer
         Me.treeView1 = New Win7StyleTreeView(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripSpringTextBox1 = New Global.Mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
+        Me.ToolStripSpringTextBox1 = New ToolStripSpringTextBox()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ctxMenuScript = New System.Windows.Forms.ContextMenuStrip(Me.components)

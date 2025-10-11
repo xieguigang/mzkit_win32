@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports Galaxy.CommonControls
+Imports Galaxy.Workbench.DockDocument
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmCloudExplorer
@@ -33,7 +34,7 @@ Partial Class frmCloudExplorer
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripTextBox1 = New Mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
+        Me.ToolStripTextBox1 = New ToolStripSpringTextBox()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -157,7 +158,7 @@ Partial Class frmCloudExplorer
     Friend WithEvents ImageList1 As ImageList
     Friend WithEvents TreeView1 As TreeView
     Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents ToolStripTextBox1 As Mzkit_win32.BasicMDIForm.ToolStripSpringTextBox
+    Friend WithEvents ToolStripTextBox1 As ToolStripSpringTextBox
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
     Friend WithEvents ToolStripButton2 As ToolStripButton

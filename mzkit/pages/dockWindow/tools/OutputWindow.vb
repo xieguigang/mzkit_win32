@@ -54,7 +54,7 @@
 
 #End Region
 
-Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.Workbench.DockDocument
 
 Namespace DockSample
     Partial Public Class OutputWindow

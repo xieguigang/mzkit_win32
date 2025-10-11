@@ -1,4 +1,5 @@
 Imports System.Runtime.InteropServices
+Imports Galaxy.Workbench
 Imports Mzkit_win32.BasicMDIForm
 
 <ClassInterface(ClassInterfaceType.AutoDual)>
@@ -30,7 +31,7 @@ Public Class PkgPlugin : Inherits Plugin
     End Property
 
     Public Overrides Sub Exec()
-        Call Workbench.ShowSingleDocument(Of PkgPage)()
+        Call CommonRuntime.ShowSingleDocument(Of PkgPage)()
     End Sub
 
     Public Overrides Function Init(println As Action(Of String)) As Boolean

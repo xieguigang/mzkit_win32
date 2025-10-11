@@ -57,6 +57,7 @@
 
 Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench.DockDocument
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -64,7 +65,6 @@ Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualStudio.WinForms.Docking
-Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.RibbonLib.Controls
 
 Friend MustInherit Class WindowModules

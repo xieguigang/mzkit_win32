@@ -1,4 +1,4 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports Galaxy.Workbench.DockDocument
 Imports Mzkit_win32.MSImagingViewerV2
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
