@@ -1,4 +1,5 @@
 Imports System.Runtime.CompilerServices
+Imports Galaxy.Workbench.DockDocument
 
 <Assembly: InternalsVisibleTo("mzkit_win32")>
 
