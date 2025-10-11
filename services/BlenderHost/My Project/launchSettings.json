@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "BlenderHost": {
-      "commandName": "Project",
-      "commandLineArgs": "/start --port 8000 --master debug-blender --debug"
-    }
-  }
-}
