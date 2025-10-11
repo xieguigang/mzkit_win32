@@ -65,6 +65,7 @@ Imports System.IO
 Imports System.Net
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
@@ -95,7 +96,6 @@ Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Microsoft.VisualBasic.ValueTypes
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
-Imports MZWorkPack
 Imports PipelineHost
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports Task
@@ -403,7 +403,7 @@ Module Globals
         End If
 
         Dim work As WorkspaceFile = TaskProgress.LoadData(
-            streamLoad:=Function(msg) MZWorkPack.ImportWorkspace(mzwork, msg.Echo),
+            streamLoad:=Function(msg) Comprehensive.MZWork.ImportWorkspace(mzwork, msg.Echo),
             info:="Loading MZKit workspace..."
         )
         Dim project As New ViewerProject With {

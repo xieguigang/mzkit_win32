@@ -2211,6 +2211,18 @@
       <Project>{560a9982-7d34-44c8-a0de-6b86e119247e}</Project>
       <Name>TissueMorphology</Name>
     </ProjectReference>
+    <ProjectReference Include="..\mzblender\src\MSImagingViewer2\MSImagingViewerV2.vbproj">
+      <Project>{daf59cb6-ccd9-0fc6-1b8c-a3cdcd5ce92d}</Project>
+      <Name>MSImagingViewerV2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mzblender\src\mzblender\mzblender.vbproj">
+      <Project>{bf0b9512-2480-c985-bf87-d8c0101c2211}</Project>
+      <Name>mzblender</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mzblender\src\ServiceHub\ServiceHub.vbproj">
+      <Project>{4434c72b-ac01-385e-1be3-140070c51894}</Project>
+      <Name>ServiceHub</Name>
+    </ProjectReference>
     <ProjectReference Include="..\services\BioDeep\BioDeep.vbproj">
       <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
       <Name>BioDeep</Name>
@@ -2219,17 +2231,9 @@
       <Project>{aa94821a-2199-48b9-81d3-8ca0a7a575ec}</Project>
       <Name>CFM-ID</Name>
     </ProjectReference>
-    <ProjectReference Include="..\services\MZWork\MZWork.vbproj">
-      <Project>{0a48789b-a35c-49ba-8224-c604ad14f044}</Project>
-      <Name>MZWork</Name>
-    </ProjectReference>
     <ProjectReference Include="..\services\PipelineHost\PipelineHost.vbproj">
       <Project>{d2b96f8b-4538-497e-b10a-2325df053575}</Project>
       <Name>PipelineHost</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\services\ServiceHub\ServiceHub.vbproj">
-      <Project>{59127bcb-e898-4712-b51d-d967b10249c8}</Project>
-      <Name>ServiceHub</Name>
     </ProjectReference>
     <ProjectReference Include="..\services\TaskStream\TaskStream.vbproj">
       <Project>{3a645206-5ee9-4aa6-9dbb-c4cc18636fc5}</Project>
@@ -2254,10 +2258,6 @@
     <ProjectReference Include="..\ux\Canvas\src\MzBlender\BlenderCommonLibs\BlenderCommonLibs.vbproj">
       <Project>{3516cce9-77c6-8167-b245-5261d930bdee}</Project>
       <Name>BlenderCommonLibs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ux\Canvas\src\MzBlender\mzblender\mzblender.vbproj">
-      <Project>{b5bf9f49-7a13-1921-e8d8-8e5908c0abec}</Project>
-      <Name>mzblender</Name>
     </ProjectReference>
     <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj">
       <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>

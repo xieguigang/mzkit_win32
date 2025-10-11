@@ -1,63 +1,63 @@
 ﻿#Region "Microsoft.VisualBasic::e0695983bfac409ea77edf3c3d82581e, mzkit\services\PipelineHost\BackgroundTask.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 639
-    '    Code Lines: 490 (76.68%)
-    ' Comment Lines: 58 (9.08%)
-    '    - Xml Docs: 65.52%
-    ' 
-    '   Blank Lines: 91 (14.24%)
-    '     File Size: 26.65 KB
+' Summaries:
 
 
-    ' Module BackgroundTask
-    ' 
-    '     Constructor: (+1 Overloads) Sub New
-    ' 
-    '     Function: alignMz, cfmidPredict, eval_winsize, exportMatrixRows, exportMSIRawPeakTable
-    '               ExportMSISampleTable, exportRegionDataset, ExportSpotVectors, getIonRange, getPolarity
-    '               linear_ionsRaw, linear_setErrorPoints, MetaDNASearch, Mummichog, readTissues
-    '               RunFeatureDetections, uniqueMz
-    ' 
-    '     Sub: CreateMSIIndex, DrawMs1Contour, SetBioDeepSession
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 639
+'    Code Lines: 490 (76.68%)
+' Comment Lines: 58 (9.08%)
+'    - Xml Docs: 65.52%
+' 
+'   Blank Lines: 91 (14.24%)
+'     File Size: 26.65 KB
+
+
+' Module BackgroundTask
+' 
+'     Constructor: (+1 Overloads) Sub New
+' 
+'     Function: alignMz, cfmidPredict, eval_winsize, exportMatrixRows, exportMSIRawPeakTable
+'               ExportMSISampleTable, exportRegionDataset, ExportSpotVectors, getIonRange, getPolarity
+'               linear_ionsRaw, linear_setErrorPoints, MetaDNASearch, Mummichog, readTissues
+'               RunFeatureDetections, uniqueMz
+' 
+'     Sub: CreateMSIIndex, DrawMs1Contour, SetBioDeepSession
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -65,6 +65,7 @@ Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
@@ -101,7 +102,6 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
-Imports MZWorkPack
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.Rsharp

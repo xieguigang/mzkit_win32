@@ -417,17 +417,9 @@
       <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
       <Name>BioDeep</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MZWork\MZWork.vbproj">
-      <Project>{0a48789b-a35c-49ba-8224-c604ad14f044}</Project>
-      <Name>MZWork</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PipelineHost\PipelineHost.vbproj">
       <Project>{d2b96f8b-4538-497e-b10a-2325df053575}</Project>
       <Name>PipelineHost</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServiceHub\ServiceHub.vbproj">
-      <Project>{59127bcb-e898-4712-b51d-d967b10249c8}</Project>
-      <Name>ServiceHub</Name>
     </ProjectReference>
     <ProjectReference Include="..\TaskStream\TaskStream.vbproj">
       <Project>{3a645206-5ee9-4aa6-9dbb-c4cc18636fc5}</Project>

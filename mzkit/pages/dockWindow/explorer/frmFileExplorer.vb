@@ -647,7 +647,7 @@ Public Class frmFileExplorer
             If file.ShowDialog = DialogResult.OK Then
                 Call TaskProgress.LoadData(
                     streamLoad:=Function(msg)
-                                    Return MZWorkPack.ExportWorkspace(
+                                    Return Comprehensive.MZWork.ExportWorkspace(
                                         workspace:=Globals.workspace.work,
                                         save:=file.FileName,
                                         msg:=AddressOf msg.SetInfo
