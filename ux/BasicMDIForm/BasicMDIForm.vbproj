@@ -175,25 +175,7 @@
     <Compile Include="auth2.0\frmBioDeepAuth.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="base\DocumentWindow.Designer.vb">
-      <DependentUpon>DocumentWindow.vb</DependentUpon>
-    </Compile>
-    <Compile Include="base\DocumentWindow.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="base\BaseHook.vb" />
-    <Compile Include="base\ToolStripWindow.Designer.vb">
-      <DependentUpon>ToolStripWindow.vb</DependentUpon>
-    </Compile>
-    <Compile Include="base\ToolStripWindow.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="base\ToolWindow.Designer.vb">
-      <DependentUpon>ToolWindow.vb</DependentUpon>
-    </Compile>
-    <Compile Include="base\ToolWindow.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="..\..\mzkit\RibbonItems.Designer.vb" />
     <Compile Include="RibbonExport.vb" />
     <Compile Include="plugin\modules\DataTableViewer.vb" />
@@ -236,15 +218,6 @@
   <ItemGroup>
     <EmbeddedResource Include="auth2.0\frmBioDeepAuth.resx">
       <DependentUpon>frmBioDeepAuth.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="base\DocumentWindow.resx">
-      <DependentUpon>DocumentWindow.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="base\ToolStripWindow.resx">
-      <DependentUpon>ToolStripWindow.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="base\ToolWindow.resx">
-      <DependentUpon>ToolWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
