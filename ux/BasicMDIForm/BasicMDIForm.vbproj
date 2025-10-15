@@ -187,13 +187,7 @@
     <Compile Include="plugin\modules\SpectralViewerModule.vb" />
     <Compile Include="plugin\modules\SpectrumSearchModule.vb" />
     <Compile Include="plugin\modules\MSImagingServiceModule.vb" />
-    <Compile Include="plugin\PluginPkg.vb" />
-    <Compile Include="plugin\Repository\RegistryFile.vb" />
-    <Compile Include="plugin\Repository\PluginMetadata.vb" />
-    <Compile Include="plugin\PluginMgr.vb" />
     <Compile Include="plugin\ExportApis.vb" />
-    <Compile Include="plugin\MZKitPlugin.vb" />
-    <Compile Include="plugin\PlugIn.vb" />
     <Compile Include="Workbench.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
