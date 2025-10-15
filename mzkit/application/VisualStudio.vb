@@ -59,10 +59,10 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
-Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.DockDocument
+Imports Galaxy.Workbench.DockDocument.Presets
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
