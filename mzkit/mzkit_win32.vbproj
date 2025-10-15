@@ -1121,12 +1121,6 @@
     <Compile Include="pages\dockWindow\explorer\frmFileExplorer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\tools\PropertyWindow.designer.vb">
-      <DependentUpon>PropertyWindow.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\tools\PropertyWindow.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="pages\IDataTraceback.vb" />
     <Compile Include="pages\toolkit\PlotTooltip.vb">
       <SubType>Component</SubType>
@@ -1619,9 +1613,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\tools\OutputWindow.resx">
       <DependentUpon>OutputWindow.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\tools\PropertyWindow.resx">
-      <DependentUpon>PropertyWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\systems\frmRsharp.resx">
       <DependentUpon>frmRsharp.vb</DependentUpon>
