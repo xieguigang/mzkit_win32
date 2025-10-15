@@ -67,6 +67,7 @@ Imports System.Text
 Imports System.Threading
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.DockSample
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
 Imports Microsoft.VisualBasic.ApplicationServices.Development
@@ -413,12 +414,12 @@ Type 'q()' to quit R.
         Friend Shared afterLoad As Action
 
         Public Shared Function getCurrentLanguageString(key As String) As String
-            Return getLanguageString(key, Globals.Settings.ui.language)
+            Return getLanguageString(key, CommonRuntime.UISettings.language)
         End Function
 
         Public Shared Function getLanguageString(key As String, lang As Languages) As String
             Select Case lang
-                Case Languages.Chinese
+                Case Languages.中文
                     Return My.Resources.ResourceManager.GetString($"{key}_zh")
                 Case Languages.English
                     Return My.Resources.ResourceManager.GetString($"{key}_en")
@@ -448,8 +449,8 @@ Type 'q()' to quit R.
                 config.ui = New UISettings
             End If
 
-            Select Case config.ui.language
-                Case Languages.Chinese
+            Select Case CommonRuntime.UISettings.language
+                Case Languages.中文
                     Thread.CurrentThread.CurrentUICulture = New CultureInfo("zh-CN")
                     CultureInfo.DefaultThreadCurrentUICulture = New CultureInfo("zh-CN")
                 Case Languages.English
