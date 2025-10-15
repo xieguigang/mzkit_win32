@@ -595,19 +595,7 @@ Are you want to make your data to be pre-processing before load it into computer
             Globals.Settings.ui = New UISettings
         End If
 
-        If (Not (Globals.Settings.ui.width = 0 OrElse Globals.Settings.ui.height = 0)) AndAlso
-            Globals.Settings.ui.window <> FormWindowState.Minimized AndAlso
-            Globals.Settings.ui.rememberWindowsLocation Then
-
-            splashScreen.UpdateInformation("Apply UI layout...")
-
-            Me.Location = Globals.Settings.ui.getLocation
-            Me.Size = Globals.Settings.ui.getSize
-            Me.WindowState = Globals.Settings.ui.window
-
-            ' Call Globals.Settings.ui.setColors(Ribbon1)
-        End If
-
+        splashScreen.UpdateInformation("Apply UI layout...")
         splashScreen.UpdateInformation("Fetch news from bionovogene...")
 
         WindowModules.startPage.Show(MyApplication.host.m_dockPanel)
@@ -655,7 +643,7 @@ Are you want to make your data to be pre-processing before load it into computer
         End If
 
         Call Workbench.LogText("set ui language culture to:" & Thread.CurrentThread.CurrentUICulture.ToString)
-        Call Workbench.LogText(Settings.ui.language.Description)
+        Call Workbench.LogText("language=" & CommonRuntime.UISettings.language.Description)
     End Sub
 
     Private Sub InitializeFormulaProfile()
@@ -800,22 +788,16 @@ Are you want to make your data to be pre-processing before load it into computer
         Globals.Settings.viewer.XIC_da = MyApplication.host.GetXICDaError
         Globals.Settings.viewer.ppm_error = MyApplication.host.GetPPMError
         Globals.Settings.ui = New UISettings With {
-            .height = Height,
-            .width = Width,
-            .x = Location.X,
-            .y = Location.Y,
-            .window = WindowState,
-            .rememberWindowsLocation = Globals.Settings.ui.rememberWindowsLocation,
             .rememberLayouts = Globals.Settings.ui.rememberLayouts,
             .fileExplorerDock = WindowModules.fileExplorer.DockState,
             .OutputDock = WindowModules.output.DockState,
             .propertyWindowDock = WindowModules.propertyWin.DockState,
             .featureListDock = WindowModules.rawFeaturesList.DockState,
-            .taskListDock = WindowModules.taskWin.DockState，
-            .language = Globals.Settings.ui.language
+            .taskListDock = WindowModules.taskWin.DockState
         }
 
         Globals.Settings.Save()
+        CommonRuntime.SaveUISettings()
     End Sub
 
 #Region "vs2015"
