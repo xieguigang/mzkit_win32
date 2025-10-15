@@ -1,7 +1,7 @@
 ﻿Imports Galaxy.Workbench
 Imports Mzkit_win32.BasicMDIForm
 
-Public Class RestApiPlugin : Inherits Plugin
+Public Class RestApiPlugin : Inherits Galaxy.Workbench.Plugin.Plugin
 
     Public Overrides ReadOnly Property guid As Guid
         Get

@@ -633,7 +633,7 @@ Are you want to make your data to be pre-processing before load it into computer
 
         Call MyApplication.LogText(text.ToString)
         ' just scan for the new plugins
-        Call Plugin.LoadPlugins(
+        Call Galaxy.Workbench.Plugin.Plugin.LoadPlugins(
             println:=Sub(msg)
                          Call MyApplication.LogText(msg)
                          Call splashScreen.UpdateInformation(msg)
@@ -644,7 +644,7 @@ Are you want to make your data to be pre-processing before load it into computer
         splashScreen.CloseWindow()
 
         ' load and init of the plugins
-        Call Plugin.InitPlugins(AddressOf Workbench.LogText)
+        Call Galaxy.Workbench.Plugin.Plugin.InitPlugins(AddressOf Workbench.LogText)
 
         If Not MyApplication.afterLoad Is Nothing Then
             Call MyApplication.afterLoad()

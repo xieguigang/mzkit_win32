@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports Galaxy.Workbench.Plugin
+Imports Mzkit_win32.BasicMDIForm
 
 <Assembly: MZKitPlugin>
 

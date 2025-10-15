@@ -2,6 +2,7 @@
 Imports System.IO.Compression
 Imports System.Runtime.InteropServices
 Imports Galaxy.Workbench
+Imports Galaxy.Workbench.Plugin
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm

@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports Galaxy.Workbench
+Imports Galaxy.Workbench.Plugin
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class frmPluginMgr

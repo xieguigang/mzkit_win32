@@ -53,6 +53,7 @@
 #End Region
 
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench.Plugin
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
