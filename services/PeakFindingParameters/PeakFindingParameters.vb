@@ -1,5 +1,8 @@
 ﻿
 Imports System.ComponentModel
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.LinearQuantitative
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 
 ''' <summary>
 ''' peak finding arguments UI interop
