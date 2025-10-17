@@ -1,6 +1,8 @@
 Imports System.Runtime.CompilerServices
 Imports Galaxy.Workbench
+Imports Galaxy.Workbench.DockDocument.Presets
 Imports Microsoft.VisualBasic.Net.Tcp
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm.RibbonLib.Controls
 Imports RibbonLib
 
@@ -36,6 +38,9 @@ Public NotInheritable Class Workbench
     ''' </summary>
     ''' <returns></returns>
     Public Shared ReadOnly Property BioDeepSession As String
+
+    Public Shared ReadOnly parametersTool As New AdjustParameters
+    Public Shared ReadOnly propertyWin As New PropertyWindow
 
     Private Sub New()
     End Sub

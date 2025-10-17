@@ -68,6 +68,7 @@ Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
 Imports Microsoft.VisualStudio.WinForms.Docking
+Imports Mzkit_win32.BasicMDIForm
 
 ''' <summary>
 ''' form for view Rscript plot result
@@ -176,13 +177,13 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
             Return
         End If
 
-        Call WindowModules.parametersTool.SetParameterObject(
+        Call Workbench.parametersTool.SetParameterObject(
             args, Sub(a)
                       Call ProgressSpinner.DoLoading(Sub()
                                                          Call a.Update(plot)
                                                          Call RefreshPlot()
                                                      End Sub)
                   End Sub)
-        Call VisualStudio.Dock(WindowModules.parametersTool, prefer:=DockState.DockRight)
+        Call VisualStudio.Dock(Workbench.parametersTool, prefer:=DockState.DockRight)
     End Sub
 End Class

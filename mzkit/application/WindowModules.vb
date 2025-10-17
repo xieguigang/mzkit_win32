@@ -58,7 +58,6 @@
 Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Workbench.DockDocument
-Imports Galaxy.Workbench.DockDocument.Presets
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -66,6 +65,7 @@ Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualStudio.WinForms.Docking
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.RibbonLib.Controls
 
 Friend MustInherit Class WindowModules
@@ -83,7 +83,6 @@ Friend MustInherit Class WindowModules
     Friend Shared startPage As New frmStartPage
     Friend Shared ReadOnly settingsPage As New frmSettings
     Friend Shared ReadOnly RtermPage As New frmRsharp
-    Friend Shared ReadOnly propertyWin As New PropertyWindow
     Friend Shared ReadOnly taskWin As New TaskListWindow
     Friend Shared ReadOnly plotParams As New frmTweaks
 
@@ -93,7 +92,7 @@ Friend MustInherit Class WindowModules
     Friend Shared ReadOnly msDemo As New frmDemo
     Friend Shared ReadOnly MRMIons As New frmSRMIonsExplorer
     Friend Shared ReadOnly GCMSPeaks As New frmGCMSPeaks
-    Friend Shared ReadOnly parametersTool As New AdjustParameters
+
     Friend Shared ReadOnly MSIPixelProperty As New MSIPixelPropertyWindow
     Friend Shared ReadOnly nmrSpectrums As New frmNmrSpectrumExplorer
 
@@ -123,7 +122,6 @@ Friend MustInherit Class WindowModules
         plotParams.DockState = DockState.Hidden
 
         rawFeaturesList.Show(dockPanel)
-        propertyWin.Show(dockPanel)
 
         startPage.Show(dockPanel)
         startPage.DockState = DockState.Document
@@ -152,25 +150,26 @@ Friend MustInherit Class WindowModules
         msImageParameters.Show(dockPanel)
         msImageParameters.DockState = DockState.Hidden
 
-        parametersTool.Show(dockPanel)
-        parametersTool.DockState = DockState.Hidden
-
         msDemo.Show(dockPanel)
         msDemo.DockState = DockState.Hidden
 
         MSIPixelProperty.Show(dockPanel)
         MSIPixelProperty.DockState = DockState.Hidden
 
+        Workbench.propertyWin.Show(dockPanel)
+        Workbench.parametersTool.Show(dockPanel)
+        Workbench.parametersTool.DockState = DockState.Hidden
+
         If Globals.Settings.ui.rememberLayouts Then
             fileExplorer.DockState = Globals.Settings.ui.fileExplorerDock
             rawFeaturesList.DockState = Globals.Settings.ui.featureListDock
             output.DockState = Globals.Settings.ui.OutputDock
-            propertyWin.DockState = Globals.Settings.ui.propertyWindowDock
+            Workbench.propertyWin.DockState = Globals.Settings.ui.propertyWindowDock
         Else
             fileExplorer.DockState = DockState.DockLeftAutoHide
             rawFeaturesList.DockState = DockState.DockLeftAutoHide
             output.DockState = DockState.DockBottomAutoHide
-            propertyWin.DockState = DockState.DockRightAutoHide
+            Workbench.propertyWin.DockState = DockState.DockRightAutoHide
         End If
     End Sub
 

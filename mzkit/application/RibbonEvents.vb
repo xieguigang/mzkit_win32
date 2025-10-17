@@ -221,7 +221,7 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.ButtonViewSMILES, Sub() Call VisualStudio.ShowSingleDocument(Of frmSMILESViewer)())
         Call HookRibbon(ribbonItems.ButtonPluginManager, Sub() Call VisualStudio.ShowSingleDocument(Of frmPluginMgr)())
 
-        Call HookRibbon(ribbonItems.AdjustParameters, Sub() Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight))
+        Call HookRibbon(ribbonItems.AdjustParameters, Sub() Call VisualStudio.Dock(Workbench.parametersTool, DockState.DockRight))
         Call HookRibbon(ribbonItems.ImportsMzwork, Sub() Call OpenWorkspace())
 
         Call HookRibbon(ribbonItems.ButtonDevTools, Sub() Call openCmd())
@@ -719,7 +719,7 @@ Module RibbonEvents
     End Sub
 
     Public Sub CopyProperties()
-        Dim obj As Object = WindowModules.propertyWin.getPropertyObject
+        Dim obj As Object = Workbench.propertyWin.GetPropertyObject
 
         If obj Is Nothing Then
             Return
@@ -906,7 +906,7 @@ Module RibbonEvents
         WindowModules.fileExplorer.DockState = DockState.DockLeft
         WindowModules.rawFeaturesList.DockState = DockState.DockLeftAutoHide
         WindowModules.output.DockState = DockState.DockBottomAutoHide
-        WindowModules.propertyWin.DockState = DockState.DockRightAutoHide
+        Workbench.propertyWin.DockState = DockState.DockRightAutoHide
     End Sub
 
     Private Sub _recentItems_ExecuteEvent(sender As Object, e As ExecuteEventArgs)

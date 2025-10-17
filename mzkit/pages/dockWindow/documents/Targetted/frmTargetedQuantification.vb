@@ -128,8 +128,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Call reloadProfileNames()
         Call ApplyVsTheme(ToolStrip1, ToolStrip2, ContextMenuStrip1, ContextMenuStrip2, ContextMenuStrip3)
 
-        Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
-        Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
+        Call VisualStudio.Dock(Workbench.parametersTool, DockState.DockRight)
+        Call Workbench.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
     End Sub
 
     ''' <summary>

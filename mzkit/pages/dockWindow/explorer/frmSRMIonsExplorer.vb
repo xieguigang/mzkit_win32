@@ -768,8 +768,8 @@ Public Class frmSRMIonsExplorer
     Dim args As PeakFindingParameters
 
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
-        Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
-        Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
+        Call VisualStudio.Dock(Workbench.parametersTool, DockState.DockRight)
+        Call Workbench.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
     End Sub
 
     Private Sub applyNewParameters(args As PeakFindingParameters)
@@ -798,8 +798,8 @@ Public Class frmSRMIonsExplorer
         Call applyNewParameters(New PeakFindingParameters)
         ' clear the custom parameters for the ions
         Call Globals.Settings.peak_arguments.Clear()
-        Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
-        Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
+        Call VisualStudio.Dock(Workbench.parametersTool, DockState.DockRight)
+        Call Workbench.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
     End Sub
 
     Private Sub SetIndividualPeakFindingArgumentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetIndividualPeakFindingArgumentsToolStripMenuItem.Click
@@ -827,8 +827,8 @@ Public Class frmSRMIonsExplorer
             Globals.Settings.peak_arguments(selcNode.ion.accession).accession = selcNode.ion.accession
 
             Call applyNewIonParameters(Globals.Settings.peak_arguments(selcNode.ion.accession))
-            Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
-            Call WindowModules.parametersTool.SetParameterObject(Globals.Settings.peak_arguments(selcNode.ion.accession), AddressOf applyNewIonParameters)
+            Call VisualStudio.Dock(Workbench.parametersTool, DockState.DockRight)
+            Call Workbench.parametersTool.SetParameterObject(Globals.Settings.peak_arguments(selcNode.ion.accession), AddressOf applyNewIonParameters)
         Else
             Call Globals.Settings.peak_arguments.Remove(selcNode.ion.accession)
             Call ToolStripButton3_Click(Nothing, Nothing)

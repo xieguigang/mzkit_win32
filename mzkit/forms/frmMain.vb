@@ -791,7 +791,7 @@ Are you want to make your data to be pre-processing before load it into computer
             .rememberLayouts = Globals.Settings.ui.rememberLayouts,
             .fileExplorerDock = WindowModules.fileExplorer.DockState,
             .OutputDock = WindowModules.output.DockState,
-            .propertyWindowDock = WindowModules.propertyWin.DockState,
+            .propertyWindowDock = Workbench.propertyWin.DockState,
             .featureListDock = WindowModules.rawFeaturesList.DockState,
             .taskListDock = WindowModules.taskWin.DockState
         }
@@ -817,11 +817,11 @@ Are you want to make your data to be pre-processing before load it into computer
     Public ReadOnly Property ActiveDocument As Form Implements AppHost.ActiveDocument
 
     Public Sub ShowPropertyWindow()
-        VisualStudio.Dock(WindowModules.propertyWin, DockState.DockRight)
+        VisualStudio.Dock(Workbench.propertyWin, DockState.DockRight)
     End Sub
 
     Public Sub ShowProperties(obj As Object) Implements AppHost.ShowProperties
-        WindowModules.propertyWin.SetObject(obj)
+        Workbench.propertyWin.SetObject(obj)
         ShowPropertyWindow()
     End Sub
 

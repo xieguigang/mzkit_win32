@@ -85,7 +85,7 @@ Public Class VisualStudio
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub ShowPropertyWindow()
-        Call Dock(WindowModules.propertyWin, DockState.DockRight)
+        Call Dock(Workbench.propertyWin, DockState.DockRight)
     End Sub
 
     ''' <summary>
@@ -97,7 +97,7 @@ Public Class VisualStudio
     ''' </remarks>
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub ShowProperties(item As Object)
-        Dim form As PropertyWindow = WindowModules.propertyWin
+        Dim form As PropertyWindow = Workbench.propertyWin
         Call form.Invoke(Sub() form.SetObject(item))
     End Sub
 
