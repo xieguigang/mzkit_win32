@@ -2321,6 +2321,7 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="..\services\PDF\PDF.projitems" Label="Shared" />
+  <Import Project="..\services\PeakFindingParameters\PeakFindingParameters.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.3537.50\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.3537.50\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
