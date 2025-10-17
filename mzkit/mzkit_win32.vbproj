@@ -1077,12 +1077,6 @@
     <Compile Include="pages\dockWindow\properties\MSIRegionSampleWindow.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\tools\AdjustParameters.Designer.vb">
-      <DependentUpon>AdjustParameters.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\tools\AdjustParameters.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="pages\dockWindow\tools\NotificationWindow.Designer.vb">
       <DependentUpon>NotificationWindow.vb</DependentUpon>
     </Compile>
@@ -1603,9 +1597,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\properties\SampleRegionMergeTool.resx">
       <DependentUpon>SampleRegionMergeTool.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\tools\AdjustParameters.resx">
-      <DependentUpon>AdjustParameters.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\properties\MSIPixelPropertyWindow.resx">
       <DependentUpon>MSIPixelPropertyWindow.vb</DependentUpon>
