@@ -181,7 +181,6 @@
     <Compile Include="plugin\modules\DataTableViewer.vb" />
     <Compile Include="plugin\modules\LCMSViewerModule.vb" />
     <Compile Include="plugin\modules\SpectrumLibraryModule.vb" />
-    <Compile Include="RibbonEventBinding.vb" />
     <Compile Include="plugin\base\MSIServicePlugin.vb" />
     <Compile Include="plugin\modules\QuantificationLinear.vb" />
     <Compile Include="plugin\modules\SpectralViewerModule.vb" />
@@ -276,6 +275,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\..\services\mzkit_win32.envir\mzkit_win32.envir.projitems" Label="Shared" />
+  <Import Project="..\..\..\..\..\galaxy\src\RibbonEventBinding\RibbonEventBinding.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\..\packages\Microsoft.Web.WebView2.1.0.3537.50\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\..\packages\Microsoft.Web.WebView2.1.0.3537.50\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
