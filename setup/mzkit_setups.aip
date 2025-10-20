@@ -253,6 +253,7 @@
     <ROW Directory="lazylibs_Dir" Directory_Parent="potree_Dir" DefaultDir="lazylibs"/>
     <ROW Directory="less_1_Dir" Directory_Parent="colorpicker3.4.3_Dir" DefaultDir="less"/>
     <ROW Directory="less_Dir" Directory_Parent="fontawesome6_Dir" DefaultDir="less"/>
+    <ROW Directory="lib_1_Dir" Directory_Parent="win_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_2_Dir" Directory_Parent="unix_1_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_3_Dir" Directory_Parent="win_1_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_4_Dir" Directory_Parent="openslidewin64_Dir" DefaultDir="lib"/>
@@ -282,26 +283,48 @@
     <ROW Directory="lines_1_Dir" Directory_Parent="three.js_Dir" DefaultDir="lines"/>
     <ROW Directory="lines_Dir" Directory_Parent="extra_Dir" DefaultDir="lines"/>
     <ROW Directory="linuxarm64_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="LINUX-~2|linux-arm64"/>
+    <ROW Directory="linuxarm64_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="LINUX-~2|linux-arm64"/>
+    <ROW Directory="linuxarm64_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="LINUX-~2|linux-arm64"/>
     <ROW Directory="linuxarm64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~2|linux-arm64"/>
     <ROW Directory="linuxarm_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="LINUX-~1|linux-arm"/>
+    <ROW Directory="linuxarm_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="LINUX-~1|linux-arm"/>
+    <ROW Directory="linuxarm_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="LINUX-~1|linux-arm"/>
     <ROW Directory="linuxarm_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~1|linux-arm"/>
     <ROW Directory="linuxloongarch64_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="LINUX-~5|linux-loongarch64"/>
+    <ROW Directory="linuxloongarch64_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="LINUX-~3|linux-loongarch64"/>
+    <ROW Directory="linuxloongarch64_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="LINUX-~3|linux-loongarch64"/>
     <ROW Directory="linuxloongarch64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~5|linux-loongarch64"/>
     <ROW Directory="linuxmuslarm64_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="LINUX-~7|linux-musl-arm64"/>
+    <ROW Directory="linuxmuslarm64_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="LINUX-~5|linux-musl-arm64"/>
+    <ROW Directory="linuxmuslarm64_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="LINUX-~5|linux-musl-arm64"/>
     <ROW Directory="linuxmuslarm64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~7|linux-musl-arm64"/>
     <ROW Directory="linuxmuslarm_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="LINUX-~6|linux-musl-arm"/>
+    <ROW Directory="linuxmuslarm_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="LINUX-~4|linux-musl-arm"/>
+    <ROW Directory="linuxmuslarm_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="LINUX-~4|linux-musl-arm"/>
     <ROW Directory="linuxmuslarm_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~6|linux-musl-arm"/>
     <ROW Directory="linuxmuslloongarch64_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="LINUX-~8|linux-musl-loongarch64"/>
+    <ROW Directory="linuxmuslloongarch64_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="LINUX-~6|linux-musl-loongarch64"/>
+    <ROW Directory="linuxmuslloongarch64_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="LINUX-~6|linux-musl-loongarch64"/>
     <ROW Directory="linuxmuslloongarch64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~8|linux-musl-loongarch64"/>
     <ROW Directory="linuxmuslriscv64_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="LINUX-~9|linux-musl-riscv64"/>
+    <ROW Directory="linuxmuslriscv64_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="LINUX-~7|linux-musl-riscv64"/>
+    <ROW Directory="linuxmuslriscv64_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="LINUX-~7|linux-musl-riscv64"/>
     <ROW Directory="linuxmuslriscv64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~9|linux-musl-riscv64"/>
     <ROW Directory="linuxmuslx64_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="LINUX-~3|linux-musl-x64"/>
+    <ROW Directory="linuxmuslx64_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="LINUX-~8|linux-musl-x64"/>
+    <ROW Directory="linuxmuslx64_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="LINUX-~8|linux-musl-x64"/>
     <ROW Directory="linuxmuslx64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~3|linux-musl-x64"/>
     <ROW Directory="linuxriscv64_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="LINUX~10|linux-riscv64"/>
+    <ROW Directory="linuxriscv64_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="LINUX-~9|linux-riscv64"/>
+    <ROW Directory="linuxriscv64_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="LINUX-~9|linux-riscv64"/>
     <ROW Directory="linuxriscv64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX~10|linux-riscv64"/>
     <ROW Directory="linuxx64_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="LINUX-~4|linux-x64"/>
+    <ROW Directory="linuxx64_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="LINUX~10|linux-x64"/>
+    <ROW Directory="linuxx64_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="LINUX~10|linux-x64"/>
     <ROW Directory="linuxx64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX-~4|linux-x64"/>
     <ROW Directory="linuxx86_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="LINUX~11|linux-x86"/>
+    <ROW Directory="linuxx86_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="LINUX~11|linux-x86"/>
+    <ROW Directory="linuxx86_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="LINUX~11|linux-x86"/>
     <ROW Directory="linuxx86_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="LINUX~11|linux-x86"/>
     <ROW Directory="loaders_Dir" Directory_Parent="three.js_Dir" DefaultDir="loaders"/>
     <ROW Directory="logs_1_Dir" Directory_Parent="three_Dir" DefaultDir="logs"/>
@@ -348,9 +371,39 @@
     <ROW Directory="native_29_Dir" Directory_Parent="linuxriscv64_1_Dir" DefaultDir="native"/>
     <ROW Directory="native_2_Dir" Directory_Parent="linuxarm_Dir" DefaultDir="native"/>
     <ROW Directory="native_30_Dir" Directory_Parent="linuxx86_1_Dir" DefaultDir="native"/>
+    <ROW Directory="native_31_Dir" Directory_Parent="linuxarm_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_32_Dir" Directory_Parent="linuxarm64_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_33_Dir" Directory_Parent="linuxloongarch64_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_34_Dir" Directory_Parent="linuxmuslarm_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_35_Dir" Directory_Parent="linuxmuslarm64_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_36_Dir" Directory_Parent="linuxmuslloongarch64_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_37_Dir" Directory_Parent="linuxmuslriscv64_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_38_Dir" Directory_Parent="linuxmuslx64_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_39_Dir" Directory_Parent="linuxriscv64_2_Dir" DefaultDir="native"/>
     <ROW Directory="native_3_Dir" Directory_Parent="linuxarm64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_40_Dir" Directory_Parent="linuxx64_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_41_Dir" Directory_Parent="linuxx86_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_42_Dir" Directory_Parent="osx_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_43_Dir" Directory_Parent="winarm64_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_44_Dir" Directory_Parent="winx64_3_Dir" DefaultDir="native"/>
+    <ROW Directory="native_45_Dir" Directory_Parent="winx86_2_Dir" DefaultDir="native"/>
+    <ROW Directory="native_46_Dir" Directory_Parent="linuxarm_3_Dir" DefaultDir="native"/>
+    <ROW Directory="native_47_Dir" Directory_Parent="linuxarm64_3_Dir" DefaultDir="native"/>
+    <ROW Directory="native_48_Dir" Directory_Parent="linuxloongarch64_3_Dir" DefaultDir="native"/>
+    <ROW Directory="native_49_Dir" Directory_Parent="linuxmuslarm_3_Dir" DefaultDir="native"/>
     <ROW Directory="native_4_Dir" Directory_Parent="linuxmuslx64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_50_Dir" Directory_Parent="linuxmuslarm64_3_Dir" DefaultDir="native"/>
+    <ROW Directory="native_51_Dir" Directory_Parent="linuxmuslloongarch64_3_Dir" DefaultDir="native"/>
+    <ROW Directory="native_52_Dir" Directory_Parent="linuxmuslriscv64_3_Dir" DefaultDir="native"/>
+    <ROW Directory="native_53_Dir" Directory_Parent="linuxmuslx64_3_Dir" DefaultDir="native"/>
+    <ROW Directory="native_54_Dir" Directory_Parent="linuxriscv64_3_Dir" DefaultDir="native"/>
+    <ROW Directory="native_55_Dir" Directory_Parent="linuxx64_3_Dir" DefaultDir="native"/>
+    <ROW Directory="native_56_Dir" Directory_Parent="linuxx86_3_Dir" DefaultDir="native"/>
+    <ROW Directory="native_57_Dir" Directory_Parent="osx_3_Dir" DefaultDir="native"/>
+    <ROW Directory="native_58_Dir" Directory_Parent="winarm64_3_Dir" DefaultDir="native"/>
+    <ROW Directory="native_59_Dir" Directory_Parent="winx64_4_Dir" DefaultDir="native"/>
     <ROW Directory="native_5_Dir" Directory_Parent="linuxx64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_60_Dir" Directory_Parent="winx86_3_Dir" DefaultDir="native"/>
     <ROW Directory="native_6_Dir" Directory_Parent="osx_Dir" DefaultDir="native"/>
     <ROW Directory="native_7_Dir" Directory_Parent="winarm64_Dir" DefaultDir="native"/>
     <ROW Directory="native_8_Dir" Directory_Parent="winx64_2_Dir" DefaultDir="native"/>
@@ -362,6 +415,8 @@
     <ROW Directory="net6.0_5_Dir" Directory_Parent="lib_2_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_6_Dir" Directory_Parent="lib_3_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net8.0_1_Dir" Directory_Parent="lib_Dir" DefaultDir="net8.0"/>
+    <ROW Directory="net8.0_2_Dir" Directory_Parent="lib_3_Dir" DefaultDir="net8.0"/>
+    <ROW Directory="net8.0_3_Dir" Directory_Parent="lib_1_Dir" DefaultDir="net8.0"/>
     <ROW Directory="net8.0_Dir" Directory_Parent="lib_7_Dir" DefaultDir="net8.0"/>
     <ROW Directory="nifti_Dir" Directory_Parent="include_1_Dir" DefaultDir="nifti"/>
     <ROW Directory="nvidia_Dir" Directory_Parent="plugins_Dir" DefaultDir="nvidia"/>
@@ -377,6 +432,8 @@
     <ROW Directory="orc0.4_Dir" Directory_Parent="include_1_Dir" DefaultDir="orc-0.4"/>
     <ROW Directory="orc_Dir" Directory_Parent="orc0.4_Dir" DefaultDir="orc"/>
     <ROW Directory="osx_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="osx"/>
+    <ROW Directory="osx_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="osx"/>
+    <ROW Directory="osx_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="osx"/>
     <ROW Directory="osx_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="osx"/>
     <ROW Directory="other_Dir" Directory_Parent="libs_Dir" DefaultDir="other"/>
     <ROW Directory="packages_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="packages"/>
@@ -400,6 +457,7 @@
     <ROW Directory="regular_Dir" Directory_Parent="svgs_Dir" DefaultDir="regular"/>
     <ROW Directory="resources_Dir" Directory_Parent="potree_Dir" DefaultDir="RESOUR~1|resources"/>
     <ROW Directory="ruRU_Dir" Directory_Parent="APPDIR" DefaultDir="ru-RU"/>
+    <ROW Directory="runtimes_1_Dir" Directory_Parent="library_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_2_Dir" Directory_Parent="host_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_3_Dir" Directory_Parent="bin_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_4_Dir" Directory_Parent="blender_Dir" DefaultDir="runtimes"/>
@@ -458,13 +516,20 @@
     <ROW Directory="win_1_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="win"/>
     <ROW Directory="win_2_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="win"/>
     <ROW Directory="win_3_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="win"/>
+    <ROW Directory="win_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="win"/>
     <ROW Directory="winarm64_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="WIN-AR~1|win-arm64"/>
+    <ROW Directory="winarm64_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="WIN-AR~1|win-arm64"/>
+    <ROW Directory="winarm64_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="WIN-AR~1|win-arm64"/>
     <ROW Directory="winarm64_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="WIN-AR~1|win-arm64"/>
     <ROW Directory="winpthreads_Dir" Directory_Parent="licenses_Dir" DefaultDir="WINPTH~1|winpthreads"/>
     <ROW Directory="winx64_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="win-x64"/>
     <ROW Directory="winx64_2_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="win-x64"/>
+    <ROW Directory="winx64_3_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="win-x64"/>
+    <ROW Directory="winx64_4_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="win-x64"/>
     <ROW Directory="winx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win-x64"/>
     <ROW Directory="winx86_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="win-x86"/>
+    <ROW Directory="winx86_2_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="win-x86"/>
+    <ROW Directory="winx86_3_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="win-x86"/>
     <ROW Directory="winx86_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="win-x86"/>
     <ROW Directory="workbench_Dir" Directory_Parent="pipeline_Dir" DefaultDir="WORKBE~1|workbench"/>
     <ROW Directory="worker_Dir" Directory_Parent="obj2_Dir" DefaultDir="worker"/>
@@ -1511,6 +1576,8 @@
     <ROW Component="System.Diagnostics.EventLog.dll_1" ComponentId="{E31ED529-015E-4BDF-8240-3564DB89A9C3}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Diagnostics.EventLog.dll_1"/>
     <ROW Component="System.Diagnostics.EventLog.dll_2" ComponentId="{151F8988-23B2-4154-AD4C-20CAC73CAB81}" Directory_="net8.0_1_Dir" Attributes="0" KeyPath="System.Diagnostics.EventLog.dll_2"/>
     <ROW Component="System.Diagnostics.EventLog.dll_3" ComponentId="{F3C4EEF0-F0F7-4788-80AC-C27C356909FE}" Directory_="blender_Dir" Attributes="0" KeyPath="System.Diagnostics.EventLog.dll_3"/>
+    <ROW Component="System.Diagnostics.EventLog.dll_4" ComponentId="{6A854E71-C2BC-4726-8EC5-643EF6416650}" Directory_="net8.0_2_Dir" Attributes="0" KeyPath="System.Diagnostics.EventLog.dll_4"/>
+    <ROW Component="System.Diagnostics.EventLog.dll_5" ComponentId="{1BF19FE1-8C80-46E1-86A3-7197876FD86F}" Directory_="net8.0_3_Dir" Attributes="0" KeyPath="System.Diagnostics.EventLog.dll_5"/>
     <ROW Component="System.Drawing.Common.dll" ComponentId="{32FA08D7-7A6E-48EA-9BF6-AA0A7EE372E6}" Directory_="net6.0_5_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll"/>
     <ROW Component="System.Drawing.Common.dll_1" ComponentId="{2DAD2777-592E-423B-B06A-B1BAC6F9D8D7}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_1"/>
     <ROW Component="System.Drawing.Common.dll_2" ComponentId="{727BC67F-2E8D-4947-8398-2DB0F825BF61}" Directory_="blender_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_2"/>
@@ -1810,6 +1877,12 @@
     <ROW Component="libOpenEXR3_1.dll" ComponentId="{69DED2EF-0D7D-4021-8B47-832A611A984F}" Directory_="bin_2_Dir" Attributes="256" KeyPath="libOpenEXR3_1.dll"/>
     <ROW Component="libSkiaSharp.dll" ComponentId="{61A408CE-50C9-4B27-8164-F5C904C1BF88}" Directory_="dzitools_Dir" Attributes="256" KeyPath="libSkiaSharp.dll"/>
     <ROW Component="libSkiaSharp.dll_1" ComponentId="{F3D3BC32-BB6C-4124-853D-98175AEFFFF8}" Directory_="native_7_Dir" Attributes="256" KeyPath="libSkiaSharp.dll_1"/>
+    <ROW Component="libSkiaSharp.dll_10" ComponentId="{E07D2B87-D69E-4687-995D-EB454A3F2819}" Directory_="native_43_Dir" Attributes="256" KeyPath="libSkiaSharp.dll_10"/>
+    <ROW Component="libSkiaSharp.dll_11" ComponentId="{694426F1-A496-40E7-9F3D-DDA6CC292923}" Directory_="native_44_Dir" Attributes="256" KeyPath="libSkiaSharp.dll_11"/>
+    <ROW Component="libSkiaSharp.dll_12" ComponentId="{40776E7E-4842-49E8-866C-BB03CF130E6A}" Directory_="native_45_Dir" Attributes="0" KeyPath="libSkiaSharp.dll_12"/>
+    <ROW Component="libSkiaSharp.dll_13" ComponentId="{D8908AB6-821F-4894-BE4C-F2348894320C}" Directory_="native_58_Dir" Attributes="256" KeyPath="libSkiaSharp.dll_13"/>
+    <ROW Component="libSkiaSharp.dll_14" ComponentId="{A94CDF03-3AFB-47A9-AC1C-F7CD29A8F16B}" Directory_="native_59_Dir" Attributes="256" KeyPath="libSkiaSharp.dll_14"/>
+    <ROW Component="libSkiaSharp.dll_15" ComponentId="{4931D3D6-7FD9-4C31-A9B3-ED6F307123A7}" Directory_="native_60_Dir" Attributes="0" KeyPath="libSkiaSharp.dll_15"/>
     <ROW Component="libSkiaSharp.dll_2" ComponentId="{22834615-A93F-41AC-855B-02173D1668FC}" Directory_="native_8_Dir" Attributes="256" KeyPath="libSkiaSharp.dll_2"/>
     <ROW Component="libSkiaSharp.dll_3" ComponentId="{90A014AE-41DB-4DA2-AA94-2CDE0A1A2F64}" Directory_="native_9_Dir" Attributes="0" KeyPath="libSkiaSharp.dll_3"/>
     <ROW Component="libSkiaSharp.dll_4" ComponentId="{535A9993-E641-49F6-A0B1-29776A7F7BF4}" Directory_="native_15_Dir" Attributes="256" KeyPath="libSkiaSharp.dll_4"/>
@@ -1963,8 +2036,32 @@
     <ROW Component="native_1" ComponentId="{7C7764EC-7911-467E-A477-B9EA55900260}" Directory_="native_3_Dir" Attributes="0"/>
     <ROW Component="native_10" ComponentId="{639C29F6-749B-4F5D-91F4-5CC3D8793409}" Directory_="native_22_Dir" Attributes="0"/>
     <ROW Component="native_11" ComponentId="{AE72DCBF-5FE1-4838-8589-E705FDE01989}" Directory_="native_23_Dir" Attributes="0"/>
+    <ROW Component="native_12" ComponentId="{A62EBD47-8C11-4197-828C-4FA4D0EE97FC}" Directory_="native_31_Dir" Attributes="0"/>
+    <ROW Component="native_13" ComponentId="{1B00EBB2-02D5-4E5E-826A-4C0E69C1478F}" Directory_="native_32_Dir" Attributes="0"/>
+    <ROW Component="native_14" ComponentId="{034DEBF6-43E7-41FA-A9B1-691C4B4F6C47}" Directory_="native_33_Dir" Attributes="0"/>
+    <ROW Component="native_15" ComponentId="{A3CBBD5E-E957-45B4-81CC-FBB28ACE64C4}" Directory_="native_34_Dir" Attributes="0"/>
+    <ROW Component="native_16" ComponentId="{5D0A51A9-2A9E-458A-9A97-E3473D055DD2}" Directory_="native_35_Dir" Attributes="0"/>
+    <ROW Component="native_17" ComponentId="{3E0A733C-DC0B-41AE-9F64-9F1C33808E7D}" Directory_="native_36_Dir" Attributes="0"/>
+    <ROW Component="native_18" ComponentId="{7DE59BA5-0B42-40B9-9B33-F01573C671EB}" Directory_="native_37_Dir" Attributes="0"/>
+    <ROW Component="native_19" ComponentId="{81D3873E-6F62-4CE9-8615-A99FF626D02F}" Directory_="native_38_Dir" Attributes="0"/>
     <ROW Component="native_2" ComponentId="{A64A141C-F196-4AD4-B43D-0519D6494CE3}" Directory_="native_4_Dir" Attributes="0"/>
+    <ROW Component="native_20" ComponentId="{DDABF041-8E2A-4EC4-8829-0AB6B93EC739}" Directory_="native_39_Dir" Attributes="0"/>
+    <ROW Component="native_21" ComponentId="{B9FFB381-6CA2-4530-B533-C4AC77BDD4D9}" Directory_="native_40_Dir" Attributes="0"/>
+    <ROW Component="native_22" ComponentId="{5DAB307D-B69E-44F2-ADA9-9FF47B1416FD}" Directory_="native_41_Dir" Attributes="0"/>
+    <ROW Component="native_23" ComponentId="{C9180009-874C-4E40-AB1F-54ACB6FEE798}" Directory_="native_42_Dir" Attributes="0"/>
+    <ROW Component="native_24" ComponentId="{8D763CC3-E44E-4243-A277-C1DBFE5B81C9}" Directory_="native_46_Dir" Attributes="0"/>
+    <ROW Component="native_25" ComponentId="{D1258907-31EA-4779-94F1-A89EF13275F5}" Directory_="native_47_Dir" Attributes="0"/>
+    <ROW Component="native_26" ComponentId="{6A40FDEF-444D-4C8E-A366-9644543B33EF}" Directory_="native_48_Dir" Attributes="0"/>
+    <ROW Component="native_27" ComponentId="{33F5BF9F-F8E8-4B2C-B3CE-46F5A802A9C7}" Directory_="native_49_Dir" Attributes="0"/>
+    <ROW Component="native_28" ComponentId="{653BD8F4-A16B-4204-A616-00AFDDF7072A}" Directory_="native_50_Dir" Attributes="0"/>
+    <ROW Component="native_29" ComponentId="{93E82975-10C7-49B6-BBD4-E91760E23034}" Directory_="native_51_Dir" Attributes="0"/>
     <ROW Component="native_3" ComponentId="{408BDD43-8F7E-4764-876A-9ECE7383DC31}" Directory_="native_5_Dir" Attributes="0"/>
+    <ROW Component="native_30" ComponentId="{1C373D95-BA1E-4103-8248-D8DFD207AAD3}" Directory_="native_52_Dir" Attributes="0"/>
+    <ROW Component="native_31" ComponentId="{883DCA11-3E9B-4992-81AD-97A5EF52E761}" Directory_="native_53_Dir" Attributes="0"/>
+    <ROW Component="native_32" ComponentId="{353362DD-B014-479C-A9E4-5DA5897DA52A}" Directory_="native_54_Dir" Attributes="0"/>
+    <ROW Component="native_33" ComponentId="{9C8C3B5A-276F-48F8-BD66-A87AAD55A9CB}" Directory_="native_55_Dir" Attributes="0"/>
+    <ROW Component="native_34" ComponentId="{3D2F1F96-0C83-43FD-806B-77623C2144C9}" Directory_="native_56_Dir" Attributes="0"/>
+    <ROW Component="native_35" ComponentId="{C43C5C68-B646-48DC-9F3B-A1EDD8891A5E}" Directory_="native_57_Dir" Attributes="0"/>
     <ROW Component="native_4" ComponentId="{21651294-DE39-4A87-9F91-EE8BB0D01503}" Directory_="native_6_Dir" Attributes="0"/>
     <ROW Component="native_5" ComponentId="{2FA7A664-181A-478C-AC9D-8087833EE4C2}" Directory_="native_17_Dir" Attributes="0"/>
     <ROW Component="native_6" ComponentId="{7DAABEF5-2A2B-4F35-BDCC-DA42C3DDBE44}" Directory_="native_18_Dir" Attributes="0"/>
@@ -19214,6 +19311,14 @@
     <ROW File="Microsoft.VisualStudio.Windows.Form.xml" Component_="Microsoft.VisualStudio.Windows.Form.xml" FileName="MICRO~51.XML|Microsoft.VisualStudio.Windows.Form.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualStudio.Windows.Form.xml" SelfReg="false"/>
     <ROW File="ThemeVS2015.pdb" Component_="ThemeVS2015.pdb" FileName="THEMEV~1.PDB|ThemeVS2015.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\ThemeVS2015.pdb" SelfReg="false"/>
     <ROW File="ThemeVS2015.xml" Component_="ThemeVS2015.xml" FileName="THEMEV~1.XML|ThemeVS2015.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ThemeVS2015.xml" SelfReg="false"/>
+    <ROW File="System.Diagnostics.EventLog.dll_4" Component_="System.Diagnostics.EventLog.dll_4" FileName="SYSTEM~1.DLL|System.Diagnostics.EventLog.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll" SelfReg="false"/>
+    <ROW File="libSkiaSharp.dll_10" Component_="libSkiaSharp.dll_10" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win-arm64\native\libSkiaSharp.dll" SelfReg="false"/>
+    <ROW File="libSkiaSharp.dll_11" Component_="libSkiaSharp.dll_11" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win-x64\native\libSkiaSharp.dll" SelfReg="false"/>
+    <ROW File="libSkiaSharp.dll_12" Component_="libSkiaSharp.dll_12" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win-x86\native\libSkiaSharp.dll" SelfReg="false"/>
+    <ROW File="System.Diagnostics.EventLog.dll_5" Component_="System.Diagnostics.EventLog.dll_5" FileName="SYSTEM~1.DLL|System.Diagnostics.EventLog.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll" SelfReg="false"/>
+    <ROW File="libSkiaSharp.dll_13" Component_="libSkiaSharp.dll_13" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\runtimes\win-arm64\native\libSkiaSharp.dll" SelfReg="false"/>
+    <ROW File="libSkiaSharp.dll_14" Component_="libSkiaSharp.dll_14" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\runtimes\win-x64\native\libSkiaSharp.dll" SelfReg="false"/>
+    <ROW File="libSkiaSharp.dll_15" Component_="libSkiaSharp.dll_15" FileName="LIBSKI~1.DLL|libSkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\runtimes\win-x86\native\libSkiaSharp.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -19403,6 +19508,30 @@
     <ROW Directory_="native_21_Dir" Component_="native_9" ManualDelete="false"/>
     <ROW Directory_="native_22_Dir" Component_="native_10" ManualDelete="false"/>
     <ROW Directory_="native_23_Dir" Component_="native_11" ManualDelete="false"/>
+    <ROW Directory_="native_31_Dir" Component_="native_12" ManualDelete="false"/>
+    <ROW Directory_="native_32_Dir" Component_="native_13" ManualDelete="false"/>
+    <ROW Directory_="native_33_Dir" Component_="native_14" ManualDelete="false"/>
+    <ROW Directory_="native_34_Dir" Component_="native_15" ManualDelete="false"/>
+    <ROW Directory_="native_35_Dir" Component_="native_16" ManualDelete="false"/>
+    <ROW Directory_="native_36_Dir" Component_="native_17" ManualDelete="false"/>
+    <ROW Directory_="native_37_Dir" Component_="native_18" ManualDelete="false"/>
+    <ROW Directory_="native_38_Dir" Component_="native_19" ManualDelete="false"/>
+    <ROW Directory_="native_39_Dir" Component_="native_20" ManualDelete="false"/>
+    <ROW Directory_="native_40_Dir" Component_="native_21" ManualDelete="false"/>
+    <ROW Directory_="native_41_Dir" Component_="native_22" ManualDelete="false"/>
+    <ROW Directory_="native_42_Dir" Component_="native_23" ManualDelete="false"/>
+    <ROW Directory_="native_46_Dir" Component_="native_24" ManualDelete="false"/>
+    <ROW Directory_="native_47_Dir" Component_="native_25" ManualDelete="false"/>
+    <ROW Directory_="native_48_Dir" Component_="native_26" ManualDelete="false"/>
+    <ROW Directory_="native_49_Dir" Component_="native_27" ManualDelete="false"/>
+    <ROW Directory_="native_50_Dir" Component_="native_28" ManualDelete="false"/>
+    <ROW Directory_="native_51_Dir" Component_="native_29" ManualDelete="false"/>
+    <ROW Directory_="native_52_Dir" Component_="native_30" ManualDelete="false"/>
+    <ROW Directory_="native_53_Dir" Component_="native_31" ManualDelete="false"/>
+    <ROW Directory_="native_54_Dir" Component_="native_32" ManualDelete="false"/>
+    <ROW Directory_="native_55_Dir" Component_="native_33" ManualDelete="false"/>
+    <ROW Directory_="native_56_Dir" Component_="native_34" ManualDelete="false"/>
+    <ROW Directory_="native_57_Dir" Component_="native_35" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
@@ -21081,6 +21210,38 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.MachineLearn_10_ing.TensorFlow.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.Analysis.HTS.DataF_3_rame.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.GCModeller.Workben_3_ch.ExperimentDesigner.pdb"/>
+    <ROW Feature_="MainFeature" Component_="native_12"/>
+    <ROW Feature_="MainFeature" Component_="native_13"/>
+    <ROW Feature_="MainFeature" Component_="native_14"/>
+    <ROW Feature_="MainFeature" Component_="native_15"/>
+    <ROW Feature_="MainFeature" Component_="native_16"/>
+    <ROW Feature_="MainFeature" Component_="native_17"/>
+    <ROW Feature_="MainFeature" Component_="native_18"/>
+    <ROW Feature_="MainFeature" Component_="native_19"/>
+    <ROW Feature_="MainFeature" Component_="native_20"/>
+    <ROW Feature_="MainFeature" Component_="native_21"/>
+    <ROW Feature_="MainFeature" Component_="native_22"/>
+    <ROW Feature_="MainFeature" Component_="native_23"/>
+    <ROW Feature_="MainFeature" Component_="System.Diagnostics.EventLog.dll_4"/>
+    <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_10"/>
+    <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_11"/>
+    <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_12"/>
+    <ROW Feature_="MainFeature" Component_="native_24"/>
+    <ROW Feature_="MainFeature" Component_="native_25"/>
+    <ROW Feature_="MainFeature" Component_="native_26"/>
+    <ROW Feature_="MainFeature" Component_="native_27"/>
+    <ROW Feature_="MainFeature" Component_="native_28"/>
+    <ROW Feature_="MainFeature" Component_="native_29"/>
+    <ROW Feature_="MainFeature" Component_="native_30"/>
+    <ROW Feature_="MainFeature" Component_="native_31"/>
+    <ROW Feature_="MainFeature" Component_="native_32"/>
+    <ROW Feature_="MainFeature" Component_="native_33"/>
+    <ROW Feature_="MainFeature" Component_="native_34"/>
+    <ROW Feature_="MainFeature" Component_="native_35"/>
+    <ROW Feature_="MainFeature" Component_="System.Diagnostics.EventLog.dll_5"/>
+    <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_13"/>
+    <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_14"/>
+    <ROW Feature_="MainFeature" Component_="libSkiaSharp.dll_15"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
