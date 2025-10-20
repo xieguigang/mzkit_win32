@@ -764,6 +764,8 @@
     <ROW Component="Darwinism.HPC.Parallel.pdb" ComponentId="{288478FF-C700-4389-BA09-9D9E94807272}" Directory_="APPDIR" Attributes="0" KeyPath="Darwinism.HPC.Parallel.pdb_1" Type="4"/>
     <ROW Component="Darwinism.HPC.Parallel.pdb_1" ComponentId="{9C046A24-73F5-4240-B175-F774796DB897}" Directory_="blender_Dir" Attributes="0" KeyPath="Darwinism.HPC.Parallel.pdb" Type="4"/>
     <ROW Component="Darwinism.IPC.Driver.dll" ComponentId="{075BA67F-A072-46A3-A865-7F8B254F7864}" Directory_="blender_Dir" Attributes="256" KeyPath="Darwinism.IPC.Driver.dll"/>
+    <ROW Component="Darwinism.IPC.Driver.dll_1" ComponentId="{C249976F-D85B-43D9-9122-8BA62D2B1CB2}" Directory_="APPDIR" Attributes="256" KeyPath="Darwinism.IPC.Driver.dll_1"/>
+    <ROW Component="Darwinism.IPC.Driver.pdb" ComponentId="{472AADCD-0E86-468D-882C-4A590577D476}" Directory_="APPDIR" Attributes="0" KeyPath="Darwinism.IPC.Driver.pdb_1" Type="4"/>
     <ROW Component="Darwinism.IPC.Networking.dll" ComponentId="{C70ABB31-CC6D-4337-A139-AAD026657A56}" Directory_="bin_Dir" Attributes="256" KeyPath="Darwinism.IPC.Networking.dll"/>
     <ROW Component="Darwinism.IPC.Networking.dll_1" ComponentId="{5348E0CC-2851-4AF2-86E2-8724CB21E40C}" Directory_="host_Dir" Attributes="256" KeyPath="Darwinism.IPC.Networking.dll_1"/>
     <ROW Component="Darwinism.IPC.Networking.dll_2" ComponentId="{7BF3BB4C-85D8-4723-B024-C06AD4781DD9}" Directory_="library_Dir" Attributes="256" KeyPath="Darwinism.IPC.Networking.dll_2"/>
@@ -792,13 +794,25 @@
     <ROW Component="GCxGChost.R" ComponentId="{BECA8D4F-1D92-41E8-B1BF-2F5D52635DBA}" Directory_="services_Dir" Attributes="256" KeyPath="GCxGChost.R" Type="0"/>
     <ROW Component="GLTFLoader.js" ComponentId="{7A088CF8-550B-4750-BA45-3B4817A4BE0F}" Directory_="extra_Dir" Attributes="0" KeyPath="GLTFLoader.js" Type="0"/>
     <ROW Component="Galaxy.CommonControls.dll" ComponentId="{D068A022-9A5A-491F-AAD1-0C724FA2DED6}" Directory_="plugins_Dir" Attributes="256" KeyPath="Galaxy.CommonControls.dll"/>
+    <ROW Component="Galaxy.CommonControls.dll_1" ComponentId="{3DF5739C-5B9C-4AB7-89DD-92F49F977ABF}" Directory_="APPDIR" Attributes="256" KeyPath="Galaxy.CommonControls.dll_1"/>
+    <ROW Component="Galaxy.CommonControls.pdb" ComponentId="{1312E2DC-EBC2-48CC-AF76-1B7F87D37574}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.CommonControls.pdb_1" Type="4"/>
+    <ROW Component="Galaxy.CommonControls.xml" ComponentId="{33996346-9C2C-4F12-8E20-D8F9EBC9D4AB}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.CommonControls.xml"/>
     <ROW Component="Galaxy.Data.Visualization.dll" ComponentId="{C6DF75B4-B743-4D8F-829D-890A46C13D82}" Directory_="plugins_Dir" Attributes="256" KeyPath="Galaxy.Data.Visualization.dll"/>
+    <ROW Component="Galaxy.Data.Visualization.dll_1" ComponentId="{4341A74C-9E71-41A8-B240-91FD09D1D14D}" Directory_="APPDIR" Attributes="256" KeyPath="Galaxy.Data.Visualization.dll_1"/>
+    <ROW Component="Galaxy.Data.Visualization.pdb" ComponentId="{FCF7D98F-8EF4-401F-A982-5F6AA6185CE0}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.Data.Visualization.pdb_1" Type="4"/>
     <ROW Component="Galaxy.Data.Visualization.resources.dll" ComponentId="{DCEF1B60-E3C7-4B68-9E34-4AB7F19B8CAF}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Galaxy.Data.Visualization.resources.dll"/>
+    <ROW Component="Galaxy.Data.Visualization.xml" ComponentId="{E771F9C1-B97E-4852-A112-43C054B736D5}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.Data.Visualization.xml"/>
     <ROW Component="Galaxy.Data.dll" ComponentId="{B51F0FD9-7D9F-41F8-9316-0BB5EC229081}" Directory_="plugins_Dir" Attributes="256" KeyPath="Galaxy.Data.dll"/>
+    <ROW Component="Galaxy.Data.dll_1" ComponentId="{33345BE8-DD3F-49B7-B8C1-055877AA1B19}" Directory_="APPDIR" Attributes="256" KeyPath="Galaxy.Data.dll_1"/>
+    <ROW Component="Galaxy.Data.pdb" ComponentId="{2255C75D-AD57-4C5A-B55D-7AA9882F3207}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.Data.pdb_1" Type="4"/>
     <ROW Component="Galaxy.Data.resources.dll" ComponentId="{4E0A6CFC-16CA-431D-AE08-70FEC5EC417B}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Galaxy.Data.resources.dll"/>
+    <ROW Component="Galaxy.Data.xml" ComponentId="{ED3E3F4B-2C48-49DF-87A7-82777776E9AE}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.Data.xml"/>
     <ROW Component="Galaxy.Workbench.dll" ComponentId="{367C67A4-0CE1-4031-90F8-5874D384136C}" Directory_="plugins_Dir" Attributes="256" KeyPath="Galaxy.Workbench.dll"/>
+    <ROW Component="Galaxy.Workbench.dll_1" ComponentId="{94E25471-7CE7-4946-9348-CCDDD55B0535}" Directory_="APPDIR" Attributes="256" KeyPath="Galaxy.Workbench.dll_1"/>
+    <ROW Component="Galaxy.Workbench.pdb" ComponentId="{44CFCCB3-97BE-4043-9AD6-543554310CFA}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.Workbench.pdb_1" Type="4"/>
     <ROW Component="Galaxy.Workbench.resources.dll" ComponentId="{F26D7DAB-7D62-48C5-8D6C-A2991A58C638}" Directory_="enUS_Dir" Attributes="256" KeyPath="Galaxy.Workbench.resources.dll"/>
     <ROW Component="Galaxy.Workbench.resources.dll_1" ComponentId="{CCFC4DA8-4591-4010-895E-A039770DA133}" Directory_="zhHans_Dir" Attributes="256" KeyPath="Galaxy.Workbench.resources.dll_1"/>
+    <ROW Component="Galaxy.Workbench.xml" ComponentId="{47967F77-9E0C-461E-BC13-D04F29B96B1D}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.Workbench.xml"/>
     <ROW Component="Google.Protobuf.dll" ComponentId="{A8674882-6DC1-42EA-8349-39E69262B4ED}" Directory_="proteowizard_Dir" Attributes="0" KeyPath="Google.Protobuf.dll"/>
     <ROW Component="HDF.PInvoke.Core.dll" ComponentId="{BF5DC255-A0E7-4C5B-BB9F-0201F54F696A}" Directory_="host_Dir" Attributes="256" KeyPath="HDF.PInvoke.Core.dll"/>
     <ROW Component="HDF.PInvoke.Core.dll_1" ComponentId="{21660FC6-E169-44DE-A106-F2B38064ABA5}" Directory_="APPDIR" Attributes="256" KeyPath="HDF.PInvoke.Core.dll_1"/>
@@ -1155,7 +1169,6 @@
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.dll_3" ComponentId="{82F4ACCC-DFC3-4032-B40A-9347D3180506}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Matrix.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.pdb" ComponentId="{C1AB7371-85CB-451F-8C53-BFF8A00504C3}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Matrix.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.Matrix.pdb_1" ComponentId="{BCB64288-0149-442A-A6B1-23EE9798E166}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Matrix.pdb" Type="4"/>
-    <ROW Component="Microsoft.VisualBasic.Math.Matrix.xml" ComponentId="{65CF8DA1-5A9C-420C-AA41-DD3F1B4CBBB0}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Matrix.xml"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll" ComponentId="{C1743B21-4A9C-4103-84B1-C8567243FC5C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" ComponentId="{EA8C100A-F9A9-46F6-801F-4DB302826574}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.dll" ComponentId="{C939EC15-B2C6-4A1D-B75C-50CA5765D902}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.dll"/>
@@ -1206,9 +1219,9 @@
     <ROW Component="Microsoft.VisualBasic.Runtime.xml" ComponentId="{59368349-BBC6-4FF7-A220-99E9F21007B1}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Runtime.xml_4"/>
     <ROW Component="Microsoft.VisualBasic.Windows.Forms.Console.dll" ComponentId="{66BFAC4E-7321-4D6E-A0DA-E80383C39C90}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Windows.Forms.Console.dll"/>
     <ROW Component="Microsoft.VisualBasic.Windows.Forms.Console.pdb" ComponentId="{37F21EDE-D4C8-4BB5-B377-5DE12A60412D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Windows.Forms.Console.pdb" Type="4"/>
-    <ROW Component="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll" ComponentId="{CAE24AF6-7012-4899-98DB-30E10197A174}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll"/>
-    <ROW Component="Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" ComponentId="{BFD799B7-4063-4C37-A37E-7A179591F139}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualStudio.Windows.Form.dll" ComponentId="{65896CF6-C03F-4522-A38F-2AAD3ECEC5A2}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualStudio.Windows.Form.dll"/>
+    <ROW Component="Microsoft.VisualStudio.Windows.Form.pdb" ComponentId="{B8167D00-FA18-477C-9F51-8CD92843CDA6}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualStudio.Windows.Form.pdb" Type="4"/>
+    <ROW Component="Microsoft.VisualStudio.Windows.Form.xml" ComponentId="{FCFE1683-6950-49BE-9A7E-3513F9E257EF}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualStudio.Windows.Form.xml"/>
     <ROW Component="Microsoft.Web.WebView2.Core.dll" ComponentId="{51C0CC6C-B2CC-490B-B7F3-5C38F97AE13F}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Core.dll"/>
     <ROW Component="Microsoft.Web.WebView2.WinForms.dll" ComponentId="{95475075-2F81-4D9D-964F-8C8A3F7AACDD}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.WinForms.dll"/>
     <ROW Component="Microsoft.Web.WebView2.Wpf.dll" ComponentId="{5EA5451C-3349-4D0B-87ED-754EF750628D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Wpf.dll"/>
@@ -1229,8 +1242,6 @@
     <ROW Component="Mzkit_win32.GCxGCViewer.dll" ComponentId="{BD99B1F3-CB1F-40EC-AD82-AB3CB33BE36C}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.GCxGCViewer.dll"/>
     <ROW Component="Mzkit_win32.GCxGCViewer.pdb" ComponentId="{FA378CF6-4688-441F-A4E4-0F32FCB78709}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.GCxGCViewer.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.GCxGCViewer.xml" ComponentId="{74A24AA9-769E-4873-9A39-DE9B4ABE2BD1}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.GCxGCViewer.xml"/>
-    <ROW Component="Mzkit_win32.Interaction.dll" ComponentId="{303DC4C7-EFA1-45CA-BEC6-28E8565DC608}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.Interaction.dll"/>
-    <ROW Component="Mzkit_win32.Interaction.pdb" ComponentId="{E64F4EF7-1789-4EAC-8827-3C0B780C5288}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.Interaction.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.LCMSViewer.dll" ComponentId="{A4C3B514-7823-419B-A68C-0B933FBC41EA}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.LCMSViewer.dll.config" ComponentId="{D717C4D2-7733-43D3-ACD2-2FE5B88E4AED}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.LCMSViewer.dll.config"/>
     <ROW Component="Mzkit_win32.LCMSViewer.dll_1" ComponentId="{8F3BE771-5359-457E-B5AD-B1F64DA80AB6}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.dll"/>
@@ -1243,8 +1254,6 @@
     <ROW Component="Mzkit_win32.MSImagingViewerV2.resources.dll_2" ComponentId="{4DC6E57E-C5C9-4C7E-96AA-6D1AA63C8AF8}" Directory_="zhHans_Dir" Attributes="256" KeyPath="Mzkit_win32.MSImagingViewerV2.resources.dll_2"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.resources.dll_3" ComponentId="{7FA12041-F7EA-47C5-8864-F21149573CC3}" Directory_="fr_Dir" Attributes="256" KeyPath="Mzkit_win32.MSImagingViewerV2.resources.dll_3"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.resources.dll_4" ComponentId="{022CA07B-7807-4E3B-AB18-E9B4F987D418}" Directory_="ruRU_Dir" Attributes="256" KeyPath="Mzkit_win32.MSImagingViewerV2.resources.dll_4"/>
-    <ROW Component="Mzkit_win32.MZWork.dll" ComponentId="{CA533875-0725-4A8A-BF60-77B9E122EEDF}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MZWork.dll"/>
-    <ROW Component="Mzkit_win32.MZWork.pdb" ComponentId="{93C7FA25-DD92-40D9-8129-6970B51139BD}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.MZWork.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.MatrixViewer.dll" ComponentId="{5D49B025-2464-4FF3-944B-416B9558A1E3}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MatrixViewer.dll"/>
     <ROW Component="Mzkit_win32.MatrixViewer.pdb" ComponentId="{61A4C5C4-C7CD-46F0-9C94-4302CB54BF82}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.MatrixViewer.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.SinglesCellViewer.dll" ComponentId="{564C46CA-A1DF-420E-A3BC-0CF3BE112A03}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.SinglesCellViewer.dll"/>
@@ -1503,7 +1512,6 @@
     <ROW Component="System.Windows.Extensions.dll" ComponentId="{53A4BE16-3294-44F5-8650-A57455768CE1}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll"/>
     <ROW Component="System.Windows.Extensions.dll_1" ComponentId="{C47CF8DA-3F8F-49E1-97A9-9C55EAB1D8C0}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll_1"/>
     <ROW Component="System.Windows.Extensions.dll_3" ComponentId="{7A7EE9A9-6EF7-4905-A032-B52C58C3A471}" Directory_="net8.0_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll_3"/>
-    <ROW Component="System.Windows.Forms.DataGridView.dll" ComponentId="{0042629F-1D15-48FF-8D0A-6EF08F56381D}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.DataGridView.dll"/>
     <ROW Component="System.Windows.Forms.TabControl.dll" ComponentId="{44DACCB1-A234-4C92-A226-ACA00CDC595D}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.TabControl.dll"/>
     <ROW Component="System.Windows.Forms.ThemeColorPicker.dll" ComponentId="{B602F318-9812-49D7-8DCE-385FF4BAD8DF}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.ThemeColorPicker.dll"/>
     <ROW Component="System.Windows.Forms.TreeListView.dll" ComponentId="{F3176F84-F3DC-4CDC-9A6F-C3973E2C2C8B}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.TreeListView.dll"/>
@@ -1511,6 +1519,8 @@
     <ROW Component="System.Windows.Notification.dll" ComponentId="{5300C49A-B8D2-41DA-BE3B-79170F7D7F23}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Notification.dll"/>
     <ROW Component="THREE.MeshLine.js" ComponentId="{1C2A0C8A-8653-4DA5-BA09-5DAEEC19AA43}" Directory_="src_Dir" Attributes="0" KeyPath="THREE.MeshLine.js" Type="0"/>
     <ROW Component="ThemeVS2015.dll" ComponentId="{FF123D01-0FBE-4941-AF88-3DEB3AB37BF2}" Directory_="APPDIR" Attributes="256" KeyPath="ThemeVS2015.dll"/>
+    <ROW Component="ThemeVS2015.pdb" ComponentId="{4D256C2D-53BC-4811-9B46-A09490D1CB41}" Directory_="APPDIR" Attributes="0" KeyPath="ThemeVS2015.pdb" Type="4"/>
+    <ROW Component="ThemeVS2015.xml" ComponentId="{6525603B-A4E5-4349-ACFB-70C8AB869566}" Directory_="APPDIR" Attributes="0" KeyPath="ThemeVS2015.xml"/>
     <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.dll" ComponentId="{0545E2A9-3F9A-4F86-BCE8-C0F0692B1A18}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.dll"/>
     <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.dll_1" ComponentId="{30D5017A-D628-4094-B62B-BD1D44F93B6A}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.dll_1"/>
     <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2" ComponentId="{5C59557C-9AF0-4356-90DC-21ED6CC41E8E}" Directory_="host_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2"/>
@@ -2154,8 +2164,6 @@
     <ROW File="mzkit_win32.exe_1" Component_="mzkit_win32.exe_1" FileName="MZKIT_~1.EXE|mzkit_win32.exe" Attributes="0" SourcePath="..\..\..\dist\bin\mzkit_win32.exe" SelfReg="false" DigSign="true"/>
     <ROW File="mzkit_win32.exe.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZKIT_~1.CON|mzkit_win32.exe.config" Attributes="0" SourcePath="..\..\..\dist\bin\mzkit_win32.exe.config" SelfReg="false"/>
     <ROW File="mzkit_win32.exe.manifest" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZKIT_~1.MAN|mzkit_win32.exe.manifest" Attributes="0" SourcePath="..\..\..\dist\bin\mzkit_win32.exe.manifest" SelfReg="false"/>
-    <ROW File="Mzkit_win32.Interaction.dll" Component_="Mzkit_win32.Interaction.dll" FileName="MZKIT_~2.DLL|Mzkit_win32.Interaction.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.Interaction.dll" SelfReg="false"/>
-    <ROW File="Mzkit_win32.MZWork.dll" Component_="Mzkit_win32.MZWork.dll" FileName="MZKIT_~3.DLL|Mzkit_win32.MZWork.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MZWork.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.Task.dll" Component_="Mzkit_win32.Task.dll" FileName="MZKIT_~4.DLL|Mzkit_win32.Task.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.Task.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.Task.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZKIT_~2.CON|Mzkit_win32.Task.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.Task.dll.config" SelfReg="false"/>
     <ROW File="RData.dll" Component_="RData.dll" FileName="RData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\RData.dll" SelfReg="false"/>
@@ -2211,7 +2219,6 @@
     <ROW File="System.Runtime.CompilerServices.Unsafe.dll_4" Component_="System.Runtime.CompilerServices.Unsafe.dll_4" FileName="SYSTEM~6.DLL|System.Runtime.CompilerServices.Unsafe.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Runtime.CompilerServices.Unsafe.dll" SelfReg="false"/>
     <ROW File="System.Runtime.InteropServices.APIs.dll" Component_="System.Runtime.InteropServices.APIs.dll" FileName="SYSTEM~7.DLL|System.Runtime.InteropServices.APIs.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Runtime.InteropServices.APIs.dll" SelfReg="false"/>
     <ROW File="System.Text.Encoding.CodePages.dll_6" Component_="System.Text.Encoding.CodePages.dll_6" FileName="SYSTEM~8.DLL|System.Text.Encoding.CodePages.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Text.Encoding.CodePages.dll" SelfReg="false"/>
-    <ROW File="System.Windows.Forms.DataGridView.dll" Component_="System.Windows.Forms.DataGridView.dll" FileName="SYSTEM~9.DLL|System.Windows.Forms.DataGridView.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Windows.Forms.DataGridView.dll" SelfReg="false"/>
     <ROW File="System.Windows.Forms.TabControl.dll" Component_="System.Windows.Forms.TabControl.dll" FileName="SYSTE~10.DLL|System.Windows.Forms.TabControl.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Windows.Forms.TabControl.dll" SelfReg="false"/>
     <ROW File="System.Windows.Forms.ThemeColorPicker.dll" Component_="System.Windows.Forms.ThemeColorPicker.dll" FileName="SYSTE~11.DLL|System.Windows.Forms.ThemeColorPicker.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Windows.Forms.ThemeColorPicker.dll" SelfReg="false"/>
     <ROW File="System.Windows.Forms.TreeListView.dll" Component_="System.Windows.Forms.TreeListView.dll" FileName="SYSTE~12.DLL|System.Windows.Forms.TreeListView.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Windows.Forms.TreeListView.dll" SelfReg="false"/>
@@ -2294,7 +2301,6 @@
     <ROW File="BioDeep.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="BIODEE~1.CON|BioDeep.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\BioDeep.dll.config" SelfReg="false"/>
     <ROW File="msconvert.exe" Component_="msconvert.exe" FileName="MSCONV~1.EXE|msconvert.exe" Attributes="0" SourcePath="..\..\..\dist\bin\msconvert.exe" SelfReg="false" DigSign="true"/>
     <ROW File="msconvert.exe.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MSCONV~1.CON|msconvert.exe.config" Attributes="0" SourcePath="..\..\..\dist\bin\msconvert.exe.config" SelfReg="false"/>
-    <ROW File="Mzkit_win32.Interaction.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZKIT_~3.CON|Mzkit_win32.Interaction.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.Interaction.dll.config" SelfReg="false"/>
     <ROW File="PipelineHost.dll" Component_="PipelineHost.dll" FileName="PIPELI~1.DLL|PipelineHost.dll" Attributes="0" SourcePath="..\..\..\dist\bin\PipelineHost.dll" SelfReg="false"/>
     <ROW File="BioDeep.dll_1" Component_="BioDeep.dll_1" FileName="BioDeep.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioDeep.dll" SelfReg="false"/>
     <ROW File="BioDeep.dll.config_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIODEE~1.CON|BioDeep.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioDeep.dll.config" SelfReg="false"/>
@@ -3384,7 +3390,6 @@
     <ROW File="services_manager.css" Component_="d_canvas.css" FileName="SERVIC~1.CSS|services_manager.css" Attributes="0" SourcePath="..\webview\assets\services_manager.css" SelfReg="false"/>
     <ROW File="servicesManager.html" Component_="logo.png" FileName="SERVIC~1.HTM|servicesManager.html" Attributes="0" SourcePath="..\webview\servicesManager.html" SelfReg="false"/>
     <ROW File="echartsgl.min.js" Component_="smilesdrawer.min.js" FileName="ECHART~2.JS|echarts-gl.min.js" Attributes="0" SourcePath="..\webview\vendor\echarts-gl.min.js" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll" Component_="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll" FileName="MICRO~69.DLL|Microsoft.VisualBasic.Windows.Forms.DataValidation.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Windows.Forms.DataValidation.dll" SelfReg="false"/>
     <ROW File="MZWorkRedis.deps.json" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MZWORK~1.JSO|MZWorkRedis.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\MZWorkRedis.deps.json" SelfReg="false"/>
     <ROW File="MZWorkRedis.dll" Component_="MZWorkRedis.dll" FileName="MZWORK~1.DLL|MZWorkRedis.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\MZWorkRedis.dll" SelfReg="false"/>
     <ROW File="jquery.min.js" Component_="smilesdrawer.min.js" FileName="JQUERY~1.JS|jquery.min.js" Attributes="0" SourcePath="..\webview\vendor\jquery.min.js" SelfReg="false"/>
@@ -3527,16 +3532,13 @@
     <ROW File="Microsoft.VisualBasic.MIME.text.markdown.pdb" Component_="Microsoft.VisualBasic.MIME.text.markdown.pdb" FileName="MICRO~58.PDB|Microsoft.VisualBasic.MIME.text.markdown.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MIME.text.markdown.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.pdb" Component_="Microsoft.VisualBasic.Runtime.pdb" FileName="MICRO~60.PDB|Microsoft.VisualBasic.Runtime.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Runtime.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Windows.Forms.Console.pdb" Component_="Microsoft.VisualBasic.Windows.Forms.Console.pdb" FileName="MICRO~61.PDB|Microsoft.VisualBasic.Windows.Forms.Console.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Windows.Forms.Console.pdb" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" Component_="Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" FileName="MICRO~62.PDB|Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" SelfReg="false"/>
     <ROW File="Microsoft.Windows.FeatureAPI.pdb" Component_="Microsoft.Windows.FeatureAPI.pdb" FileName="MICRO~63.PDB|Microsoft.Windows.FeatureAPI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Windows.FeatureAPI.pdb" SelfReg="false"/>
     <ROW File="msconvert.pdb" Component_="msconvert.pdb" FileName="MSCONV~1.PDB|msconvert.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\msconvert.pdb" SelfReg="false"/>
     <ROW File="msconvertGUI.pdb" Component_="msconvertGUI.pdb" FileName="MSCONV~2.PDB|msconvertGUI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\msconvertGUI.pdb" SelfReg="false"/>
     <ROW File="mzblender.pdb" Component_="mzblender.pdb" FileName="MZBLEN~1.PDB|mzblender.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\mzblender.pdb" SelfReg="false"/>
     <ROW File="Mzkit_win32.BasicMDIForm.pdb" Component_="Mzkit_win32.BasicMDIForm.pdb" FileName="MZKIT_~1.PDB|Mzkit_win32.BasicMDIForm.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.BasicMDIForm.pdb" SelfReg="false"/>
     <ROW File="Mzkit_win32.CommonDialogs.pdb" Component_="Mzkit_win32.CommonDialogs.pdb" FileName="MZKIT_~2.PDB|Mzkit_win32.CommonDialogs.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.CommonDialogs.pdb" SelfReg="false"/>
-    <ROW File="Mzkit_win32.Interaction.pdb" Component_="Mzkit_win32.Interaction.pdb" FileName="MZKIT_~3.PDB|Mzkit_win32.Interaction.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.Interaction.pdb" SelfReg="false"/>
     <ROW File="Mzkit_win32.MSImagingViewerV2.pdb" Component_="Mzkit_win32.MSImagingViewerV2.pdb" FileName="MZKIT_~4.PDB|Mzkit_win32.MSImagingViewerV2.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MSImagingViewerV2.pdb" SelfReg="false"/>
-    <ROW File="Mzkit_win32.MZWork.pdb" Component_="Mzkit_win32.MZWork.pdb" FileName="MZKIT_~5.PDB|Mzkit_win32.MZWork.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MZWork.pdb" SelfReg="false"/>
     <ROW File="mzkit_win32.pdb" Component_="mzkit_win32.pdb" FileName="MZKIT_~6.PDB|mzkit_win32.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\mzkit_win32.pdb" SelfReg="false"/>
     <ROW File="Mzkit_win32.Task.pdb" Component_="Mzkit_win32.Task.pdb" FileName="MZKIT_~7.PDB|Mzkit_win32.Task.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.Task.pdb" SelfReg="false"/>
     <ROW File="Mzkit_win32.TaskStream.pdb" Component_="Mzkit_win32.TaskStream.pdb" FileName="MZKIT_~8.PDB|Mzkit_win32.TaskStream.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.TaskStream.pdb" SelfReg="false"/>
@@ -3639,7 +3641,6 @@
     <ROW File="Microsoft.VisualBasic.MIME.Office.Excel.xml" Component_="BioDeep.xml" FileName="MICRO~47.XML|Microsoft.VisualBasic.MIME.Office.Excel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MIME.Office.Excel.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MIME.text.markdown.xml" Component_="BioDeep.xml" FileName="MICRO~48.XML|Microsoft.VisualBasic.MIME.text.markdown.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MIME.text.markdown.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.xml" Component_="BioDeep.xml" FileName="MICRO~50.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Windows.Forms.DataValidation.xml" Component_="BioDeep.xml" FileName="MICRO~52.XML|Microsoft.VisualBasic.Windows.Forms.DataValidation.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Windows.Forms.DataValidation.xml" SelfReg="false"/>
     <ROW File="Microsoft.Web.WebView2.Core.xml" Component_="BioDeep.xml" FileName="MICRO~53.XML|Microsoft.Web.WebView2.Core.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Web.WebView2.Core.xml" SelfReg="false"/>
     <ROW File="Microsoft.Web.WebView2.WinForms.xml" Component_="BioDeep.xml" FileName="MICRO~54.XML|Microsoft.Web.WebView2.WinForms.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Web.WebView2.WinForms.xml" SelfReg="false"/>
     <ROW File="Microsoft.Web.WebView2.Wpf.xml" Component_="BioDeep.xml" FileName="MICRO~55.XML|Microsoft.Web.WebView2.Wpf.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Web.WebView2.Wpf.xml" SelfReg="false"/>
@@ -3648,7 +3649,6 @@
     <ROW File="msconvert.xml" Component_="BioDeep.xml" FileName="MSCONV~1.XML|msconvert.xml" Attributes="0" SourcePath="..\..\..\dist\bin\msconvert.xml" SelfReg="false"/>
     <ROW File="Mzkit_win32.BasicMDIForm.xml" Component_="BioDeep.xml" FileName="MZKIT_~2.XML|Mzkit_win32.BasicMDIForm.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.BasicMDIForm.xml" SelfReg="false"/>
     <ROW File="Mzkit_win32.CommonDialogs.xml" Component_="BioDeep.xml" FileName="MZKIT_~3.XML|Mzkit_win32.CommonDialogs.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.CommonDialogs.xml" SelfReg="false"/>
-    <ROW File="Mzkit_win32.Interaction.xml" Component_="BioDeep.xml" FileName="MZKIT_~4.XML|Mzkit_win32.Interaction.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.Interaction.xml" SelfReg="false"/>
     <ROW File="Mzkit_win32.LCMSViewer.dll" Component_="Mzkit_win32.LCMSViewer.dll_1" FileName="MZKIT_~8.DLL|Mzkit_win32.LCMSViewer.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.LCMSViewer.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.LCMSViewer.dll.config" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="MZKIT_~6.CON|Mzkit_win32.LCMSViewer.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.LCMSViewer.dll.config" SelfReg="false"/>
     <ROW File="Mzkit_win32.LCMSViewer.pdb" Component_="Mzkit_win32.LCMSViewer.dll" FileName="MZKIT_~9.PDB|Mzkit_win32.LCMSViewer.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.LCMSViewer.pdb" SelfReg="false"/>
@@ -18807,7 +18807,6 @@
     <ROW File="Microsoft.VisualBasic.Math.Matrix.dll_3" Component_="Microsoft.VisualBasic.Math.Matrix.dll_3" FileName="MICRO~56.DLL|Microsoft.VisualBasic.Math.Matrix.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix.dll.config_3" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MICRO~19.CON|Microsoft.VisualBasic.Math.Matrix.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Matrix.pdb_1" Component_="Microsoft.VisualBasic.Math.Matrix.pdb" FileName="MICRO~68.PDB|Microsoft.VisualBasic.Math.Matrix.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.pdb" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.Matrix.xml" Component_="Microsoft.VisualBasic.Math.Matrix.xml" FileName="MICRO~69.XML|Microsoft.VisualBasic.Math.Matrix.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Matrix.xml" SelfReg="false"/>
     <ROW File="msconvertGUI.xml" Component_="msconvertGUI.xml" FileName="MSCONV~2.XML|msconvertGUI.xml" Attributes="0" SourcePath="..\..\..\dist\bin\msconvertGUI.xml" SelfReg="false"/>
     <ROW File="settings.json" Component_="settings.json" FileName="SETTIN~1.JSO|settings.json" Attributes="0" SourcePath="..\rstudio\pipeline\.vscode\settings.json" SelfReg="false"/>
     <ROW File="xvba_debug.log_2" Component_="xvba_debug.log_2" FileName="XVBA_D~1.LOG|xvba_debug.log" Attributes="0" SourcePath="..\rstudio\pipeline\logs\xvba_debug.log" SelfReg="false"/>
@@ -19167,6 +19166,26 @@
     <ROW File="SMRUCC.genomics.GCModeller.Workben_1_ch.ExperimentDesigner.pdb" Component_="SMRUCC.genomics.GCModeller.Workben_1_ch.ExperimentDesigner.dll" FileName="SMRUCC~4.PDB|SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.pdb" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.GCModeller.Workben_1_ch.ExperimentDesigner.xml" Component_="BioDeep.dll.config" FileName="SMRUCC~5.XML|SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.xml" SelfReg="false"/>
     <ROW File="System.IO.Packaging.dll_1" Component_="System.IO.Packaging.dll_1" FileName="SYSTEM~8.DLL|System.IO.Packaging.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\System.IO.Packaging.dll" SelfReg="false"/>
+    <ROW File="Darwinism.IPC.Driver.dll_1" Component_="Darwinism.IPC.Driver.dll_1" FileName="DARWIN~3.DLL|Darwinism.IPC.Driver.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Darwinism.IPC.Driver.dll" SelfReg="false"/>
+    <ROW File="Darwinism.IPC.Driver.pdb_1" Component_="Darwinism.IPC.Driver.pdb" FileName="DARWIN~3.PDB|Darwinism.IPC.Driver.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Darwinism.IPC.Driver.pdb" SelfReg="false"/>
+    <ROW File="Galaxy.CommonControls.dll_1" Component_="Galaxy.CommonControls.dll_1" FileName="GALAXY~1.DLL|Galaxy.CommonControls.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.CommonControls.dll" SelfReg="false"/>
+    <ROW File="Galaxy.CommonControls.pdb_1" Component_="Galaxy.CommonControls.pdb" FileName="GALAXY~1.PDB|Galaxy.CommonControls.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.CommonControls.pdb" SelfReg="false"/>
+    <ROW File="Galaxy.CommonControls.xml" Component_="Galaxy.CommonControls.xml" FileName="GALAXY~1.XML|Galaxy.CommonControls.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.CommonControls.xml" SelfReg="false"/>
+    <ROW File="Galaxy.Data.dll_1" Component_="Galaxy.Data.dll_1" FileName="GALAXY~2.DLL|Galaxy.Data.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.Data.dll" SelfReg="false"/>
+    <ROW File="Galaxy.Data.dll.config_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="GALAXY~1.CON|Galaxy.Data.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.Data.dll.config" SelfReg="false"/>
+    <ROW File="Galaxy.Data.pdb_1" Component_="Galaxy.Data.pdb" FileName="GALAXY~2.PDB|Galaxy.Data.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.Data.pdb" SelfReg="false"/>
+    <ROW File="Galaxy.Data.Visualization.dll_1" Component_="Galaxy.Data.Visualization.dll_1" FileName="GALAXY~3.DLL|Galaxy.Data.Visualization.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.Data.Visualization.dll" SelfReg="false"/>
+    <ROW File="Galaxy.Data.Visualization.pdb_1" Component_="Galaxy.Data.Visualization.pdb" FileName="GALAXY~3.PDB|Galaxy.Data.Visualization.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.Data.Visualization.pdb" SelfReg="false"/>
+    <ROW File="Galaxy.Data.Visualization.xml" Component_="Galaxy.Data.Visualization.xml" FileName="GALAXY~2.XML|Galaxy.Data.Visualization.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.Data.Visualization.xml" SelfReg="false"/>
+    <ROW File="Galaxy.Data.xml" Component_="Galaxy.Data.xml" FileName="GALAXY~3.XML|Galaxy.Data.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.Data.xml" SelfReg="false"/>
+    <ROW File="Galaxy.Workbench.dll_1" Component_="Galaxy.Workbench.dll_1" FileName="GALAXY~4.DLL|Galaxy.Workbench.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.Workbench.dll" SelfReg="false"/>
+    <ROW File="Galaxy.Workbench.dll.config_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="GALAXY~2.CON|Galaxy.Workbench.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.Workbench.dll.config" SelfReg="false"/>
+    <ROW File="Galaxy.Workbench.pdb_1" Component_="Galaxy.Workbench.pdb" FileName="GALAXY~4.PDB|Galaxy.Workbench.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.Workbench.pdb" SelfReg="false"/>
+    <ROW File="Galaxy.Workbench.xml" Component_="Galaxy.Workbench.xml" FileName="GALAXY~4.XML|Galaxy.Workbench.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Galaxy.Workbench.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualStudio.Windows.Form.pdb" Component_="Microsoft.VisualStudio.Windows.Form.pdb" FileName="MICRO~69.PDB|Microsoft.VisualStudio.Windows.Form.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualStudio.Windows.Form.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualStudio.Windows.Form.xml" Component_="Microsoft.VisualStudio.Windows.Form.xml" FileName="MICRO~51.XML|Microsoft.VisualStudio.Windows.Form.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualStudio.Windows.Form.xml" SelfReg="false"/>
+    <ROW File="ThemeVS2015.pdb" Component_="ThemeVS2015.pdb" FileName="THEMEV~1.PDB|ThemeVS2015.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\ThemeVS2015.pdb" SelfReg="false"/>
+    <ROW File="ThemeVS2015.xml" Component_="ThemeVS2015.xml" FileName="THEMEV~1.XML|ThemeVS2015.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ThemeVS2015.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -19536,8 +19555,6 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.Windows.FeatureAPI.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Windows.Ribbon.dll"/>
     <ROW Feature_="MainFeature" Component_="mzkit_win32.exe_1"/>
-    <ROW Feature_="MainFeature" Component_="Mzkit_win32.Interaction.dll"/>
-    <ROW Feature_="MainFeature" Component_="Mzkit_win32.MZWork.dll"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.Task.dll"/>
     <ROW Feature_="MainFeature" Component_="RData.dll"/>
     <ROW Feature_="MainFeature" Component_="RDev.dll"/>
@@ -19583,7 +19600,6 @@
     <ROW Feature_="MainFeature" Component_="System.Runtime.CompilerServices.Unsafe.dll_4"/>
     <ROW Feature_="MainFeature" Component_="System.Runtime.InteropServices.APIs.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Text.Encoding.CodePages.dll_6"/>
-    <ROW Feature_="MainFeature" Component_="System.Windows.Forms.DataGridView.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Windows.Forms.TabControl.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Windows.Forms.ThemeColorPicker.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Windows.Forms.TreeListView.dll"/>
@@ -19877,7 +19893,6 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll.config"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.TaskStream.dll"/>
     <ROW Feature_="MainFeature" Component_="mzView.dll"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll"/>
     <ROW Feature_="MainFeature" Component_="regid.201301.com.panomix"/>
     <ROW Feature_="MainFeature" Component_="MZWorkRedis.dll"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll"/>
@@ -20006,16 +20021,13 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.MIME.text.markdown.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Runtime.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Windows.Forms.Console.pdb"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.Windows.FeatureAPI.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="msconvert.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="msconvertGUI.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="mzblender.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.BasicMDIForm.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.CommonDialogs.pdb"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.Interaction.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.MSImagingViewerV2.pdb"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.MZWork.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="mzkit_win32.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.Task.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.TaskStream.pdb"/>
@@ -20712,7 +20724,6 @@
     <ROW Feature_="MainFeature" Component_="xvba_debug.log_5"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Matrix.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Matrix.dll_3"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Matrix.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="msconvertGUI.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Matrix.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Runtime.xml"/>
@@ -20988,6 +20999,24 @@
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Core.dll_2"/>
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.GCModeller.Workben_1_ch.ExperimentDesigner.dll"/>
     <ROW Feature_="MainFeature" Component_="System.IO.Packaging.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Darwinism.IPC.Driver.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Galaxy.CommonControls.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Galaxy.Data.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Galaxy.Data.Visualization.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Galaxy.Workbench.dll_1"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Galaxy.CommonControls.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Galaxy.Data.Visualization.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Galaxy.Data.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Galaxy.Workbench.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualStudio.Windows.Form.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="ThemeVS2015.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Galaxy.CommonControls.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Darwinism.IPC.Driver.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualStudio.Windows.Form.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="ThemeVS2015.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Galaxy.Data.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Galaxy.Data.Visualization.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Galaxy.Workbench.pdb"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
