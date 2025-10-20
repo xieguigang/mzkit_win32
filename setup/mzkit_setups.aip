@@ -793,21 +793,17 @@
     <ROW Component="GCModeller.zip" ComponentId="{2A77A528-0E55-492F-B17F-9FDB92BFDFE2}" Directory_="packages_Dir" Attributes="256" KeyPath="GCModeller.zip" Type="0"/>
     <ROW Component="GCxGChost.R" ComponentId="{BECA8D4F-1D92-41E8-B1BF-2F5D52635DBA}" Directory_="services_Dir" Attributes="256" KeyPath="GCxGChost.R" Type="0"/>
     <ROW Component="GLTFLoader.js" ComponentId="{7A088CF8-550B-4750-BA45-3B4817A4BE0F}" Directory_="extra_Dir" Attributes="0" KeyPath="GLTFLoader.js" Type="0"/>
-    <ROW Component="Galaxy.CommonControls.dll" ComponentId="{D068A022-9A5A-491F-AAD1-0C724FA2DED6}" Directory_="plugins_Dir" Attributes="256" KeyPath="Galaxy.CommonControls.dll"/>
     <ROW Component="Galaxy.CommonControls.dll_1" ComponentId="{3DF5739C-5B9C-4AB7-89DD-92F49F977ABF}" Directory_="APPDIR" Attributes="256" KeyPath="Galaxy.CommonControls.dll_1"/>
     <ROW Component="Galaxy.CommonControls.pdb" ComponentId="{1312E2DC-EBC2-48CC-AF76-1B7F87D37574}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.CommonControls.pdb_1" Type="4"/>
     <ROW Component="Galaxy.CommonControls.xml" ComponentId="{33996346-9C2C-4F12-8E20-D8F9EBC9D4AB}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.CommonControls.xml"/>
-    <ROW Component="Galaxy.Data.Visualization.dll" ComponentId="{C6DF75B4-B743-4D8F-829D-890A46C13D82}" Directory_="plugins_Dir" Attributes="256" KeyPath="Galaxy.Data.Visualization.dll"/>
     <ROW Component="Galaxy.Data.Visualization.dll_1" ComponentId="{4341A74C-9E71-41A8-B240-91FD09D1D14D}" Directory_="APPDIR" Attributes="256" KeyPath="Galaxy.Data.Visualization.dll_1"/>
     <ROW Component="Galaxy.Data.Visualization.pdb" ComponentId="{FCF7D98F-8EF4-401F-A982-5F6AA6185CE0}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.Data.Visualization.pdb_1" Type="4"/>
     <ROW Component="Galaxy.Data.Visualization.resources.dll" ComponentId="{DCEF1B60-E3C7-4B68-9E34-4AB7F19B8CAF}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Galaxy.Data.Visualization.resources.dll"/>
     <ROW Component="Galaxy.Data.Visualization.xml" ComponentId="{E771F9C1-B97E-4852-A112-43C054B736D5}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.Data.Visualization.xml"/>
-    <ROW Component="Galaxy.Data.dll" ComponentId="{B51F0FD9-7D9F-41F8-9316-0BB5EC229081}" Directory_="plugins_Dir" Attributes="256" KeyPath="Galaxy.Data.dll"/>
     <ROW Component="Galaxy.Data.dll_1" ComponentId="{33345BE8-DD3F-49B7-B8C1-055877AA1B19}" Directory_="APPDIR" Attributes="256" KeyPath="Galaxy.Data.dll_1"/>
     <ROW Component="Galaxy.Data.pdb" ComponentId="{2255C75D-AD57-4C5A-B55D-7AA9882F3207}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.Data.pdb_1" Type="4"/>
     <ROW Component="Galaxy.Data.resources.dll" ComponentId="{4E0A6CFC-16CA-431D-AE08-70FEC5EC417B}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Galaxy.Data.resources.dll"/>
     <ROW Component="Galaxy.Data.xml" ComponentId="{ED3E3F4B-2C48-49DF-87A7-82777776E9AE}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.Data.xml"/>
-    <ROW Component="Galaxy.Workbench.dll" ComponentId="{367C67A4-0CE1-4031-90F8-5874D384136C}" Directory_="plugins_Dir" Attributes="256" KeyPath="Galaxy.Workbench.dll"/>
     <ROW Component="Galaxy.Workbench.dll_1" ComponentId="{94E25471-7CE7-4946-9348-CCDDD55B0535}" Directory_="APPDIR" Attributes="256" KeyPath="Galaxy.Workbench.dll_1"/>
     <ROW Component="Galaxy.Workbench.pdb" ComponentId="{44CFCCB3-97BE-4043-9AD6-543554310CFA}" Directory_="APPDIR" Attributes="0" KeyPath="Galaxy.Workbench.pdb_1" Type="4"/>
     <ROW Component="Galaxy.Workbench.resources.dll" ComponentId="{F26D7DAB-7D62-48C5-8D6C-A2991A58C638}" Directory_="enUS_Dir" Attributes="256" KeyPath="Galaxy.Workbench.resources.dll"/>
@@ -19094,16 +19090,6 @@
     <ROW File="HDF.PInvoke.Core.pdb_1" Component_="HDF.PInvoke.Core.dll_2" FileName="HDFPIN~1.PDB|HDF.PInvoke.Core.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\HDF.PInvoke.Core.pdb" SelfReg="false"/>
     <ROW File="ServiceHub.dll_1" Component_="ServiceHub.dll_1" FileName="SERVIC~1.DLL|ServiceHub.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\ServiceHub.dll" SelfReg="false"/>
     <ROW File="ServiceHub.pdb_1" Component_="ServiceHub.dll_1" FileName="SERVIC~1.PDB|ServiceHub.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\ServiceHub.pdb" SelfReg="false"/>
-    <ROW File="Galaxy.CommonControls.dll" Component_="Galaxy.CommonControls.dll" FileName="GALAXY~1.DLL|Galaxy.CommonControls.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Galaxy.CommonControls.dll" SelfReg="false"/>
-    <ROW File="Galaxy.CommonControls.pdb" Component_="Galaxy.CommonControls.dll" FileName="GALAXY~1.PDB|Galaxy.CommonControls.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Galaxy.CommonControls.pdb" SelfReg="false"/>
-    <ROW File="Galaxy.Data.dll" Component_="Galaxy.Data.dll" FileName="GALAXY~2.DLL|Galaxy.Data.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Galaxy.Data.dll" SelfReg="false"/>
-    <ROW File="Galaxy.Data.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config" FileName="GALAXY~1.CON|Galaxy.Data.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Galaxy.Data.dll.config" SelfReg="false"/>
-    <ROW File="Galaxy.Data.pdb" Component_="Galaxy.Data.dll" FileName="GALAXY~2.PDB|Galaxy.Data.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Galaxy.Data.pdb" SelfReg="false"/>
-    <ROW File="Galaxy.Data.Visualization.dll" Component_="Galaxy.Data.Visualization.dll" FileName="GALAXY~3.DLL|Galaxy.Data.Visualization.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Galaxy.Data.Visualization.dll" SelfReg="false"/>
-    <ROW File="Galaxy.Data.Visualization.pdb" Component_="Galaxy.Data.Visualization.dll" FileName="GALAXY~3.PDB|Galaxy.Data.Visualization.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Galaxy.Data.Visualization.pdb" SelfReg="false"/>
-    <ROW File="Galaxy.Workbench.dll" Component_="Galaxy.Workbench.dll" FileName="GALAXY~4.DLL|Galaxy.Workbench.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Galaxy.Workbench.dll" SelfReg="false"/>
-    <ROW File="Galaxy.Workbench.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config" FileName="GALAXY~2.CON|Galaxy.Workbench.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Galaxy.Workbench.dll.config" SelfReg="false"/>
-    <ROW File="Galaxy.Workbench.pdb" Component_="Galaxy.Workbench.dll" FileName="GALAXY~4.PDB|Galaxy.Workbench.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Galaxy.Workbench.pdb" SelfReg="false"/>
     <ROW File="Galaxy.Workbench.resources.dll_1" Component_="Galaxy.Workbench.resources.dll_1" FileName="GALAXY~1.DLL|Galaxy.Workbench.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-Hans\Galaxy.Workbench.resources.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectro_1_metry.Assembly.BrukerDataReader." Component_="BioNovoGene.Analytical.MassSpectro_2_metry.Assembly.BrukerDataReader.dll" FileName="BIONOV~1.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectro_2_metry.Assembly.BrukerDataReader." Component_="BioNovoGene.Analytical.MassSpectro_2_metry.Assembly.BrukerDataReader.dll" FileName="BIONOV~1.PDB|BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.pdb" SelfReg="false"/>
@@ -20974,10 +20960,6 @@
     <ROW Feature_="MainFeature" Component_="Darwinism.IPC.Driver.dll"/>
     <ROW Feature_="MainFeature" Component_="HDF.PInvoke.Core.dll_2"/>
     <ROW Feature_="MainFeature" Component_="ServiceHub.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="Galaxy.CommonControls.dll"/>
-    <ROW Feature_="MainFeature" Component_="Galaxy.Data.dll"/>
-    <ROW Feature_="MainFeature" Component_="Galaxy.Data.Visualization.dll"/>
-    <ROW Feature_="MainFeature" Component_="Galaxy.Workbench.dll"/>
     <ROW Feature_="MainFeature" Component_="Galaxy.Workbench.resources.dll_1"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectro_2_metry.Assembly.BrukerDataReader.dll"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectro_3_metry.Assembly.mzPack.Extensions.dl"/>
@@ -21221,7 +21203,7 @@
     <ROW Directory_="data_Dir" SourcePath="..\rstudio\data" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="jaJP_Dir" SourcePath="..\..\..\dist\bin\ja-JP" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="ndpitools_Dir" SourcePath="..\dist\ndpitools" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
-    <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll|Sciex.*|Clearcore2.*|Mzkit_win32.*|WkHtmlToPdf.*|SMRUCC.*|/RQL.*|BioDeep.*|Flute.*|LINQ.*" ExcludeFlags="6" FileAddOptions="4"/>
+    <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll|Sciex.*|Clearcore2.*|Mzkit_win32.*|WkHtmlToPdf.*|SMRUCC.*|/RQL.*|BioDeep.*|Flute.*|LINQ.*|/Galaxy.*" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="zhHans_Dir" SourcePath="..\..\..\dist\bin\zh-Hans" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="js_1_Dir" SourcePath="..\webview\assets\js" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|/*.map" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="fr_Dir" SourcePath="..\..\..\dist\bin\fr" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
