@@ -23,10 +23,7 @@ Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle
     End Property
 
     Private Sub frmMoleculeLibrary_Load(sender As Object, e As EventArgs) Handles Me.Load
-        search = New GridSearchHandler(AdvancedDataGridView1)
-        loader = New GridLoaderHandler(AdvancedDataGridView1, AdvancedDataGridViewSearchToolBar1, BindingSource1)
-
-        AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
+        loader = New GridLoaderHandler(AdvancedDataGridView1, AdvancedDataGridViewSearchToolBar1)
 
         ' Call AdvancedDataGridView1.SetAutoSelectRow
         Call ApplyVsTheme(ToolStrip1, AdvancedDataGridViewSearchToolBar1)
@@ -125,7 +122,6 @@ Public Class frmMoleculeLibrary : Implements IFileReference, ISaveHandle
     End Sub
 
     Dim loader As GridLoaderHandler
-    Dim search As GridSearchHandler
 
     Sub LoadLibrary()
         Call LoadLibrary(metabolites:=libcsvfile.LoadCsv(Of MetaInfoTable))

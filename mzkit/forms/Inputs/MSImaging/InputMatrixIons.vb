@@ -39,8 +39,6 @@ Public Class InputMatrixIons
         End Get
     End Property
 
-    Dim search As GridSearchHandler
-
     ''' <summary>
     ''' [name => mz, description = precursor_type]
     ''' </summary>
@@ -89,7 +87,6 @@ Public Class InputMatrixIons
 
     Private Sub InputMatrixIons_Load(sender As Object, e As EventArgs) Handles Me.Load
         ToolStripStatusLabel1.Text = "Please select 9 ions to visual data..."
-        search = New GridSearchHandler(AdvancedDataGridView1)
         ComboBox1.Items.Clear()
 
         For Each color As ScalerPalette In Enums(Of ScalerPalette)()
@@ -98,7 +95,7 @@ Public Class InputMatrixIons
 
         ComboBox1.SelectedIndex = 12
 
-        AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
+        AddHandler AdvancedDataGridViewSearchToolBar1.Search, GridLoaderHandler.Search(AdvancedDataGridView1)
     End Sub
 
     Dim n As Integer = 1

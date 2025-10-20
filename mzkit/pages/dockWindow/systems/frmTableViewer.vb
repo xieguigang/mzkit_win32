@@ -119,7 +119,6 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
     End Property
 
     Dim loader As GridLoaderHandler
-    Dim search As GridSearchHandler
 
     Public Sub LoadTable(apply As Action(Of DataTable)) Implements IDataTableViewer.LoadTable
         Call loader.LoadTable(apply)
@@ -133,11 +132,9 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
         CopyFullPathToolStripMenuItem.Enabled = False
         OpenContainingFolderToolStripMenuItem.Enabled = False
 
-        search = New GridSearchHandler(AdvancedDataGridView1)
-        loader = New GridLoaderHandler(AdvancedDataGridView1, AdvancedDataGridViewSearchToolBar1, BindingSource1)
+        loader = New GridLoaderHandler(AdvancedDataGridView1, AdvancedDataGridViewSearchToolBar1)
         TabText = "Table View"
 
-        AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
         AddHandler ribbonItems.ButtonColumnStats.ExecuteEvent,
             Sub()
                 Call DoTableSampleStats()

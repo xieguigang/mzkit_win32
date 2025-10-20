@@ -14,13 +14,11 @@ Imports any = Microsoft.VisualBasic.Scripting
 Public Class FormViewer
 
     Dim memoryData As New DataSet
-    Dim search As GridSearchHandler
     Dim cloud As frmCloudExplorer
     Dim current_ptr As String
 
     Private Sub FormViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.TabText = "Spectrum Pool Viewer"
-        Me.search = New GridSearchHandler(AdvancedDataGridView1)
         Me.cloud = New frmCloudExplorer() With {
             .loadTable = AddressOf loadTable2,
             .host = Me
@@ -29,7 +27,7 @@ Public Class FormViewer
         Me.cloud.Show(Workbench.AppHost.GetDockPanel)
         Me.cloud.DockState = DockState.DockLeft
 
-        AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
+        AddHandler AdvancedDataGridViewSearchToolBar1.Search, GridLoaderHandler.Search(AdvancedDataGridView1)
 
         ApplyVsTheme(AdvancedDataGridViewSearchToolBar1, ContextMenuStrip1)
     End Sub

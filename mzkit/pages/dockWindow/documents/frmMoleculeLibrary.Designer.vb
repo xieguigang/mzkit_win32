@@ -34,11 +34,11 @@ Partial Class frmMoleculeLibrary
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
-        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+
         Me.AdvancedDataGridView1 = New AdvancedDataGridView()
         Me.AdvancedDataGridViewSearchToolBar1 = New AdvancedDataGridViewSearchToolBar()
         Me.ToolStrip1.SuspendLayout()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -112,7 +112,7 @@ Partial Class frmMoleculeLibrary
         Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -126,7 +126,7 @@ Partial Class frmMoleculeLibrary
     Friend WithEvents ToolStripButton2 As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ToolStripButton3 As ToolStripButton
-    Friend WithEvents BindingSource1 As BindingSource
+
     Friend WithEvents AdvancedDataGridView1 As AdvancedDataGridView
     Friend WithEvents AdvancedDataGridViewSearchToolBar1 As AdvancedDataGridViewSearchToolBar
 End Class

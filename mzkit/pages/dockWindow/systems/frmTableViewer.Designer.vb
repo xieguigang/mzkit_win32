@@ -94,12 +94,12 @@ Partial Class frmTableViewer
         Me.ExportTableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdvancedDataGridView1 = New AdvancedDataGridView()
         Me.AdvancedDataGridViewSearchToolBar1 = New AdvancedDataGridViewSearchToolBar()
-        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+
         Me.SendToToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MSImagingIonListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+
         Me.SuspendLayout()
         '
         'ContextMenuStrip1
@@ -219,7 +219,7 @@ Partial Class frmTableViewer
         Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -232,7 +232,7 @@ Partial Class frmTableViewer
     Friend WithEvents ActionsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AdvancedDataGridView1 As AdvancedDataGridView
     Friend WithEvents AdvancedDataGridViewSearchToolBar1 As AdvancedDataGridViewSearchToolBar
-    Friend WithEvents BindingSource1 As BindingSource
+
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents ExportTableToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CopyToolStripMenuItem As ToolStripMenuItem
