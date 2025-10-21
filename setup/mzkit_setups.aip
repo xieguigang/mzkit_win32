@@ -843,6 +843,7 @@
     <ROW Component="Darwinism.HPC.Parallel.pdb_1" ComponentId="{9C046A24-73F5-4240-B175-F774796DB897}" Directory_="blender_Dir" Attributes="0" KeyPath="Darwinism.HPC.Parallel.pdb" Type="4"/>
     <ROW Component="Darwinism.IPC.Driver.dll" ComponentId="{075BA67F-A072-46A3-A865-7F8B254F7864}" Directory_="blender_Dir" Attributes="256" KeyPath="Darwinism.IPC.Driver.dll"/>
     <ROW Component="Darwinism.IPC.Driver.dll_1" ComponentId="{C249976F-D85B-43D9-9122-8BA62D2B1CB2}" Directory_="APPDIR" Attributes="256" KeyPath="Darwinism.IPC.Driver.dll_1"/>
+    <ROW Component="Darwinism.IPC.Driver.dll_2" ComponentId="{BC2675A3-AA0B-4A3F-8618-0221D0746875}" Directory_="host_Dir" Attributes="256" KeyPath="Darwinism.IPC.Driver.dll_2"/>
     <ROW Component="Darwinism.IPC.Driver.pdb" ComponentId="{472AADCD-0E86-468D-882C-4A590577D476}" Directory_="APPDIR" Attributes="0" KeyPath="Darwinism.IPC.Driver.pdb_1" Type="4"/>
     <ROW Component="Darwinism.IPC.Driver.pdb_1" ComponentId="{15AC6558-CE36-4D48-8C05-CC89F633E6CD}" Directory_="blender_Dir" Attributes="0" KeyPath="Darwinism.IPC.Driver.pdb" Type="4"/>
     <ROW Component="Darwinism.IPC.Networking.dll" ComponentId="{C70ABB31-CC6D-4337-A139-AAD026657A56}" Directory_="bin_Dir" Attributes="256" KeyPath="Darwinism.IPC.Networking.dll"/>
@@ -1143,6 +1144,7 @@
     <ROW Component="Microsoft.VisualBasic.DeepLearning.pdb_1" ComponentId="{9C937607-3D0F-4E94-8F32-3096A46E0DE7}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.DeepLearning.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.DeepLearning.xml" ComponentId="{AE3F5F37-87BB-4DCB-BE7A-45F26856D390}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DeepLearning.xml"/>
     <ROW Component="Microsoft.VisualBasic.DeepLearning.xml_1" ComponentId="{06850E8A-02A7-4AE8-9BB6-A74AFB920AB0}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.DeepLearning.xml_1"/>
+    <ROW Component="Microsoft.VisualBasic.DeepLearning_10_.dll" ComponentId="{774C6039-AF08-47BB-96F2-FACB85D3C92C}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DeepLearning.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.Windows.dll" ComponentId="{9AA76B2C-4AFF-4671-A7FD-517C14B83911}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.Windows.dll"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.Windows.dll_1" ComponentId="{993D326F-E481-4238-932C-28E9C0087ABF}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Drawing.Windows.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Drawing.Windows.pdb" ComponentId="{F50F9C9C-2809-4BBD-A53A-3EE79848EA97}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Drawing.Windows.pdb_1" Type="4"/>
@@ -1206,6 +1208,8 @@
     <ROW Component="Microsoft.VisualBasic.MIME.text.markdown.pdb" ComponentId="{E21EDAA2-9CB8-40B0-BAAD-5429890D64E4}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.MIME.text.markdown.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.MIME.text.yaml.dll" ComponentId="{933D2E79-B37C-48A4-889A-2AC1EC4FA759}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.text.yaml.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearn_10_ing.TensorFlow.pdb" ComponentId="{406B68FD-9407-469D-A801-B092BC1B6725}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.MachineLearn_1_ing.TensorFlow.pdb" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.MachineLearn_11_ing.Data.Extensions.dll" ComponentId="{086174A5-2348-4EFB-B5DA-D0278F8DAD7F}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearn_1_ing.Data.Extensions.dll"/>
+    <ROW Component="Microsoft.VisualBasic.MachineLearn_12_ing.TensorFlow.dll" ComponentId="{A2CD9BDB-7065-4956-BA3A-051F2376FC90}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearn_3_ing.TensorFlow.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearn_1_ing.Data.Extensions.dll" ComponentId="{E5A60814-5B53-435C-AF30-D5E287E5A708}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearn_2_ing.TensorFlow.dll" ComponentId="{7BFB2416-800C-4EED-83C6-F516DF9F1401}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearn_2_ing.TensorFlow.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearn_3_ing.TensorFlow.pdb" ComponentId="{8715F757-B5BC-4593-87F8-CBF22346A280}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.MachineLearning.TensorFlow.pdb" Type="4"/>
@@ -1526,6 +1530,7 @@
     <ROW Component="Sciex.Wiff.dll_2" ComponentId="{7ED6F6CB-9F79-4DA0-8395-D492A1B908BF}" Directory_="proteowizard_Dir" Attributes="0" KeyPath="Sciex.Wiff.dll_2"/>
     <ROW Component="ServiceHub.dll" ComponentId="{4369CD89-DD64-442D-A5B3-F0B82F6220EE}" Directory_="APPDIR" Attributes="256" KeyPath="ServiceHub.dll"/>
     <ROW Component="ServiceHub.dll_1" ComponentId="{B5F283A0-A8A0-417F-AB64-A29807AA2BC8}" Directory_="blender_Dir" Attributes="256" KeyPath="ServiceHub.dll_1"/>
+    <ROW Component="ServiceHub.dll_2" ComponentId="{65F2A509-DE7C-484D-BDCD-1E698118BA02}" Directory_="host_Dir" Attributes="256" KeyPath="ServiceHub.dll_2"/>
     <ROW Component="ServiceHub.pdb" ComponentId="{BEC4661C-8A81-460A-A7CB-D9DE3B621304}" Directory_="APPDIR" Attributes="0" KeyPath="ServiceHub.pdb" Type="4"/>
     <ROW Component="ServiceHub.pdb_1" ComponentId="{33F232CB-15C7-4270-BF59-A3CA2CE31E2D}" Directory_="blender_Dir" Attributes="0" KeyPath="ServiceHub.pdb_1" Type="4"/>
     <ROW Component="ServiceHub.xml" ComponentId="{0138674C-9F67-45DE-80D0-D2EAE848855B}" Directory_="blender_Dir" Attributes="0" KeyPath="ServiceHub.xml"/>
@@ -19325,6 +19330,15 @@
     <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Newtonsoft.Json.dll" SelfReg="false"/>
     <ROW File="Newtonsoft.Json.dll_1" Component_="Newtonsoft.Json.dll_1" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Newtonsoft.Json.dll" SelfReg="false"/>
     <ROW File="Newtonsoft.Json.dll_2" Component_="Newtonsoft.Json.dll_2" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Newtonsoft.Json.dll" SelfReg="false"/>
+    <ROW File="Darwinism.IPC.Driver.dll_2" Component_="Darwinism.IPC.Driver.dll_2" FileName="DARWIN~3.DLL|Darwinism.IPC.Driver.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Darwinism.IPC.Driver.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DeepLearning.dll_3" Component_="Microsoft.VisualBasic.DeepLearning_10_.dll" FileName="MICRO~18.DLL|Microsoft.VisualBasic.DeepLearning.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DeepLearning.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DeepLearning.xml_3" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~13.XML|Microsoft.VisualBasic.DeepLearning.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DeepLearning.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MachineLearn_1_ing.Data.Extensions.dll" Component_="Microsoft.VisualBasic.MachineLearn_11_ing.Data.Extensions.dll" FileName="MICRO~25.DLL|Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MachineLearn_1_ing.Data.Extensions.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~26.XML|Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MachineLearn_3_ing.TensorFlow.dll" Component_="Microsoft.VisualBasic.MachineLearn_12_ing.TensorFlow.dll" FileName="MICRO~26.DLL|Microsoft.VisualBasic.MachineLearning.TensorFlow.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MachineLearning.TensorFlow.dll" SelfReg="false"/>
+    <ROW File="ServiceHub.deps.json" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="SERVIC~1.JSO|ServiceHub.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ServiceHub.deps.json" SelfReg="false"/>
+    <ROW File="ServiceHub.dll_2" Component_="ServiceHub.dll_2" FileName="SERVIC~1.DLL|ServiceHub.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ServiceHub.dll" SelfReg="false"/>
+    <ROW File="ServiceHub.xml_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="SERVIC~1.XML|ServiceHub.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ServiceHub.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -21251,6 +21265,11 @@
     <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll"/>
     <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Darwinism.IPC.Driver.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DeepLearning_10_.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearn_11_ing.Data.Extensions.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearn_12_ing.TensorFlow.dll"/>
+    <ROW Feature_="MainFeature" Component_="ServiceHub.dll_2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
