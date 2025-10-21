@@ -304,6 +304,7 @@ namespace RibbonLib.Controls
             public const uint cmdGroupReportOperation = 368;
             public const uint cmdButtonReportSelect = 315;
             public const uint cmdButtonAddLCMSComparision = 327;
+            public const uint cmdButtonRefreshReport = 369;
             public const uint cmdMenuLabIA = 336;
             public const uint cmdPageLabIA = 337;
             public const uint cmdGroupLabIA = 338;
@@ -732,7 +733,7 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonButton ButtonExportSingleExpression { get; private set; }
         /// <summary>
-        /// Report
+        /// BioDeep Annotation Viewer
         /// </summary>
         public RibbonTabGroup GroupReport { get; private set; }
         /// <summary>
@@ -782,6 +783,10 @@ namespace RibbonLib.Controls
         /// Add Comparision
         /// </summary>
         public RibbonButton ButtonAddLCMSComparision { get; private set; }
+        /// <summary>
+        /// Refresh Report View
+        /// </summary>
+        public RibbonButton ButtonRefreshReport { get; private set; }
         public RibbonTabGroup MenuLabIA { get; private set; }
         public RibbonTab PageLabIA { get; private set; }
         public RibbonGroup GroupLabIA { get; private set; }
@@ -1156,6 +1161,7 @@ namespace RibbonLib.Controls
             GroupReportOperation = new RibbonGroup(ribbon, Cmd.cmdGroupReportOperation);
             ButtonReportSelect = new RibbonButton(ribbon, Cmd.cmdButtonReportSelect);
             ButtonAddLCMSComparision = new RibbonButton(ribbon, Cmd.cmdButtonAddLCMSComparision);
+            ButtonRefreshReport = new RibbonButton(ribbon, Cmd.cmdButtonRefreshReport);
             MenuLabIA = new RibbonTabGroup(ribbon, Cmd.cmdMenuLabIA);
             PageLabIA = new RibbonTab(ribbon, Cmd.cmdPageLabIA);
             GroupLabIA = new RibbonGroup(ribbon, Cmd.cmdGroupLabIA);
