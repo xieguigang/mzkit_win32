@@ -301,6 +301,7 @@ Namespace RibbonLib.Controls
             Public Const cmdGroupReportOperation As UInteger = 368
             Public Const cmdButtonReportSelect As UInteger = 315
             Public Const cmdButtonAddLCMSComparision As UInteger = 327
+            Public Const cmdButtonRefreshReport As UInteger = 369
             Public Const cmdMenuLabIA As UInteger = 336
             Public Const cmdPageLabIA As UInteger = 337
             Public Const cmdGroupLabIA As UInteger = 338
@@ -2090,7 +2091,7 @@ Namespace RibbonLib.Controls
         End Property
         Private _GroupReport As RibbonTabGroup
         ''' <summary>
-        ''' Report
+        ''' BioDeep Annotation Viewer
         ''' </summary>
         Public ReadOnly Property GroupReport As RibbonTabGroup
             Get
@@ -2212,6 +2213,15 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonAddLCMSComparision As RibbonButton
             Get
                 Return _ButtonAddLCMSComparision
+            End Get
+        End Property
+        Private _ButtonRefreshReport As RibbonButton
+        ''' <summary>
+        ''' Refresh Report View
+        ''' </summary>
+        Public ReadOnly Property ButtonRefreshReport As RibbonButton
+            Get
+                Return _ButtonRefreshReport
             End Get
         End Property
         Private _MenuLabIA As RibbonTabGroup
@@ -2893,6 +2903,7 @@ Namespace RibbonLib.Controls
             _GroupReportOperation = New RibbonGroup(_ribbon, Cmd.cmdGroupReportOperation)
             _ButtonReportSelect = New RibbonButton(_ribbon, Cmd.cmdButtonReportSelect)
             _ButtonAddLCMSComparision = New RibbonButton(_ribbon, Cmd.cmdButtonAddLCMSComparision)
+            _ButtonRefreshReport = New RibbonButton(_ribbon, Cmd.cmdButtonRefreshReport)
             _MenuLabIA = New RibbonTabGroup(_ribbon, Cmd.cmdMenuLabIA)
             _PageLabIA = New RibbonTab(_ribbon, Cmd.cmdPageLabIA)
             _GroupLabIA = New RibbonGroup(_ribbon, Cmd.cmdGroupLabIA)
