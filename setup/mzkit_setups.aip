@@ -39,10 +39,10 @@
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1028:{154BE874-8F69-47EC-ABC6-92422BBD7B57} 1033:{154BE874-8F69-47EC-ABC6-92422BBD7B57} 1036:{154BE874-8F69-47EC-ABC6-92422BBD7B57} 1041:{154BE874-8F69-47EC-ABC6-92422BBD7B57} 1049:{154BE874-8F69-47EC-ABC6-92422BBD7B57} 2052:{154BE874-8F69-47EC-ABC6-92422BBD7B57} 2057:{154BE874-8F69-47EC-ABC6-92422BBD7B57} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{65F24653-346B-48C1-BB2D-77D4F466B01C} 1033:{65F24653-346B-48C1-BB2D-77D4F466B01C} 1036:{65F24653-346B-48C1-BB2D-77D4F466B01C} 1041:{65F24653-346B-48C1-BB2D-77D4F466B01C} 1049:{65F24653-346B-48C1-BB2D-77D4F466B01C} 2052:{65F24653-346B-48C1-BB2D-77D4F466B01C} 2057:{65F24653-346B-48C1-BB2D-77D4F466B01C} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="6.23.2025.1020" Options="32"/>
+    <ROW Property="ProductVersion" Value="6.24.2025.1021" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -547,7 +547,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="A0BFC224E0E9125ADE0B2DBF343" ComponentId="{0D082BA2-EE82-4056-AD8C-D7F757832D2D}" Directory_="APPDIR" Attributes="260" KeyPath="A0BFC224E0E9125ADE0B2DBF343" Options="2"/>
-    <ROW Component="AI_CustomARPName" ComponentId="{7946B2C0-7B59-4AAC-A08D-F7FC92B09B3E}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{4C3D514A-C1CB-4A78-9AAC-4EE5111EDBC4}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{2335D578-7E61-4EAB-A98E-FA436BA9E1FF}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="ARButton.js" ComponentId="{1AA55F20-6D89-44ED-8F8F-5D0585E8DD95}" Directory_="webxr_Dir" Attributes="0" KeyPath="ARButton.js" Type="0"/>
@@ -21491,7 +21491,7 @@
     <ROW XmlElement="swidentitlement_required_indicator" ParentElement="swidsoftware_identification_tag" Name="swid:entitlement_required_indicator" Condition="1" Order="0" Flags="14" Text="true" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidlicense_linkage" ParentElement="swidsoftware_identification_tag" Name="swid:license_linkage" Condition="1" Order="8" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidmajor" ParentElement="swidnumeric" Name="swid:major" Condition="1" Order="0" Flags="14" Text="6" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidminor" ParentElement="swidnumeric" Name="swid:minor" Condition="1" Order="1" Flags="14" Text="23" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidminor" ParentElement="swidnumeric" Name="swid:minor" Condition="1" Order="1" Flags="14" Text="24" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname" ParentElement="swidproduct_version" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[ProductVersion]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname_7" ParentElement="swidsoftware_creator" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname_8" ParentElement="swidsoftware_licensor" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
@@ -21502,7 +21502,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="1020" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="1021" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>
