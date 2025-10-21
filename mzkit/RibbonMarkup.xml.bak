@@ -4640,7 +4640,7 @@
         <Image MinDPI="192">Res/icons8-12-cluster-58.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonImportsWorkspace" Comment="Imports Workspace" Id="367" LabelTitle="Imports" LabelDescription="Imports" TooltipTitle="Imports" TooltipDescription="Imports">
+    <Command Name="cmdButtonImportsWorkspace" Comment="Imports Workspace" Id="367" LabelTitle="Imports Workspace" LabelDescription="Imports" TooltipTitle="Imports" TooltipDescription="Imports">
       <Command.SmallImages>
         <Image MinDPI="192">Res/folder-documents.png</Image>
       </Command.SmallImages>

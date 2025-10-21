@@ -2083,8 +2083,16 @@
 #define cmdGroupReportOperation_LabelDescription_RESID 60538
 #define cmdGroupReportOperation_TooltipTitle_RESID 60539
 #define cmdGroupReportOperation_TooltipDescription_RESID 60540
-#define InternalCmd2_LabelTitle_RESID 60541
-#define InternalCmd4_LabelTitle_RESID 60542
-#define InternalCmd6_LabelTitle_RESID 60543
-#define InternalCmd8_LabelTitle_RESID 60544
-#define InternalCmd10_LabelTitle_RESID 60545
+#define cmdButtonRefreshReport 369  /* Refresh Report View */ 
+#define cmdButtonRefreshReport_LabelTitle_RESID 60541
+#define cmdButtonRefreshReport_LabelDescription_RESID 60542
+#define cmdButtonRefreshReport_Keytip_RESID 60543
+#define cmdButtonRefreshReport_TooltipTitle_RESID 60544
+#define cmdButtonRefreshReport_TooltipDescription_RESID 60545
+#define cmdButtonRefreshReport_SmallImages_192__RESID 60546
+#define cmdButtonRefreshReport_LargeImages_192__RESID 60547
+#define InternalCmd2_LabelTitle_RESID 60548
+#define InternalCmd4_LabelTitle_RESID 60549
+#define InternalCmd6_LabelTitle_RESID 60550
+#define InternalCmd8_LabelTitle_RESID 60551
+#define InternalCmd10_LabelTitle_RESID 60552

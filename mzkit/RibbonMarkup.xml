@@ -4649,6 +4649,14 @@
       </Command.LargeImages>
     </Command>
     <Command Name="cmdGroupReportOperation" Comment="Report Operation" Id="368" LabelTitle="Report Operation" LabelDescription="Report Operation" TooltipTitle="Report Operation" TooltipDescription="Report Operation" />
+    <Command Name="cmdButtonRefreshReport" Comment="Refresh Report View" Id="369" LabelTitle="Refresh" LabelDescription="Refresh Report View" TooltipTitle="Refresh Report View" TooltipDescription="Refresh Report View" Keytip="Refresh Report View">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
