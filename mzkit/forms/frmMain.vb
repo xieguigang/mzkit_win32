@@ -82,6 +82,7 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Workbench
+Imports Galaxy.Workbench.DockDocument
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Development
 Imports Microsoft.VisualBasic.CommandLine
@@ -525,6 +526,8 @@ Are you want to make your data to be pre-processing before load it into computer
                 Globals.AddRecentFileHistory(file)
                 Workbench.StatusMessage($"Current file saved at {file.GetFullPath}!")
             End If
+        ElseIf active.GetType.IsInheritsFrom(GetType(DocumentWindow), strict:=False) Then
+            Call DocumentWindow.SaveDocument(page:=active)
         End If
     End Sub
 
