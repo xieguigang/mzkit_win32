@@ -70,6 +70,8 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Darwinism.HPC.Parallel
 Imports Darwinism.IPC.Networking.HTTP
 Imports Darwinism.IPC.Networking.Tcp
+Imports Galaxy.Workbench
+Imports HEView
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 Imports Microsoft.VisualBasic.Data.IO
@@ -202,6 +204,8 @@ Namespace ServiceHub
 
             hostReference = New MSIDataService
             hostReference.MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, hostReference.MSI_service, debugPort, buf_size:=mb)
+
+            Call WorkStudio.LogCommandLine(hostReference.MSI_pipe.Process)
 
             ' hook message event handler
             AddHandler hostReference.MSI_pipe.SetMessage, AddressOf hostReference.MSI_pipe_SetMessage
@@ -377,6 +381,24 @@ Namespace ServiceHub
             Return output
         End Function
 
+        Public Function ExportMSICellmatrix() As CellScan()
+            Dim layer As New LayerLoader
+            Dim op As Byte() = BSON.SafeGetBuffer(layer.CreateJSONElement).ToArray
+            Dim payload As New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.ExportCellMatrix, op)
+            Dim data As RequestStream = handleServiceRequest(request:=payload)
+
+            If data Is Nothing Then
+                Call Workbench.Warning($"Failure to load MS-imaging raw data sample regions...")
+                Return Nothing
+            ElseIf data.IsHTTP_RFC Then
+                Call Workbench.Warning(data.GetUTF8String)
+                Return Nothing
+            End If
+
+            Dim resultt = BSON.Load(data.ChunkBuffer).CreateObject(Of CellScan())(decodeMetachar:=True)
+            Return resultt
+        End Function
+
         Public Function LoadGeneLayer(id As String) As PixelData()
             Dim getBuf As Byte() = Nothing
             Dim pixels = MSIProtocols.LoadPixels(id, getBuf, AddressOf handleServiceRequest)
@@ -396,6 +418,15 @@ Namespace ServiceHub
             Dim op As Byte() = BitConverter.GetBytes(ServiceProtocol.UpsideDown)
             Dim payload As New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.UpsideDown, op)
             Dim data As RequestStream = handleServiceRequest(request:=payload)
+
+            If data Is Nothing Then
+                Call Workbench.Warning($"Failure to load MS-imaging raw data sample regions...")
+                Return Nothing
+            ElseIf data.IsHTTP_RFC Then
+                Call Workbench.Warning(data.GetUTF8String)
+                Return Nothing
+            End If
+
             Dim output As MsImageProperty = data _
                 .GetString(Encoding.UTF8) _
                 .LoadJSON(Of Dictionary(Of String, String)) _

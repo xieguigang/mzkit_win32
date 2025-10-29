@@ -2091,8 +2091,15 @@
 #define cmdButtonLabIASettings_LabelTitle_RESID 60545
 #define cmdButtonLabIASettings_SmallImages_192__RESID 60546
 #define cmdButtonLabIASettings_LargeImages_192__RESID 60547
-#define InternalCmd2_LabelTitle_RESID 60548
-#define InternalCmd4_LabelTitle_RESID 60549
-#define InternalCmd6_LabelTitle_RESID 60550
-#define InternalCmd8_LabelTitle_RESID 60551
-#define InternalCmd10_LabelTitle_RESID 60552
+#define cmdButtonExportMSICellMatrix 370  /* Export Cell Matrix */ 
+#define cmdButtonExportMSICellMatrix_LabelTitle_RESID 60548
+#define cmdButtonExportMSICellMatrix_LabelDescription_RESID 60549
+#define cmdButtonExportMSICellMatrix_TooltipTitle_RESID 60550
+#define cmdButtonExportMSICellMatrix_TooltipDescription_RESID 60551
+#define cmdButtonExportMSICellMatrix_SmallImages_192__RESID 60552
+#define cmdButtonExportMSICellMatrix_LargeImages_192__RESID 60553
+#define InternalCmd2_LabelTitle_RESID 60554
+#define InternalCmd4_LabelTitle_RESID 60555
+#define InternalCmd6_LabelTitle_RESID 60556
+#define InternalCmd8_LabelTitle_RESID 60557
+#define InternalCmd10_LabelTitle_RESID 60558

@@ -297,8 +297,8 @@ Public Class frmOpenseadragonViewer
                                     cell.area,
                                     cell.ratio,
                                     cell.points,
-                                    cell.width,
-                                    cell.height,
+                                    cell.r1,
+                                    cell.r2,
                                     cell.density,
                                     cell.moranI,
                                     cell.pvalue
