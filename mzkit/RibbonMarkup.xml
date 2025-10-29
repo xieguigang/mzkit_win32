@@ -4657,6 +4657,14 @@
         <Image MinDPI="192">Res/applications-system.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonExportMSICellMatrix" Comment="Export Cell Matrix" Id="370" LabelTitle="Export Cell Matrix" LabelDescription="Export Cell Matrix" TooltipTitle="Export Cell Matrix" TooltipDescription="Export Cell Matrix">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4928,6 +4936,7 @@
               <Button CommandName="cmdButtonMSIRowScans" />
               <Button CommandName="cmdButtonExportMSIMzpack" />
               <Button CommandName="cmdButtonMergeMultipleMSISample" />
+              <Button CommandName="cmdButtonExportMSICellMatrix" />
             </Group>
             <Group CommandName="cmdPanelMSIVisual" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonMSIImportAnnotationTable" />
