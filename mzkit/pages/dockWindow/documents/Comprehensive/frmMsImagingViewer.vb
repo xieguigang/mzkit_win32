@@ -90,6 +90,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
+Imports HEView
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
@@ -278,6 +279,7 @@ Public Class frmMsImagingViewer
 
         AddHandler RibbonEvents.ribbonItems.ButtonMSIFilterPipeline.ExecuteEvent, Sub() Call configFilter()
         AddHandler RibbonEvents.ribbonItems.ButtonMSIHistory.ExecuteEvent, Sub() Call OpenHistoryWindow()
+        AddHandler RibbonEvents.ribbonItems.ButtonExportMSICellMatrix.ExecuteEvent, Sub() Call ExportMSICellMatrix()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -304,6 +306,25 @@ Public Class frmMsImagingViewer
         sampleRegions.viewer = Me
 
         PixelSelector1.MSICanvas.EditorConfigs = InputConfigTissueMap.GetPolygonEditorConfig
+    End Sub
+
+    Private Sub ExportMSICellMatrix()
+        If Not checkService() Then
+            Return
+        End If
+
+        Using file As New SaveFileDialog With {.Filter = "Excel table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim cells As CellScan() = TaskProgress.LoadData(streamLoad:=Function(pbar As Action(Of String)) MSIservice.ExportMSICellmatrix,
+                                                                title:="Export MSI Cell Matrix",
+                                                                info:="Export cell matrix data from the msi data for make alignment with HE staining image.")
+                If cells Is Nothing Then
+                    Call MessageBox.Show("Sorry, export cell data error.", "Task error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Else
+                    Call cells.SaveTo(file.FileName)
+                End If
+            End If
+        End Using
     End Sub
 
     Private Sub OpenHistoryWindow()
