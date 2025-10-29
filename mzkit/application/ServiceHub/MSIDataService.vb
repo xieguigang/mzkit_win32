@@ -70,6 +70,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Darwinism.HPC.Parallel
 Imports Darwinism.IPC.Networking.HTTP
 Imports Darwinism.IPC.Networking.Tcp
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 Imports Microsoft.VisualBasic.Data.IO
@@ -202,6 +203,8 @@ Namespace ServiceHub
 
             hostReference = New MSIDataService
             hostReference.MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, hostReference.MSI_service, debugPort, buf_size:=mb)
+
+            Call WorkStudio.LogCommandLine(hostReference.MSI_pipe.Process)
 
             ' hook message event handler
             AddHandler hostReference.MSI_pipe.SetMessage, AddressOf hostReference.MSI_pipe_SetMessage
