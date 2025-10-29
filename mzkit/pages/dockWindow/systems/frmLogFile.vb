@@ -46,36 +46,6 @@ Public Class frmLogFile
         End If
     End Sub
 
-    Private Shared Function TryParse(log As String) As (cd As String, cmd As String)
-        Dim lines As String() = Strings.Trim(log) _
-            .LineTokens _
-            .Where(Function(si) Not si.StartsWith("//")) _
-            .Where(Function(si) Not Strings.Trim(si).StringEmpty(, True)) _
-            .ToArray
-        Dim cd As String = lines(lines.Length - 2)
-        Dim cmd As String = lines(lines.Length - 1)
-
-        cd = cd.GetTagValue(" ").Value.Trim(""""c)
-
-        Return (cd, cmd)
-    End Function
-
-    Private Sub launch_cmd(cmdlog As LogEntry)
-        Dim run = TryParse(cmdlog.message)
-        Dim batch As New StringBuilder($"{run.Item1.Split(":"c).First}:" & vbCrLf & vbCrLf)
-        batch.AppendLine("CD " & run.Item1.CLIPath)
-        batch.AppendLine(run.Item2)
-
-        Dim batch_file As String = App.GetTempFile & ".cmd"
-        Dim cmd As New Process
-        cmd.StartInfo.FileName = "cmd.exe"
-        cmd.StartInfo.Arguments = "/k " & batch_file.CLIPath
-        cmd.StartInfo.CreateNoWindow = False
-
-        Call batch.ToString.SaveTo(batch_file, Encodings.UTF8WithoutBOM.CodePage)
-        Call cmd.Start()
-    End Sub
-
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
         If DataGridView1.Rows.Count = 0 Then
             Return
