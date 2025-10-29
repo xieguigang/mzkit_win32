@@ -1,7 +1,5 @@
-﻿Imports System.Text
-Imports Microsoft.VisualBasic.ApplicationServices
+﻿Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
-Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class frmLogFile
@@ -34,7 +32,7 @@ Public Class frmLogFile
 
             For Each item As LogEntry In logs.OrderByDescending(Function(i) i.time)
                 Dim row As New DataGridViewRow With {.Tag = item}
-                Dim data = TryParse(item.message)
+                Dim data = WorkStudio.TryParse(item.message)
 
                 row.Cells.Add(New DataGridViewTextBoxCell With {.Value = item.time})
                 row.Cells.Add(New DataGridViewTextBoxCell With {.Value = data.Item1})
@@ -57,7 +55,7 @@ Public Class frmLogFile
             Dim log As LogEntry = DataGridView1.Rows(e.RowIndex)?.Tag
 
             If Not log.message.StringEmpty Then
-                Call launch_cmd(log)
+                Call WorkStudio.launch_cmd(log)
             End If
         End If
     End Sub
@@ -80,7 +78,7 @@ Public Class frmLogFile
         If cli.message.StringEmpty(, True) Then
             Call Workbench.Warning("no commandline argument to copy!")
         Else
-            Dim run = TryParse(cli.message)
+            Dim run = WorkStudio.TryParse(cli.message)
 
             Clipboard.Clear()
             Clipboard.SetText(run.cmd)
