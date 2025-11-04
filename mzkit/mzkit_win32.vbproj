@@ -1109,7 +1109,6 @@
     <Compile Include="pages\dockWindow\explorer\frmFileExplorer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\IDataTraceback.vb" />
     <Compile Include="pages\toolkit\PlotTooltip.vb">
       <SubType>Component</SubType>
     </Compile>
