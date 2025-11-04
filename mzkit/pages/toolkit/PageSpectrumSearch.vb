@@ -315,7 +315,7 @@ Public Class PageSpectrumSearch
             Call MyApplication.host.mzkitTool.ShowPage()
         End If
 
-        host.mzkitTool.CustomTabControl1.SelectedTab = host.mzkitTool.TabPage5
+        host.mzkitTool.ShowRPlotTab()
         host.ShowPage(host.mzkitTool)
     End Sub
 
