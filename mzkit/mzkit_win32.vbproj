@@ -925,12 +925,6 @@
     <Compile Include="pages\dockWindow\documents\frmSMILESViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmNetworkViewer.Designer.vb">
-      <DependentUpon>frmNetworkViewer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\documents\frmNetworkViewer.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="pages\dockWindow\documents\Comprehensive\frmGCxGCViewer.Designer.vb">
       <DependentUpon>frmGCxGCViewer.vb</DependentUpon>
     </Compile>
@@ -1478,9 +1472,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\Comprehensive\frmMsImagingViewer.zh-Hant.resx">
       <DependentUpon>frmMsImagingViewer.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmNetworkViewer.resx">
-      <DependentUpon>frmNetworkViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmOpenseadragonViewer.resx">
       <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
