@@ -82,6 +82,7 @@ Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.Actions
 Imports Galaxy.Workbench.DockDocument
@@ -152,6 +153,16 @@ Module Globals
         End Get
     End Property
 
+    Public ReadOnly Iterator Property PlotApps As IEnumerable(Of SummaryPlot)
+        Get
+            Yield New KEGGEnrichmentBarSummary
+            Yield New KEGGEnrichmentBarSummary2
+            Yield New PCA3d
+            Yield New KEGGEnrichmentGraph
+            Yield New LCMSScatterPlot
+        End Get
+    End Property
+
     Sub New()
         Call ImageDriver.Register()
 
@@ -201,6 +212,8 @@ Module Globals
         BaseHook.HookShowProperties(AddressOf VisualStudio.ShowProperties)
 
         LCMSViewerModule.convert = AddressOf convertMzPack
+
+
     End Sub
 
     Private Function convertMzPack(file As String) As Object

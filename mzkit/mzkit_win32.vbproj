@@ -469,7 +469,6 @@
     <Compile Include="application\summaryPlots\KEGGEnrichmentGraph.vb" />
     <Compile Include="application\summaryPlots\PCA3d.vb" />
     <Compile Include="application\summaryPlots\KEGGEnrichmentBarSummary.vb" />
-    <Compile Include="application\summaryPlots\SummaryPlot.vb" />
     <Compile Include="application\WindowModules.vb" />
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
