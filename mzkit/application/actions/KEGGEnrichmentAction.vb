@@ -1,4 +1,5 @@
-﻿Imports Galaxy.Workbench
+﻿Imports Galaxy.ExcelPad
+Imports Galaxy.Workbench
 Imports Galaxy.Workbench.Actions
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -61,7 +62,7 @@ Public Class KEGGEnrichmentAction : Inherits ActionBase
 
                 Return fdr
             End Function, title:="Run KEGG Enrichment", info:="Run fisher test...")
-        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:="KEGG Enrichment Result")
+        Dim table = VisualStudio.ShowDocument(Of FormExcelPad)(title:="KEGG Enrichment Result")
         Dim mapIndex = maps.ToDictionary(Function(m) m.EntryId)
 
         table.ViewRow = viewRowHandler(mapIndex)

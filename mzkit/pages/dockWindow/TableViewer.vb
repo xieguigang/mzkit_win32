@@ -6,6 +6,7 @@ Imports Galaxy.ExcelPad
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports BioNovoGene.mzkit_win32.My
 Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.Data
 
 Public Class ExcelTableViewer
 

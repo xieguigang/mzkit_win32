@@ -2,6 +2,7 @@
 Imports System.Runtime.InteropServices
 Imports System.Threading
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports HEView
 Imports Microsoft.VisualBasic.ApplicationServices
@@ -259,7 +260,7 @@ Public Class frmOpenseadragonViewer
                 Return
             End If
 
-            Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Cell Scan Result")
+            Dim table As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)(title:="Cell Scan Result")
             Dim d As Integer = cells.Length / 30
 
             If d < 1 Then

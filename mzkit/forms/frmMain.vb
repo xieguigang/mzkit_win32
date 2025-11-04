@@ -81,6 +81,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.DockDocument
 Imports Microsoft.VisualBasic.ApplicationServices
@@ -963,7 +964,7 @@ Are you want to make your data to be pre-processing before load it into computer
     End Sub
 
     Private Sub dockPanel_ActiveDocumentChanged(sender As Object, e As EventArgs) Handles m_dockPanel.ActiveDocumentChanged
-        If TypeOf m_dockPanel.ActiveDocument Is frmTableViewer Then
+        If TypeOf m_dockPanel.ActiveDocument Is FormExcelPad Then
             ribbonItems.TableGroup.ContextAvailable = ContextAvailability.Active
         Else
             ribbonItems.TableGroup.ContextAvailable = ContextAvailability.NotAvailable
