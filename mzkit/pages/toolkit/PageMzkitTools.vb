@@ -78,6 +78,7 @@ Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Data
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -103,6 +104,7 @@ Public Class PageMzkitTools
 
     Friend _matrix As DataMatrix
     Friend _ribbonExportDataContextMenuStrip As ExportData
+    Friend _chart As New ChartPad
 
     Public Sub Ribbon_Load(ribbon As Ribbon)
         _ribbonExportDataContextMenuStrip = New ExportData(ribbon, Global.Mzkit_win32.BasicMDIForm.RibbonLib.Controls.RibbonItems.cmdContextMap)
@@ -197,6 +199,9 @@ Public Class PageMzkitTools
 
         ' Call InitializeFileTree()
         Call Globals.sharedProgressUpdater("Attatch Command Events...")
+        Call Controls.Add(_chart)
+
+        _chart.Dock = DockStyle.Fill
 
         'AddHandler TreeView1.AfterSelect, AddressOf TreeView1_AfterSelect
         'AddHandler host.fileExplorer.Button1.Click, Sub(obj, evt) Call SearchByMz(host.fileExplorer.TextBox2.Text)
@@ -659,7 +664,7 @@ Public Class PageMzkitTools
         End If
     End Sub
 
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
         If e.ColumnIndex = Scan0 AndAlso e.RowIndex >= 0 Then
             Dim scanId As String = DataGridView1.Rows(e.RowIndex).Cells(0).Value?.ToString
 
@@ -842,7 +847,7 @@ Public Class PageMzkitTools
         '  MyApplication.host.fileExplorer.ClearToolStripMenuItem.Text = "Clear"
     End Sub
 
-    Private Sub PictureBox1_DoubleClick(sender As Object, e As EventArgs) Handles PictureBox1.DoubleClick
+    Private Sub PictureBox1_DoubleClick(sender As Object, e As EventArgs)
         If Not PictureBox1.BackgroundImage Is Nothing Then
             Dim temp As String = TempFileSystem.GetAppSysTempFile(".png", App.PID, "imagePlot_")
 
@@ -851,14 +856,14 @@ Public Class PageMzkitTools
         End If
     End Sub
 
-    Private Sub PictureBox1_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseClick
+    Private Sub PictureBox1_MouseClick(sender As Object, e As MouseEventArgs)
         If e.Button = MouseButtons.Right Then
             Dim p As Point = PictureBox1.PointToScreen(e.Location)
             MyApplication.host.Ribbon1.ShowContextPopup(CUInt(Global.Mzkit_win32.BasicMDIForm.RibbonLib.Controls.RibbonItems.cmdContextMap), p.X, p.Y)
         End If
     End Sub
 
-    Private Sub CustomTabControl1_TabClosing(sender As Object, e As TabControlCancelEventArgs) Handles CustomTabControl1.TabClosing
+    Private Sub CustomTabControl1_TabClosing(sender As Object, e As TabControlCancelEventArgs)
         e.Cancel = True
 
         If CustomTabControl1.Controls.Count = 1 Then
