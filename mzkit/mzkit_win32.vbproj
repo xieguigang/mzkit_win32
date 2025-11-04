@@ -731,12 +731,6 @@
     <Compile Include="forms\Inputs\InputRSymbol.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\InputNetworkLayout.Designer.vb">
-      <DependentUpon>InputNetworkLayout.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\InputNetworkLayout.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputXICTarget.Designer.vb">
       <DependentUpon>InputXICTarget.vb</DependentUpon>
     </Compile>
@@ -1335,12 +1329,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.resx">
       <DependentUpon>InputMSIPeakTableParameters.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputNetworkLayout.resx">
-      <DependentUpon>InputNetworkLayout.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputNetworkLayout.zh-CN.resx">
-      <DependentUpon>InputNetworkLayout.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputPeakTime.resx">
       <DependentUpon>InputPeakTime.vb</DependentUpon>
