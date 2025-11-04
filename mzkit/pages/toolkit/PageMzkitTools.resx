@@ -125,7 +125,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACU
-        CQAAAk1TRnQBSQFMAgEBAgEAAWwBAQFsAQEBEAEAARABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        CQAAAk1TRnQBSQFMAgEBAgEAAXQBAQF0AQEBEAEAARABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABEAMAAQEBAAEgBgABEBIAA/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2
         Af8D9gH/A/YB/wP2Af8MAANRAZ8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/A/YB/wP2Af8D9gH/
         A/YB/wP2Af8D9gH/hAAD9gH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMbAf8DGwH/AxsB/wMb
@@ -175,7 +175,7 @@
   <data name="CopyValueToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAA4BJREFUaEPtlm9IE3EYx4e3V73p3SyCELKQsOhFidQbUyIqNcjUoWB/sEIpzYoE
+        vQAADr0BR/uQrQAAA4BJREFUaEPtlm9IE3EYx4e3V73p3SyCELKQsOhFidQbUyIqNcjUoWB/sEIpzYoE
         SYxy9g8qzXRhk2E4UkONzMzbZm+igow0X6xERYJEbebcBebmnu633ba77dd287bdBT7weXN/nuf7+d39
         tpMJLcWhJ7sVma2m2EwdhEyGzqxIby1gWkWm5kjZWhsp328nicO+ZJ2tKKWD/PELxhCX3QbKqwOwraAT
         ex6hyNA5tuaq7+P62/VEOhhkG5gooRfdJMdGEhabXg6+THTGQtyRZmwoN5++/gRUZssiJAaQiM1shd6m
@@ -534,6 +534,32 @@
   <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>457, 38</value>
   </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ChartPad1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="ChartPad1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="ChartPad1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>563, 484</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ChartPad1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ChartPad1.Name" xml:space="preserve">
+    <value>ChartPad1</value>
+  </data>
+  <data name="&gt;&gt;ChartPad1.Type" xml:space="preserve">
+    <value>Galaxy.ExcelPad.ChartPad, Galaxy.ExcelPad, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ChartPad1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ChartPad1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

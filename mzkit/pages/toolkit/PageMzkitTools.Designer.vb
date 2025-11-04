@@ -85,6 +85,7 @@ Partial Class PageMzkitTools
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ChartPad1 = New Galaxy.ExcelPad.ChartPad()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -121,11 +122,17 @@ Partial Class PageMzkitTools
         resources.ApplyResources(Me.SaveToolStripMenuItem, "SaveToolStripMenuItem")
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
         '
+        'ChartPad1
+        '
+        resources.ApplyResources(Me.ChartPad1, "ChartPad1")
+        Me.ChartPad1.Name = "ChartPad1"
+        '
         'PageMzkitTools
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
+        Me.Controls.Add(Me.ChartPad1)
         Me.DoubleBuffered = True
         Me.Name = "PageMzkitTools"
         Me.ContextMenuStrip1.ResumeLayout(False)
@@ -139,4 +146,5 @@ Partial Class PageMzkitTools
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
     Friend WithEvents SaveToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CopyValueToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ChartPad1 As Galaxy.ExcelPad.ChartPad
 End Class
