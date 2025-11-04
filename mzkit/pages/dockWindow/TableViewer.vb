@@ -1,15 +1,16 @@
 ﻿Imports System
 Imports System.Collections.Generic
 Imports System.Windows.Forms
+Imports GalaxyExcelPad
 
 Public Class ExcelTableViewer
 
-    ReadOnly excel As formexcelpad
+    ReadOnly excel As FormExcelPad
 
     Friend WithEvents MSImagingIonListToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SendToREnvironmentToolStripMenuItem As ToolStripMenuItem
 
-    Sub New(excel As formexcelpad)
+    Sub New(excel As FormExcelPad)
         Me.excel = excel
         Me.MSImagingIonListToolStripMenuItem = New ToolStripMenuItem
         Me.SendToREnvironmentToolStripMenuItem = New ToolStripMenuItem
@@ -18,6 +19,35 @@ Public Class ExcelTableViewer
     Sub()
         Call DoTableSampleStats()
     End Sub
+    End Sub
+
+    Shared Sub New()
+        AddHandler ribbonItems.ButtonResetTableFilter.ExecuteEvent,
+            Sub()
+                Dim table = getCurrentTable()
+
+                If Not table Is Nothing Then
+                    Call table.resetFilter()
+                End If
+            End Sub
+
+        AddHandler ribbonItems.ButtonColumnStats.ExecuteEvent,
+            Sub()
+                Dim table = getCurrentTable()
+
+                If Not table Is Nothing Then
+                    Call table.columnVectorStat()
+                End If
+            End Sub
+
+        AddHandler ribbonItems.ButtonSaveTableCDF.ExecuteEvent,
+            Sub()
+                Dim table = getCurrentTable()
+
+                If Not table Is Nothing Then
+                    Call table.exportTableCDF()
+                End If
+            End Sub
     End Sub
 
     Private Sub SendToREnvironmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToREnvironmentToolStripMenuItem.Click
