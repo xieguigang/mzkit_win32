@@ -203,7 +203,7 @@ Module Globals
         Pages.SetDocument(NameOf(QuantificationLinearPage), GetType(frmTargetedQuantification))
         Pages.SetDocument(NameOf(MRMLibraryPage), GetType(frmMRMLibrary))
 
-        DataTableViewer.HookTableViewer(Function() DirectCast(VisualStudio.ShowDocument(Of frmTableViewer), IDataTableViewer))
+        DataTableViewer.HookTableViewer(Function() DirectCast(VisualStudio.ShowDocument(Of FormExcelPad), IDataTableViewer))
         SpectralViewerModule.HookViewer(AddressOf PageMzkitTools.ShowSpectral)
         SpectralViewerModule.HookAnalysis(AddressOf Module2.showMasssdiff)
         SpectralViewerModule.HookClusterLoader(AddressOf MSdata.ShowCluster)
@@ -213,7 +213,9 @@ Module Globals
 
         LCMSViewerModule.convert = AddressOf convertMzPack
 
-
+        For Each plot As SummaryPlot In PlotApps
+            Call SummaryPlot.Register(plot)
+        Next
     End Sub
 
     Private Function convertMzPack(file As String) As Object

@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ApplicationServices
+﻿Imports Galaxy.ExcelPad
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Linq
