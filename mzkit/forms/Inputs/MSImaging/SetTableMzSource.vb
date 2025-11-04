@@ -1,4 +1,5 @@
-﻿Imports SMRUCC.Rsharp.Runtime.Vectorization
+﻿Imports Galaxy.Data
+Imports SMRUCC.Rsharp.Runtime.Vectorization
 
 Public Class SetTableMzSource
 

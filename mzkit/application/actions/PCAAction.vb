@@ -55,16 +55,20 @@ Public Class PCAAction : Inherits ActionBase
         Call New InputPCADialog() _
             .SetMaxComponent(9) _
             .Input(Sub(cfg)
-                       Dim config As InputPCADialog = DirectCast(cfg, InputPCADialog)
-                       Dim score As String = $"{matrixfile.ParentPath}/pca/pca_score.csv"
-
-                       Call RscriptProgressTask.RunComponentTask(matrixfile, "no_groups.csv", config.ncomp, config.showSampleLable, GetType(PCA))
-
-                       If score.FileExists Then
-                           Call WindowModules.ShowTable(DataFrameResolver.Load(score), "PCA Result")
-                       Else
-                           Call Workbench.Warning("Run PCA analysis error...")
-                       End If
+                       Call ConfigPCA(cfg, matrixfile)
                    End Sub)
+    End Sub
+
+    Private Sub ConfigPCA(cfg As InputPCADialog, matrixfile As String)
+        Dim config As InputPCADialog = DirectCast(cfg, InputPCADialog)
+        Dim score As String = $"{matrixfile.ParentPath}/pca/pca_score.csv"
+
+        Call RscriptProgressTask.RunComponentTask(matrixfile, "no_groups.csv", config.ncomp, config.showSampleLable, GetType(PCA))
+
+        If score.FileExists Then
+            Call Galaxy.ExcelPad.ShowTable(DataFrameResolver.Load(score), "PCA Result")
+        Else
+            Call Workbench.Warning("Run PCA analysis error...")
+        End If
     End Sub
 End Class

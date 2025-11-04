@@ -90,7 +90,7 @@ Public Class SelectSheetName
             Sub()
                 Call MyApplication.host.Invoke(
                     Sub()
-                        Call WindowModules.ShowTable(DataFrameResolver.CreateObject(table), title)
+                        Call Galaxy.ExcelPad.ShowTable(DataFrameResolver.CreateObject(table), title)
                     End Sub)
             End Sub)
     End Sub
