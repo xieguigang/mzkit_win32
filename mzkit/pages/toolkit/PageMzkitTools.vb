@@ -104,7 +104,6 @@ Public Class PageMzkitTools
 
     Friend _matrix As DataMatrix
     Friend _ribbonExportDataContextMenuStrip As ExportData
-    Friend _chart As New ChartPad
 
     Public Sub Ribbon_Load(ribbon As Ribbon)
         _ribbonExportDataContextMenuStrip = New ExportData(ribbon, Global.Mzkit_win32.BasicMDIForm.RibbonLib.Controls.RibbonItems.cmdContextMap)
@@ -199,9 +198,6 @@ Public Class PageMzkitTools
 
         ' Call InitializeFileTree()
         Call Globals.sharedProgressUpdater("Attatch Command Events...")
-        Call Controls.Add(_chart)
-
-        _chart.Dock = DockStyle.Fill
 
         'AddHandler TreeView1.AfterSelect, AddressOf TreeView1_AfterSelect
         'AddHandler host.fileExplorer.Button1.Click, Sub(obj, evt) Call SearchByMz(host.fileExplorer.TextBox2.Text)

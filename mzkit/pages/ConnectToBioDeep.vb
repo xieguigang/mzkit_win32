@@ -236,9 +236,11 @@ Public Class ConnectToBioDeep
         End If
     End Function
 
-    Private Shared Sub showTable(table As FormExcelPad, result As ActivityEnrichment())
+    Private Shared Sub showTable(view As FormExcelPad, result As ActivityEnrichment())
+        Dim table As New ExcelTableViewer(view)
+
         table.ParseMsSet = AddressOf ParseMzSet1
-        table.LoadTable(
+        view.LoadTable(
             Sub(grid)
                 Call grid.Columns.Add("name", GetType(String))
                 Call grid.Columns.Add("description", GetType(String))
