@@ -1,7 +1,11 @@
 ﻿Imports System
 Imports System.Collections.Generic
 Imports System.Windows.Forms
-Imports GalaxyExcelPad
+Imports Galaxy.Workbench.CommonDialogs
+Imports Galaxy.ExcelPad
+Imports SMRUCC.Rsharp.Runtime.Internal.Object
+Imports BioNovoGene.mzkit_win32.My
+Imports Mzkit_win32.BasicMDIForm
 
 Public Class ExcelTableViewer
 
@@ -113,7 +117,7 @@ Public Class ExcelTableViewer
                     labels = frm.GetNames(AdvancedDataGridView1)
                 End Sub, config:=form)
         Else
-            Dim row = GetSelectedRow
+            Dim row = excel.GetSelectedRow
 
             If row.IsNullOrEmpty Then
                 Call Workbench.Warning("A row data must be selected!")
