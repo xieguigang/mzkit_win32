@@ -24,7 +24,7 @@ Public Class ExcelTableViewer
     Shared Sub New()
         AddHandler ribbonItems.ButtonResetTableFilter.ExecuteEvent,
             Sub()
-                Dim table = getCurrentTable()
+                Dim table = formexcelpad.getCurrentTable()
 
                 If Not table Is Nothing Then
                     Call table.resetFilter()
@@ -33,7 +33,7 @@ Public Class ExcelTableViewer
 
         AddHandler ribbonItems.ButtonColumnStats.ExecuteEvent,
             Sub()
-                Dim table = getCurrentTable()
+                Dim table = formexcelpad.getCurrentTable()
 
                 If Not table Is Nothing Then
                     Call table.columnVectorStat()
@@ -42,7 +42,7 @@ Public Class ExcelTableViewer
 
         AddHandler ribbonItems.ButtonSaveTableCDF.ExecuteEvent,
             Sub()
-                Dim table = getCurrentTable()
+                Dim table = formexcelpad.getCurrentTable()
 
                 If Not table Is Nothing Then
                     Call table.exportTableCDF()
