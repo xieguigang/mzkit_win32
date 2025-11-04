@@ -1,19 +1,53 @@
-﻿Imports System.Windows.Forms
+﻿Imports System
+Imports System.Collections.Generic
+Imports System.Windows.Forms
 
 Public Class ExcelTableViewer
 
     ReadOnly excel As formexcelpad
 
     Friend WithEvents MSImagingIonListToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SendToREnvironmentToolStripMenuItem As ToolStripMenuItem
 
     Sub New(excel As formexcelpad)
         Me.excel = excel
         Me.MSImagingIonListToolStripMenuItem = New ToolStripMenuItem
+        Me.SendToREnvironmentToolStripMenuItem = New ToolStripMenuItem
 
         AddHandler ribbonItems.ButtonColumnStats.ExecuteEvent,
     Sub()
         Call DoTableSampleStats()
     End Sub
+    End Sub
+
+    Private Sub SendToREnvironmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToREnvironmentToolStripMenuItem.Click
+        Dim form As New InputRSymbol
+        Dim fieldNames As New List(Of String)
+
+        For Each col As DataGridViewColumn In AdvancedDataGridView1.Columns
+            Call fieldNames.Add(col.Name)
+        Next
+
+        Call form.LoadFields(fieldNames)
+
+        Call InputDialog.Input(Of InputRSymbol)(
+            Sub(config)
+                Dim name As String = config.ComboBox1.Text.Trim
+                Dim fields As String() = config.GetNames.ToArray
+                Dim table As New dataframe With {
+                    .columns = New Dictionary(Of String, Array)
+                }
+
+                For Each fieldRef As String In fields
+                    Dim i As Integer = fieldNames.IndexOf(fieldRef)
+                    Dim array As Array = AdvancedDataGridView1.getFieldVector(i)
+
+                    Call table.add(fieldRef, array)
+                Next
+
+                Call MyApplication.REngine.Add(name, table)
+                Call VisualStudio.ShowRTerm()
+            End Sub, config:=form)
     End Sub
 
     ''' <summary>
