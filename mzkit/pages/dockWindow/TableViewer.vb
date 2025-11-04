@@ -1,4 +1,6 @@
-﻿Public Class ExcelTableViewer
+﻿Imports System.Windows.Forms
+
+Public Class ExcelTableViewer
 
     ReadOnly excel As formexcelpad
 
