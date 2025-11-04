@@ -797,6 +797,7 @@
     <Compile Include="MSdata\Module2.vb" />
     <Compile Include="MSdata\ggplotVisual.vb" />
     <Compile Include="pages\ConnectToBioDeep.vb" />
+    <Compile Include="pages\dockWindow\TableViewer.vb" />
     <Compile Include="pages\dockWindow\DemoItem.vb" />
     <Compile Include="pages\dockWindow\documents\frmMoleculeLibrary.Designer.vb">
       <DependentUpon>frmMoleculeLibrary.vb</DependentUpon>
@@ -972,12 +973,6 @@
       <DependentUpon>frmServicesManager.vb</DependentUpon>
     </Compile>
     <Compile Include="pages\dockWindow\systems\frmServicesManager.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="pages\dockWindow\systems\frmTableViewer.Designer.vb">
-      <DependentUpon>frmTableViewer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\systems\frmTableViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\LCMS\frmUntargettedViewer.Designer.vb">
@@ -1553,9 +1548,6 @@
     <EmbeddedResource Include="pages\dockWindow\systems\frmServicesManager.resx">
       <DependentUpon>frmServicesManager.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\systems\frmTableViewer.resx">
-      <DependentUpon>frmTableViewer.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\LCMS\frmUntargettedViewer.resx">
       <DependentUpon>frmUntargettedViewer.vb</DependentUpon>
     </EmbeddedResource>
@@ -1703,6 +1695,10 @@
     <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj">
       <Project>{87d65add-fe86-4239-af7e-a37410354a0c}</Project>
       <Name>GalaxyData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyExcelPad\GalaxyExcelPad.vbproj">
+      <Project>{6c622296-7926-4590-9444-4c556fdf1be5}</Project>
+      <Name>GalaxyExcelPad</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyForm\GalaxyForm.vbproj">
       <Project>{a984cd4b-b40d-4389-961f-c9136d13c50f}</Project>
