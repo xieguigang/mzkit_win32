@@ -9,6 +9,11 @@ Public Class ExcelTableViewer
     Sub New(excel As formexcelpad)
         Me.excel = excel
         Me.MSImagingIonListToolStripMenuItem = New ToolStripMenuItem
+
+        AddHandler ribbonItems.ButtonColumnStats.ExecuteEvent,
+    Sub()
+        Call DoTableSampleStats()
+    End Sub
     End Sub
 
     ''' <summary>

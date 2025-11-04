@@ -726,12 +726,6 @@
     <Compile Include="forms\Inputs\SelectSheetName.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\ShowColumnStat.Designer.vb">
-      <DependentUpon>ShowColumnStat.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\ShowColumnStat.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\Inputs\InputAction.Designer.vb">
       <DependentUpon>InputAction.vb</DependentUpon>
     </Compile>
@@ -1409,9 +1403,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\SelectSheetName.resx">
       <DependentUpon>SelectSheetName.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\ShowColumnStat.resx">
-      <DependentUpon>ShowColumnStat.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmTweaks\frmMsImagingTweaks.resx">
       <DependentUpon>frmMsImagingTweaks.vb</DependentUpon>
