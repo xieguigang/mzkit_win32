@@ -74,6 +74,7 @@ Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Data
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.DockDocument
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -590,7 +591,7 @@ Public Class PageMzSearch
         Call result.AddRange(anno)
 
         Dim title As String = If(SourceName.StringEmpty, "Peak List Annotation", $"[{SourceName}] Peak List Annotation")
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim table As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)(title:=title)
         Dim loader As Action(Of DataTable) = AddressOf New LoadAnnotationResultTableTask With {
             .result = result,
             .keggMeta = keggMeta

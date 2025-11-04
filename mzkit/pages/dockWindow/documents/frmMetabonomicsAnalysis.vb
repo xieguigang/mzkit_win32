@@ -13,6 +13,7 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.MS
 Imports BioNovoGene.BioDeep.MSFinder
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Galaxy.Data
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.Collection
@@ -735,16 +736,16 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Private Sub importsMetaboliteTable()
-        Dim tables = Workbench.AppHost.GetDocuments.Where(Function(doc) TypeOf doc Is frmTableViewer).ToArray
-        Dim names = tables.Select(Function(tab) DirectCast(tab, frmTableViewer).TabText).Indexing
+        Dim tables = Workbench.AppHost.GetDocuments.Where(Function(doc) TypeOf doc Is FormExcelPad).ToArray
+        Dim names = tables.Select(Function(tab) DirectCast(tab, FormExcelPad).TabText).Indexing
 
         Call SelectSheetName.SelectName(names.Objects,
              Sub(name)
                  Dim i As Integer = names.IndexOf(name)
 
                  If i > -1 Then
-                     Dim tab As frmTableViewer = tables(i)
-                     Dim df As DataFrameResolver = tab.AdvancedDataGridView1.GetDataFrame
+                     Dim tab As FormExcelPad = tables(i)
+                     Dim df As DataFrameResolver = tab.GetDataFrame
 
                      Call importsMetaboliteCommon(df)
                  End If
@@ -1075,7 +1076,7 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Private Sub OpenInTableEditorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableEditorToolStripMenuItem.Click
-        Call VisualStudio.ShowDocument(Of frmTableViewer)(, "View analysis result table").LoadTable(AddressOf loadResultTable)
+        Call VisualStudio.ShowDocument(Of FormExcelPad)(, "View analysis result table").LoadTable(AddressOf loadResultTable)
     End Sub
 
     Private Sub loadResultTable(tbl As DataTable)
