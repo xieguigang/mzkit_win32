@@ -469,7 +469,6 @@
     <Compile Include="application\summaryPlots\KEGGEnrichmentGraph.vb" />
     <Compile Include="application\summaryPlots\PCA3d.vb" />
     <Compile Include="application\summaryPlots\KEGGEnrichmentBarSummary.vb" />
-    <Compile Include="application\summaryPlots\SummaryPlot.vb" />
     <Compile Include="application\WindowModules.vb" />
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
@@ -726,34 +725,10 @@
     <Compile Include="forms\Inputs\SelectSheetName.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\ShowColumnStat.Designer.vb">
-      <DependentUpon>ShowColumnStat.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\ShowColumnStat.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\Inputs\InputAction.Designer.vb">
-      <DependentUpon>InputAction.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\InputAction.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\Inputs\InputDataVisual.Designer.vb">
-      <DependentUpon>InputDataVisual.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\InputDataVisual.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\Inputs\InputRSymbol.Designer.vb">
       <DependentUpon>InputRSymbol.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\Inputs\InputRSymbol.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\Inputs\InputNetworkLayout.Designer.vb">
-      <DependentUpon>InputNetworkLayout.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\InputNetworkLayout.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\LCMS\InputXICTarget.Designer.vb">
@@ -797,6 +772,7 @@
     <Compile Include="MSdata\Module2.vb" />
     <Compile Include="MSdata\ggplotVisual.vb" />
     <Compile Include="pages\ConnectToBioDeep.vb" />
+    <Compile Include="pages\dockWindow\TableViewer.vb" />
     <Compile Include="pages\dockWindow\DemoItem.vb" />
     <Compile Include="pages\dockWindow\documents\frmMoleculeLibrary.Designer.vb">
       <DependentUpon>frmMoleculeLibrary.vb</DependentUpon>
@@ -943,12 +919,6 @@
     <Compile Include="pages\dockWindow\documents\frmSMILESViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmNetworkViewer.Designer.vb">
-      <DependentUpon>frmNetworkViewer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\documents\frmNetworkViewer.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="pages\dockWindow\documents\Comprehensive\frmGCxGCViewer.Designer.vb">
       <DependentUpon>frmGCxGCViewer.vb</DependentUpon>
     </Compile>
@@ -972,12 +942,6 @@
       <DependentUpon>frmServicesManager.vb</DependentUpon>
     </Compile>
     <Compile Include="pages\dockWindow\systems\frmServicesManager.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="pages\dockWindow\systems\frmTableViewer.Designer.vb">
-      <DependentUpon>frmTableViewer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\systems\frmTableViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\LCMS\frmUntargettedViewer.Designer.vb">
@@ -1114,7 +1078,6 @@
     <Compile Include="pages\dockWindow\explorer\frmFileExplorer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\IDataTraceback.vb" />
     <Compile Include="pages\toolkit\PlotTooltip.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -1168,7 +1131,6 @@
     <Compile Include="application\settings\UISettings.vb" />
     <Compile Include="application\settings\PrecursorSearchSettings.vb" />
     <Compile Include="application\settings\Settings.vb" />
-    <Compile Include="DataControlHandler.vb" />
     <Compile Include="pages\toolkit\PageMzkitTools.Designer.vb">
       <DependentUpon>PageMzkitTools.vb</DependentUpon>
     </Compile>
@@ -1284,9 +1246,6 @@
     <EmbeddedResource Include="forms\Inputs\Input3DScatter.zh-Hans.resx">
       <DependentUpon>Input3DScatter.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputAction.zh-Hans.resx">
-      <DependentUpon>InputAction.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputURL.resx">
       <DependentUpon>InputURL.vb</DependentUpon>
     </EmbeddedResource>
@@ -1353,15 +1312,6 @@
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputIonRGB.resx">
       <DependentUpon>InputIonRGB.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputAction.resx">
-      <DependentUpon>InputAction.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputDataVisual.resx">
-      <DependentUpon>InputDataVisual.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputDataVisual.zh-CN.resx">
-      <DependentUpon>InputDataVisual.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\LCMS\InputFeatureFilter.resx">
       <DependentUpon>InputFeatureFilter.vb</DependentUpon>
     </EmbeddedResource>
@@ -1379,12 +1329,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.resx">
       <DependentUpon>InputMSIPeakTableParameters.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputNetworkLayout.resx">
-      <DependentUpon>InputNetworkLayout.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputNetworkLayout.zh-CN.resx">
-      <DependentUpon>InputNetworkLayout.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputPeakTime.resx">
       <DependentUpon>InputPeakTime.vb</DependentUpon>
@@ -1415,9 +1359,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\SelectSheetName.resx">
       <DependentUpon>SelectSheetName.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\ShowColumnStat.resx">
-      <DependentUpon>ShowColumnStat.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmTweaks\frmMsImagingTweaks.resx">
       <DependentUpon>frmMsImagingTweaks.vb</DependentUpon>
@@ -1520,9 +1461,6 @@
     <EmbeddedResource Include="pages\dockWindow\documents\Comprehensive\frmMsImagingViewer.zh-Hant.resx">
       <DependentUpon>frmMsImagingViewer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmNetworkViewer.resx">
-      <DependentUpon>frmNetworkViewer.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmOpenseadragonViewer.resx">
       <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
     </EmbeddedResource>
@@ -1552,9 +1490,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\systems\frmServicesManager.resx">
       <DependentUpon>frmServicesManager.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\systems\frmTableViewer.resx">
-      <DependentUpon>frmTableViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\LCMS\frmUntargettedViewer.resx">
       <DependentUpon>frmUntargettedViewer.vb</DependentUpon>
@@ -1703,6 +1638,10 @@
     <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj">
       <Project>{87d65add-fe86-4239-af7e-a37410354a0c}</Project>
       <Name>GalaxyData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyExcelPad\GalaxyExcelPad.vbproj">
+      <Project>{6c622296-7926-4590-9444-4c556fdf1be5}</Project>
+      <Name>GalaxyExcelPad</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyForm\GalaxyForm.vbproj">
       <Project>{a984cd4b-b40d-4389-961f-c9136d13c50f}</Project>

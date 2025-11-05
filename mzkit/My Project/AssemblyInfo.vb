@@ -10,10 +10,10 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("BioNovoGene Mass Spectrum Toolkit")>
 <Assembly: AssemblyDescription("BioNovoGene Mass Spectrum Toolkit")>
-<Assembly: AssemblyCompany("BioNovoGene")>
+<Assembly: AssemblyCompany("PANOMIX")>
 <Assembly: AssemblyProduct("BioDeep")>
-<Assembly: AssemblyCopyright("Copyright © gg.xie@bionovogene.com 2020")>
-<Assembly: AssemblyTrademark("Mzkit")>
+<Assembly: AssemblyCopyright("Copyright © gg.xie@bionovogene.com 2026")>
+<Assembly: AssemblyTrademark("MZKit")>
 
 <Assembly: ComVisible(False)>
 

@@ -65,6 +65,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.BioDeep.Chemistry
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -314,12 +315,12 @@ Public Class PageSpectrumSearch
             Call MyApplication.host.mzkitTool.ShowPage()
         End If
 
-        host.mzkitTool.CustomTabControl1.SelectedTab = host.mzkitTool.TabPage5
+        host.mzkitTool.ShowRPlotTab()
         host.ShowPage(host.mzkitTool)
     End Sub
 
     Private Sub OpenInTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableViewerToolStripMenuItem.Click
-        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Spectrum Search Result")
+        Dim table = VisualStudio.ShowDocument(Of FormExcelPad)(title:="Spectrum Search Result")
 
         table.LoadTable(Sub(grid)
                             grid.Columns.Add("ID", GetType(String))

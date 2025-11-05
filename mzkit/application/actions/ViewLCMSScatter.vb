@@ -1,4 +1,5 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
+Imports Galaxy.Data
 Imports Galaxy.Workbench.Actions
 Imports Galaxy.Workbench.CommonDialogs
 Imports SMRUCC.Rsharp.Runtime.Vectorization

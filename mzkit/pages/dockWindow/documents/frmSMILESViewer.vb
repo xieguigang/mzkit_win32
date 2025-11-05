@@ -68,6 +68,7 @@ Imports Microsoft.Web.WebView2.Core
 Imports Microsoft.Web.WebView2.WinForms
 Imports Mzkit_win32.BasicMDIForm
 Imports Microsoft.VisualStudio.WinForms.Docking
+Imports Galaxy.ExcelPad
 
 Public Class frmSMILESViewer
 
@@ -259,7 +260,7 @@ Public Class frmSMILESViewer
     End Sub
 
     Private Sub SendToTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToTableViewerToolStripMenuItem.Click
-        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(, title:="SMILES data")
+        Dim table = VisualStudio.ShowDocument(Of FormExcelPad)(, title:="SMILES data")
 
         ' Call tableRows.Add({atom.label, atom.elementName, atom.group, atom.charge, atom.Keys, connects})
         Call table.LoadTable(

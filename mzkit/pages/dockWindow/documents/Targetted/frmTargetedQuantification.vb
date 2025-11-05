@@ -85,6 +85,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Data
 Imports Galaxy.Data.UIInteractive
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Zip
@@ -1960,7 +1961,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Private Sub OpenInTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableViewerToolStripMenuItem.Click
-        Dim tbl = VisualStudio.ShowDocument(Of frmTableViewer)(title:=sampleTableName)
+        Dim tbl = VisualStudio.ShowDocument(Of FormExcelPad)(title:=sampleTableName)
         Dim names As New List(Of String)
 
         For Each col As DataGridViewColumn In DataGridView3.Columns
@@ -2084,7 +2085,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         Me.sampleNames = rawNames
 
-        Dim tbl = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Linear ISTD Evaluations")
+        Dim tbl = VisualStudio.ShowDocument(Of FormExcelPad)(title:="Linear ISTD Evaluations")
         Dim names As String() = reportTable _
             .Select(Function(a) a.samples.Keys) _
             .IteratesALL _
@@ -2194,7 +2195,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     Private Sub SendToTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToTableViewerToolStripMenuItem.Click
         Dim tbl_data As ReferencePoint() = standardCurve.points
-        Dim tbl = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"[{standardCurve.name}]Linear Reference Points")
+        Dim tbl = VisualStudio.ShowDocument(Of FormExcelPad)(title:=$"[{standardCurve.name}]Linear Reference Points")
 
         Call tbl.LoadTable(
             Sub(grid)

@@ -78,6 +78,7 @@ Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Data
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -133,7 +134,7 @@ Public Class PageMzkitTools
             MessageBox.Show("Sorry, can not view file data, the cache file is missing...", "Cache Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         ElseIf directSnapshot Then
-            PictureBox1.BackgroundImage = raw.GetSnapshot
+            ChartPad1.BackgroundImage = raw.GetSnapshot
             Return
         End If
 
@@ -165,13 +166,13 @@ Public Class PageMzkitTools
             Call ProgressSpinner.DoLoading(Sub() Me.Invoke(Sub() _matrix = New Ms1ScatterMatrix(matrixName, raw.GetLoadedMzpack())))
         End If
 
-        Call _matrix.LoadMatrix(DataGridView1, BindingSource1)
+        Call _matrix.LoadMatrix(ChartPad1.Table, ChartPad1.DataSource)
 
         Call MyApplication.RegisterPlot(
             plot:=Sub(args)
                       Call ProgressSpinner.DoLoading(
                     Sub()
-                        Me.Invoke(Sub() PictureBox1.BackgroundImage = _matrix.Plot(args, PictureBox1.Size).AsGDIImage)
+                        Me.Invoke(Sub() ChartPad1.BackgroundImage = _matrix.Plot(args, ChartPad1.CanvasSize).AsGDIImage)
                     End Sub)
                   End Sub,
             colorSet:=colorSet,
@@ -186,8 +187,8 @@ Public Class PageMzkitTools
     End Sub
 
     Public Sub ShowPlotImage(Rplot As Image, layout As ImageLayout)
-        PictureBox1.BackgroundImage = Rplot
-        PictureBox1.BackgroundImageLayout = layout
+        ChartPad1.BackgroundImage = Rplot
+        ChartPad1.BackgroundImageLayout = layout
 
         MyApplication.host.ShowPage(Me)
     End Sub
@@ -355,7 +356,11 @@ Public Class PageMzkitTools
                   ' draw the annotation text?
                   Dim anno = ribbonItems.CheckBoxShowMs2Fragment.BooleanValue
 
-                  PictureBox1.BackgroundImage = _matrix.SetName(args.title).SetAnnotation(anno).Plot(args, PictureBox1.Size).AsGDIImage
+                  ChartPad1.BackgroundImage = _matrix _
+                      .SetName(args.title) _
+                      .SetAnnotation(anno) _
+                      .Plot(args, ChartPad1.CanvasSize) _
+                      .AsGDIImage
               End Sub,
           width:=2100,
           height:=1200,
@@ -367,18 +372,18 @@ Public Class PageMzkitTools
       )
 
         If focusOn Then
-            Call ShowTabPage(TabPage5)
+            Call ShowRPlotTab()
         End If
     End Sub
 
     Friend Sub ShowMatrix(PDA As PDAPoint(), name As String)
         _matrix = New PDAMatrix(name, PDA)
-        _matrix.LoadMatrix(DataGridView1, BindingSource1)
+        _matrix.LoadMatrix(ChartPad1.Table, ChartPad1.DataSource)
     End Sub
 
     Friend Sub ShowMatrix(UVscan As UVScanPoint(), name As String)
         _matrix = New UVScanMatrix(name, UVscan)
-        _matrix.LoadMatrix(DataGridView1, BindingSource1)
+        _matrix.LoadMatrix(ChartPad1.Table, ChartPad1.DataSource)
     End Sub
 
     Friend Sub showUVscans(scans As IEnumerable(Of GeneralSignal), title$, xlable$)
@@ -386,7 +391,7 @@ Public Class PageMzkitTools
 
         Call MyApplication.RegisterPlot(
             Sub(args)
-                PictureBox1.BackgroundImage = UVsignalPlot.Plot(
+                ChartPad1.BackgroundImage = UVsignalPlot.Plot(
                     signals:=scanCollection,
                     legendTitle:=Function(scan) If(scanCollection.Length = 1, $"UV scans", scan("title")),
                     size:=$"{args.width},{args.height}",
@@ -407,7 +412,7 @@ Public Class PageMzkitTools
                      ylab:="intensity",
                      gridFill:="white")
 
-        ShowTabPage(TabPage5)
+        Call ShowRPlotTab()
     End Sub
 
     Public Sub showAlignment(result As AlignmentOutput, Optional showScore As Boolean = False)
@@ -433,7 +438,7 @@ Public Class PageMzkitTools
         Call showMatrix(result.alignments, alignName)
         Call MyApplication.RegisterPlot(
             Sub(args)
-                PictureBox1.BackgroundImage = MassSpectra.AlignMirrorPlot(
+                ChartPad1.BackgroundImage = MassSpectra.AlignMirrorPlot(
                     query:=query,
                     ref:=ref,
                     size:=$"{args.width},{args.height}",
@@ -452,7 +457,7 @@ Public Class PageMzkitTools
         )
 
         Call VisualStudio.ShowProperties(prop)
-        Call ShowTabPage(TabPage5)
+        Call ShowRPlotTab()
     End Sub
 
     Private Sub HookSpectrumAlignment(align As Object, query As String, ref As String)
@@ -475,7 +480,7 @@ Public Class PageMzkitTools
         Call showMatrix(matrix, alignName)
         Call MyApplication.RegisterPlot(
             Sub(args)
-                PictureBox1.BackgroundImage = _matrix.Plot(args, PictureBox1.Size).AsGDIImage
+                ChartPad1.BackgroundImage = _matrix.Plot(args, ChartPad1.CanvasSize).AsGDIImage
             End Sub,
             width:=1200,
             height:=800,
@@ -484,7 +489,7 @@ Public Class PageMzkitTools
             xlab:="M/Z ratio",
             ylab:="Relative Intensity(%)"
         )
-        Call ShowTabPage(TabPage5)
+        Call ShowRPlotTab()
     End Sub
 
     Private Function rawTIC(raw As MZWork.Raw, isBPC As Boolean) As NamedCollection(Of ChromatogramTick)
@@ -538,11 +543,11 @@ Public Class PageMzkitTools
             .ToArray
 
         _matrix = New ChromatogramOverlapMatrix("TIC/BPC chromatogram overlaps", signals, d3)
-        _matrix.LoadMatrix(DataGridView1, BindingSource1)
+        _matrix.LoadMatrix(ChartPad1.Table, ChartPad1.DataSource)
 
         MyApplication.RegisterPlot(
             plot:=Sub(args As PlotProperty)
-                      PictureBox1.BackgroundImage = _matrix.Plot(args, PictureBox1.Size).AsGDIImage
+                      ChartPad1.BackgroundImage = _matrix.Plot(args, ChartPad1.CanvasSize).AsGDIImage
                   End Sub,
             width:=1600,
             height:=1200,
@@ -566,7 +571,7 @@ Public Class PageMzkitTools
         Dim ylab As String = "Intensity"
 
         _matrix = New ChromatogramMatrix(name, ticks)
-        _matrix.LoadMatrix(DataGridView1, BindingSource1)
+        _matrix.LoadMatrix(ChartPad1.Table, ChartPad1.DataSource)
 
         If Not maxrt Is Nothing Then
             Call DirectCast(_matrix, ChromatogramMatrix).SetAbsoluteTimeAxis(maxrt)
@@ -577,7 +582,7 @@ Public Class PageMzkitTools
 
         MyApplication.RegisterPlot(
             plot:=Sub(args)
-                      PictureBox1.BackgroundImage = _matrix.Plot(args, PictureBox1.Size).AsGDIImage
+                      ChartPad1.BackgroundImage = _matrix.Plot(args, ChartPad1.CanvasSize).AsGDIImage
                   End Sub,
             width:=1600,
             height:=1200,
@@ -601,12 +606,12 @@ Public Class PageMzkitTools
     End Sub
 
     Public Sub SaveImageToolStripMenuItem_Click()
-        If Not PictureBox1.BackgroundImage Is Nothing Then
+        If Not ChartPad1.BackgroundImage Is Nothing Then
             Dim preFileName As String = _matrix.name.NormalizePathString(alphabetOnly:=False)
 
             Using file As New SaveFileDialog With {.Filter = "image(*.png)|*.png", .FileName = preFileName & ".png"}
                 If file.ShowDialog = DialogResult.OK Then
-                    Call PictureBox1.BackgroundImage.SaveAs(file.FileName)
+                    Call ChartPad1.BackgroundImage.SaveAs(file.FileName)
                     Call Process.Start(file.FileName)
                 End If
             End Using
@@ -616,7 +621,7 @@ Public Class PageMzkitTools
     End Sub
 
     Public Sub ExportExactMassSearchTable()
-        Call DataGridView1.SaveDataGrid($"Exact mass search result table export to [%s] successfully!")
+        Call ChartPad1.Table.SaveDataGrid($"Exact mass search result table export to [%s] successfully!")
     End Sub
 
     Public Sub SaveMatrixToolStripMenuItem_Click()
@@ -659,9 +664,9 @@ Public Class PageMzkitTools
         End If
     End Sub
 
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
         If e.ColumnIndex = Scan0 AndAlso e.RowIndex >= 0 Then
-            Dim scanId As String = DataGridView1.Rows(e.RowIndex).Cells(0).Value?.ToString
+            Dim scanId As String = ChartPad1.Table.Rows(e.RowIndex).Cells(0).Value?.ToString
 
             If Not scanId.StringEmpty Then
                 ' Call showSpectrum(scanId, TreeView1.CurrentRawFile.raw)
@@ -726,7 +731,7 @@ Public Class PageMzkitTools
 
     Sub ShowExpressionMatrix(expr As Dictionary(Of String, Double()), n As Integer, name As String)
         _matrix = New ExpressionMatrix(name, n, expr)
-        _matrix.LoadMatrix(DataGridView1, BindingSource1)
+        _matrix.LoadMatrix(ChartPad1.Table, ChartPad1.DataSource)
     End Sub
 
     ''' <summary>
@@ -741,7 +746,7 @@ Public Class PageMzkitTools
             _matrix = New SpectralMatrix(name, matrix, Nothing, "n/a")
         End If
 
-        _matrix.LoadMatrix(DataGridView1, BindingSource1)
+        _matrix.LoadMatrix(ChartPad1.Table, ChartPad1.DataSource)
     End Sub
 
     ''' <summary>
@@ -751,12 +756,12 @@ Public Class PageMzkitTools
     ''' <param name="name"></param>
     Sub showMatrix(matrix As SSM2MatrixFragment(), name As String)
         _matrix = New MSAlignmentMatrix(name, matrix)
-        _matrix.LoadMatrix(DataGridView1, BindingSource1)
+        _matrix.LoadMatrix(ChartPad1.Table, ChartPad1.DataSource)
     End Sub
 
     Public Sub showMatrix(matrix As ChromatogramTick(), name As String)
         _matrix = New ChromatogramMatrix(name, matrix)
-        _matrix.LoadMatrix(DataGridView1, BindingSource1)
+        _matrix.LoadMatrix(ChartPad1.Table, ChartPad1.DataSource)
     End Sub
 
     Public Sub ShowXIC(ppm As Double,
@@ -842,47 +847,46 @@ Public Class PageMzkitTools
         '  MyApplication.host.fileExplorer.ClearToolStripMenuItem.Text = "Clear"
     End Sub
 
-    Private Sub PictureBox1_DoubleClick(sender As Object, e As EventArgs) Handles PictureBox1.DoubleClick
-        If Not PictureBox1.BackgroundImage Is Nothing Then
+    Private Sub PictureBox1_DoubleClick(sender As Object, e As EventArgs)
+        If Not ChartPad1.BackgroundImage Is Nothing Then
             Dim temp As String = TempFileSystem.GetAppSysTempFile(".png", App.PID, "imagePlot_")
 
-            Call PictureBox1.BackgroundImage.SaveAs(temp)
+            Call ChartPad1.BackgroundImage.SaveAs(temp)
             Call Process.Start(temp)
         End If
     End Sub
 
-    Private Sub PictureBox1_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseClick
+    Private Sub PictureBox1_MouseClick(sender As Object, e As MouseEventArgs)
         If e.Button = MouseButtons.Right Then
-            Dim p As Point = PictureBox1.PointToScreen(e.Location)
+            Dim p As Point = ChartPad1.PointToScreen(e.Location)
             MyApplication.host.Ribbon1.ShowContextPopup(CUInt(Global.Mzkit_win32.BasicMDIForm.RibbonLib.Controls.RibbonItems.cmdContextMap), p.X, p.Y)
         End If
     End Sub
 
-    Private Sub CustomTabControl1_TabClosing(sender As Object, e As TabControlCancelEventArgs) Handles CustomTabControl1.TabClosing
-        e.Cancel = True
+    'Private Sub CustomTabControl1_TabClosing(sender As Object, e As TabControlCancelEventArgs)
+    '    e.Cancel = True
 
-        If CustomTabControl1.Controls.Count = 1 Then
-            If e.TabPage Is TabPage5 Then
+    '    If CustomTabControl1.Controls.Count = 1 Then
+    '        If e.TabPage Is TabPage5 Then
 
-            Else
-                CustomTabControl1.Controls.Clear()
-                ShowTabPage(TabPage5)
-            End If
-        Else
-            CustomTabControl1.Controls.Remove(e.TabPage)
-            e.TabPage.Hide()
-        End If
+    '        Else
+    '            CustomTabControl1.Controls.Clear()
+    '            ShowTabPage(TabPage5)
+    '        End If
+    '    Else
+    '        CustomTabControl1.Controls.Remove(e.TabPage)
+    '        e.TabPage.Hide()
+    '    End If
+    'End Sub
+
+    Public Sub ShowRPlotTab()
+        ChartPad1.ShowRPlot()
+        WindowModules.panelMain.Show(MyApplication.host.m_dockPanel)
     End Sub
 
-    Public Sub ShowTabPage(tabpage As TabPage)
-        If Not CustomTabControl1.Controls.Contains(tabpage) Then
-            CustomTabControl1.Controls.Add(tabpage)
-        End If
-
+    Public Sub ShowMatrixTab()
+        ChartPad1.ShowMatrix()
         WindowModules.panelMain.Show(MyApplication.host.m_dockPanel)
-
-        CustomTabControl1.SelectedTab = tabpage
-        tabpage.Visible = True
     End Sub
 
     Public Sub ShowPlotTweaks()
@@ -898,11 +902,11 @@ Public Class PageMzkitTools
     End Sub
 
     Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
-        Call DataGridView1.SaveDataGrid("Export Matrix")
+        Call ChartPad1.Table.SaveDataGrid("Export Matrix")
     End Sub
 
     Private Sub OpenInTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableViewerToolStripMenuItem.Click
-        Call DataGridView1.OpenInTableViewer
+        Call ChartPad1.Table.OpenInTableViewer
     End Sub
 
     ''' <summary>
@@ -911,7 +915,7 @@ Public Class PageMzkitTools
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub CopyValueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyValueToolStripMenuItem.Click
-        Dim cells = DataGridView1.SelectedCells.ToArray(Of DataGridViewCell)
+        Dim cells = ChartPad1.Table.SelectedCells.ToArray(Of DataGridViewCell)
 
         If cells.Length > 0 Then
             Dim firstCell = cells(Scan0)

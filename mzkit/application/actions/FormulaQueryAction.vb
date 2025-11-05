@@ -2,6 +2,7 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench.Actions
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.Linq
@@ -26,7 +27,7 @@ Public Class FormulaQueryAction : Inherits ActionBase
             Dim adducts As MzCalculator() = getFormula.GetAdducts
             Dim mz As Double() = data.AsObjectEnumerator.Select(Function(o) Val(o)).ToArray
             Dim headers As New Dictionary(Of String, Type)
-            Dim tblView = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"Formula Query[{formula}]")
+            Dim tblView = VisualStudio.ShowDocument(Of FormExcelPad)(title:=$"Formula Query[{formula}]")
             Dim rows As New List(Of (DataRow, MzCalculator, ppm As Double, mztarget As Double))
 
             headers.Add("mz_theoretical", GetType(Double))

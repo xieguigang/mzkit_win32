@@ -82,6 +82,7 @@ Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.Actions
 Imports Galaxy.Workbench.DockDocument
@@ -152,6 +153,16 @@ Module Globals
         End Get
     End Property
 
+    Public ReadOnly Iterator Property PlotApps As IEnumerable(Of SummaryPlot)
+        Get
+            Yield New KEGGEnrichmentBarSummary
+            Yield New KEGGEnrichmentBarSummary2
+            Yield New PCA3d
+            Yield New KEGGEnrichmentGraph
+            Yield New LCMSScatterPlot
+        End Get
+    End Property
+
     Sub New()
         Call ImageDriver.Register()
 
@@ -192,7 +203,7 @@ Module Globals
         Pages.SetDocument(NameOf(QuantificationLinearPage), GetType(frmTargetedQuantification))
         Pages.SetDocument(NameOf(MRMLibraryPage), GetType(frmMRMLibrary))
 
-        DataTableViewer.HookTableViewer(Function() DirectCast(VisualStudio.ShowDocument(Of frmTableViewer), IDataTableViewer))
+        DataTableViewer.HookTableViewer(Function() DirectCast(VisualStudio.ShowDocument(Of FormExcelPad), IDataTableViewer))
         SpectralViewerModule.HookViewer(AddressOf PageMzkitTools.ShowSpectral)
         SpectralViewerModule.HookAnalysis(AddressOf Module2.showMasssdiff)
         SpectralViewerModule.HookClusterLoader(AddressOf MSdata.ShowCluster)
@@ -201,6 +212,10 @@ Module Globals
         BaseHook.HookShowProperties(AddressOf VisualStudio.ShowProperties)
 
         LCMSViewerModule.convert = AddressOf convertMzPack
+
+        For Each plot As SummaryPlot In PlotApps
+            Call SummaryPlot.Register(plot)
+        Next
     End Sub
 
     Private Function convertMzPack(file As String) As Object

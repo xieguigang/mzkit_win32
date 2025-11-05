@@ -88,6 +88,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
 Imports HEView
@@ -797,7 +798,7 @@ Public Class frmMsImagingViewer
         End If
 
         Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{FilePath.FileName}]Ion Stats")
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(DockState.Hidden, title:=title)
+        Dim table As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)(DockState.Hidden, title:=title)
 
         table.AppSource = GetType(IonStat)
         table.InstanceGuid = guid
@@ -1519,16 +1520,16 @@ Public Class frmMsImagingViewer
         ' check annotation data and ion data
         Dim docs = MyApplication.host.m_dockPanel _
             .Documents _
-            .Where(Function(tab) TypeOf tab Is frmTableViewer) _
-            .Select(Function(f) DirectCast(f, frmTableViewer)) _
+            .Where(Function(tab) TypeOf tab Is FormExcelPad) _
+            .Select(Function(f) DirectCast(f, FormExcelPad)) _
             .ToArray
-        Dim ionStat As frmTableViewer = docs _
+        Dim ionStat As FormExcelPad = docs _
             .Where(Function(t)
                        Return t.AppSource Is GetType(IonStat) AndAlso
                               t.InstanceGuid = guid
                    End Function) _
             .FirstOrDefault
-        Dim annotation As frmTableViewer = docs _
+        Dim annotation As FormExcelPad = docs _
             .Where(Function(t)
                        Return t.AppSource Is GetType(PageMzSearch) AndAlso
                               t.InstanceGuid = guid
@@ -1566,19 +1567,19 @@ Public Class frmMsImagingViewer
                             MessageBoxIcon.Warning)
 
             ' no name and precursor type
-            mz = ionStat.AdvancedDataGridView1.getFieldVector("mz")
-            pixels = ionStat.AdvancedDataGridView1.getFieldVector("pixels")
-            density = ionStat.AdvancedDataGridView1.getFieldVector("density")
+            mz = ionStat.GetFieldVector("mz")
+            pixels = ionStat.GetFieldVector("pixels")
+            density = ionStat.GetFieldVector("density")
             name = New String(mz.Length - 1) {}
             precursor_type = New String(mz.Length - 1) {}
         Else
-            mz = annotation.AdvancedDataGridView1.getFieldVector("mz")
-            name = annotation.AdvancedDataGridView1.getFieldVector("name")
-            precursor_type = annotation.AdvancedDataGridView1.getFieldVector("precursorType")
+            mz = annotation.GetFieldVector("mz")
+            name = annotation.GetFieldVector("name")
+            precursor_type = annotation.GetFieldVector("precursorType")
 
-            Dim mzRaw As Double() = ionStat.AdvancedDataGridView1.getFieldVector("mz")
-            Dim pixelsRaw As Integer() = ionStat.AdvancedDataGridView1.getFieldVector("pixels")
-            Dim density2 As Double() = ionStat.AdvancedDataGridView1.getFieldVector("density")
+            Dim mzRaw As Double() = ionStat.GetFieldVector("mz")
+            Dim pixelsRaw As Integer() = ionStat.GetFieldVector("pixels")
+            Dim density2 As Double() = ionStat.GetFieldVector("density")
             Dim mzRawIndex As New Dictionary(Of String, Integer)
 
             For i As Integer = 0 To mzRaw.Length - 1
@@ -1660,7 +1661,7 @@ Public Class frmMsImagingViewer
 
     Private Sub ShowIonColocalization(ions As EntityClusterModel())
         Dim title As String = If(FilePath.StringEmpty, "Ion Co-localization", $"[{FilePath.FileName}]Ion Co-localization")
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim table As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)(title:=title)
         Dim blockNames As String() = ions(Scan0).Properties.Keys.ToArray
 
         table.AppSource = GetType(EntityClusterModel)
@@ -1727,7 +1728,7 @@ Public Class frmMsImagingViewer
     ''' <param name="types"></param>
     Private Sub ShowIonStatsTable(ions As IonStat(), name As String, formula As String, types As MzCalculator())
         Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{If(name, FilePath.FileName)}]Ion Stats")
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim table As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)(title:=title)
         Dim exactMass As Double
 
         table.AppSource = GetType(IonStat)

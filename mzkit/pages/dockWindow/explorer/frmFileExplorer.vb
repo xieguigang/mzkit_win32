@@ -74,6 +74,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ApplicationServices
@@ -662,7 +663,7 @@ Public Class frmFileExplorer
     End Sub
 
     Private Sub ShowSummaryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowSummaryToolStripMenuItem.Click
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
+        Dim table As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)
 
         table.ViewRow =
             Sub(row)
@@ -823,7 +824,7 @@ Public Class frmFileExplorer
 
     Private Sub runBatch(cli As String, title As String, temptable As String, taskUI As TaskUI, n As i32)
         Dim data As xcms2() = temptable.LoadCsv(Of xcms2)
-        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim table = VisualStudio.ShowDocument(Of FormExcelPad)(title:=title)
         Dim sampleNames As String() = data.PropertyNames
 
         Call table.LoadTable(
@@ -886,7 +887,7 @@ Public Class frmFileExplorer
             title:="Run Ms1 Deconvolution",
             info:="deconvolution..")
 
-        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim table = VisualStudio.ShowDocument(Of FormExcelPad)(title:=title)
 
         table.ViewRow = Sub(row)
                             Dim mz As Double = row("mz")

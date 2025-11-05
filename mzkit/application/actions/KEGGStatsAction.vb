@@ -1,4 +1,5 @@
-﻿Imports Galaxy.Workbench.Actions
+﻿Imports Galaxy.ExcelPad
+Imports Galaxy.Workbench.Actions
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Linq
@@ -30,7 +31,7 @@ Public Class KEGGStatsAction : Inherits ActionBase
             stats = StatPathways(keggId)
         End If
 
-        Dim tbl = VisualStudio.ShowDocument(Of frmTableViewer)(title:="KEGG Stats Result")
+        Dim tbl = VisualStudio.ShowDocument(Of FormExcelPad)(title:="KEGG Stats Result")
         Dim names As String() = stats.PropertyNames
 
         tbl.LoadTable(

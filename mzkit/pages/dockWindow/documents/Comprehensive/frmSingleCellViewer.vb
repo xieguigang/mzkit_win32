@@ -6,6 +6,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualStudio.WinForms.Docking
@@ -49,7 +50,7 @@ Public Class frmSingleCellViewer
 
     Private Sub ViewEmbeddingTable()
         Dim embedding As UMAPPoint() = SingleCellScatter1.GetEmbedding.ToArray
-        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(DockState.Document, title:="Single Cells Embedding")
+        Dim table = VisualStudio.ShowDocument(Of FormExcelPad)(DockState.Document, title:="Single Cells Embedding")
 
         Call table.LoadTable(
             Sub(tbl)

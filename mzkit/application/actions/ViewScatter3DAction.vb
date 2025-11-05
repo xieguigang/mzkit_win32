@@ -1,4 +1,5 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Galaxy.Data
 Imports Galaxy.Workbench.Actions
 Imports Galaxy.Workbench.CommonDialogs
 Imports Mzkit_win32.BasicMDIForm
