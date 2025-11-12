@@ -56,8 +56,8 @@
 Imports System.ComponentModel
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Task
-Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmDemo
 

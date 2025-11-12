@@ -1,4 +1,4 @@
-﻿Imports WeifenLuo.WinFormsUI.Docking
+﻿Imports Microsoft.VisualStudio.WinForms.Docking
 
 Partial Public Class ImageDocumentWindow
     Inherits DockContent

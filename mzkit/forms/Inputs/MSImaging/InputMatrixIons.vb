@@ -1,11 +1,12 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports Galaxy.Data
+Imports Galaxy.Data.TableSheet
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
-Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports TaskStream
 Imports std = System.Math
 Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
@@ -38,8 +39,6 @@ Public Class InputMatrixIons
             Return ComboBox1.SelectedItem.ToString
         End Get
     End Property
-
-    Dim search As GridSearchHandler
 
     ''' <summary>
     ''' [name => mz, description = precursor_type]
@@ -89,7 +88,6 @@ Public Class InputMatrixIons
 
     Private Sub InputMatrixIons_Load(sender As Object, e As EventArgs) Handles Me.Load
         ToolStripStatusLabel1.Text = "Please select 9 ions to visual data..."
-        search = New GridSearchHandler(AdvancedDataGridView1)
         ComboBox1.Items.Clear()
 
         For Each color As ScalerPalette In Enums(Of ScalerPalette)()
@@ -98,7 +96,7 @@ Public Class InputMatrixIons
 
         ComboBox1.SelectedIndex = 12
 
-        AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
+        AddHandler AdvancedDataGridViewSearchToolBar1.Search, GridLoaderHandler.Search(AdvancedDataGridView1)
     End Sub
 
     Dim n As Integer = 1
@@ -293,7 +291,7 @@ Public Class InputMatrixIons
         Dim folder As New SetMSIPlotParameters With {.SetDir = True}
         Dim mzdiff As String = $"da:{txtMzdiff.Text}"
 
-        Call folder.SetFolder(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory))
+        Call folder.SetFolder(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)).SetBatchPlotMode(toggle:=False)
         Call InputDialog.Input(Sub(cfg) Call ExportIons(mzdiff, folder), config:=folder)
     End Sub
 

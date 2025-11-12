@@ -59,8 +59,10 @@ Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports System.Windows.Forms
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
@@ -73,12 +75,86 @@ Public NotInheritable Class RscriptProgressTask
     Private Sub New()
     End Sub
 
+    Public Shared Function PlotLigand2DPlot(pdb As String, ligand As NamedValue(Of Integer), save As String, args_json As String, dpi As Integer, size As String) As Boolean
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("PlotLigand2D.R")
+        Dim style As String = TempFileSystem.GetAppSysTempFile(".json", App.PID, prefix:="ligand_2dplot")
+        Dim cli As String = $"""{Rscript}"" --pdb {pdb.CLIPath} --out {save.CLIPath} --style {style.CLIPath} --ppi {dpi} --size ""{size}"" --ligand ""{ligand.Name}"" --num {ligand.Value} /@set tqdm=false;ansi_color=false --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call args_json.SaveTo(style)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+
+        Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         Call p.SetProgressMode()
+
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Run processing plot",
+                info:="make 2d ligand plot of the molecule docking result...")
+
+        Return save.FileExists
+    End Function
+
+    Public Shared Function ScanHEDziSingleCells(dzi As String, level As Integer, dir As String) As String
+        Dim out As String = dzi.ChangeSuffix("bson")
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("ScanHEDzi.R")
+        Dim cli As String = $"""{Rscript}"" --dzi ""{dzi}"" --out ""{out}"" --lv {level} --dir ""{dir}"" /@set tqdm=false;ansi_color=false --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+
+        Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         Call p.SetProgressMode()
+
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Run processing of HE image",
+                info:="Make single cell scanning from the input dzi image raster data...")
+
+        Return out
+    End Function
+
+    Public Shared Function ScanHESingleCells(img As String) As String
+        Dim out As String = img.ChangeSuffix("bson")
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("ScanHECells.R")
+        Dim cli As String = $"""{Rscript}"" --img ""{img}"" --out ""{out}"" /@set tqdm=false;ansi_color=false --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+
+        Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         p.SetProgressMode()
+
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Run processing of HE image",
+                info:="Make single cell scanning from the image raster data...")
+
+        Return out
+    End Function
+
     Public Shared Function Convert10XRawdata(h5ad As String, save As String) As String
         Dim Rscript As String = RscriptPipelineTask.GetRScript("10x_genomics/extract_h5ad.R")
         Dim cli As String = $"""{Rscript}"" 
 --h5ad ""{h5ad}""
 --save ""{save}""
-/@set tqdm=false
+/@set tqdm=false;ansi_color=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -106,7 +182,7 @@ Public NotInheritable Class RscriptProgressTask
         Dim cli As String = $"""{Rscript}"" 
 --app {app}
 --tmpdir {workdir.CLIPath}
-/@set tqdm=false
+/@set tqdm=false;ansi_color=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -143,7 +219,7 @@ Public NotInheritable Class RscriptProgressTask
 --tag ""{tag}""
 --save ""{save}""
 --targets ""{targetfile}""
-/@set tqdm=false
+/@set tqdm=false;ansi_color=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -171,7 +247,7 @@ Public NotInheritable Class RscriptProgressTask
         Dim cli As String = $"""{Rscript}"" 
 --linear ""{linear}"" 
 --export ""{export}"" 
-/@set tqdm=false
+/@set tqdm=false;ansi_color=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -206,7 +282,7 @@ Public NotInheritable Class RscriptProgressTask
 --ions ""{ions}""
 --args ""{args}""
 --outdir ""{workdir}""
-/@set tqdm=false
+/@set tqdm=false;ansi_color=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -256,7 +332,7 @@ Public NotInheritable Class RscriptProgressTask
 --imzML ""{imzML}"" 
 --cache ""{cachefile}"" 
 {If(centroid, "--centroid", "")} 
-/@set tqdm=false
+/@set tqdm=false;ansi_color=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -303,7 +379,7 @@ Public NotInheritable Class RscriptProgressTask
 --size ""{size.Width},{size.Height}""
 --dpi {dpi}
 --padding ""{padding}""
-/@set tqdm=false
+/@set tqdm=false;ansi_color=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -345,7 +421,8 @@ Public NotInheritable Class RscriptProgressTask
                                           overlapTotalIons As Boolean,
                                           intensityRange As DoubleRange,
                                           size As Size, dpi As Integer, padding As String,
-                                          Optional title As String = "")
+                                          Optional title As String = "",
+                                          Optional echo As ITaskProgress = Nothing)
 
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
         Dim overlapFlag As String = If(overlapTotalIons, "--overlap-tic", "")
@@ -364,7 +441,7 @@ Public NotInheritable Class RscriptProgressTask
 --dpi {dpi}
 --padding ""{padding}""
 --title ""{title}"" {overlapFlag} 
-/@set tqdm=false
+/@set tqdm=false;ansi_color=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -372,30 +449,46 @@ Public NotInheritable Class RscriptProgressTask
         Call filters.SaveTo(filterfile)
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call Workbench.LogText(pipeline.CommandLine)
-        Call TaskProgress.RunAction(
-            run:=Sub(p)
-                     p.SetProgressMode()
 
-                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
-                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
-                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
+        If echo Is Nothing Then
+            Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         p.SetProgressMode()
 
-                     Call pipeline.Run()
+                         AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-                 End Sub,
-            title:="Single Ion MSImaging",
-            info:="Do plot of target ion m/z...")
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Single Ion MSImaging",
+                info:="Do plot of target ion m/z...")
 
-        If saveAs.FileExists Then
-            If MessageBox.Show("Single Ion MSImaging Job Done!" & vbCrLf & "Open MSImaging result plot file?",
-                               "Open Image",
-                               MessageBoxButtons.YesNo,
-                               MessageBoxIcon.Information) = DialogResult.Yes Then
+            If saveAs.FileExists Then
+                If MessageBox.Show("Single Ion MSImaging Job Done!" & vbCrLf & "Open MSImaging result plot file?",
+                                   "Open Image",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Information) = DialogResult.Yes Then
 
-                Call Process.Start(saveAs.GetFullPath)
+                    Call Process.Start(saveAs.GetFullPath)
+                End If
+            Else
+                Call MessageBox.Show("Single Ion MSImaging Task Error!", "Task Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Else
-            Call MessageBox.Show("Single Ion MSImaging Task Error!", "Task Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Call echo.SetProgressMode()
+
+            AddHandler pipeline.SetMessage, AddressOf echo.SetInfo
+            AddHandler pipeline.SetProgress, AddressOf echo.SetProgress
+            '  AddHandler pipeline.Finish, AddressOf echo.TaskFinish
+
+            Call pipeline.Run()
+
+            If saveAs.FileExists Then
+                Call echo.SetInfo("Single Ion MSImaging Job Done!")
+            Else
+                Call echo.SetInfo("Single Ion MSImaging Task Error!")
+            End If
         End If
     End Sub
 
@@ -415,7 +508,7 @@ Public NotInheritable Class RscriptProgressTask
 --bitmap ""{imagetmp}"" 
 --channels {channels.Select(Function(c) c.ToHtmlColor).JoinBy(";")} 
 --save ""{jsontmp}"" 
-/@set tqdm=false
+/@set tqdm=false;ansi_color=false
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
@@ -468,7 +561,7 @@ Public NotInheritable Class RscriptProgressTask
 --scaler ""{scaler}""
 --save ""{saveAs}"" 
 --mzdiff ""{tolerance}"" 
-/@set tqdm=false 
+/@set tqdm=false;ansi_color=false 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
@@ -513,7 +606,7 @@ Public NotInheritable Class RscriptProgressTask
 --rawdata ""{rawdata}""
 --cutoff {cutoff}
 --save ""{savefile}"" 
-/@set tqdm=false 
+/@set tqdm=false;ansi_color=false 
 "
 
         Call ClusterMethodCommon(cli, noUI)
@@ -528,7 +621,7 @@ Public NotInheritable Class RscriptProgressTask
 --min_pts {min_pts}
 --eps {eps}
 --save ""{savefile}"" 
-/@set tqdm=false 
+/@set tqdm=false;ansi_color=false 
 "
 
         Call ClusterMethodCommon(cli, noUI)
@@ -543,7 +636,7 @@ Public NotInheritable Class RscriptProgressTask
 --k {k} 
 {If(bisecting, "--bisecting-kmeans", "")} 
 --save ""{savefile}"" 
-/@set tqdm=false 
+/@set tqdm=false;ansi_color=false 
 "
 
         Call ClusterMethodCommon(cli, noUI)
@@ -598,7 +691,7 @@ Public NotInheritable Class RscriptProgressTask
 --learningrate ""{learningRate}""
 {If(spectral_cos, "--spectral_cos", "")}
 {If(readBinary, "--read_bin", "")}
-/@set tqdm=false
+/@set tqdm=false;ansi_color=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -650,7 +743,7 @@ Public NotInheritable Class RscriptProgressTask
 --TrIQ ""{TrIQ}""
 --sink ""{saveAs.TrimSuffix}.log""
 {If(binary, "--bin", "")} 
-/@set tqdm=false
+/@set tqdm=false;ansi_color=false
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -706,7 +799,7 @@ Public NotInheritable Class RscriptProgressTask
 --raw ""{mzpack}"" 
 --save ""{saveAs}"" 
 --regions ""{tempfile}"" 
-/@set tqdm=false 
+/@set tqdm=false;ansi_color=false 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -751,7 +844,7 @@ Public NotInheritable Class RscriptProgressTask
 --save ""{imageOut}"" 
 --title ""{title}"" 
 --plot ""{type}"" {If(show_tissue, " --show-tissue ", "")}
-/@set tqdm=false 
+/@set tqdm=false;ansi_color=false 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -803,7 +896,7 @@ Public NotInheritable Class RscriptProgressTask
 --title ""{title}"" 
 --plot ""{type}"" 
 --size ""{size}""
-/@set tqdm=false 
+/@set tqdm=false;ansi_color=false 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -833,7 +926,7 @@ Public NotInheritable Class RscriptProgressTask
 --matrix ""{data}"" 
 --png ""{imageOut}"" 
 --title ""{title}"" 
-/@set tqdm=false 
+/@set tqdm=false;ansi_color=false 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)

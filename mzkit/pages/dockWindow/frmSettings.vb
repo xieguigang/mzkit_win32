@@ -56,10 +56,11 @@
 Imports System.ComponentModel
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.SettingsPage
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
-Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmSettings
 
@@ -93,7 +94,7 @@ Public Class frmSettings
 
         Me.ShowIcon = True
 
-        WebKit.Init(WebView21)
+        WebViewLoader.Init(WebView21)
     End Sub
 
     ''' <summary>
@@ -106,7 +107,7 @@ Public Class frmSettings
         ' set settings object from here
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New SettingsProxy With {.host = Me})
         Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 
     ''' <summary>

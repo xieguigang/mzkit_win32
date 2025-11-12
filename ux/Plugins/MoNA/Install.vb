@@ -2,6 +2,7 @@
 Imports System.IO.Compression
 Imports BioDeep
 Imports BioNovoGene.BioDeep.Chemistry
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Language
 Imports Mzkit_win32.BasicMDIForm
 

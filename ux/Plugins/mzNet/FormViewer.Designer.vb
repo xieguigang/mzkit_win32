@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports Galaxy.Data.TableSheet
+Imports Galaxy.Workbench.DockDocument
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormViewer : Inherits DocumentWindow
@@ -24,7 +25,7 @@ Partial Class FormViewer : Inherits DocumentWindow
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
+        Me.AdvancedDataGridView1 = New AdvancedDataGridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewSpectralToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportSpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -32,7 +33,7 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.MassDifferenceAnalysisToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.AutoPlotSpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
+        Me.AdvancedDataGridViewSearchToolBar1 = New AdvancedDataGridViewSearchToolBar()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ViewClusterInBrowserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -145,9 +146,9 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents AdvancedDataGridViewSearchToolBar1 As Zuby.ADGV.AdvancedDataGridViewSearchToolBar
+    Friend WithEvents AdvancedDataGridViewSearchToolBar1 As AdvancedDataGridViewSearchToolBar
     Friend WithEvents BindingSource1 As BindingSource
-    Friend WithEvents AdvancedDataGridView1 As Zuby.ADGV.AdvancedDataGridView
+    Friend WithEvents AdvancedDataGridView1 As AdvancedDataGridView
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewSpectralToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator

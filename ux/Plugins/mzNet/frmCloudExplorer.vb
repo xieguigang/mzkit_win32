@@ -5,11 +5,12 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking
 Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.PoolData
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.My.JavaScript
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
-Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmCloudExplorer
 
@@ -109,7 +110,7 @@ Public Class frmCloudExplorer
 
         If host.DockState = DockState.Hidden OrElse host.DockState = DockState.Unknown Then
             host.DockState = DockState.Document
-            host.Show(Workbench.AppHost.DockPanel)
+            host.Show(Workbench.AppHost.GetDockPanel)
         End If
     End Sub
 
@@ -278,7 +279,7 @@ Public Class frmCloudExplorer
     End Sub
 
     Private Sub ViewClusterScattersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewClusterScattersToolStripMenuItem.Click
-        Dim viewer = Workbench.ShowSingleDocument(Of FormScatterViewer)()
+        Dim viewer = CommonRuntime.ShowSingleDocument(Of FormScatterViewer)()
 
         viewer.host = host
 

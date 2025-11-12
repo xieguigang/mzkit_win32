@@ -59,13 +59,16 @@ Imports BioNovoGene.BioDeep.Chemistry.Model.Drawing
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.SDF
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
+Imports Galaxy.Data
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Microsoft.Web.WebView2.WinForms
 Imports Mzkit_win32.BasicMDIForm
-Imports WeifenLuo.WinFormsUI.Docking
+Imports Microsoft.VisualStudio.WinForms.Docking
+Imports Galaxy.ExcelPad
 
 Public Class frmSMILESViewer
 
@@ -131,8 +134,8 @@ Public Class frmSMILESViewer
     End Sub
 
     Private Sub frmSMILESViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Call WebKit.Init(WebView21)
-        Call WebKit.Init(WebView22)
+        Call WebViewLoader.Init(WebView21)
+        Call WebViewLoader.Init(WebView22)
         Call Wait()
 
         Text = "Molecule Drawer"
@@ -257,7 +260,7 @@ Public Class frmSMILESViewer
     End Sub
 
     Private Sub SendToTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToTableViewerToolStripMenuItem.Click
-        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(, title:="SMILES data")
+        Dim table = VisualStudio.ShowDocument(Of FormExcelPad)(, title:="SMILES data")
 
         ' Call tableRows.Add({atom.label, atom.elementName, atom.group, atom.charge, atom.Keys, connects})
         Call table.LoadTable(

@@ -72,6 +72,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
 Imports ggplot.layers
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
@@ -90,7 +92,6 @@ Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports MZKitWin32.Blender.CommonLibs
 Imports RibbonLib.Interop
 Imports ServiceHub
@@ -740,8 +741,8 @@ UseCheckedList:
                                          table = DataFrameResolver.CreateObject(Xlsx.Open(file.FileName).GetTable(0))
                                      End If
 
-                                     mz = table(table.GetOrdinal("mz")).AsDouble
-                                     name = table(table.GetOrdinal("name")).ToArray
+                                     mz = table(table.GetOrdinal("mz", "m/z", "MZ", "M/Z")).AsDouble
+                                     name = table(table.GetOrdinal("name", "Name")).ToArray
                                  End Sub,
                         ex:=ex)
 
@@ -758,6 +759,7 @@ UseCheckedList:
 
     Public Sub ImportsIons(labels As String(), mz As Double())
         Dim folder = Win7StyleTreeView1.Nodes(0)
+        Dim n As Integer = 0
 
         Call folder.Nodes.Clear()
         Call TaskProgress.RunAction(
@@ -765,6 +767,8 @@ UseCheckedList:
                     For i As Integer = 0 To mz.Length - 1
                         If mz(i) <= 0.0 Then
                             Continue For
+                        Else
+                            n += 1
                         End If
 
                         Dim label As String = $"{labels(i)} [m/z {mz(i).ToString("F4")}]"
@@ -782,11 +786,14 @@ UseCheckedList:
            cancel:=AddressOf DoNothing,
            host:=Me)
 
-        Call Workbench.StatusMessage($"Load {mz.Length} ions for run data visualization.")
+        If n = 0 Then
+            Call Workbench.Warning("None of the ions was loaded into workspace, please check your input table file format!")
+        Else
+            Call Workbench.StatusMessage($"Load {n} ions for run data visualization.")
+        End If
     End Sub
 
-    Private Sub ExportEachSelectedLayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportEachSelectedLayersToolStripMenuItem.Click
-        Dim list = Win7StyleTreeView1.Nodes(0)
+    Private Sub ExportEachSelectedLayersToolStripMenuItem_Click(sender As Object, e As EventArgs)
         Dim folder As New SetMSIPlotParameters With {.SetDir = True}
 
         If viewer Is Nothing OrElse viewer.params Is Nothing Then
@@ -798,16 +805,87 @@ UseCheckedList:
             .SetDimensionSize(viewer.params.GetMSIDimension) _
             .SetFolder(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)) _
             .SetIntensityRange(viewer.PixelSelector1.CustomIntensityRange) _
-            .SetUnifyPadding(10)
+            .SetUnifyPadding(10) _
+            .SetBatchPlotMode(toggle:=False)
 
         Call InputDialog.Input(
             setConfig:=Sub(config)
-                           Call MakeExport(config, list)
+                           Call MakeExport(config)
                        End Sub,
             config:=folder)
     End Sub
 
-    Private Sub MakeExport(folder As SetMSIPlotParameters, list As TreeNode)
+    Private Sub MakeBatchPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MakeBatchPlotToolStripMenuItem.Click
+        Dim folder As New SetMSIPlotParameters With {.SetDir = True}
+
+        If viewer Is Nothing OrElse viewer.params Is Nothing Then
+            Call Workbench.Warning("Please load ms-imaging rawdata into this workspace at first!")
+            Return
+        End If
+
+        Call folder _
+            .SetDimensionSize(viewer.params.GetMSIDimension) _
+            .SetFolder(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)) _
+            .SetIntensityRange(viewer.PixelSelector1.CustomIntensityRange) _
+            .SetBatchPlotMode(toggle:=True)
+
+        Call InputDialog.Input(
+            setConfig:=Sub(config)
+                           Call MakeBatchPlotCalls(config)
+                       End Sub,
+            config:=folder)
+    End Sub
+
+    Private Sub MakeBatchPlotCalls(folder As SetMSIPlotParameters)
+        Dim msi_filters As String() = frmMsImagingViewer.loadFilters.Select(Function(f) f.ToScript).ToArray
+
+        ' the ms-imaging filter has been turn off
+        If Not viewer.params.enableFilter Then
+            msi_filters = {}
+        End If
+
+        Dim mzdiff = viewer.params.GetTolerance
+        Dim ext As String = folder.ext
+        Dim dir As String = folder.SelectedPath
+        Dim params = viewer.params
+
+        Call TaskProgress.RunAction(
+            Sub(echo As ITaskProgress)
+                For offset As Integer = 0 To Win7StyleTreeView1.Nodes.Count - 1
+                    Dim list = Win7StyleTreeView1.Nodes(offset)
+
+                    For i As Integer = 0 To list.Nodes.Count - 1
+                        Dim n = list.Nodes(i)
+
+                        If Not n.Checked Then
+                            Continue For
+                        End If
+
+                        Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
+                        Dim fileName As String = n.Text.NormalizePathString(False, ".")
+                        Dim path As String = $"{dir}/{If(fileName.Length > 128, fileName.Substring(0, 127) & "...", fileName)}.{ext}"
+                        Dim mz As Double() = {Conversion.Val(val)}
+
+                        Call RscriptProgressTask.ExportSingleIonPlot(
+                               mz:=mz,
+                               tolerance:=mzdiff.GetScript,
+                               saveAs:=path,
+                               title:=n.Text,
+                               filters:=msi_filters,
+                               background:=params.background.ToHtmlColor(allowTransparent:=True),
+                               colorSet:=params.colors.Description,
+                               overlapTotalIons:=params.showTotalIonOverlap,
+                               intensityRange:=folder.IntensityRange,
+                               size:=folder.GetPlotSize, dpi:=folder.GetPlotDpi, padding:=folder.GetPlotPadding,
+                               colorLevels:=params.mapLevels,
+                               echo:=echo
+                        )
+                    Next
+                Next
+            End Sub, title:="Make Batch Exports", info:="Make single ion ms-imaging batch exports...")
+    End Sub
+
+    Private Sub MakeExport(folder As SetMSIPlotParameters)
         Dim params = WindowModules.viewer.params
         Dim size As String = $"{params.scan_x},{params.scan_y}"
         Dim MSIservice = WindowModules.viewer.MSIservice
@@ -835,7 +913,11 @@ UseCheckedList:
 
         Call TaskProgress.LoadData(
             streamLoad:=Function(proc As ITaskProgress)
-                            Return ExportLayers(proc, list, TIC, folder)
+                            For i As Integer = 0 To Win7StyleTreeView1.Nodes.Count - 1
+                                Call ExportLayers(proc, Win7StyleTreeView1.Nodes(i), TIC, folder)
+                            Next
+
+                            Return Nothing
                         End Function,
             title:="Plot selected image layers...",
             info:="Export image rendering...",
@@ -853,6 +935,14 @@ UseCheckedList:
         End If
     End Sub
 
+    ''' <summary>
+    ''' export all checked ions
+    ''' </summary>
+    ''' <param name="proc"></param>
+    ''' <param name="list"></param>
+    ''' <param name="TIC"></param>
+    ''' <param name="config"></param>
+    ''' <returns></returns>
     Private Function ExportLayers(proc As ITaskProgress, list As TreeNode, TIC As Image, config As SetMSIPlotParameters) As Boolean
         Dim params = WindowModules.viewer.params
         Dim mzdiff = params.GetTolerance
@@ -1274,5 +1364,9 @@ UseCheckedList:
                 End If
             End If
         End Using
+    End Sub
+
+    Private Sub BatchExportsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BatchExportsToolStripMenuItem.Click
+        ExportEachSelectedLayersToolStripMenuItem_Click(sender, e)
     End Sub
 End Class

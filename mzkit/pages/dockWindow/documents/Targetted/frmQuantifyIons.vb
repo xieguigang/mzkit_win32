@@ -60,12 +60,12 @@ Imports System.IO
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.GCMS
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports Galaxy.Data.UIInteractive
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Data.IO.MessagePack
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
-Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports any = Microsoft.VisualBasic.Scripting
 
 ''' <summary>

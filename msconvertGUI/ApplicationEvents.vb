@@ -1,62 +1,63 @@
 ﻿#Region "Microsoft.VisualBasic::0f305755a76e7b59afb456ce471d4d48, mzkit\msconvertGUI\ApplicationEvents.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 102
-    '    Code Lines: 62 (60.78%)
-    ' Comment Lines: 27 (26.47%)
-    '    - Xml Docs: 29.63%
-    ' 
-    '   Blank Lines: 13 (12.75%)
-    '     File Size: 5.32 KB
+' Summaries:
 
 
-    '     Class MyApplication
-    ' 
-    '         Function: CreateMSImagingTask, CreateTask, SubmitTask
-    ' 
-    '         Sub: task
-    ' 
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 102
+'    Code Lines: 62 (60.78%)
+' Comment Lines: 27 (26.47%)
+'    - Xml Docs: 29.63%
+' 
+'   Blank Lines: 13 (12.75%)
+'     File Size: 5.32 KB
+
+
+'     Class MyApplication
+' 
+'         Function: CreateMSImagingTask, CreateTask, SubmitTask
+' 
+'         Sub: task
+' 
+' 
+' /********************************************************************************/
 
 #End Region
 
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports Task
 Imports BackgroundTask = System.Threading.Tasks.Task
 
@@ -103,24 +104,21 @@ Namespace My
             Dim progress As Action(Of String) = AddressOf display.ShowMessage
             Dim success As Action = Sub() display.ShowMessage("Done!")
             Dim task As New ImportsRawData(raw, progress, success, cachePath:=outputfile) With {
-                .protocol = BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache.FileApplicationClass.LCMS
+                .protocol = FileApplicationClass.LCMS
             }
 
             Return task
         End Function
 
-        Public Shared Function SubmitTask(source As String, output As String, main As FormMain) As BackgroundTask
-            Return New BackgroundTask(
-                Sub()
-                    Call task(source, output, main)
-                End Sub)
+        Public Shared Async Function SubmitTask(source As String, output As String, main As FormMain) As BackgroundTask
+            Await BackgroundTask.Run(Sub() Call task(source, output, main))
         End Function
 
         Private Shared Sub task(source As String, output As String, main As FormMain)
             Dim files As String() = source.ListFiles("*.raw").ToArray
 
             Select Case main.CurrentTask
-                Case BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache.FileApplicationClass.LCMS
+                Case FileApplicationClass.LCMS
                     For Each file As String In files
                         Dim progress As New TaskProgress
                         progress.Label1.Text = file.FileName
@@ -128,16 +126,16 @@ Namespace My
                         Dim task As ImportsRawData = CreateTask(source, file, output, progress)
                         task.arguments = main.arguments
                         main.AddTask(progress)
-                        Call BackgroundTask.Run(AddressOf task.RunImports)
+                        Call task.RunImports()
                     Next
-                Case BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache.FileApplicationClass.MSImaging
+                Case FileApplicationClass.MSImaging
                     Dim progress As New TaskProgress
                     progress.Label1.Text = source.GetDirectoryFullPath
                     progress.Label2.Text = "Pending"
                     Dim task As ImportsRawData = CreateMSImagingTask(source, output, main, progress)
                     task.arguments = main.arguments
                     main.AddTask(progress)
-                    Call BackgroundTask.Run(AddressOf task.RunImports)
+                    Call task.RunImports()
                 Case Else
                     Throw New NotImplementedException(main.CurrentTask.Description)
             End Select
@@ -150,8 +148,11 @@ Namespace My
 
             Dim progress As Action(Of String) = AddressOf display.ShowMessage
             Dim success As Action = Sub() display.ShowMessage("Done!")
-            Dim task As New ImportsRawData(source, progress, success, cachePath:=outputfile) With {
-                .protocol = BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache.FileApplicationClass.MSImaging,
+            Dim setProgress As Action(Of Integer) = AddressOf display.SetProgress
+            Dim task As New ImportsRawData(source, progress, success,
+                                           cachePath:=outputfile,
+                                           writeProgress:=setProgress) With {
+                .protocol = FileApplicationClass.MSImaging,
                 .arguments = main.arguments
             }
 

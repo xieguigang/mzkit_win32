@@ -1,7 +1,8 @@
-﻿Imports Microsoft.VisualBasic.Net.Http
+﻿Imports Galaxy.Workbench
+Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
-Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmVennTools
 
@@ -27,12 +28,12 @@ Public Class frmVennTools
         Text = "Venn Plot Tool"
         TabText = Text
 
-        WebKit.Init(WebView21)
+        WebViewLoader.Init(WebView21)
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         Call WebView21.CoreWebView2.Navigate(SourceUrl)
-        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 
     ''' <summary>

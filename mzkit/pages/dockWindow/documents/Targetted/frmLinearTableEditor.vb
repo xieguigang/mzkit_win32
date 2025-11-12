@@ -1,12 +1,12 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.LinearQuantitative
+Imports Galaxy.Data.UIInteractive
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
-Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports any = Microsoft.VisualBasic.Scripting
 Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 
@@ -24,7 +24,7 @@ Public Class frmLinearTableEditor : Implements IFileReference, DocumentPageLoade
 
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         Dim editList As New InputIdList With {.IdSet = is_list}
-        InputDialog.Input(Sub(editor) Call SetIdList(editor.IdSet), config:=editList)
+        InputDialog.Input(Of InputIdList)(Sub(editor) Call SetIdList(editor.IdSet), config:=editList)
     End Sub
 
     Private Shared Sub loadComboList(combo As DataGridViewComboBoxCell, is_list As IEnumerable(Of String))

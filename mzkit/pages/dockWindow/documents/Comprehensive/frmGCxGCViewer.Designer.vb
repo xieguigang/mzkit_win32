@@ -52,8 +52,8 @@
 
 #End Region
 
+Imports Galaxy.Workbench.DockDocument
 Imports Mzkit_win32.GCxGCViewer
-Imports Mzkit_win32.BasicMDIForm
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmGCxGCViewer : Inherits DocumentWindow

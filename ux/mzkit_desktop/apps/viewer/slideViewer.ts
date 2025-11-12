@@ -41,13 +41,23 @@ namespace apps.viewer {
         }
 
         public static ExportViewImage() {
-            var viewer = OpenseadragonSlideViewer.viewer.drawer;
-            var img: string = viewer.canvas.toDataURL("image/png");
+            let viewer = OpenseadragonSlideViewer.viewer.drawer;
+            let img: string = viewer.canvas.toDataURL("image/png");
 
             console.log("get web capture image exports:");
             console.log(img);
 
             DOM.download("capture.png", img, true);
+        }
+
+        public static CaptureSlideImage(): string {
+            let viewer = OpenseadragonSlideViewer.viewer.drawer;
+            let img: string = viewer.canvas.toDataURL("image/png");
+
+            console.log("get web capture image exports:");
+            console.log(img);
+
+            return img;
         }
     }
 }

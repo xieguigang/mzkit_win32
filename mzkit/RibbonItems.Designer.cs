@@ -137,6 +137,7 @@ namespace RibbonLib.Controls
             public const uint cmdTabFormulaSearch = 1092;
             public const uint cmdGroupFormulaSearch = 1093;
             public const uint cmdButtonFormulaSearchExport = 1094;
+            public const uint cmdButtonEditCustomFormulaLibrary = 365;
             public const uint cmdTargetedContex = 101;
             public const uint cmdTabTargeted = 102;
             public const uint cmdTabGroupTargeted = 98;
@@ -161,6 +162,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonMSIRowScans = 128;
             public const uint cmdButtonExportMSIMzpack = 127;
             public const uint cmdButtonMergeMultipleMSISample = 207;
+            public const uint cmdButtonExportMSICellMatrix = 370;
             public const uint cmdPanelMSIVisual = 186;
             public const uint cmdButtonMSIImportAnnotationTable = 225;
             public const uint cmdButtonMSISearchPubChem = 192;
@@ -240,6 +242,9 @@ namespace RibbonLib.Controls
             public const uint cmdPanelSlideViewer = 256;
             public const uint cmdButtonOpenseadragonWebCapture = 251;
             public const uint cmdButtonViewerFullScreen = 255;
+            public const uint cmdGroupHEAnalysis = 363;
+            public const uint cmdButtonScanSingleCells = 362;
+            public const uint cmdButtonScanSlide = 364;
             public const uint cmdMetaboAnalysis = 269;
             public const uint cmdDataSummaryPanel = 270;
             public const uint cmdWorkbenchFile = 275;
@@ -289,8 +294,7 @@ namespace RibbonLib.Controls
             public const uint cmdPanelReport = 312;
             public const uint cmdMenuReport = 313;
             public const uint cmdButtonReportOpenWorkspace = 314;
-            public const uint cmdButtonReportSelect = 315;
-            public const uint cmdButtonAddLCMSComparision = 327;
+            public const uint cmdButtonImportsWorkspace = 367;
             public const uint cmdPanelReportSettings = 318;
             public const uint cmdButtonReportTableView = 325;
             public const uint cmdToggleShowRT = 317;
@@ -298,6 +302,10 @@ namespace RibbonLib.Controls
             public const uint cmdButtonReportHeatMapColors = 319;
             public const uint cmdButtonSortByMz = 354;
             public const uint cmdButtonReportSampleInfo = 328;
+            public const uint cmdGroupReportOperation = 368;
+            public const uint cmdButtonReportSelect = 315;
+            public const uint cmdButtonAddLCMSComparision = 327;
+            public const uint cmdButtonRefreshReport = 369;
             public const uint cmdMenuLabIA = 336;
             public const uint cmdPageLabIA = 337;
             public const uint cmdGroupLabIA = 338;
@@ -313,6 +321,11 @@ namespace RibbonLib.Controls
             public const uint cmdPanelMolmilFile = 348;
             public const uint cmdGroupMolmilFile = 349;
             public const uint cmdButtonMolmilOpenFile = 350;
+            public const uint cmdGroupMolstarOperations = 359;
+            public const uint cmdButtonMolstarResetCamera = 358;
+            public const uint cmdButtonMolstarClearCanvas = 360;
+            public const uint cmdButtonMolstarMakeSnapshot = 361;
+            public const uint cmdButtonLigand2DPlot = 366;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -385,7 +398,7 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonMenuGroup AppMenuViewers { get; private set; }
         /// <summary>
-        /// Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB.
+        /// Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data
         /// </summary>
         public RibbonButton ButtonMolmilToolkit { get; private set; }
         public RibbonMenuGroup MenuOpticalMicroscopyTools { get; private set; }
@@ -503,8 +516,15 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonRefreshNetwork { get; private set; }
         public RibbonTabGroup TabGroupFormulaSearchTools { get; private set; }
         public RibbonTab TabFormulaSearch { get; private set; }
+        /// <summary>
+        /// Search Result Data and Library Data Files
+        /// </summary>
         public RibbonGroup GroupFormulaSearch { get; private set; }
         public RibbonButton ButtonFormulaSearchExport { get; private set; }
+        /// <summary>
+        /// Open a page for edit your custom metabolite library.
+        /// </summary>
+        public RibbonButton ButtonEditCustomFormulaLibrary { get; private set; }
         public RibbonTabGroup TargetedContex { get; private set; }
         public RibbonTab TabTargeted { get; private set; }
         public RibbonGroup TabGroupTargeted { get; private set; }
@@ -535,6 +555,10 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonMSIRowScans { get; private set; }
         public RibbonButton ButtonExportMSIMzpack { get; private set; }
         public RibbonButton ButtonMergeMultipleMSISample { get; private set; }
+        /// <summary>
+        /// Export Cell Matrix
+        /// </summary>
+        public RibbonButton ButtonExportMSICellMatrix { get; private set; }
         public RibbonGroup PanelMSIVisual { get; private set; }
         public RibbonButton ButtonMSIImportAnnotationTable { get; private set; }
         public RibbonButton ButtonMSISearchPubChem { get; private set; }
@@ -626,6 +650,18 @@ namespace RibbonLib.Controls
         public RibbonGroup PanelSlideViewer { get; private set; }
         public RibbonButton ButtonOpenseadragonWebCapture { get; private set; }
         public RibbonButton ButtonViewerFullScreen { get; private set; }
+        /// <summary>
+        /// HE Analysis
+        /// </summary>
+        public RibbonGroup GroupHEAnalysis { get; private set; }
+        /// <summary>
+        /// Scan single cells shape in current image capture region 
+        /// </summary>
+        public RibbonButton ButtonScanSingleCells { get; private set; }
+        /// <summary>
+        /// Scan the entire slide image for the single cells shapes
+        /// </summary>
+        public RibbonButton ButtonScanSlide { get; private set; }
         public RibbonTabGroup MetaboAnalysis { get; private set; }
         public RibbonTab DataSummaryPanel { get; private set; }
         public RibbonGroup WorkbenchFile { get; private set; }
@@ -702,7 +738,7 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonButton ButtonExportSingleExpression { get; private set; }
         /// <summary>
-        /// Report
+        /// BioDeep Annotation Viewer
         /// </summary>
         public RibbonTabGroup GroupReport { get; private set; }
         /// <summary>
@@ -718,13 +754,9 @@ namespace RibbonLib.Controls
         /// </summary>
         public RibbonButton ButtonReportOpenWorkspace { get; private set; }
         /// <summary>
-        /// Select metabolites for make html report view
+        /// Imports Workspace
         /// </summary>
-        public RibbonButton ButtonReportSelect { get; private set; }
-        /// <summary>
-        /// Add Comparision
-        /// </summary>
-        public RibbonButton ButtonAddLCMSComparision { get; private set; }
+        public RibbonButton ButtonImportsWorkspace { get; private set; }
         public RibbonGroup PanelReportSettings { get; private set; }
         /// <summary>
         /// View of the biodeep annotation result in heatmap table view
@@ -744,6 +776,22 @@ namespace RibbonLib.Controls
         /// Sample Information
         /// </summary>
         public RibbonButton ButtonReportSampleInfo { get; private set; }
+        /// <summary>
+        /// Report Operation
+        /// </summary>
+        public RibbonGroup GroupReportOperation { get; private set; }
+        /// <summary>
+        /// Select metabolites for make html report view
+        /// </summary>
+        public RibbonButton ButtonReportSelect { get; private set; }
+        /// <summary>
+        /// Add Comparision
+        /// </summary>
+        public RibbonButton ButtonAddLCMSComparision { get; private set; }
+        /// <summary>
+        /// Refresh Report View
+        /// </summary>
+        public RibbonButton ButtonRefreshReport { get; private set; }
         public RibbonTabGroup MenuLabIA { get; private set; }
         public RibbonTab PageLabIA { get; private set; }
         public RibbonGroup GroupLabIA { get; private set; }
@@ -759,6 +807,26 @@ namespace RibbonLib.Controls
         public RibbonTab PanelMolmilFile { get; private set; }
         public RibbonGroup GroupMolmilFile { get; private set; }
         public RibbonButton ButtonMolmilOpenFile { get; private set; }
+        /// <summary>
+        /// Molstar Operations
+        /// </summary>
+        public RibbonGroup GroupMolstarOperations { get; private set; }
+        /// <summary>
+        /// Reset Camera
+        /// </summary>
+        public RibbonButton ButtonMolstarResetCamera { get; private set; }
+        /// <summary>
+        /// Clear Canvas
+        /// </summary>
+        public RibbonButton ButtonMolstarClearCanvas { get; private set; }
+        /// <summary>
+        /// Make Snapshot
+        /// </summary>
+        public RibbonButton ButtonMolstarMakeSnapshot { get; private set; }
+        /// <summary>
+        /// Show molecular docking result visual in 2D plot
+        /// </summary>
+        public RibbonButton ButtonLigand2DPlot { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -931,6 +999,7 @@ namespace RibbonLib.Controls
             TabFormulaSearch = new RibbonTab(ribbon, Cmd.cmdTabFormulaSearch);
             GroupFormulaSearch = new RibbonGroup(ribbon, Cmd.cmdGroupFormulaSearch);
             ButtonFormulaSearchExport = new RibbonButton(ribbon, Cmd.cmdButtonFormulaSearchExport);
+            ButtonEditCustomFormulaLibrary = new RibbonButton(ribbon, Cmd.cmdButtonEditCustomFormulaLibrary);
             TargetedContex = new RibbonTabGroup(ribbon, Cmd.cmdTargetedContex);
             TabTargeted = new RibbonTab(ribbon, Cmd.cmdTabTargeted);
             TabGroupTargeted = new RibbonGroup(ribbon, Cmd.cmdTabGroupTargeted);
@@ -955,6 +1024,7 @@ namespace RibbonLib.Controls
             ButtonMSIRowScans = new RibbonButton(ribbon, Cmd.cmdButtonMSIRowScans);
             ButtonExportMSIMzpack = new RibbonButton(ribbon, Cmd.cmdButtonExportMSIMzpack);
             ButtonMergeMultipleMSISample = new RibbonButton(ribbon, Cmd.cmdButtonMergeMultipleMSISample);
+            ButtonExportMSICellMatrix = new RibbonButton(ribbon, Cmd.cmdButtonExportMSICellMatrix);
             PanelMSIVisual = new RibbonGroup(ribbon, Cmd.cmdPanelMSIVisual);
             ButtonMSIImportAnnotationTable = new RibbonButton(ribbon, Cmd.cmdButtonMSIImportAnnotationTable);
             ButtonMSISearchPubChem = new RibbonButton(ribbon, Cmd.cmdButtonMSISearchPubChem);
@@ -1034,6 +1104,9 @@ namespace RibbonLib.Controls
             PanelSlideViewer = new RibbonGroup(ribbon, Cmd.cmdPanelSlideViewer);
             ButtonOpenseadragonWebCapture = new RibbonButton(ribbon, Cmd.cmdButtonOpenseadragonWebCapture);
             ButtonViewerFullScreen = new RibbonButton(ribbon, Cmd.cmdButtonViewerFullScreen);
+            GroupHEAnalysis = new RibbonGroup(ribbon, Cmd.cmdGroupHEAnalysis);
+            ButtonScanSingleCells = new RibbonButton(ribbon, Cmd.cmdButtonScanSingleCells);
+            ButtonScanSlide = new RibbonButton(ribbon, Cmd.cmdButtonScanSlide);
             MetaboAnalysis = new RibbonTabGroup(ribbon, Cmd.cmdMetaboAnalysis);
             DataSummaryPanel = new RibbonTab(ribbon, Cmd.cmdDataSummaryPanel);
             WorkbenchFile = new RibbonGroup(ribbon, Cmd.cmdWorkbenchFile);
@@ -1083,8 +1156,7 @@ namespace RibbonLib.Controls
             PanelReport = new RibbonTab(ribbon, Cmd.cmdPanelReport);
             MenuReport = new RibbonGroup(ribbon, Cmd.cmdMenuReport);
             ButtonReportOpenWorkspace = new RibbonButton(ribbon, Cmd.cmdButtonReportOpenWorkspace);
-            ButtonReportSelect = new RibbonButton(ribbon, Cmd.cmdButtonReportSelect);
-            ButtonAddLCMSComparision = new RibbonButton(ribbon, Cmd.cmdButtonAddLCMSComparision);
+            ButtonImportsWorkspace = new RibbonButton(ribbon, Cmd.cmdButtonImportsWorkspace);
             PanelReportSettings = new RibbonGroup(ribbon, Cmd.cmdPanelReportSettings);
             ButtonReportTableView = new RibbonToggleButton(ribbon, Cmd.cmdButtonReportTableView);
             ToggleShowRT = new RibbonToggleButton(ribbon, Cmd.cmdToggleShowRT);
@@ -1092,6 +1164,10 @@ namespace RibbonLib.Controls
             ButtonReportHeatMapColors = new RibbonButton(ribbon, Cmd.cmdButtonReportHeatMapColors);
             ButtonSortByMz = new RibbonToggleButton(ribbon, Cmd.cmdButtonSortByMz);
             ButtonReportSampleInfo = new RibbonButton(ribbon, Cmd.cmdButtonReportSampleInfo);
+            GroupReportOperation = new RibbonGroup(ribbon, Cmd.cmdGroupReportOperation);
+            ButtonReportSelect = new RibbonButton(ribbon, Cmd.cmdButtonReportSelect);
+            ButtonAddLCMSComparision = new RibbonButton(ribbon, Cmd.cmdButtonAddLCMSComparision);
+            ButtonRefreshReport = new RibbonButton(ribbon, Cmd.cmdButtonRefreshReport);
             MenuLabIA = new RibbonTabGroup(ribbon, Cmd.cmdMenuLabIA);
             PageLabIA = new RibbonTab(ribbon, Cmd.cmdPageLabIA);
             GroupLabIA = new RibbonGroup(ribbon, Cmd.cmdGroupLabIA);
@@ -1107,6 +1183,11 @@ namespace RibbonLib.Controls
             PanelMolmilFile = new RibbonTab(ribbon, Cmd.cmdPanelMolmilFile);
             GroupMolmilFile = new RibbonGroup(ribbon, Cmd.cmdGroupMolmilFile);
             ButtonMolmilOpenFile = new RibbonButton(ribbon, Cmd.cmdButtonMolmilOpenFile);
+            GroupMolstarOperations = new RibbonGroup(ribbon, Cmd.cmdGroupMolstarOperations);
+            ButtonMolstarResetCamera = new RibbonButton(ribbon, Cmd.cmdButtonMolstarResetCamera);
+            ButtonMolstarClearCanvas = new RibbonButton(ribbon, Cmd.cmdButtonMolstarClearCanvas);
+            ButtonMolstarMakeSnapshot = new RibbonButton(ribbon, Cmd.cmdButtonMolstarMakeSnapshot);
+            ButtonLigand2DPlot = new RibbonButton(ribbon, Cmd.cmdButtonLigand2DPlot);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);

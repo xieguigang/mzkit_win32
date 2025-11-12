@@ -62,13 +62,14 @@ Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.ExcelPad
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.My
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Task
-Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class ConnectToBioDeep
@@ -114,7 +115,7 @@ Public Class ConnectToBioDeep
                 Call task.ProgressMessage(message)
                 Call log.AppendMessage(message)
             End Sub
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
+        Dim table As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)
 
         table.DockState = DockState.Hidden
         taskList.Show(MyApplication.host.m_dockPanel)
@@ -161,7 +162,7 @@ Public Class ConnectToBioDeep
                 Call task.ProgressMessage(message)
                 Call log.AppendMessage(message)
             End Sub
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
+        Dim table As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)
 
         table.DockState = DockState.Hidden
         taskList.Show(MyApplication.host.m_dockPanel)
@@ -197,7 +198,7 @@ Public Class ConnectToBioDeep
             End Sub)
     End Sub
 
-    Private Shared Sub ShowInferAlignment(table As frmTableViewer, result As MetaDNAResult(), infer As CandidateInfer())
+    Private Shared Sub ShowInferAlignment(table As FormExcelPad, result As MetaDNAResult(), infer As CandidateInfer())
         Dim inferIndex As Dictionary(Of String, Candidate) = infer _
             .ExportInferRaw(result).Inference _
             .ToDictionary(Function(a)
@@ -235,9 +236,11 @@ Public Class ConnectToBioDeep
         End If
     End Function
 
-    Private Shared Sub showTable(table As frmTableViewer, result As ActivityEnrichment())
+    Private Shared Sub showTable(view As FormExcelPad, result As ActivityEnrichment())
+        Dim table As New ExcelTableViewer(view)
+
         table.ParseMsSet = AddressOf ParseMzSet1
-        table.LoadTable(
+        view.LoadTable(
             Sub(grid)
                 Call grid.Columns.Add("name", GetType(String))
                 Call grid.Columns.Add("description", GetType(String))
@@ -263,7 +266,7 @@ Public Class ConnectToBioDeep
             End Sub)
     End Sub
 
-    Private Shared Sub showTable(table As frmTableViewer, result As MetaDNAResult())
+    Private Shared Sub showTable(table As FormExcelPad, result As MetaDNAResult())
         Call table.LoadTable(
             Sub(grid)
                 grid.Columns.Add(NameOf(MetaDNAResult.ROI_id), GetType(String))

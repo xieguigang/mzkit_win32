@@ -56,13 +56,19 @@
 
 #End Region
 
+Imports System.ComponentModel
 Imports System.Drawing.Imaging
 Imports System.Text
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic
 Imports Microsoft.VisualBasic.Drawing
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
-Imports WeifenLuo.WinFormsUI.Docking
+Imports Microsoft.VisualStudio.WinForms.Docking
+Imports Mzkit_win32.BasicMDIForm
 
 ''' <summary>
 ''' form for view Rscript plot result
@@ -75,6 +81,26 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
     ''' <returns></returns>
     Private Property FilePath As String Implements IFileReference.FilePath
 
+    Public FileSave As Action(Of String, frmPlotViewer.Arguments)
+
+    Public Property Filter As String = "plot image(*.png)|*.png"
+
+    Public MustInherit Class Arguments
+
+        <Category("General")>
+        <Description("Plot canvas width in pixels.")>
+        Public Property width As Integer = 3600
+        <Category("General")>
+        <Description("Plot canvas height in pixels.")>
+        Public Property height As Integer = 2400
+        <Category("General")>
+        <Description("Plot canvas ppi(or dpi) scale for pixels, may effect the line stroke width or font size.")>
+        Public Property ppi As Integer = 120
+
+        Public MustOverride Sub Update(render As Plot)
+
+    End Class
+
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
             Return {New ContentType With {.Details = "plot image", .FileExt = ".png", .MIMEType = "plot image", .Name = "plot image"}}
@@ -86,15 +112,47 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
             Return
         End If
 
-        Using file As New SaveFileDialog With {.Filter = "plot image(*.png)|*.png"}
+        Using file As New SaveFileDialog With {.Filter = Filter}
             If file.ShowDialog = DialogResult.OK Then
-                Call PictureBox1.BackgroundImage.SaveAs(file.FileName)
+                FilePath = file.FileName
+
+                If FileSave Is Nothing Then
+                    Call Save(FilePath)
+                Else
+                    Call FileSave(FilePath, args)
+                End If
             End If
         End Using
     End Sub
 
-    Public Sub showImage(img As Image)
+    Dim plot As Plot
+    Dim args As Arguments
+
+    Public Sub showImage(img As Plot, args As Arguments)
+        Me.plot = img
+        Me.args = args
+
+        RefreshPlot()
+    End Sub
+
+    Private Sub RefreshPlot()
+        If plot Is Nothing OrElse args Is Nothing Then
+            Return
+        End If
+
+        Dim img As Image = plot _
+            .Plot($"{args.width},{args.height}", ppi:=args.ppi, driver:=Drivers.GDI) _
+            .AsGDIImage
+
         Call Invoke(Sub() PictureBox1.BackgroundImage = img)
+    End Sub
+
+    Protected Overrides Sub SaveDocument()
+        If FilePath.StringEmpty(, True) Then
+            Call SaveImageToolStripMenuItem_Click(Nothing, Nothing)
+        Else
+            Call Save(FilePath)
+        End If
     End Sub
 
     Public Function Save(path As String, encoding As Encoding) As Boolean Implements ISaveHandle.Save
@@ -115,6 +173,17 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        VisualStudio.Dock(WindowModules.plotParams, DockState.DockRight)
+        If plot Is Nothing OrElse args Is Nothing Then
+            Return
+        End If
+
+        Call Workbench.parametersTool.SetParameterObject(
+            args, Sub(a)
+                      Call ProgressSpinner.DoLoading(Sub()
+                                                         Call a.Update(plot)
+                                                         Call RefreshPlot()
+                                                     End Sub)
+                  End Sub)
+        Call VisualStudio.Dock(Workbench.parametersTool, prefer:=DockState.DockRight)
     End Sub
 End Class

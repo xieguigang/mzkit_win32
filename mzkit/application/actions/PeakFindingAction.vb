@@ -1,9 +1,10 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Data
+Imports Galaxy.Workbench.Actions
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.Linq
-Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
-Imports WeifenLuo.WinFormsUI.Docking
+Imports Microsoft.VisualStudio.WinForms.Docking
 
 Public Class PeakFindingAction : Inherits ActionBase
 

@@ -81,6 +81,9 @@ Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.ExcelPad
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.DockDocument
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Development
 Imports Microsoft.VisualBasic.CommandLine
@@ -92,12 +95,13 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.Container
 Imports RibbonLib
 Imports RibbonLib.Interop
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
+Imports ThemeVS2015
 
 Public Class frmMain : Implements AppHost
 
@@ -271,7 +275,7 @@ Public Class frmMain : Implements AppHost
             End If
         ElseIf fileName.ExtensionSuffix("raw") Then
             Dim Xraw As New MSFileReader(fileName)
-            Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) Xraw.LoadFromXRaw(println.Echo))
+            Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) Xraw.LoadFromXcaliburRaw(println.Echo))
             Dim cacheFile As String = TempFileSystem.GetAppSysTempFile(".mzPack", App.PID.ToHexString, "MSRawFile_")
             Dim raw As New Raw With {
                .cache = cacheFile,
@@ -423,19 +427,21 @@ Are you want to make your data to be pre-processing before load it into computer
 
     Friend Sub showMzPackMSI(mzpack As String, debug As Boolean)
         Call TaskProgress.RunAction(
-            run:=Sub(p)
-                     If Not debug Then
-                         Call WindowModules.viewer.StartMSIService()
-                         Call Thread.Sleep(100)
-                     End If
-
-                     Dim dataPack = WindowModules.viewer.MSIservice.LoadMSI(mzpack, AddressOf p.SetInfo)
-
-                     Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, mzpack))
-                     Call Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {mzpack.FileName}")
-                 End Sub,
+            run:=Sub(p) Call RunLoadMzPackTask(p, mzpack, debug),
             title:="Open mzPack for MSI...",
             info:="Loading MSI raw data file into viewer workspace...")
+    End Sub
+
+    Private Sub RunLoadMzPackTask(p As ITaskProgress, mzpack As String, debug As Boolean)
+        If Not debug Then
+            Call WindowModules.viewer.StartMSIService()
+            Call Thread.Sleep(100)
+        End If
+
+        Dim dataPack = WindowModules.viewer.MSIservice.LoadMSI(mzpack, AddressOf p.SetInfo)
+
+        Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, mzpack))
+        Call Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {mzpack.FileName}")
     End Sub
 
     Friend Sub saveCurrentScript()
@@ -521,6 +527,8 @@ Are you want to make your data to be pre-processing before load it into computer
                 Globals.AddRecentFileHistory(file)
                 Workbench.StatusMessage($"Current file saved at {file.GetFullPath}!")
             End If
+        ElseIf active.GetType.IsInheritsFrom(GetType(DocumentWindow), strict:=False) Then
+            Call DocumentWindow.SaveDocument(page:=active)
         End If
     End Sub
 
@@ -591,19 +599,7 @@ Are you want to make your data to be pre-processing before load it into computer
             Globals.Settings.ui = New UISettings
         End If
 
-        If (Not (Globals.Settings.ui.width = 0 OrElse Globals.Settings.ui.height = 0)) AndAlso
-            Globals.Settings.ui.window <> FormWindowState.Minimized AndAlso
-            Globals.Settings.ui.rememberWindowsLocation Then
-
-            splashScreen.UpdateInformation("Apply UI layout...")
-
-            Me.Location = Globals.Settings.ui.getLocation
-            Me.Size = Globals.Settings.ui.getSize
-            Me.WindowState = Globals.Settings.ui.window
-
-            ' Call Globals.Settings.ui.setColors(Ribbon1)
-        End If
-
+        splashScreen.UpdateInformation("Apply UI layout...")
         splashScreen.UpdateInformation("Fetch news from bionovogene...")
 
         WindowModules.startPage.Show(MyApplication.host.m_dockPanel)
@@ -629,7 +625,7 @@ Are you want to make your data to be pre-processing before load it into computer
 
         Call MyApplication.LogText(text.ToString)
         ' just scan for the new plugins
-        Call Plugin.LoadPlugins(
+        Call Galaxy.Workbench.Plugin.Plugin.LoadPlugins(
             println:=Sub(msg)
                          Call MyApplication.LogText(msg)
                          Call splashScreen.UpdateInformation(msg)
@@ -640,7 +636,7 @@ Are you want to make your data to be pre-processing before load it into computer
         splashScreen.CloseWindow()
 
         ' load and init of the plugins
-        Call Plugin.InitPlugins(AddressOf Workbench.LogText)
+        Call Galaxy.Workbench.Plugin.Plugin.InitPlugins(AddressOf Workbench.LogText)
 
         If Not MyApplication.afterLoad Is Nothing Then
             Call MyApplication.afterLoad()
@@ -651,7 +647,7 @@ Are you want to make your data to be pre-processing before load it into computer
         End If
 
         Call Workbench.LogText("set ui language culture to:" & Thread.CurrentThread.CurrentUICulture.ToString)
-        Call Workbench.LogText(Settings.ui.language.Description)
+        Call Workbench.LogText("language=" & CommonRuntime.UISettings.language.Description)
     End Sub
 
     Private Sub InitializeFormulaProfile()
@@ -796,22 +792,16 @@ Are you want to make your data to be pre-processing before load it into computer
         Globals.Settings.viewer.XIC_da = MyApplication.host.GetXICDaError
         Globals.Settings.viewer.ppm_error = MyApplication.host.GetPPMError
         Globals.Settings.ui = New UISettings With {
-            .height = Height,
-            .width = Width,
-            .x = Location.X,
-            .y = Location.Y,
-            .window = WindowState,
-            .rememberWindowsLocation = Globals.Settings.ui.rememberWindowsLocation,
             .rememberLayouts = Globals.Settings.ui.rememberLayouts,
             .fileExplorerDock = WindowModules.fileExplorer.DockState,
             .OutputDock = WindowModules.output.DockState,
-            .propertyWindowDock = WindowModules.propertyWin.DockState,
+            .propertyWindowDock = Workbench.propertyWin.DockState,
             .featureListDock = WindowModules.rawFeaturesList.DockState,
-            .taskListDock = WindowModules.taskWin.DockState，
-            .language = Globals.Settings.ui.language
+            .taskListDock = WindowModules.taskWin.DockState
         }
 
         Globals.Settings.Save()
+        CommonRuntime.SaveUISettings()
     End Sub
 
 #Region "vs2015"
@@ -822,24 +812,20 @@ Are you want to make your data to be pre-processing before load it into computer
     Private vsToolStripExtender1 As New VisualStudioToolStripExtender
     Private ReadOnly _toolStripProfessionalRenderer As New ToolStripProfessionalRenderer()
 
-    Public ReadOnly Property DockPanel As DockPanel Implements AppHost.DockPanel
-        Get
-            Return m_dockPanel
-        End Get
-    End Property
-
     Private ReadOnly Property AppHost_ClientRectangle As Rectangle Implements AppHost.ClientRectangle
         Get
             Return New Rectangle(Location, Size)
         End Get
     End Property
 
+    Public ReadOnly Property ActiveDocument As Form Implements AppHost.ActiveDocument
+
     Public Sub ShowPropertyWindow()
-        VisualStudio.Dock(WindowModules.propertyWin, DockState.DockRight)
+        VisualStudio.Dock(Workbench.propertyWin, DockState.DockRight)
     End Sub
 
     Public Sub ShowProperties(obj As Object) Implements AppHost.ShowProperties
-        WindowModules.propertyWin.SetObject(obj)
+        Workbench.propertyWin.SetObject(obj)
         ShowPropertyWindow()
     End Sub
 
@@ -978,7 +964,7 @@ Are you want to make your data to be pre-processing before load it into computer
     End Sub
 
     Private Sub dockPanel_ActiveDocumentChanged(sender As Object, e As EventArgs) Handles m_dockPanel.ActiveDocumentChanged
-        If TypeOf m_dockPanel.ActiveDocument Is frmTableViewer Then
+        If TypeOf m_dockPanel.ActiveDocument Is FormExcelPad Then
             ribbonItems.TableGroup.ContextAvailable = ContextAvailability.Active
         Else
             ribbonItems.TableGroup.ContextAvailable = ContextAvailability.NotAvailable
@@ -1036,4 +1022,12 @@ Are you want to make your data to be pre-processing before load it into computer
             Me.Hide()
         End If
     End Sub
+
+    Public Function GetDocuments() As IEnumerable(Of Form) Implements AppHost.GetDocuments
+        Return m_dockPanel.Documents.Select(Function(d) DirectCast(d, Form))
+    End Function
+
+    Public Function GetDockPanel() As Control Implements AppHost.GetDockPanel
+        Return m_dockPanel
+    End Function
 End Class

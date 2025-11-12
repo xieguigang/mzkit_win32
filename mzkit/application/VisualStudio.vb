@@ -60,9 +60,12 @@
 
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.DockDocument
+Imports Galaxy.Workbench.DockDocument.Presets
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
-Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class VisualStudio
 
@@ -77,12 +80,12 @@ Public Class VisualStudio
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub Dock(win As ToolWindow, prefer As DockState)
-        Call Workbench.Dock(win, prefer)
+        Call CommonRuntime.Dock(win, prefer)
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub ShowPropertyWindow()
-        Call Dock(WindowModules.propertyWin, DockState.DockRight)
+        Call Dock(Workbench.propertyWin, DockState.DockRight)
     End Sub
 
     ''' <summary>
@@ -94,7 +97,7 @@ Public Class VisualStudio
     ''' </remarks>
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub ShowProperties(item As Object)
-        Dim form = WindowModules.propertyWin
+        Dim form As PropertyWindow = Workbench.propertyWin
         Call form.Invoke(Sub() form.SetObject(item))
     End Sub
 
@@ -108,7 +111,7 @@ Public Class VisualStudio
     ''' 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Function ShowSingleDocument(Of T As {New, DockContent})(Optional showExplorer As Action = Nothing) As T
-        Return Workbench.ShowSingleDocument(Of T)(showExplorer)
+        Return CommonRuntime.ShowSingleDocument(Of T)(showExplorer)
     End Function
 
     ''' <summary>
@@ -123,14 +126,14 @@ Public Class VisualStudio
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Function ShowDocument(Of T As {New, DocumentWindow})(Optional status As DockState = DockState.Document,
                                                                        Optional title As String = Nothing) As T
-        Return Workbench.ShowDocument(Of T)(status, title)
+        Return CommonRuntime.ShowDocument(Of T)(status, title)
     End Function
 
     Public Shared Sub ShowDocument(doc As DocumentWindow,
                                    Optional status As DockState = DockState.Document,
                                    Optional title As String = Nothing)
 
-        doc.Show(Workbench.AppHost.DockPanel)
+        doc.Show(Workbench.AppHost.GetDockPanel)
         doc.DockState = status
 
         Call Workbench.LogText($"open new document page: {If(title, "<No Name>")}")

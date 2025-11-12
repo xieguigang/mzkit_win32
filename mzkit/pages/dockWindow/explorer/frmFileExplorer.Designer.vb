@@ -52,8 +52,8 @@
 
 #End Region
 
-Imports ControlLibrary
-Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.CommonControls
+Imports Galaxy.Workbench.DockDocument
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmFileExplorer
@@ -92,10 +92,10 @@ Partial Class frmFileExplorer
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList2 = New System.Windows.Forms.ImageList(Me.components)
-        Me.treeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
+        Me.treeView1 = New Win7StyleTreeView(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripSpringTextBox1 = New Global.Mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
+        Me.ToolStripSpringTextBox1 = New ToolStripSpringTextBox()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ctxMenuScript = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -379,7 +379,7 @@ Partial Class frmFileExplorer
     Friend WithEvents TICOverlapToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ImageList2 As ImageList
     Friend WithEvents ImportsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents treeView1 As Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView
+    Friend WithEvents treeView1 As Win7StyleTreeView
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
     Friend WithEvents ToolStripButton1 As ToolStripButton

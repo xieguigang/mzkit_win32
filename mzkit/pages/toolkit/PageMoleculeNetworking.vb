@@ -66,6 +66,9 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.cooldatagridview
 Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.ExcelPad
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
@@ -84,7 +87,6 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
@@ -159,7 +161,7 @@ Public Class PageMoleculeNetworking
             Workbench.Warning("The network size is huge for create layout, entire progress will be very slow...")
         End If
 
-        Dim viewer As frmNetworkViewer = VisualStudio.ShowDocument(Of frmNetworkViewer)(title:="Molecular Networking Viewer")
+        Dim viewer As FormNetworkViewer = VisualStudio.ShowDocument(Of FormNetworkViewer)(title:="Molecular Networking Viewer")
         Dim showSingle As Boolean = False
         Dim graph As NetworkGraph = g.Copy
 
@@ -572,8 +574,8 @@ Public Class PageMoleculeNetworking
 
             host.mzkitTool.showMatrix(matrix, $"{row.Cells(0).Value}_vs_{row.Cells(1).Value}")
 
-            host.mzkitTool.PictureBox1.BackgroundImage = MassSpectra.AlignMirrorPlot(nodeA.representation, nodeB.representation).AsGDIImage
-            host.mzkitTool.CustomTabControl1.SelectedTab = host.mzkitTool.TabPage5
+            host.mzkitTool.ChartPad1.BackgroundImage = MassSpectra.AlignMirrorPlot(nodeA.representation, nodeB.representation).AsGDIImage
+            host.mzkitTool.ShowRPlotTab()
 
             host.ShowPage(host.mzkitTool)
         End If

@@ -561,11 +561,65 @@
   <data name="TabControlMs1SearchAlgorithm.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="LinkLabel2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LinkLabel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 65</value>
+  </data>
+  <data name="LinkLabel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="LinkLabel2.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="LinkLabel2.Text" xml:space="preserve">
+    <value>Reload Database List</value>
+  </data>
+  <data name="&gt;&gt;LinkLabel2.Name" xml:space="preserve">
+    <value>LinkLabel2</value>
+  </data>
+  <data name="&gt;&gt;LinkLabel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LinkLabel2.Parent" xml:space="preserve">
+    <value>TabSimpleMs1Search</value>
+  </data>
+  <data name="&gt;&gt;LinkLabel2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LinkLabel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LinkLabel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 39</value>
+  </data>
+  <data name="LinkLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 12</value>
+  </data>
+  <data name="LinkLabel1.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="LinkLabel1.Text" xml:space="preserve">
+    <value>Edit Custom Library</value>
+  </data>
+  <data name="&gt;&gt;LinkLabel1.Name" xml:space="preserve">
+    <value>LinkLabel1</value>
+  </data>
+  <data name="&gt;&gt;LinkLabel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LinkLabel1.Parent" xml:space="preserve">
+    <value>TabSimpleMs1Search</value>
+  </data>
+  <data name="&gt;&gt;LinkLabel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="chkUniqueMetabolites.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="chkUniqueMetabolites.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 169</value>
+    <value>443, 16</value>
   </data>
   <data name="chkUniqueMetabolites.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 16</value>
@@ -586,13 +640,13 @@
     <value>TabSimpleMs1Search</value>
   </data>
   <data name="&gt;&gt;chkUniqueMetabolites.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="Label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="Label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 16</value>
+    <value>14, 16</value>
   </data>
   <data name="Label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 12</value>
@@ -613,13 +667,16 @@
     <value>TabSimpleMs1Search</value>
   </data>
   <data name="&gt;&gt;Label9.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
+  </data>
+  <data name="cboxDatabaseList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="cboxDatabaseList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 16</value>
+    <value>157, 16</value>
   </data>
   <data name="cboxDatabaseList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 132</value>
+    <value>264, 244</value>
   </data>
   <data name="cboxDatabaseList.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -634,7 +691,7 @@
     <value>TabSimpleMs1Search</value>
   </data>
   <data name="&gt;&gt;cboxDatabaseList.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="TabSimpleMs1Search.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>

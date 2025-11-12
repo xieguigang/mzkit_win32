@@ -1,7 +1,8 @@
-﻿Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream.Generic
+﻿Imports Galaxy.ExcelPad
+Imports Galaxy.Workbench.CommonDialogs
+Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream.Generic
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
 Imports Microsoft.VisualBasic.Linq
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports any = Microsoft.VisualBasic.Scripting
@@ -78,7 +79,7 @@ Public Class KEGGEnrichmentGraph : Inherits SummaryPlot
                 {NamesOf.REFLECTION_ID_MAPPING_NODETYPE, "pathway"}
             }})
         Next
-        For Each id As String In geneSet.IteratesALL.Distinct
+        For Each id As String In geneset.IteratesALL.Distinct
             Call g.CreateNode(id, New NodeData With {
                               .color = Brushes.Red,
                               .Properties = New Dictionary(Of String, String) From {

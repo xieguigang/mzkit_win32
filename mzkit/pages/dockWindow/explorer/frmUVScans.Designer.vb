@@ -52,8 +52,8 @@
 
 #End Region
 
-Imports ControlLibrary
-Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.CommonControls
+Imports Galaxy.Workbench.DockDocument
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmUVScans
@@ -86,7 +86,7 @@ Partial Class frmUVScans
         Me.ShowPDAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowUVOverlapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Win7StyleTreeView1 = New Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
+        Me.Win7StyleTreeView1 = New Win7StyleTreeView(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
@@ -179,7 +179,7 @@ Partial Class frmUVScans
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ShowPDAToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ShowUVOverlapToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Win7StyleTreeView1 As Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView
+    Friend WithEvents Win7StyleTreeView1 As Win7StyleTreeView
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
     Friend WithEvents ImageList1 As ImageList

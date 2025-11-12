@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net48</TargetFramework>
-    <StartupObject>Sub Main</StartupObject>
+    <StartupObject>msconvertGUI.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
     <OutputPath>../../../dist\bin</OutputPath>
@@ -11,6 +11,11 @@
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;mzkit_win32</Configurations>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Product>BioDeep</Product>
+    <Company>PANOMIX</Company>
+    <Authors>xieguigang@metabolomics.ac.cn</Authors>
+    <Title>Convert Mass Spectrum Raw Data Files</Title>
+    <Description>Convert Mass Spectrum Raw Data Files Into MZKit Format</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,18 +30,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyForm\GalaxyForm.vbproj" />
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+    <ProjectReference Include="..\..\assembly\mzPackExtensions\mzPackExtensions.NET5.vbproj" />
     <ProjectReference Include="..\..\assembly\ThermoRawFileReader\MSFileReader.NET5.vbproj" />
     <ProjectReference Include="..\services\Task\Task.vbproj" />
     <ProjectReference Include="..\ux\BasicMDIForm\BasicMDIForm.vbproj" />
     <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj" />
-    <ProjectReference Include="..\ux\ControlLibrary\ControlLibrary.vbproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.Windows.Form">
-      <HintPath>..\dist\Microsoft.VisualStudio.Windows.Form.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +45,19 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
+    <Compile Update="My Project\Resources.Designer.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

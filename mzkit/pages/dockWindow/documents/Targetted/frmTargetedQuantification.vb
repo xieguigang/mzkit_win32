@@ -83,11 +83,14 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Data
+Imports Galaxy.Data.UIInteractive
+Imports Galaxy.ExcelPad
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
-Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Data.IO.MessagePack
@@ -99,13 +102,12 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.Office.Excel.XLSX
 Imports Microsoft.VisualBasic.MIME.Office.Excel.XLSX.Writer
-Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
 Imports Task
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
 Imports std = System.Math
 
@@ -127,8 +129,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Call reloadProfileNames()
         Call ApplyVsTheme(ToolStrip1, ToolStrip2, ContextMenuStrip1, ContextMenuStrip2, ContextMenuStrip3)
 
-        Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
-        Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
+        Call VisualStudio.Dock(Workbench.parametersTool, DockState.DockRight)
+        Call Workbench.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
     End Sub
 
     ''' <summary>
@@ -1959,7 +1961,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Private Sub OpenInTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableViewerToolStripMenuItem.Click
-        Dim tbl = VisualStudio.ShowDocument(Of frmTableViewer)(title:=sampleTableName)
+        Dim tbl = VisualStudio.ShowDocument(Of FormExcelPad)(title:=sampleTableName)
         Dim names As New List(Of String)
 
         For Each col As DataGridViewColumn In DataGridView3.Columns
@@ -2083,7 +2085,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         Me.sampleNames = rawNames
 
-        Dim tbl = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Linear ISTD Evaluations")
+        Dim tbl = VisualStudio.ShowDocument(Of FormExcelPad)(title:="Linear ISTD Evaluations")
         Dim names As String() = reportTable _
             .Select(Function(a) a.samples.Keys) _
             .IteratesALL _
@@ -2193,7 +2195,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     Private Sub SendToTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToTableViewerToolStripMenuItem.Click
         Dim tbl_data As ReferencePoint() = standardCurve.points
-        Dim tbl = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"[{standardCurve.name}]Linear Reference Points")
+        Dim tbl = VisualStudio.ShowDocument(Of FormExcelPad)(title:=$"[{standardCurve.name}]Linear Reference Points")
 
         Call tbl.LoadTable(
             Sub(grid)

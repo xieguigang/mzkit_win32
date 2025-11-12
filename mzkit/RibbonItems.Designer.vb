@@ -134,6 +134,7 @@ Namespace RibbonLib.Controls
             Public Const cmdTabFormulaSearch As UInteger = 1092
             Public Const cmdGroupFormulaSearch As UInteger = 1093
             Public Const cmdButtonFormulaSearchExport As UInteger = 1094
+            Public Const cmdButtonEditCustomFormulaLibrary As UInteger = 365
             Public Const cmdTargetedContex As UInteger = 101
             Public Const cmdTabTargeted As UInteger = 102
             Public Const cmdTabGroupTargeted As UInteger = 98
@@ -158,6 +159,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonMSIRowScans As UInteger = 128
             Public Const cmdButtonExportMSIMzpack As UInteger = 127
             Public Const cmdButtonMergeMultipleMSISample As UInteger = 207
+            Public Const cmdButtonExportMSICellMatrix As UInteger = 370
             Public Const cmdPanelMSIVisual As UInteger = 186
             Public Const cmdButtonMSIImportAnnotationTable As UInteger = 225
             Public Const cmdButtonMSISearchPubChem As UInteger = 192
@@ -237,6 +239,9 @@ Namespace RibbonLib.Controls
             Public Const cmdPanelSlideViewer As UInteger = 256
             Public Const cmdButtonOpenseadragonWebCapture As UInteger = 251
             Public Const cmdButtonViewerFullScreen As UInteger = 255
+            Public Const cmdGroupHEAnalysis As UInteger = 363
+            Public Const cmdButtonScanSingleCells As UInteger = 362
+            Public Const cmdButtonScanSlide As UInteger = 364
             Public Const cmdMetaboAnalysis As UInteger = 269
             Public Const cmdDataSummaryPanel As UInteger = 270
             Public Const cmdWorkbenchFile As UInteger = 275
@@ -286,8 +291,7 @@ Namespace RibbonLib.Controls
             Public Const cmdPanelReport As UInteger = 312
             Public Const cmdMenuReport As UInteger = 313
             Public Const cmdButtonReportOpenWorkspace As UInteger = 314
-            Public Const cmdButtonReportSelect As UInteger = 315
-            Public Const cmdButtonAddLCMSComparision As UInteger = 327
+            Public Const cmdButtonImportsWorkspace As UInteger = 367
             Public Const cmdPanelReportSettings As UInteger = 318
             Public Const cmdButtonReportTableView As UInteger = 325
             Public Const cmdToggleShowRT As UInteger = 317
@@ -295,6 +299,10 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonReportHeatMapColors As UInteger = 319
             Public Const cmdButtonSortByMz As UInteger = 354
             Public Const cmdButtonReportSampleInfo As UInteger = 328
+            Public Const cmdGroupReportOperation As UInteger = 368
+            Public Const cmdButtonReportSelect As UInteger = 315
+            Public Const cmdButtonAddLCMSComparision As UInteger = 327
+            Public Const cmdButtonRefreshReport As UInteger = 369
             Public Const cmdMenuLabIA As UInteger = 336
             Public Const cmdPageLabIA As UInteger = 337
             Public Const cmdGroupLabIA As UInteger = 338
@@ -310,6 +318,11 @@ Namespace RibbonLib.Controls
             Public Const cmdPanelMolmilFile As UInteger = 348
             Public Const cmdGroupMolmilFile As UInteger = 349
             Public Const cmdButtonMolmilOpenFile As UInteger = 350
+            Public Const cmdGroupMolstarOperations As UInteger = 359
+            Public Const cmdButtonMolstarResetCamera As UInteger = 358
+            Public Const cmdButtonMolstarClearCanvas As UInteger = 360
+            Public Const cmdButtonMolstarMakeSnapshot As UInteger = 361
+            Public Const cmdButtonLigand2DPlot As UInteger = 366
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -483,7 +496,7 @@ Namespace RibbonLib.Controls
         End Property
         Private _ButtonMolmilToolkit As RibbonButton
         ''' <summary>
-        ''' Molmil is a WebGL based molecular viewer that can load various formats including PDB, mmCIF and PDBML. Molmil can display small to large structures in high quality as well as scale up to extremely large structures as found in the PDB.
+        ''' Mol* (/'molstar/) is a modern web-based open-source toolkit for visualisation and analysis of large-scale molecular data
         ''' </summary>
         Public ReadOnly Property ButtonMolmilToolkit As RibbonButton
             Get
@@ -1091,6 +1104,9 @@ Namespace RibbonLib.Controls
             End Get
         End Property
         Private _GroupFormulaSearch As RibbonGroup
+        ''' <summary>
+        ''' Search Result Data and Library Data Files
+        ''' </summary>
         Public ReadOnly Property GroupFormulaSearch As RibbonGroup
             Get
                 Return _GroupFormulaSearch
@@ -1100,6 +1116,15 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonFormulaSearchExport As RibbonButton
             Get
                 Return _ButtonFormulaSearchExport
+            End Get
+        End Property
+        Private _ButtonEditCustomFormulaLibrary As RibbonButton
+        ''' <summary>
+        ''' Open a page for edit your custom metabolite library.
+        ''' </summary>
+        Public ReadOnly Property ButtonEditCustomFormulaLibrary As RibbonButton
+            Get
+                Return _ButtonEditCustomFormulaLibrary
             End Get
         End Property
         Private _TargetedContex As RibbonTabGroup
@@ -1250,6 +1275,15 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonMergeMultipleMSISample As RibbonButton
             Get
                 Return _ButtonMergeMultipleMSISample
+            End Get
+        End Property
+        Private _ButtonExportMSICellMatrix As RibbonButton
+        ''' <summary>
+        ''' Export Cell Matrix
+        ''' </summary>
+        Public ReadOnly Property ButtonExportMSICellMatrix As RibbonButton
+            Get
+                Return _ButtonExportMSICellMatrix
             End Get
         End Property
         Private _PanelMSIVisual As RibbonGroup
@@ -1738,6 +1772,33 @@ Namespace RibbonLib.Controls
                 Return _ButtonViewerFullScreen
             End Get
         End Property
+        Private _GroupHEAnalysis As RibbonGroup
+        ''' <summary>
+        ''' HE Analysis
+        ''' </summary>
+        Public ReadOnly Property GroupHEAnalysis As RibbonGroup
+            Get
+                Return _GroupHEAnalysis
+            End Get
+        End Property
+        Private _ButtonScanSingleCells As RibbonButton
+        ''' <summary>
+        ''' Scan single cells shape in current image capture region 
+        ''' </summary>
+        Public ReadOnly Property ButtonScanSingleCells As RibbonButton
+            Get
+                Return _ButtonScanSingleCells
+            End Get
+        End Property
+        Private _ButtonScanSlide As RibbonButton
+        ''' <summary>
+        ''' Scan the entire slide image for the single cells shapes
+        ''' </summary>
+        Public ReadOnly Property ButtonScanSlide As RibbonButton
+            Get
+                Return _ButtonScanSlide
+            End Get
+        End Property
         Private _MetaboAnalysis As RibbonTabGroup
         Public ReadOnly Property MetaboAnalysis As RibbonTabGroup
             Get
@@ -2040,7 +2101,7 @@ Namespace RibbonLib.Controls
         End Property
         Private _GroupReport As RibbonTabGroup
         ''' <summary>
-        ''' Report
+        ''' BioDeep Annotation Viewer
         ''' </summary>
         Public ReadOnly Property GroupReport As RibbonTabGroup
             Get
@@ -2074,22 +2135,13 @@ Namespace RibbonLib.Controls
                 Return _ButtonReportOpenWorkspace
             End Get
         End Property
-        Private _ButtonReportSelect As RibbonButton
+        Private _ButtonImportsWorkspace As RibbonButton
         ''' <summary>
-        ''' Select metabolites for make html report view
+        ''' Imports Workspace
         ''' </summary>
-        Public ReadOnly Property ButtonReportSelect As RibbonButton
+        Public ReadOnly Property ButtonImportsWorkspace As RibbonButton
             Get
-                Return _ButtonReportSelect
-            End Get
-        End Property
-        Private _ButtonAddLCMSComparision As RibbonButton
-        ''' <summary>
-        ''' Add Comparision
-        ''' </summary>
-        Public ReadOnly Property ButtonAddLCMSComparision As RibbonButton
-            Get
-                Return _ButtonAddLCMSComparision
+                Return _ButtonImportsWorkspace
             End Get
         End Property
         Private _PanelReportSettings As RibbonGroup
@@ -2144,6 +2196,42 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonReportSampleInfo As RibbonButton
             Get
                 Return _ButtonReportSampleInfo
+            End Get
+        End Property
+        Private _GroupReportOperation As RibbonGroup
+        ''' <summary>
+        ''' Report Operation
+        ''' </summary>
+        Public ReadOnly Property GroupReportOperation As RibbonGroup
+            Get
+                Return _GroupReportOperation
+            End Get
+        End Property
+        Private _ButtonReportSelect As RibbonButton
+        ''' <summary>
+        ''' Select metabolites for make html report view
+        ''' </summary>
+        Public ReadOnly Property ButtonReportSelect As RibbonButton
+            Get
+                Return _ButtonReportSelect
+            End Get
+        End Property
+        Private _ButtonAddLCMSComparision As RibbonButton
+        ''' <summary>
+        ''' Add Comparision
+        ''' </summary>
+        Public ReadOnly Property ButtonAddLCMSComparision As RibbonButton
+            Get
+                Return _ButtonAddLCMSComparision
+            End Get
+        End Property
+        Private _ButtonRefreshReport As RibbonButton
+        ''' <summary>
+        ''' Refresh Report View
+        ''' </summary>
+        Public ReadOnly Property ButtonRefreshReport As RibbonButton
+            Get
+                Return _ButtonRefreshReport
             End Get
         End Property
         Private _MenuLabIA As RibbonTabGroup
@@ -2234,6 +2322,51 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonMolmilOpenFile As RibbonButton
             Get
                 Return _ButtonMolmilOpenFile
+            End Get
+        End Property
+        Private _GroupMolstarOperations As RibbonGroup
+        ''' <summary>
+        ''' Molstar Operations
+        ''' </summary>
+        Public ReadOnly Property GroupMolstarOperations As RibbonGroup
+            Get
+                Return _GroupMolstarOperations
+            End Get
+        End Property
+        Private _ButtonMolstarResetCamera As RibbonButton
+        ''' <summary>
+        ''' Reset Camera
+        ''' </summary>
+        Public ReadOnly Property ButtonMolstarResetCamera As RibbonButton
+            Get
+                Return _ButtonMolstarResetCamera
+            End Get
+        End Property
+        Private _ButtonMolstarClearCanvas As RibbonButton
+        ''' <summary>
+        ''' Clear Canvas
+        ''' </summary>
+        Public ReadOnly Property ButtonMolstarClearCanvas As RibbonButton
+            Get
+                Return _ButtonMolstarClearCanvas
+            End Get
+        End Property
+        Private _ButtonMolstarMakeSnapshot As RibbonButton
+        ''' <summary>
+        ''' Make Snapshot
+        ''' </summary>
+        Public ReadOnly Property ButtonMolstarMakeSnapshot As RibbonButton
+            Get
+                Return _ButtonMolstarMakeSnapshot
+            End Get
+        End Property
+        Private _ButtonLigand2DPlot As RibbonButton
+        ''' <summary>
+        ''' Show molecular docking result visual in 2D plot
+        ''' </summary>
+        Public ReadOnly Property ButtonLigand2DPlot As RibbonButton
+            Get
+                Return _ButtonLigand2DPlot
             End Get
         End Property
         Private _TabMain As RibbonTab
@@ -2613,6 +2746,7 @@ Namespace RibbonLib.Controls
             _TabFormulaSearch = New RibbonTab(_ribbon, Cmd.cmdTabFormulaSearch)
             _GroupFormulaSearch = New RibbonGroup(_ribbon, Cmd.cmdGroupFormulaSearch)
             _ButtonFormulaSearchExport = New RibbonButton(_ribbon, Cmd.cmdButtonFormulaSearchExport)
+            _ButtonEditCustomFormulaLibrary = New RibbonButton(_ribbon, Cmd.cmdButtonEditCustomFormulaLibrary)
             _TargetedContex = New RibbonTabGroup(_ribbon, Cmd.cmdTargetedContex)
             _TabTargeted = New RibbonTab(_ribbon, Cmd.cmdTabTargeted)
             _TabGroupTargeted = New RibbonGroup(_ribbon, Cmd.cmdTabGroupTargeted)
@@ -2637,6 +2771,7 @@ Namespace RibbonLib.Controls
             _ButtonMSIRowScans = New RibbonButton(_ribbon, Cmd.cmdButtonMSIRowScans)
             _ButtonExportMSIMzpack = New RibbonButton(_ribbon, Cmd.cmdButtonExportMSIMzpack)
             _ButtonMergeMultipleMSISample = New RibbonButton(_ribbon, Cmd.cmdButtonMergeMultipleMSISample)
+            _ButtonExportMSICellMatrix = New RibbonButton(_ribbon, Cmd.cmdButtonExportMSICellMatrix)
             _PanelMSIVisual = New RibbonGroup(_ribbon, Cmd.cmdPanelMSIVisual)
             _ButtonMSIImportAnnotationTable = New RibbonButton(_ribbon, Cmd.cmdButtonMSIImportAnnotationTable)
             _ButtonMSISearchPubChem = New RibbonButton(_ribbon, Cmd.cmdButtonMSISearchPubChem)
@@ -2716,6 +2851,9 @@ Namespace RibbonLib.Controls
             _PanelSlideViewer = New RibbonGroup(_ribbon, Cmd.cmdPanelSlideViewer)
             _ButtonOpenseadragonWebCapture = New RibbonButton(_ribbon, Cmd.cmdButtonOpenseadragonWebCapture)
             _ButtonViewerFullScreen = New RibbonButton(_ribbon, Cmd.cmdButtonViewerFullScreen)
+            _GroupHEAnalysis = New RibbonGroup(_ribbon, Cmd.cmdGroupHEAnalysis)
+            _ButtonScanSingleCells = New RibbonButton(_ribbon, Cmd.cmdButtonScanSingleCells)
+            _ButtonScanSlide = New RibbonButton(_ribbon, Cmd.cmdButtonScanSlide)
             _MetaboAnalysis = New RibbonTabGroup(_ribbon, Cmd.cmdMetaboAnalysis)
             _DataSummaryPanel = New RibbonTab(_ribbon, Cmd.cmdDataSummaryPanel)
             _WorkbenchFile = New RibbonGroup(_ribbon, Cmd.cmdWorkbenchFile)
@@ -2765,8 +2903,7 @@ Namespace RibbonLib.Controls
             _PanelReport = New RibbonTab(_ribbon, Cmd.cmdPanelReport)
             _MenuReport = New RibbonGroup(_ribbon, Cmd.cmdMenuReport)
             _ButtonReportOpenWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonReportOpenWorkspace)
-            _ButtonReportSelect = New RibbonButton(_ribbon, Cmd.cmdButtonReportSelect)
-            _ButtonAddLCMSComparision = New RibbonButton(_ribbon, Cmd.cmdButtonAddLCMSComparision)
+            _ButtonImportsWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonImportsWorkspace)
             _PanelReportSettings = New RibbonGroup(_ribbon, Cmd.cmdPanelReportSettings)
             _ButtonReportTableView = New RibbonToggleButton(_ribbon, Cmd.cmdButtonReportTableView)
             _ToggleShowRT = New RibbonToggleButton(_ribbon, Cmd.cmdToggleShowRT)
@@ -2774,6 +2911,10 @@ Namespace RibbonLib.Controls
             _ButtonReportHeatMapColors = New RibbonButton(_ribbon, Cmd.cmdButtonReportHeatMapColors)
             _ButtonSortByMz = New RibbonToggleButton(_ribbon, Cmd.cmdButtonSortByMz)
             _ButtonReportSampleInfo = New RibbonButton(_ribbon, Cmd.cmdButtonReportSampleInfo)
+            _GroupReportOperation = New RibbonGroup(_ribbon, Cmd.cmdGroupReportOperation)
+            _ButtonReportSelect = New RibbonButton(_ribbon, Cmd.cmdButtonReportSelect)
+            _ButtonAddLCMSComparision = New RibbonButton(_ribbon, Cmd.cmdButtonAddLCMSComparision)
+            _ButtonRefreshReport = New RibbonButton(_ribbon, Cmd.cmdButtonRefreshReport)
             _MenuLabIA = New RibbonTabGroup(_ribbon, Cmd.cmdMenuLabIA)
             _PageLabIA = New RibbonTab(_ribbon, Cmd.cmdPageLabIA)
             _GroupLabIA = New RibbonGroup(_ribbon, Cmd.cmdGroupLabIA)
@@ -2789,6 +2930,11 @@ Namespace RibbonLib.Controls
             _PanelMolmilFile = New RibbonTab(_ribbon, Cmd.cmdPanelMolmilFile)
             _GroupMolmilFile = New RibbonGroup(_ribbon, Cmd.cmdGroupMolmilFile)
             _ButtonMolmilOpenFile = New RibbonButton(_ribbon, Cmd.cmdButtonMolmilOpenFile)
+            _GroupMolstarOperations = New RibbonGroup(_ribbon, Cmd.cmdGroupMolstarOperations)
+            _ButtonMolstarResetCamera = New RibbonButton(_ribbon, Cmd.cmdButtonMolstarResetCamera)
+            _ButtonMolstarClearCanvas = New RibbonButton(_ribbon, Cmd.cmdButtonMolstarClearCanvas)
+            _ButtonMolstarMakeSnapshot = New RibbonButton(_ribbon, Cmd.cmdButtonMolstarMakeSnapshot)
+            _ButtonLigand2DPlot = New RibbonButton(_ribbon, Cmd.cmdButtonLigand2DPlot)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)

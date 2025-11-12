@@ -54,9 +54,9 @@
 
 #End Region
 
+Imports Galaxy.Data.UIInteractive
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
-Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports any = Microsoft.VisualBasic.Scripting
 Imports std = System.Math
 

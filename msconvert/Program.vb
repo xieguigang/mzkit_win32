@@ -28,7 +28,6 @@ Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
-Imports MZWorkPack
 
 ''' <summary>
 ''' 主要是为了兼容第三方厂家的原始数据文件模块的引用而构建的.NET4.8兼容模块
@@ -427,7 +426,7 @@ Imports MZWorkPack
 
     <ExportAPI("/imzml")>
     <Description("Convert raw data file to imzML file.")>
-    <Usage("/imzml --file <source.data> --save <file.imzML> [/TIC_norm /ionMode <1/-1, default=1> /cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
+    <Usage("/imzml --file <source.data> --save <file.imzML> [/TIC_norm /cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17> /ionMode <1/-1, default=?>]")>
     <Argument("--file", Description:="the source data file inputs, could be a MZKit mzpack rawdata file or a text file contains the vendor raw data file to combine.")>
     <Argument("--save", Description:="the file location path of the imzML and ibd rawdata file to export.")>
     <Argument("/ionMode", True, Description:="the polarity mode of the ms data. value could be 1 for positive and -1 for negative")>
@@ -439,15 +438,15 @@ Imports MZWorkPack
         Dim basePeak As Double = args("/matrix_basePeak") Or 0.0
         Dim norm As Boolean = args("/TIC_norm")
         Dim mzpack As mzPack
-        Dim source As String
-        Dim polarity As Integer = args("/ionMode") Or 1
+        Dim source As String()
+        Dim polarity As String = args("/ionMode") Or "?"
 
         If file_handle.ExtensionSuffix("mzPack") Then
-            source = file_handle
+            source = {file_handle}
             mzpack = mzPack.ReadAll(file_handle.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
         Else
             files = file_handle.ReadAllLines
-            source = files(Scan0)
+            source = files
             mzpack = MSImagingRowBinds.MSI_rowbind(files, cutoff, basePeak, norm)
         End If
 
@@ -466,11 +465,20 @@ Imports MZWorkPack
             )
         End If
 
+        Dim ionMode As IonModes = Provider.ParseIonMode(polarity, allowsUnknown:=True)
+
+        If ionMode = IonModes.Unknown Then
+            ionMode = Provider.ParseIonMode(mzpack.GetMetadata("polarity"), allowsUnknown:=True)
+        End If
+        If ionMode = IonModes.Unknown Then
+            ionMode = IonModes.Positive
+        End If
+
         Using writer As imzML.mzPackWriter = imzML.mzPackWriter _
             .OpenOutput(save) _
             .SetMSImagingParameters(dimsize, res) _
             .SetSourceLocation(source) _
-            .SetSpectrumParameters(polarity)
+            .SetSpectrumParameters(ionMode)
 
             For Each scan As ScanMS1 In mzpack.MS
                 Call writer.WriteScan(scan)

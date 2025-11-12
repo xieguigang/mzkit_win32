@@ -1,6 +1,7 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports Galaxy.Workbench
+Imports Mzkit_win32.BasicMDIForm
 
-Public Class Plugin : Inherits Mzkit_win32.BasicMDIForm.Plugin
+Public Class Plugin : Inherits Galaxy.Workbench.Plugin.Plugin
 
     Public Overrides ReadOnly Property guid As Guid
         Get
@@ -27,7 +28,7 @@ Public Class Plugin : Inherits Mzkit_win32.BasicMDIForm.Plugin
     End Property
 
     Public Overrides Sub Exec()
-        Call Workbench.ShowSingleDocument(Of FormMain)()
+        Call CommonRuntime.ShowSingleDocument(Of FormMain)()
     End Sub
 
     Public Overrides Function Init(println As Action(Of String)) As Boolean

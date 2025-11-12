@@ -53,9 +53,9 @@
 #End Region
 
 Imports System.ComponentModel
-Imports Microsoft.VisualBasic.Windows.Forms
 Imports BioNovoGene.mzkit_win32.My
-Imports WeifenLuo.WinFormsUI.Docking
+Imports Microsoft.VisualBasic.Windows.Forms
+Imports Microsoft.VisualStudio.WinForms.Docking
 
 Public Class frmRsharp
 
@@ -78,9 +78,10 @@ Public Class frmRsharp
 
         console1.Font = New Font("Consolas", 10.0!)
         console1.Dock = DockStyle.Fill
-        console1.Ps1Pattern = "[>]\s"
+        ' console1.Ps1Pattern = "[>]\s"
+        console1.SetConsoleCore(New Console)
 
-        console = console1.Console
+        console = DirectCast(console1.GetInterface, Console)
 
         console.ForegroundColor = ConsoleColor.Black
         console.BackgroundColor = ConsoleColor.White

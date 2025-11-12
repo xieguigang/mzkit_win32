@@ -1,6 +1,8 @@
 ﻿Imports System.IO
 Imports System.IO.Compression
 Imports System.Runtime.InteropServices
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.Plugin
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
@@ -64,7 +66,7 @@ Public Class PkgPage
         Me.TabText = "Create MZKit Plugin Package"
 
         DoubleBuffered = True
-        WebKit.Init(WebView21)
+        WebViewLoader.Init(WebView21)
     End Sub
 
     Public Sub SetObject(obj As Object)
@@ -74,6 +76,6 @@ Public Class PkgPage
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         Call SetObject(New pluginCreator)
         Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/pluginPkgTool.html")
-        Call WebKit.DeveloperOptions(WebView21, enable:=True)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True)
     End Sub
 End Class

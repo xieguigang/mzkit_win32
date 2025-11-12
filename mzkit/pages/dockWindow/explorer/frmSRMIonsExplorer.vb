@@ -68,6 +68,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
 Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.ComponentModel.Collection
@@ -77,10 +78,10 @@ Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.SignalProcessing
 Imports Microsoft.VisualBasic.Text.Patterns
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports Task
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 Imports chromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML.chromatogram
 Imports std = System.Math
 
@@ -767,8 +768,8 @@ Public Class frmSRMIonsExplorer
     Dim args As PeakFindingParameters
 
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
-        Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
-        Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
+        Call VisualStudio.Dock(Workbench.parametersTool, DockState.DockRight)
+        Call Workbench.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
     End Sub
 
     Private Sub applyNewParameters(args As PeakFindingParameters)
@@ -797,8 +798,8 @@ Public Class frmSRMIonsExplorer
         Call applyNewParameters(New PeakFindingParameters)
         ' clear the custom parameters for the ions
         Call Globals.Settings.peak_arguments.Clear()
-        Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
-        Call WindowModules.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
+        Call VisualStudio.Dock(Workbench.parametersTool, DockState.DockRight)
+        Call Workbench.parametersTool.SetParameterObject(args, AddressOf applyNewParameters)
     End Sub
 
     Private Sub SetIndividualPeakFindingArgumentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetIndividualPeakFindingArgumentsToolStripMenuItem.Click
@@ -826,8 +827,8 @@ Public Class frmSRMIonsExplorer
             Globals.Settings.peak_arguments(selcNode.ion.accession).accession = selcNode.ion.accession
 
             Call applyNewIonParameters(Globals.Settings.peak_arguments(selcNode.ion.accession))
-            Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
-            Call WindowModules.parametersTool.SetParameterObject(Globals.Settings.peak_arguments(selcNode.ion.accession), AddressOf applyNewIonParameters)
+            Call VisualStudio.Dock(Workbench.parametersTool, DockState.DockRight)
+            Call Workbench.parametersTool.SetParameterObject(Globals.Settings.peak_arguments(selcNode.ion.accession), AddressOf applyNewIonParameters)
         Else
             Call Globals.Settings.peak_arguments.Remove(selcNode.ion.accession)
             Call ToolStripButton3_Click(Nothing, Nothing)

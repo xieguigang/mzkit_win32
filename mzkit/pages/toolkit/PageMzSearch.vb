@@ -73,6 +73,10 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns
 Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Data
+Imports Galaxy.ExcelPad
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.DockDocument
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Legend
@@ -81,9 +85,9 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Text.Xml.Models
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
-Imports WeifenLuo.WinFormsUI.Docking
 Imports std = System.Math
 
 Public Class PageMzSearch
@@ -459,7 +463,7 @@ Public Class PageMzSearch
         Next
     End Function
 
-    Public Sub ReloadMetaDatabase()
+    Public Sub ReloadMetaDatabase() Handles LinkLabel2.LinkClicked
         cboxDatabaseList.Items.Clear()
 
         cboxDatabaseList.Items.Add("kegg")
@@ -472,6 +476,10 @@ Public Class PageMzSearch
         cboxDatabaseList.SetItemChecked(1, True)
         cboxDatabaseList.SetItemChecked(2, True)
         cboxDatabaseList.SetItemChecked(3, True)
+
+        For Each path As String In frmMoleculeLibrary.GetLibsFiles
+            cboxDatabaseList.Items.Add(path.BaseName)
+        Next
     End Sub
 
     Private Function getDatabase(name As String, ionMode As String(), tolerance As Tolerance) As IMzQuery
@@ -487,7 +495,9 @@ Public Class PageMzSearch
             Case "metabolights"
                 Return Globals.LoadMetabolights(AddressOf MyApplication.LogText, ionMode, tolerance)
             Case Else
-                Return Nothing
+                Dim meta = frmMoleculeLibrary.ReadLibrary(name).ToArray
+                Dim adducts = ionMode.Select(Function(type) Provider.ParseAdductModel(type)).ToArray
+                Return MSSearch(Of MetaInfoTable).CreateIndex(meta, adducts, tolerance)
         End Select
     End Function
 
@@ -581,7 +591,7 @@ Public Class PageMzSearch
         Call result.AddRange(anno)
 
         Dim title As String = If(SourceName.StringEmpty, "Peak List Annotation", $"[{SourceName}] Peak List Annotation")
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim table As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)(title:=title)
         Dim loader As Action(Of DataTable) = AddressOf New LoadAnnotationResultTableTask With {
             .result = result,
             .keggMeta = keggMeta
@@ -633,6 +643,10 @@ Public Class PageMzSearch
         }
 
         Call ConnectToBioDeep.RunMummichog(getMzPeakList, args)
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Call RibbonEvents.openMetaboliteLibraryPage()
     End Sub
 End Class
 

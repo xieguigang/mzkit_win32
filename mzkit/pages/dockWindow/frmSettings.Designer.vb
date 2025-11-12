@@ -52,8 +52,7 @@
 
 #End Region
 
-Imports ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView
-Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.Workbench.DockDocument
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmSettings

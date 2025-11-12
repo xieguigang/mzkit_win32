@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports Galaxy.CommonControls
+Imports Galaxy.Workbench.DockDocument
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class HEMapTools
@@ -26,7 +27,7 @@ Partial Class HEMapTools
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HEMapTools))
-        Me.ColorComboBox1 = New ControlLibrary.ColorComboBox()
+        Me.ColorComboBox1 = New ColorComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -221,7 +222,7 @@ Partial Class HEMapTools
 
     End Sub
 
-    Friend WithEvents ColorComboBox1 As ControlLibrary.ColorComboBox
+    Friend WithEvents ColorComboBox1 As ColorComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents GroupBox1 As GroupBox

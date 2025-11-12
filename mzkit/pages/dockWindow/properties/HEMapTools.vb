@@ -6,8 +6,8 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class HEMapTools
 

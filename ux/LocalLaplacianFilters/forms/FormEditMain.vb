@@ -1,10 +1,10 @@
 ﻿Imports System.Globalization
 Imports System.IO
+Imports Galaxy.Workbench.CommonDialogs
 Imports LaplacianHDR.Filters
 Imports LaplacianHDR.Helpers
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports UMapx.Imaging
-Imports WeifenLuo.WinFormsUI.Docking
 
 Partial Public Class FormEditMain
     Inherits InputDialog

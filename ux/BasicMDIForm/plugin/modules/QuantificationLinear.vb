@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ComponentModel
+﻿Imports Galaxy.Workbench.DockDocument
+Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 
 Public Interface QuantificationLinearPage

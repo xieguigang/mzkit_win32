@@ -1,0 +1,339 @@
+﻿Imports System.ComponentModel
+Imports System.Runtime.InteropServices
+Imports System.Threading
+Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Galaxy.ExcelPad
+Imports Galaxy.Workbench
+Imports HEView
+Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.DataStorage.HDSPack
+Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
+Imports Microsoft.VisualBasic.FileIO
+Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MIME.application.json
+Imports Microsoft.VisualBasic.MIME.application.json.BSON
+Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.VisualStudio.WinForms.Docking
+Imports Microsoft.Web.WebView2.Core
+Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
+Imports RibbonLib.Interop
+Imports Task.Container
+Imports TaskStream
+
+Public Class frmOpenseadragonViewer
+
+    Dim dzi As String
+    Dim dziIndex As String
+    Dim localfs As Process
+    Dim webPort As Integer = -1
+    Dim sourcefile As String
+
+    Public ReadOnly Property sourceURL As String
+        Get
+            Return $"http://127.0.0.1:{webPort}/openseadragon.html"
+        End Get
+    End Property
+
+    Public Sub WebInvokeExportImage()
+        WebView21.ExecuteScriptAsync("apps.viewer.OpenseadragonSlideViewer.ExportViewImage()")
+    End Sub
+
+    Public Sub SwitchToFullScreen()
+        Me.DockState = DockState.Float
+        FormBorderStyle = FormBorderStyle.None
+        TopMost = True
+        WindowState = FormWindowState.Maximized
+    End Sub
+
+    Public Sub ExportSlidePackFile()
+        Using file As New SaveFileDialog With {.Filter = "MZKit Slide StreamPack File(*.hds)|*.hds"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call ExportSlidePackFile(file.FileName)
+                Call MessageBox.Show($"The slide file pack save to {file.FileName} success!",
+                                     "Export Slide Success",
+                                     MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        End Using
+    End Sub
+
+    Public Sub ExportSlidePackFile(filepath As String)
+        Select Case dzi.ExtensionSuffix
+            Case "hds"
+                Call dzi.FileCopy(filepath)
+            Case Else
+                ' dzi file
+                Dim dir As Directory = Directory.FromLocalFileSystem(dzi.ParentPath)
+                Dim pack As New StreamPack(
+                    buffer:=filepath.Open(IO.FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False),,
+                    meta_size:=8 * 1024 * 1024
+                )
+
+                For Each path As String In dir.GetFiles
+                    Dim rel As String = "/" & dir.GetRelativePath(path)
+                    Dim open As Byte() = path.ReadBinary
+                    Dim s = pack.OpenFile(rel, IO.FileMode.OpenOrCreate, IO.FileAccess.Write)
+
+                    Call s.Write(open, Scan0, open.Length)
+                    Call s.Flush()
+                    Call s.Dispose()
+                Next
+
+                Call DirectCast(pack, IFileSystemEnvironment).WriteText(dzi.FileName, "/index.txt")
+                Call pack.Dispose()
+        End Select
+    End Sub
+
+    Shared ReadOnly exportImage As New RibbonEventBinding(ribbonItems.ButtonOpenseadragonWebCapture)
+    Shared ReadOnly fullScreen As New RibbonEventBinding(ribbonItems.ButtonViewerFullScreen)
+    Shared ReadOnly exportPack As New RibbonEventBinding(ribbonItems.ButtonExportSlidePack)
+    Shared ReadOnly scanCells As New RibbonEventBinding(ribbonItems.ButtonScanSingleCells)
+    Shared ReadOnly scanSlide As New RibbonEventBinding(ribbonItems.ButtonScanSlide)
+
+    Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        AutoScaleMode = AutoScaleMode.Dpi
+        ribbonItems.ButtonViewerFullScreen.Enabled = False
+    End Sub
+
+    Public Sub LoadSlide(tiff As String)
+        If tiff.ExtensionSuffix("xml", "dzi", "hds") Then
+            dzi = tiff
+        Else
+            dzi = TempFileSystem.GetAppSysTempFile(".dzi", sessionID:=App.PID.ToHexString.MD5.Substring(2, 6) & "-" & tiff.BaseName, prefix:="deep_zoom_")
+            Call New DeepZoomCreator().CreateSingleComposition(tiff, dzi, ImageType.Jpeg)
+        End If
+
+        Call startHttp()
+    End Sub
+
+    Private Sub startHttp()
+        Dim res As String
+
+        If dzi.ExtensionSuffix("hds") Then
+            res = dzi
+
+            Using pack As StreamPack = StreamPack.OpenReadOnly(dzi)
+                Try
+                    dziIndex = DirectCast(pack, IFileSystemEnvironment) _
+                        .ReadAllText("/index.txt") _
+                        .DoCall(AddressOf Strings.Trim) _
+                        .BaseName
+                Catch ex As Exception
+                    Call App.LogException(ex)
+                    Call Workbench.Warning("error while open the slide image file!")
+                    Return
+                End Try
+            End Using
+        Else
+            res = dzi.ParentPath
+            dziIndex = dzi.BaseName
+        End If
+
+        webPort = Net.Tcp.GetFirstAvailablePort(6001)
+        localfs = New Process With {
+            .StartInfo = New ProcessStartInfo With {
+                .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",
+                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {webPort} --attach ""{res}"" --parent={App.PID}",
+                .CreateNoWindow = True,
+                .WindowStyle = ProcessWindowStyle.Hidden,
+                .UseShellExecute = True
+            }
+        }
+
+        Call localfs.Start()
+        Call App.AddExitCleanHook(Sub() Call localfs.Kill())
+        Call ServiceHub.Manager.Hub.Register(New Manager.Service With {
+            .Name = "Open seadragon",
+            .Description = "Http services for host the deep zoom image for open seadragon viewer",
+            .isAlive = True,
+            .PID = localfs.Id,
+            .Port = webPort,
+            .CPU = 0,
+            .Memory = 0,
+            .Protocol = "HTTP 1.0",
+            .StartTime = Now.ToString,
+            .CommandLine = Manager.Service.GetCommandLine(localfs)
+        })
+
+        Call WorkStudio.LogCommandLine(localfs)
+    End Sub
+
+    Private Sub frmOpenseadragonViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Call localfs.Kill()
+    End Sub
+
+    Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+        Do While webPort <= 0
+            Call System.Windows.Forms.Application.DoEvents()
+            Call Thread.Sleep(10)
+        Loop
+
+        Call WebView21.CoreWebView2.AddHostObjectToScript("dzi", $"http://127.0.0.1:{webPort}/{dziIndex}.dzi")
+        ' Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New WebRunner)
+        Call WebView21.CoreWebView2.Navigate(sourceURL)
+        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True, TabText)
+    End Sub
+
+    Private Async Sub frmOpenseadragonViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
+        DoActivated()
+        Await WebViewLoader.Init(Me.WebView21)
+    End Sub
+
+    Dim scanImageUri As String
+
+    Private Async Sub scanCellTask()
+        scanImageUri = Await WebView21.ExecuteScriptAsync("apps.viewer.OpenseadragonSlideViewer.CaptureSlideImage()")
+    End Sub
+
+    Public Sub DoActivated()
+        exportImage.evt = AddressOf WebInvokeExportImage
+        fullScreen.evt = AddressOf SwitchToFullScreen
+        exportPack.evt = AddressOf ExportSlidePackFile
+        scanCells.evt = AddressOf scanCellTask
+        scanSlide.evt = AddressOf scanSlideCells
+
+        ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.Available
+        ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.Active
+    End Sub
+
+    Public Sub DoLostFocus()
+        exportImage.evt = Nothing
+        fullScreen.evt = Nothing
+        exportPack.evt = Nothing
+        scanCells.evt = Nothing
+        scanSlide.evt = Nothing
+
+        ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.NotAvailable
+    End Sub
+
+    Sub scanSlideCells()
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".hds", App.PID, "slidedata_")
+        Call ExportSlidePackFile(tempfile)
+        Dim level As Integer
+        Dim dzi As String = TempFileSystem.GetAppSysTempFile(".dzi", App.PID, "dzimetadata_")
+        Dim dir As String = dzi.ParentPath & "/images/"
+
+        Using s As New StreamPack(tempfile.Open(IO.FileMode.Open, doClear:=False, [readOnly]:=True))
+            Dim index = s.ReadText("/index.txt").TrimNewLine.Trim
+            Call s.ReadText("/" & index).SaveTo(dzi)
+            Dim metadata As DziImage = dzi.LoadXml(Of DziImage)
+
+            level = metadata.MaxZoomLevels.Max
+
+            Dim maxdir = $"/{index.BaseName}_files/{level}/"
+
+            If s.OpenFolder(maxdir) Is Nothing Then
+                level -= 1
+                maxdir = $"/{index.BaseName}_files/{level}/"
+            End If
+
+            If s.OpenFolder(maxdir) Is Nothing Then
+                Call Workbench.Warning($"Invalid deep zoom image data, missing data directory '{maxdir}'!")
+                Return
+            End If
+
+            For Each file As StreamBlock In s.OpenFolder(maxdir).ListFiles.OfType(Of StreamBlock)
+                Call s.OpenBlock(file, True).FlushStream($"{dir}/{file.fullName.FileName}")
+            Next
+        End Using
+
+        Dim output = RscriptProgressTask.ScanHEDziSingleCells(dzi, level, dir)
+
+        Call WebRunner.LoadCells(output)
+    End Sub
+
+    <ClassInterface(ClassInterfaceType.AutoDual)>
+    <ComVisible(True)>
+    Public Class WebRunner
+
+        Public Shared Sub LoadCells(output As String)
+            Dim cells As CellScan() = TaskProgress.LoadData(Function(p As ITaskProgress) BSONFormat.SafeLoadArrayList(output.ReadBinary).CreateObject(Of CellScan())(False), title:="Load cells data", info:="Loading single cells data from temp file...")
+
+            If cells.IsNullOrEmpty Then
+                Call MessageBox.Show("Scan single cells on the slide image failure, please check run log!", "Scan Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+
+            Dim table As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)(title:="Cell Scan Result")
+            Dim d As Integer = cells.Length / 30
+
+            If d < 1 Then
+                d = 1
+            End If
+
+            Call TaskProgress.RunAction(
+                Sub(p As ITaskProgress)
+                    p.SetProgressMode()
+
+                    table.AppSource = GetType(WebRunner)
+                    table.InstanceGuid = Guid.NewGuid.ToString
+                    table.SourceName = "Cell Scan Result"
+                    table.ViewRow = Sub(row)
+                                    End Sub
+                    table.LoadTable(
+                        Sub(grid)
+                            Dim v As Object()
+                            Dim i As i32 = 0
+
+                            Call grid.Columns.Add("x", GetType(Single))
+                            Call grid.Columns.Add("y", GetType(Single))
+                            Call grid.Columns.Add("area", GetType(Double))
+                            Call grid.Columns.Add("ratio", GetType(Double))
+                            Call grid.Columns.Add("points", GetType(Integer))
+                            Call grid.Columns.Add("width", GetType(Double))
+                            Call grid.Columns.Add("height", GetType(Double))
+                            Call grid.Columns.Add("density", GetType(Double))
+                            Call grid.Columns.Add("moran-I", GetType(Double))
+                            Call grid.Columns.Add("pvalue", GetType(Double))
+
+                            For Each cell As CellScan In cells
+                                v = New Object() {
+                                    cell.physical_x, cell.physical_y,
+                                    cell.area,
+                                    cell.ratio,
+                                    cell.points,
+                                    cell.r1,
+                                    cell.r2,
+                                    cell.density,
+                                    cell.moranI,
+                                    cell.pvalue
+                                }
+
+                                Call grid.Rows.Add(v)
+
+                                If ++i Mod d = 0 Then
+                                    Call p.SetProgress(CInt(i) / cells.Length * 100)
+                                End If
+                            Next
+                        End Sub)
+                End Sub, title:="Loading Cells Table",
+                         info:="Loading cells scan result table data...",
+                         host:=table)
+        End Sub
+
+        Public Shared Sub ProcessImage(imgUri As String)
+            Dim data As DataURI = DataURI.URIParser(imgUri)
+            Dim img As String = TempFileSystem.GetAppSysTempFile(".jpg", sessionID:=App.PID, prefix:="capture_")
+
+            Call data.ToStream.FlushStream(img)
+
+            Dim output = RscriptProgressTask.ScanHESingleCells(img)
+
+            Call LoadCells(output)
+        End Sub
+    End Class
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        If scanImageUri IsNot Nothing Then
+            Dim cache = scanImageUri
+            scanImageUri = Nothing
+            WebRunner.ProcessImage(cache)
+        End If
+    End Sub
+End Class

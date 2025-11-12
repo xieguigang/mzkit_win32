@@ -1,8 +1,9 @@
-﻿Imports BioNovoGene.mzkit_win32.My
+﻿Imports System.Runtime.CompilerServices
+Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Text
-Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Excel = Microsoft.VisualBasic.MIME.Office.Excel.XLSX
 
 Public Class SelectSheetName
@@ -23,18 +24,33 @@ Public Class SelectSheetName
         DialogResult = DialogResult.Cancel
     End Sub
 
-    Public Shared Sub SelectName(names As IEnumerable(Of String), show As Action(Of String))
+    Public Shared Sub SelectName(names As IEnumerable(Of String), show As Action(Of String),
+                                 Optional title As String = Nothing,
+                                 Optional labeltext As String = Nothing)
+
         Dim getter As New SelectSheetName
 
         For Each name As String In names
             Call getter.ComboBox1.Items.Add(name)
         Next
 
+        If Not title.StringEmpty(, True) Then
+            getter.Text = title
+        End If
+        If Not labeltext.StringEmpty(, True) Then
+            getter.GroupBox1.Text = labeltext
+        End If
+
         Call InputDialog.Input(
             setConfig:=Sub(name)
                            Call show(name.ComboBox1.Text)
                        End Sub,
             config:=getter)
+    End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Shared Sub SelectSheetTableName(xlsx As String, show As Action(Of String))
+        Call SelectName(Excel.GetSheetNames(xlsx), show)
     End Sub
 
     Public Shared Sub OpenExcel(fileName As String, Optional showFile As Action(Of File, String) = Nothing)
@@ -74,7 +90,7 @@ Public Class SelectSheetName
             Sub()
                 Call MyApplication.host.Invoke(
                     Sub()
-                        Call WindowModules.ShowTable(DataFrameResolver.CreateObject(table), title)
+                        Call Galaxy.ExcelPad.ShowTable(DataFrameResolver.CreateObject(table), title)
                     End Sub)
             End Sub)
     End Sub

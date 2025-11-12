@@ -1,4 +1,6 @@
-﻿Public Interface SpectrumSearchPage
+﻿Imports Galaxy.Workbench.DockDocument
+
+Public Interface SpectrumSearchPage
 
     ''' <summary>
     ''' the spectrum title is generated based on the different <paramref name="ms2"/> object type

@@ -65,6 +65,7 @@ Imports System.IO
 Imports System.Net
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
@@ -81,6 +82,10 @@ Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Galaxy.ExcelPad
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.Actions
+Imports Galaxy.Workbench.DockDocument
 Imports Microsoft.VisualBasic.ApplicationServices.Development
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel.Collection
@@ -92,14 +97,13 @@ Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Microsoft.VisualBasic.ValueTypes
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
-Imports MZWorkPack
 Imports PipelineHost
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports Task
 Imports Task.Container
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 
 Module Globals
 
@@ -149,6 +153,16 @@ Module Globals
         End Get
     End Property
 
+    Public ReadOnly Iterator Property PlotApps As IEnumerable(Of SummaryPlot)
+        Get
+            Yield New KEGGEnrichmentBarSummary
+            Yield New KEGGEnrichmentBarSummary2
+            Yield New PCA3d
+            Yield New KEGGEnrichmentGraph
+            Yield New LCMSScatterPlot
+        End Get
+    End Property
+
     Sub New()
         Call ImageDriver.Register()
 
@@ -189,26 +203,44 @@ Module Globals
         Pages.SetDocument(NameOf(QuantificationLinearPage), GetType(frmTargetedQuantification))
         Pages.SetDocument(NameOf(MRMLibraryPage), GetType(frmMRMLibrary))
 
-        DataTableViewer.HookTableViewer(Function() DirectCast(VisualStudio.ShowDocument(Of frmTableViewer), IDataTableViewer))
+        DataTableViewer.HookTableViewer(Function() DirectCast(VisualStudio.ShowDocument(Of FormExcelPad), IDataTableViewer))
         SpectralViewerModule.HookViewer(AddressOf PageMzkitTools.ShowSpectral)
         SpectralViewerModule.HookAnalysis(AddressOf Module2.showMasssdiff)
         SpectralViewerModule.HookClusterLoader(AddressOf MSdata.ShowCluster)
 
         BaseHook.HookPlotColorSet(AddressOf Globals.GetColors)
         BaseHook.HookShowProperties(AddressOf VisualStudio.ShowProperties)
+
+        LCMSViewerModule.convert = AddressOf convertMzPack
+
+        For Each plot As SummaryPlot In PlotApps
+            Call SummaryPlot.Register(plot)
+        Next
     End Sub
 
+    Private Function convertMzPack(file As String) As Object
+        If file.ExtensionSuffix("raw") Then
+            Return RawStream.LoadFromXcaliburRaw(file, println:=AddressOf Workbench.AppHost.StatusMessage)
+        ElseIf file.ExtensionSuffix("mzpack") Then
+            Using s As Stream = file.OpenReadonly
+                Return mzPack.ReadAll(s)
+            End Using
+        Else
+            Return Converter.LoadRawFileAuto(file)
+        End If
+    End Function
+
     Public Sub RegisterActions(println As Action(Of String))
-        Call Actions.Register("KEGG Enrichment", New KEGGEnrichmentAction, println)
-        Call Actions.Register("Formula Query", New FormulaQueryAction, println)
-        Call Actions.Register("Peak Finding", New PeakFindingAction, println)
-        Call Actions.Register("Peak List Annotation", New PeakAnnotationAction, println)
-        Call Actions.Register("KEGG Stats", New KEGGStatsAction, println)
-        Call Actions.Register("View 3D Scatter", New ViewScatter3DAction, println)
-        Call Actions.Register("LCMS Scatter", New ViewLCMSScatter, println)
-        Call Actions.Register("Metabonomics Analysis", New MetabonomicsAnalysisTool, println)
-        Call Actions.Register("Linear Regression", New LinearRegressionAction, println)
-        Call Actions.Register("PCA Analysis", New PCAAction, println)
+        Call ActionRegistry.Register("KEGG Enrichment", New KEGGEnrichmentAction, println)
+        Call ActionRegistry.Register("Formula Query", New FormulaQueryAction, println)
+        Call ActionRegistry.Register("Peak Finding", New PeakFindingAction, println)
+        Call ActionRegistry.Register("Peak List Annotation", New PeakAnnotationAction, println)
+        Call ActionRegistry.Register("KEGG Stats", New KEGGStatsAction, println)
+        Call ActionRegistry.Register("View 3D Scatter", New ViewScatter3DAction, println)
+        Call ActionRegistry.Register("LCMS Scatter", New ViewLCMSScatter, println)
+        Call ActionRegistry.Register("Metabonomics Analysis", New MetabonomicsAnalysisTool, println)
+        Call ActionRegistry.Register("Linear Regression", New LinearRegressionAction, println)
+        Call ActionRegistry.Register("PCA Analysis", New PCAAction, println)
     End Sub
 
     Private Sub shutdownHttpWeb()
@@ -388,7 +420,7 @@ Module Globals
         End If
 
         Dim work As WorkspaceFile = TaskProgress.LoadData(
-            streamLoad:=Function(msg) MZWorkPack.ImportWorkspace(mzwork, msg.Echo),
+            streamLoad:=Function(msg) Comprehensive.MZWork.ImportWorkspace(mzwork, msg.Echo),
             info:="Loading MZKit workspace..."
         )
         Dim project As New ViewerProject With {

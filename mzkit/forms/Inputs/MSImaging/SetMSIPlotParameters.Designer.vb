@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+﻿Imports Galaxy.CommonControls
+Imports Galaxy.Workbench.CommonDialogs
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class SetMSIPlotParameters
@@ -27,6 +28,11 @@ Partial Class SetMSIPlotParameters
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SetMSIPlotParameters))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.DropDownButton1 = New DropDownButton()
+        Me.DropDownMenu1 = New DropDownMenu()
+        Me.PNGToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SVGToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PDFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.ChkIntensityClamp = New System.Windows.Forms.CheckBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
@@ -40,7 +46,6 @@ Partial Class SetMSIPlotParameters
         Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown()
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -53,7 +58,9 @@ Partial Class SetMSIPlotParameters
         Me.NumericUpDown5 = New System.Windows.Forms.NumericUpDown()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
+        Me.DropDownMenu1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,6 +79,8 @@ Partial Class SetMSIPlotParameters
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label11)
+        Me.GroupBox1.Controls.Add(Me.DropDownButton1)
         Me.GroupBox1.Controls.Add(Me.GroupBox3)
         Me.GroupBox1.Controls.Add(Me.NumericUpDown3)
         Me.GroupBox1.Controls.Add(Me.Label4)
@@ -80,13 +89,45 @@ Partial Class SetMSIPlotParameters
         Me.GroupBox1.Controls.Add(Me.NumericUpDown2)
         Me.GroupBox1.Controls.Add(Me.NumericUpDown1)
         Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.GroupBox2)
         resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.TabStop = False
+        '
+        'DropDownButton1
+        '
+        Me.DropDownButton1.DropDownMenu = Me.DropDownMenu1
+        resources.ApplyResources(Me.DropDownButton1, "DropDownButton1")
+        Me.DropDownButton1.Name = "DropDownButton1"
+        '
+        'DropDownMenu1
+        '
+        Me.DropDownMenu1.DropDownButton = Me.DropDownButton1
+        Me.DropDownMenu1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PNGToolStripMenuItem, Me.SVGToolStripMenuItem, Me.PDFToolStripMenuItem})
+        Me.DropDownMenu1.Name = "DropDownMenu1"
+        resources.ApplyResources(Me.DropDownMenu1, "DropDownMenu1")
+        '
+        'PNGToolStripMenuItem
+        '
+        Me.PNGToolStripMenuItem.Checked = True
+        Me.PNGToolStripMenuItem.CheckOnClick = True
+        Me.PNGToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.PNGToolStripMenuItem.Name = "PNGToolStripMenuItem"
+        resources.ApplyResources(Me.PNGToolStripMenuItem, "PNGToolStripMenuItem")
+        '
+        'SVGToolStripMenuItem
+        '
+        Me.SVGToolStripMenuItem.CheckOnClick = True
+        Me.SVGToolStripMenuItem.Name = "SVGToolStripMenuItem"
+        resources.ApplyResources(Me.SVGToolStripMenuItem, "SVGToolStripMenuItem")
+        '
+        'PDFToolStripMenuItem
+        '
+        Me.PDFToolStripMenuItem.CheckOnClick = True
+        Me.PDFToolStripMenuItem.Name = "PDFToolStripMenuItem"
+        resources.ApplyResources(Me.PDFToolStripMenuItem, "PDFToolStripMenuItem")
         '
         'GroupBox3
         '
@@ -175,12 +216,6 @@ Partial Class SetMSIPlotParameters
         resources.ApplyResources(Me.Label2, "Label2")
         Me.Label2.Name = "Label2"
         '
-        'Button1
-        '
-        resources.ApplyResources(Me.Button1, "Button1")
-        Me.Button1.Name = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'TextBox1
         '
         resources.ApplyResources(Me.TextBox1, "TextBox1")
@@ -264,6 +299,11 @@ Partial Class SetMSIPlotParameters
         Me.Button3.Name = "Button3"
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'Label11
+        '
+        resources.ApplyResources(Me.Label11, "Label11")
+        Me.Label11.Name = "Label11"
+        '
         'SetMSIPlotParameters
         '
         resources.ApplyResources(Me, "$this")
@@ -274,6 +314,7 @@ Partial Class SetMSIPlotParameters
         Me.Name = "SetMSIPlotParameters"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.DropDownMenu1.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -298,7 +339,6 @@ Partial Class SetMSIPlotParameters
     Friend WithEvents NumericUpDown2 As NumericUpDown
     Friend WithEvents NumericUpDown1 As NumericUpDown
     Friend WithEvents Label2 As Label
-    Friend WithEvents Button1 As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
@@ -317,4 +357,10 @@ Partial Class SetMSIPlotParameters
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents ChkIntensityClamp As CheckBox
+    Friend WithEvents DropDownButton1 As DropDownButton
+    Friend WithEvents DropDownMenu1 As DropDownMenu
+    Friend WithEvents PNGToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SVGToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PDFToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Label11 As Label
 End Class

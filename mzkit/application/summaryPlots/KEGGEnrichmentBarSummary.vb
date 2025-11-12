@@ -1,9 +1,10 @@
-﻿Imports Microsoft.VisualBasic.Imaging
+﻿Imports Galaxy.ExcelPad
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.Assembly.KEGG
 Imports SMRUCC.genomics.Visualize.CatalogProfiling
 Imports any = Microsoft.VisualBasic.Scripting
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Public Class KEGGEnrichmentBarSummary2 : Inherits KEGGEnrichmentBarSummary
 
@@ -54,7 +55,7 @@ Public Class KEGGEnrichmentBarSummary : Inherits SummaryPlot
                                 p = pvalue.Where(Function(pi) pi > 0).First
                             End If
 
-                            Return -stdNum.Log10(p)
+                            Return -std.Log10(p)
                         End Function) _
                 .ToArray
         End If

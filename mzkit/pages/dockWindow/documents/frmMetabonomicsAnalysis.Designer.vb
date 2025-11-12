@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports Galaxy.Data.TableSheet
+Imports Galaxy.Workbench.DockDocument
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMetabonomicsAnalysis
@@ -31,7 +32,7 @@ Partial Class frmMetabonomicsAnalysis
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
+        Me.AdvancedDataGridView1 = New AdvancedDataGridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewExpressionPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AutoPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -42,7 +43,7 @@ Partial Class frmMetabonomicsAnalysis
         Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.SaveImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
+        Me.AdvancedDataGridViewSearchToolBar1 = New AdvancedDataGridViewSearchToolBar()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripDropDownButton2 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.OPLSDAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -356,8 +357,8 @@ Partial Class frmMetabonomicsAnalysis
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
-    Friend WithEvents AdvancedDataGridView1 As Zuby.ADGV.AdvancedDataGridView
-    Friend WithEvents AdvancedDataGridViewSearchToolBar1 As Zuby.ADGV.AdvancedDataGridViewSearchToolBar
+    Friend WithEvents AdvancedDataGridView1 As AdvancedDataGridView
+    Friend WithEvents AdvancedDataGridViewSearchToolBar1 As AdvancedDataGridViewSearchToolBar
     Friend WithEvents BindingSource1 As BindingSource
     Friend WithEvents PropertyGrid1 As PropertyGrid
     Friend WithEvents StatusStrip1 As StatusStrip

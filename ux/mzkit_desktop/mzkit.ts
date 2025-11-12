@@ -66,6 +66,8 @@ namespace app.desktop {
         */
         NewLibrary(): Promise<boolean>;
 
+        ProcessImage(dataUri: string);
+
         // plugin manager
 
         /**

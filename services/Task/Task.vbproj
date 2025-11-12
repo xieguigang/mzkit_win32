@@ -163,8 +163,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Memory, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Memory.4.6.2\lib\net462\System.Memory.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -173,8 +173,8 @@
     <Reference Include="System.Resources.Extensions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Resources.Extensions.8.0.0\lib\net462\System.Resources.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.6.1.1\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -249,6 +249,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj">
+      <Project>{ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452}</Project>
+      <Name>GalaxyWorkbench</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\GCModeller\core\Bio.Annotation\annotation.NET5.vbproj">
       <Project>{84323a67-5465-463a-a5c7-de7838063c89}</Project>
       <Name>annotation.NET5</Name>
@@ -409,25 +413,17 @@
       <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
       <Name>BasicMDIForm</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ux\Canvas\src\MzBlender\BlenderCommonLibs\BlenderCommonLibs.vbproj">
+      <Project>{3516cce9-77c6-8167-b245-5261d930bdee}</Project>
+      <Name>BlenderCommonLibs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BioDeep\BioDeep.vbproj">
       <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
       <Name>BioDeep</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BlenderCommonLibs\BlenderCommonLibs.vbproj">
-      <Project>{8bd765e0-79ca-42c9-b919-4388760fcb2f}</Project>
-      <Name>BlenderCommonLibs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MZWork\MZWork.vbproj">
-      <Project>{0a48789b-a35c-49ba-8224-c604ad14f044}</Project>
-      <Name>MZWork</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PipelineHost\PipelineHost.vbproj">
       <Project>{d2b96f8b-4538-497e-b10a-2325df053575}</Project>
       <Name>PipelineHost</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServiceHub\ServiceHub.vbproj">
-      <Project>{59127bcb-e898-4712-b51d-d967b10249c8}</Project>
-      <Name>ServiceHub</Name>
     </ProjectReference>
     <ProjectReference Include="..\TaskStream\TaskStream.vbproj">
       <Project>{3a645206-5ee9-4aa6-9dbb-c4cc18636fc5}</Project>

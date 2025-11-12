@@ -1,4 +1,5 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math
+Imports Galaxy.ExcelPad
 Imports Microsoft.VisualBasic.Imaging
 Imports Mzkit_win32.MatrixViewer
 Imports MZKitWin32.Blender.CommonLibs

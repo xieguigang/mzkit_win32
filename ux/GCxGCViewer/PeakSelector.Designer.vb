@@ -55,7 +55,6 @@
 #End Region
 
 Imports System.Windows.Forms
-Imports ControlLibrary
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class PeakSelector

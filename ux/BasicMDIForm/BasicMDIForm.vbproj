@@ -126,17 +126,14 @@
     <DocumentationFile>Mzkit_win32.BasicMDIForm.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.Windows.Form">
-      <HintPath>..\..\dist\Microsoft.VisualStudio.Windows.Form.dll</HintPath>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.3537.50, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Web.WebView2.1.0.3537.50\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.2849.39, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Web.WebView2.1.0.2849.39\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.3537.50, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Web.WebView2.1.0.3537.50\lib\net462\Microsoft.Web.WebView2.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.2849.39, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Web.WebView2.1.0.2849.39\lib\net462\Microsoft.Web.WebView2.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.2849.39, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Web.WebView2.1.0.2849.39\lib\net462\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.3537.50, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Web.WebView2.1.0.3537.50\lib\net462\Microsoft.Web.WebView2.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Windows.Ribbon">
       <HintPath>..\..\dist\Microsoft.Windows.Ribbon.dll</HintPath>
@@ -151,17 +148,11 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Forms.DataGridView">
-      <HintPath>..\..\dist\System.Windows.Forms.DataGridView.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="ThemeVS2015">
-      <HintPath>..\..\dist\ThemeVS2015.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -184,83 +175,18 @@
     <Compile Include="auth2.0\frmBioDeepAuth.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="base\DocumentWindow.Designer.vb">
-      <DependentUpon>DocumentWindow.vb</DependentUpon>
-    </Compile>
-    <Compile Include="base\DocumentWindow.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="base\BaseHook.vb" />
-    <Compile Include="base\ToolStripSpringTextBox.vb">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="base\ToolStripWindow.Designer.vb">
-      <DependentUpon>ToolStripWindow.vb</DependentUpon>
-    </Compile>
-    <Compile Include="base\ToolStripWindow.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="base\ToolWindow.Designer.vb">
-      <DependentUpon>ToolWindow.vb</DependentUpon>
-    </Compile>
-    <Compile Include="base\ToolWindow.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="..\..\mzkit\RibbonItems.Designer.vb" />
-    <Compile Include="AppHost.vb" />
-    <Compile Include="buzyIndicator\ActionRunner.vb" />
-    <Compile Include="buzyIndicator\LoadDataTask.vb" />
-    <Compile Include="buzyIndicator\ITaskProgress.vb" />
-    <Compile Include="buzyIndicator\Extensions.vb" />
-    <Compile Include="buzyIndicator\ProgressSpinner.Designer.vb">
-      <DependentUpon>ProgressSpinner.vb</DependentUpon>
-    </Compile>
-    <Compile Include="buzyIndicator\ProgressSpinner.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="buzyIndicator\TaskProgress.Designer.vb">
-      <DependentUpon>TaskProgress.vb</DependentUpon>
-    </Compile>
-    <Compile Include="buzyIndicator\TaskProgress.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="RibbonExport.vb" />
-    <Compile Include="DataGrid\GridLoaderHandler.vb" />
     <Compile Include="plugin\modules\DataTableViewer.vb" />
     <Compile Include="plugin\modules\LCMSViewerModule.vb" />
     <Compile Include="plugin\modules\SpectrumLibraryModule.vb" />
-    <Compile Include="RibbonEventBinding.vb" />
-    <Compile Include="TableHelper.vb" />
     <Compile Include="plugin\base\MSIServicePlugin.vb" />
-    <Compile Include="dialogs\InputDialog.Designer.vb">
-      <DependentUpon>InputDialog.vb</DependentUpon>
-    </Compile>
-    <Compile Include="dialogs\InputDialog.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="dialogs\MaskForm.Designer.vb">
-      <DependentUpon>MaskForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="dialogs\MaskForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DataGrid\GridSearchHandler.vb" />
-    <Compile Include="plugin\modules\Actions\ActionBase.vb" />
-    <Compile Include="plugin\modules\Actions\Actions.vb" />
-    <Compile Include="plugin\modules\Pages.vb" />
     <Compile Include="plugin\modules\QuantificationLinear.vb" />
     <Compile Include="plugin\modules\SpectralViewerModule.vb" />
     <Compile Include="plugin\modules\SpectrumSearchModule.vb" />
     <Compile Include="plugin\modules\MSImagingServiceModule.vb" />
-    <Compile Include="plugin\PluginPkg.vb" />
-    <Compile Include="plugin\Repository\RegistryFile.vb" />
-    <Compile Include="plugin\Repository\PluginMetadata.vb" />
-    <Compile Include="plugin\PluginMgr.vb" />
-    <Compile Include="WebKit.vb" />
     <Compile Include="plugin\ExportApis.vb" />
-    <Compile Include="plugin\MZKitPlugin.vb" />
-    <Compile Include="plugin\PlugIn.vb" />
-    <Compile Include="TaskbarStatus.vb" />
     <Compile Include="Workbench.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -278,41 +204,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TaskbarWindow.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="auth2.0\frmBioDeepAuth.resx">
       <DependentUpon>frmBioDeepAuth.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="base\DocumentWindow.resx">
-      <DependentUpon>DocumentWindow.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="base\ToolStripWindow.resx">
-      <DependentUpon>ToolStripWindow.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="base\ToolWindow.resx">
-      <DependentUpon>ToolWindow.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="buzyIndicator\ProgressSpinner.resx">
-      <DependentUpon>ProgressSpinner.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="buzyIndicator\TaskProgress.resx">
-      <DependentUpon>TaskProgress.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\InputDialog.resx">
-      <DependentUpon>InputDialog.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\InputDialog.zh-Hans.resx">
-      <DependentUpon>InputDialog.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\MaskForm.en-US.resx">
-      <DependentUpon>MaskForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\MaskForm.resx">
-      <DependentUpon>MaskForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dialogs\MaskForm.zh-Hans.resx">
-      <DependentUpon>MaskForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -350,6 +245,26 @@
     <None Include="Resources\Home_Logo_Link.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\dockpanelsuite\Themes\ThemeVS2015.vbproj">
+      <Project>{900306bb-63ba-4f02-a09a-b8d5929255e0}</Project>
+      <Name>ThemeVS2015</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\dockpanelsuite\VSDockPanel\VSDockPanel.vbproj">
+      <Project>{c40da38b-73e2-0329-9196-3218aa065a26}</Project>
+      <Name>VSDockPanel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj">
+      <Project>{87d65add-fe86-4239-af7e-a37410354a0c}</Project>
+      <Name>GalaxyData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj">
+      <Project>{ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452}</Project>
+      <Name>GalaxyWorkbench</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
+      <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
+      <Name>Microsoft.Windows.FeatureAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj">
       <Project>{02e9ba6a-35e1-431f-bb47-0553757af6b9}</Project>
       <Name>dataframework-netcore5</Name>
@@ -358,18 +273,15 @@
       <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\winux\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
-      <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
-      <Name>Microsoft.Windows.FeatureAPI</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="..\..\services\mzkit_win32.envir\mzkit_win32.envir.projitems" Label="Shared" />
+  <Import Project="..\..\..\..\..\galaxy\src\RibbonEventBinding\RibbonEventBinding.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
-  <Import Project="..\..\packages\Microsoft.Web.WebView2.1.0.2849.39\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\..\packages\Microsoft.Web.WebView2.1.0.2849.39\build\Microsoft.Web.WebView2.targets')" />
+  <Import Project="..\..\packages\Microsoft.Web.WebView2.1.0.3537.50\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\..\packages\Microsoft.Web.WebView2.1.0.3537.50\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.Web.WebView2.1.0.2849.39\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Web.WebView2.1.0.2849.39\build\Microsoft.Web.WebView2.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Web.WebView2.1.0.3537.50\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Web.WebView2.1.0.3537.50\build\Microsoft.Web.WebView2.targets'))" />
   </Target>
 </Project>

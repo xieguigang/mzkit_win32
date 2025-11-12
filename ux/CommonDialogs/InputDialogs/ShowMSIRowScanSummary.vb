@@ -1,4 +1,4 @@
-﻿Imports Microsoft.VisualBasic.Windows.Forms.DataValidation
+﻿Imports Galaxy.Data.TextValidates
 Imports std = System.Math
 
 Public Class ShowMSIRowScanSummary

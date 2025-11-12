@@ -1,4 +1,5 @@
-﻿Imports UMapx.Imaging
+﻿Imports Galaxy.Workbench.DockDocument
+Imports UMapx.Imaging
 
 Partial Public Class PropertyWindow : Inherits ToolWindow
 
@@ -195,14 +196,14 @@ Partial Public Class PropertyWindow : Inherits ToolWindow
     End Sub
 
     Private Sub histogram1_MouseUp(sender As Object, e As MouseEventArgs) Handles histogram1.MouseUp
-        Mouse = False
+        mouse = False
         label8.Text = Nothing
     End Sub
     Private Sub histogram1_MouseDown(sender As Object, e As MouseEventArgs) Handles histogram1.MouseDown
-        Mouse = True
+        mouse = True
     End Sub
     Private Sub histogram1_SelectionChanged(sender As Object, e As HistogramEventArgs) Handles histogram1.SelectionChanged
-        If Mouse Then
+        If mouse Then
             Dim min = e.Min
             Dim max = e.Max
             Dim count = 0

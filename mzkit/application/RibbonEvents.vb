@@ -72,6 +72,12 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Data
+Imports Galaxy.Data.Visualization.CommonDialogs
+Imports Galaxy.ExcelPad
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
+Imports Galaxy.Workbench.DockDocument
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.Framework
@@ -80,8 +86,8 @@ Imports Microsoft.VisualBasic.Emit.Delegates
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.BasicMDIForm.RibbonLib.Controls
 Imports Mzkit_win32.MatrixViewer
 Imports RibbonLib
@@ -91,7 +97,6 @@ Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports Task
 Imports Task.Container
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 
 Module RibbonEvents
 
@@ -148,7 +153,7 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.ButtonDropB, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitCalculator))
         Call HookRibbon(ribbonItems.ButtonFormulaSearch, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitSearch))
         Call HookRibbon(ribbonItems.ButtonDropD, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitMNtools))
-        Call HookRibbon(ribbonItems.ButtonShowSpectrumSearchPage, Sub(sender, e) Call New frmSpectrumSearch().Show(MyApplication.host.DockPanel))
+        Call HookRibbon(ribbonItems.ButtonShowSpectrumSearchPage, Sub(sender, e) Call New frmSpectrumSearch().Show(MyApplication.host.GetDockPanel))
 
         Call HookRibbon(ribbonItems.ButtonCalculatorExport, Sub(sender, e) Call MyApplication.host.mzkitCalculator.ExportToolStripMenuItem_Click())
         Call HookRibbon(ribbonItems.ButtonExactMassSearchExport, Sub(sender, e) Call MyApplication.host.mzkitTool.ExportExactMassSearchTable())
@@ -172,8 +177,8 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.ButtonShowSearchList, AddressOf ShowSearchList)
         Call HookRibbon(ribbonItems.ButtonShowProperties, AddressOf ShowProperties)
 
-        Call HookRibbon(ribbonItems.ButtonShowPlotViewer, Sub(sender, e) Call MyApplication.host.mzkitTool.ShowTabPage(MyApplication.host.mzkitTool.TabPage5))
-        Call HookRibbon(ribbonItems.ButtonShowMatrixViewer, Sub(sender, e) Call MyApplication.host.mzkitTool.ShowTabPage(MyApplication.host.mzkitTool.TabPage6))
+        Call HookRibbon(ribbonItems.ButtonShowPlotViewer, Sub(sender, e) Call MyApplication.host.mzkitTool.ShowRPlotTab())
+        Call HookRibbon(ribbonItems.ButtonShowMatrixViewer, Sub(sender, e) Call MyApplication.host.mzkitTool.ShowMatrixTab())
         Call HookRibbon(ribbonItems.ButtonNetworkRender, Sub(sender, e) Call MyApplication.host.mzkitMNtools.RenderNetwork())
         Call HookRibbon(ribbonItems.ButtonRefreshNetwork, Sub(sender, e) Call MyApplication.host.mzkitMNtools.RefreshNetwork())
 
@@ -217,7 +222,7 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.ButtonViewSMILES, Sub() Call VisualStudio.ShowSingleDocument(Of frmSMILESViewer)())
         Call HookRibbon(ribbonItems.ButtonPluginManager, Sub() Call VisualStudio.ShowSingleDocument(Of frmPluginMgr)())
 
-        Call HookRibbon(ribbonItems.AdjustParameters, Sub() Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight))
+        Call HookRibbon(ribbonItems.AdjustParameters, Sub() Call VisualStudio.Dock(Workbench.parametersTool, DockState.DockRight))
         Call HookRibbon(ribbonItems.ImportsMzwork, Sub() Call OpenWorkspace())
 
         Call HookRibbon(ribbonItems.ButtonDevTools, Sub() Call openCmd())
@@ -254,6 +259,8 @@ Module RibbonEvents
 
         Call HookRibbon(ribbonItems.ButtonLabSolutionTool, Sub() Call openSolutionToolkit())
 
+        Call HookRibbon(ribbonItems.ButtonEditCustomFormulaLibrary, Sub() Call openMetaboliteLibraryPage())
+
         LCMSViewerModule.lcmsViewerhHandle = AddressOf openLcmsScatter
     End Sub
 
@@ -270,12 +277,16 @@ Module RibbonEvents
             End Sub
     End Sub
 
+    Public Sub openMetaboliteLibraryPage()
+        Call VisualStudio.ShowSingleDocument(Of frmMoleculeLibrary)()
+    End Sub
+
     Private Sub openSolutionToolkit()
         Call VisualStudio.ShowDocument(Of frmChemicalSolutionMassTool)(DockState.Document)
     End Sub
 
     Private Sub openMolmil()
-        Call VisualStudio.ShowDocument(Of frmMolmilViewer)(DockState.Document, "Molmil Molecular Viewer")
+        Call VisualStudio.ShowDocument(Of frmMolstarViewer)(DockState.Document, "Mol* Molecular Viewer")
     End Sub
 
     Public Sub openAppData()
@@ -300,7 +311,7 @@ Module RibbonEvents
         Using file As New OpenFileDialog With {.Filter = "Peak feature data(*.*)|*.*"}
             If file.ShowDialog = DialogResult.OK Then
                 Dim peaks As PeakFeature() = SaveSample.ReadSample(file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True)).ToArray
-                Dim tableViewer As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(DockState.Document, $"View Peak Features [{file.FileName}]")
+                Dim tableViewer As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)(DockState.Document, $"View Peak Features [{file.FileName}]")
 
                 Call tableViewer.LoadTable(Sub(tb) Call peaks.StreamTo(tb))
             End If
@@ -351,11 +362,11 @@ Module RibbonEvents
     End Sub
 
     Public Sub openLCMSWorkbench()
-        Dim page = Workbench.AppHost.DockPanel.ActiveDocument
+        Dim page = Workbench.AppHost.ActiveDocument
 
-        If TypeOf page Is frmTableViewer Then
-            Dim tablePage As frmTableViewer = page
-            Dim source As BindingSource = tablePage.AdvancedDataGridView1.DataSource
+        If TypeOf page Is FormExcelPad Then
+            Dim tablePage As FormExcelPad = page
+            Dim source As BindingSource = tablePage.DataSource
             Dim dataset As System.Data.DataSet = source.DataSource
             Dim table As DataTable = dataset.Tables.Item(Scan0)
             Dim df As DataFrameResolver = table.DataFrame
@@ -423,7 +434,7 @@ Module RibbonEvents
     End Class
 
     Public Sub OpenTable(filepath As String)
-        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:=filepath.FileName)
+        Dim table = VisualStudio.ShowDocument(Of FormExcelPad)(title:=filepath.FileName)
         Dim loader As Action(Of DataTable) =
             Sub(tbl)
                 Dim df As DataFrameResolver = DataFrameResolver.Load(filepath)
@@ -663,7 +674,7 @@ Module RibbonEvents
 
     Public Sub CopyPlotImage()
         Dim toolkit = MyApplication.host.mzkitTool
-        Dim img As Image = toolkit.PictureBox1.BackgroundImage
+        Dim img As Image = toolkit.ChartPad1.BackgroundImage
 
         If Not img Is Nothing Then
             Call Clipboard.Clear()
@@ -678,7 +689,7 @@ Module RibbonEvents
     End Sub
 
     Public Sub CopyMatrix()
-        Dim table As DataGridView = MyApplication.host.mzkitTool.DataGridView1
+        Dim table As DataGridView = MyApplication.host.mzkitTool.ChartPad1.Table
         Dim exportTask As Action =
             Sub()
                 Call MyApplication.host.Invoke(
@@ -709,7 +720,7 @@ Module RibbonEvents
     End Sub
 
     Public Sub CopyProperties()
-        Dim obj As Object = WindowModules.propertyWin.getPropertyObject
+        Dim obj As Object = Workbench.propertyWin.GetPropertyObject
 
         If obj Is Nothing Then
             Return
@@ -723,7 +734,7 @@ Module RibbonEvents
 
     Public Sub CombineRowScanTask()
         Using file As New OpenFileDialog With {
-            .Filter = "Thermo Raw(*.raw)|*.raw|sciex Wiff Raw(*.wiff)|*.wiff|BioNovoGene mzPack(*.mzPack)|*.mzPack",
+            .Filter = "Thermo Raw(*.raw)|*.raw|sciex Wiff Raw(*.wiff)|*.wiff|mzML row scans(*.mzML)|*.mzML|mzXML row scans(*.mzXML)|*.mzXML|BioNovoGene mzPack(*.mzPack)|*.mzPack",
             .Title = "Open MSI row scan raw data files",
             .Multiselect = True
         }
@@ -896,7 +907,7 @@ Module RibbonEvents
         WindowModules.fileExplorer.DockState = DockState.DockLeft
         WindowModules.rawFeaturesList.DockState = DockState.DockLeftAutoHide
         WindowModules.output.DockState = DockState.DockBottomAutoHide
-        WindowModules.propertyWin.DockState = DockState.DockRightAutoHide
+        Workbench.propertyWin.DockState = DockState.DockRightAutoHide
     End Sub
 
     Private Sub _recentItems_ExecuteEvent(sender As Object, e As ExecuteEventArgs)

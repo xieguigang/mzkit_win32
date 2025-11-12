@@ -43,6 +43,29 @@ Public Class MSImagingRowBinds
         Next
     End Function
 
+    Private Iterator Function loadXmlRaw(files As IEnumerable(Of String)) As IEnumerable(Of mzPack)
+        Dim allfiles = files.ToArray
+        Dim offset As i32 = 0
+
+        For Each path As String In allfiles
+            If path.FileExists Then
+                Yield Converter.LoadRawFileAuto(path)
+
+                Call RunSlavePipeline.SendProgress(++offset / allfiles.Length * 100, $"Measuring MSI Information... {path.BaseName}")
+            Else
+                Call RunSlavePipeline.SendMessage($"Missing file in path: '{path}'!")
+            End If
+        Next
+    End Function
+
+    Private Function combineXMLRaw(files As String()) As mzPack
+        Dim rawdata = loadXmlRaw(files)
+        Dim correction As Correction = MSIMeasurement.Measure(rawdata).GetCorrection
+        Dim mzpack As mzPack = combineMzPack(rawdata, correction)
+
+        Return mzpack
+    End Function
+
     Private Function combineRaw(files As String()) As mzPack
         Dim correction As Correction = MSIMeasurement.Measure(loadXRaw(files)).GetCorrection
         Dim mzpack As mzPack = combineMzPack(LoadThermoRaw(files), correction)
@@ -75,7 +98,10 @@ Public Class MSImagingRowBinds
 
         For Each path As String In files
             Dim raw As New MSFileReader(path)
-            Dim cache As mzPack = raw.LoadFromXRaw
+            Dim cache As mzPack = raw.LoadFromXcaliburRaw
+
+            cache.note = raw.ThermoReader.FileInfo.ToString
+            cache.metadata("polarity") = raw.ThermoReader.Polarity.ToString.ToLower
 
             Yield CutBasePeak(cache)
 
@@ -163,6 +189,7 @@ Public Class MSImagingRowBinds
             Case "raw" : Return union.combineRaw(files)
             Case "mzpack" : Return union.combineMzPack(files)
             Case "wiff" : Return union.combineWiffRaw(files)
+            Case "mzml", "mzxml" : Return union.combineXMLRaw(files)
 
             Case Else
                 Call RunSlavePipeline.SendMessage($"Unsupported file type: {exttype(Scan0)}!")

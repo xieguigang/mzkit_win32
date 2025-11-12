@@ -94,10 +94,6 @@
   <ItemGroup>
     <Reference Include="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="Microsoft.VisualBasic.Imaging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
-    <Reference Include="Microsoft.VisualStudio.Windows.Form, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dist\Microsoft.VisualStudio.Windows.Form.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Windows.FeatureAPI, Version=10.0.7724.36877, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\dist\Microsoft.Windows.FeatureAPI.dll</HintPath>
@@ -119,10 +115,6 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="ThemeVS2015, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dist\ThemeVS2015.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -198,6 +190,22 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\galaxy\src\dockpanelsuite\Themes\ThemeVS2015.vbproj">
+      <Project>{900306bb-63ba-4f02-a09a-b8d5929255e0}</Project>
+      <Name>ThemeVS2015</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\galaxy\src\dockpanelsuite\VSDockPanel\VSDockPanel.vbproj">
+      <Project>{c40da38b-73e2-0329-9196-3218aa065a26}</Project>
+      <Name>VSDockPanel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\galaxy\src\GalaxyForm\GalaxyForm.vbproj">
+      <Project>{a984cd4b-b40d-4389-961f-c9136d13c50f}</Project>
+      <Name>GalaxyForm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj">
+      <Project>{ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452}</Project>
+      <Name>GalaxyWorkbench</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj">
       <Project>{02e9ba6a-35e1-431f-bb47-0553757af6b9}</Project>
       <Name>dataframework-netcore5</Name>
@@ -241,10 +249,6 @@
     <ProjectReference Include="..\..\BasicMDIForm\BasicMDIForm.vbproj">
       <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
       <Name>BasicMDIForm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ControlLibrary\ControlLibrary.vbproj">
-      <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
-      <Name>ControlLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

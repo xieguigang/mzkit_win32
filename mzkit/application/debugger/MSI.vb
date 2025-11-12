@@ -1,6 +1,7 @@
 ﻿Imports System.Threading
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 
 Namespace Debugger
@@ -14,9 +15,9 @@ Namespace Debugger
             Else
                 Dim Rscript As String = MSIDataService.GetRscript
                 Dim mb As Double = MyApplication.buffer_size / ByteSize.MB
+                Dim proc = Global.ServiceHub.Protocols.StartServer(Rscript, 0, debugPort:=MSIDataService.debugPort, buf_size:=mb)
 
-                Global.ServiceHub.Protocols.StartServer(Rscript, 0, debugPort:=MSIDataService.debugPort, buf_size:=mb)
-
+                Call WorkStudio.LogCommandLine(proc.Process)
                 Call Thread.Sleep(1000)
                 Call Run2()
             End If
@@ -24,11 +25,11 @@ Namespace Debugger
 
         Private Sub Run2()
             Dim viewer As frmMsImagingViewer = WindowModules.viewer
-            Dim dockPanel = MyApplication.host.DockPanel
+            Dim dockPanel = MyApplication.host.GetDockPanel
 
             WindowModules.msImageParameters.Show(dockPanel)
 
-            viewer.Show(MyApplication.host.DockPanel)
+            viewer.Show(MyApplication.host.GetDockPanel)
 
             If Not viewer.MSIservice Is Nothing Then
                 viewer.MSIservice.CloseMSIEngine()

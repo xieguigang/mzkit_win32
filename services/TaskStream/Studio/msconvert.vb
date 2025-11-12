@@ -95,7 +95,7 @@ Public Function Getconvert3DMsImagingCommandLine(raw As String, Optional cache A
     If Not cache.StringEmpty Then
             Call CLI.Append("--cache " & """" & cache & """ ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -154,7 +154,7 @@ Public Function GetconvertGCMSCDFCommandLine(raw As String,
     If no_thumbnail Then
         Call CLI.Append("/no-thumbnail ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -177,7 +177,7 @@ Public Function GetcheckIonModeCommandLine(raw As String, Optional internal_pipe
     Dim CLI As New StringBuilder("/check-ion-mode")
     Call CLI.Append(" ")
     Call CLI.Append("--raw " & """" & raw & """ ")
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -204,7 +204,7 @@ Public Function GetImportsSCiLSLabCommandLine(files As String, save As String, O
     Call CLI.Append(" ")
     Call CLI.Append("--files " & """" & files & """ ")
     Call CLI.Append("--save " & """" & save & """ ")
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -212,7 +212,7 @@ End Function
 
 ''' <summary>
 ''' ```bash
-''' /imzml --file &lt;source.data&gt; --save &lt;file.imzML&gt; [/TIC_norm /ionMode &lt;1/-1, default=1&gt; /cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt; /resolution &lt;default=17&gt;]
+''' /imzml --file &lt;source.data&gt; --save &lt;file.imzML&gt; [/TIC_norm /cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt; /resolution &lt;default=17&gt; /ionMode &lt;1/-1, default=?&gt;]
 ''' ```
 ''' Convert raw data file to imzML file.
 ''' </summary>
@@ -225,35 +225,32 @@ End Function
 ''' </param>
 Public Function MSIToimzML(file As String, 
                               save As String, 
-                              Optional ionmode As String = "1", 
                               Optional cutoff As String = "0", 
                               Optional matrix_basepeak As String = "0", 
                               Optional resolution As String = "17", 
+                              Optional ionmode As String = "?", 
                               Optional tic_norm As Boolean = False) As Integer
 Dim cli = GetMSIToimzMLCommandLine(file:=file, 
                               save:=save, 
-                              ionmode:=ionmode, 
                               cutoff:=cutoff, 
                               matrix_basepeak:=matrix_basepeak, 
                               resolution:=resolution, 
+                              ionmode:=ionmode, 
                               tic_norm:=tic_norm, internal_pipelineMode:=True)
     Dim proc As IIORedirectAbstract = RunDotNetApp(cli)
     Return proc.Run()
 End Function
 Public Function GetMSIToimzMLCommandLine(file As String, 
                               save As String, 
-                              Optional ionmode As String = "1", 
                               Optional cutoff As String = "0", 
                               Optional matrix_basepeak As String = "0", 
                               Optional resolution As String = "17", 
+                              Optional ionmode As String = "?", 
                               Optional tic_norm As Boolean = False, Optional internal_pipelineMode As Boolean = True) As String
     Dim CLI As New StringBuilder("/imzml")
     Call CLI.Append(" ")
     Call CLI.Append("--file " & """" & file & """ ")
     Call CLI.Append("--save " & """" & save & """ ")
-    If Not ionmode.StringEmpty Then
-            Call CLI.Append("/ionmode " & """" & ionmode & """ ")
-    End If
     If Not cutoff.StringEmpty Then
             Call CLI.Append("/cutoff " & """" & cutoff & """ ")
     End If
@@ -263,10 +260,13 @@ Public Function GetMSIToimzMLCommandLine(file As String,
     If Not resolution.StringEmpty Then
             Call CLI.Append("/resolution " & """" & resolution & """ ")
     End If
+    If Not ionmode.StringEmpty Then
+            Call CLI.Append("/ionmode " & """" & ionmode & """ ")
+    End If
     If tic_norm Then
         Call CLI.Append("/tic_norm ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -311,7 +311,7 @@ Public Function GetJoinSlidesCommandLine(files As String,
     If normalize Then
         Call CLI.Append("--normalize ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -341,7 +341,7 @@ Public Function GetMRM_MSImagingCommandLine(raw As String, dims As String, Optio
     If Not out.StringEmpty Then
             Call CLI.Append("/out " & """" & out & """ ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -349,7 +349,7 @@ End Function
 
 ''' <summary>
 ''' ```bash
-''' /msi_pack /target &lt;file.imzML&gt; [ /dims &lt;w,h,default=NULL&gt; /default_ion &lt;1/-1&gt; /fly_stream &lt;auto/true/false, default=auto&gt; /centroid &lt;da/ppm:mzdiff,default=da:0.01&gt; /noiseless &lt;percentage cutoff,default=0.001&gt; /output &lt;result.mzPack&gt;]
+''' /msi_pack /target &lt;file.imzML/files.txt&gt; [ /dims &lt;w,h,default=NULL&gt; /default_ion &lt;1/-1&gt; /fly_stream &lt;auto/true/false, default=auto&gt; /centroid &lt;da/ppm:mzdiff,default=da:0.01&gt; /noiseless &lt;percentage cutoff,default=0.001&gt; /output &lt;result.mzPack/directory_path&gt;]
 ''' ```
 ''' Pack the imzML file as the mzkit MS-Imaging mzpack rawdata file
 ''' </summary>
@@ -404,7 +404,7 @@ Public Function GetMSIPackCommandLine(target As String,
     If Not output.StringEmpty Then
             Call CLI.Append("/output " & """" & output & """ ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -482,7 +482,7 @@ Public Function GetconvertAnyRawCommandLine(raw As String,
     If debug Then
         Call CLI.Append("--debug ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -509,7 +509,7 @@ Public Function GetPackSingleCellsCommandLine(rawdata As String, tissue As Strin
     If Not save.StringEmpty Then
             Call CLI.Append("/save " & """" & save & """ ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()
@@ -575,7 +575,7 @@ Public Function GetMSIRowCombineCommandLine(files As String,
     If tic_norm Then
         Call CLI.Append("/tic_norm ")
     End If
-     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+     Call CLI.Append($"/@set internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
 
 Return CLI.ToString()

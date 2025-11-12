@@ -57,15 +57,16 @@
 
 Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
+Imports Galaxy.Workbench.DockDocument
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.RibbonLib.Controls
-Imports WeifenLuo.WinFormsUI.Docking
 
 Friend MustInherit Class WindowModules
 
@@ -82,7 +83,6 @@ Friend MustInherit Class WindowModules
     Friend Shared startPage As New frmStartPage
     Friend Shared ReadOnly settingsPage As New frmSettings
     Friend Shared ReadOnly RtermPage As New frmRsharp
-    Friend Shared ReadOnly propertyWin As New PropertyWindow
     Friend Shared ReadOnly taskWin As New TaskListWindow
     Friend Shared ReadOnly plotParams As New frmTweaks
 
@@ -92,7 +92,7 @@ Friend MustInherit Class WindowModules
     Friend Shared ReadOnly msDemo As New frmDemo
     Friend Shared ReadOnly MRMIons As New frmSRMIonsExplorer
     Friend Shared ReadOnly GCMSPeaks As New frmGCMSPeaks
-    Friend Shared ReadOnly parametersTool As New AdjustParameters
+
     Friend Shared ReadOnly MSIPixelProperty As New MSIPixelPropertyWindow
     Friend Shared ReadOnly nmrSpectrums As New frmNmrSpectrumExplorer
 
@@ -122,7 +122,6 @@ Friend MustInherit Class WindowModules
         plotParams.DockState = DockState.Hidden
 
         rawFeaturesList.Show(dockPanel)
-        propertyWin.Show(dockPanel)
 
         startPage.Show(dockPanel)
         startPage.DockState = DockState.Document
@@ -151,30 +150,31 @@ Friend MustInherit Class WindowModules
         msImageParameters.Show(dockPanel)
         msImageParameters.DockState = DockState.Hidden
 
-        parametersTool.Show(dockPanel)
-        parametersTool.DockState = DockState.Hidden
-
         msDemo.Show(dockPanel)
         msDemo.DockState = DockState.Hidden
 
         MSIPixelProperty.Show(dockPanel)
         MSIPixelProperty.DockState = DockState.Hidden
 
+        Workbench.propertyWin.Show(dockPanel)
+        Workbench.parametersTool.Show(dockPanel)
+        Workbench.parametersTool.DockState = DockState.Hidden
+
         If Globals.Settings.ui.rememberLayouts Then
             fileExplorer.DockState = Globals.Settings.ui.fileExplorerDock
             rawFeaturesList.DockState = Globals.Settings.ui.featureListDock
             output.DockState = Globals.Settings.ui.OutputDock
-            propertyWin.DockState = Globals.Settings.ui.propertyWindowDock
+            Workbench.propertyWin.DockState = Globals.Settings.ui.propertyWindowDock
         Else
             fileExplorer.DockState = DockState.DockLeftAutoHide
             rawFeaturesList.DockState = DockState.DockLeftAutoHide
             output.DockState = DockState.DockBottomAutoHide
-            propertyWin.DockState = DockState.DockRightAutoHide
+            Workbench.propertyWin.DockState = DockState.DockRightAutoHide
         End If
     End Sub
 
     Public Shared Sub OpenFile()
-        Dim doc As IDockContent = MyApplication.host.DockPanel.ActiveDocument
+        Dim doc As IDockContent = MyApplication.host.ActiveDocument
 
         If TypeOf doc Is DocumentWindow AndAlso DirectCast(doc, DocumentWindow).HookOpen IsNot Nothing Then
             Call DirectCast(doc, DocumentWindow).HookOpen()
@@ -212,52 +212,5 @@ Friend MustInherit Class WindowModules
                 Call MyApplication.host.OpenFile(file.FileName, showDocument:=True)
             End If
         End Using
-    End Sub
-
-    Public Shared Sub ShowTable(Of T As {INamedValue, DynamicPropertyBase(Of String)})(table As IEnumerable(Of T), title As String)
-        Call ShowTable(DataFrameResolver.CreateObject(table.ToCsvDoc), title)
-    End Sub
-
-    Public Shared Sub ShowTable(dataframe As DataFrameResolver, title As String)
-        Call VisualStudio _
-            .ShowDocument(Of frmTableViewer)(title:=title) _
-            .LoadTable(Sub(grid)
-                           Call loadInternal(grid, dataframe)
-                       End Sub)
-    End Sub
-
-    Private Shared Sub loadInternal(grid As DataTable, dataframe As DataFrameResolver)
-        Dim numericFields As Index(Of String) = {"mz", "rt", "rtmin", "rtmax", "mzmin", "mzmax"}
-        Dim schema As New List(Of Type)
-        Dim i As i32 = Scan0
-
-        For Each name As String In dataframe.HeadTitles
-            'If name Like numericFields Then
-            '    grid.Columns.Add(name, GetType(Double))
-            'Else
-
-            ' End If
-            Dim v As String() = dataframe.Column(++i).ToArray
-            Dim type As Type = v.SampleForType
-
-            Call schema.Add(type)
-            grid.Columns.Add(name, type)
-        Next
-
-        For Each item As RowObject In dataframe.Rows
-            Dim values = item _
-              .Select(Function(str, idx)
-                          Select Case schema(idx)
-                              Case GetType(Double) : Return Val(str)
-                              Case GetType(Integer) : Return str.ParseInteger
-                              Case GetType(Boolean) : Return str.ParseBoolean
-                              Case GetType(Date) : Return str.ParseDate
-                              Case Else
-                                  Return CObj(str)
-                          End Select
-                      End Function) _
-              .ToArray
-            Dim row = grid.Rows.Add(values)
-        Next
     End Sub
 End Class

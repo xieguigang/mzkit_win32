@@ -88,6 +88,10 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Galaxy.ExcelPad
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.CommonDialogs
+Imports HEView
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
@@ -112,9 +116,9 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.SecurityString
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
+Imports Microsoft.VisualStudio.WinForms.Docking
 Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports MZKitWin32.Blender.CommonLibs
 Imports ServiceHub
@@ -123,7 +127,6 @@ Imports SMRUCC.genomics.Analysis.Spatial.Imaging
 Imports SMRUCC.genomics.Analysis.Spatial.RAID
 Imports Task
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 Imports Bitmap = System.Drawing.Bitmap
 Imports File = Microsoft.VisualBasic.Data.Framework.IO.File
 Imports std = System.Math
@@ -277,6 +280,7 @@ Public Class frmMsImagingViewer
 
         AddHandler RibbonEvents.ribbonItems.ButtonMSIFilterPipeline.ExecuteEvent, Sub() Call configFilter()
         AddHandler RibbonEvents.ribbonItems.ButtonMSIHistory.ExecuteEvent, Sub() Call OpenHistoryWindow()
+        AddHandler RibbonEvents.ribbonItems.ButtonExportMSICellMatrix.ExecuteEvent, Sub() Call ExportMSICellMatrix()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -303,6 +307,25 @@ Public Class frmMsImagingViewer
         sampleRegions.viewer = Me
 
         PixelSelector1.MSICanvas.EditorConfigs = InputConfigTissueMap.GetPolygonEditorConfig
+    End Sub
+
+    Private Sub ExportMSICellMatrix()
+        If Not checkService() Then
+            Return
+        End If
+
+        Using file As New SaveFileDialog With {.Filter = "Excel table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim cells As CellScan() = TaskProgress.LoadData(streamLoad:=Function(pbar As Action(Of String)) MSIservice.ExportMSICellmatrix,
+                                                                title:="Export MSI Cell Matrix",
+                                                                info:="Export cell matrix data from the msi data for make alignment with HE staining image.")
+                If cells Is Nothing Then
+                    Call MessageBox.Show("Sorry, export cell data error.", "Task error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Else
+                    Call cells.SaveTo(file.FileName)
+                End If
+            End If
+        End Using
     End Sub
 
     Private Sub OpenHistoryWindow()
@@ -729,7 +752,7 @@ Public Class frmMsImagingViewer
             Dim name = df.GetColumnValues({"name", "Name"})
             Dim formula = df.GetColumnValues({"formula", "Formula"})
             Dim adducts = df.GetColumnValues({"precursor_type", "precursor", "adducts"})
-            Dim mz = df.GetColumnValues({"m/z", "mz", "mass to charge"})
+            Dim mz = df.GetColumnValues({"m/z", "mz", "mass to charge", "MZ"})
 
             If name Is Nothing Then
                 Return missingField("name")
@@ -775,7 +798,7 @@ Public Class frmMsImagingViewer
         End If
 
         Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{FilePath.FileName}]Ion Stats")
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(DockState.Hidden, title:=title)
+        Dim table As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)(DockState.Hidden, title:=title)
 
         table.AppSource = GetType(IonStat)
         table.InstanceGuid = guid
@@ -863,7 +886,7 @@ Public Class frmMsImagingViewer
         table.DockState = DockState.Document
 
         Me.DockState = DockState.Document
-        Me.Show(Workbench.AppHost.DockPanel)
+        Me.Show(Workbench.AppHost.GetDockPanel)
 
         Call Workbench.SuccessMessage($"Imports {ions.Length} ms-imaging ions target for {name.Length} metabolite annotations!")
     End Sub
@@ -1497,16 +1520,16 @@ Public Class frmMsImagingViewer
         ' check annotation data and ion data
         Dim docs = MyApplication.host.m_dockPanel _
             .Documents _
-            .Where(Function(tab) TypeOf tab Is frmTableViewer) _
-            .Select(Function(f) DirectCast(f, frmTableViewer)) _
+            .Where(Function(tab) TypeOf tab Is FormExcelPad) _
+            .Select(Function(f) DirectCast(f, FormExcelPad)) _
             .ToArray
-        Dim ionStat As frmTableViewer = docs _
+        Dim ionStat As FormExcelPad = docs _
             .Where(Function(t)
                        Return t.AppSource Is GetType(IonStat) AndAlso
                               t.InstanceGuid = guid
                    End Function) _
             .FirstOrDefault
-        Dim annotation As frmTableViewer = docs _
+        Dim annotation As FormExcelPad = docs _
             .Where(Function(t)
                        Return t.AppSource Is GetType(PageMzSearch) AndAlso
                               t.InstanceGuid = guid
@@ -1544,19 +1567,19 @@ Public Class frmMsImagingViewer
                             MessageBoxIcon.Warning)
 
             ' no name and precursor type
-            mz = ionStat.AdvancedDataGridView1.getFieldVector("mz")
-            pixels = ionStat.AdvancedDataGridView1.getFieldVector("pixels")
-            density = ionStat.AdvancedDataGridView1.getFieldVector("density")
+            mz = ionStat.GetFieldVector("mz")
+            pixels = ionStat.GetFieldVector("pixels")
+            density = ionStat.GetFieldVector("density")
             name = New String(mz.Length - 1) {}
             precursor_type = New String(mz.Length - 1) {}
         Else
-            mz = annotation.AdvancedDataGridView1.getFieldVector("mz")
-            name = annotation.AdvancedDataGridView1.getFieldVector("name")
-            precursor_type = annotation.AdvancedDataGridView1.getFieldVector("precursorType")
+            mz = annotation.GetFieldVector("mz")
+            name = annotation.GetFieldVector("name")
+            precursor_type = annotation.GetFieldVector("precursorType")
 
-            Dim mzRaw As Double() = ionStat.AdvancedDataGridView1.getFieldVector("mz")
-            Dim pixelsRaw As Integer() = ionStat.AdvancedDataGridView1.getFieldVector("pixels")
-            Dim density2 As Double() = ionStat.AdvancedDataGridView1.getFieldVector("density")
+            Dim mzRaw As Double() = ionStat.GetFieldVector("mz")
+            Dim pixelsRaw As Integer() = ionStat.GetFieldVector("pixels")
+            Dim density2 As Double() = ionStat.GetFieldVector("density")
             Dim mzRawIndex As New Dictionary(Of String, Integer)
 
             For i As Integer = 0 To mzRaw.Length - 1
@@ -1638,7 +1661,7 @@ Public Class frmMsImagingViewer
 
     Private Sub ShowIonColocalization(ions As EntityClusterModel())
         Dim title As String = If(FilePath.StringEmpty, "Ion Co-localization", $"[{FilePath.FileName}]Ion Co-localization")
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim table As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)(title:=title)
         Dim blockNames As String() = ions(Scan0).Properties.Keys.ToArray
 
         table.AppSource = GetType(EntityClusterModel)
@@ -1705,7 +1728,7 @@ Public Class frmMsImagingViewer
     ''' <param name="types"></param>
     Private Sub ShowIonStatsTable(ions As IonStat(), name As String, formula As String, types As MzCalculator())
         Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{If(name, FilePath.FileName)}]Ion Stats")
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim table As FormExcelPad = VisualStudio.ShowDocument(Of FormExcelPad)(title:=title)
         Dim exactMass As Double
 
         table.AppSource = GetType(IonStat)
@@ -1912,7 +1935,7 @@ Public Class frmMsImagingViewer
                     sampleRegions.DockState = DockState.DockRight
                 End If
             Else
-                Call MyApplication.host.showStatusMessage("Select region to analysis by draw a polygon!")
+                Call Workbench.StatusMessage("Select region to analysis by draw a polygon!")
             End If
 
             PixelSelector1.Cursor = Cursors.Default
@@ -3076,7 +3099,8 @@ Public Class frmMsImagingViewer
         Call save.SetFileName(filename) _
             .SetRGBMode(loadRgb) _
             .SetIntensityRange(PixelSelector1.CustomIntensityRange) _
-            .SetDimensionSize(dims:=params.GetMSIDimension)
+            .SetDimensionSize(dims:=params.GetMSIDimension) _
+            .SetBatchPlotMode(toggle:=False)
 
         Call InputDialog.Input(
             setConfig:=Sub(cfg)

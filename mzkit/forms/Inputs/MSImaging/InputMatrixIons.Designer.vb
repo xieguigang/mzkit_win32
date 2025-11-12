@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+﻿Imports Galaxy.Data.TableSheet
+Imports Galaxy.Workbench.CommonDialogs
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class InputMatrixIons
@@ -27,8 +28,8 @@ Partial Class InputMatrixIons
         Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
-        Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
+        Me.AdvancedDataGridView1 = New AdvancedDataGridView()
+        Me.AdvancedDataGridViewSearchToolBar1 = New AdvancedDataGridViewSearchToolBar()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -351,8 +352,8 @@ Partial Class InputMatrixIons
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LoadMetabolitesToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AdvancedDataGridView1 As Zuby.ADGV.AdvancedDataGridView
-    Friend WithEvents AdvancedDataGridViewSearchToolBar1 As Zuby.ADGV.AdvancedDataGridViewSearchToolBar
+    Friend WithEvents AdvancedDataGridView1 As AdvancedDataGridView
+    Friend WithEvents AdvancedDataGridViewSearchToolBar1 As AdvancedDataGridViewSearchToolBar
     Friend WithEvents Label2 As Label
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label3 As Label

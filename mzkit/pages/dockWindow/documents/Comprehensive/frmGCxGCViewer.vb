@@ -55,7 +55,7 @@
 Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
-Imports Mzkit_win32.BasicMDIForm
+Imports Galaxy.Workbench
 Imports RibbonLib.Interop
 
 Public Class frmGCxGCViewer

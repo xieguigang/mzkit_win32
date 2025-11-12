@@ -1,8 +1,9 @@
 Imports System.Runtime.CompilerServices
+Imports Galaxy.Workbench
+Imports Galaxy.Workbench.DockDocument.Presets
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Mzkit_win32.BasicMDIForm.RibbonLib.Controls
 Imports RibbonLib
-Imports WeifenLuo.WinFormsUI.Docking
 
 ''' <summary>
 ''' The winform framework for the workbench UI
@@ -10,6 +11,10 @@ Imports WeifenLuo.WinFormsUI.Docking
 Public NotInheritable Class Workbench
 
     Public Shared ReadOnly Property AppHost As AppHost
+        Get
+            Return CommonRuntime.AppHost
+        End Get
+    End Property
 
     Public Shared ReadOnly Property AppHostForm As Form
         Get
@@ -33,6 +38,9 @@ Public NotInheritable Class Workbench
     ''' <returns></returns>
     Public Shared ReadOnly Property BioDeepSession As String
 
+    Public Shared ReadOnly parametersTool As New AdjustParameters
+    Public Shared ReadOnly propertyWin As New PropertyWindow
+
     Private Sub New()
     End Sub
 
@@ -52,7 +60,7 @@ Public NotInheritable Class Workbench
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub Hook(host As AppHost)
-        _AppHost = host
+        Call CommonRuntime.Hook(host)
     End Sub
 
     ''' <summary>
@@ -79,7 +87,7 @@ Public NotInheritable Class Workbench
         If AppHost Is Nothing Then
             Call ExportApis.MZKitWorkbenchIsNotRunning()
         Else
-            Call _AppHost.Warning(msg)
+            Call AppHost.Warning(msg)
         End If
     End Sub
 
@@ -92,7 +100,7 @@ Public NotInheritable Class Workbench
         If AppHost Is Nothing Then
             Call ExportApis.MZKitWorkbenchIsNotRunning()
         Else
-            Call _AppHost.StatusMessage(msg, My.Resources._1200px_Checked_svg)
+            Call AppHost.StatusMessage(msg, My.Resources._1200px_Checked_svg)
         End If
     End Sub
 
@@ -107,7 +115,7 @@ Public NotInheritable Class Workbench
         If AppHost Is Nothing Then
             Call ExportApis.MZKitWorkbenchIsNotRunning()
         Else
-            Call _AppHost.StatusMessage(msg, icon)
+            Call AppHost.StatusMessage(msg, icon)
         End If
     End Sub
 
@@ -128,89 +136,6 @@ Public NotInheritable Class Workbench
             Call BaseHook.showProperties(obj)
         End If
     End Sub
-
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <typeparam name="T"></typeparam>
-    ''' <param name="showExplorer">
-    ''' do specific callback from this parameter delegate if the pointer value is nothing nothing
-    ''' </param>
-    Public Shared Function ShowSingleDocument(Of T As {New, DockContent})(Optional showExplorer As Action = Nothing) As T
-        Dim DockPanel As DockPanel = AppHost.DockPanel
-        Dim targeted As T = DockPanel.Documents _
-            .Where(Function(doc) TypeOf doc Is T) _
-            .FirstOrDefault
-
-        If targeted Is Nothing Then
-            targeted = New T
-        End If
-
-        If Not showExplorer Is Nothing Then
-            Call showExplorer()
-        End If
-
-        targeted.Show(DockPanel)
-        targeted.DockState = DockState.Document
-
-        Return targeted
-    End Function
-
-    Public Shared Sub Dock(win As ToolWindow, prefer As DockState)
-        Select Case win.DockState
-            Case DockState.Hidden, DockState.Unknown
-                win.DockState = prefer
-            Case DockState.Float, DockState.Document,
-                 DockState.DockTop,
-                 DockState.DockRight,
-                 DockState.DockLeft,
-                 DockState.DockBottom
-
-                ' do nothing 
-            Case DockState.DockBottomAutoHide
-                win.DockState = DockState.DockBottom
-            Case DockState.DockLeftAutoHide
-                win.DockState = DockState.DockLeft
-            Case DockState.DockRightAutoHide
-                win.DockState = DockState.DockRight
-            Case DockState.DockTopAutoHide
-                win.DockState = DockState.DockTop
-        End Select
-    End Sub
-
-    ''' <summary>
-    ''' create a new document tab page
-    ''' </summary>
-    ''' <typeparam name="T"></typeparam>
-    ''' <returns></returns>
-    ''' 
-    <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Shared Function ShowDocument(Of T As {New, DocumentWindow})(Optional status As DockState = DockState.Document,
-                                                                       Optional title As String = Nothing) As T
-        Return ShowDocument(GetType(T), status, title)
-    End Function
-
-    Public Shared Function ShowDocument(docType As Type,
-                                        Optional status As DockState = DockState.Document,
-                                        Optional title As String = Nothing) As DocumentWindow
-
-        Dim newDoc As DocumentWindow = Activator.CreateInstance(docType)
-
-        newDoc.Show(AppHost.DockPanel)
-        newDoc.DockState = status
-
-        If Not title.StringEmpty Then
-            newDoc.TabText = title
-        End If
-
-        Return newDoc
-    End Function
-
-    Public Shared Function ShowDocument(page As DocumentWindow, Optional status As DockState = DockState.Document) As DocumentWindow
-        page.Show(AppHost.DockPanel)
-        page.DockState = status
-        Return page
-    End Function
 
     ''' <summary>
     ''' get color palette that used for do chartting plots

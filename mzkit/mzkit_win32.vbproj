@@ -331,17 +331,14 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.Windows.Form">
-      <HintPath>..\dist\Microsoft.VisualStudio.Windows.Form.dll</HintPath>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.3537.50, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.3537.50\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.2849.39, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2849.39\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.3537.50, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.3537.50\lib\net462\Microsoft.Web.WebView2.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.2849.39, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2849.39\lib\net462\Microsoft.Web.WebView2.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.2849.39, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2849.39\lib\net462\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.3537.50, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.3537.50\lib\net462\Microsoft.Web.WebView2.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Windows.Ribbon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4a850abcb1bad68b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -365,8 +362,8 @@
     <Reference Include="System.Drawing.Common, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Drawing.Common.8.0.10\lib\net462\System.Drawing.Common.dll</HintPath>
     </Reference>
-    <Reference Include="System.Memory, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.6.2\lib\net462\System.Memory.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Numerics" />
@@ -376,8 +373,8 @@
     <Reference Include="System.Resources.Extensions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Resources.Extensions.8.0.0\lib\net462\System.Resources.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.1\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.InteropServices.APIs">
       <HintPath>..\dist\System.Runtime.InteropServices.APIs.dll</HintPath>
@@ -396,9 +393,6 @@
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Forms.DataGridView">
-      <HintPath>..\dist\System.Windows.Forms.DataGridView.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Windows.Forms.TabControl">
       <HintPath>..\dist\System.Windows.Forms.TabControl.dll</HintPath>
@@ -417,9 +411,6 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="ThemeVS2015">
-      <HintPath>..\dist\ThemeVS2015.dll</HintPath>
-    </Reference>
     <Reference Include="ThermoFisher.CommonCore.BackgroundSubtraction">
       <HintPath>..\..\..\ThermoFisher\ThermoFisher.CommonCore.BackgroundSubtraction.dll</HintPath>
     </Reference>
@@ -432,8 +423,8 @@
     <Reference Include="ThermoFisher.CommonCore.RawFileReader">
       <HintPath>..\..\..\ThermoFisher\ThermoFisher.CommonCore.RawFileReader.dll</HintPath>
     </Reference>
-    <Reference Include="UMapx, Version=5.2.4.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UMapx.5.2.4.5\lib\netstandard2.0\UMapx.dll</HintPath>
+    <Reference Include="UMapx, Version=7.5.1.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UMapx.7.5.1.3\lib\netstandard2.0\UMapx.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -474,12 +465,10 @@
     <Compile Include="application\RibbonEvents.vb" />
     <Compile Include="application\settings\TissueMap.vb" />
     <Compile Include="application\settings\Filters.vb" />
-    <Compile Include="application\settings\Languages.vb" />
     <Compile Include="application\summaryPlots\LCMSScatterPlot.vb" />
     <Compile Include="application\summaryPlots\KEGGEnrichmentGraph.vb" />
     <Compile Include="application\summaryPlots\PCA3d.vb" />
     <Compile Include="application\summaryPlots\KEGGEnrichmentBarSummary.vb" />
-    <Compile Include="application\summaryPlots\SummaryPlot.vb" />
     <Compile Include="application\WindowModules.vb" />
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
@@ -488,6 +477,12 @@
       <DependentUpon>frmSingleCellsTweaks.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmTweaks\frmSingleCellsTweaks.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\Inputs\InputImportsMetaboliteLibrary.Designer.vb">
+      <DependentUpon>InputImportsMetaboliteLibrary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\InputImportsMetaboliteLibrary.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\InputReferencePointNames.Designer.vb">
@@ -730,34 +725,10 @@
     <Compile Include="forms\Inputs\SelectSheetName.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\ShowColumnStat.Designer.vb">
-      <DependentUpon>ShowColumnStat.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\ShowColumnStat.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\Inputs\InputAction.Designer.vb">
-      <DependentUpon>InputAction.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\InputAction.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\Inputs\InputDataVisual.Designer.vb">
-      <DependentUpon>InputDataVisual.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\InputDataVisual.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\Inputs\InputRSymbol.Designer.vb">
       <DependentUpon>InputRSymbol.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\Inputs\InputRSymbol.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\Inputs\InputNetworkLayout.Designer.vb">
-      <DependentUpon>InputNetworkLayout.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\InputNetworkLayout.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\LCMS\InputXICTarget.Designer.vb">
@@ -801,7 +772,14 @@
     <Compile Include="MSdata\Module2.vb" />
     <Compile Include="MSdata\ggplotVisual.vb" />
     <Compile Include="pages\ConnectToBioDeep.vb" />
+    <Compile Include="pages\dockWindow\TableViewer.vb" />
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\frmMoleculeLibrary.Designer.vb">
+      <DependentUpon>frmMoleculeLibrary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frmMoleculeLibrary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmChemicalSolutionMassTool.Designer.vb">
       <DependentUpon>frmChemicalSolutionMassTool.vb</DependentUpon>
     </Compile>
@@ -814,10 +792,10 @@
     <Compile Include="pages\dockWindow\documents\frmMRIViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\htmlPages\frmMolmilViewer.Designer.vb">
-      <DependentUpon>frmMolmilViewer.vb</DependentUpon>
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmMolstarViewer.Designer.vb">
+      <DependentUpon>frmMolstarViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\htmlPages\frmMolmilViewer.vb">
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmMolstarViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\LCMS\frmLCMSLibrary.Designer.vb">
@@ -917,10 +895,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\Models\TissueSlideHandler.vb" />
-    <Compile Include="pages\dockWindow\documents\frmOpenseadragonViewer.Designer.vb">
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmOpenseadragonViewer.Designer.vb">
       <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmOpenseadragonViewer.vb">
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmOpenseadragonViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\frmCFMIDOutputViewer.Designer.vb">
@@ -939,12 +917,6 @@
       <DependentUpon>frmSMILESViewer.vb</DependentUpon>
     </Compile>
     <Compile Include="pages\dockWindow\documents\frmSMILESViewer.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="pages\dockWindow\documents\frmNetworkViewer.Designer.vb">
-      <DependentUpon>frmNetworkViewer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\documents\frmNetworkViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\Comprehensive\frmGCxGCViewer.Designer.vb">
@@ -970,12 +942,6 @@
       <DependentUpon>frmServicesManager.vb</DependentUpon>
     </Compile>
     <Compile Include="pages\dockWindow\systems\frmServicesManager.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="pages\dockWindow\systems\frmTableViewer.Designer.vb">
-      <DependentUpon>frmTableViewer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\systems\frmTableViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\LCMS\frmUntargettedViewer.Designer.vb">
@@ -1075,12 +1041,6 @@
     <Compile Include="pages\dockWindow\properties\MSIRegionSampleWindow.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\tools\AdjustParameters.Designer.vb">
-      <DependentUpon>AdjustParameters.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\tools\AdjustParameters.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="pages\dockWindow\tools\NotificationWindow.Designer.vb">
       <DependentUpon>NotificationWindow.vb</DependentUpon>
     </Compile>
@@ -1118,13 +1078,6 @@
     <Compile Include="pages\dockWindow\explorer\frmFileExplorer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\tools\PropertyWindow.designer.vb">
-      <DependentUpon>PropertyWindow.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\tools\PropertyWindow.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="pages\IDataTraceback.vb" />
     <Compile Include="pages\toolkit\PlotTooltip.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -1178,7 +1131,6 @@
     <Compile Include="application\settings\UISettings.vb" />
     <Compile Include="application\settings\PrecursorSearchSettings.vb" />
     <Compile Include="application\settings\Settings.vb" />
-    <Compile Include="DataControlHandler.vb" />
     <Compile Include="pages\toolkit\PageMzkitTools.Designer.vb">
       <DependentUpon>PageMzkitTools.vb</DependentUpon>
     </Compile>
@@ -1282,6 +1234,9 @@
     <EmbeddedResource Include="forms\frmUserAgreement.resx">
       <DependentUpon>frmUserAgreement.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputImportsMetaboliteLibrary.resx">
+      <DependentUpon>InputImportsMetaboliteLibrary.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputReferencePointNames.resx">
       <DependentUpon>InputReferencePointNames.vb</DependentUpon>
     </EmbeddedResource>
@@ -1290,9 +1245,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\Input3DScatter.zh-Hans.resx">
       <DependentUpon>Input3DScatter.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputAction.zh-Hans.resx">
-      <DependentUpon>InputAction.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputURL.resx">
       <DependentUpon>InputURL.vb</DependentUpon>
@@ -1360,15 +1312,6 @@
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputIonRGB.resx">
       <DependentUpon>InputIonRGB.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputAction.resx">
-      <DependentUpon>InputAction.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputDataVisual.resx">
-      <DependentUpon>InputDataVisual.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputDataVisual.zh-CN.resx">
-      <DependentUpon>InputDataVisual.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\LCMS\InputFeatureFilter.resx">
       <DependentUpon>InputFeatureFilter.vb</DependentUpon>
     </EmbeddedResource>
@@ -1386,12 +1329,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.resx">
       <DependentUpon>InputMSIPeakTableParameters.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputNetworkLayout.resx">
-      <DependentUpon>InputNetworkLayout.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputNetworkLayout.zh-CN.resx">
-      <DependentUpon>InputNetworkLayout.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputPeakTime.resx">
       <DependentUpon>InputPeakTime.vb</DependentUpon>
@@ -1423,9 +1360,6 @@
     <EmbeddedResource Include="forms\Inputs\SelectSheetName.resx">
       <DependentUpon>SelectSheetName.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\ShowColumnStat.resx">
-      <DependentUpon>ShowColumnStat.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmTweaks\frmMsImagingTweaks.resx">
       <DependentUpon>frmMsImagingTweaks.vb</DependentUpon>
     </EmbeddedResource>
@@ -1447,8 +1381,15 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmChemicalSolutionMassTool.resx">
       <DependentUpon>frmChemicalSolutionMassTool.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmMolmilViewer.resx">
-      <DependentUpon>frmMolmilViewer.vb</DependentUpon>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmMoleculeLibrary.resx">
+      <DependentUpon>frmMoleculeLibrary.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmMoleculeLibrary.zh-CN.resx">
+      <DependentUpon>frmMoleculeLibrary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmMolstarViewer.resx">
+      <DependentUpon>frmMolstarViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\LCMS\frmLCMSLibrary.resx">
       <DependentUpon>frmLCMSLibrary.vb</DependentUpon>
@@ -1512,6 +1453,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\Comprehensive\frmMsImagingViewer.resx">
       <DependentUpon>frmMsImagingViewer.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\Comprehensive\frmMsImagingViewer.zh-CN.resx">
       <DependentUpon>frmMsImagingViewer.vb</DependentUpon>
@@ -1519,10 +1461,7 @@
     <EmbeddedResource Include="pages\dockWindow\documents\Comprehensive\frmMsImagingViewer.zh-Hant.resx">
       <DependentUpon>frmMsImagingViewer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmNetworkViewer.resx">
-      <DependentUpon>frmNetworkViewer.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmOpenseadragonViewer.resx">
+    <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmOpenseadragonViewer.resx">
       <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\Targetted\frmPeakFinding.resx">
@@ -1551,9 +1490,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\systems\frmServicesManager.resx">
       <DependentUpon>frmServicesManager.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\systems\frmTableViewer.resx">
-      <DependentUpon>frmTableViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\LCMS\frmUntargettedViewer.resx">
       <DependentUpon>frmUntargettedViewer.vb</DependentUpon>
@@ -1597,17 +1533,11 @@
     <EmbeddedResource Include="pages\dockWindow\properties\SampleRegionMergeTool.resx">
       <DependentUpon>SampleRegionMergeTool.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\tools\AdjustParameters.resx">
-      <DependentUpon>AdjustParameters.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\properties\MSIPixelPropertyWindow.resx">
       <DependentUpon>MSIPixelPropertyWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\tools\OutputWindow.resx">
       <DependentUpon>OutputWindow.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\tools\PropertyWindow.resx">
-      <DependentUpon>PropertyWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\systems\frmRsharp.resx">
       <DependentUpon>frmRsharp.vb</DependentUpon>
@@ -1673,6 +1603,14 @@
     <EmbeddedResource Include="RibbonMarkup.ribbon" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\emily\src\PDB_canvas\PDB_canvas.vbproj">
+      <Project>{9d7e5c7d-fe7c-2255-8d00-43ae0d3afffa}</Project>
+      <Name>PDB_canvas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Erica\src\HEView\HEView.vbproj">
+      <Project>{39c1f418-acc4-3eb1-2e28-29f955bb7f0f}</Project>
+      <Name>HEView</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Erica\src\SingleCell\SingleExpression\SingleExpression.vbproj">
       <Project>{44faa87f-a187-45b5-8ce2-78ccd8583adc}</Project>
       <Name>SingleExpression</Name>
@@ -1684,6 +1622,38 @@
     <ProjectReference Include="..\..\..\..\Erica\src\STRaid\STRaid.vbproj">
       <Project>{8e390f57-3714-47c2-bd1a-b97671a9321a}</Project>
       <Name>STRaid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\dockpanelsuite\Themes\ThemeVS2015.vbproj">
+      <Project>{900306bb-63ba-4f02-a09a-b8d5929255e0}</Project>
+      <Name>ThemeVS2015</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\dockpanelsuite\VSDockPanel\VSDockPanel.vbproj">
+      <Project>{c40da38b-73e2-0329-9196-3218aa065a26}</Project>
+      <Name>VSDockPanel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyChartLibs\GalaxyChartLibs.vbproj">
+      <Project>{e7535428-57d4-4e45-8c54-1900c279c353}</Project>
+      <Name>GalaxyChartLibs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj">
+      <Project>{87d65add-fe86-4239-af7e-a37410354a0c}</Project>
+      <Name>GalaxyData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyExcelPad\GalaxyExcelPad.vbproj">
+      <Project>{6c622296-7926-4590-9444-4c556fdf1be5}</Project>
+      <Name>GalaxyExcelPad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyForm\GalaxyForm.vbproj">
+      <Project>{a984cd4b-b40d-4389-961f-c9136d13c50f}</Project>
+      <Name>GalaxyForm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj">
+      <Project>{ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452}</Project>
+      <Name>GalaxyWorkbench</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\galaxy\src\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
+      <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
+      <Name>Microsoft.Windows.FeatureAPI</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\analysis\HTS_matrix\HTS_matrix-netcore5.vbproj">
       <Project>{866d1fc8-67ab-4edc-a2ed-4a7fc467605e}</Project>
@@ -1704,6 +1674,10 @@
     <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\core\Bio.InteractionModel\InteractionModel.NET5.vbproj">
       <Project>{ea88476c-7342-41b6-9a7a-bf1f3cea6b08}</Project>
       <Name>InteractionModel.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\data\RCSB PDB\RCSB PDB.vbproj">
+      <Project>{8f630468-5911-8045-4dd4-9cfa365ab00a}</Project>
+      <Name>RCSB PDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\foundation\OBO_Foundry\obo_foundry-netcore5.vbproj">
       <Project>{82c8e262-4e52-4c09-8865-ddbb5462fd66}</Project>
@@ -2157,33 +2131,29 @@
       <Project>{560a9982-7d34-44c8-a0de-6b86e119247e}</Project>
       <Name>TissueMorphology</Name>
     </ProjectReference>
-    <ProjectReference Include="..\mzblender\mzblender.vbproj">
-      <Project>{4de64f86-852f-4852-97d2-46c69faa8921}</Project>
+    <ProjectReference Include="..\mzblender\src\MSImagingViewer2\MSImagingViewerV2.vbproj">
+      <Project>{daf59cb6-ccd9-0fc6-1b8c-a3cdcd5ce92d}</Project>
+      <Name>MSImagingViewerV2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mzblender\src\mzblender\mzblender.vbproj">
+      <Project>{bf0b9512-2480-c985-bf87-d8c0101c2211}</Project>
       <Name>mzblender</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mzblender\src\ServiceHub\ServiceHub.vbproj">
+      <Project>{4434c72b-ac01-385e-1be3-140070c51894}</Project>
+      <Name>ServiceHub</Name>
     </ProjectReference>
     <ProjectReference Include="..\services\BioDeep\BioDeep.vbproj">
       <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
       <Name>BioDeep</Name>
     </ProjectReference>
-    <ProjectReference Include="..\services\BlenderCommonLibs\BlenderCommonLibs.vbproj">
-      <Project>{8bd765e0-79ca-42c9-b919-4388760fcb2f}</Project>
-      <Name>BlenderCommonLibs</Name>
-    </ProjectReference>
     <ProjectReference Include="..\services\CFM-ID\CFM-ID.vbproj">
       <Project>{aa94821a-2199-48b9-81d3-8ca0a7a575ec}</Project>
       <Name>CFM-ID</Name>
     </ProjectReference>
-    <ProjectReference Include="..\services\MZWork\MZWork.vbproj">
-      <Project>{0a48789b-a35c-49ba-8224-c604ad14f044}</Project>
-      <Name>MZWork</Name>
-    </ProjectReference>
     <ProjectReference Include="..\services\PipelineHost\PipelineHost.vbproj">
       <Project>{d2b96f8b-4538-497e-b10a-2325df053575}</Project>
       <Name>PipelineHost</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\services\ServiceHub\ServiceHub.vbproj">
-      <Project>{59127bcb-e898-4712-b51d-d967b10249c8}</Project>
-      <Name>ServiceHub</Name>
     </ProjectReference>
     <ProjectReference Include="..\services\TaskStream\TaskStream.vbproj">
       <Project>{3a645206-5ee9-4aa6-9dbb-c4cc18636fc5}</Project>
@@ -2197,45 +2167,33 @@
       <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
       <Name>BasicMDIForm</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ux\Canvas\src\LCMSViewer\LCMSViewer.vbproj">
+      <Project>{72e288a5-18c4-43ec-95bf-d0f57f93ca92}</Project>
+      <Name>LCMSViewer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ux\Canvas\src\MatrixViewer\MatrixViewer.vbproj">
+      <Project>{313034b9-493c-20f7-495a-d4446eb5d5d8}</Project>
+      <Name>MatrixViewer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ux\Canvas\src\MzBlender\BlenderCommonLibs\BlenderCommonLibs.vbproj">
+      <Project>{3516cce9-77c6-8167-b245-5261d930bdee}</Project>
+      <Name>BlenderCommonLibs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj">
       <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>
       <Name>CommonDialogs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ux\ControlLibrary\ControlLibrary.vbproj">
-      <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
-      <Name>ControlLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\ux\GCxGCViewer\GCxGCViewer.vbproj">
       <Project>{4f39a3ea-c7fe-4ce8-a83c-4fc762beab84}</Project>
       <Name>GCxGCViewer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ux\LCMSViewer\LCMSViewer.vbproj">
-      <Project>{72e288a5-18c4-43ec-95bf-d0f57f93ca92}</Project>
-      <Name>LCMSViewer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ux\LocalLaplacianFilters\LocalLaplacianFilters.vbproj">
       <Project>{1440c713-78b7-4d26-978c-d2789dda67ff}</Project>
       <Name>LocalLaplacianFilters</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ux\MatrixViewer\MatrixViewer.vbproj">
-      <Project>{1c685387-d678-40f1-86ef-387f2bb85cb9}</Project>
-      <Name>MatrixViewer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ux\MSImagingViewer2\MSImagingViewerV2.vbproj">
-      <Project>{daf59cb6-ccd9-0fc6-1b8c-a3cdcd5ce92d}</Project>
-      <Name>MSImagingViewerV2</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ux\SingleCellViewer\SingleCellsViewer.vbproj">
       <Project>{895414ec-81ea-4d47-aca4-4e960e403583}</Project>
       <Name>SingleCellsViewer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ux\winux\DataValidation\DataValidation.vbproj">
-      <Project>{be119982-49e0-45e8-b26a-3efc1bd32610}</Project>
-      <Name>DataValidation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ux\winux\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
-      <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
-      <Name>Microsoft.Windows.FeatureAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -2293,12 +2251,13 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="..\services\PDF\PDF.projitems" Label="Shared" />
+  <Import Project="..\services\PeakFindingParameters\PeakFindingParameters.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
-  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.2849.39\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.2849.39\build\Microsoft.Web.WebView2.targets')" />
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.3537.50\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.3537.50\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.2849.39\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.2849.39\build\Microsoft.Web.WebView2.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.3537.50\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.3537.50\build\Microsoft.Web.WebView2.targets'))" />
   </Target>
 </Project>
