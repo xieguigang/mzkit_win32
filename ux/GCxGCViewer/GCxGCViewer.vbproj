@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>Mzkit_win32.GCxGCViewer</RootNamespace>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <UseApplicationFramework>True</UseApplicationFramework>
     <EnableVisualStyles>True</EnableVisualStyles>
     
