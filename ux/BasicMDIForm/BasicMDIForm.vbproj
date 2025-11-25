@@ -26,5 +26,9 @@
     <None Remove="logs\**" />
     <Page Remove="logs\**" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj" />
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+  </ItemGroup>
   
 </Project>

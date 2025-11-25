@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <StartupObject>msconvertGUI.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
