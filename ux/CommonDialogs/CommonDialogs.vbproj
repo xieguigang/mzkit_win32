@@ -1,242 +1,43 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{13685719-56A6-44F9-99A2-47CB79D29A57}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <StartupObject>
-    </StartupObject>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>    
     <RootNamespace>CommonDialogs</RootNamespace>
     <AssemblyName>Mzkit_win32.CommonDialogs</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MyType>WindowsForms</MyType>
+
+    <TargetFrameworks>net8.0-windows</TargetFrameworks>
+    <FileAlignment>512</FileAlignment>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Configurations>Debug;Release;Rsharp_app_release;mzkit_win32;MEMI-Desktop</Configurations>
+    <Platforms>AnyCPU;ARM32;x64</Platforms>
+    <UseWPF>True</UseWPF>
+    
+    
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <DefineDebug>true</DefineDebug>
-    <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Mzkit_win32.CommonDialogs.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <DefineDebug>false</DefineDebug>
-    <DefineTrace>true</DefineTrace>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Mzkit_win32.CommonDialogs.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup>
-    <OptionExplicit>On</OptionExplicit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <OptionCompare>Binary</OptionCompare>
-  </PropertyGroup>
-  <PropertyGroup>
-    <OptionStrict>Off</OptionStrict>
-  </PropertyGroup>
-  <PropertyGroup>
-    <OptionInfer>On</OptionInfer>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <DefineDebug>true</DefineDebug>
-    <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DocumentationFile>Mzkit_win32.CommonDialogs.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DocumentationFile>Mzkit_win32.CommonDialogs.xml</DocumentationFile>
-    <Optimize>true</Optimize>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'mzkit_win32|AnyCPU'">
-    <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\mzkit_win32\</OutputPath>
-    <DocumentationFile>Mzkit_win32.CommonDialogs.xml</DocumentationFile>
-    <Optimize>true</Optimize>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'mzkit_win32|x64'">
-    <DefineTrace>true</DefineTrace>
-    <OutputPath>..\..\..\..\dist\bin\</OutputPath>
-    <DocumentationFile>Mzkit_win32.CommonDialogs.xml</DocumentationFile>
-    <Optimize>false</Optimize>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <RemoveIntegerChecks>true</RemoveIntegerChecks>
-    <DebugSymbols>true</DebugSymbols>
+    <StartupObject>CommonDialogs.My.MyApplication</StartupObject>
+    <AssemblyTitle>Common dialogs that may shares between multiple application</AssemblyTitle>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Common dialogs that may shares between multiple application</Title>
+    <Product>MZKit</Product>
+    <Description>Common dialogs that may shares between multiple application</Description>
+    <IncludeSymbols>True</IncludeSymbols>
+    <ImportedNamespaces>System.Windows.Forms=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,CommonDialogs=True</ImportedNamespaces>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
+    <Compile Remove="logs\**" />
+    <EmbeddedResource Remove="logs\**" />
+    <None Remove="logs\**" />
+    <Page Remove="logs\**" />
   </ItemGroup>
   <ItemGroup>
-    <Import Include="Microsoft.VisualBasic" />
-    <Import Include="System" />
-    <Import Include="System.Collections" />
-    <Import Include="System.Collections.Generic" />
-    <Import Include="System.Data" />
-    <Import Include="System.Drawing" />
-    <Import Include="System.Diagnostics" />
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj" />
+    <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj" />
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+  </ItemGroup>
+  <ItemGroup>
     <Import Include="System.Windows.Forms" />
-    <Import Include="System.Linq" />
-    <Import Include="System.Xml.Linq" />
-    <Import Include="System.Threading.Tasks" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="InputDialogs\InputSingleIonMSIExport.Designer.vb">
-      <DependentUpon>InputSingleIonMSIExport.vb</DependentUpon>
-    </Compile>
-    <Compile Include="InputDialogs\InputSingleIonMSIExport.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InputDialogs\InputCloudEndPoint.Designer.vb">
-      <DependentUpon>InputCloudEndPoint.vb</DependentUpon>
-    </Compile>
-    <Compile Include="InputDialogs\InputCloudEndPoint.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InputDialogs\InputMSISlideLayout.Designer.vb">
-      <DependentUpon>InputMSISlideLayout.vb</DependentUpon>
-    </Compile>
-    <Compile Include="InputDialogs\InputMSISlideLayout.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InputDialogs\InputSpotRadius.Designer.vb">
-      <DependentUpon>InputSpotRadius.vb</DependentUpon>
-    </Compile>
-    <Compile Include="InputDialogs\InputSpotRadius.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InputDialogs\ShowMSIRowScanSummary.Designer.vb">
-      <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
-    </Compile>
-    <Compile Include="InputDialogs\ShowMSIRowScanSummary.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="My Project\AssemblyInfo.vb" />
-    <Compile Include="My Project\Application.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Application.myapp</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="My Project\Settings.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="InputDialogs\InputCloudEndPoint.resx">
-      <DependentUpon>InputCloudEndPoint.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InputDialogs\InputMSISlideLayout.resx">
-      <DependentUpon>InputMSISlideLayout.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InputDialogs\InputMSISlideLayout.zh-CN.resx">
-      <DependentUpon>InputMSISlideLayout.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InputDialogs\InputSingleIonMSIExport.resx">
-      <DependentUpon>InputSingleIonMSIExport.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InputDialogs\InputSpotRadius.resx">
-      <DependentUpon>InputSpotRadius.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InputDialogs\InputSpotRadius.zh-CN.resx">
-      <DependentUpon>InputSpotRadius.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InputDialogs\ShowMSIRowScanSummary.resx">
-      <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InputDialogs\ShowMSIRowScanSummary.zh-CN.resx">
-      <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="My Project\Resources.resx">
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
-      <CustomToolNamespace>My.Resources</CustomToolNamespace>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="My Project\Application.myapp">
-      <Generator>MyApplicationCodeGenerator</Generator>
-      <LastGenOutput>Application.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="My Project\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <CustomToolNamespace>My</CustomToolNamespace>
-      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj">
-      <Project>{87d65add-fe86-4239-af7e-a37410354a0c}</Project>
-      <Name>GalaxyData</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj">
-      <Project>{ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452}</Project>
-      <Name>GalaxyWorkbench</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Drawing-net4.8\Drawing-net4.8.vbproj">
-      <Project>{c9d8e14f-d303-400f-9c03-0163d567f135}</Project>
-      <Name>Drawing-net4.8</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj">
-      <Project>{cb37e2ec-4caf-4a87-8348-d50645cbe510}</Project>
-      <Name>imaging.NET5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj">
-      <Project>{05cdedc2-e4ad-4fb6-992b-eeb0931e8aa1}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\text%25html\html_netcore5.vbproj">
-      <Project>{f9684482-7d4c-429a-b480-d3065aa482e2}</Project>
-      <Name>html_netcore5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BasicMDIForm\BasicMDIForm.vbproj">
-      <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
-      <Name>BasicMDIForm</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  
+
 </Project>

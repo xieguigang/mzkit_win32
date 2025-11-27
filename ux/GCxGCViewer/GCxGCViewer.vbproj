@@ -2,16 +2,17 @@
 
   <PropertyGroup>
     <RootNamespace>Mzkit_win32.GCxGCViewer</RootNamespace>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <UseApplicationFramework>True</UseApplicationFramework>
     <EnableVisualStyles>True</EnableVisualStyles>
-    <OutputType>Library</OutputType>
+    
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <ImportedNamespaces>System.Drawing=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Data=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,GCxGCViewer=True</ImportedNamespaces>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
     <VBAuthenticationMode>Windows</VBAuthenticationMode>
     <ShutdownMode>AfterMainFormCloses</ShutdownMode>
     <UseWindowsForms>true</UseWindowsForms>
+    <OutputType>Library</OutputType>
     <MyType>WindowsForms</MyType>
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;mzkit_win32</Configurations>
@@ -46,7 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3595.46" />
     <PackageReference Include="System.Buffers" Version="4.6.1" />
     <PackageReference Include="System.Numerics.Vectors" Version="4.6.1" />
   </ItemGroup>
