@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>MZWorkRedis</RootNamespace>
-    <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
+    <TargetFrameworks>net10.0-windows</TargetFrameworks>
     <Configurations>Debug;Release;Rsharp_app_release;mzkit_win32</Configurations>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
