@@ -5,7 +5,7 @@
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
 
-    <TargetFrameworks>net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net10.0-windows</TargetFrameworks>
     <FileAlignment>512</FileAlignment>
     <UseWindowsForms>true</UseWindowsForms>
     <Configurations>Debug;Release;Rsharp_app_release;mzkit_win32;MEMI-Desktop</Configurations>
