@@ -5,7 +5,8 @@
     <RootNamespace>LaplacianHDR</RootNamespace>
     <AssemblyName>LocalLaplacianFilters</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Windows</MyType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <MyType>WindowsForms</MyType>
 
     <TargetFrameworks>net10.0-windows</TargetFrameworks>
     <FileAlignment>512</FileAlignment>
@@ -19,7 +20,7 @@
     <Deterministic>true</Deterministic>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <ImportedNamespaces>System.Windows.Forms=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,LocalLaplacianFilters=True</ImportedNamespaces>
+    <ImportedNamespaces>System.Windows.Forms=True,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,LocalLaplacianFilters=True</ImportedNamespaces>
   </PropertyGroup>
   
   <ItemGroup>

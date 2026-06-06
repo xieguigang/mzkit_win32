@@ -84,11 +84,14 @@ Partial Class ImageDocumentWindow
 
     End Sub
 #End Region
-    Private contextMenuTabPage As Windows.Forms.ContextMenuStrip
-    Private menuItem3 As Windows.Forms.ToolStripMenuItem
-    Private menuItem4 As Windows.Forms.ToolStripMenuItem
-    Private menuItem5 As Windows.Forms.ToolStripMenuItem
-    Private toolTip As Windows.Forms.ToolTip
+
+
+
+    Private contextMenuTabPage As ContextMenuStrip
+    Private menuItem3 As ToolStripMenuItem
+    Private menuItem4 As ToolStripMenuItem
+    Private menuItem5 As ToolStripMenuItem
+    Private toolTip As ToolTip
     Public WithEvents pictureBox1 As PictureBox
 End Class
 

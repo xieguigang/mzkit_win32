@@ -540,8 +540,8 @@ Partial Class PropertyWindow
 
     End Sub
 #End Region
-    Private mainMenu1 As Windows.Forms.MenuStrip
-    Private menuItem1 As Windows.Forms.ToolStripMenuItem
+    Private WithEvents mainMenu1 As MenuStrip
+    Private WithEvents menuItem1 As ToolStripMenuItem
     Public WithEvents textBox1 As TextBox
     Private WithEvents label16 As Label
     Private WithEvents button1 As Button

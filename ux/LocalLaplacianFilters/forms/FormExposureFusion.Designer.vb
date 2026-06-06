@@ -111,10 +111,10 @@
     End Sub
 
 #End Region
-    Private WithEvents trackBar1 As Windows.Forms.TrackBar
-    Public WithEvents textBox2 As Windows.Forms.TextBox
-    Private WithEvents label1 As Windows.Forms.Label
-    Private WithEvents pictureBox1 As Windows.Forms.PictureBox
-    Private WithEvents button1 As Windows.Forms.Button
+    Private WithEvents trackBar1 As TrackBar
+    Public WithEvents textBox2 As TextBox
+    Private WithEvents label1 As Label
+    Private WithEvents pictureBox1 As PictureBox
+    Private WithEvents button1 As Button
 End Class
 

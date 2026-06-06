@@ -194,16 +194,19 @@ Partial Class FormAdjust
     End Sub
 
 #End Region
-    Private WithEvents label2 As Windows.Forms.Label
-    Private WithEvents trackBar2 As Windows.Forms.TrackBar
-    Public WithEvents textBox2 As Windows.Forms.TextBox
-    Private WithEvents label1 As Windows.Forms.Label
-    Private WithEvents trackBar1 As Windows.Forms.TrackBar
-    Public WithEvents textBox1 As Windows.Forms.TextBox
-    Private WithEvents pictureBox1 As Windows.Forms.PictureBox
-    Private WithEvents button1 As Windows.Forms.Button
-    Private WithEvents label3 As Windows.Forms.Label
-    Private WithEvents trackBar3 As Windows.Forms.TrackBar
-    Public WithEvents textBox3 As Windows.Forms.TextBox
+
+
+
+    Private WithEvents label2 As Label
+    Private WithEvents trackBar2 As TrackBar
+    Public WithEvents textBox2 As TextBox
+    Private WithEvents label1 As Label
+    Private WithEvents trackBar1 As TrackBar
+    Public WithEvents textBox1 As TextBox
+    Private WithEvents pictureBox1 As PictureBox
+    Private WithEvents button1 As Button
+    Private WithEvents label3 As Label
+    Private WithEvents trackBar3 As TrackBar
+    Public WithEvents textBox3 As TextBox
 End Class
 

@@ -318,25 +318,25 @@
 
 #End Region
 
-    Private WithEvents button1 As Windows.Forms.Button
-    Private WithEvents pictureBox1 As Windows.Forms.PictureBox
-    Private WithEvents label1 As Windows.Forms.Label
-    Private WithEvents trackBar1 As Windows.Forms.TrackBar
-    Public WithEvents textBox1 As Windows.Forms.TextBox
-    Private WithEvents label2 As Windows.Forms.Label
-    Private WithEvents trackBar2 As Windows.Forms.TrackBar
-    Public WithEvents textBox2 As Windows.Forms.TextBox
-    Private WithEvents label3 As Windows.Forms.Label
-    Private WithEvents trackBar3 As Windows.Forms.TrackBar
-    Public WithEvents textBox3 As Windows.Forms.TextBox
-    Private WithEvents label4 As Windows.Forms.Label
-    Private WithEvents trackBar4 As Windows.Forms.TrackBar
-    Public WithEvents textBox4 As Windows.Forms.TextBox
-    Private WithEvents label5 As Windows.Forms.Label
-    Private WithEvents trackBar5 As Windows.Forms.TrackBar
-    Public WithEvents textBox5 As Windows.Forms.TextBox
-    Private WithEvents label6 As Windows.Forms.Label
-    Private WithEvents trackBar6 As Windows.Forms.TrackBar
-    Public WithEvents textBox6 As Windows.Forms.TextBox
+    Private WithEvents button1 As Button
+    Private WithEvents pictureBox1 As PictureBox
+    Private WithEvents label1 As Label
+    Private WithEvents trackBar1 As TrackBar
+    Public WithEvents textBox1 As TextBox
+    Private WithEvents label2 As Label
+    Private WithEvents trackBar2 As TrackBar
+    Public WithEvents textBox2 As TextBox
+    Private WithEvents label3 As Label
+    Private WithEvents trackBar3 As TrackBar
+    Public WithEvents textBox3 As TextBox
+    Private WithEvents label4 As Label
+    Private WithEvents trackBar4 As TrackBar
+    Public WithEvents textBox4 As TextBox
+    Private WithEvents label5 As Label
+    Private WithEvents trackBar5 As TrackBar
+    Public WithEvents textBox5 As TextBox
+    Private WithEvents label6 As Label
+    Private WithEvents trackBar6 As TrackBar
+    Public WithEvents textBox6 As TextBox
 End Class
 

@@ -3,9 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net10.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <MyType>WindowsForms</MyType>
     <AssemblyName>Mzkit_win32.SinglesCellViewer</AssemblyName>
     <RootNamespace>Mzkit_win32.SinglesCellViewer</RootNamespace>
-    <MyType>WindowsForms</MyType>
+    
     <StartupObject>Mzkit_win32.SingleCellsViewer.My.MyApplication</StartupObject>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Platforms>AnyCPU;x64</Platforms>

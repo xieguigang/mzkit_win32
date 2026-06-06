@@ -243,25 +243,25 @@ Partial Class FormEditMain
 
 #End Region
 
-    Private WithEvents menuStrip1 As Windows.Forms.MenuStrip
-    Private WithEvents fileToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents openToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents reloadToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents saveToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents filterToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents localLaplacianToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents temperatureToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents programToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents aboutToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents exposureToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents comboBox1 As Windows.Forms.ComboBox
-    Private WithEvents label1 As Windows.Forms.Label
-    Private WithEvents closeToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents editToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents undoToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents redoToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents flipVerticalToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents flipHorizontalToolStripMenuItem As Windows.Forms.ToolStripMenuItem
+    Private WithEvents menuStrip1 As MenuStrip
+    Private WithEvents fileToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents openToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents reloadToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents saveToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents filterToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents localLaplacianToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents temperatureToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents programToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents aboutToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents exposureToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents comboBox1 As ComboBox
+    Private WithEvents label1 As Label
+    Private WithEvents closeToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents editToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents undoToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents redoToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents flipVerticalToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents flipHorizontalToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VisualStudioToolStripExtender1 As VisualStudioToolStripExtender
     Friend WithEvents VS2015BlueTheme1 As VS2015BlueTheme
 

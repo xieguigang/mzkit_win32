@@ -6,7 +6,8 @@
     <RootNamespace>mzView</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    
+    <UseWindowsForms>true</UseWindowsForms>
+    <MyType>WindowsForms</MyType>
     <OutputPath>../../../../dist\bin\plugins</OutputPath>
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;mzkit_win32</Configurations>
