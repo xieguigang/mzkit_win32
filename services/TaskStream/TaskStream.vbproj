@@ -11,4 +11,8 @@
     <RootNamespace>TaskStream</RootNamespace>
     <AssemblyName>Mzkit_win32.TaskStream</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+  </ItemGroup>
  </Project>
