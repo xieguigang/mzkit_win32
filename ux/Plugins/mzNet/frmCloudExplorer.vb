@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -268,7 +269,7 @@ Public Class frmCloudExplorer
                         .Select(Function(mzi, i) New ms2 With {.mz = mzi, .intensity = v.into(i)}) _
                         .ToArray,
                     .lib_guid = "Consensus Spectra",
-                    .file = hashcode
+                    .File = hashcode
                 }
 
                 Call SpectralViewerModule.ViewSpectral(spectrum)

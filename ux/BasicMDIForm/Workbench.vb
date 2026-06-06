@@ -1,4 +1,5 @@
 Imports System.Runtime.CompilerServices
+Imports System.Windows.Forms
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.DockDocument.Presets
 Imports Microsoft.VisualBasic.Net.Tcp

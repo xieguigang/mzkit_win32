@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Text.RegularExpressions
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking

@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.Language
+﻿Imports System.Windows.Forms
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.MIME.application.xml
 
 Public Class XmlViewer

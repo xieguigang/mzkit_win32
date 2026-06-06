@@ -24,5 +24,8 @@
     <None Remove="logs\**" />
     <Page Remove="logs\**" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+  </ItemGroup>
   
 </Project>
