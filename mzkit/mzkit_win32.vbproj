@@ -17,7 +17,77 @@
     <Title>Convert Mass Spectrum Raw Data Files</Title>
     <Description>Convert Mass Spectrum Raw Data Files Into MZKit Format</Description>
     <RootNamespace>BioNovoGene.mzkit_win32</RootNamespace>
+    <UseWPF>True</UseWPF>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <RemoveIntegerChecks>True</RemoveIntegerChecks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <RemoveIntegerChecks>True</RemoveIntegerChecks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <RemoveIntegerChecks>True</RemoveIntegerChecks>
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <RemoveIntegerChecks>True</RemoveIntegerChecks>
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='mzkit_win32|AnyCPU'">
+    <RemoveIntegerChecks>True</RemoveIntegerChecks>
+    <DefineTrace>True</DefineTrace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='mzkit_win32|x64'">
+    <RemoveIntegerChecks>True</RemoveIntegerChecks>
+    <DefineTrace>True</DefineTrace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\galaxy\src\dockpanelsuite\Themes\ThemeVS2015.vbproj" />
+    <ProjectReference Include="..\..\..\..\galaxy\src\dockpanelsuite\VSDockPanel\VSDockPanel.vbproj" />
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyChartLibs\GalaxyChartLibs.vbproj" />
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj" />
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyExcelPad\GalaxyExcelPad.vbproj" />
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyForm\GalaxyForm.vbproj" />
+    <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj" />
+    <ProjectReference Include="..\..\..\..\galaxy\src\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj" />
+    <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\analysis\HTS_matrix\HTS_matrix-netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\MachineLearning\TensorFlow\TensorFlow.vbproj" />
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj" />
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\SignalProcessing\SignalProcessing\signalprocessing-netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\text%html\html_netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\..\Microsoft.VisualBasic.Drawing\src\Microsoft.VisualBasic.Drawing\Microsoft.VisualBasic.Drawing.vbproj" />
+    <ProjectReference Include="..\..\assembly\assembly\assembly-netcore5.vbproj" />
+    <ProjectReference Include="..\..\assembly\mzPackExtensions\mzPackExtensions.NET5.vbproj" />
+    <ProjectReference Include="..\..\metadb\Chemoinformatics\chemoinformatics-netcore5.vbproj" />
+    <ProjectReference Include="..\..\metadb\SMILES\SMILES.NET5.vbproj" />
+    <ProjectReference Include="..\..\mzmath\SpatialMath\SpatialMath.vbproj" />
+    <ProjectReference Include="..\mzblender\src\BlenderHost\BlenderHost.vbproj" />
+    <ProjectReference Include="..\services\BioDeep\BioDeep.vbproj" />
+    <ProjectReference Include="..\services\TaskStream\TaskStream.vbproj" />
+    <ProjectReference Include="..\services\Task\Task.vbproj" />
+    <ProjectReference Include="..\ux\BasicMDIForm\BasicMDIForm.vbproj" />
+    <ProjectReference Include="..\ux\Canvas\src\MzBlender\BlenderCommonLibs\BlenderCommonLibs.vbproj" />
+    <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Windows.Ribbon">
+      <HintPath>..\..\..\..\galaxy\third-party\ribbon\Microsoft.Windows.Ribbon.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="My Project\Settings.Designer.vb">
