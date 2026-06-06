@@ -39,4 +39,8 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   
+  <ItemGroup>
+    <PackageReference Include="UMapx" Version="7.5.1.5" />
+  </ItemGroup>
+  
 </Project>

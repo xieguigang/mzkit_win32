@@ -1,3 +1,4 @@
+Imports System.Drawing
 Imports System.Runtime.CompilerServices
 Imports Galaxy.Workbench.DockDocument
 

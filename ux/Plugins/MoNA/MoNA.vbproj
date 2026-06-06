@@ -19,5 +19,7 @@
     <ProjectReference Include="..\..\..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj" />
     <ProjectReference Include="..\..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj" />
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+    <ProjectReference Include="..\..\..\..\metadb\Chemoinformatics\chemoinformatics-netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\..\metadb\MoNA\MoNA.NET5.vbproj" />
   </ItemGroup>
  </Project>

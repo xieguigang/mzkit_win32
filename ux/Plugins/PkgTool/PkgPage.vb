@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System.IO.Compression
 Imports System.Runtime.InteropServices
+Imports System.Windows.Forms
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.Plugin
 Imports Microsoft.VisualBasic.Serialization.JSON

@@ -1,4 +1,5 @@
-﻿Imports System.Globalization
+﻿Imports System.Drawing
+Imports System.Globalization
 Imports System.IO
 Imports Galaxy.Workbench.CommonDialogs
 Imports LaplacianHDR.Filters

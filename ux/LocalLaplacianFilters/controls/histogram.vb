@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Drawing
 Imports std = System.Math
 
 ''' <summary>

@@ -1,4 +1,5 @@
-﻿Imports LaplacianHDR.Helpers
+﻿Imports System.Drawing
+Imports LaplacianHDR.Helpers
 Imports UMapx.Imaging
 
 

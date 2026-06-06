@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports System.Windows.Forms
 Imports Galaxy.Workbench
 
 Public Module DataTableViewer

@@ -1,6 +1,7 @@
 ﻿Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Galaxy.Workbench.CommonDialogs
+Imports System.Windows.Forms
 
 Public Class JSONViewer
 
