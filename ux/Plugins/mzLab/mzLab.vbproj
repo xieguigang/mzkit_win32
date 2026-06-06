@@ -23,6 +23,9 @@
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\..\..\assembly\assembly\assembly-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\assembly\mzPack\mzpack.NET5.vbproj" />
+    <ProjectReference Include="..\..\..\..\assembly\SpectrumTree\spectrumTree.NETCore5.vbproj" />
     <ProjectReference Include="..\..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\..\visualize\plot\MsPlot.NET5.vbproj" />
+    <ProjectReference Include="..\..\BasicMDIForm\BasicMDIForm.vbproj" />
   </ItemGroup>
  </Project>

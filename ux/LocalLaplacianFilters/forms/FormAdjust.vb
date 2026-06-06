@@ -1,4 +1,5 @@
-﻿Imports LaplacianHDR.Filters
+﻿Imports System.Drawing
+Imports LaplacianHDR.Filters
 Imports LaplacianHDR.Helpers
 
 

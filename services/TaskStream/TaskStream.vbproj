@@ -10,9 +10,12 @@
     <Platforms>AnyCPU;ARM32;x64</Platforms>
     <RootNamespace>TaskStream</RootNamespace>
     <AssemblyName>Mzkit_win32.TaskStream</AssemblyName>
+    <UseWindowsForms>true</UseWindowsForms>
+    <MyType>WindowsForms</MyType>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+    <ProjectReference Include="..\..\ux\BasicMDIForm\BasicMDIForm.vbproj" />
   </ItemGroup>
  </Project>

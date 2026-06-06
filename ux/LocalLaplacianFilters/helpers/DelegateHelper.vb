@@ -1,4 +1,6 @@
-﻿Namespace Helpers
+﻿Imports System.Drawing
+
+Namespace Helpers
 
 #Region "Delegates"
     ''' <summary>

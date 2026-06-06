@@ -1,4 +1,5 @@
-﻿Imports System.Drawing.Imaging
+﻿Imports System.Drawing
+Imports System.Drawing.Imaging
 Imports System.IO
 Imports UMapx.Imaging
 

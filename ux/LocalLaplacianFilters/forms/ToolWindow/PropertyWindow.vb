@@ -1,4 +1,5 @@
-﻿Imports Galaxy.Workbench.DockDocument
+﻿Imports System.Drawing
+Imports Galaxy.Workbench.DockDocument
 Imports UMapx.Imaging
 
 Partial Public Class PropertyWindow : Inherits ToolWindow
