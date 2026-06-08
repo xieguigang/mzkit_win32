@@ -62,6 +62,7 @@ Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports System.Threading
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -71,8 +72,8 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Darwinism.HPC.Parallel
 Imports Darwinism.IPC.Networking.HTTP
 Imports Darwinism.IPC.Networking.Tcp
+Imports Erica.Analysis.SpatialTissue.HEView
 Imports Galaxy.Workbench
-Imports HEView
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 Imports Microsoft.VisualBasic.Data.IO

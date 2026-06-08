@@ -1,10 +1,14 @@
 ﻿Imports System.Threading
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.CrossReference
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
+Imports BioNovoGene.BioDeep.Chemoinformatics.Metabolite
+Imports BioNovoGene.BioDeep.Chemoinformatics.Metabolite.CrossReference
 Imports Galaxy.Workbench
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Linq
 
 Public Class InputPubChemProxy
@@ -142,7 +146,7 @@ Public Class InputPubChemProxy
 
             If Not source_biodeep Then
                 Call New Thread(Sub()
-                                    Dim img = ImageFly.GetImage(target, size:="300,300", doBgTransparent:=False)
+                                    Dim img = ImageFly.GetImage(target, size:="300,300", doBgTransparent:=False).CTypeGdiImage
 
                                     Try
                                         Call Me.Invoke(Sub() PictureBox1.BackgroundImage = img)

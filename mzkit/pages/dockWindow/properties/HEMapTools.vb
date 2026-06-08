@@ -14,11 +14,11 @@ Imports TaskStream
 Public Class HEMapTools
 
     Dim polygons As New List(Of Polygon2D)
-    Dim hemap As Bitmap
+    Dim hemap As System.Drawing.Bitmap
     Dim heatmap As Cell()
     Dim heatmap_dims As Size
 
-    Public ReadOnly Property HEStainMap As Image
+    Public ReadOnly Property HEStainMap As System.Drawing.Image
         Get
             Return hemap
         End Get
@@ -33,7 +33,7 @@ Public Class HEMapTools
     ''' Set new HE-stain map image into current analysis module
     ''' </summary>
     ''' <param name="newMap"></param>
-    Public Sub Clear(newMap As Bitmap)
+    Public Sub Clear(newMap As System.Drawing.Bitmap)
         Call ColorComboBox1.Items.Clear()
         Call polygons.Clear()
         Call hideBox()

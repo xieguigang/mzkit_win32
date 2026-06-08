@@ -56,6 +56,7 @@
 
 #End Region
 
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
@@ -110,7 +111,7 @@ Public Class PageSpectrumSearch
         If previews.All(Function(mz) mz.intensity = 0) OrElse previews.All(Function(mz) mz.mz = 0) Then
             MyApplication.host.showStatusMessage("all of the mass spectrum fragment their intensity or product m/z is ZERO!", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
-            PictureBox1.BackgroundImage = previews.MirrorPlot.AsGDIImage
+            PictureBox1.BackgroundImage = previews.MirrorPlot.AsGDIImage.CTypeGdiImage
         End If
     End Sub
 

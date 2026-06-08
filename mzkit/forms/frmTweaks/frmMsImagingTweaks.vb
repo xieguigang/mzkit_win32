@@ -83,9 +83,11 @@ Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
+Imports Microsoft.VisualBasic.Data.Framework.StorageProvider
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Drawing
+Imports Microsoft.VisualBasic.Drawing.Interop
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
@@ -689,7 +691,7 @@ UseCheckedList:
             Return
         End If
 
-        Dim image As Image = allIntensity.HistogramPlot(
+        Dim image As System.Drawing.Image = allIntensity.HistogramPlot(
             [step]:=range.Length / 50,
             color:="skyblue",
             padding:="padding: 100px 200px 300px 200px",
@@ -697,7 +699,7 @@ UseCheckedList:
             xLabel:="Intensity",
             xTickFormat:="G2",
             xlabelRotate:=45
-        ).AsGDIImage
+        ).AsGDIImage.CTypeGdiImage
 
         If image Is Nothing Then
             Workbench.Warning("Error while run signal intensity histogram plot...")
@@ -891,7 +893,7 @@ UseCheckedList:
         Dim params = WindowModules.viewer.params
         Dim size As String = $"{params.scan_x},{params.scan_y}"
         Dim MSIservice = WindowModules.viewer.MSIservice
-        Dim TIC As Image = Nothing
+        Dim TIC As System.Drawing.Image = Nothing
 
         If params.showTotalIonOverlap Then
             TIC = TaskProgress.LoadData(
@@ -901,7 +903,7 @@ UseCheckedList:
                                     Dim filters As RasterPipeline = frmMsImagingViewer.loadFilters
                                     Dim dims As New Size(params.scan_x, params.scan_y)
                                     Dim processedRaster As PixelData() = filters.DoIntensityScale(layer.CreatePixelData(Of PixelData), dims)
-                                    Dim render As Image = SummaryMSIBlender.Rendering(processedRaster.ExtractPixels.ToArray, dims, "gray", 60, "transparent")
+                                    Dim render As System.Drawing.Image = SummaryMSIBlender.Rendering(processedRaster.ExtractPixels.ToArray, dims, "gray", 60, "transparent")
 
                                     Return render
                                 Else
@@ -916,7 +918,7 @@ UseCheckedList:
         Call TaskProgress.LoadData(
             streamLoad:=Function(proc As ITaskProgress)
                             For i As Integer = 0 To Win7StyleTreeView1.Nodes.Count - 1
-                                Call ExportLayers(proc, Win7StyleTreeView1.Nodes(i), TIC, folder)
+                                Call ExportLayers(proc, Win7StyleTreeView1.Nodes(i), New GDIPlusImage(TIC), folder)
                             Next
 
                             Return Nothing
@@ -945,7 +947,7 @@ UseCheckedList:
     ''' <param name="TIC"></param>
     ''' <param name="config"></param>
     ''' <returns></returns>
-    Private Function ExportLayers(proc As ITaskProgress, list As TreeNode, TIC As Image, config As SetMSIPlotParameters) As Boolean
+    Private Function ExportLayers(proc As ITaskProgress, list As TreeNode, TIC As Microsoft.VisualBasic.Imaging.Image, config As SetMSIPlotParameters) As Boolean
         Dim params = WindowModules.viewer.params
         Dim mzdiff = params.GetTolerance
         ' Dim echo = proc.Echo

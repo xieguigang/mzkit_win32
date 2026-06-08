@@ -54,10 +54,11 @@
 
 #End Region
 
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports Microsoft.VisualBasic.ComponentModel.Collection
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Public Class InputFeatureFilter
 
@@ -128,7 +129,7 @@ Public Class InputFeatureFilter
             Dim str As String = CheckedListBox1.Items(i)
             Dim adducts = Parser.ParseMzCalculator(str, str.Last)
 
-            If stdNum.Abs(adducts.charge) = charge Then
+            If std.Abs(adducts.charge) = charge Then
                 Call CheckedListBox1.SetItemChecked(i, flag)
             End If
         Next

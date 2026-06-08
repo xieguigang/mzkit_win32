@@ -1,10 +1,12 @@
 ﻿Imports Galaxy.Data.Visualization.CommonDialogs
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports SMRUCC.DICOM.NRRD
+Imports Image = Microsoft.VisualBasic.Imaging.Image
 
 Public Class frmMRIViewer : Implements IFileReference
 
@@ -50,7 +52,7 @@ Public Class frmMRIViewer : Implements IFileReference
             cache.Add(key, CreateFrame(i))
         End If
 
-        PictureBox1.BackgroundImage = cache(key)
+        PictureBox1.BackgroundImage = cache(key).CTypeGdiImage
     End Sub
 
     Private Function CreateFrame(i As Integer) As Image

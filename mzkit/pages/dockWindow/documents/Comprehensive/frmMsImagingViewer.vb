@@ -93,7 +93,6 @@ Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
-Imports HEView
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
@@ -102,6 +101,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
+Imports Microsoft.VisualBasic.Data.Framework.StorageProvider
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Drawing
@@ -112,7 +112,6 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
-Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.SecurityString
@@ -125,8 +124,6 @@ Imports Mzkit_win32.MSImagingViewerV2
 Imports MZKitWin32.Blender.CommonLibs
 Imports ServiceHub
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
-Imports SMRUCC.genomics.Analysis.Spatial.Imaging
-Imports SMRUCC.genomics.Analysis.Spatial.RAID
 Imports Task
 Imports TaskStream
 Imports Bitmap = System.Drawing.Bitmap
@@ -402,7 +399,7 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
-    Private Sub SetMSIPadding(padding As Padding, MSIrender As Boolean)
+    Private Sub SetMSIPadding(padding As Microsoft.VisualBasic.MIME.Html.CSS.Padding, MSIrender As Boolean)
         Dim info = TaskProgress.LoadData(
             streamLoad:=Function(echo As Action(Of String)) MSIservice.AutoLocation(padding),
             title:="Do auto location",

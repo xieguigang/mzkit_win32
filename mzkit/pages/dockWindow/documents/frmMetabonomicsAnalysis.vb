@@ -162,7 +162,7 @@ Public Class frmMetabonomicsAnalysis
         Next
     End Sub
 
-    Public Sub LoadAnalysisTable(table As DataTable, data As DataSet())
+    Public Sub LoadAnalysisTable(table As DataTable, data As Microsoft.VisualBasic.Data.Framework.IO.DataSet())
         Dim keys As String()
 
         If data.IsNullOrEmpty Then
@@ -178,7 +178,7 @@ Public Class frmMetabonomicsAnalysis
             Call table.Columns.Add(key, GetType(Double))
         Next
 
-        For Each row As DataSet In data
+        For Each row As Microsoft.VisualBasic.Data.Framework.IO.DataSet In data
             Dim r As Object() = New Object(row.Properties.Count) {}
             r(0) = row.ID
 
@@ -541,7 +541,7 @@ Public Class frmMetabonomicsAnalysis
             End If
 
             If AutoPlotToolStripMenuItem.Checked Then
-                PictureBox1.BackgroundImage = plotExpression(raw_id, expression)
+                PictureBox1.BackgroundImage = plotExpression(raw_id, expression).CTypeGdiImage
             End If
 
             PropertyGrid1.SelectedObject = peak
@@ -940,7 +940,7 @@ Public Class frmMetabonomicsAnalysis
 
         ToolStripDropDownButton1.DropDownItems.Add("pca_score", My.Resources._1200px_Checked_svg,
             Sub()
-                Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+                Dim score_data As Microsoft.VisualBasic.Data.Framework.IO.DataSet() = Microsoft.VisualBasic.Data.Framework.IO.DataSet.LoadDataSet(score).ToArray
                 Dim scatter As UMAPPoint() = score_data _
                     .Select(Function(d)
                                 Return New UMAPPoint(d.ID, d!PC1, d!PC2, d!PC3) With {
@@ -954,7 +954,7 @@ Public Class frmMetabonomicsAnalysis
             End Sub).PerformClick()
         ToolStripDropDownButton1.DropDownItems.Add("pca_loading", My.Resources._1200px_Checked_svg,
             Sub()
-                Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+                Dim score_data As Microsoft.VisualBasic.Data.Framework.IO.DataSet() = Microsoft.VisualBasic.Data.Framework.IO.DataSet.LoadDataSet(loading).ToArray
                 Dim scatter = score_data _
                     .Select(Function(d)
                                 Return New UMAPPoint(d.ID, d!PC1, d!PC2, d!PC3) With {.[class] = "metabolite"}
@@ -978,7 +978,7 @@ Public Class frmMetabonomicsAnalysis
 
         ToolStripDropDownButton1.DropDownItems.Add("plsda_score", My.Resources._1200px_Checked_svg,
             Sub()
-                Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+                Dim score_data As Microsoft.VisualBasic.Data.Framework.IO.DataSet() = Microsoft.VisualBasic.Data.Framework.IO.DataSet.LoadDataSet(score).ToArray
                 Dim scatter = score_data.Select(Function(d) New UMAPPoint(d.ID, d!T1, d!T2, d!T3) With {.[class] = d.ID}).ToArray
 
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
@@ -986,7 +986,7 @@ Public Class frmMetabonomicsAnalysis
             End Sub).PerformClick()
         ToolStripDropDownButton1.DropDownItems.Add("plsda_loading", My.Resources._1200px_Checked_svg,
             Sub()
-                Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+                Dim score_data As Microsoft.VisualBasic.Data.Framework.IO.DataSet() = Microsoft.VisualBasic.Data.Framework.IO.DataSet.LoadDataSet(loading).ToArray
                 Dim scatter = score_data.Select(Function(d) New UMAPPoint(d.ID, d!P1, d!P2, d!P3) With {.[class] = "metabolite"}).ToArray
 
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
@@ -1006,7 +1006,7 @@ Public Class frmMetabonomicsAnalysis
 
         ToolStripDropDownButton1.DropDownItems.Add("oplsda_score", My.Resources._1200px_Checked_svg,
             Sub()
-                Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+                Dim score_data As Microsoft.VisualBasic.Data.Framework.IO.DataSet() = Microsoft.VisualBasic.Data.Framework.IO.DataSet.LoadDataSet(score).ToArray
                 Dim scatter = score_data.Select(Function(d) New UMAPPoint(d.ID, d!T1, d!T2, d!T3) With {.[class] = d.ID}).ToArray
 
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
@@ -1014,7 +1014,7 @@ Public Class frmMetabonomicsAnalysis
             End Sub).PerformClick()
         ToolStripDropDownButton1.DropDownItems.Add("oplsda_loading", My.Resources._1200px_Checked_svg,
             Sub()
-                Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+                Dim score_data As Microsoft.VisualBasic.Data.Framework.IO.DataSet() = Microsoft.VisualBasic.Data.Framework.IO.DataSet.LoadDataSet(loading).ToArray
                 Dim scatter = score_data.Select(Function(d) New UMAPPoint(d.ID, d!P1, d!P2, d!P3) With {.[class] = "metabolite"}).ToArray
 
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
@@ -1039,7 +1039,7 @@ Public Class frmMetabonomicsAnalysis
         ViolinPlotToolStripMenuItem.Checked = False
 
         If Not expression Is Nothing Then
-            PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
+            PictureBox1.BackgroundImage = plotExpression(expression_name, expression).CTypeGdiImage
         End If
     End Sub
 
@@ -1048,7 +1048,7 @@ Public Class frmMetabonomicsAnalysis
         ViolinPlotToolStripMenuItem.Checked = False
 
         If Not expression Is Nothing Then
-            PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
+            PictureBox1.BackgroundImage = plotExpression(expression_name, expression).CTypeGdiImage
         End If
     End Sub
 
@@ -1057,20 +1057,20 @@ Public Class frmMetabonomicsAnalysis
         BarPlotToolStripMenuItem.Checked = False
 
         If Not expression Is Nothing Then
-            PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
+            PictureBox1.BackgroundImage = plotExpression(expression_name, expression).CTypeGdiImage
         End If
     End Sub
 
     Private Sub ViewExpressionPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewExpressionPlotToolStripMenuItem.Click
         If Not expression Is Nothing Then
-            PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
+            PictureBox1.BackgroundImage = plotExpression(expression_name, expression).CTypeGdiImage
         End If
     End Sub
 
     Private Sub AutoPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutoPlotToolStripMenuItem.Click
         If AutoPlotToolStripMenuItem.Checked Then
             If Not expression Is Nothing Then
-                PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
+                PictureBox1.BackgroundImage = plotExpression(expression_name, expression).CTypeGdiImage
             Else
 
             End If
