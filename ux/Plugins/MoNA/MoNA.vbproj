@@ -21,5 +21,7 @@
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\..\..\metadb\Chemoinformatics\chemoinformatics-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\metadb\MoNA\MoNA.NET5.vbproj" />
+    <ProjectReference Include="..\..\..\services\BioDeep\BioDeep.vbproj" />
+    <ProjectReference Include="..\..\BasicMDIForm\BasicMDIForm.vbproj" />
   </ItemGroup>
  </Project>

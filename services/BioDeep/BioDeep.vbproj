@@ -82,6 +82,7 @@
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\application%json\JSON-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\assembly\assembly\assembly-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\assembly\mzPack\mzpack.NET5.vbproj" />
+    <ProjectReference Include="..\..\..\metadb\Chemoinformatics\chemoinformatics-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\metadb\Massbank\massbank.NET5.vbproj" />
   </ItemGroup>
   <ItemGroup>

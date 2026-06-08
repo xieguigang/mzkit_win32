@@ -1,61 +1,61 @@
 ﻿#Region "Microsoft.VisualBasic::ea22bc3361e3a7fe6eeaaf5fbbc971c1, mzkit\services\BioDeep\LocalLibrary\RQLib.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 215
-    '    Code Lines: 132 (61.40%)
-    ' Comment Lines: 47 (21.86%)
-    '    - Xml Docs: 70.21%
-    ' 
-    '   Blank Lines: 36 (16.74%)
-    '     File Size: 7.58 KB
+' Summaries:
 
 
-    ' Class RQLib
-    ' 
-    '     Constructor: (+1 Overloads) Sub New
-    ' 
-    '     Function: AddAnnotation, AddSpectrum, GetSpectrumByKey, ListMetabolites, OpenReadOnly
-    '               ParseMetadata, QueryMetabolites
-    ' 
-    '     Sub: (+2 Overloads) Dispose, loadMap, saveMap
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 215
+'    Code Lines: 132 (61.40%)
+' Comment Lines: 47 (21.86%)
+'    - Xml Docs: 70.21%
+' 
+'   Blank Lines: 36 (16.74%)
+'     File Size: 7.58 KB
+
+
+' Class RQLib
+' 
+'     Constructor: (+1 Overloads) Sub New
+' 
+'     Function: AddAnnotation, AddSpectrum, GetSpectrumByKey, ListMetabolites, OpenReadOnly
+'               ParseMetadata, QueryMetabolites
+' 
+'     Sub: (+2 Overloads) Dispose, loadMap, saveMap
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -63,7 +63,7 @@ Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
-Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports BioNovoGene.BioDeep.Chemoinformatics.Metabolite
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic.Data.IO
@@ -227,7 +227,7 @@ Public Class RQLib : Implements IDisposable
     Public Iterator Function QueryMetabolites(name As String) As IEnumerable(Of MetaLib)
         Dim list As NumericTagged(Of String)() = query.Get(query:=name).ToArray
         Dim keys As String() = list _
-            .Select(Function(m) m.value) _
+            .Select(Function(m) m.Value) _
             .Distinct _
             .ToArray
         Dim dat As Byte()

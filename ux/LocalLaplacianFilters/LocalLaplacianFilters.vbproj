@@ -22,7 +22,11 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <ImportedNamespaces>System.Windows.Forms=True,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,LocalLaplacianFilters=True</ImportedNamespaces>
   </PropertyGroup>
-  
+
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);WFO1000</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="logs\**" />
     <EmbeddedResource Remove="logs\**" />

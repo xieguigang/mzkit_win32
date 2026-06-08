@@ -2,7 +2,6 @@
 Imports LaplacianHDR.Filters
 Imports LaplacianHDR.Helpers
 
-
 Partial Public Class FormTemperature
     Inherits Form
 #Region "Private data"
