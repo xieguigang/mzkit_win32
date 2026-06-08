@@ -1,4 +1,5 @@
-﻿Imports Galaxy.Workbench
+﻿Imports System.Windows.Forms
+Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
 Imports Mzkit_win32.BasicMDIForm
 

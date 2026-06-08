@@ -52,6 +52,7 @@
 
 #End Region
 
+Imports System.Drawing
 Imports Galaxy.Workbench.DockDocument
 Imports Mzkit_win32.GCxGCViewer
 

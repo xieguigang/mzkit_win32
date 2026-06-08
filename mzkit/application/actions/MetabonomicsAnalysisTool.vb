@@ -1,4 +1,5 @@
-﻿Imports Galaxy.Workbench.Actions
+﻿Imports System.Data
+Imports Galaxy.Workbench.Actions
 
 Public Class MetabonomicsAnalysisTool : Inherits ActionBase
 

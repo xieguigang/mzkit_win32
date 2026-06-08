@@ -87,6 +87,7 @@
     <ProjectReference Include="..\..\assembly\mzPackExtensions\mzPackExtensions.NET5.vbproj" />
     <ProjectReference Include="..\..\metadb\Chemoinformatics\chemoinformatics-netcore5.vbproj" />
     <ProjectReference Include="..\..\metadb\SMILES\SMILES.NET5.vbproj" />
+    <ProjectReference Include="..\..\mzmath\GCxGC\GCxGC.vbproj" />
     <ProjectReference Include="..\..\mzmath\MSEngine\MSEngine.vbproj" />
     <ProjectReference Include="..\..\mzmath\SingleCells\SingleCells.vbproj" />
     <ProjectReference Include="..\..\mzmath\SpatialMath\SpatialMath.vbproj" />
@@ -103,6 +104,7 @@
     <ProjectReference Include="..\ux\Canvas\src\MatrixViewer\MatrixViewer.vbproj" />
     <ProjectReference Include="..\ux\Canvas\src\MzBlender\BlenderCommonLibs\BlenderCommonLibs.vbproj" />
     <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj" />
+    <ProjectReference Include="..\ux\GCxGCViewer\GCxGCViewer.vbproj" />
     <ProjectReference Include="..\ux\Plugins\MoNA\MoNA.vbproj" />
     <ProjectReference Include="..\ux\SingleCellViewer\SingleCellsViewer.vbproj" />
   </ItemGroup>

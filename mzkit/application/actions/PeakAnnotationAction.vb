@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.mzkit_win32.My
+﻿Imports System.Data
+Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench.Actions
 Imports Microsoft.VisualBasic.Linq

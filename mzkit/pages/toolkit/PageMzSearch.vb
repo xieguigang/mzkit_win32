@@ -58,7 +58,8 @@
 
 #End Region
 
-Imports System.Drawing.Drawing2D
+Imports System.Data
+Imports System.Drawing
 Imports System.Runtime.CompilerServices
 Imports System.Windows.Forms
 Imports BioDeep
@@ -81,6 +82,7 @@ Imports Galaxy.Workbench.DockDocument
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Legend
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -340,11 +342,9 @@ Public Class PageMzSearch
             End If
         Next
 
-        Dim peakPlot As Image = PeakAssign.DrawSpectrumPeaks(GetIsotopeMS1, labelIntensity:=0.01, dpi:=200).AsGDIImage
-
         MS1PlotToolStripMenuItem.Checked = True
         GaussianPlotToolStripMenuItem.Checked = False
-        PictureBox1.BackgroundImage = peakPlot
+        PictureBox1.BackgroundImage = PeakAssign.DrawSpectrumPeaks(GetIsotopeMS1, labelIntensity:=0.01, dpi:=200).AsGDIImage.CTypeGdiImage
     End Sub
 
     Private Function GetIsotopeMS1() As LibraryMatrix
@@ -364,7 +364,7 @@ Public Class PageMzSearch
     Private Function GetIsotopeGaussianLine() As SerialData
         Return New SerialData With {
             .color = Color.SteelBlue,
-            .lineType = DashStyle.Dash,
+            .lineType = Microsoft.VisualBasic.Imaging.DashStyle.Dash,
             .pointSize = 5,
             .pts = isotope.mz _
                 .Select(Function(mzi, i)
@@ -384,7 +384,7 @@ Public Class PageMzSearch
         End If
 
         If Not isotope Is Nothing Then
-            PictureBox1.BackgroundImage = PeakAssign.DrawSpectrumPeaks(GetIsotopeMS1, labelIntensity:=0.01, dpi:=200).AsGDIImage
+            PictureBox1.BackgroundImage = PeakAssign.DrawSpectrumPeaks(GetIsotopeMS1, labelIntensity:=0.01, dpi:=200).AsGDIImage.CTypeGdiImage
         End If
 
         GaussianPlotToolStripMenuItem.Checked = MS1PlotToolStripMenuItem.Checked
@@ -405,7 +405,7 @@ Public Class PageMzSearch
                 Xlabel:="M/Z",
                 Ylabel:="Gaussian Probability",
                 axisLabelCSS:=CSSFont.Win7LargeBold
-            ).AsGDIImage
+            ).AsGDIImage.CTypeGdiImage
         End If
 
         MS1PlotToolStripMenuItem.Checked = GaussianPlotToolStripMenuItem.Checked

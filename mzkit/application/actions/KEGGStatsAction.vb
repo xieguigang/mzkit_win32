@@ -1,6 +1,8 @@
-﻿Imports Galaxy.ExcelPad
+﻿Imports System.Data
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench.Actions
 Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.Runtime
