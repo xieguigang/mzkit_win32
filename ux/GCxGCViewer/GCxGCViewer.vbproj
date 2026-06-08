@@ -19,6 +19,10 @@
     <AssemblyName>Mzkit_win32.GCxGCViewer</AssemblyName>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);WFO1000</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyChartLibs\GalaxyChartLibs.vbproj" />
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj" />

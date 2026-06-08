@@ -13,6 +13,10 @@
     <StartupObject>BioDeep.My.MyApplication</StartupObject>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);WFO1000</NoWarn>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net48|AnyCPU'">
     <DocumentationFile>BioDeep.xml</DocumentationFile>
   </PropertyGroup>

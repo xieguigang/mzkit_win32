@@ -18,6 +18,10 @@
     <Description>Convert Mass Spectrum Raw Data Files Into MZKit Format</Description>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);WFO1000</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <Import Include="System.Data" />
     <Import Include="System.Drawing" />
