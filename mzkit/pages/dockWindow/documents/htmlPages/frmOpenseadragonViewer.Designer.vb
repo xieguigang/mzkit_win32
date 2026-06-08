@@ -1,4 +1,5 @@
-﻿Imports Galaxy.Workbench.DockDocument
+﻿Imports System.Windows.Forms
+Imports Galaxy.Workbench.DockDocument
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmOpenseadragonViewer

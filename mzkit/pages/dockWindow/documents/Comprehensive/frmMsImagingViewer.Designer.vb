@@ -52,6 +52,7 @@
 
 #End Region
 
+Imports System.Windows.Forms
 Imports Galaxy.Workbench.DockDocument
 Imports Mzkit_win32.MSImagingViewerV2
 

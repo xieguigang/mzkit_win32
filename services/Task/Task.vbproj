@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\..\mzmath\TargetedMetabolomics\Targetted.NET5.vbproj" />
     <ProjectReference Include="..\..\..\visualize\plot\MsPlot.NET5.vbproj" />
     <ProjectReference Include="..\..\ux\Canvas\src\MzBlender\BlenderCommonLibs\BlenderCommonLibs.vbproj" />
+    <ProjectReference Include="..\BioDeep\BioDeep.vbproj" />
     <ProjectReference Include="..\MZWorkRedis\MZWorkRedis.vbproj" />
     <ProjectReference Include="..\TaskStream\TaskStream.vbproj" />
   </ItemGroup>

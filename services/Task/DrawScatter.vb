@@ -52,7 +52,6 @@
 
 #End Region
 
-Imports System.Drawing
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
@@ -71,6 +70,7 @@ Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.Distributions
 Imports Microsoft.VisualBasic.Math.Quantile
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Mzkit_win32.BasicMDIForm
 Imports TaskStream
 
 Public Module DrawScatter
@@ -118,12 +118,12 @@ Public Module DrawScatter
     End Function
 
     <Extension>
-    Public Function DrawScatter(raw As Raw, colorSet As String) As Image
+    Public Function DrawScatter(raw As Raw, colorSet As String) As Microsoft.VisualBasic.Imaging.Image
         Return RawScatterPlot.Plot(samples:=GetMs1Points(raw), rawfile:=raw.source.FileName, sampleColors:=colorSet).AsGDIImage
     End Function
 
     <Extension>
-    Public Function DrawScatter(raw As mzPack, Optional max As Integer = 5000000) As Image
+    Public Function DrawScatter(raw As mzPack, Optional max As Integer = 5000000) As Microsoft.VisualBasic.Imaging.Image
         Dim ms1 As ms1_scan() = raw.MS _
             .Select(Function(m1)
                         Return m1.mz.Select(Function(mzi, i) New ms1_scan With {.mz = mzi, .intensity = m1.into(i), .scan_time = m1.rt})

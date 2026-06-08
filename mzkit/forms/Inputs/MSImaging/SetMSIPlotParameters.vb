@@ -1,4 +1,6 @@
-﻿Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+﻿Imports System.Drawing
+Imports System.Windows.Forms
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 
 Public Class SetMSIPlotParameters
 

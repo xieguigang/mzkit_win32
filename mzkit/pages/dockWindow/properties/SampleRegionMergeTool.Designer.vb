@@ -1,4 +1,5 @@
-﻿Imports Galaxy.CommonControls
+﻿Imports System.Windows.Forms
+Imports Galaxy.CommonControls
 Imports Galaxy.Workbench.CommonDialogs
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>

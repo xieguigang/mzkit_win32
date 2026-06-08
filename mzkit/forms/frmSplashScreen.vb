@@ -61,6 +61,7 @@ Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine
 Imports Mzkit_win32.BasicMDIForm.Container
 Imports Mzkit_win32.BasicMDIForm
+Imports System.Windows.Forms
 
 Public Class frmSplashScreen
 

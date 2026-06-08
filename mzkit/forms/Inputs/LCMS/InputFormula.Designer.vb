@@ -1,4 +1,5 @@
-﻿Imports Galaxy.Workbench.CommonDialogs
+﻿Imports System.Windows.Forms
+Imports Galaxy.Workbench.CommonDialogs
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class InputFormula

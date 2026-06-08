@@ -68,6 +68,7 @@ Imports System.Drawing.Drawing2D
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Threading
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging.APSMALDI
@@ -3181,8 +3182,8 @@ Public Class frmMsImagingViewer
                             .Select(Function(a)
                                         Return New SpatialSpot With {
                                             .barcode = $"{a.label}:{a.x},{a.y}",
-                                            .x = a.x,
-                                            .y = a.y,
+                                            .X = a.x,
+                                            .Y = a.y,
                                             .px = a.x,
                                             .py = a.y,
                                             .flag = 1

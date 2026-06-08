@@ -66,6 +66,7 @@ Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Mzkit_win32.BasicMDIForm
 Imports TaskStream
 
 Public Module MetaDNASearch

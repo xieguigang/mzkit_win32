@@ -52,6 +52,7 @@
 
 #End Region
 
+Imports System.Windows.Forms
 Imports Galaxy.CommonControls
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>

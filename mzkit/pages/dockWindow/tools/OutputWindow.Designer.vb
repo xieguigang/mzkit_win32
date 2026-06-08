@@ -53,6 +53,8 @@
 
 #End Region
 
+Imports System.ComponentModel
+Imports System.Windows.Forms
 Imports Microsoft.VisualStudio.WinForms.Docking
 
 Namespace DockSample
@@ -60,7 +62,7 @@ Namespace DockSample
         ''' <summary>
         ''' Required designer variable.
         ''' </summary>
-        Private components As ComponentModel.IContainer = Nothing
+        Private components As IContainer = Nothing
 
         ''' <summary>
         ''' Clean up any resources being used.
@@ -202,8 +204,8 @@ Namespace DockSample
 
         End Sub
 #End Region
-        Private textBox1 As Windows.Forms.TextBox
-        Private textBox2 As Windows.Forms.TextBox
+        Private textBox1 As TextBox
+        Private textBox2 As TextBox
         Friend WithEvents ToolStrip1 As ToolStrip
         Friend WithEvents ToolStripLabel1 As ToolStripLabel
         Friend WithEvents ToolStripButton1 As ToolStripButton

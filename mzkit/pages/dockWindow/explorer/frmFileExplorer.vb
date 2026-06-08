@@ -66,6 +66,7 @@ Imports System.ComponentModel
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Threading
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzXML

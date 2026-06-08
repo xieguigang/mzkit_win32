@@ -54,6 +54,7 @@
 
 #End Region
 
+Imports System.Windows.Forms
 Imports Galaxy.Workbench.DockDocument
 
 Namespace DockSample

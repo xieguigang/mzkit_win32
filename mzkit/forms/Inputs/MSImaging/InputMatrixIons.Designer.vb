@@ -1,4 +1,5 @@
-﻿Imports Galaxy.Data.TableSheet
+﻿Imports System.Windows.Forms
+Imports Galaxy.Data.TableSheet
 Imports Galaxy.Workbench.CommonDialogs
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>

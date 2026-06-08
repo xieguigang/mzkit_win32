@@ -54,6 +54,9 @@
 
 #End Region
 
+Imports System.Drawing
+Imports System.Windows.Forms
+
 Public Class InputMSIDimension
 
     Public ReadOnly Property Dims As String

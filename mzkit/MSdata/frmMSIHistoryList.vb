@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Drawing
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports Galaxy.Workbench
 Imports Mzkit_win32.MSImagingViewerV2

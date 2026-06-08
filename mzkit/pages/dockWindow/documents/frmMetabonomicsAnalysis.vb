@@ -2,6 +2,7 @@
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
@@ -825,7 +826,7 @@ Public Class frmMetabonomicsAnalysis
                         .AdductIon = New AdductIon(Provider.ParseAdductModel(df.GetString(adducts))),
                         .metadata = New MetaboliteAnnotation With {
                             .CommonName = df.GetString(name),
-                            .Formula = df.GetString(formula),
+                            .formula = df.GetString(formula),
                             .ExactMass = FormulaScanner.EvaluateExactMass(.Formula),
                             .Id = peak.ID
                         }
@@ -839,7 +840,7 @@ Public Class frmMetabonomicsAnalysis
                     .AdductIon = New AdductIon(Provider.ParseAdductModel(df.GetString(adducts))),
                     .metadata = New MetaboliteAnnotation With {
                         .CommonName = df.GetString(name),
-                        .Formula = df.GetString(formula),
+                        .formula = df.GetString(formula),
                         .ExactMass = FormulaScanner.EvaluateExactMass(.Formula),
                         .Id = df.GetString(xcms_id)
                     }
