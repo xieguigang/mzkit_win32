@@ -91,6 +91,9 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports CommonDialogs
+Imports Erica.Analysis.SpatialTissue.HEView
+Imports Erica.Analysis.SpatialTissue.Imaging
+Imports Erica.Analysis.SpatialTissue.RaidData
 Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
@@ -106,6 +109,7 @@ Imports Microsoft.VisualBasic.Data.Framework.StorageProvider
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Drawing
+Imports Microsoft.VisualBasic.Drawing.Interop
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
@@ -475,7 +479,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub SetSpatialMapping(register As SpatialRegister, filepath As String)
-        Dim image As New Bitmap(register.HEstain, register.viewSize)
+        Dim image As New System.Drawing.Bitmap(register.HEstain.CTypeGdiImage, register.viewSize)
         Dim scan_dims As Size = register.viewSize
 
         ' display the HEmap image
@@ -521,7 +525,7 @@ Public Class frmMsImagingViewer
         Call Workbench.SuccessMessage("HEstain - MSI register matrix load success!")
     End Sub
 
-    Private Function GetHEMap() As Image
+    Private Function GetHEMap() As System.Drawing.Image
         If HEMap Is Nothing Then
             Return Nothing
         Else
@@ -1122,7 +1126,7 @@ Public Class frmMsImagingViewer
                     'PixelSelector1.ShowPreview = True
                     Call TissueSlideHandler.OpenTifFile(file.FileName, file.FileName.FileName)
                 Else
-                    Call loadHEMapImage(New Bitmap(file.FileName.LoadImage))
+                    Call loadHEMapImage(GDIPlusImage.LoadImage(file.FileName))
                 End If
             End If
         End Using
@@ -1182,7 +1186,7 @@ Public Class frmMsImagingViewer
                 Dim blender As Type = GetType(SingleIonMSIBlender) '(layer.MSILayer, Nothing, argv, loadFilters)
                 Me.blender.channel.WriteBuffer(PixelData.GetBuffer(layer.MSILayer))
                 Me.blender.OpenSession(blender, New Size(scan_x, scan_y), Nothing, params, Nothing)
-                Dim HEMap As Image = Me.blender.MSIRender(Nothing, argv, layer.DimensionSize)
+                Dim HEMap As System.Drawing.Image = Me.blender.MSIRender(Nothing, argv, layer.DimensionSize)
 
                 If Me.blender IsNot Nothing AndAlso Me.blender.Session IsNot GetType(HeatMapBlender) Then
                     ' draw and overlaps on the MS-imaging rendering for CAD analysis
@@ -1343,20 +1347,20 @@ Public Class frmMsImagingViewer
             .GetSpotColorIndex(spots) _
             .ToDictionary(Function(a) a.Key,
                           Function(a)
-                              Return New SolidBrush(a.Value)
+                              Return New Microsoft.VisualBasic.Imaging.SolidBrush(a.Value)
                           End Function)
 
         Using g As IGraphics = canvas.CreateGDIDevice(filled:=Color.Transparent)
             For i As Integer = 0 To spots.Length - 1
                 Dim xy As Point = spot_pixels(i)
-                Dim color As Brush = colors(spots(i).phenograph_cluster)
+                Dim color As Microsoft.VisualBasic.Imaging.Brush = colors(spots(i).phenograph_cluster)
 
                 Call g.DrawCircle(New PointF(xy.X, xy.Y), dot_size, color)
             Next
 
             Call g.Flush()
 
-            PixelSelector1.MSICanvas.tissue_layer = DirectCast(g, Graphics2D).ImageResource
+            PixelSelector1.MSICanvas.tissue_layer = DirectCast(g, Graphics2D).CTypeGdiImage
             PixelSelector1.MSICanvas.RedrawCanvas()
         End Using
     End Sub
@@ -2480,7 +2484,7 @@ Public Class frmMsImagingViewer
     End Function
 
     Private Sub PlotSummary(args As PlotProperty, range As DoubleRange)
-        Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
+        Dim image As System.Drawing.Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
         Dim mapLevels As Integer = params.mapLevels
 
         PixelSelector1.SetMsImagingOutput(image, params.GetMSIDimension, params.background, params.colors, {range.Min, range.Max}, mapLevels)
@@ -2558,7 +2562,7 @@ Public Class frmMsImagingViewer
         Return Sub()
                    Call MyApplication.RegisterPlot(
                        Sub(args)
-                           Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
+                           Dim image As System.Drawing.Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
                            loadedPixels.thumbnail = image
 
@@ -2756,7 +2760,7 @@ Public Class frmMsImagingViewer
             Sub()
                 Call MyApplication.RegisterPlot(
                     Sub(args)
-                        Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
+                        Dim image As System.Drawing.Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
                         If Not EmptyImagingData() Then
                             loadedPixels.thumbnail = image
@@ -2800,7 +2804,7 @@ Public Class frmMsImagingViewer
     Private Sub registerTask(args As PlotProperty, dimensions As Size, range As DoubleRange)
         Dim render As Action =
             Sub()
-                Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
+                Dim image As System.Drawing.Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
                 If Not EmptyImagingData() Then
                     loadedPixels.thumbnail = image
@@ -3131,7 +3135,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub ImageProcessingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImageProcessingToolStripMenuItem.Click
-        Dim image As Image = PixelSelector1.MSImage
+        Dim image As System.Drawing.Image = PixelSelector1.MSImage
         Dim file As String = TempFileSystem.GetAppSysTempFile(".app", sessionID:=App.PID, prefix:="saveimage___") & "/MSImaging.png"
         Dim editor As New LaplacianHDR.FormEditMain(loadfile:=file)
 
@@ -3181,8 +3185,8 @@ Public Class frmMsImagingViewer
                             .Select(Function(a)
                                         Return New SpatialSpot With {
                                             .barcode = $"{a.label}:{a.x},{a.y}",
-                                            .X = a.x,
-                                            .Y = a.y,
+                                            .x = a.x,
+                                            .y = a.y,
                                             .px = a.x,
                                             .py = a.y,
                                             .flag = 1
