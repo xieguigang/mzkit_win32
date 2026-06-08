@@ -500,7 +500,7 @@ Public NotInheritable Class RscriptProgressTask
     ''' <returns>
     ''' result json text
     ''' </returns>
-    Public Shared Function ScanBitmap(bitmap As Bitmap, channels As IEnumerable(Of Color)) As String
+    Public Shared Function ScanBitmap(bitmap As System.Drawing.Bitmap, channels As IEnumerable(Of Color)) As String
         Dim Rscript As String = RscriptPipelineTask.GetRScript("HEScan.R")
         Dim imagetmp As String = TempFileSystem.GetAppSysTempFile(".png")
         Dim jsontmp As String = TempFileSystem.GetAppSysTempFile(".heatmap")
