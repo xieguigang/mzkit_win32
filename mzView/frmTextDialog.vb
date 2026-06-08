@@ -1,4 +1,5 @@
 ﻿Imports System.Text
+Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.ApplicationServices
 
 Public Class frmTextDialog

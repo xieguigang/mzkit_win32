@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
+﻿Imports System.Windows.Forms
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports std = System.Math
 
 Public Class frmSetClusterNumbers

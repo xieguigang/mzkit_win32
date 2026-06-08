@@ -1,4 +1,6 @@
-﻿Public Class InputSetScatterFilterNumber
+﻿Imports System.Windows.Forms
+
+Public Class InputSetScatterFilterNumber
 
     Public Property FilterNumber As Integer
         Get

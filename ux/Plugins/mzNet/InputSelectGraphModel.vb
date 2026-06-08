@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.PoolData
+﻿Imports System.Windows.Forms
+Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.PoolData
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm

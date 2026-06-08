@@ -61,6 +61,7 @@
 
 Imports System.Runtime.CompilerServices
 Imports System.Threading
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
@@ -172,7 +173,7 @@ Public Class PageMzkitTools
             plot:=Sub(args)
                       Call ProgressSpinner.DoLoading(
                     Sub()
-                        Me.Invoke(Sub() ChartPad1.BackgroundImage = _matrix.Plot(args, ChartPad1.CanvasSize).AsGDIImage)
+                        Me.Invoke(Sub() ChartPad1.BackgroundImage = _matrix.Plot(args, ChartPad1.CanvasSize).AsGDIImage.CTypeGdiImage)
                     End Sub)
                   End Sub,
             colorSet:=colorSet,

@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib.Validation
+﻿Imports System.Windows.Forms
+Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib.Validation
 
 Public Class InputDataSetSize
 

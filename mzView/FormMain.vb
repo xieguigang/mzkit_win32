@@ -11,6 +11,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.DataStorage.HDSPack
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
@@ -181,7 +182,7 @@ Public Class FormMain
                 Dim img As Image = PeakAssign.DrawSpectrumPeaks(mat, size:="1920,1080", dpi:=200).AsGDIImage
                 Dim pic As PictureBox = showViewer("png")
 
-                pic.BackgroundImage = img
+                pic.BackgroundImage = img.CTypeGdiImage
             Case "txt"
                 Dim text As String = mzpack.ReadText(data.referencePath.ToString)
                 DirectCast(showViewer("txt"), TextViewer).LoadText(text)
@@ -190,7 +191,7 @@ Public Class FormMain
                 Dim img As Image = Image.FromStream(buf)
                 Dim pic As PictureBox = showViewer("png")
 
-                pic.BackgroundImage = img
+                pic.BackgroundImage = img.CTypeGdiImage
             Case "html", "htm"
                 Dim text As String = mzpack.ReadText(data.referencePath.ToString)
                 Dim tmp As String = TempFileSystem.GetAppSysTempFile(ext:=".html")

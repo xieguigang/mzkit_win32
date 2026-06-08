@@ -14,6 +14,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levens
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Data.Framework.IO.CSVFile
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Math.Information
@@ -132,7 +133,7 @@ Public Class FormVault
         Call props.Add("total_ions", into.Sum)
 
         Me.spectrum = spectrum
-        Me.PictureBox1.BackgroundImage = img
+        Me.PictureBox1.BackgroundImage = img.CTypeGdiImage
 
         Call Workbench.ShowProperties(DynamicType.Create(metadata:=props))
     End Sub

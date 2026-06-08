@@ -68,6 +68,7 @@ Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Legend
 Imports Microsoft.VisualBasic.Data.ChartPlots.Plots
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
@@ -330,7 +331,7 @@ Public Class SingleCellScatter
                 Call Scatter2D.DrawScatter(g, cluster, scale).ToArray
             Next
 
-            Return DirectCast(g, GdiRasterGraphics).ImageResource
+            Return DirectCast(g, GdiRasterGraphics).CTypeGdiImage
         End Using
     End Function
 End Class

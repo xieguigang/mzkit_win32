@@ -1,4 +1,6 @@
-﻿Imports System.IO
+﻿Imports System.Drawing
+Imports System.IO
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Imaging
@@ -235,7 +237,7 @@ Public Class HEMapTools
                 line = {
                     cell.X, cell.Y, cell.ScaleX, cell.ScaleY,
                     cell.R, cell.G, cell.B,
-                    cell.Black.Pixels, cell.Black.Density, cell.Black.Ratio
+                    cell.black.Pixels, cell.black.Density, cell.black.Ratio
                 }.JoinBy(",")
 
                 If layers.Count > 0 Then

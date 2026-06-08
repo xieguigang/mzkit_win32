@@ -62,6 +62,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\emily\src\PDB_canvas\PDB_canvas.vbproj" />
     <ProjectReference Include="..\..\..\..\galaxy\src\dockpanelsuite\Themes\ThemeVS2015.vbproj" />
     <ProjectReference Include="..\..\..\..\galaxy\src\dockpanelsuite\VSDockPanel\VSDockPanel.vbproj" />
     <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyChartLibs\GalaxyChartLibs.vbproj" />
@@ -71,24 +72,36 @@
     <ProjectReference Include="..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj" />
     <ProjectReference Include="..\..\..\..\galaxy\src\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj" />
     <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\analysis\HTS_matrix\HTS_matrix-netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\data\RCSB PDB\RCSB PDB.vbproj" />
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\msgpack\msgpack-netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\SQLite3\SQLite3.vbproj" />
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\MachineLearning\TensorFlow\TensorFlow.vbproj" />
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj" />
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\SignalProcessing\SignalProcessing\signalprocessing-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\text%html\html_netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\Microsoft.VisualBasic.Drawing\src\Microsoft.VisualBasic.Drawing\Microsoft.VisualBasic.Drawing.vbproj" />
+    <ProjectReference Include="..\..\..\..\mini-R\src\RDev\RDev.NET5.vbproj" />
     <ProjectReference Include="..\..\assembly\assembly\assembly-netcore5.vbproj" />
     <ProjectReference Include="..\..\assembly\mzPackExtensions\mzPackExtensions.NET5.vbproj" />
     <ProjectReference Include="..\..\metadb\Chemoinformatics\chemoinformatics-netcore5.vbproj" />
     <ProjectReference Include="..\..\metadb\SMILES\SMILES.NET5.vbproj" />
+    <ProjectReference Include="..\..\mzmath\MSEngine\MSEngine.vbproj" />
+    <ProjectReference Include="..\..\mzmath\SingleCells\SingleCells.vbproj" />
     <ProjectReference Include="..\..\mzmath\SpatialMath\SpatialMath.vbproj" />
+    <ProjectReference Include="..\..\visualize\MsImaging\MsImaging.NET5.vbproj" />
+    <ProjectReference Include="..\..\visualize\plot\MsPlot.NET5.vbproj" />
     <ProjectReference Include="..\mzblender\src\BlenderHost\BlenderHost.vbproj" />
+    <ProjectReference Include="..\mzblender\src\MSImagingViewer2\MSImagingViewerV2.vbproj" />
     <ProjectReference Include="..\services\BioDeep\BioDeep.vbproj" />
     <ProjectReference Include="..\services\TaskStream\TaskStream.vbproj" />
     <ProjectReference Include="..\services\Task\Task.vbproj" />
     <ProjectReference Include="..\ux\BasicMDIForm\BasicMDIForm.vbproj" />
+    <ProjectReference Include="..\ux\Canvas\src\LCMSViewer\LCMSViewer.vbproj" />
+    <ProjectReference Include="..\ux\Canvas\src\MatrixViewer\MatrixViewer.vbproj" />
     <ProjectReference Include="..\ux\Canvas\src\MzBlender\BlenderCommonLibs\BlenderCommonLibs.vbproj" />
     <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj" />
+    <ProjectReference Include="..\ux\Plugins\MoNA\MoNA.vbproj" />
   </ItemGroup>
 
   <ItemGroup>
