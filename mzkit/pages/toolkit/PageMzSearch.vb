@@ -60,6 +60,7 @@
 
 Imports System.Drawing.Drawing2D
 Imports System.Runtime.CompilerServices
+Imports System.Windows.Forms
 Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF

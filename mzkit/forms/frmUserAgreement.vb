@@ -52,6 +52,8 @@
 
 #End Region
 
+Imports System.Windows.Forms
+
 Public Class frmUserAgreement
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

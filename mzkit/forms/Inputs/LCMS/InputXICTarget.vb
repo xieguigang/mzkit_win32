@@ -54,6 +54,7 @@
 
 #End Region
 
+Imports System.Windows.Forms
 Imports Galaxy.Data.UIInteractive
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language

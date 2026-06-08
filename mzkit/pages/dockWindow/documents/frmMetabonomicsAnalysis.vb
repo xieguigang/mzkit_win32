@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Data
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
@@ -11,6 +12,7 @@ Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports BioNovoGene.BioDeep.Chemoinformatics
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.MS
+Imports BioNovoGene.BioDeep.Chemoinformatics.Metabolite
 Imports BioNovoGene.BioDeep.MSFinder
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Galaxy.Data
@@ -826,7 +828,7 @@ Public Class frmMetabonomicsAnalysis
                         .AdductIon = New AdductIon(Provider.ParseAdductModel(df.GetString(adducts))),
                         .metadata = New MetaboliteAnnotation With {
                             .CommonName = df.GetString(name),
-                            .formula = df.GetString(formula),
+                            .Formula = df.GetString(formula),
                             .ExactMass = FormulaScanner.EvaluateExactMass(.Formula),
                             .Id = peak.ID
                         }
@@ -840,7 +842,7 @@ Public Class frmMetabonomicsAnalysis
                     .AdductIon = New AdductIon(Provider.ParseAdductModel(df.GetString(adducts))),
                     .metadata = New MetaboliteAnnotation With {
                         .CommonName = df.GetString(name),
-                        .formula = df.GetString(formula),
+                        .Formula = df.GetString(formula),
                         .ExactMass = FormulaScanner.EvaluateExactMass(.Formula),
                         .Id = df.GetString(xcms_id)
                     }

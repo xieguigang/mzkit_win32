@@ -1,4 +1,6 @@
-﻿Public Class InputMoNA
+﻿Imports System.Windows.Forms
+
+Public Class InputMoNA
 
     Public ReadOnly Property MoNA_id As String
         Get
