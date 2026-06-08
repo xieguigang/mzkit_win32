@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
+﻿Imports System.Windows.Forms
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.nmrML
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Workbench

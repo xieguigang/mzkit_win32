@@ -54,6 +54,7 @@
 #End Region
 
 Imports System.ComponentModel
+Imports System.Windows.Forms
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualStudio.WinForms.Docking

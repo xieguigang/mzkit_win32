@@ -54,6 +54,7 @@
 
 #End Region
 
+Imports System.Windows.Forms
 Imports MZKitWin32.Blender.CommonLibs
 
 Public Class frmTweaks
