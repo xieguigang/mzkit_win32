@@ -26,6 +26,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="../../mzkit/RibbonItems.Designer.vb" />
+  </ItemGroup>
+  
+  
+  
+  <ItemGroup>
     <Compile Remove="logs\**" />
     <EmbeddedResource Remove="logs\**" />
     <None Remove="logs\**" />
