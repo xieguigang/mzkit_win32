@@ -58,6 +58,7 @@
 Imports System.Drawing
 Imports System.Drawing.Imaging
 Imports System.Runtime.InteropServices
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Bitmap = System.Drawing.Bitmap
@@ -90,7 +91,7 @@ Namespace ImageUtils
         Public Function UpscaleWithAlpha(upscaled_path As String, ip As String, resolution As Double, startUpscale As Func(Of String, Boolean, String, String)) As Bitmap
             Dim alpha_path = ip & "_alpha"
 
-            Using source_img As Image = ip.LoadImage()
+            Using source_img As Image = Interop.GDIPlusImage.LoadImage(ip)
                 ' Convert all image's pixel to white - preserveing only alpha values
                 Dim alpha_img As Bitmap = ToAlphaChannel(New Bitmap(source_img))
 
@@ -115,13 +116,13 @@ Namespace ImageUtils
             ' Load images to memory and directly merge alpha value from grayscale into the full image.
 
             ' Loads full image and locks data to memory
-            Dim fullImage_bit As New Bitmap(origin_path.LoadImage())
-            Dim fullImage_bitData As BitmapBuffer = BitmapBuffer.FromBitmap(fullImage_bit)
+            Dim fullImage_bit As New System.Drawing.Bitmap(Interop.GDIPlusImage.LoadImage(origin_path))
+            Dim fullImage_bitData As BitmapBuffer = fullImage_bit.CreateBuffer
 
             ' Loads alpha image and locks data to memory
             Dim alphaImage_img = Image.FromFile(alphaChannel_path)
             Dim alphaImage_bit As New Bitmap(alphaImage_img)
-            Dim alphaImage_bitData As BitmapBuffer = BitmapBuffer.FromBitmap(alphaImage_bit)
+            Dim alphaImage_bitData As BitmapBuffer = alphaImage_bit.CreateBuffer
 
             Dim Height = fullImage_bit.Height
             ' Change alpha value of a pixel within fullImage_bitData to the R value of the same location pixel in alphaImage_bitData
@@ -144,8 +145,8 @@ Namespace ImageUtils
         End Function
 
         Private Function ToAlphaChannel(Image As Bitmap) As Bitmap
-            Dim newBitmap As New Bitmap(Image)
-            Dim buf As BitmapBuffer = BitmapBuffer.FromBitmap(newBitmap, ImageLockMode.ReadWrite)
+            Dim newBitmap As New System.Drawing.Bitmap(Image)
+            Dim buf As BitmapBuffer = newBitmap.createbuffer(ImageLockMode.ReadWrite)
             Dim Height = newBitmap.Height
             Dim Width = newBitmap.Width
 

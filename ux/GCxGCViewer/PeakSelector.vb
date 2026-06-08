@@ -59,7 +59,6 @@
 
 #End Region
 
-Imports System.Drawing.Drawing2D
 Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.GCxGC
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
@@ -71,6 +70,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
@@ -78,6 +78,8 @@ Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
+Imports DashStyle = System.Drawing.Drawing2D.DashStyle
+Imports Pen = System.Drawing.Pen
 Imports std = System.Math
 
 Public Class PeakSelector
@@ -176,7 +178,7 @@ Public Class PeakSelector
         colors.ScalerPalette = ColorSet
         colors.SetIntensityMax(scaled.Select(Function(d) d.intensity).Max)
         colors.ResetScaleRange()
-        PictureBox1.BackgroundImage = GCxGCTIC2DPlot.FillHeatMap(scaled, PictureBox1.Size, scaler, ColorSet.Description, 255, 2, 2)
+        PictureBox1.BackgroundImage = GCxGCTIC2DPlot.FillHeatMap(scaled, PictureBox1.Size, scaler, ColorSet.Description, 255, 2, 2).CTypeGdiImage
         GCxGC.colorScaler = ColorSet
 
         If HtmlView Then
