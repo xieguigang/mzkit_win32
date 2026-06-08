@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj" />
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj" />
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
   </ItemGroup>
   <ItemGroup>
@@ -46,5 +47,6 @@
       <HintPath>..\..\..\..\..\galaxy\third-party\ribbon\Microsoft.Windows.Ribbon.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <Import Project="..\..\services\mzkit_win32.envir\mzkit_win32.envir.projitems" Label="Shared" />
   
 </Project>

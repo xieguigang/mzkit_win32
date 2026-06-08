@@ -375,8 +375,6 @@ Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "NRRD", "..\..\..\NRRD\src\N
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "nvidia-anselAI", "ux\NVIDIA\nvidia-anselAI.vbproj", "{2B92837A-50C5-0008-05AD-9E3896778ADA}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PDF", "services\PDF\PDF.shproj", "{4106F441-AC52-4AAB-A105-04D3B61487A8}"
-EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "Centos.NET5", "..\..\..\GCModeller\src\runtime\Darwinism\src\CloudKit\Centos\Centos.NET5.vbproj", "{B3A2103A-E421-451D-AB51-C4AF035DE096}"
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "MLDataStorage", "..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\MachineLearning\MLDataStorage\MLDataStorage.vbproj", "{83FE6B74-40C5-4D4F-AEA9-44F3C1BD1C6D}"
@@ -65907,7 +65905,6 @@ Global
 		{A27FFF1C-B063-4641-A122-A4CB7CB417DA} = {7146A8C3-B5E6-4109-98CF-D1E0EB2139A9}
 		{DCCD7FA6-DC0D-41FB-8589-0CCEC658D418} = {36F34509-2202-4F00-9443-A86A06384520}
 		{2B92837A-50C5-0008-05AD-9E3896778ADA} = {7146A8C3-B5E6-4109-98CF-D1E0EB2139A9}
-		{4106F441-AC52-4AAB-A105-04D3B61487A8} = {3F8893E6-47AA-4CBC-9569-A533F2DC7C11}
 		{B3A2103A-E421-451D-AB51-C4AF035DE096} = {6DB1277B-3F11-458C-A8F2-3592025616EC}
 		{83FE6B74-40C5-4D4F-AEA9-44F3C1BD1C6D} = {EFBAD4CF-6C54-46A7-BDB7-2BE0E18A624B}
 		{6B8C225B-AF4D-47A4-BDCB-79DBDD89EF8C} = {EFBAD4CF-6C54-46A7-BDB7-2BE0E18A624B}
@@ -65993,8 +65990,8 @@ Global
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_graphic.interop\R_graphic.interop.projitems*{38108f41-95ae-43cd-b429-958a8f1a406d}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\symbolic\symbolic.projitems*{38108f41-95ae-43cd-b429-958a8f1a406d}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_graphic.interop\R_graphic.interop.projitems*{3d2bd8e4-57b1-409e-bc91-64f5ff8b1b6b}*SharedItemsImports = 5
-		services\PDF\PDF.projitems*{4106f441-ac52-4aab-a105-04d3b61487a8}*SharedItemsImports = 13
 		..\..\Rscript\Library\mzkit_app\src\mzkit.interopArguments\mzkit.interopArguments.projitems*{4434c72b-ac01-385e-1be3-140070c51894}*SharedItemsImports = 5
+		services\mzkit_win32.envir\mzkit_win32.envir.projitems*{51c55c5c-2f21-4e9f-aa8d-3664135758b7}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\dataframeHelper\dataframeHelper.projitems*{56610d10-4171-7364-7d65-579fe89c7114}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_graphic.interop\R_graphic.interop.projitems*{56610d10-4171-7364-7d65-579fe89c7114}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_plot.interop\R_plot.interop.projitems*{56610d10-4171-7364-7d65-579fe89c7114}*SharedItemsImports = 5
@@ -66009,8 +66006,6 @@ Global
 		..\..\..\GCModeller\src\R-sharp\studio\Rserver\RscriptInterop\RscriptInterop.projitems*{88fd010f-1154-47ec-b1cd-cc954e0da244}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\studio\Rstudio.common\Rstudio.common.projitems*{88fd010f-1154-47ec-b1cd-cc954e0da244}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_graphic.interop\R_graphic.interop.projitems*{8f02e3bd-5cc3-4cbf-8d00-dba3c3733ddc}*SharedItemsImports = 5
-		services\mzkit_win32.envir\mzkit_win32.envir.projitems*{a27fff1c-b063-4641-a122-a4cb7cb417da}*SharedItemsImports = 4
-		services\PDF\PDF.projitems*{a27fff1c-b063-4641-a122-a4cb7cb417da}*SharedItemsImports = 4
 		services\mzkit_win32.envir\mzkit_win32.envir.projitems*{ad12a327-7c8d-4cfc-98cc-9deda4c3d784}*SharedItemsImports = 5
 		..\..\Rscript\Library\mzkit_app\src\mzkit.interopArguments\mzkit.interopArguments.projitems*{c295c3af-3e62-4756-966a-3d0b90ded160}*SharedItemsImports = 13
 		services\PeakFindingParameters\PeakFindingParameters.projitems*{c60cb00e-477e-4477-a689-4f6c73624ceb}*SharedItemsImports = 13

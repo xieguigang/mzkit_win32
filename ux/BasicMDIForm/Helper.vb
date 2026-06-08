@@ -1,9 +1,8 @@
 ﻿Imports Microsoft.VisualBasic.ApplicationServices
-Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.Container
 Imports WkHtmlToPdf.Arguments
 
-Module Helper
+Public Module Helper
 
     Public Sub PDF(filepath As String, sourceURL As String)
         Static bin As String = AppEnvironment.getWkhtmltopdf

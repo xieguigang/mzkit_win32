@@ -24,6 +24,7 @@
     <ProjectReference Include="..\..\..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj" />
     <ProjectReference Include="..\..\..\..\..\..\galaxy\src\GalaxyForm\GalaxyForm.vbproj" />
     <ProjectReference Include="..\..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj" />
+    <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj" />
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\..\..\assembly\assembly\assembly-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\assembly\mzPack\mzpack.NET5.vbproj" />
@@ -33,4 +34,6 @@
     <ProjectReference Include="..\..\BasicMDIForm\BasicMDIForm.vbproj" />
     <ProjectReference Include="..\..\Canvas\src\LCMSViewer\LCMSViewer.vbproj" />
   </ItemGroup>
+
+
  </Project>
