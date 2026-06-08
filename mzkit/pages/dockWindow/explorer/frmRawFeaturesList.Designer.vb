@@ -52,6 +52,7 @@
 
 #End Region
 
+Imports System.Windows.Forms
 Imports Galaxy.CommonControls
 Imports Galaxy.Workbench.DockDocument
 

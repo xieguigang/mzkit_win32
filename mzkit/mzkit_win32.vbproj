@@ -94,6 +94,7 @@
     <ProjectReference Include="..\mzblender\src\BlenderHost\BlenderHost.vbproj" />
     <ProjectReference Include="..\mzblender\src\MSImagingViewer2\MSImagingViewerV2.vbproj" />
     <ProjectReference Include="..\services\BioDeep\BioDeep.vbproj" />
+    <ProjectReference Include="..\services\PipelineHost\PipelineHost.vbproj" />
     <ProjectReference Include="..\services\TaskStream\TaskStream.vbproj" />
     <ProjectReference Include="..\services\Task\Task.vbproj" />
     <ProjectReference Include="..\ux\BasicMDIForm\BasicMDIForm.vbproj" />

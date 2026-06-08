@@ -59,6 +59,7 @@
 
 #End Region
 
+Imports System.Drawing
 Imports System.IO
 Imports System.Threading
 Imports System.Windows.Forms
@@ -416,7 +417,7 @@ UseCheckedList:
                 regions = getFormula.GetMergedRegions
             End If
 
-            Dim Rplot As Image = LayerRender.Draw(regions, dims, alphaLevel:=1, dotSize:=3)
+            Dim Rplot As System.Drawing.Image = LayerRender.Draw(regions, dims, alphaLevel:=1, dotSize:=3).CTypeGdiImage
 
             Call MyApplication.host.mzkitTool.ShowPlotImage(Rplot, ImageLayout.Zoom)
             Call MyApplication.host.ShowMzkitToolkit()
@@ -635,7 +636,7 @@ UseCheckedList:
     ''' <param name="mz"></param>
     Private Sub showPlot(data As TissueRegion(), type As String, mz As Double)
         Dim pack As String = encodeJSON(data)
-        Dim image As Image
+        Dim image As System.Drawing.Image
         Dim mzdiff = viewer.params.GetTolerance
 
         If AppendMSImagingToolStripMenuItem.Checked Then

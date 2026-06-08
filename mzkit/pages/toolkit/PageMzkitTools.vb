@@ -59,6 +59,7 @@
 
 #End Region
 
+Imports System.Drawing
 Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports System.Windows.Forms
@@ -135,7 +136,7 @@ Public Class PageMzkitTools
             MessageBox.Show("Sorry, can not view file data, the cache file is missing...", "Cache Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         ElseIf directSnapshot Then
-            ChartPad1.BackgroundImage = raw.GetSnapshot
+            ChartPad1.BackgroundImage = raw.GetSnapshot.CTypeGdiImage
             Return
         End If
 
@@ -187,7 +188,7 @@ Public Class PageMzkitTools
         MyApplication.host.Invoke(Sub() ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.NotAvailable)
     End Sub
 
-    Public Sub ShowPlotImage(Rplot As Image, layout As ImageLayout)
+    Public Sub ShowPlotImage(Rplot As System.Drawing.Image, layout As ImageLayout)
         ChartPad1.BackgroundImage = Rplot
         ChartPad1.BackgroundImageLayout = layout
 
@@ -361,7 +362,7 @@ Public Class PageMzkitTools
                       .SetName(args.title) _
                       .SetAnnotation(anno) _
                       .Plot(args, ChartPad1.CanvasSize) _
-                      .AsGDIImage
+                      .AsGDIImage.CTypeGdiImage
               End Sub,
           width:=2100,
           height:=1200,
@@ -404,7 +405,7 @@ Public Class PageMzkitTools
                     showLegend:=args.show_legend,
                     showGrid:=args.show_grid,
                     gridFill:=args.gridFill.ToHtmlColor
-                ).AsGDIImage
+                ).AsGDIImage.CTypeGdiImage
             End Sub, width:=2560, height:=1440,
                      padding:="padding:125px 50px 150px 200px;",
                      bg:="white",
@@ -447,7 +448,7 @@ Public Class PageMzkitTools
                     drawLegend:=args.show_legend,
                     xlab:=args.xlabel,
                     ylab:=args.ylabel
-                ).AsGDIImage
+                ).AsGDIImage.CTypeGdiImage
             End Sub,
             width:=1200,
             height:=800,
@@ -481,7 +482,7 @@ Public Class PageMzkitTools
         Call showMatrix(matrix, alignName)
         Call MyApplication.RegisterPlot(
             Sub(args)
-                ChartPad1.BackgroundImage = _matrix.Plot(args, ChartPad1.CanvasSize).AsGDIImage
+                ChartPad1.BackgroundImage = _matrix.Plot(args, ChartPad1.CanvasSize).AsGDIImage.CTypeGdiImage
             End Sub,
             width:=1200,
             height:=800,
@@ -548,7 +549,7 @@ Public Class PageMzkitTools
 
         MyApplication.RegisterPlot(
             plot:=Sub(args As PlotProperty)
-                      ChartPad1.BackgroundImage = _matrix.Plot(args, ChartPad1.CanvasSize).AsGDIImage
+                      ChartPad1.BackgroundImage = _matrix.Plot(args, ChartPad1.CanvasSize).AsGDIImage.CTypeGdiImage
                   End Sub,
             width:=1600,
             height:=1200,
@@ -583,7 +584,7 @@ Public Class PageMzkitTools
 
         MyApplication.RegisterPlot(
             plot:=Sub(args)
-                      ChartPad1.BackgroundImage = _matrix.Plot(args, ChartPad1.CanvasSize).AsGDIImage
+                      ChartPad1.BackgroundImage = _matrix.Plot(args, ChartPad1.CanvasSize).AsGDIImage.CTypeGdiImage
                   End Sub,
             width:=1600,
             height:=1200,
@@ -770,7 +771,6 @@ Public Class PageMzkitTools
                        getXICCollection As PopulateXic,
                        maxY As Double)
 
-        Dim plotImage As Image = Nothing
         Dim relative As Boolean = relativeInto()
         Dim XICPlot As New List(Of NamedCollection(Of ChromatogramTick))
 

@@ -70,6 +70,7 @@ Imports System.ComponentModel
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF

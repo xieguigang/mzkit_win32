@@ -829,7 +829,7 @@ Public NotInheritable Class RscriptProgressTask
                                               tolerance As String,
                                               background As String,
                                               colorSet As String,
-                                              show_tissue As Boolean) As Image
+                                              show_tissue As Boolean) As System.Drawing.Image
 
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim imageOut As String = $"{tempfile.ParentPath}/Rplot.png"
@@ -870,11 +870,11 @@ Public NotInheritable Class RscriptProgressTask
         If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
             Return Nothing
         Else
-            Return imageOut.LoadImage
+            Return Interop.GDIPlusImage.LoadImage(imageOut)
         End If
     End Function
 
-    Public Shared Function PlotStats(data As String, type As String, title As String, Optional size As String = "1920,1200") As Image
+    Public Shared Function PlotStats(data As String, type As String, title As String, Optional size As String = "1920,1200") As System.Drawing.Image
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim imageOut As String = $"{tempfile.ParentPath}/Rplot.png"
 
@@ -884,7 +884,7 @@ Public NotInheritable Class RscriptProgressTask
         If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
             Return Nothing
         Else
-            Return imageOut.LoadImage
+            Return Interop.GDIPlusImage.LoadImage(imageOut)
         End If
     End Function
 
@@ -919,7 +919,7 @@ Public NotInheritable Class RscriptProgressTask
             info:=$"Make expression plot of {title}...")
     End Sub
 
-    Public Shared Function PlotScatter3DStats(data As String, title As String) As Image
+    Public Shared Function PlotScatter3DStats(data As String, title As String) As System.Drawing.Image
         Dim imageOut As String = $"{data.ParentPath}/Rplot.png"
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot_scatter3D.R")
         Dim cli As String = $"""{Rscript}"" 
@@ -950,7 +950,7 @@ Public NotInheritable Class RscriptProgressTask
         If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
             Return Nothing
         Else
-            Return imageOut.LoadImage
+            Return Interop.GDIPlusImage.LoadImage(imageOut)
         End If
     End Function
 

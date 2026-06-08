@@ -85,7 +85,6 @@ Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Parallel
-Imports Microsoft.VisualBasic.Windows.Forms
 Imports Mzkit_win32.BasicMDIForm.Container
 Imports MZKitWin32.Blender.CommonLibs
 Imports RDev
@@ -375,7 +374,7 @@ Type 'q()' to quit R.
         Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles Me.UnhandledException
             If Not AppEnvironment.IsDevelopmentMode Then
                 Call App.LogException(e.Exception)
-                Call MessageBox.Show(e.Exception.ToString, "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Call System.Windows.Forms.MessageBox.Show(e.Exception.ToString, "Unknown Error!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error)
                 Call CloseMSIEngine()
                 Call ServiceHub.Manager.Shutdown()
 

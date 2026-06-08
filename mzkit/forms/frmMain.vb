@@ -64,10 +64,12 @@
 #End Region
 
 Imports System.ComponentModel
+Imports System.Drawing
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports System.Threading
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
@@ -679,7 +681,7 @@ Are you want to make your data to be pre-processing before load it into computer
     ''' </summary>
     ''' <param name="message"></param>
     ''' <param name="icon"></param>
-    Sub showStatusMessage(message As String, Optional icon As Image = Nothing) Implements AppHost.StatusMessage
+    Sub showStatusMessage(message As String, Optional icon As System.Drawing.Image = Nothing) Implements AppHost.StatusMessage
         MyApplication.host.Invoke(
             Sub()
                 If icon Is Nothing Then
