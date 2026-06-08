@@ -1,6 +1,7 @@
-﻿Imports BioNovoGene.BioDeep.Chemoinformatics
+﻿Imports System.Windows.Forms
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
-Imports Microsoft.VisualBasic.Data.Framework.IO
+Imports BioNovoGene.BioDeep.Chemoinformatics.Metabolite
+Imports Microsoft.VisualBasic.Data.Framework.StorageProvider
 Imports Microsoft.VisualBasic.MIME.Office
 Imports Microsoft.VisualBasic.Text
 

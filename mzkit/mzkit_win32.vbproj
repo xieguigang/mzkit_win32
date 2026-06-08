@@ -81,6 +81,7 @@
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\text%html\html_netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\Microsoft.VisualBasic.Drawing\src\Microsoft.VisualBasic.Drawing\Microsoft.VisualBasic.Drawing.vbproj" />
+    <ProjectReference Include="..\..\..\..\mini-R\src\console\console\console.NET5.vbproj" />
     <ProjectReference Include="..\..\..\..\mini-R\src\RDev\RDev.NET5.vbproj" />
     <ProjectReference Include="..\..\assembly\assembly\assembly-netcore5.vbproj" />
     <ProjectReference Include="..\..\assembly\mzPackExtensions\mzPackExtensions.NET5.vbproj" />
@@ -103,6 +104,7 @@
     <ProjectReference Include="..\ux\Canvas\src\MzBlender\BlenderCommonLibs\BlenderCommonLibs.vbproj" />
     <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj" />
     <ProjectReference Include="..\ux\Plugins\MoNA\MoNA.vbproj" />
+    <ProjectReference Include="..\ux\SingleCellViewer\SingleCellsViewer.vbproj" />
   </ItemGroup>
 
   <ItemGroup>

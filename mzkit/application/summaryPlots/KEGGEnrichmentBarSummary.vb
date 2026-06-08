@@ -1,4 +1,5 @@
-﻿Imports Galaxy.ExcelPad
+﻿Imports System.Data
+Imports Galaxy.ExcelPad
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.Assembly.KEGG

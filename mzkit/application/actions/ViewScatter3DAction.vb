@@ -1,4 +1,6 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+﻿Imports System.Data
+Imports System.Windows.Forms
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Galaxy.Data
 Imports Galaxy.Workbench.Actions
 Imports Galaxy.Workbench.CommonDialogs

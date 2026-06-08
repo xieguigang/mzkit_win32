@@ -1,4 +1,6 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.LinearQuantitative
+﻿Imports System.Data
+Imports System.Windows.Forms
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.LinearQuantitative
 Imports Galaxy.Data
 Imports Galaxy.Workbench.Actions
 Imports Microsoft.VisualBasic.ComponentModel.Collection

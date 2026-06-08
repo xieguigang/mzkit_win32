@@ -1,4 +1,5 @@
-﻿Imports Galaxy.Data
+﻿Imports System.Windows.Forms
+Imports Galaxy.Data
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 
 Public Class SetTableMzSource

@@ -1,4 +1,6 @@
-﻿Public Class InputIonRGB
+﻿Imports System.Windows.Forms
+
+Public Class InputIonRGB
 
     Public ReadOnly Property R As String
         Get

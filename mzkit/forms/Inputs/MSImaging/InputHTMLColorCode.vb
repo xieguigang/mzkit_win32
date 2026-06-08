@@ -1,4 +1,6 @@
-﻿Imports Microsoft.VisualBasic.Imaging
+﻿Imports System.Drawing
+Imports System.Windows.Forms
+Imports Microsoft.VisualBasic.Imaging
 
 Public Class InputHTMLColorCode
 

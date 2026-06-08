@@ -1,4 +1,5 @@
-﻿Imports Galaxy.ExcelPad
+﻿Imports System.Data
+Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream.Generic
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph

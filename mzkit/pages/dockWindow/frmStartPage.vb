@@ -54,6 +54,7 @@
 
 Imports System.ComponentModel
 Imports System.Runtime.InteropServices
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Workbench

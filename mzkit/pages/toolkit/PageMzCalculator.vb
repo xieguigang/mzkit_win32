@@ -54,6 +54,7 @@
 
 #End Region
 
+Imports System.Windows.Forms
 Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType

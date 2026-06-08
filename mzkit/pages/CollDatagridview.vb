@@ -54,6 +54,7 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
+Imports System.Windows.Forms
 
 'MIT License
 

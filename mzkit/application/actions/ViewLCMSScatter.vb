@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
+﻿Imports System.Data
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports Galaxy.Data
 Imports Galaxy.Workbench.Actions
 Imports Galaxy.Workbench.CommonDialogs
