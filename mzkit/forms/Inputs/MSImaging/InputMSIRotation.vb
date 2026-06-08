@@ -1,6 +1,8 @@
-﻿Imports System.Drawing.Drawing2D
+﻿Imports System.Drawing
+Imports System.Drawing.Drawing2D
+Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.Drawing
-Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Drawing.Interop
 
 Public Class InputMSIRotation
 
@@ -10,9 +12,9 @@ Public Class InputMSIRotation
         End Get
     End Property
 
-    Dim previews_raw As Image
+    Dim previews_raw As System.Drawing.Image
 
-    Public Sub SetImage(img As Image)
+    Public Sub SetImage(img As System.Drawing.Image)
         previews_raw = img
         PictureBox1.BackgroundImage = img
     End Sub
@@ -35,8 +37,8 @@ Public Class InputMSIRotation
         Dim mat As New Matrix
         mat.RotateAt(GetAngle, New PointF(g.Width / 2, g.Height / 2))
         g.SetTransformMatrix(mat)
-        g.DrawImage(previews_raw, New PointF)
-        PictureBox1.BackgroundImage = g.ImageResource
+        g.DrawImage(New GDIPlusImage(previews_raw), New PointF)
+        PictureBox1.BackgroundImage = g.CTypeGdiImage
         g.Dispose()
     End Sub
 End Class

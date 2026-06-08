@@ -90,6 +90,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports CommonDialogs
 Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
@@ -425,7 +426,7 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
-    Private Function getThumbnail(p As Action(Of String)) As Image
+    Private Function getThumbnail(p As Action(Of String)) As System.Drawing.Image
         Dim panic As Boolean = False
         Dim summaryLayer As PixelScanIntensity() = MSIservice.LoadSummaryLayer(IntensitySummary.BasePeak, panic)
 
@@ -451,7 +452,7 @@ Public Class frmMsImagingViewer
         End If
 
         ' fetch the BPC views
-        Dim image As Image = TaskProgress.LoadData(
+        Dim image As System.Drawing.Image = TaskProgress.LoadData(
             streamLoad:=AddressOf getThumbnail,
             title:="Create ms-imaging slide previews",
             info:="Loading the basepeak summary plot of your slide as previews..."
@@ -1193,7 +1194,7 @@ Public Class frmMsImagingViewer
             End Sub, config:=input)
     End Sub
 
-    Private Sub loadHEMapImage(HEMapImg As Bitmap)
+    Private Sub loadHEMapImage(HEMapImg As System.Drawing.Bitmap)
         PixelSelector1.MSICanvas.HEMap = HEMapImg
 
         If blender IsNot Nothing Then

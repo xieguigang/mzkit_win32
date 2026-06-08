@@ -3,13 +3,14 @@ Imports System.Drawing
 Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports RibbonLib.Interop
 
 Public Class frmHEStainAnalysisTool
 
-    Public Sub LoadRawData(MSI As PixelScanIntensity(), dims As Size, HEstain As Image)
+    Public Sub LoadRawData(MSI As PixelScanIntensity(), dims As Size, HEstain As System.Drawing.Image)
         Call frmHEStainAnalysisTool_Activated()
         Call HeStainViewer1.LoadRawData(MSI.Select(Function(m) New PixelData(m, m.totalIon)), dims, HEstain)
         Call ApplyVsTheme(HeStainViewer1.GetMenu)
@@ -54,7 +55,7 @@ Public Class frmHEStainAnalysisTool
                     .Select(Function(p) New PixelData(p.STX, p.STY, p.heatmap)) _
                     .ToArray
                 Dim msi_dims As Size = register.MSIdims
-                Dim tile = HeStainViewer1.LoadRawData(pixels, msi_dims, register.HEstain)
+                Dim tile = HeStainViewer1.LoadRawData(pixels, msi_dims, register.HEstain.CTypeGdiImage)
 
                 tile.Location = register.offset.ToPoint
                 tile.Size = register.MSIscale

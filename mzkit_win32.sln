@@ -67210,8 +67210,8 @@ Global
 		..\..\..\GCModeller\src\R-sharp\studio\Rstudio.common\Rstudio.common.projitems*{14010b90-bc3b-42d9-a52c-30ca537d3c11}*SharedItemsImports = 13
 		services\mzkit_win32.envir\mzkit_win32.envir.projitems*{23535808-da67-4de5-9897-b8b1e181c54a}*SharedItemsImports = 13
 		..\..\..\GCModeller\src\R-sharp\studio\Rstudio.common\Rstudio.common.projitems*{2584c91e-35e4-462d-b269-effd3e51318d}*SharedItemsImports = 5
-		services\PDF\PDF.projitems*{2cd05f2c-b62f-4859-844d-e2968d05b4ea}*SharedItemsImports = 4
-		services\PeakFindingParameters\PeakFindingParameters.projitems*{2cd05f2c-b62f-4859-844d-e2968d05b4ea}*SharedItemsImports = 4
+		..\..\..\galaxy\src\RibbonEventBinding\RibbonEventBinding.projitems*{2cd05f2c-b62f-4859-844d-e2968d05b4ea}*SharedItemsImports = 5
+		services\PeakFindingParameters\PeakFindingParameters.projitems*{2cd05f2c-b62f-4859-844d-e2968d05b4ea}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\dataframeHelper\dataframeHelper.projitems*{32bde5fc-000b-43af-beae-3af8b18b2036}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\JsonHelper\JsonHelper.projitems*{32bde5fc-000b-43af-beae-3af8b18b2036}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\dataframeHelper\dataframeHelper.projitems*{38108f41-95ae-43cd-b429-958a8f1a406d}*SharedItemsImports = 5

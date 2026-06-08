@@ -131,4 +131,8 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
+
+  <Import Project="..\..\..\..\galaxy\src\RibbonEventBinding\RibbonEventBinding.projitems" Label="Shared" />
+
+  <Import Project="..\services\PeakFindingParameters\PeakFindingParameters.projitems" Label="Shared" />
  </Project>

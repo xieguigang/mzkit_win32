@@ -967,7 +967,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                     margin:="padding: 100px 100px 200px 200px;",
                     gridFill:="white"
                 ) _
-                .AsGDIImage
+                .AsGDIImage.CTypeGdiImage
         Catch ex As Exception
             Call App.LogException(ex)
             Call Workbench.Warning(ex.Message)

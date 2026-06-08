@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 
@@ -8,7 +9,7 @@ Public Class SampleRegionMergeTool
 
     Dim rawRegions As New Dictionary(Of String, TissueRegion)
     Dim newRegions As New Dictionary(Of String, TissueRegion)
-    Dim Rplot As Image
+    Dim Rplot As System.Drawing.Image
     Dim dims As Size
 
     Public Function GetMergedRegions() As TissueRegion()
@@ -44,13 +45,13 @@ Public Class SampleRegionMergeTool
             End With
         End If
 
-        Dim Rplot As Image = LayerRender.Draw(
+        Dim Rplot As System.Drawing.Image = LayerRender.Draw(
             regions:=regions,
             layerSize:=dims,
             alphaLevel:=1,
             dotSize:=1,
             highlights:=highlights
-        )
+        ).CTypeGdiImage
 
         Me.Rplot = Rplot
         Me.PictureBox1.BackgroundImage = Rplot

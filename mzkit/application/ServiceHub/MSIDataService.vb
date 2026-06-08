@@ -629,7 +629,7 @@ re0:
             End Try
         End Function
 
-        Public Function AutoLocation(Optional padding As Padding = Nothing) As MsImageProperty
+        Public Function AutoLocation(Optional padding As Microsoft.VisualBasic.MIME.Html.CSS.Padding = Nothing) As MsImageProperty
             Dim css As String = If(padding.IsEmpty, "padding: 25px 25px 25px 25px;", padding.ToString)
             Dim data As RequestStream = handleServiceRequest(
                 request:=New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.AutoLocation, Encoding.UTF8.GetBytes(css)))
