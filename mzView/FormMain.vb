@@ -5,6 +5,7 @@ Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Galaxy
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Data.IO
@@ -176,7 +177,7 @@ Public Class FormMain
                 ' required of read the metadata
                 Call Serialization.ReadScan1(ms1, file:=reader, readmeta:=True)
 
-                Dim mat As New LibraryMatrix With {.ms2 = ms1.GetMs.ToArray, .Name = ms1.scan_id}
+                Dim mat As New LibraryMatrix With {.ms2 = ms1.GetMs.ToArray, .name = ms1.scan_id}
                 Dim img As Image = PeakAssign.DrawSpectrumPeaks(mat, size:="1920,1080", dpi:=200).AsGDIImage
                 Dim pic As PictureBox = showViewer("png")
 

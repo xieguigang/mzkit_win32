@@ -28,8 +28,13 @@
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\HDSPack\HDSPack.vbproj" />
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\assembly\assembly\assembly-netcore5.vbproj" />
+    <ProjectReference Include="..\..\assembly\BrukerDataReader\BrukerDataReader.NET5.vbproj" />
+    <ProjectReference Include="..\..\assembly\mzPackExtensions\mzPackExtensions.NET5.vbproj" />
     <ProjectReference Include="..\..\assembly\mzPack\mzpack.NET5.vbproj" />
+    <ProjectReference Include="..\..\assembly\sciexWiffReader\sciexWiffReader.vbproj" />
+    <ProjectReference Include="..\..\assembly\ThermoRawFileReader\MSFileReader.NET5.vbproj" />
     <ProjectReference Include="..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
+    <ProjectReference Include="..\services\Task\Task.vbproj" />
   </ItemGroup>
   
 </Project>

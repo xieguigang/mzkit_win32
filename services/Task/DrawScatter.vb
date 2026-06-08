@@ -123,14 +123,13 @@ Public Module DrawScatter
     End Function
 
     <Extension>
-    Public Function DrawScatter(raw As mzPack) As Image
+    Public Function DrawScatter(raw As mzPack, Optional max As Integer = 5000000) As Image
         Dim ms1 As ms1_scan() = raw.MS _
             .Select(Function(m1)
                         Return m1.mz.Select(Function(mzi, i) New ms1_scan With {.mz = mzi, .intensity = m1.into(i), .scan_time = m1.rt})
                     End Function) _
             .IteratesALL _
             .ToArray
-        Dim max = 5000000
 
         ' make filter for the thumbnail data
         ' 20250204

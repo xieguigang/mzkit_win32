@@ -28,5 +28,7 @@
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\application%xml\xml-netcore5.vbproj" />
     <ProjectReference Include="..\..\assembly\mzPack\mzpack.NET5.vbproj" />
+    <ProjectReference Include="..\..\visualize\plot\MsPlot.NET5.vbproj" />
+    <ProjectReference Include="..\ux\BasicMDIForm\BasicMDIForm.vbproj" />
   </ItemGroup>
  </Project>

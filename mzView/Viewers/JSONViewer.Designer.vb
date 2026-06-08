@@ -1,4 +1,5 @@
-﻿Imports Galaxy.CommonControls
+﻿Imports System.Windows.Forms
+Imports Galaxy.CommonControls
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class JSONViewer

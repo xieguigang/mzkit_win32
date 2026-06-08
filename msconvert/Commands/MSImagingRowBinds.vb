@@ -8,7 +8,7 @@ Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Text.Patterns
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Public Class MSImagingRowBinds
 
@@ -81,7 +81,7 @@ Public Class MSImagingRowBinds
         For i As Integer = 0 To raw.MS.Length - 1
             Dim filter = raw.MS(i) _
                 .GetMs _
-                .Where(Function(d) stdNum.Abs(d.mz - basePeak) > 0.3) _
+                .Where(Function(d) std.Abs(d.mz - basePeak) > 0.3) _
                 .ToArray
             Dim mz As Double() = filter.Select(Function(mzi) mzi.mz).ToArray
             Dim into As Double() = filter.Select(Function(mzi) mzi.intensity).ToArray
