@@ -54,6 +54,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="RibbonItems.Designer.vb" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="favicon.ico" />
   </ItemGroup>
 
