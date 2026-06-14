@@ -143,7 +143,7 @@ Namespace Configuration
             Dim config As Settings
 
             Try
-                config = configFile.LoadJsonFile(Of Settings)
+                config = configFile.LoadJsonFile(Of Settings)(throwEx:=False)
             Catch ex As Exception
                 config = Nothing
             End Try
