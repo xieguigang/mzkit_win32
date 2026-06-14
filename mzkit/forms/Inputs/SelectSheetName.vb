@@ -1,8 +1,10 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports System.Windows.Forms
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.Data.Framework.IO
+Imports Microsoft.VisualBasic.Data.Framework.StorageProvider
 Imports Microsoft.VisualBasic.Text
 Imports Excel = Microsoft.VisualBasic.MIME.Office.Excel.XLSX
 

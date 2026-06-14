@@ -10,6 +10,7 @@ Imports PipelineHost
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices.XML
 Imports SMRUCC.genomics.GCModeller.Workbench.KEGGReport
+Imports Microsoft.VisualBasic.Math
 
 Public Class KEGGEnrichmentAction : Inherits ActionBase
 
@@ -59,7 +60,7 @@ Public Class KEGGEnrichmentAction : Inherits ActionBase
                     doProgress:=msg.Echo
                 ).ToArray
                 Call msg.SetInfo("Do FDR...")
-                Dim fdr = all.FDRCorrection.OrderBy(Function(p) p.pvalue).ToArray
+                Dim fdr = all.FDR.OrderBy(Function(p) p.pvalue).ToArray
 
                 Return fdr
             End Function, title:="Run KEGG Enrichment", info:="Run fisher test...")

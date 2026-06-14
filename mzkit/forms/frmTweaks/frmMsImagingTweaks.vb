@@ -105,7 +105,8 @@ Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
 Imports Xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
-
+Imports DashStyle = Microsoft.VisualBasic.Imaging.DashStyle
+Imports Image = System.Drawing.Image
 Public Class frmMsImagingTweaks
 
     Friend checkedMz As New List(Of TreeNode)
@@ -994,7 +995,7 @@ UseCheckedList:
                 params.SetIntensityMax(maxInto, New Point())
                 Dim blender As New SingleIonMSIBlender(pixels, frmMsImagingViewer.loadFilters, params, TIC)
                 blender.SetClampRange(config.IntensityRange)
-                Dim image As Image = blender.Rendering(args, canvas)
+                Dim image As Image = blender.Rendering(args, canvas).CTypeGdiImage
 
                 Using gfx As Graphics2D = Graphics2D.CreateDevice(canvas, filled:=Color.Transparent)
                     Call gfx.DrawImage(image, 0, 0, canvas.Width, canvas.Height)

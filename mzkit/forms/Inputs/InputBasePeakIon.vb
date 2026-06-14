@@ -1,4 +1,6 @@
-﻿Public Class InputBasePeakIon
+﻿Imports System.Windows.Forms
+
+Public Class InputBasePeakIon
 
     Public ReadOnly Property IonMz As Double
         Get

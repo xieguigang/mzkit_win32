@@ -1,4 +1,6 @@
-﻿Public Class InputConfigEnrichmentGraph
+﻿Imports System.Windows.Forms
+
+Public Class InputConfigEnrichmentGraph
 
     Public ReadOnly Property fdr As Double
         Get

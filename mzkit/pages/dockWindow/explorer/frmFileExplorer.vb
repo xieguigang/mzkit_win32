@@ -91,6 +91,7 @@ Imports RibbonLib.Interop
 Imports Task
 Imports TaskStream
 Imports std = System.Math
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 
 ''' <summary>
 ''' 显示一个workspace对象里面所包含有的文件列表
@@ -786,7 +787,7 @@ Public Class frmFileExplorer
     Private Sub RunDeconvBackground(config As InputLCMSDeconvolution)
         Dim files As String = config.input_raw
         Dim tempTable As String = config.export_file
-        Dim cli As String = $"""{RscriptPipelineTask.GetRScript("MS1deconv.R")}"" --raw ""{files}"" --save ""{tempTable}"" --massdiff {config.massDiff} --rt_win {config.rt_win.JoinBy(",")} --n_threads {config.n_threads} /@set tqdm=false --SetDllDirectory {Task.TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{RscriptPipelineTask.GetRScript("MS1deconv.R")}"" --raw ""{files}"" --save ""{tempTable}"" --massdiff {config.massDiff} --rt_win {config.rt_win.JoinBy(",")} --n_threads {config.n_threads} /@set tqdm=false --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call Workbench.LogText(cli)

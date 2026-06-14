@@ -1,4 +1,6 @@
-﻿Public Class InputPeakTime
+﻿Imports System.Windows.Forms
+
+Public Class InputPeakTime
 
     Public ReadOnly Property TimeField As String
 

@@ -53,6 +53,7 @@
 
 #End Region
 
+Imports System.Windows.Forms
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Workbench

@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
+﻿Imports System.Windows.Forms
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports Mzkit_win32.LCMSViewer
 
 Public Class frmPeakFinding

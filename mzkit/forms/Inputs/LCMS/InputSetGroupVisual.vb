@@ -1,4 +1,6 @@
-﻿Public Class InputSetGroupVisual
+﻿Imports System.Windows.Forms
+
+Public Class InputSetGroupVisual
 
     Public Iterator Function GetGroupNames() As IEnumerable(Of String)
         For i As Integer = 0 To CheckedListBox1.Items.Count - 1

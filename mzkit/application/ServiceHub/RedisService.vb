@@ -2,6 +2,7 @@
 Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Mzkit_win32.BasicMDIForm
 Imports Task
 Imports TaskStream
 

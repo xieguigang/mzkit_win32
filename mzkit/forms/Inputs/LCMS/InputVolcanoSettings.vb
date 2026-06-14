@@ -1,4 +1,6 @@
-﻿Public Class InputVolcanoSettings
+﻿Imports System.Windows.Forms
+
+Public Class InputVolcanoSettings
 
     Public ReadOnly Property Trial As String
         Get

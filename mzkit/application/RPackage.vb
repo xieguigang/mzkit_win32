@@ -70,6 +70,7 @@ Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports REnv = SMRUCC.Rsharp.Runtime.Internal
 Imports std = System.Math
+Imports RInternal = SMRUCC.Rsharp.Runtime.Internal
 
 Namespace My
 
@@ -178,7 +179,7 @@ Namespace My
         ''' <param name="env"></param>
         ''' <returns></returns>
         <ExportAPI("view")>
-        Public Shared Function View(<RRawVectorArgument> x As Object, Optional env As Environment = Nothing) As Message
+        Public Shared Function View(<RRawVectorArgument> x As Object, Optional env As Environment = Nothing) As Components.Message
             If x Is Nothing Then
                 Return Nothing
             End If

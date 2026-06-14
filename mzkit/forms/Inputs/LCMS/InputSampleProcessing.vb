@@ -1,4 +1,6 @@
-﻿Public Class InputSampleProcessing
+﻿Imports System.Windows.Forms
+
+Public Class InputSampleProcessing
 
     Public ReadOnly Property MissingPercentage As Double
         Get

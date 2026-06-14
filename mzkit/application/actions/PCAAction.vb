@@ -2,10 +2,12 @@
 Imports Galaxy.Workbench.Actions
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
+Imports Microsoft.VisualBasic.Data.Framework.StorageProvider
 Imports Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA
 Imports Mzkit_win32.BasicMDIForm
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports TaskStream
+Imports DataSet = Microsoft.VisualBasic.Data.Framework.IO.DataSet
 
 Public Class PCAAction : Inherits ActionBase
 

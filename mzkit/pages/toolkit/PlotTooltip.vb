@@ -57,7 +57,10 @@ Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
+Imports Brushes = System.Drawing.Brushes
+Imports Image = System.Drawing.Image
 
 Public Class PlotTooltip : Inherits ToolTip
 
@@ -89,7 +92,7 @@ Public Class PlotTooltip : Inherits ToolTip
             }
         End If
 
-        Using plot As Image = MassSpectra.MirrorPlot([lib]).AsGDIImage
+        Using plot As Image = MassSpectra.MirrorPlot([lib]).AsGDIImage.CTypeGdiImage
             e.Graphics.DrawImage(plot, 0, 0, 200, 133)
         End Using
     End Sub

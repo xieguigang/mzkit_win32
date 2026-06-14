@@ -100,9 +100,7 @@ Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports Task
-Imports Task.Container
 Imports TaskStream
-Imports DashStyle = Microsoft.VisualBasic.Imaging.DashStyle
 Imports Image = System.Drawing.Image
 
 Module RibbonEvents

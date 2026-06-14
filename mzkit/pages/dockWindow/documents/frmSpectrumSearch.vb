@@ -52,6 +52,7 @@
 
 #End Region
 
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports Mzkit_win32.BasicMDIForm

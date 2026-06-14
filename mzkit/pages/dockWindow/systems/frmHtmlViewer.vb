@@ -59,6 +59,7 @@ Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Microsoft.Web.WebView2.Core
+Imports Mzkit_win32.BasicMDIForm
 
 Public Class frmHtmlViewer
 

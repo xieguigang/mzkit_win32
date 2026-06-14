@@ -7,6 +7,8 @@ Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports any = Microsoft.VisualBasic.Scripting
+Imports Brushes = Microsoft.VisualBasic.Imaging.Brushes
+Imports Microsoft.VisualBasic.Math
 
 Public Class KEGGEnrichmentGraph : Inherits SummaryPlot
 
@@ -55,7 +57,7 @@ Public Class KEGGEnrichmentGraph : Inherits SummaryPlot
                 Next
 
                 terms = terms.OrderBy(Function(p) p.pvalue).ToArray
-                terms = terms.FDRCorrection _
+                terms = terms.FDR _
                     .Where(Function(f) f.FDR < fdr_cut) _
                     .OrderBy(Function(f) f.FDR) _
                     .Take(config.topN) _

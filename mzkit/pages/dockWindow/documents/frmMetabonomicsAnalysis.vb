@@ -37,6 +37,8 @@ Imports any = Microsoft.VisualBasic.Scripting
 Imports csv = Microsoft.VisualBasic.Data.Framework.IO.File
 Imports Matrix = SMRUCC.genomics.Analysis.HTS.DataFrame.Matrix
 Imports std = System.Math
+Imports DashStyle = Microsoft.VisualBasic.Imaging.DashStyle
+Imports Image = System.Drawing.Image
 
 Public Class frmMetabonomicsAnalysis
 
@@ -541,7 +543,7 @@ Public Class frmMetabonomicsAnalysis
             End If
 
             If AutoPlotToolStripMenuItem.Checked Then
-                PictureBox1.BackgroundImage = plotExpression(raw_id, expression).CTypeGdiImage
+                PictureBox1.BackgroundImage = plotExpression(raw_id, expression)
             End If
 
             PropertyGrid1.SelectedObject = peak
@@ -1039,7 +1041,7 @@ Public Class frmMetabonomicsAnalysis
         ViolinPlotToolStripMenuItem.Checked = False
 
         If Not expression Is Nothing Then
-            PictureBox1.BackgroundImage = plotExpression(expression_name, expression).CTypeGdiImage
+            PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
         End If
     End Sub
 
@@ -1048,7 +1050,7 @@ Public Class frmMetabonomicsAnalysis
         ViolinPlotToolStripMenuItem.Checked = False
 
         If Not expression Is Nothing Then
-            PictureBox1.BackgroundImage = plotExpression(expression_name, expression).CTypeGdiImage
+            PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
         End If
     End Sub
 
@@ -1057,20 +1059,20 @@ Public Class frmMetabonomicsAnalysis
         BarPlotToolStripMenuItem.Checked = False
 
         If Not expression Is Nothing Then
-            PictureBox1.BackgroundImage = plotExpression(expression_name, expression).CTypeGdiImage
+            PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
         End If
     End Sub
 
     Private Sub ViewExpressionPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewExpressionPlotToolStripMenuItem.Click
         If Not expression Is Nothing Then
-            PictureBox1.BackgroundImage = plotExpression(expression_name, expression).CTypeGdiImage
+            PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
         End If
     End Sub
 
     Private Sub AutoPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutoPlotToolStripMenuItem.Click
         If AutoPlotToolStripMenuItem.Checked Then
             If Not expression Is Nothing Then
-                PictureBox1.BackgroundImage = plotExpression(expression_name, expression).CTypeGdiImage
+                PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
             Else
 
             End If
