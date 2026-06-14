@@ -6,7 +6,6 @@ Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Erica.Analysis.SpatialTissue.HEView
 Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
-Imports HEView
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.DataStorage.HDSPack
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
@@ -22,7 +21,6 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.Container
 Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
 Imports RibbonLib.Interop
-Imports Task.Container
 Imports TaskStream
 
 Public Class frmOpenseadragonViewer

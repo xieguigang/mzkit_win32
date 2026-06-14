@@ -1,6 +1,5 @@
 Imports Microsoft.VisualBasic.FileIO
 Imports Mzkit_win32.BasicMDIForm.Container
-Imports Task.Container
 
 Public Module TissueSlideHandler
 

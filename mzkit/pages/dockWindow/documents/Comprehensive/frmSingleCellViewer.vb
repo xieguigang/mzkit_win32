@@ -13,7 +13,6 @@ Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
-Imports SMRUCC.genomics.Analysis.SingleCell
 Imports Task
 
 Public Class frmSingleCellViewer

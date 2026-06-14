@@ -18,8 +18,6 @@ Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
-Imports SMRUCC.genomics.Analysis.Spatial.RAID
-Imports DashStyle = Microsoft.VisualBasic.Imaging.DashStyle
 Imports Image = System.Drawing.Image
 
 Public Class MSIRegionSampleWindow

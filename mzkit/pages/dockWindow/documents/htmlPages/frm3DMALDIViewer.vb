@@ -10,8 +10,6 @@ Imports Mzkit_win32.BasicMDIForm.Container
 Imports SMRUCC.DICOM.LASer
 Imports SMRUCC.DICOM.LASer.Model
 Imports SMRUCC.DICOM.NRRD
-Imports Task.Container
-Imports TaskStream
 
 Public Class frm3DMALDIViewer
 
