@@ -67243,6 +67243,7 @@ Global
 		..\..\..\GCModeller\src\R-sharp\Library\shares\dataframeHelper\dataframeHelper.projitems*{d7f34cbf-4705-4c1f-8404-840c9435b376}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_graphic.interop\R_graphic.interop.projitems*{d7f34cbf-4705-4c1f-8404-840c9435b376}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\studio\Rstudio.common\Rstudio.common.projitems*{daaf2006-0a98-4d3d-9a95-5e9a25e5c74d}*SharedItemsImports = 5
+		..\..\..\galaxy\src\LicenseFramework\Shared\LicenseShared.projitems*{ec84cbb4-8e2d-48ea-9e6c-3d7cf0bbb452}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\JsonHelper\JsonHelper.projitems*{ecc0fb1e-d85a-47fa-ba3d-c65d61c9d128}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

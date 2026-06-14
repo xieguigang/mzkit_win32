@@ -57,30 +57,31 @@
 Imports System.Drawing
 Imports BioNovoGene.mzkit_win32.My
 
+Public Class TaskRun
+
+    Public Property text As String
+    Public Property imageIndex As Integer
+    Public Property status As String
+    Public Property progress As String
+    Public Property content As String
+    Public Property time As String
+
+End Class
+
 ''' <summary>
 ''' just provides the UI update interface to the task worker
 ''' </summary>
 Public Class TaskUI
 
     Dim window As TaskListWindow
-    Dim row As TreeListViewItem
-    Dim status As ListViewItem.ListViewSubItem
-    Dim progress As ListViewItem.ListViewSubItem
+    Dim row As TaskRun
 
     Dim taskTitle, taskContent As String
 
     Sub New(task$, content$, list As TaskListWindow)
-        row = New TreeListViewItem With {.Text = task, .ImageIndex = 0}
-        status = New ListViewItem.ListViewSubItem With {.Text = "Pending", .BackColor = Color.Yellow}
-        progress = New ListViewItem.ListViewSubItem With {.Text = "..."}
-
-        row.SubItems.Add(New ListViewItem.ListViewSubItem With {.Text = content})
-        row.SubItems.Add(New ListViewItem.ListViewSubItem With {.Text = Now.ToString})
-        row.SubItems.Add(status)
-        row.SubItems.Add(progress)
-
+        row = New TaskRun With {.text = task, .imageIndex = 0, .status = "Pending", .progress = "...", .content = content, .time = Now.ToString}
         window = list
-        window.TreeListView1.Items.Add(row)
+        window.Add(row)
 
         taskTitle = task
         taskContent = content
@@ -94,18 +95,16 @@ Public Class TaskUI
     End Sub
 
     Private Sub switchToRunningStatus()
-        status.Text = "Running..."
-        status.BackColor = Color.Green
+        row.status = "Running..."
     End Sub
 
     Private Sub switchToFinishStatus()
-        status.Text = "Finished"
-        progress.Text = ""
-        status.BackColor = Color.SkyBlue
+        row.status = "Finished"
+        row.progress = ""
     End Sub
 
     Public Sub ProgressMessage(message As String)
-        window.Invoke(Sub() progress.Text = message)
+        window.Invoke(Sub() row.progress = message)
     End Sub
 
     Public Sub Finish()

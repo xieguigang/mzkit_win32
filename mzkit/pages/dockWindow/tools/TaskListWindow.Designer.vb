@@ -53,6 +53,7 @@
 #End Region
 
 Imports System.Windows.Forms
+Imports Galaxy.CommonControls.ModernTreeListView
 Imports Galaxy.Workbench.DockDocument
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
@@ -152,7 +153,7 @@ Partial Class TaskListWindow
 
     End Sub
 
-    Friend WithEvents TreeListView1 As TreeListView
+    Friend WithEvents TreeListView1 As ModernTreeListView(Of TaskRun)
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
     Friend WithEvents ColumnHeader3 As ColumnHeader

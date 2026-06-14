@@ -53,6 +53,7 @@
 #End Region
 
 Imports System.Windows.Forms
+Imports Galaxy.CommonControls.ModernTreeListView
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class PageMoleculeNetworking
@@ -369,7 +370,7 @@ Partial Class PageMoleculeNetworking
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents TreeListView1 As TreeListView
+    Friend WithEvents TreeListView1 As ModernTreeListView
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
     Friend WithEvents ColumnHeader3 As ColumnHeader
