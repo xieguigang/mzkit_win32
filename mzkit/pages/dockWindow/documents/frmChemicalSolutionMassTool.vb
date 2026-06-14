@@ -5,6 +5,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.MIME.Office.Excel.XLSX
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.Container
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
 

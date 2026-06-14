@@ -6,6 +6,7 @@ Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.Web.WebView2.Core
+Imports Mzkit_win32.BasicMDIForm.Container
 Imports SMRUCC.DICOM.LASer
 Imports SMRUCC.DICOM.LASer.Model
 Imports SMRUCC.DICOM.NRRD

@@ -9,6 +9,7 @@ Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Data.Framework
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Math2D
@@ -18,6 +19,8 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
 Imports SMRUCC.genomics.Analysis.Spatial.RAID
+Imports DashStyle = Microsoft.VisualBasic.Imaging.DashStyle
+Imports Image = System.Drawing.Image
 
 Public Class MSIRegionSampleWindow
 
@@ -321,7 +324,7 @@ still happends for large slide image.",
         End If
 
         Try
-            layer = LayerRender.Draw(tissueMaps, layerSize, alphaLevel, dotSize:=spotSize)
+            layer = LayerRender.Draw(tissueMaps, layerSize, alphaLevel, dotSize:=spotSize).CTypeGdiImage
         Catch ex As Exception
             Call App.LogException(ex)
             Return

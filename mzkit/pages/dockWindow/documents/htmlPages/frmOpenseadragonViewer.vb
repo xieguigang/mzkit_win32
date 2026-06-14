@@ -19,6 +19,7 @@ Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.Container
 Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
 Imports RibbonLib.Interop
 Imports Task.Container
