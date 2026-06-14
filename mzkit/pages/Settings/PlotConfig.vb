@@ -55,6 +55,7 @@
 
 #End Region
 
+Imports System.Drawing
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors

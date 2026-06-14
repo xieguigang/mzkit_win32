@@ -59,6 +59,7 @@
 Imports System.ComponentModel
 Imports System.Drawing.Imaging
 Imports System.Text
+Imports System.Windows.Forms
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic
@@ -69,6 +70,8 @@ Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
+Imports DashStyle = Microsoft.VisualBasic.Imaging.DashStyle
+Imports Image = System.Drawing.Image
 
 ''' <summary>
 ''' form for view Rscript plot result
@@ -142,7 +145,7 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
 
         Dim img As Image = plot _
             .Plot($"{args.width},{args.height}", ppi:=args.ppi, driver:=Drivers.GDI) _
-            .AsGDIImage
+            .AsGDIImage.CTypeGdiImage
 
         Call Invoke(Sub() PictureBox1.BackgroundImage = img)
     End Sub

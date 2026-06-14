@@ -1,7 +1,9 @@
 ﻿Imports System.ComponentModel
 Imports System.Runtime.InteropServices
 Imports System.Threading
+Imports System.Windows.Forms
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Erica.Analysis.SpatialTissue.HEView
 Imports Galaxy.ExcelPad
 Imports Galaxy.Workbench
 Imports HEView

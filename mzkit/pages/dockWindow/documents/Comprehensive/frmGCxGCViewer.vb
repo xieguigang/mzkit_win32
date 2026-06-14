@@ -53,6 +53,7 @@
 #End Region
 
 Imports System.IO
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports Galaxy.Workbench

@@ -74,6 +74,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.mzkit_win32.My
+Imports CommonDialogs
 Imports Galaxy.Data
 Imports Galaxy.Data.Visualization.CommonDialogs
 Imports Galaxy.ExcelPad
@@ -101,6 +102,8 @@ Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports Task
 Imports Task.Container
 Imports TaskStream
+Imports DashStyle = Microsoft.VisualBasic.Imaging.DashStyle
+Imports Image = System.Drawing.Image
 
 Module RibbonEvents
 

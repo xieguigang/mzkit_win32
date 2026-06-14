@@ -1,4 +1,6 @@
-﻿Public Class InputConvert10x
+﻿Imports System.Windows.Forms
+
+Public Class InputConvert10x
 
     Public Function GetParameters() As (spots$, h5ad$, tag$, targets As String())
         Return (TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text.ReadAllLines)

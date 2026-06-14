@@ -1,4 +1,6 @@
-﻿Public Class InputCreateLCMSLibrary
+﻿Imports System.Windows.Forms
+
+Public Class InputCreateLCMSLibrary
 
     Public ReadOnly Property LibraryName As String
         Get

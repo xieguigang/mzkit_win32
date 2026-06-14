@@ -1,4 +1,5 @@
-﻿Imports Task.Container
+﻿Imports System.Windows.Forms
+Imports Mzkit_win32.BasicMDIForm.Container
 
 Public Class InputCFMIDTool
 

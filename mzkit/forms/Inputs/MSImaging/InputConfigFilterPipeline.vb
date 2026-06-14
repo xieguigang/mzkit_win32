@@ -5,6 +5,7 @@ Imports BioNovoGene.mzkit_win32.Configuration
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Math2D
 
@@ -71,7 +72,7 @@ Public Class InputConfigFilterPipeline
                   size:=$"{canvas.Width},{canvas.Height}",
                   padding:="padding: 50px 20px 100px 100px;",
                   showGrid:=False) _
-            .AsGDIImage
+            .AsGDIImage.CTypeGdiImage
     End Sub
 
     Public Sub ConfigPipeline(filters As Scaler(), Optional flags As Boolean() = Nothing)

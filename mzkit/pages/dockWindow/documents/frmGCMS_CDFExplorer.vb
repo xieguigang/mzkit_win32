@@ -56,6 +56,8 @@
 #End Region
 
 Imports System.ComponentModel
+Imports System.Drawing
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.GCMS
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
@@ -63,6 +65,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Galaxy.Workbench
 Imports Microsoft.VisualBasic.DataStorage.netCDF
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualStudio.WinForms.Docking
 
@@ -132,7 +135,7 @@ Public Class frmGCMS_CDFExplorer
         Dim title1$ = $"Scan Time [{min.ToString("F3")},{max.ToString("F3")}] sec"
         Dim title2$ = $"Quantitative [{q.mz.ToString("F4")}:{q.intensity.ToString("G3")}]"
 
-        PictureBox1.BackgroundImage = scanData.MirrorPlot(titles:={title1, title2}).AsGDIImage
+        PictureBox1.BackgroundImage = scanData.MirrorPlot(titles:={title1, title2}).AsGDIImage.CTypeGdiImage
     End Sub
 
     Public Sub SetRange(left As Double, right As Double)

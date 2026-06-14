@@ -54,6 +54,7 @@
 
 #End Region
 
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
@@ -65,10 +66,13 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Mzkit_win32.BasicMDIForm
+Imports DashStyle = Microsoft.VisualBasic.Imaging.DashStyle
+Imports Image = System.Drawing.Image
 
 Public Class frmUntargettedViewer
 
@@ -123,7 +127,7 @@ Public Class frmUntargettedViewer
             }
             Dim plot As Image = PeakAssign _
                 .DrawSpectrumPeaks(msLib, size:=$"{PictureBox1.Width * 2.5},{PictureBox1.Height * 2.5}", dpi:=200) _
-                .AsGDIImage
+                .AsGDIImage.CTypeGdiImage
 
             matrix = msLib
             PictureBox1.BackgroundImage = plot

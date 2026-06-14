@@ -69,6 +69,10 @@ Imports Microsoft.Web.WebView2.WinForms
 Imports Mzkit_win32.BasicMDIForm
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Galaxy.ExcelPad
+Imports DashStyle = Microsoft.VisualBasic.Imaging.DashStyle
+Imports Image = System.Drawing.Image
+Imports System.Windows.Forms
+Imports Microsoft.VisualBasic.Drawing
 
 Public Class frmSMILESViewer
 
@@ -241,7 +245,7 @@ Public Class frmSMILESViewer
             model = IO.LoadKCF(kcf)
         End If
 
-        Dim visual As Image = model.Draw().AsGDIImage
+        Dim visual As Image = model.Draw().AsGDIImage.CTypeGdiImage
 
         PictureBox1.BackgroundImage = visual
     End Sub

@@ -5,6 +5,10 @@ Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Galaxy.Workbench.CommonDialogs
+Imports System.Drawing
+Imports DashStyle = Microsoft.VisualBasic.Imaging.DashStyle
+Imports Image = System.Drawing.Image
+Imports Microsoft.VisualBasic.Drawing
 
 Public Class InputSelectMassWindow
 
@@ -19,7 +23,7 @@ Public Class InputSelectMassWindow
         size = New Size(size.Width * 5, size.Height * 5)
         selector.PictureBox1.BackgroundImage = plot _
             .Plot(size, dpi:=200, Drivers.GDI) _
-            .AsGDIImage
+            .AsGDIImage.CTypeGdiImage
 
         For Each item As MassWindow In windows
             Call selector.ListBox1.Items.Add(item)

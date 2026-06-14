@@ -1,4 +1,5 @@
 ﻿Imports System.Threading
+Imports System.Windows.Forms
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Galaxy.Workbench

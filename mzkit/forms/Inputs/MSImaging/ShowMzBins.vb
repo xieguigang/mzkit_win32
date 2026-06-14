@@ -1,11 +1,14 @@
-﻿Imports System.Drawing.Drawing2D
+﻿Imports System.Drawing
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Legend
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.Quantile
+Imports DashStyle = Microsoft.VisualBasic.Imaging.DashStyle
+Imports Image = System.Drawing.Image
 Imports std = System.Math
 
 Public Class ShowMzBins
@@ -71,7 +74,7 @@ Public Class ShowMzBins
             fillPie:=False,
             showGrid:=False,
             gridFill:="white"
-        ).AsGDIImage
+        ).AsGDIImage.CTypeGdiImage
     End Function
 
     ''' <summary>
@@ -139,6 +142,6 @@ Public Class ShowMzBins
             fillPie:=False,
             showGrid:=False,
             gridFill:="white"
-        ).AsGDIImage
+        ).AsGDIImage.CTypeGdiImage
     End Function
 End Class

@@ -1,4 +1,5 @@
 ﻿Imports System.Data
+Imports System.Drawing
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports Galaxy.ExcelPad
 Imports Microsoft.VisualBasic.Imaging

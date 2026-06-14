@@ -1,5 +1,7 @@
-﻿Imports System.IO
+﻿Imports System.Data
+Imports System.IO
 Imports System.Text
+Imports System.Windows.Forms
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Galaxy.Data.TableSheet
 Imports Galaxy.Workbench.CommonDialogs

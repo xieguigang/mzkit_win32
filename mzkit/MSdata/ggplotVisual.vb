@@ -4,8 +4,8 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
-Imports RibbonLib.Interop
 Imports TaskStream
+Imports Image = System.Drawing.Image
 
 Module ggplotVisual
 

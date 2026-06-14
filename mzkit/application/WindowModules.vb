@@ -55,6 +55,7 @@
 
 #End Region
 
+Imports System.Windows.Forms
 Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
 Imports Galaxy.Workbench.DockDocument

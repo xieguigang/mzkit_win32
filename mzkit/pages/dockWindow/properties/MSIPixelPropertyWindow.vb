@@ -52,12 +52,15 @@
 
 #End Region
 
+Imports System.Drawing
 Imports System.Drawing.Drawing2D
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Legend
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Shapes
 Imports Microsoft.VisualBasic.Math
@@ -66,6 +69,8 @@ Imports Microsoft.VisualBasic.Math.Quantile
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualStudio.WinForms.Docking
 Imports Task
+Imports DashStyle = Microsoft.VisualBasic.Imaging.DashStyle
+Imports Image = System.Drawing.Image
 
 Public Class MSIPixelPropertyWindow
 
@@ -161,7 +166,7 @@ Public Class MSIPixelPropertyWindow
                 nticksX:=6,
                 nticksY:=8,
                 fillPie:=False
-            ).AsGDIImage
+            ).AsGDIImage.CTypeGdiImage
         Catch ex As Exception
             Return Nothing
         End Try

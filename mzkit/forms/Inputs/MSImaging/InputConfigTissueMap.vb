@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.mzkit_win32.Configuration
+﻿Imports System.Windows.Forms
+Imports BioNovoGene.mzkit_win32.Configuration
 Imports Microsoft.VisualBasic.Imaging
 Imports Mzkit_win32.MSImagingViewerV2.PolygonEditor
 

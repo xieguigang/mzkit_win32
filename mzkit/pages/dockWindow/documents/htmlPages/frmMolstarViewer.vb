@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Runtime.InteropServices
 Imports System.Threading
+Imports System.Windows.Forms
 Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
 Imports Emily.PDB_Canvas
 Imports Galaxy.Workbench

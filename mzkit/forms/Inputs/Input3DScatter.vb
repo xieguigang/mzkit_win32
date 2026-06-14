@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ComponentModel.Collection
+﻿Imports System.Windows.Forms
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 
 Public Class Input3DScatter
 
