@@ -194,7 +194,7 @@ Public Class PageSpectrumSearch
             query = isotopic
         End If
 
-        Call TreeListView1.Items.Clear()
+        Call TreeListView1.SetRoots({})
 
         If showUI Then
             Call TaskProgress.RunAction(
@@ -247,30 +247,32 @@ Public Class PageSpectrumSearch
 
         Call table.Clear()
 
+        Dim resultList As New List(Of spectrumSearchResult)
+
         For Each fileSearch As NamedCollection(Of AlignmentOutput) In runSearchResult
-            Dim fileRow As New TreeListViewItem With {
-                .Text = fileSearch.name,
-                .ToolTipText = fileSearch.description,
+            Dim fileRow As New spectrumSearchResult With {
+                .name = fileSearch.name,
+                .description = fileSearch.description,
                 .ImageIndex = 0,
                 .StateImageIndex = 0
             }
             Dim i As i32 = 1
 
-            fileRow.SubItems.Add(If(fileSearch.Count = 0, "no hits", fileSearch.Count))
+            fileRow.hits = If(fileSearch.Count = 0, "no hits", fileSearch.Count)
 
             For Each result As AlignmentOutput In fileSearch
-                Dim alignRow As New TreeListViewItem With {
-                    .Text = result.reference.id,
+                Dim alignRow As New spectrumSearchResult With {
+                    .name = result.reference.id,
                     .Tag = result,
                     .ImageIndex = 1,
                     .StateImageIndex = 1
                 }
 
-                alignRow.SubItems.Add(++i)
-                alignRow.SubItems.Add(result.forward)
-                alignRow.SubItems.Add(result.reverse)
-                alignRow.SubItems.Add(result.reference.mz)
-                alignRow.SubItems.Add(result.reference.scan_time)
+                alignRow.hits = ++i
+                alignRow.forward = result.forward
+                alignRow.reverse = result.reverse
+                alignRow.mz = result.reference.mz
+                alignRow.scan_time = result.reference.scan_time
 
                 fileRow.Items.Add(alignRow)
 
@@ -286,25 +288,40 @@ Public Class PageSpectrumSearch
                 })
             Next
 
-            Me.Invoke(Sub() Call TreeListView1.Items.Add(fileRow))
+            resultList.Add(fileRow)
         Next
 
+        Call TreeListView1.SetRoots(resultList)
         Call echo("Search job done!")
     End Sub
 
+    Public Class spectrumSearchResult
+
+        Public Property name As String
+        Public Property description As String
+        Public Property hits As String
+        Public Property forward As Double
+        Public Property reverse As Double
+        Public Property mz As Double
+        Public Property scan_time As Double
+        Public Property ImageIndex As Integer
+        Public Property StateImageIndex As Integer
+        Public Property tag As AlignmentOutput
+        Public Property Items As New List(Of spectrumSearchResult)
+
+    End Class
+
     Private Sub ViewAlignmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewAlignmentToolStripMenuItem.Click
-        Dim cluster As TreeListViewItem
+        Dim cluster As spectrumSearchResult = TreeListView1.SelectedModel
         Dim host = MyApplication.host
 
-        If TreeListView1.SelectedItems.Count = 0 Then
+        If cluster Is Nothing Then
             Return
-        Else
-            cluster = TreeListView1.SelectedItems(0)
         End If
 
-        If cluster.ChildrenCount > 0 Then
+        If cluster.Items.Count > 0 Then
             ' 选择的是一个文件节点
-            Dim filePath As String = cluster.ToolTipText
+            Dim filePath As String = cluster.description
             Dim raw As MZWork.Raw = Globals.workspace.FindRawFile(filePath)
 
             If Not raw Is Nothing Then
@@ -349,7 +366,5 @@ Public Class PageSpectrumSearch
             End Sub)
     End Sub
 
-    Private Sub TreeListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TreeListView1.SelectedIndexChanged
 
-    End Sub
 End Class

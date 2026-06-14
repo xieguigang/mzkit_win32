@@ -58,6 +58,7 @@
 #End Region
 
 Imports System.Text
+Imports System.Windows.Forms
 Imports System.Windows.Forms.ListViewItem
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
@@ -116,40 +117,71 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
         Next
     End Sub
 
+    Public Class FileMatch
+
+        Public Property precursor_type As String
+        Public Property adducts As String
+        Public Property M As Double
+
+        Public Property filename As String
+        Public Property imageIndex As Integer
+        Public Property tooltiptext As String
+
+        Public Property parent As FileMatch
+
+        Public Property Items As New List(Of FileMatch)
+        Public Property Tag As [Variant](Of ParentMatch, ScanMS2)
+
+
+        Public Property index As String
+        Public Property mz As String
+        Public Property rt As Integer
+        Public Property rtmin As String
+        Public Property da As Double
+        Public Property ppm As Double
+        Public Property polarity As Integer
+        Public Property charge As Integer
+        Public Property BPC As String
+        Public Property TIC As String
+
+    End Class
+
+    Dim matches As New List(Of FileMatch)
+
     Public Sub AddFileMatch(file As String, matches As ParentMatch(), Optional all_adducts As Dictionary(Of String, Double) = Nothing)
         list1.Add((file, matches))
 
         If Not appendHeader Then
-            Dim matchHeaders = {
-                New ColumnHeader() With {.Text = "Precursor Type"},
-                New ColumnHeader() With {.Text = "Adducts"},
-                New ColumnHeader() With {.Text = "M"}
-            }
+            'Dim matchHeaders = {
+            '    New ColumnHeader() With {.Text = "Precursor Type"},
+            '    New ColumnHeader() With {.Text = "Adducts"},
+            '    New ColumnHeader() With {.Text = "M"}
+            '}
 
-            Me.TreeListView1.Columns.AddRange(matchHeaders)
+            'Me.TreeListView1.Columns.AddRange(matchHeaders)
             Me.appendHeader = True
         End If
 
-        Dim row As New TreeListViewItem With {.Text = file.FileName, .ImageIndex = 0, .ToolTipText = file}
+        Dim row As New FileMatch With {.filename = file.FileName, .imageIndex = 0, .tooltiptext = file}
         Dim i As i32 = 1
 
         For Each member As ParentMatch In matches
-            Dim ion As New TreeListViewItem(member.scan.Identity) With {.ImageIndex = 1, .ToolTipText = member.scan.intensity, .Tag = member}
+            Dim ion As New FileMatch With {.filename = member.scan.Identity, .imageIndex = 1, .tooltiptext = member.scan.intensity, .Tag = member, .parent = row}
 
-            ion.SubItems.Add(New ListViewSubItem With {.Text = $"#{++i}"})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.scan.mz.ToString("F4")})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = CInt(member.scan.rt)})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = (member.scan.rt / 60).ToString("F1")})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.da})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = CInt(member.ppm)})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.scan.Polarity})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.scan.Charge})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.BPC.ToString("G3")})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.TIC.ToString("G3")})
+            ion.index = $"#{++i}"
+            ion.mz = member.scan.mz.ToString("F4")
+            ion.rt = CInt(member.scan.rt)
+            ion.rtmin = (member.scan.rt / 60).ToString("F1")
+            ion.da = member.da
+            ion.ppm = CInt(member.ppm)
+            ion.polarity = member.scan.Polarity
+            ion.charge = member.scan.Charge
+            ion.BPC = member.BPC.ToString("G3")
+            ion.TIC = member.TIC.ToString("G3")
 
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.precursor_type})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.adducts})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.M})
+            ion.precursor_type = member.precursor_type
+            ion.adducts = member.adducts
+            ion.M = member.M
 
             If rangeMin > member.scan.rt Then
                 rangeMin = member.scan.rt
@@ -159,12 +191,12 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             End If
 
             Call row.Items.Add(ion)
-            Call System.Windows.Forms.Application.DoEvents()
         Next
 
-        row.SubItems.Add(New ListViewSubItem With {.Text = matches.Length})
+        row.index = matches.Length
 
-        TreeListView1.Items.Add(row)
+        Me.matches.Add(row)
+        TreeListView1.SetRoots(Me.matches)
 
         If Not directRaw.IsNullOrEmpty Then
             Dim raw As Raw = directRaw.Where(Function(r) r.source = file).FirstOrDefault
@@ -235,24 +267,24 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
     End Sub
 
     Public Sub AddFileMatch(file As String, targetMz As Double, matches As ScanMS2())
-        Dim row As New TreeListViewItem With {.Text = file.FileName, .ImageIndex = 0, .ToolTipText = file}
+        Dim row As New FileMatch With {.filename = file.FileName, .imageIndex = 0, .tooltiptext = file}
         Dim i As i32 = 1
 
         list2.Add((file, targetMz, matches))
 
         For Each member As ScanMS2 In matches
-            Dim ion As New TreeListViewItem(member.scan_id) With {.ImageIndex = 1, .ToolTipText = member.scan_id, .Tag = member}
+            Dim ion As New FileMatch With {.filename = member.scan_id, .imageIndex = 1, .tooltiptext = member.scan_id, .Tag = member, .parent = row}
 
-            ion.SubItems.Add(New ListViewSubItem With {.Text = $"#{++i}"})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.parentMz.ToString("F4")})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = CInt(member.rt)})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = (member.rt / 60).ToString("F1")})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = std.Round(std.Abs(member.parentMz - targetMz), 3)})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = CInt(PPMmethod.PPM(member.parentMz, targetMz))})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.polarity})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.charge})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.into.Max.ToString("G3")})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.into.Sum.ToString("G3")})
+            ion.index = $"#{++i}"
+            ion.mz = member.parentMz.ToString("F4")
+            ion.rt = CInt(member.rt)
+            ion.rtmin = (member.rt / 60).ToString("F1")
+            ion.da = std.Round(std.Abs(member.parentMz - targetMz), 3)
+            ion.ppm = CInt(PPMmethod.PPM(member.parentMz, targetMz))
+            ion.polarity = member.polarity
+            ion.charge = member.charge
+            ion.BPC = member.into.Max.ToString("G3")
+            ion.TIC = member.into.Sum.ToString("G3")
 
             If rangeMin > member.rt Then
                 rangeMin = member.rt
@@ -264,9 +296,10 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             row.Items.Add(ion)
         Next
 
-        row.SubItems.Add(New ListViewSubItem With {.Text = matches.Length})
+        row.index = matches.Length
 
-        TreeListView1.Items.Add(row)
+        Me.matches.Add(row)
+        Me.TreeListView1.SetRoots(Me.matches)
     End Sub
 
     Friend directRaw As Raw()
@@ -287,21 +320,19 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
-        Dim cluster As TreeListViewItem
+        Dim cluster As FileMatch = TreeListView1.SelectedModel
         Dim host = MyApplication.host
 
-        If TreeListView1.SelectedItems.Count = 0 Then
+        If cluster Is Nothing Then
             Return
-        Else
-            cluster = TreeListView1.SelectedItems(0)
         End If
 
         ' 当没有feature搜索结果的时候， children count也是零
         ' 但是raw文件的parent是空的
         ' 所以还需要加上parent是否为空的判断来避免无结果产生的冲突
-        If cluster.ChildrenCount > 0 OrElse cluster.Parent Is Nothing Then
+        If cluster.Items.Count > 0 Then
             ' 选择的是一个文件节点
-            Dim filePath As String = cluster.ToolTipText
+            Dim filePath As String = cluster.tooltiptext
             Dim raw As Raw
 
             If Not directRaw.IsNullOrEmpty Then
@@ -315,8 +346,8 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             End If
         Else
             ' 选择的是一个scan数据节点
-            Dim parentFile = cluster.Parent.ToolTipText
-            Dim scan_id As String = cluster.Text
+            Dim parentFile = cluster.Parent.tooltiptext
+            Dim scan_id As String = cluster.filename
 
             ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
 
@@ -372,8 +403,8 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             Dim list = TreeListView1
             Dim parents As New List(Of ParentMatch)
 
-            For i As Integer = 0 To list.Items.Count - 1
-                Dim raw = list.Items(i)
+            For i As Integer = 0 To list.Count - 1
+                Dim raw As FileMatch = list(i)
                 Dim parentFile As String = raw.ToolTipText
                 Dim rawdata As Raw
 
@@ -385,7 +416,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
 
                 For j As Integer = 0 To raw.Items.Count - 1
                     Dim scan = raw.Items(j)
-                    Dim scan_id As String = raw.Text
+                    Dim scan_id As String = raw.filename
 
                     Call parents.Add(scan.Tag)
                 Next
@@ -407,14 +438,12 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ViewXICToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewXICToolStripMenuItem.Click
-        Dim cluster As TreeListViewItem
+        Dim cluster As FileMatch = TreeListView1.SelectedModel
         Dim host = MyApplication.host
         Dim ppm As New PPMmethod(30)
 
-        If TreeListView1.SelectedItems.Count = 0 Then
+        If cluster Is Nothing Then
             Return
-        Else
-            cluster = TreeListView1.SelectedItems(0)
         End If
 
         ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
@@ -422,10 +451,10 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
         ' 当没有feature搜索结果的时候， children count也是零
         ' 但是raw文件的parent是空的
         ' 所以还需要加上parent是否为空的判断来避免无结果产生的冲突
-        If cluster.ChildrenCount > 0 OrElse cluster.Parent Is Nothing Then
+        If cluster.Items.Count > 0 OrElse cluster.parent Is Nothing Then
             ' Call Workbench.Warning("Select a ms2 feature for view XIC plot!")
             ' view of the xic overlaps of current rawdata file
-            Dim parentFile = cluster.ToolTipText
+            Dim parentFile = cluster.tooltiptext
             Dim xic_ions = cluster.Items
             ' scan节点
             Dim raw As Raw
@@ -441,7 +470,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             For i As Integer = 0 To xic_ions.Count - 1
                 cluster = xic_ions.Item(i)
 
-                Dim scan_id As String = cluster.Text
+                Dim scan_id As String = cluster.filename
                 Dim scan = raw.FindMs2Scan(scan_id)
 
                 If scan Is Nothing Then
@@ -452,11 +481,11 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 Dim mz As Double = scan.parentMz
                 Dim adducts As String
 
-                If cluster.SubItems.Count <= 11 Then
+                If cluster.Items.Count <= 11 Then
                     Call Workbench.Warning($"invalid scan adducts source: {scan_id}")
                     Continue For
                 Else
-                    adducts = cluster.SubItems.Item(11).Text
+                    adducts = cluster.Items.Item(11).filename
                 End If
 
                 Call mzset.Add(New NamedValue(Of Double)(adducts, mz))
@@ -477,8 +506,8 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             Call MyApplication.host.mzkitTool.ShowPage()
         Else
             ' 选择的是一个scan数据节点
-            Dim parentFile = cluster.Parent.ToolTipText
-            Dim scan_id As String = cluster.Text
+            Dim parentFile = cluster.Parent.tooltiptext
+            Dim scan_id As String = cluster.filename
             ' scan节点
             Dim raw As Raw
 
@@ -526,24 +555,24 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
         Dim row As New List(Of String)
 
         For i As Integer = 0 To TreeListView1.Columns.Count - 1
-            row.Add(TreeListView1.Columns(i).Text)
+            row.Add(TreeListView1.Columns(i).Title)
         Next
 
         file.Add(New RowObject(row))
 
-        For Each item As TreeListViewItem In TreeListView1.Items
-            Dim tag As String = item.Text
+        For Each item As FileMatch In Me.matches
+            Dim tag As String = item.filename
 
-            For Each feature As ListViewItem In item.Items
+            For Each feature As FileMatch In item.Items
                 row.Clear()
                 row.Add(tag)
 
                 Dim i As i32 = 0
 
-                For Each cell As ListViewSubItem In feature.SubItems
+                For Each cell As FileMatch In feature.Items
                     If ++i <> 1 Then
                         ' skip of add no-sense #num
-                        Call row.Add(cell.Text)
+                        Call row.Add(cell.filename)
                     End If
                 Next
 
@@ -606,7 +635,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 Call Workbench.Warning("invalid filter value...")
                 Return
             Else
-                Call TreeListView1.Items.Clear()
+                Call TreeListView1.SetRoots({})
             End If
 
             If Not list1.IsNullOrEmpty Then
@@ -678,8 +707,8 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             ' parent match
             Dim parents As New List(Of ParentMatch)
 
-            For Each fileRow As TreeListViewItem In TreeListView1.Items
-                For Each feature As TreeListViewItem In fileRow.Items
+            For Each fileRow As FileMatch In matches
+                For Each feature As FileMatch In fileRow.Items
                     Call parents.Add(feature.Tag)
                 Next
             Next

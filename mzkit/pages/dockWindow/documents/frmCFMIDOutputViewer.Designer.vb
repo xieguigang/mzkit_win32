@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
 Imports Galaxy.CommonControls.ModernTreeListView
 Imports Galaxy.Workbench.DockDocument
 
@@ -27,11 +28,11 @@ Partial Class frmCFMIDOutputViewer
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeListViewItemCollectionComparer1 As System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer = New System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer()
+
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TreeListView1 = New System.Windows.Forms.TreeListView()
+        Me.TreeListView1 = New ModernTreeListView(Of MspData)
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -59,22 +60,20 @@ Partial Class frmCFMIDOutputViewer
         '
         'TreeListView1
         '
-        Me.TreeListView1.Activation = System.Windows.Forms.ItemActivation.OneClick
-        Me.TreeListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
-        TreeListViewItemCollectionComparer1.Column = 0
-        TreeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending
-        Me.TreeListView1.Comparer = TreeListViewItemCollectionComparer1
+
+
+
         Me.TreeListView1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.TreeListView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TreeListView1.Font = New System.Drawing.Font("Microsoft YaHei", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TreeListView1.GridLines = True
-        Me.TreeListView1.HideSelection = False
+        Me.TreeListView1.ShowGridLines = True
+
         Me.TreeListView1.Location = New System.Drawing.Point(0, 0)
         Me.TreeListView1.Name = "TreeListView1"
-        Me.TreeListView1.ShowItemToolTips = True
+
         Me.TreeListView1.Size = New System.Drawing.Size(800, 450)
         Me.TreeListView1.TabIndex = 1
-        Me.TreeListView1.UseCompatibleStateImageBehavior = False
+
         '
         'ColumnHeader1
         '
@@ -113,7 +112,7 @@ Partial Class frmCFMIDOutputViewer
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents TreeListView1 As ModernTreeListView
+    Friend WithEvents TreeListView1 As ModernTreeListView(Of MspData)
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
     Friend WithEvents ColumnHeader3 As ColumnHeader

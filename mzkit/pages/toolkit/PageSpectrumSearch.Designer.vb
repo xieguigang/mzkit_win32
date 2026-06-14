@@ -81,7 +81,7 @@ Partial Class PageSpectrumSearch
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PageSpectrumSearch))
-        Dim TreeListViewItemCollectionComparer2 As System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer = New System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer()
+
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
@@ -96,7 +96,7 @@ Partial Class PageSpectrumSearch
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.TreeListView1 = New System.Windows.Forms.TreeListView()
+        Me.TreeListView1 = New ModernTreeListView(Of spectrumSearchResult)
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -211,18 +211,14 @@ Partial Class PageSpectrumSearch
         'TreeListView1
         '
         resources.ApplyResources(Me.TreeListView1, "TreeListView1")
-        Me.TreeListView1.Activation = System.Windows.Forms.ItemActivation.OneClick
-        Me.TreeListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6})
-        TreeListViewItemCollectionComparer2.Column = 0
-        TreeListViewItemCollectionComparer2.SortOrder = System.Windows.Forms.SortOrder.Ascending
-        Me.TreeListView1.Comparer = TreeListViewItemCollectionComparer2
+
+
+
         Me.TreeListView1.ContextMenuStrip = Me.ContextMenuStrip3
-        Me.TreeListView1.GridLines = True
-        Me.TreeListView1.HideSelection = False
+        Me.TreeListView1.ShowGridLines = True
+
         Me.TreeListView1.Name = "TreeListView1"
-        Me.TreeListView1.ShowItemToolTips = True
-        Me.TreeListView1.SmallImageList = Me.ImageList1
-        Me.TreeListView1.UseCompatibleStateImageBehavior = False
+
         '
         'ColumnHeader1
         '
@@ -301,7 +297,7 @@ Partial Class PageSpectrumSearch
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents TreeListView1 As ModernTreeListView
+    Friend WithEvents TreeListView1 As ModernTreeListView(Of spectrumSearchResult)
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
     Friend WithEvents ColumnHeader3 As ColumnHeader

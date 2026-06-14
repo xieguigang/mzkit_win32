@@ -81,9 +81,9 @@ Partial Class TaskListWindow
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeListViewItemCollectionComparer1 As System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer = New System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer()
+
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TaskListWindow))
-        Me.TreeListView1 = New System.Windows.Forms.TreeListView()
+        Me.TreeListView1 = New ModernTreeListView(Of TaskRun)
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -94,21 +94,20 @@ Partial Class TaskListWindow
         '
         'TreeListView1
         '
-        Me.TreeListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5})
-        TreeListViewItemCollectionComparer1.Column = 0
-        TreeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending
-        Me.TreeListView1.Comparer = TreeListViewItemCollectionComparer1
+
+
+
         Me.TreeListView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TreeListView1.Font = New System.Drawing.Font("微软雅黑", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.TreeListView1.GridLines = True
-        Me.TreeListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
-        Me.TreeListView1.HideSelection = False
+        Me.TreeListView1.ShowGridLines = True
+
+
         Me.TreeListView1.Location = New System.Drawing.Point(0, 0)
         Me.TreeListView1.Name = "TreeListView1"
         Me.TreeListView1.Size = New System.Drawing.Size(983, 494)
-        Me.TreeListView1.SmallImageList = Me.ImageList1
+
         Me.TreeListView1.TabIndex = 0
-        Me.TreeListView1.UseCompatibleStateImageBehavior = False
+
         '
         'ColumnHeader1
         '

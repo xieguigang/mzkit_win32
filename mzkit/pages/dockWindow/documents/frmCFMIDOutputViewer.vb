@@ -15,12 +15,12 @@ Public Class frmCFMIDOutputViewer
 
             Call msp.Add(energy, matrix)
 
-            Dim row = TreeListView1.Items.Add(energy)
+            ' Dim row = TreeListView1.Items.Add(energy)
 
-            row.Tag = matrix
-            row.SubItems.Add(id)
-            row.SubItems.Add(name)
-            row.SubItems.Add(matrix.Peaks.OrderByDescending(Function(i) i.intensity).Take(3).Select(Function(mzi) mzi.mz.ToString("F3")).JoinBy("; "))
+            ' row.Tag = matrix
+            ' row.SubItems.Add(id)
+            ' row.SubItems.Add(name)
+            ' row.SubItems.Add(matrix.Peaks.OrderByDescending(Function(i) i.intensity).Take(3).Select(Function(mzi) mzi.mz.ToString("F3")).JoinBy("; "))
         Next
     End Sub
 
@@ -30,16 +30,14 @@ Public Class frmCFMIDOutputViewer
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
-        Dim cluster As TreeListViewItem
+        Dim cluster As MspData = TreeListView1.SelectedModel
 
-        If TreeListView1.SelectedItems.Count = 0 Then
+        If cluster Is Nothing Then
             Return
-        Else
-            cluster = TreeListView1.SelectedItems(0)
         End If
 
         Dim searchPage As frmSpectrumSearch = VisualStudio.ShowDocument(Of frmSpectrumSearch)(DockState.Document)
-        Dim msp As MspData = cluster.Tag
+        Dim msp As MspData = cluster
 
         Call searchPage.LoadMs2(msp.Peaks)
         Call searchPage.RunSearch()
@@ -51,15 +49,13 @@ Public Class frmCFMIDOutputViewer
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
-        Dim cluster As TreeListViewItem
+        Dim cluster As MspData = TreeListView1.SelectedModel
 
-        If TreeListView1.SelectedItems.Count = 0 Then
+        If cluster Is Nothing Then
             Return
-        Else
-            cluster = TreeListView1.SelectedItems(0)
         End If
 
-        Dim msp As MspData = cluster.Tag
+        Dim msp As MspData = cluster
         Dim ms As New LibraryMatrix With {
             .centroid = True,
             .ms2 = msp.Peaks,
