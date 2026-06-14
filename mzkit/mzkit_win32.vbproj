@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows</TargetFramework>
-    <StartupObject>msconvertGUI.My.MyApplication</StartupObject>
+   
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
     <OutputPath>../../../dist\bin</OutputPath>
@@ -23,6 +23,7 @@
 
   <PropertyGroup>
     <NoWarn>$(NoWarn);WFO1000</NoWarn>
+    <StartupObject>BioNovoGene.mzkit_win32.My.MyApplication</StartupObject>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
