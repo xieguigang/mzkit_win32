@@ -257,7 +257,7 @@ Public Class PageMoleculeNetworking
 
         DataGridView1.Rows.Clear()
         ' DataGridView2.Rows.Clear()
-        TreeListView1.Items.Clear()
+        TreeListView1.Clear()
 
         ' g = TreeGraph(Of PeakMs2, PeakMs2).CreateGraph(MN.getRoot, Function(a) a.lib_guid, Function(a) $"M{CInt(a.mz)}T{CInt(a.rt)}")
         '.doRandomLayout _
@@ -339,41 +339,46 @@ Public Class PageMoleculeNetworking
         Call g.ComputeNodeDegrees
         Call g.ComputeBetweennessCentrality
 
+        Dim list As New List(Of NetworkCluster)
+
         ' show the molecular cluster graph nodes in the table UI
         For Each node As Graph.Node In g.vertex
             Dim info = nodeInfo.Cluster(node.label)
             ' create UI for cluster node
-            Dim row As New TreeListViewItem With {
+            Dim row As New NetworkCluster With {
                 .Text = node.label,
                 .ImageIndex = 0,
                 .ToolTipText = node.label
             }
 
             For Each member In info.members
-                Dim ion As New TreeListViewItem(member.lib_guid) With {.ImageIndex = 1, .ToolTipText = member.lib_guid}
+                Dim ion As New NetworkCluster With {.Text = member.lib_guid, .ImageIndex = 1, .ToolTipText = member.lib_guid, .parent = row}
 
-                ion.SubItems.Add(New ListViewSubItem With {.Text = member.file})
-                ion.SubItems.Add(New ListViewSubItem With {.Text = member.mzInto.Length})
-                ion.SubItems.Add(New ListViewSubItem With {.Text = member.mz})
-                ion.SubItems.Add(New ListViewSubItem With {.Text = member.rt})
-                ion.SubItems.Add(New ListViewSubItem With {.Text = "n/a"})
-                ion.SubItems.Add(New ListViewSubItem With {.Text = "n/a"})
-                ion.SubItems.Add(New ListViewSubItem With {.Text = member.Ms2Intensity})
+                ion.file = member.file
+                ion.size = member.mzInto.Length
+                ion.mz = member.mz
+                ion.rt = member.rt
+                ion.rtmin = "n/a"
+                ion.rtmax = "n/a"
+                ion.area = member.Ms2Intensity
 
                 row.Items.Add(ion)
             Next
 
-            row.SubItems.Add(New ListViewSubItem With {.Text = node.data(NamesOf.REFLECTION_ID_MAPPING_NODETYPE)})
-            row.SubItems.Add(New ListViewSubItem With {.Text = info.size})
-            row.SubItems.Add(New ListViewSubItem With {.Text = info.mz})
-            row.SubItems.Add(New ListViewSubItem With {.Text = node.data("rt")})
-            row.SubItems.Add(New ListViewSubItem With {.Text = node.data("rtmin")})
-            row.SubItems.Add(New ListViewSubItem With {.Text = node.data("rtmax")})
-            row.SubItems.Add(New ListViewSubItem With {.Text = node.data("area")})
+            row.file = node.data(NamesOf.REFLECTION_ID_MAPPING_NODETYPE)
+            row.size = info.size
+            row.mz = info.mz
+            row.rt = node.data("rt")
+            row.rtmin = node.data("rtmin")
+            row.rtmax = node.data("rtmax")
+            row.area = node.data("area")
 
-            Call TreeListView1.Items.Add(row)
-            Call System.Windows.Forms.Application.DoEvents()
+            Call list.Add(row)
+
         Next
+
+        Call TreeListView1.SetRoots(list)
+
         For Each edge As Edge In g.graphEdges
             Call DataGridView1.Rows.Add(
                 edge.U.label,
@@ -397,6 +402,21 @@ Public Class PageMoleculeNetworking
             Call System.Windows.Forms.Application.DoEvents()
         Next
     End Sub
+
+    Public Class NetworkCluster
+        Public Property parent As NetworkCluster
+        Public Property file As String
+        Public Property size As Integer
+        Public Property mz As Double
+        Public Property rt As Double
+        Public Property rtmin As String
+        Public Property rtmax As String
+        Public Property area As Double
+        Public Property Text As String
+        Public Property ImageIndex As Integer
+        Public Property ToolTipText As String
+        Public Property Items As New List(Of NetworkCluster)
+    End Class
 
     Public Sub saveNetwork()
         If Not g Is Nothing Then
@@ -443,17 +463,15 @@ Public Class PageMoleculeNetworking
     End Sub
 
     Private Function GetSelectedCluster() As NetworkingNode
-        Dim cluster As TreeListViewItem
+        Dim cluster As NetworkCluster = TreeListView1.SelectedModel
         Dim host = MyApplication.host
         Dim v As NetworkingNode
 
-        If TreeListView1.SelectedItems.Count = 0 Then
+        If cluster Is Nothing Then
             Return Nothing
-        Else
-            cluster = TreeListView1.SelectedItems(0)
         End If
 
-        If cluster.ChildrenCount > 0 Then
+        If cluster.Items.Count > 0 Then
             ' 是一个cluster
             v = nodeInfo.Cluster(cluster.Text)
         Else
@@ -494,16 +512,14 @@ Public Class PageMoleculeNetworking
     End Sub
 
     Private Sub SaveImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowImageToolStripMenuItem.Click
-        Dim cluster As TreeListViewItem
+        Dim cluster As NetworkCluster = TreeListView1.SelectedModel
         Dim host = MyApplication.host
 
-        If TreeListView1.SelectedItems.Count = 0 Then
+        If cluster Is Nothing Then
             Return
-        Else
-            cluster = TreeListView1.SelectedItems(0)
         End If
 
-        If cluster.ChildrenCount > 0 Then
+        If cluster.Items.Count > 0 Then
             ' 是一个cluster
             Dim clusterId As String = cluster.Text
             Dim clusterSpectrum = nodeInfo.Cluster(clusterId).representation
@@ -524,16 +540,14 @@ Public Class PageMoleculeNetworking
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ShowClusterAlignmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowClusterAlignmentToolStripMenuItem.Click
-        Dim cluster As TreeListViewItem
+        Dim cluster As NetworkCluster = TreeListView1.SelectedModel
         Dim host = MyApplication.host
 
-        If TreeListView1.SelectedItems.Count = 0 Then
+        If cluster Is Nothing Then
             Return
-        Else
-            cluster = TreeListView1.SelectedItems(0)
         End If
 
-        If cluster.ChildrenCount > 0 Then
+        If cluster.Items.Count > 0 Then
             ' is a cluster, not working for the cluster
             Return
         End If

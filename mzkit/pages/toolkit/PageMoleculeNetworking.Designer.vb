@@ -80,7 +80,7 @@ Partial Class PageMoleculeNetworking
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeListViewItemCollectionComparer1 As System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer = New System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer()
+
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PageMoleculeNetworking))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -92,7 +92,7 @@ Partial Class PageMoleculeNetworking
         Me.reverse = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.TreeListView1 = New System.Windows.Forms.TreeListView()
+        Me.TreeListView1 = New ModernTreeListView(Of NetworkCluster)
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -205,25 +205,20 @@ Partial Class PageMoleculeNetworking
         '
         'TreeListView1
         '
-        Me.TreeListView1.Alignment = System.Windows.Forms.ListViewAlignment.[Default]
-        Me.TreeListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8})
-        TreeListViewItemCollectionComparer1.Column = 0
-        TreeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending
-        Me.TreeListView1.Comparer = TreeListViewItemCollectionComparer1
+
         Me.TreeListView1.ContextMenuStrip = Me.ctxCluster
         Me.TreeListView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TreeListView1.Font = New System.Drawing.Font("Microsoft YaHei UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.TreeListView1.GridLines = True
-        Me.TreeListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
-        Me.TreeListView1.HideSelection = False
+        Me.TreeListView1.ShowGridLines = True
+
         Me.TreeListView1.Location = New System.Drawing.Point(3, 3)
         Me.TreeListView1.MultiSelect = False
         Me.TreeListView1.Name = "TreeListView1"
-        Me.TreeListView1.ShowItemToolTips = True
+
         Me.TreeListView1.Size = New System.Drawing.Size(942, 566)
-        Me.TreeListView1.SmallImageList = Me.ImageList1
+
         Me.TreeListView1.TabIndex = 0
-        Me.TreeListView1.UseCompatibleStateImageBehavior = False
+
         '
         'ColumnHeader1
         '
@@ -370,7 +365,7 @@ Partial Class PageMoleculeNetworking
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents TreeListView1 As ModernTreeListView
+    Friend WithEvents TreeListView1 As ModernTreeListView(Of NetworkCluster)
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
     Friend WithEvents ColumnHeader3 As ColumnHeader
