@@ -603,9 +603,6 @@ Are you want to make your data to be pre-processing before load it into computer
 
         splashScreen.UpdateInformation("Apply UI layout...")
         splashScreen.UpdateInformation("Fetch news from bionovogene...")
-
-        WindowModules.startPage.Show(MyApplication.host.m_dockPanel)
-
         splashScreen.UpdateInformation("Initialize of the R# automation scripting engine...")
 
         MyApplication.InitializeREngine()
@@ -648,6 +645,7 @@ Are you want to make your data to be pre-processing before load it into computer
             Call VisualStudio.InstallInternalRPackages()
         End If
 
+        Call RibbonEvents.showStartPage(Nothing, Nothing)
         Call Workbench.LogText("set ui language culture to:" & Thread.CurrentThread.CurrentUICulture.ToString)
         Call Workbench.LogText("language=" & CommonRuntime.UISettings.language.Description)
     End Sub
@@ -898,9 +896,6 @@ Are you want to make your data to be pre-processing before load it into computer
 
     Private Sub frmMain_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
         Ribbon1.Refresh()
-
-        WindowModules.startPage.ResumeLayout(performLayout:=False)
-        WindowModules.startPage.PerformLayout()
     End Sub
 
     Dim mzkitApp As Process = Process.GetCurrentProcess()
@@ -929,18 +924,6 @@ Are you want to make your data to be pre-processing before load it into computer
 
         ToolStripStatusLabel3.Text = $"Memory: {StringFormats.Lanudry(mzkitApp.WorkingSet64)}"
         mzkitApp.Refresh()
-    End Sub
-
-    Private Sub ToolStripStatusLabel2_Click(sender As Object, e As EventArgs) Handles ToolStripStatusLabel2.Click
-
-    End Sub
-
-    Private Sub frmMain_ResizeBegin(sender As Object, e As EventArgs) Handles Me.ResizeBegin
-        WindowModules.startPage.SuspendLayout()
-    End Sub
-
-    Private Sub frmMain_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
-
     End Sub
 
     ''' <summary>

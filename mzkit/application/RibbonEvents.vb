@@ -1069,7 +1069,7 @@ Module RibbonEvents
         WindowModules.output.DockState = DockState.DockBottom
     End Sub
 
-    Private Sub showStartPage(sender As Object, e As ExecuteEventArgs)
+    Public Sub showStartPage(sender As Object, e As ExecuteEventArgs)
         If Not Globals.CheckFormOpened(WindowModules.startPage) Then
             WindowModules.startPage = New frmStartPage
         End If

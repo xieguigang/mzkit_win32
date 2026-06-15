@@ -118,9 +118,6 @@ Friend MustInherit Class WindowModules
 
         rawFeaturesList.Show(dockPanel)
 
-        startPage.Show(dockPanel)
-        startPage.DockState = DockState.Document
-
         panelMain.Show(dockPanel)
         panelMain.DockState = DockState.Document
 
