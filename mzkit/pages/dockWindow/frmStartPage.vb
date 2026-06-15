@@ -114,7 +114,7 @@ Public Class frmStartPage
         AutoScaleMode = AutoScaleMode.Dpi
     End Sub
 
-    Private Sub frmStartPage_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Async Sub frmStartPage_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.Icon = My.Resources.chemistry
         Me.ShowIcon = True
         '    Me.ShowInTaskbar = True
@@ -125,7 +125,7 @@ Public Class frmStartPage
 
         hideNewsFeeds()
         ' BackgroundWorker.RunWorkerAsync()
-        WebViewLoader.Init(WebView21)
+        Await WebViewLoader.Init(WebView21)
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
