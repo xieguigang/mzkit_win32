@@ -121,9 +121,6 @@ Friend MustInherit Class WindowModules
         panelMain.Show(dockPanel)
         panelMain.DockState = DockState.Document
 
-        settingsPage.Show(dockPanel)
-        settingsPage.DockState = DockState.Hidden
-
         GCMSPeaks.Show(dockPanel)
         GCMSPeaks.DockState = DockState.Hidden
 

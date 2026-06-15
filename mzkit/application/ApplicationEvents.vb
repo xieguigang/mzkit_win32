@@ -321,7 +321,7 @@ Type 'q()' to quit R.
                     End If
                 End Sub
 
-            Call New Thread(AddressOf New Shell(New PS1("> "), AddressOf doRunScriptWithSpecialCommand, dev:=console) With {.Quite = "!.R#::quit" & Rnd()}.Run).Start()
+            ' Call New Thread(AddressOf New Shell(New PS1("> "), AddressOf doRunScriptWithSpecialCommand, dev:=console) With {.Quite = "!.R#::quit" & Rnd()}.Run).Start()
             Call DescriptionTooltip.SetEngine(REngine)
         End Sub
 

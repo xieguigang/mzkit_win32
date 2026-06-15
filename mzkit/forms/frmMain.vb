@@ -645,7 +645,7 @@ Are you want to make your data to be pre-processing before load it into computer
             Call VisualStudio.InstallInternalRPackages()
         End If
 
-        Call RibbonEvents.showStartPage(Nothing, Nothing)
+        ' Call RibbonEvents.showStartPage(Nothing, Nothing)
         Call Workbench.LogText("set ui language culture to:" & Thread.CurrentThread.CurrentUICulture.ToString)
         Call Workbench.LogText("language=" & CommonRuntime.UISettings.language.Description)
     End Sub
