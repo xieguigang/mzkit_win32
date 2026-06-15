@@ -574,7 +574,6 @@ Are you want to make your data to be pre-processing before load it into computer
         splashScreen.UpdateInformation("Initialize of the ribbon UI...")
 
         InitSpinner()
-        InitializeFormulaProfile()
 
         splashScreen.UpdateInformation("Initialize of the VisualStudio UI...")
 
@@ -645,34 +644,10 @@ Are you want to make your data to be pre-processing before load it into computer
             Call VisualStudio.InstallInternalRPackages()
         End If
 
-        ' Call RibbonEvents.showStartPage(Nothing, Nothing)
         Call Workbench.LogText("set ui language culture to:" & Thread.CurrentThread.CurrentUICulture.ToString)
         Call Workbench.LogText("language=" & CommonRuntime.UISettings.language.Description)
+        Call RibbonEvents.showStartPage(Nothing, Nothing)
     End Sub
-
-    Private Sub InitializeFormulaProfile()
-        '  ribbonItems.ComboFormulaSearchProfile3.RepresentativeString = "XXXXXXXXXXXXXX"
-        '  ribbonItems.ComboFormulaSearchProfile3.Label = "Preset Profiles:"
-
-        '  AddHandler ribbonItems.ComboFormulaSearchProfile3.ItemsSourceReady, AddressOf InitializeFormulaProfile
-    End Sub
-
-    'Private Sub InitializeFormulaProfile(sender As Object, e As EventArgs)
-    '    Dim itemsSource3 As IUICollection = ribbonItems.ComboFormulaSearchProfile3.ItemsSource
-
-    '    MsgBox("initialize profile")
-
-    '    itemsSource3.Clear()
-    '    itemsSource3.Add(New GalleryItemPropertySet() With {.Label = FormulaSearchProfiles.Custom.Description, .CategoryID = Constants.UI_Collection_InvalidIndex})
-    '    itemsSource3.Add(New GalleryItemPropertySet() With {.Label = FormulaSearchProfiles.Default.Description, .CategoryID = Constants.UI_Collection_InvalidIndex})
-    '    itemsSource3.Add(New GalleryItemPropertySet() With {.Label = FormulaSearchProfiles.SmallMolecule.Description, .CategoryID = Constants.UI_Collection_InvalidIndex})
-    '    itemsSource3.Add(New GalleryItemPropertySet() With {.Label = FormulaSearchProfiles.NaturalProduct.Description, .CategoryID = Constants.UI_Collection_InvalidIndex})
-
-    '    MsgBox("initialize event")
-
-    '    _uiCollectionChangedEvent.Attach(ribbonItems.ComboFormulaSearchProfile3.ItemsSource)
-    '    AddHandler _uiCollectionChangedEvent.ChangedEvent, AddressOf _uiCollectionChangedEvent_ChangedEvent
-    'End Sub
 
     ''' <summary>
     ''' 线程操作安全的消息提示函数
