@@ -125,14 +125,20 @@ Public Class frmStartPage
 
         hideNewsFeeds()
         ' BackgroundWorker.RunWorkerAsync()
-        Await WebViewLoader.Init(WebView21)
+        Await WebViewLoader.Init(WebView21, enableDevTool:=True)
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
-        ' WebView21.CoreWebView2.OpenDevToolsWindow()
-        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New LinkActions With {.host = Me})
-        Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call WebViewLoader.DeveloperOptions(WebView21, enable:=True,)
+        If e.IsSuccess Then
+            ' WebView21.CoreWebView2.OpenDevToolsWindow()
+            Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New LinkActions With {.host = Me})
+            Call WebView21.CoreWebView2.Navigate(sourceURL)
+            Call WebViewLoader.DeveloperOptions(WebView21, enable:=True,)
+        Else
+            If e.InitializationException IsNot Nothing Then
+                Call App.LogException(e.InitializationException)
+            End If
+        End If
     End Sub
 
     Public Shared Sub ViewRawDataFile()
