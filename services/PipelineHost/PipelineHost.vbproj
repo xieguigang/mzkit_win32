@@ -9,6 +9,8 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Platforms>AnyCPU;ARM32;x64</Platforms>
+    <OutputPath>../../../../dist\bin\Rstudio\host\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(TargetFramework)' == 'mzkit_win32|net8.0-windows' ">
@@ -96,7 +98,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='mzkit_win32|net8.0-windows|x64'">
     <DocumentationFile>PipelineHost.xml</DocumentationFile>
-    <OutputPath>../../../../dist\bin\Rstudio\host\</OutputPath>
+   
     <RemoveIntegerChecks>True</RemoveIntegerChecks>
     <Optimize>False</Optimize>
     <DebugSymbols>true</DebugSymbols>
