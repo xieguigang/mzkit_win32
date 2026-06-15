@@ -85,41 +85,69 @@ Partial Class frmMain
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         StatusStrip = New StatusStrip()
         ToolStripStatusLabel1 = New ToolStripStatusLabel()
+        ToolStripStatusLabel2 = New ToolStripStatusLabel()
+        ToolStripStatusLabel3 = New ToolStripStatusLabel()
+        ToolStripProgressBar1 = New ToolStripProgressBar()
+        ToolStripStatusLabel4 = New ToolStripStatusLabel()
+        ToolStripStatusLabel5 = New ToolStripStatusLabel()
         ToolStripDropDownButton1 = New ToolStripDropDownButton()
         MoleculeNetworkingToolStripMenuItem = New ToolStripMenuItem()
         FormulaSearchToolToolStripMenuItem = New ToolStripMenuItem()
         MzCalculatorToolStripMenuItem = New ToolStripMenuItem()
         RawFileViewerToolStripMenuItem = New ToolStripMenuItem()
-        ToolStripStatusLabel2 = New ToolStripStatusLabel()
-        ToolStripStatusLabel3 = New ToolStripStatusLabel()
-        ToolStripProgressBar1 = New ToolStripProgressBar()
-        ToolStripStatusLabel4 = New ToolStripStatusLabel()
         ToolTip = New ToolTip(components)
         Ribbon1 = New Ribbon()
         PanelBase = New Panel()
         Timer1 = New Timer(components)
-        ToolStripStatusLabel5 = New ToolStripStatusLabel()
         StatusStrip.SuspendLayout()
         SuspendLayout()
         ' 
         ' StatusStrip
         ' 
-        resources.ApplyResources(StatusStrip, "StatusStrip")
         StatusStrip.Items.AddRange(New ToolStripItem() {ToolStripStatusLabel1, ToolStripStatusLabel2, ToolStripStatusLabel3, ToolStripProgressBar1, ToolStripStatusLabel4, ToolStripStatusLabel5, ToolStripDropDownButton1})
         StatusStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow
+        resources.ApplyResources(StatusStrip, "StatusStrip")
         StatusStrip.Name = "StatusStrip"
         StatusStrip.RenderMode = ToolStripRenderMode.Professional
-        ToolTip.SetToolTip(StatusStrip, resources.GetString("StatusStrip.ToolTip"))
         ' 
         ' ToolStripStatusLabel1
         ' 
-        resources.ApplyResources(ToolStripStatusLabel1, "ToolStripStatusLabel1")
         ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        resources.ApplyResources(ToolStripStatusLabel1, "ToolStripStatusLabel1")
+        ' 
+        ' ToolStripStatusLabel2
+        ' 
+        resources.ApplyResources(ToolStripStatusLabel2, "ToolStripStatusLabel2")
+        ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
+        ' 
+        ' ToolStripStatusLabel3
+        ' 
+        resources.ApplyResources(ToolStripStatusLabel3, "ToolStripStatusLabel3")
+        ToolStripStatusLabel3.Name = "ToolStripStatusLabel3"
+        ' 
+        ' ToolStripProgressBar1
+        ' 
+        ToolStripProgressBar1.Name = "ToolStripProgressBar1"
+        resources.ApplyResources(ToolStripProgressBar1, "ToolStripProgressBar1")
+        ToolStripProgressBar1.Value = 100
+        ' 
+        ' ToolStripStatusLabel4
+        ' 
+        resources.ApplyResources(ToolStripStatusLabel4, "ToolStripStatusLabel4")
+        ToolStripStatusLabel4.IsLink = True
+        ToolStripStatusLabel4.Name = "ToolStripStatusLabel4"
+        ' 
+        ' ToolStripStatusLabel5
+        ' 
+        ToolStripStatusLabel5.DisplayStyle = ToolStripItemDisplayStyle.Text
+        ToolStripStatusLabel5.Name = "ToolStripStatusLabel5"
+        resources.ApplyResources(ToolStripStatusLabel5, "ToolStripStatusLabel5")
+        ToolStripStatusLabel5.Spring = True
         ' 
         ' ToolStripDropDownButton1
         ' 
-        resources.ApplyResources(ToolStripDropDownButton1, "ToolStripDropDownButton1")
         ToolStripDropDownButton1.DropDownItems.AddRange(New ToolStripItem() {MoleculeNetworkingToolStripMenuItem, FormulaSearchToolToolStripMenuItem, MzCalculatorToolStripMenuItem, RawFileViewerToolStripMenuItem})
+        resources.ApplyResources(ToolStripDropDownButton1, "ToolStripDropDownButton1")
         ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
         ' 
         ' MoleculeNetworkingToolStripMenuItem
@@ -142,28 +170,6 @@ Partial Class frmMain
         resources.ApplyResources(RawFileViewerToolStripMenuItem, "RawFileViewerToolStripMenuItem")
         RawFileViewerToolStripMenuItem.Name = "RawFileViewerToolStripMenuItem"
         ' 
-        ' ToolStripStatusLabel2
-        ' 
-        resources.ApplyResources(ToolStripStatusLabel2, "ToolStripStatusLabel2")
-        ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        ' 
-        ' ToolStripStatusLabel3
-        ' 
-        resources.ApplyResources(ToolStripStatusLabel3, "ToolStripStatusLabel3")
-        ToolStripStatusLabel3.Name = "ToolStripStatusLabel3"
-        ' 
-        ' ToolStripProgressBar1
-        ' 
-        resources.ApplyResources(ToolStripProgressBar1, "ToolStripProgressBar1")
-        ToolStripProgressBar1.Name = "ToolStripProgressBar1"
-        ToolStripProgressBar1.Value = 100
-        ' 
-        ' ToolStripStatusLabel4
-        ' 
-        resources.ApplyResources(ToolStripStatusLabel4, "ToolStripStatusLabel4")
-        ToolStripStatusLabel4.IsLink = True
-        ToolStripStatusLabel4.Name = "ToolStripStatusLabel4"
-        ' 
         ' Ribbon1
         ' 
         resources.ApplyResources(Ribbon1, "Ribbon1")
@@ -171,35 +177,26 @@ Partial Class frmMain
         Ribbon1.ResourceIdentifier = Nothing
         Ribbon1.ResourceName = "BioNovoGene.mzkit_win32.RibbonMarkup.ribbon"
         Ribbon1.ShortcutTableResourceName = Nothing
-        ToolTip.SetToolTip(Ribbon1, resources.GetString("Ribbon1.ToolTip"))
         ' 
         ' PanelBase
         ' 
         resources.ApplyResources(PanelBase, "PanelBase")
         PanelBase.Name = "PanelBase"
-        ToolTip.SetToolTip(PanelBase, resources.GetString("PanelBase.ToolTip"))
         ' 
         ' Timer1
         ' 
         Timer1.Enabled = True
         Timer1.Interval = 1000
         ' 
-        ' ToolStripStatusLabel5
-        ' 
-        resources.ApplyResources(ToolStripStatusLabel5, "ToolStripStatusLabel5")
-        ToolStripStatusLabel5.Name = "ToolStripStatusLabel5"
-        ToolStripStatusLabel5.Spring = True
-        ' 
         ' frmMain
         ' 
-        resources.ApplyResources(Me, "$this")
         AutoScaleMode = AutoScaleMode.Inherit
         BackColor = Drawing.SystemColors.Control
+        resources.ApplyResources(Me, "$this")
         Controls.Add(PanelBase)
         Controls.Add(StatusStrip)
         Controls.Add(Ribbon1)
         Name = "frmMain"
-        ToolTip.SetToolTip(Me, resources.GetString("$this.ToolTip"))
         StatusStrip.ResumeLayout(False)
         StatusStrip.PerformLayout()
         ResumeLayout(False)
