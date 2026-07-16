@@ -1139,7 +1139,7 @@ Public Class frmMsImagingViewer
     ''' <param name="fileName"></param>
     Private Sub loadHEMapMatrix(fileName As String)
         Dim file As File = Microsoft.VisualBasic.Data.Framework.IO.File.Load(fileName)
-        Dim table = DataFrameResolver.CreateObject(file)
+        Dim table As DataFrameResolver = DataFrameResolver.CreateObject(file)
 
         If table.GetOrdinal("x") = -1 OrElse table.GetOrdinal("y") = -1 Then
             MessageBox.Show(
@@ -1156,46 +1156,50 @@ Public Class frmMsImagingViewer
 
         InputDialog.Input(
             Sub(config)
-                Dim field As String = config.GetInputFieldName
-                Dim x As Integer() = table.GetColumnValues("x").Select(AddressOf Integer.Parse).ToArray
-                Dim y As Integer() = table.GetColumnValues("y").Select(AddressOf Integer.Parse).ToArray
-                Dim data As Double() = table.GetColumnValues(field).Select(AddressOf Double.Parse).ToArray
-                Dim scan_x As Integer = If(params Is Nothing, x.Max, params.scan_x)
-                Dim scan_y As Integer = If(params Is Nothing, y.Max, params.scan_y)
-                Dim layer As New SingleIonLayer With {
-                    .IonMz = field,
-                    .DimensionSize = New Size(scan_x, scan_y),
-                    .MSILayer = data _
-                        .Select(Function(v, i) New PixelData(x(i), y(i), v)) _
-                        .ToArray
-                }
-                Dim argv As New MsImageProperty(scan_x, scan_y) With {
-                    .background = Color.Transparent,
-                    .colors = ScalerPalette.viridis,
-                    .enableFilter = False,
-                    .Hqx = HqxScales.Hqx_4x,
-                    .mapLevels = 255,
-                    .scale = InterpolationMode.HighQualityBicubic,
-                    .showTotalIonOverlap = True,
-                    .showPhysicalRuler = False,
-                    .TrIQ = 1,
-                    .resolution = 17,
-                    .knn = 0,
-                    .knn_qcut = 1
-                }
-                Dim blender As Type = GetType(SingleIonMSIBlender) '(layer.MSILayer, Nothing, argv, loadFilters)
-                Me.blender.channel.WriteBuffer(PixelData.GetBuffer(layer.MSILayer))
-                Me.blender.OpenSession(blender, New Size(scan_x, scan_y), Nothing, params, Nothing)
-                Dim HEMap As System.Drawing.Image = Me.blender.MSIRender(Nothing, argv, layer.DimensionSize)
-
-                If Me.blender IsNot Nothing AndAlso Me.blender.Session IsNot GetType(HeatMapBlender) Then
-                    ' draw and overlaps on the MS-imaging rendering for CAD analysis
-                    PixelSelector1.MSICanvas.tissue_layer = HEMap
-                    PixelSelector1.MSICanvas.RedrawCanvas()
-                Else
-                    Call loadHEMapImage(HEMap)
-                End If
+                Call loadHEMapMatrix(table, config)
             End Sub, config:=input)
+    End Sub
+
+    Private Sub loadHEMapMatrix(table As DataFrameResolver, config As InputDataFieldName)
+        Dim field As String = config.GetInputFieldName
+        Dim x As Integer() = table.GetColumnValues("x").Select(AddressOf Integer.Parse).ToArray
+        Dim y As Integer() = table.GetColumnValues("y").Select(AddressOf Integer.Parse).ToArray
+        Dim data As Double() = table.GetColumnValues(field).Select(AddressOf Double.Parse).ToArray
+        Dim scan_x As Integer = If(params Is Nothing, x.Max, params.scan_x)
+        Dim scan_y As Integer = If(params Is Nothing, y.Max, params.scan_y)
+        Dim layer As New SingleIonLayer With {
+            .IonMz = field,
+            .DimensionSize = New Size(scan_x, scan_y),
+            .MSILayer = data _
+                .Select(Function(v, i) New PixelData(x(i), y(i), v)) _
+                .ToArray
+        }
+        Dim argv As New MsImageProperty(scan_x, scan_y) With {
+            .background = Color.Transparent,
+            .colors = ScalerPalette.viridis,
+            .enableFilter = False,
+            .Hqx = HqxScales.Hqx_4x,
+            .mapLevels = 255,
+            .scale = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic,
+            .showTotalIonOverlap = True,
+            .showPhysicalRuler = False,
+            .TrIQ = 1,
+            .resolution = 17,
+            .knn = 0,
+            .knn_qcut = 1
+        }
+        Dim blender As Type = GetType(SingleIonMSIBlender) '(layer.MSILayer, Nothing, argv, loadFilters)
+        Me.blender.channel.WriteBuffer(PixelData.GetBuffer(layer.MSILayer))
+        Me.blender.OpenSession(blender, New Size(scan_x, scan_y), Nothing, params, Nothing)
+        Dim HEMap As System.Drawing.Image = Me.blender.MSIRender(Nothing, argv, layer.DimensionSize)
+
+        If Me.blender IsNot Nothing AndAlso Me.blender.Session IsNot GetType(HeatMapBlender) Then
+            ' draw and overlaps on the MS-imaging rendering for CAD analysis
+            PixelSelector1.MSICanvas.tissue_layer = HEMap
+            PixelSelector1.MSICanvas.RedrawCanvas()
+        Else
+            Call loadHEMapImage(HEMap)
+        End If
     End Sub
 
     Private Sub loadHEMapImage(HEMapImg As System.Drawing.Bitmap)
