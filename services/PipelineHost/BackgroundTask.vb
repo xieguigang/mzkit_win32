@@ -67,6 +67,7 @@ Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML.ControlVocabulary
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.LinearQuantitative.Data
@@ -105,9 +106,11 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports SMRUCC.genomics.Analysis
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
+Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports SMRUCC.Rsharp
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Components
+Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports list = SMRUCC.Rsharp.Runtime.Internal.Object.list
@@ -210,25 +213,18 @@ Module BackgroundTask
     End Function
 
     <ExportAPI("Mummichog")>
-    Public Function Mummichog(<RRawVectorArgument> raw As Object, args As MassSearchArguments, outputdir As String, Optional env As Environment = Nothing) As Object
-        Dim mzInputs As Double()
+    Public Function Mummichog(<RRawVectorArgument> raw As Object, <RRawVectorArgument> sampleinfo As Object, args As MassSearchArguments, outputdir As String, Optional env As Environment = Nothing) As Object
+        Dim mzInputs As PeakSet
         Dim printf = env.WriteLineHandler
+        Dim sampleSet As PipeIterator(Of SampleInfo) = pipeline.Stream(Of SampleInfo)(sampleinfo, env)
 
+        If sampleSet.isError Then
+            Return sampleSet.getError
+        End If
         If TypeOf raw Is String Then
-            Dim mzpack As mzPack
-
-            Using file As Stream = CStr(raw).Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-                mzpack = mzPack.ReadAll(file)
-            End Using
-
-            mzInputs = mzpack.MS _
-                .Select(Function(i) i.mz) _
-                .IteratesALL _
-                .GroupBy(PPMmethod.PPM(20)) _
-                .Select(Function(a) Val(a.name)) _
-                .ToArray
+            mzInputs = PeakSet.ReadCsv(CStr(raw))
         Else
-            mzInputs = CLRVector.asNumeric(raw)
+            Throw New NotImplementedException
         End If
 
         Call printf("get ions m/z set:")
@@ -241,8 +237,26 @@ Module BackgroundTask
             .ToArray
         Dim pool As IMzQuery = CompoundSolver.CreateIndex(keggCompounds, range, PPMmethod.PPM(args.PPM))
         Dim init0 = MzSet.GetCandidateSet(pool, peaks:=mzInputs).ToArray
-        Dim models = KEGGRepo.RequestKEGGMaps.CreateBackground(KEGGRepo.RequestKeggReactionNetwork).ToArray
-        Dim result = init0.PeakListAnnotation(models, permutation:=Integer.Parse(args.Optionals("permutation")))
+        Dim metabSet = keggCompounds _
+            .Select(Function(c)
+                        Return New KEGGMetabolite With {
+                            .CommonName = c.commonNames.DefaultFirst(c.formula),
+                            .ExactMass = c.exactMass,
+                            .Formula = c.formula,
+                            .Id = c.entry
+                        }
+                    End Function).ToArray
+        Dim mapSet As IEnumerable(Of KEGGPathway) = KEGGRepo.RequestKEGGMaps _
+            .Select(Function(map)
+                        Return New KEGGPathway With {
+                            .ID = map.EntryId,
+                            .Name = map.name,
+                            .Description = map.description,
+                            .Metabolites = New HashSet(Of String)(map.GetMembers.Where(Function(id) id.IsPattern("C\d{5}")))
+                        }
+                    End Function).ToArray
+        Dim models As New MummichogAnnotator(metabSet, mapSet, New MummichogParams)
+        Dim result = models.Annotate(mzInputs.peaks, DataGroup.CreateDataGroups(sampleSet).ToArray)
 
         Return result _
             .GetJson _

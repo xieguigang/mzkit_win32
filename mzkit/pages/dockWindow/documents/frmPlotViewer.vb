@@ -167,7 +167,7 @@ Public Class frmPlotViewer : Implements ISaveHandle, IFileReference
     End Function
 
     Public Function Save(s As IO.Stream, encoding As Encoding) As Boolean Implements ISaveHandle.Save
-        Call PictureBox1.BackgroundImage.Save(s, ImageFormat.Png)
+        Call PictureBox1.BackgroundImage.Save(s, System.Drawing.Imaging.ImageFormat.Png)
         Return True
     End Function
 
