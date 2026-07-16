@@ -190,7 +190,7 @@ namespace OpenSlideCs
                     using (SKCanvas canvas = new SKCanvas(bmp))
                     using (SKPaint paint = new SKPaint())
                     {
-                        paint.FilterQuality = SKFilterQuality.High;
+                        // paint.FilterQuality = SKFilterQuality.High;
                         canvas.DrawBitmap(
                             oldbmp,
                             new SKRect(0, 0, (int)z_size.Width, (int)z_size.Height),

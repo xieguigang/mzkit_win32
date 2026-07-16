@@ -102,6 +102,7 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports SMRUCC.genomics.Analysis
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.Rsharp
@@ -239,7 +240,7 @@ Module BackgroundTask
             .Select(Function(adducts) Parser.ParseMzCalculator(adducts)) _
             .ToArray
         Dim pool As IMzQuery = CompoundSolver.CreateIndex(keggCompounds, range, PPMmethod.PPM(args.PPM))
-        Dim init0 = pool.GetCandidateSet(peaks:=mzInputs).ToArray
+        Dim init0 = MzSet.GetCandidateSet(pool, peaks:=mzInputs).ToArray
         Dim models = KEGGRepo.RequestKEGGMaps.CreateBackground(KEGGRepo.RequestKeggReactionNetwork).ToArray
         Dim result = init0.PeakListAnnotation(models, permutation:=Integer.Parse(args.Optionals("permutation")))
 
@@ -420,7 +421,7 @@ Module BackgroundTask
         If save_bin Then
             ' save as the GCModeller HTS matrix object
             Dim spotSet As DataFrameRow() = dataset.Select(Function(i) New DataFrameRow(i)).ToArray
-            Dim hts As New Matrix With {
+            Dim hts As New HTS.DataFrame.Matrix With {
                 .expression = spotSet,
                 .sampleID = titleKeys,
                 .tag = raw.BaseName
