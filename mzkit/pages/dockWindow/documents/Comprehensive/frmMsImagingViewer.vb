@@ -65,7 +65,6 @@
 
 Imports System.ComponentModel
 Imports System.Drawing
-Imports System.Drawing.Drawing2D
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Threading
@@ -106,7 +105,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Data.Framework.StorageProvider
-Imports Microsoft.VisualBasic.DataMining.KMeans
+Imports Microsoft.VisualBasic.DataMining.ComponentModel.EntityModels
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Drawing.Interop

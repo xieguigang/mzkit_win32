@@ -7,7 +7,7 @@ Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.MIME.Office.Excel.XLSX
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.Container
-Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
+Imports ReportBuilder.HTML
 
 Public Class frmChemicalSolutionMassTool
 

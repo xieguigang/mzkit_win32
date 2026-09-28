@@ -57,7 +57,6 @@ Imports System.Drawing
 Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports System.Windows.Forms
-Imports System.Windows.Forms.ListViewItem
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -83,7 +82,7 @@ Imports Microsoft.VisualBasic.Data.visualize.Network.Analysis
 Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream
 Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream.Generic
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
-Imports Microsoft.VisualBasic.DataMining.KMeans
+Imports Microsoft.VisualBasic.DataMining.ComponentModel.EntityModels
 Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
@@ -476,7 +475,7 @@ Public Class PageMoleculeNetworking
             v = nodeInfo.Cluster(cluster.Text)
         Else
             ' 是一个spectrum
-            v = nodeInfo.Cluster(cluster.Parent.Text)
+            v = nodeInfo.Cluster(cluster.parent.Text)
         End If
 
         Return v
@@ -555,7 +554,7 @@ Public Class PageMoleculeNetworking
         ' get spectrum data
         Dim spectrumName As String = cluster.Text
         Dim spectrum = nodeInfo.GetSpectrum(spectrumName)
-        Dim clusterId = cluster.Parent.Text
+        Dim clusterId = cluster.parent.Text
         Dim cluster_representive = nodeInfo.Cluster(clusterId).representation
         ' create spectrum matrix alignment
         Dim alignment As AlignmentOutput = AlignmentProvider _

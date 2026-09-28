@@ -107,7 +107,7 @@ Namespace My
         Public Shared ReadOnly Property LogForm As OutputWindow
         Public Shared ReadOnly Property REngine As RInterpreter
 
-        Shared WithEvents console As Console
+        Shared WithEvents console As Console.TerminalControl
         Shared Rtask As Thread
         Shared cancel As New ManualResetEvent(initialState:=False)
 
@@ -205,7 +205,7 @@ Namespace My
                 End Sub
         End Sub
 
-        Public Shared Sub RegisterConsole(console As Console)
+        Public Shared Sub RegisterConsole(console As Console.TerminalControl)
             _console = console
         End Sub
 
