@@ -71,7 +71,7 @@ Public Class frmOpenseadragonViewer
                     meta_size:=8 * 1024 * 1024
                 )
 
-                For Each path As String In dir.GetFiles
+                For Each path As String In dir.GetFiles("/")
                     Dim rel As String = "/" & dir.GetRelativePath(path)
                     Dim open As Byte() = path.ReadBinary
                     Dim s = pack.OpenFile(rel, IO.FileMode.OpenOrCreate, IO.FileAccess.Write)

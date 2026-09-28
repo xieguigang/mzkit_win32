@@ -61,8 +61,7 @@ Imports Microsoft.VisualStudio.WinForms.Docking
 
 Public Class frmRsharp
 
-    Dim console1 As New ConsoleControl
-    Friend WithEvents console As Console
+    Dim console1 As New WebViewConsole
 
     Private Sub frmRsharp_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         e.Cancel = True
@@ -78,17 +77,17 @@ Public Class frmRsharp
 
         Controls.Add(console1)
 
-        console1.Font = New Font("Consolas", 10.0!)
-        console1.Dock = DockStyle.Fill
-        ' console1.Ps1Pattern = "[>]\s"
-        console1.SetConsoleCore(New Console)
+        'console1.Font = New Font("Consolas", 10.0!)
+        'console1.Dock = DockStyle.Fill
+        '' console1.Ps1Pattern = "[>]\s"
+        'console1.SetConsoleCore(New Console)
 
-        console = DirectCast(console1.GetInterface, Console)
+        'console = DirectCast(console1.GetInterface, Console)
 
-        console.ForegroundColor = ConsoleColor.Black
-        console.BackgroundColor = ConsoleColor.White
+        'console.ForegroundColor = ConsoleColor.Black
+        'console.BackgroundColor = ConsoleColor.White
 
-        MyApplication.RegisterConsole(console)
+        'MyApplication.RegisterConsole(console)
 
         CopyFullPathToolStripMenuItem.Enabled = False
         OpenContainingFolderToolStripMenuItem.Enabled = False

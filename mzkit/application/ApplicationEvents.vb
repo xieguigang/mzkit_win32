@@ -268,19 +268,19 @@ Namespace My
             Dim Rcore = GetType(RInterpreter).Assembly.FromAssembly
             Dim framework = GetType(App).Assembly.FromAssembly
 
-            Call console.WriteLine($"
-   , __           | 
-  /|/  \  |  |    | Documentation: https://r_lang.dev.SMRUCC.org/
-   |___/--+--+--  |
-   | \  --+--+--  | Version {Rcore.AssemblyVersion} ({Rcore.BuiltTime.ToString})
-   |  \_/ |  |    | sciBASIC.NET Runtime: {framework.AssemblyVersion}         
-                  
-Welcome to the R# language
-")
-            Call console.WriteLine("Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for an HTML browser interface to help.
-Type 'q()' to quit R.
-")
+            '            Call console.WriteLine($"
+            '   , __           | 
+            '  /|/  \  |  |    | Documentation: https://r_lang.dev.SMRUCC.org/
+            '   |___/--+--+--  |
+            '   | \  --+--+--  | Version {Rcore.AssemblyVersion} ({Rcore.BuiltTime.ToString})
+            '   |  \_/ |  |    | sciBASIC.NET Runtime: {framework.AssemblyVersion}         
+
+            'Welcome to the R# language
+            '")
+            '            Call console.WriteLine("Type 'demo()' for some demos, 'help()' for on-line help, or
+            ''help.start()' for an HTML browser interface to help.
+            'Type 'q()' to quit R.
+            '")
 
             _REngine = RInterpreter.FromEnvironmentConfiguration(configs:=R_LIBS_USER)
 
@@ -310,16 +310,16 @@ Type 'q()' to quit R.
 
             _REngine.LoadLibrary(GetType(MyApplication))
 
-            AddHandler console.CancelKeyPress,
-                Sub()
-                    ' ctrl + C just break the current executation
-                    ' not exit program running
-                    cancel.Set()
+            'AddHandler console.CancelKeyPress,
+            '    Sub()
+            '        ' ctrl + C just break the current executation
+            '        ' not exit program running
+            '        cancel.Set()
 
-                    If Not Rtask Is Nothing Then
-                        Rtask.Abort()
-                    End If
-                End Sub
+            '        If Not Rtask Is Nothing Then
+            '            Rtask.Abort()
+            '        End If
+            '    End Sub
 
             ' Call New Thread(AddressOf New Shell(New PS1("> "), AddressOf doRunScriptWithSpecialCommand, dev:=console) With {.Quite = "!.R#::quit" & Rnd()}.Run).Start()
             Call DescriptionTooltip.SetEngine(REngine)
@@ -328,7 +328,7 @@ Type 'q()' to quit R.
         Private Shared Sub doRunScriptWithSpecialCommand(script As String)
             Select Case script
                 Case "CLS"
-                    Call console.Clear()
+                    ' Call console.Clear()
                 Case Else
                     If Not script.StringEmpty Then
                         Rtask = New Thread(Sub() Call doRunScript(script))
@@ -338,13 +338,13 @@ Type 'q()' to quit R.
                         cancel.Reset()
                         cancel.WaitOne()
                     Else
-                        console.WriteLine()
+                        '  console.WriteLine()
                     End If
             End Select
         End Sub
 
         Private Shared Sub doRunScript(script As String)
-            Call ExecuteRScript(script, isFile:=False, AddressOf console.WriteLine)
+            ' Call ExecuteRScript(script, isFile:=False, AddressOf console.WriteLine)
             Call cancel.Set()
         End Sub
 
